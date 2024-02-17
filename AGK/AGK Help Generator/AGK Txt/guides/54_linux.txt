@@ -1,0 +1,11 @@
+_header
+Tier 1 (BASIC) Publishing for Linux
+
+_text
+When using the Linux AppGameKit Studio IDE an executable will be created in the project folder that holds the project files. This executable will only work on machines that use the same architecture as your machine, i.e. 32 bit or 64 bit. In the AppGameKit Studio Players folder are two players for Linux, one for 32 bit and one for 64 bit, you should copy the one that is missing into your project folder and name them appropriately, e.g. MyApp32 and MyApp64. You can them zip or pack the media folder and executables to easily transport your application. Make sure you don't include any .agc or .agk files unless you also want to distribute the source code.
+
+_sheader
+Requirements
+
+_text
+Users that run your app on Linux will need the "ibopengl1" package installed. Some Linux distributions will come with this already installed, if not it can be installed with the following command "sudo apt-get install libopengl1"

@@ -1,0 +1,19 @@
+﻿_header
+Principles
+
+_text
+The purpose of this section of the help is to teach you how to write your own programs. BASIC is an acronym for Beginners All Purpose Symbolic Instruction Code. The traditional description of a program is a task that you want your computer to perform. The task is described to the computer using statements the language can understand.
+
+_text
+Statements in your program must be written using a set of rules known as "Syntax". You must follow these rules if you are to write programs. By proceeding through these sections in sequence, you will gain a firm understanding about the general rules of BASIC and how to apply them as a programmer.
+
+_listbegin
+Datatypes and variables
+Operators
+Common statements
+Functions
+Syntax
+Looping and Syncing
+Numerical bases
+Errors and warnings
+_listend

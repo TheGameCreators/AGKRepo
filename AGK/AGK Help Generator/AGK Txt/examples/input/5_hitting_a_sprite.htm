@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Hitting a sprite - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Hitting a sprite</div><div class="page"><h1>Hitting a sprite</h1><p>When checking whether a user has hit or clicked on a sprite there are two options:</p><ul><li>Call <i>GetSpriteHitTest</i>, which allows you to check whether a given point lies within the boundaries of a specific sprite.</li><li>Use <i>GetSpriteHit</i>, which returns the ID number of a sprite that is under the specified point.</li></ul><p>This example takes a closer look at the second option: <i>GetSpriteHit</i>. This command is particularly useful for a situation where you quickly want to find what sprite a user has touched or clicked on. Internally this command will check all sprites within the area and return the appropriate ID number. It's a great time saver and means you don't need to be cycling through and checking specific sprites.</p><p>Two sprites will be placed side by side and when the user clicks or hits them the ID number of that sprite will appear on screen.</p><div align="center"><img src="5_hitting_a_sprite.jpg"/></div><h2>Getting started</h2><p>The initial set up code sets a virtual resolution of 320 x 480, this is followed by loading the images "chip5.png" and "chip25.png".</p><p><br>A sprite on the left uses "chip5.png", while a sprite on the right uses "chip25.png":</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+LoadImage ( 1, "chip5.png" )
+LoadImage ( 2, "chip25.png" )
+<br>	
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 2 )
+<br>	
+SetSpritePosition ( 1, 100, 50 )
+SetSpritePosition ( 2, 200, 50 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+LoadImage ( 1, &quot;chip5.png&quot; )
+LoadImage ( 2, &quot;chip25.png&quot; )
+
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 2 )
+
+SetSpritePosition ( 1, 100, 50 )
+SetSpritePosition ( 2, 200, 50 )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::LoadImage ( 1, "chip5.png" );
+    agk::LoadImage ( 2, "chip25.png" );
+<br>	
+    agk::CreateSprite ( 1, 1 );
+    agk::CreateSprite ( 2, 2 );
+<br>	
+    agk::SetSpritePosition ( 1, 100, 50 );
+    agk::SetSpritePosition ( 2, 200, 50 );
+}
+</pre></div><h2>Hitting a sprite</h2><p>Within our main loop an if statement is used to determine when the user hits or touches the screen, at this point <i>GetSpriteHit</i> is called. The command takes two parameters - an X and Y location, which for our purposes will be the location of the input. The return value is an ID number for whatever sprite was hit, this gets stored in a variable that is printed out on screen:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+    Print ( "Clicked on sprite" )
+    Print ( sprite )
+<br>
+    if ( GetPointerPressed ( ) = 1 )
+        sprite = GetSpriteHit ( GetPointerX ( ), GetPointerY ( ) )
+    endif
+<br>	
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+    Print ( &quot;Clicked on sprite&quot; )
+    Print ( sprite )
+
+    if ( GetPointerPressed ( ) = 1 )
+        sprite = GetSpriteHit ( GetPointerX ( ), GetPointerY ( ) )
+    endif
+
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Loop ( void )
+{
+    agk::Print ( "Clicked on sprite" );
+    agk::Print ( iSprite );
+<br>
+    if ( agk::GetPointerPressed ( ) )
+        iSprite = agk::GetSpriteHit ( agk::GetPointerX ( ), agk::GetPointerY ( ) );
+<br>
+    agk::Sync ( );
+}
+</pre></div><p>Whenever a user clicks or touches the screen the ID number of whatever sprite they were hitting will be displayed on screen. If no collision occurred then a value of 0 is returned from the command <i>GetSpriteHit</i>.</p><h2>Full code listing</h2><p>The final code listing is:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+backdrop = CreateSprite ( LoadImage ( "background4.jpg" ) )
+SetSpriteColorAlpha ( backdrop, 200 )
+<br>
+LoadImage ( 1, "chip5.png" )
+LoadImage ( 2, "chip25.png" )
+<br>	
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 2 )
+<br>	
+SetSpritePosition ( 1, 100, 50 )
+SetSpritePosition ( 2, 200, 50 )
+<br>
+do
+    Print ( "Clicked on sprite" )
+    Print ( sprite )
+<br>
+    if ( GetPointerPressed ( ) = 1 )
+        sprite = GetSpriteHit ( GetPointerX ( ), GetPointerY ( ) )
+    endif
+<br>	
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+backdrop = CreateSprite ( LoadImage ( &quot;background4.jpg&quot; ) )
+SetSpriteColorAlpha ( backdrop, 200 )
+
+LoadImage ( 1, &quot;chip5.png&quot; )
+LoadImage ( 2, &quot;chip25.png&quot; )
+
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 2 )
+
+SetSpritePosition ( 1, 100, 50 )
+SetSpritePosition ( 2, 200, 50 )
+
+do
+    Print ( &quot;Clicked on sprite&quot; )
+    Print ( sprite )
+
+    if ( GetPointerPressed ( ) = 1 )
+        sprite = GetSpriteHit ( GetPointerX ( ), GetPointerY ( ) )
+    endif
+
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    int backdrop = agk::CreateSprite ( agk::LoadImage ( "background4.jpg" ) );
+    agk::SetSpriteColorAlpha ( backdrop, 200 );
+<br>
+    agk::LoadImage ( 1, "chip5.png" );
+    agk::LoadImage ( 2, "chip25.png" );
+<br>	
+    agk::CreateSprite ( 1, 1 );
+    agk::CreateSprite ( 2, 2 );
+<br>	
+    agk::SetSpritePosition ( 1, 100, 50 );
+    agk::SetSpritePosition ( 2, 200, 50 );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Print ( "Clicked on sprite" );
+    agk::Print ( iSprite );
+<br>
+    if ( agk::GetPointerPressed ( ) )
+        iSprite = agk::GetSpriteHit ( agk::GetPointerX ( ), agk::GetPointerY ( ) );
+<br>
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>The command <i>GetSpriteHit</i> is particularly useful for scenarios when numerous sprites are on screen. If you had a screen with 20 buttons on and wanted to know which one had been clicked, then all it will take is one call to <i>GetSpriteHit</i>. This is much more efficient than running through a loop and checking sprites individually.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

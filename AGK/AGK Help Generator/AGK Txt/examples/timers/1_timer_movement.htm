@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Timer Based Movements - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Timer Based Movements</div><div class="page"><h1>Timer Based Movements</h1><h2>Description</h2><p>In many cases a game may run at the maximum frame rate possible on all platforms, usually 60 frames per second when vsync is on (it is on by default). This may well be the case for more simplistic games that aren't pushing the capabilities of the hardware too much. In other situations you may find that a game runs at different frames, for example, on Windows it may run at 60 frames per second, but on the iPhone at 30 frames per second. This will have the effect of the game running perfectly normal on Windows, but at half the speed on the iPhone, which is far from ideal. The way to counteract this problem is to introduce timer based movement into your game, which will result in your entities moving at the same speed regardless of the frame rate.</p><p>One approach to dealing with this problem is to calculate the time passed between frames / each cycle of the main loop and use this value as a multiplier that gets applied to any movement.</p><p>This example places a sprite on screen that is moved from the left over to the right. When it gets moved its new X location is calculated by applying a time based multiplier to it.</p><div align="center"><img src="1_timer_movement.jpg"/></div><h2>Getting started</h2><p>The initial code for this example displays a background image and then creates another sprite that will later be moved on screen. The current time is also stored in the variable <i>lastFrame</i>:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background7.jpg" ) )
+<br>
+LoadImage ( 1, "blue.png" )
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 0, 200 )
+<br>
+lastFrame# = Timer ( )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+CreateSprite ( LoadImage ( &quot;background7.jpg&quot; ) )
+
+LoadImage ( 1, &quot;blue.png&quot; )
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 0, 200 )
+
+lastFrame# = Timer ( )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background7.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "blue.png" );
+    agk::CreateSprite ( 1, 1 );
+    agk::SetSpritePosition ( 1, 0, 200 );
+<br>
+    lastFrame = Timer ( );
+}
+</pre></div><h2>Calculating the multiplier</h2><p>The process of calculating the difference between frames is fairly simple. At the beginning of the main loop the current time is stored, the difference is then calculated based on deducting the previous time from the current time, and finally the previous time is updated to the current time as shown here:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+    thisFrame#  = Timer ( )
+    difference# = thisFrame# - lastFrame#
+    lastFrame#  = thisFrame#
+<br>
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+    thisFrame#  = Timer ( )
+    difference# = thisFrame# - lastFrame#
+    lastFrame#  = thisFrame#
+
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Loop ( )
+{
+    thisFrame  = agk::Timer ( );
+    difference = thisFrame - lastFrame;
+    lastFrame  = thisFrame;
+<br>
+    agk::Sync ( );
+}
+</pre></div><p>The key data here is the difference between times, this needs to be saved and used in all movement based code.</p><h2>Moving a sprite</h2><p>Moving a sprite over to the right might typically look like this:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">x# = GetSpriteX ( 1 )
+x# = x# + 20
+SetSpriteX ( 1, x# )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="x# = GetSpriteX ( 1 )
+x# = x# + 20
+SetSpriteX ( 1, x# )
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">x = GetSpriteX ( 1 );
+x = x + 20;
+agk::SetSpriteX ( 1, x );
+</pre></div><p>In order to ensure movement is handled by time a small alteration is needed:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">x# = GetSpriteX ( 1 )
+x# = x# + 20 * difference#
+SetSpriteX ( 1, x# )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="x# = GetSpriteX ( 1 )
+x# = x# + 20 * difference#
+SetSpriteX ( 1, x# )
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">x = GetSpriteX ( 1 );
+x = x + 20 * difference;
+agk::SetSpriteX ( 1, x );
+</pre></div><p>Notice how this time the movement is being multiplied by the time difference between frames, therefore the frame rate jumping up or down won't matter as our sprites movement takes into account these time differences. The end result is that this sprite will move across the screen at the same speed regardless of whether the game is running at 10 or 100 frames per second.</p><h2>Full code listing</h2><p>Everything is now in place. Here's the final code for our program. A few additional lines have been added so that the frame rate can be adjusted (for those platforms that support it). This adjustment will make the program run at half the speed, yet the sprite will continually move at the same speed:</p><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background7.jpg" ) )
+<br>
+LoadImage ( 1, "blue.png" )
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 0, 200 )
+<br>
+vsync = 1
+<br>
+lastFrame# = Timer ( )
+do
+    thisFrame#  = Timer ( )
+    difference# = thisFrame# - lastFrame#
+    lastFrame#  = thisFrame#
+<br>
+    x# = GetSpriteX ( 1 )
+    x# = x# + 20.0 * difference#
+    SetSpriteX ( 1, x# )
+<br>
+    Print ( "Touch or click the screen to turn" )
+    Print ( "Vsync on or off" )
+    Print ( "" )
+    Print ( "Vsync = " + str ( vsync ) )
+    Print ( "Frame rate = " + str ( screenFPS ( ) ) )
+<br>
+    if GetPointerPressed ( ) = 1
+        if vsync = 1
+            SetSyncRate ( 30, 1 )
+            vsync = 0
+        else
+            SetSyncRate ( 60, 1 )
+            vsync = 1
+        endif
+    endif
+<br>
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+CreateSprite ( LoadImage ( &quot;background7.jpg&quot; ) )
+
+LoadImage ( 1, &quot;blue.png&quot; )
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 0, 200 )
+
+vsync = 1
+
+lastFrame# = Timer ( )
+do
+    thisFrame#  = Timer ( )
+    difference# = thisFrame# - lastFrame#
+    lastFrame#  = thisFrame#
+
+    x# = GetSpriteX ( 1 )
+    x# = x# + 20.0 * difference#
+    SetSpriteX ( 1, x# )
+
+    Print ( &quot;Touch or click the screen to turn&quot; )
+    Print ( &quot;Vsync on or off&quot; )
+    Print ( &quot;&quot; )
+    Print ( &quot;Vsync = &quot; + str ( vsync ) )
+    Print ( &quot;Frame rate = &quot; + str ( screenFPS ( ) ) )
+
+    if GetPointerPressed ( ) = 1
+        if vsync = 1
+            SetSyncRate ( 30, 1 )
+            vsync = 0
+        else
+            SetSyncRate ( 60, 1 )
+            vsync = 1
+        endif
+    endif
+
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock10" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background7.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "blue.png" );
+    agk::CreateSprite ( 1, 1 );
+    agk::SetSpritePosition ( 1, 0, 200 );
+<br>
+    vsync = 1;
+}
+<br>
+void app::Loop ( void )
+{
+    thisFrame  = agk::Timer ( );
+    difference = thisFrame - lastFrame;
+    lastFrame  = thisFrame;
+<br>
+    x = agk::GetSpriteX ( 1 );
+    x = x + 20.0 * difference;
+    agk::SetSpriteX ( 1, x );
+<br>
+    agk::Print ( "Touch or click the screen to turn" );
+    agk::Print ( "Vsync on or off" );
+    agk::Print ( "" );
+    agk::Print ( "Vsync = " + agk::str ( vsync ) );
+    agk::Print ( "Frame rate = " + agk::str ( agk::screenFPS ( ) ) );
+<br>
+    if ( agk::GetPointerPressed ( ) == 1 )
+    {
+        if ( vsync == 1 )
+        {
+            agk::SetSyncRate ( 30, 1 );
+            vsync = 0;
+        }
+        else
+        {
+            agk::SetSyncRate ( 60, 1 );
+            vsync = 1;
+        }
+    }
+<br>
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>This is a good start in understanding how to implement timer based movement. A more advanced solution might implement interpolation so that on slower platforms the movement would remain smooth, whereas with this example it would be somewhat jerky. It's also worth taking into account whether the extra overhead is necessary, as with some games it simply won't be an issue, but this is something that needs to be decided early on in the development otherwise you could end up running into issues changing styles later on.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

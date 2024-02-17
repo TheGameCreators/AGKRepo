@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Size of an array - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Size of an array</div><div class="page"><h1>Size of an array</h1><p>When an array is declared a fixed value is usually defined, such as this line of code that declares an array named <i>speed</i>, giving it a size of 5.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">speed as integer [ 5 ]
+</pre></div><div align="right"><button class="btn" data-clipboard-text="speed as integer [ 5 ]
+">Copy Code</button></div><p>The <i>speed</i> array might contain data storing how fast 5 cars should be moving, each of which might be moving at a different rate. Later on in your game you might decide to have more or fewer cars in a particular level. You could just declare <i>speed</i> as having many elements e.g. 500 but this would be a waste of resources. Ideally you only want to have memory reserved for the actual data your program needs. If one level needs to store the speed for 5 cars then the array should have a size of 5. If the next level uses 10 cars then the array should have a size of 10. By working like this your program will be more efficient, as are you only using resources that your program requires.</p><p>Controlling the size of an array is handled by using the keyword <i>length</i> as demonstrated in this program.</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">speed as integer [ 5 ]
+<br>
+for i = 1 to 5
+	speed [ i ] = i
+next i
+<br>
+speed.length = 10
+<br>
+do
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="speed as integer [ 5 ]
+
+for i = 1 to 5
+	speed [ i ] = i
+next i
+
+speed.length = 10
+
+do
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+
+	sync ( )
+loop
+">Copy Code</button></div><p>This program begins by having an array with 5 elements. The <i>for</i> loop gives each element a value from 1 to 5. The next line resizes the array.</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">speed.length = 10
+</pre></div><div align="right"><button class="btn" data-clipboard-text="speed.length = 10
+">Copy Code</button></div><p>After this line has been called our array will have a size of 10 instead of 5, although it will still retain the data that was previously set.</p><p>The <i>for</i> loop within the program also makes use of the <i>length</i> keyword, allowing us to cycle through all elements of the array to print its contents. The first 5 parts of the array will show 1, 2, 3, 4 and 5, whilst the remainder will display 0 as no other value has been set for it.</p><p>The next program shows how an array can be made smaller.</p><div id="basicCodeBlock4" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">speed as integer [ 10 ]
+<br>
+for i = 1 to 10
+	speed [ i ] = i
+next i
+<br>
+speed.length = 5
+<br>
+do
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="speed as integer [ 10 ]
+
+for i = 1 to 10
+	speed [ i ] = i
+next i
+
+speed.length = 5
+
+do
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+
+	sync ( )
+loop
+">Copy Code</button></div><p>An array can be resized at any point within your program, giving you the flexibility to ensure only the data you need is used.</p><div align="center"><a href="arrays_002.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="arrays_004.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

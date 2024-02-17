@@ -1,0 +1,38 @@
+
+_header
+Assigning values to variables
+
+_text
+The value of a variable can be assigned to another variable after it has been declared, as shown in this example.
+
+_tier1
+defaultPlayerLives as integer = 10
+playerLives as integer = 0
+playerScore as integer = 0
+<br>
+playerLives = defaultPlayerLives
+<br>
+do
+	print ( defaultPlayerLives )
+	print ( playerLives )
+	print ( playerScore )
+	<br>
+	sync ( )
+loop
+_tier1
+
+_text
+The first three lines declare and assign default values to the variables. The next line takes the value of <i>defaultPlayerLives</i> and assigns it to the variable <i>playerLives</i>.
+
+_tier1
+playerLives = defaultPlayerLives
+_tier1
+
+_text
+Which means at this point <i>playerLives</i> has been assigned a value of 10. When you run the program you will see 10, 10 and 0 displayed on screen.
+
+_imageclick
+expressions001.jpg
+
+_navigation
+assignments_and_expressions_001.htm assignments_and_expressions_003.htm 

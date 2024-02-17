@@ -1,0 +1,250 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Scrolling sprites - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Scrolling sprites</div><div class="page"><h1>Scrolling sprites</h1><h2>Description</h2><p>Many games may require the ability to scroll the screen. AppGameKit Studio assists with this process by providing a few simple commands to easily and efficiently scroll the screen. This example will show the following:</p><ul><li>a football pitch displayed on screen</li><li>the view being scrolled in different directions</li><li>a sprite displayed on screen that is not affected by scrolling</li></ul><div align="center"><img src="9_scrolling.jpg"/></div><h2>External media</h2><p>This example program relies on several images:</p><p><div align="center"><b>pitch_top.jpg</b></div></p><div align="center"><img src="pitch_top.jpg"/></div><p><div align="center"><b>goals_logo.png</b></div></p><div align="center"><img src="goals_logo.png"/></div><p><div align="center"><b>pitch_bottom.jpg</b></div></p><div align="center"><img src="pitch_bottom.jpg"/></div><h2>Overview</h2><p>The process involved is as follows:</p><ul><li>load images for the pitch and create sprites</li><li>load an image and create a sprite that is fixed to the screen</li></ul><p>Within the main loop:</p><ul><li>adjust the view offset to perform scrolling</li></ul><h2>Creating our pitch</h2><p>This example has two external images - pitch_top.jpg and pitch_bottom.jpg. As the names suggests one image contains the top of the pitch, while the other image contains the bottom half of the pitch. Both of these images are loaded, sprites are created and finally they are positioned to align correctly:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadImage ( 1, "pitch_top.jpg" )
+LoadImage ( 2, "pitch_bottom.jpg" )
+<br>
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 2 )
+<br>
+SetSpritePosition ( 1, 0, 0 )
+SetSpritePosition ( 2, 0, 593 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadImage ( 1, &quot;pitch_top.jpg&quot; )
+LoadImage ( 2, &quot;pitch_bottom.jpg&quot; )
+
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 2 )
+
+SetSpritePosition ( 1, 0, 0 )
+SetSpritePosition ( 2, 0, 593 )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::LoadImage ( 1, "pitch_top.jpg" );
+agk::LoadImage ( 2, "pitch_bottom.jpg" );
+<br>
+agk::CreateSprite ( 1, 1 );
+agk::CreateSprite ( 2, 2 );
+<br>
+agk::SetSpritePosition ( 1, 0, 0 );
+agk::SetSpritePosition ( 2, 0, 593 );
+</pre></div><h2>Create a fixed sprite</h2><p>Within the main loop, when we adjust the view offset (that controls scrolling) our pitch sprites will be moved about. There may be cases where this behaviour isn’t required for certain sprites, for example, interface elements might be fixed to the screen. When this behaviour is required, all it takes to stop a sprite from scrolling is to call the command <i>FixSpriteToScreen</i>. This command has two parameters - the ID number of the sprite and then a value controlling whether the sprite is fixed to the screen (a value of 1), or if the sprite is fixed to the world (a value of 0). In our example this new sprite will remain at the top left corner of the screen:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadImage ( 3, "goals_logo.png" )
+CreateSprite ( 3, 3 )
+FixSpriteToScreen ( 3, 1 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadImage ( 3, &quot;goals_logo.png&quot; )
+CreateSprite ( 3, 3 )
+FixSpriteToScreen ( 3, 1 )
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::LoadImage ( 3, "goals_logo.png" );
+agk::CreateSprite ( 3, 3 );
+agk::FixSpriteToScreen ( 3, 1 );
+</pre></div><h2>Main Loop</h2><p>To scroll our sprites we need to make a call to the command <i>SetViewOffset</i>. This command has two parameters - an offset on the X axis and an offset on the Y axis. By default these values will be 0 and 0. As the X value is increased our sprites will be shifted to the left, while a decrease in the X value will shift sprites to the right. Increasing the Y value will shift sprites up, decreasing it will shift them down.</p><p>The code being used in this example will scroll in one direction for a short while, before returning to the original position and then repeating the process. Here’s the code:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+    SetViewOffset ( x, y )
+<br>    
+    if ( direction = 0 )
+        x = x + 1
+        y = y + 2
+<br>    
+        if  ( y > 740 )
+            direction = 1
+        endif
+    endif
+<br>    
+    if ( direction = 1 )
+        x = x - 1
+        y = y - 2
+<br>    
+        if  ( y < 0 )
+            direction = 0
+        endif
+    endif
+<br>    
+    sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+    SetViewOffset ( x, y )
+
+    if ( direction = 0 )
+        x = x + 1
+        y = y + 2
+
+        if  ( y > 740 )
+            direction = 1
+        endif
+    endif
+
+    if ( direction = 1 )
+        x = x - 1
+        y = y - 2
+
+        if  ( y < 0 )
+            direction = 0
+        endif
+    endif
+
+    sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Loop ( void )
+{
+    SetViewOffset ( x, y );
+<br>
+    if ( direction == 0 )
+    {
+        x = x + 1;
+        y = y + 2;
+<br>
+        if  ( y > 740 )
+            direction = 1;
+    }
+<br>
+    if ( direction == 1 )  
+    {
+        x = x - 1;
+        y = y - 2;
+<br>
+        if  ( y < 0 )
+            direction = 0;
+    }
+<br> 
+    agk::Sync ( );
+}
+</pre></div><h2>Full code listing</h2><p>Everything is now in place. Here's the final code for our program:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+LoadImage ( 1, "pitch_top.jpg" )
+LoadImage ( 2, "pitch_bottom.jpg" )
+<br>
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 2 )
+<br>
+SetSpritePosition ( 1, 0, 0 )
+SetSpritePosition ( 2, 0, 593 )
+<br>
+LoadImage ( 3, "goals_logo.png" )
+CreateSprite ( 3, 3 )
+FixSpriteToScreen ( 3, 1 )
+<br>
+do
+    SetViewOffset ( x, y )
+<br>    
+    if ( direction = 0 )
+        x = x + 1
+        y = y + 2
+<br>    
+        if  ( y > 740 )
+            direction = 1
+        endif
+    endif
+<br>    
+    if ( direction = 1 )
+        x = x - 1
+        y = y - 2
+<br>    
+        if  ( y < 0 )
+            direction = 0
+        endif
+    endif
+<br>    
+    sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+LoadImage ( 1, &quot;pitch_top.jpg&quot; )
+LoadImage ( 2, &quot;pitch_bottom.jpg&quot; )
+
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 2 )
+
+SetSpritePosition ( 1, 0, 0 )
+SetSpritePosition ( 2, 0, 593 )
+
+LoadImage ( 3, &quot;goals_logo.png&quot; )
+CreateSprite ( 3, 3 )
+FixSpriteToScreen ( 3, 1 )
+
+do
+    SetViewOffset ( x, y )
+
+    if ( direction = 0 )
+        x = x + 1
+        y = y + 2
+
+        if  ( y > 740 )
+            direction = 1
+        endif
+    endif
+
+    if ( direction = 1 )
+        x = x - 1
+        y = y - 2
+
+        if  ( y < 0 )
+            direction = 0
+        endif
+    endif
+
+    sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::LoadImage ( 1, "pitch_top.jpg" );
+    agk::LoadImage ( 2, "pitch_bottom.jpg" );
+<br>
+    agk::CreateSprite ( 1, 1 );
+    agk::CreateSprite ( 2, 2 );
+<br>
+    agk::SetSpritePosition ( 1, 0, 0 );
+    agk::SetSpritePosition ( 2, 0, 593 );
+<br>
+    agk::LoadImage ( 3, "goals_logo.png" );
+    agk::CreateSprite ( 3, 3 );
+    agk::FixSpriteToScreen ( 3, 1 );
+}
+<br>
+void app::Loop ( void )
+{
+    SetViewOffset ( x, y );
+<br>
+    if ( direction == 0 )
+    {
+        x = x + 1;
+        y = y + 2;
+<br>
+        if  ( y > 740 )
+            direction = 1;
+    }
+<br>
+    if ( direction == 1 )  
+    {
+        x = x - 1;
+        y = y - 2;
+<br>
+        if  ( y < 0 )
+            direction = 0;
+    }
+<br> 
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>As you can see from this example AppGameKit Studio makes the task of scrolling your screen very simple.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

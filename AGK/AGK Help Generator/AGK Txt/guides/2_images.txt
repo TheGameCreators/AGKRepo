@@ -1,0 +1,160 @@
+_header
+Images
+
+_sheader
+Overview
+_text
+This guide provides an overview of images and some of their associated commands.
+
+_sheader
+What formats are supported?
+_text
+AppGameKit Studio supports loading of PNG, JPG and (on some platforms) BMP image formats. For transparent images only PNG is supported.
+
+_sheader
+How do I load an image?
+_text
+An image can be loaded by calling the <i>LoadImage</i> command:
+
+_tier1
+LoadImage ( id, file )
+id = LoadImage ( file )
+_tier1
+
+_tier2
+void LoadImage ( UINT id, const char* sImageFilename );
+UINT LoadImage ( const char* sImageFilename );
+_tier2
+
+_text
+It's possible to load an image like this, where an ID number of 1 is specified and the image "myImage.png" is to be loaded:
+
+_tier1
+LoadImage ( 1, "myImage.png" )
+_tier1
+
+_tier2
+agk::LoadImage ( 1, "myImage.png" );
+_tier2
+
+_text
+Alternatively it can be handled like this, where the variable <i>image</i> stores the ID number:
+
+_tier1
+image = LoadImage ( "myImage.png" )
+_tier1
+
+_tier2
+image = agk::LoadImage ( "myImage.png" );
+_tier2
+
+_text
+The difference being that in the first example the ID number is fixed as 1, and from that point onwards if you want to do something with that image you must use ID 1. The other example has the ID number stored in the variable <i>image</i>, meaning it's not necessary to know the ID number, you simply use the variable <i>image</i> when requiring the ID number in future. Please note that ID numbers are unique for a command set.  Therefore it's feasible to have a sprite ID of 1 along with an image ID of 1.
+
+_sheader
+Where do images need to be stored?
+
+_text
+When using Tier 1 all of your data needs to be placed in a folder named media. This becomes your root folder. For example, if you place image.jpg within the media folder you do not need to specify the media folder when loading e.g.
+
+_tier1
+image = LoadImage ( "image.jpg" )
+_tier1
+
+_text
+When using a Tier 2 application the root directory is the same directory as your executable.
+
+_sheader
+How do I delete an image?
+_text
+Due to limited resources on devices it may be necessary to delete previously loaded images and free up available memory. To delete an image call the command <i>DeleteImage</i>:
+
+_tier1
+DeleteImage ( id )
+_tier1
+
+_tier2
+void DeleteImage ( UINT id );
+_tier2
+
+_text
+This command only requires the ID number of the image you want to delete.
+
+_text
+Here's an example of loading an image into ID slot 1 and then deleting it:
+
+_tier1
+LoadImage ( 1, "myImage.png" )
+DeleteImage ( 1 )
+_tier1
+
+_tier2
+agk::LoadImage ( 1, "myImage.png" );
+agk::DeleteImage ( 1 );
+_tier2
+
+_sheader
+How can I check if an image exists?
+_text
+The command <i>GetImageExists</i> can be used to determine whether an image with the specified ID number exists:
+
+_tier1
+exists = GetImageExists ( id )
+_tier1
+
+_tier2
+UINT GetImageExists ( UINT id );
+_tier2
+
+_text
+As an example, this code loads an image into ID slot 1 and then checks whether it exists:
+
+_tier1
+LoadImage ( 1, "myImage.png" )
+<br>
+if GetImageExists ( 1 ) = 1
+    ' the image exists
+endif
+_tier1
+
+_tier2
+agk::LoadImage ( 1, "myImage.png" );
+<br>
+if ( agk::GetImageExists ( 1 ) == 1 )
+{
+    // the image exists
+}
+_tier2
+
+_sheader
+How can I find out the size of an image?
+_text
+Commands have been provided to find out the width and height of an image:
+
+_tier1
+width = GetImageWidth ( id )
+height = GetImageHeight ( id )
+_tier1
+
+_tier2
+UINT GetImageWidth ( UINT id );
+UINT GetImageHeight ( UINT id );
+_tier2
+
+_text
+This example loads an image into ID slot 1 and then retrieves its width and height:
+
+_tier1
+LoadImage ( 1, "myImage.png" )
+width = GetImageWidth ( 1 )
+height = GetImageHeight ( 1 )
+_tier1
+
+_tier2
+agk::LoadImage ( 1, "myImage.png" );
+width = agk::GetImageWidth ( 1 );
+height = agk::GetImageHeight ( 1 );
+_tier2
+
+
+

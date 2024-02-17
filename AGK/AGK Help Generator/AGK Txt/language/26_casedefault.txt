@@ -1,0 +1,34 @@
+_header
+case default
+
+_sheader
+Syntax
+
+_tier1
+case default:
+_tier1
+
+_sheader
+Description
+
+_text
+A case default statement holds code below it in the event that no case statement catches the value of the variable. The case default statement must go at the end of a sequence of case statement, but above the <i>endselect</i> statement. Use this command in combination with <i>case</i>, <i>endcase</i>, <i>select</i> and <i>endselect</i> to create a select statement. 
+
+_sheader
+Example
+
+_tier1
+value = 3
+<br>
+select value
+    case 1:
+        print ( "value is 1" )
+    endcase
+    case 2:
+        print ( "value is 2" )
+    endcase
+    case default:
+        print ( "no other case statement was triggered" )
+    endcase
+endselect
+_tier1

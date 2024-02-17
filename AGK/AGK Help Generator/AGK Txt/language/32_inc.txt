@@ -1,0 +1,27 @@
+_header
+inc
+
+_sheader
+Syntax
+
+_tier1
+inc variable, value
+_tier1
+
+_sheader
+Description
+
+_text
+The <i>inc</i> command will increment a variable by a specified value or by a default of 1. Both integer and real variables can be incremented by either an integer or real value, in addition to array and data type elements.
+
+_sheader
+Example
+
+_tier1
+a = 1
+print ( a )
+inc a
+print ( a )
+inc a, 4
+print ( a )
+_tier1

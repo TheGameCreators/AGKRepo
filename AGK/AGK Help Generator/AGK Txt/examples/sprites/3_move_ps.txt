@@ -1,0 +1,160 @@
+﻿_header
+Moving sprites using the percentage system
+
+_sheader
+Description
+
+_text
+In this example we’re going to place a sprite on screen and move it using the approach of the percentage based system.
+
+_image
+3_move_ps.jpg
+
+_sheader
+Overview
+_text
+The process involved is as follows:
+_listbegin
+load an image
+create a sprite
+set the sprite’s size
+move our sprite in the main loop
+_listend
+
+_sheader
+Load an image
+_text
+Before creating our sprite we will load in an image, that will later get attached to the sprite:
+
+_tier1
+image = LoadImage ( "blue.png" )
+_tier1
+
+_tier2
+image = agk::LoadImage ( "blue.png" );
+_tier2
+
+_text
+This line calls <i>LoadImage</i> passing in the filename "blue.png", it then returns an ID number which gets saved in the variable. This ID number is now treated as a handle to our image and can be used later on when referring to it.
+
+_sheader
+Creating a sprite
+_text
+Now that we have an image loaded into memory we’re ready to create a sprite and attach this image to it. This is achieved by calling the command <i>CreateSprite</i>.
+
+_tier1
+sprite = CreateSprite ( image )
+_tier1
+
+_tier2
+sprite = agk::CreateSprite ( image );
+_tier2
+
+_text
+Here we call <i>CreateSprite</i> passing in an ID number for our image and returning an ID number for the sprite. We’re effectively saying create a sprite, attach this image to it and give us back an ID number for this sprite. This ID number for the sprite can be stored for use later on when dealing with sprite properties, for example.
+
+_sheader
+Set the sprite’s size
+_text
+As we’re using the percentage based system it’s necessary for us to let AppGameKit Studio know how big this sprite is going to be. This is handled using the function <i>SetSpriteSize</i>. Its parameters are an ID number followed by width and height values as percentages. In this instance we require our sprite to take up 20% of the screen on the X axis and we’ll let AppGameKit Studio calculate the correct proportion on the Y axis, therefore we pass in -1 for the second parameter:
+
+_tier1
+SetSpriteSize ( sprite, 20, -1 )
+_tier1
+
+_tier2
+agk::SetSpriteSize ( iSprite, 20.0f, -1.0f );
+_tier2
+
+_text
+If we passed in a value of 20 to the second parameter (the height) then our sprite would look incorrect. This is due to the sprite being of size 54 x 50. It’s not exactly square, therefore if the sprite took up 20% of the screen on both axis then it will not be proportionally correct, so setting one of the parameters to -1 solves this problem for us.
+
+_sheader
+Main loop
+_text
+Up to this point we have, loaded an image, created a sprite that uses this image and set its size. We’re nearly ready to run our application and see the results. Prior to this we need to ensure one more thing - in our main loop we must call <i>Sync</i> to ensure the screen gets updated and its contents drawn. The function Sync takes no parameters and can be called in your main loop like this:
+
+_tier1
+do
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Move our sprite in the main loop
+_text
+To move our sprite around the screen we call the command <i>SetSpritePosition</i>. This command takes three parameters - the ID number of the sprite, new X position on screen and the new Y position on screen. As we’re using the percentage based system these coordinates are treated as percentages. For our purposes we want to move our sprite from its initial position (which will be 0, 0 by default) and over towards the right hand side of the screen. This is achieved by setting a variable to 0, incrementing it slowly each frame and then passing it into <i>SetSpritePosition</i>, as shown in this code:
+
+_tier1
+SetSpritePosition ( sprite, x#, 0 )
+<br>
+x# = x# + 0.25
+_tier1
+
+_tier2
+SetSpritePosition ( iSprite, x, 0.0f );
+<br>
+x = x + 0.25f;
+_tier2
+
+_text
+This has the effect of moving our sprite by 0.25% of the width of the screen each frame, which is about 0.8 pixels. To move by one pixel would need to increase the percentage to about 0.32%.
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program
+
+_tier1
+backdrop = CreateSprite ( LoadImage ( "background3.jpg" ) )
+SetSpriteSize ( backdrop, 100, 100 )
+<br>
+image = LoadImage ( "blue.png" )
+<br>
+sprite = CreateSprite ( image )
+<br>
+SetSpriteSize ( sprite, 20, -1 )
+<br>
+do
+    SetSpritePosition ( sprite, x#, 0 )
+<br>
+    x# = x# + 0.25
+<br>
+    sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    int backdrop = agk::CreateSprite ( agk::LoadImage ( "background3.jpg" ) );
+    agk::SetSpriteSize ( backdrop, 100, 100 );
+<br>
+    image = agk::LoadImage ( "blue.png" );
+<br>
+    sprite = agk::CreateSprite ( image );
+<br>
+    agk::SetSpriteSize ( sprite, 20, -1 );
+}
+
+void app::Loop ( void )
+{
+    agk::SetSpritePosition ( iSprite, x, 0.0f );
+<br>
+    x = x + 0.25f;
+<br>
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+We’re now all set to run our application and see the results on screen.

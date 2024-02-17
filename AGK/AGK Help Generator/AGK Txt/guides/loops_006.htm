@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Drawing circles with for loops - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="http://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Drawing circles with for loops</div><div class="page"><h1>Drawing circles with for loops</h1><p>Imagine if you wanted to do something a little more complex, such as drawing a circle on screen. To create a circle we need to know its radius and centre point. With that information in place we can repeat a series of steps to draw sprites on screen to represent the circle. This is the kind of situation that a <i>for</i> loop is really suited for. The code that follows demonstrates how this can be achieved.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 1024, 768 )
+EnableClearColor ( 0 )
+SetSyncRate ( 250, 0 )
+<br>
+CreateImageColor ( 1, 255, 255, 255, 255 )
+CreateSprite ( 1, 1 )
+SetSpriteSize ( 1, 1, 1 )
+<br>
+do
+	radius = random ( 20, 100 )
+	sourceX = random ( 0, 1024 )
+	sourceY = random ( 0, 768 )
+	red = random ( 0, 255 )
+	green = random ( 0, 255 )
+	blue = random ( 0, 255 )
+	<br>
+	for y = -radius to radius
+		for x = -radius to radius
+			if x * x + y * y <= radius * radius
+				SetSpritePosition ( 1, sourceX + x, sourceY + y )
+				SetSpriteColor ( 1, red, green, blue, 255 )
+				DrawSprite ( 1 )
+			endif
+		next x
+		<br>
+		sync ( )
+	next y
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 1024, 768 )
+EnableClearColor ( 0 )
+SetSyncRate ( 250, 0 )
+
+CreateImageColor ( 1, 255, 255, 255, 255 )
+CreateSprite ( 1, 1 )
+SetSpriteSize ( 1, 1, 1 )
+
+do
+	radius = random ( 20, 100 )
+	sourceX = random ( 0, 1024 )
+	sourceY = random ( 0, 768 )
+	red = random ( 0, 255 )
+	green = random ( 0, 255 )
+	blue = random ( 0, 255 )
+
+	for y = -radius to radius
+		for x = -radius to radius
+			if x * x + y * y <= radius * radius
+				SetSpritePosition ( 1, sourceX + x, sourceY + y )
+				SetSpriteColor ( 1, red, green, blue, 255 )
+				DrawSprite ( 1 )
+			endif
+		next x
+
+		sync ( )
+	next y
+loop
+">Copy Code</button></div><p>After a few minutes of running the program you will see lots of circles on the screen.</p><div align="center"><a class="example-image-link" href="loops001_large.jpg" data-lightbox="example-1"><img class="example-image" src="loops001.jpg" alt="image-1" /></a></div><p>The code to handle this is quite straightforward. A bunch of variables are used to control properties of the circles - radius, source or centre position, then the red, green and blue colours. These are set to random values within a given range, so that we get different circles displayed on screen each time the main <i>do</i> loop runs. Next two <i>for</i> loops are used. The first <i>for</i> loop sets the variable <i>y</i> start point to the negative value of the <i>radius</i> variable. The end point gets set to the <i>radius</i> variable. If the <i>radius</i> was assigned to 100 then this <i>for</i> loop would run from -100 to 100. This allows us to plot a line along the y axis. The next <i>for</i> loop repeats the process, but this time using the variable <i>x</i>, which is used to plot a line along the x axis. The contents of the second <i>for</i> loop check whether the <i>x</i> and <i>y</i> are within the required radius for the circle. If this is the case then a sprite is positioned at this point. The two loops combine to repeat the process, eventually drawing a filled circle. </p><p>Note how the call to the <i>sync</i> command (that refreshes the contents of the screen) has been placed within the first <i>for</i> loop. This has been done to slow down the program to let you see the circle being built up and drawn. If this call was to be moved outside of the <i>for</i> loop then the program would run much faster and you would see a full circle being drawn and placed on the screen.</p><p>Here's a slightly altered version of the program. This time extra <i>for</i> loops have been added that plot rectangles on screen.</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 1024, 768 )
+EnableClearColor ( 0 )
+SetSyncRate ( 250, 0 )
+<br>
+CreateImageColor ( 1, 255, 255, 255, 255 )
+CreateSprite ( 1, 1 )
+SetSpriteSize ( 1, 1, 1 )
+<br>
+do
+	radius = random ( 20, 100 )
+	sourceX = random ( 0, 1024 )
+	sourceY = random ( 0, 768 )
+	red = random ( 0, 255 )
+	green = random ( 0, 255 )
+	blue = random ( 0, 255 )
+<br>
+	for y = -radius to radius
+		for x = -radius to radius
+			if x * x + y * y <= radius * radius
+				SetSpritePosition ( 1, sourceX + x, sourceY + y )
+				SetSpriteColor ( 1, red, green, blue, 255 )
+				DrawSprite ( 1 )
+			endif
+		next x
+	next y
+	<br>
+	minX = random ( 0, 1024 )
+	maxX = minX + random ( 10, 100 )
+	minY = random ( 0, 1024 )
+	maxY = minY + random ( 10, 100 )
+	<br>
+	for y = minY to maxY
+		for x = minX to maxX
+			SetSpritePosition ( 1, x, y )
+			SetSpriteColor ( 1, red, green, blue, 255 )
+			DrawSprite ( 1 )
+		next x
+	next y
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 1024, 768 )
+EnableClearColor ( 0 )
+SetSyncRate ( 250, 0 )
+
+CreateImageColor ( 1, 255, 255, 255, 255 )
+CreateSprite ( 1, 1 )
+SetSpriteSize ( 1, 1, 1 )
+
+do
+	radius = random ( 20, 100 )
+	sourceX = random ( 0, 1024 )
+	sourceY = random ( 0, 768 )
+	red = random ( 0, 255 )
+	green = random ( 0, 255 )
+	blue = random ( 0, 255 )
+
+	for y = -radius to radius
+		for x = -radius to radius
+			if x * x + y * y <= radius * radius
+				SetSpritePosition ( 1, sourceX + x, sourceY + y )
+				SetSpriteColor ( 1, red, green, blue, 255 )
+				DrawSprite ( 1 )
+			endif
+		next x
+	next y
+
+	minX = random ( 0, 1024 )
+	maxX = minX + random ( 10, 100 )
+	minY = random ( 0, 1024 )
+	maxY = minY + random ( 10, 100 )
+
+	for y = minY to maxY
+		for x = minX to maxX
+			SetSpritePosition ( 1, x, y )
+			SetSpriteColor ( 1, red, green, blue, 255 )
+			DrawSprite ( 1 )
+		next x
+	next y
+
+	sync ( )
+loop
+">Copy Code</button></div><p>As you can see using loops in this manner is incredibly useful.</p><div align="center"><a class="example-image-link" href="loops003_large.jpg" data-lightbox="example-1"><img class="example-image" src="loops003.jpg" alt="image-1" /></a></div><div align="center"><a href="loops_005.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="loops_007.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="http://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

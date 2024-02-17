@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Sorting and searching - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Sorting and searching</div><div class="page"><h1>Sorting and searching</h1><p>Arrays can be sorted using the <i>sort</i> command and searched using the <i>find</i> command.</p><p>This program shows the <i>sort</i> command being used. It will organise the elements of an array into ascending order.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">speed as integer [ 5 ] = [ 0, 500, 300, 100, 400, 200 ]
+<br>
+speed.sort ( )
+<br>
+do
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="speed as integer [ 5 ] = [ 0, 500, 300, 100, 400, 200 ]
+
+speed.sort ( )
+
+do
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+
+	sync ( )
+loop
+">Copy Code</button></div><p>Prior to the sort command being used the array contains the values 500, 300, 100, 400 and 200. Once it has been sorted it will change to 100, 200, 300, 400 and 500.</p><p>The <i>sort</i> command can sort arrays of floats, integers and strings. The next program uses it to sort an array of names.</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">names as string [ 5 ] = [ "", "lee", "rick", "paul", "dave", "adam" ]
+<br>
+names.sort ( )
+<br>
+do
+	for i = 1 to names.length
+		print ( names [ i ] )
+	next i
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="names as string [ 5 ] = [ &quot;&quot;, &quot;lee&quot;, &quot;rick&quot;, &quot;paul&quot;, &quot;dave&quot;, &quot;adam&quot; ]
+
+names.sort ( )
+
+do
+	for i = 1 to names.length
+		print ( names [ i ] )
+	next i
+
+	sync ( )
+loop
+">Copy Code</button></div><p>The <i>find</i> commands provides a way of locating specific information within the array. Say that you wanted to find which index the name "lee" is stored in.</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">names as string [ 5 ] = [ "", "lee", "rick", "paul", "dave", "adam" ]
+<br>
+names.sort ( )
+<br>
+do
+	for i = 1 to names.length
+		print ( names [ i ] )
+	next i
+	<br>
+	print ( "" )
+	<br>
+	index = names.find ( "lee" )
+	<br>
+	print ( "lee is at index = " + str ( index ) )
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="names as string [ 5 ] = [ &quot;&quot;, &quot;lee&quot;, &quot;rick&quot;, &quot;paul&quot;, &quot;dave&quot;, &quot;adam&quot; ]
+
+names.sort ( )
+
+do
+	for i = 1 to names.length
+		print ( names [ i ] )
+	next i
+
+	print ( &quot;&quot; )
+
+	index = names.find ( &quot;lee&quot; )
+
+	print ( &quot;lee is at index = &quot; + str ( index ) )
+
+	sync ( )
+loop
+">Copy Code</button></div><p>The array gets declared, sorted and then inside the main loop has its contents displayed on screen. The <i>find</i> command is called on the array, passing in the name "lee". The return value lets us know where "lee" is in the array.</p><p>If you attempt to search for an integer, string or floating point value that is not contained within the array then the command will return -1.</p><div align="center"><a href="arrays_005.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="arrays_0061.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

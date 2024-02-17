@@ -1,0 +1,278 @@
+﻿_header
+Properties of sprites
+
+_sheader
+Description
+_text
+Sprites have numerous properties that can be controlled, such as their colour, angle and size. This example demonstrates how to control these properties, by placing 5 sprites alongside each other on screen and then continually updating them in the main loop.
+
+_image
+4_properties.jpg
+
+_sheader
+Overview
+_text
+The process involved is as follows:
+_listbegin
+create 5 sprites and position them in a row
+_listend
+
+_text
+Within the main loop:
+_listbegin
+leave sprite 1 unaffected
+update the color of sprite 2
+change the alpha of sprite 3
+alter the angle of sprite 4
+adjust the size of sprite 5
+_listend
+
+_sheader
+Understanding the color of a sprite
+
+_text
+When changing the color of a sprite it's possible to control the red, green, blue and alpha channels. Each of these channels supports values from 0 - 255. Imagine loading an image that is completely white and applied to a sprite. Once loaded the color channels are set to:
+
+_listbegin
+red = 255
+green = 0
+blue = 0
+alpha = 255
+_listend
+
+_text
+This has the effect of changing our image to be totally red. This is due to the red channel being set to its maximum value (255), while the green and blue channels are set to their lowest values of 0. Finally we come to the alpha channel. This alpha channel is responsible for controlling how translucent the color is. Given a value of 255 our image will be displayed on screen and show as completely solid. As this value is lowered our sprite will start to become translucent and in doing so reveal any sprites behind it. By controlling alpha values it's possible to fade sprites in and out, amongst other effects.
+
+_text
+Continuing with our white image and sprite - what would happen if all color channels are set to 255:
+
+_listbegin
+red = 255
+green = 255
+blue = 255
+alpha = 255
+_listend
+
+_text
+In this instance our sprite is being drawn with all color channels at their full level, therefore it will appear on screen as a completely white image.
+
+_sheader
+Creating 5 sprites
+_text
+One image is loaded, which is then used by 5 sprites and these sprites are all laid out alongside each other:
+
+_tier1
+LoadImage ( 1, "blue.png" )
+<br>
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 1 )
+CreateSprite ( 3, 1 )
+CreateSprite ( 4, 1 )
+CreateSprite ( 5, 1 )
+<br>
+SetSpritePosition ( 1, 0, 0 )
+SetSpritePosition ( 2, 70, 0 )
+SetSpritePosition ( 3, 140, 0 )
+SetSpritePosition ( 4, 210, 0 )
+SetSpritePosition ( 5, 280, 0 )
+_tier1
+
+_tier2
+agk::LoadImage ( 1, "blue.png" );
+<br>
+agk::CreateSprite ( 1, 1 );
+agk::CreateSprite ( 2, 1 );
+agk::CreateSprite ( 3, 1 );
+agk::CreateSprite ( 4, 1 );
+agk::CreateSprite ( 5, 1 );
+<br>
+agk::SetSpritePosition ( 1, 0, 0 );
+agk::SetSpritePosition ( 2, 70, 0 );
+agk::SetSpritePosition ( 3, 140, 0 );
+agk::SetSpritePosition ( 4, 210, 0 );
+agk::SetSpritePosition ( 5, 280, 0 );
+_tier2
+
+_sheader
+Main loop
+_text
+The main loop updates properties of the sprites, as mentioned earlier. It begins by setting the color of sprite 2 to a random value, followed by adjusting the alpha of sprite 3 to fade in and out, sprite 4 has its angle updated to rotate and finally sprite 5 has its size adjusted:
+
+_tier1
+do
+    SetSpriteColor ( 2, Random ( 1, 255 ), Random ( 1, 255 ), Random ( 1, 255 ), 255 )
+    SetSpriteColor ( 3, 255, 255, 255, alpha )
+<br>
+    if ( direction = 0 )
+        alpha = alpha - 1
+<br>
+        if ( alpha < 0 )
+            direction = 1
+        endif
+    endif
+<br>
+    if ( direction = 0 )
+        alpha = alpha + 1
+
+        if ( alpha > 255 )
+            direction = 0
+        endif
+    endif
+<br>
+    SetSpriteAngle ( 4, angle )
+    angle = angle + 1
+    SetSpriteSize ( 5, GetSpriteWidth ( 5 ) - 1, GetSpriteHeight ( 5 ) - 1 )
+<br>
+    sync ( )
+loop
+_tier1
+
+_tier2
+void app::Loop ( void )
+{
+    agk::SetSpriteColor ( 2, agk::Random ( 1, 255 ),
+ agk::Random ( 1, 255 ), agk::Random ( 1, 255 ), 255 );
+<br>
+    agk::SetSpriteColor ( 3, 255, 255, 255, alpha );
+<br>
+    if ( direction == 0 )
+    {
+        alpha = alpha - 1;
+<br>
+        if ( alpha < 0 )
+        {
+            direction = 1;
+        }
+    }
+<br>
+    if ( direction == 0 )
+    {
+        alpha = alpha + 1;
+<br>        
+        if ( alpha > 255 )
+        {
+            direction = 0;
+        }
+    }
+<br>
+    agk::SetSpriteAngle ( 4, angle );
+    angle = angle + 1;
+    agk::SetSpriteSize ( 5, agk::GetSpriteWidth ( 5 ) - 1, agk::GetSpriteHeight ( 5 ) - 1 );
+<br>
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background5.jpg" ) )
+<br>
+LoadImage ( 1, "blue.png" )
+<br>
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 1 )
+CreateSprite ( 3, 1 )
+CreateSprite ( 4, 1 )
+CreateSprite ( 5, 1 )
+<br>
+SetSpritePosition ( 1, 0, 0 )
+SetSpritePosition ( 2, 70, 0 )
+SetSpritePosition ( 3, 140, 0 )
+SetSpritePosition ( 4, 210, 0 )
+SetSpritePosition ( 5, 280, 0 )
+<br>
+do
+    SetSpriteColor ( 2, Random ( 1, 255 ), Random ( 1, 255 ), Random ( 1, 255 ), 255 )
+    SetSpriteColor ( 3, 255, 255, 255, alpha )
+<br>
+    if ( direction = 0 )
+        alpha = alpha - 4
+<br>
+        if ( alpha < 0 )
+            direction = 1
+        endif
+    endif
+<br>
+    if ( direction = 1 )
+        alpha = alpha + 4
+<br>
+        if ( alpha > 255 )
+            direction = 0
+        endif
+    endif
+<br>
+    SetSpriteAngle ( 4, angle )
+    angle = angle + 1
+    SetSpriteSize ( 5, GetSpriteWidth ( 5 ) - 1, GetSpriteHeight ( 5 ) - 1 )
+<br>
+    sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background5.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "blue.png" );
+<br>
+    agk::CreateSprite ( 1, 1 );
+    agk::CreateSprite ( 2, 1 );
+    agk::CreateSprite ( 3, 1 );
+    agk::CreateSprite ( 4, 1 );
+    agk::CreateSprite ( 5, 1 );
+<br>
+    agk::SetSpritePosition ( 1, 0, 0 );
+    agk::SetSpritePosition ( 2, 70, 0 );
+    agk::SetSpritePosition ( 3, 140, 0 );
+    agk::SetSpritePosition ( 4, 210, 0 );
+    agk::SetSpritePosition ( 5, 280, 0 );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::SetSpriteColor ( 2, agk::Random ( 1, 255 ),
+ agk::Random ( 1, 255 ), agk::Random ( 1, 255 ), 255 );
+<br>
+    agk::SetSpriteColor ( 3, 255, 255, 255, alpha );
+<br>
+    if ( direction == 0 )
+    {
+        alpha = alpha - 4;
+<br>
+        if ( alpha < 0 )
+        {
+            direction = 1;
+        }
+    }
+<br>
+    if ( direction == 1 )
+    {
+        alpha = alpha + 4;
+<br>        
+        if ( alpha > 255 )
+        {
+            direction = 0;
+        }
+    }
+<br>
+    agk::SetSpriteAngle ( 4, angle );
+    angle = angle + 1;
+    agk::SetSpriteSize ( 5, agk::GetSpriteWidth ( 5 ) - 1, agk::GetSpriteHeight ( 5 ) - 1 );
+<br>
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+Sprites have numerous other properties including - flipping, offsets, hit tests, scaling, UV properties and much more. For more details please view the reference guide.

@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>What is an array? - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; What is an array?</div><div class="page"><h1>What is an array?</h1><p>Imagine a scenario where you have a four player game. When every player's score hits 100 the game would end. Using ordinary variables the code to detect whether all four players have reached a score of 100 might look like this.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">player1 as integer = 0
+player2 as integer = 0
+player3 as integer = 0
+player4 as integer = 0
+<br>
+if player1 = 100 and player2 = 100 and player3 = 100 and player4 = 100
+	// finish the level
+endif
+</pre></div><div align="right"><button class="btn" data-clipboard-text="player1 as integer = 0
+player2 as integer = 0
+player3 as integer = 0
+player4 as integer = 0
+
+if player1 = 100 and player2 = 100 and player3 = 100 and player4 = 100
+	// finish the level
+endif
+">Copy Code</button></div><p>The code handles all four players, but imagine if the game suddenly expanded. What would happen if the game design was changed so that eight players could play in each level? You could declare four more variables to store the score for the extra players. You would also need to update any code dealing with the score to take into account the new players. This approach works, however, it's not very flexible as having to deal with changes every time more players are added is far from ideal.</p><p>This scenario is quite simplistic, but it does demonstrate the need to be able to handle data in another way, which is where arrays come in. Arrays can be thought of as a container of data, allowing you to store and access data through one variable. Instead of having eight separate variables to store the score for the players we could instead have one variable, resulting in our code being much easier to deal with.</p><p>The way in which an array is declared is essentially the same as regular variables. Let's take a look at how an array can be declared to contain our scores for eight players.</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">playerScores as integer [ 8 ]
+</pre></div><div align="right"><button class="btn" data-clipboard-text="playerScores as integer [ 8 ]
+">Copy Code</button></div><p>The key difference to a normal variable is that at the end of our declaration an opening bracket is used, along with a number and then a closing bracket. These three components let AppGameKit Studio know that this variable is an array and will have eight parts or elements.</p><p>To set data within an array you need to use the square brackets and pass in an index that controls which part of the array you want to deal with. The code that follows shows how each part of <i>playerScores</i> can be assigned values.</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">playerScores [ 1 ] = 10
+playerScores [ 2 ] = 20
+playerScores [ 3 ] = 30
+playerScores [ 4 ] = 40
+playerScores [ 5 ] = 50
+playerScores [ 6 ] = 60
+playerScores [ 7 ] = 70
+playerScores [ 8 ] = 80
+</pre></div><div align="right"><button class="btn" data-clipboard-text="playerScores [ 1 ] = 10
+playerScores [ 2 ] = 20
+playerScores [ 3 ] = 30
+playerScores [ 4 ] = 40
+playerScores [ 5 ] = 50
+playerScores [ 6 ] = 60
+playerScores [ 7 ] = 70
+playerScores [ 8 ] = 80
+">Copy Code</button></div><p>Our array has eight parts, so to access part 1 use an index of 1, for part 2 an index of 2 etc.</p><p>This program shows how the values of the array can be displayed on screen.</p><div id="basicCodeBlock4" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">playerScores as integer [ 8 ]
+<br>
+playerScores [ 1 ] = 10
+playerScores [ 2 ] = 20
+playerScores [ 3 ] = 30
+playerScores [ 4 ] = 40
+playerScores [ 5 ] = 50
+playerScores [ 6 ] = 60
+playerScores [ 7 ] = 70
+playerScores [ 8 ] = 80
+<br>
+do
+	for i = 1 to 8
+		print ( playerScores [ i ] )
+	next i
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="playerScores as integer [ 8 ]
+
+playerScores [ 1 ] = 10
+playerScores [ 2 ] = 20
+playerScores [ 3 ] = 30
+playerScores [ 4 ] = 40
+playerScores [ 5 ] = 50
+playerScores [ 6 ] = 60
+playerScores [ 7 ] = 70
+playerScores [ 8 ] = 80
+
+do
+	for i = 1 to 8
+		print ( playerScores [ i ] )
+	next i
+
+	sync ( )
+loop
+">Copy Code</button></div><p>An alternative and more efficient way of writing this program would be to alter the way in which the initial values are assigned to <i>playerScores</i> by using a for loop.</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">playerScores as integer [ 8 ]
+<br>
+for i = 1 to 8
+	playerScores [ i ] = i * 10
+next i
+<br>
+do
+	for i = 1 to 8
+		print ( playerScores [ i ] )
+	next i
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="playerScores as integer [ 8 ]
+
+for i = 1 to 8
+	playerScores [ i ] = i * 10
+next i
+
+do
+	for i = 1 to 8
+		print ( playerScores [ i ] )
+	next i
+
+	sync ( )
+loop
+">Copy Code</button></div><p>What we end up with is a container variable that stores eight values, which in this instance is far more useful than having eight separate variables to store the data. It results in less code that is more manageable and easier to expand. If, for example, we decided to change the number of players it would simply be a case of altering the declaration of the array and using a different value, meaning our code is much more dynamic. </p><div align="center"><a href="arrays.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="arrays_002.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

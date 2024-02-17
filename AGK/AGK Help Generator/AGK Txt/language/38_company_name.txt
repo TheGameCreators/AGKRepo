@@ -1,0 +1,22 @@
+_header
+#company_name
+
+_sheader
+Syntax
+
+_tier1
+#company_name Name$
+_tier1
+
+_sheader
+Description
+
+_text
+Use this to create a more unique folder structure for your app. Without this any files your apps write will be placed in "AGKApps/[app_name]", which may not be unique if someone also writes an AGK app with the same name. If you use #company_name then your files will be placed in "AGKApps/[company_name]/[app_name]". This only applies to the desktop platforms, Windows, Mac, Linux, and Raspberry Pi. It will be ignored on other platforms. This does not apply during broadcasting.
+
+_sheader
+Example
+
+_tier1
+#company_name "My Company"
+_tier1

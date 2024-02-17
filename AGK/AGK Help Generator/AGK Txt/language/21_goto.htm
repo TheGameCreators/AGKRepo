@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>goto - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../language.html">Language</a> &gt; goto</div><div class="page"><h1>goto</h1><h2>Syntax</h2><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">goto jumpLabel
+</pre></div><div align="right"><button class="btn" data-clipboard-text="goto jumpLabel
+">Copy Code</button></div><h2>Description</h2><p>This command will jump to the specified label in the program. Unlike the <i>gosub</i> command, you cannot return from a call when using the <i>goto</i> command. The label can be made up from any combination of alphabetic characters, but you must end the declaration of the label using a colon(:). You only need to use a colon when you are declaring the label, and should not be used when calling the label from a <i>goto</i> command. </p><h2>Example</h2><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">print ( "start" )
+goto _jumplabel
+end
+<br>
+_jumplabel:
+print ( "new location in code" )
+end
+</pre></div><div align="right"><button class="btn" data-clipboard-text="print ( &quot;start&quot; )
+goto _jumplabel
+end
+
+_jumplabel:
+print ( &quot;new location in code&quot; )
+end
+">Copy Code</button></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

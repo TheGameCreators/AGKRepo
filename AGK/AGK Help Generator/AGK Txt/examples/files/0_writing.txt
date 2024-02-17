@@ -1,0 +1,224 @@
+_header
+Writing to a file
+
+_sheader
+Description
+
+_text
+There will likely be occasions when your game requires the ability to store data on file, this is where the file access commands in AppGameKit Studio come into play. Through the use of these commands it's possible to store data and read this back in.
+
+_text
+How to open a file and write data to it is demonstrated in this document.
+
+_sheader
+Overview
+
+_text
+The example program takes the following steps:
+
+_listbegin
+open a file for writing
+write data such as an integer, float and string
+close the file
+_listend
+
+_sheader
+Open a file for writing
+
+_text
+The command to open a file for writing is called <i>OpenToWrite</i>. It either takes two or three parameters dependant on usage. The first option is to have the command return an ID number for later usage, when taking this option the command only requires two parameters - the filename and whether you want to append to it. If you want to specify an ID number then the command takes three parameters - the ID, the filename and whether you want to append to the file.
+
+_text
+This line of code shows the first option:
+
+_tier1
+fileID = OpenToWrite ( "myfile.txt", 0 )
+_tier1
+
+_tier2
+fileID = agk::OpenToWrite ( "myfile.txt", 0 );
+_tier2
+
+_text
+An ID for the file is returned to the variable <i>fileID</i>, the first parameter "myFile.txt" tells AppGameKit Studio that we want to open this particular file, while the final parameter tells AppGameKit Studio that we do not want to append to the file, therefore this will be a completely new and empty file. If this value was 1 anything that we later wrote to the file would be appended to the end.
+
+_text
+The alternative approach is to specify an ID number manually, instead of it being assigned in the return value:
+
+_tier1
+OpenToWrite ( 1, "myfile.txt", 0 )
+_tier1
+
+_tier2
+agk::OpenToWrite ( 1, "myfile.txt", 0 );
+_tier2
+
+_text
+For the purpose of our example an ID number will be specified manually.
+
+_sheader
+Writing data to a file
+
+_text
+There are three possible data types that can be written to a file:
+
+_listbegin
+integers
+strings
+floats
+_listend
+
+_sheader
+Writing an integer to file
+
+_text
+To write an integer to file call the <i>WriteInteger</i> command. This command takes two parameters - ID of the file and an integer. This line of code writes the value 10 to file 1
+
+_tier1
+WriteInteger ( 1, 10 )
+_tier1
+
+_tier2
+agk::WriteInteger ( 1, 10 );
+_tier2
+
+_text
+Here's another example where 3 integer variables are written to file:
+
+_tier1
+a = 54
+b = 99
+c = 12
+<br>
+WriteInteger ( 1, a )
+WriteInteger ( 1, b )
+WriteInteger ( 1, c )
+_tier1
+
+_tier2
+a = 54;
+b = 99;
+c = 12;
+<br>
+agk::WriteInteger ( 1, a );
+agk::WriteInteger ( 1, b );
+agk::WriteInteger ( 1, c );
+_tier2
+
+_sheader
+Writing a string to file
+
+_text
+To write a string to file call the <i>WriteString</i> command. This command takes two parameters - ID of the file and a string. This line of code writes the string "hello" to file 1
+
+_tier1
+WriteString ( 1, "hello" )
+_tier1
+
+_tier2
+agk::WriteString ( 1, "hello" );
+_tier2
+
+_text
+Here's another example where 3 strings are written to file:
+
+_tier1
+a$ = "abc"
+b$ = "def"
+c$ = "ghi"
+<br>
+WriteString ( 1, a$ )
+WriteString ( 1, b$ )
+WriteString ( 1, c$ )
+_tier1
+
+_tier2
+a = "abc";
+b = "def;
+c = "ghi";
+<br>
+agk::WriteString ( 1, a );
+agk::WriteString ( 1, b );
+agk::WriteString ( 1, c );
+_tier2
+
+
+_sheader
+Writing a float to file
+
+_text
+To write a float to file call the <i>WriteFloat</i> command. This command takes two parameters - ID of the file and a float. This line of code writes the value 1.23 to file 1
+
+_tier1
+WriteFloat ( 1, 1.23 )
+_tier1
+
+_tier2
+agk::WriteFloat ( 1, 1.23 );
+_tier2
+
+_text
+Here's another example where 3 floating point variables are written to file:
+
+_tier1
+a# = 1.85
+b# = 22.39
+c# = 4489.0012
+<br>
+WriteFloat ( 1, a# )
+WriteFloat ( 1, b# )
+WriteFloat ( 1, c# )
+_tier1
+
+_tier2
+a = 1.85;
+b = 22.39;
+c = 4489.0012;
+<br>
+agk::WriteFloat ( 1, a );
+agk::WriteFloat ( 1, b );
+agk::WriteFloat ( 1, c );
+_tier2
+
+_sheader
+Closing a file
+_text
+Once all data has been written to a file that file must be closed using the command <i>CloseFile</i>. This commands only parameter is the ID of the file. To close file 1:
+
+_tier1
+CloseFile ( 1 )
+_tier1
+
+_tier2
+agk::CloseFile ( 1 );
+_tier2
+
+_sheader
+Full code listing
+_text
+Our final program will open a file for writing and write an integer, a float and a string:
+
+_tier1
+OpenToWrite ( 1, "myfile.txt", 0 )
+
+WriteInteger ( 1, 10 )
+WriteFloat ( 1, 1.23 )
+WriteString ( 1, "hello" )
+
+CloseFile ( 1 )
+_tier1
+
+_tier2
+agk::OpenToWrite ( 1, "myfile.txt", 0 );
+<br>
+agk::WriteInteger ( 1, 10 );
+agk::WriteFloat ( 1, 1.23 );
+agk::WriteString ( 1, "hello" );
+<br>
+agk::CloseFile ( 1 );
+_tier2
+
+_sheader
+Conclusion
+_text
+As you can see from the above code, opening a file and writing data to it is a fairly simple process. 

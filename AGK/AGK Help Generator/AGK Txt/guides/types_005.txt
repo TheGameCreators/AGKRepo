@@ -1,0 +1,14 @@
+
+_header
+Conclusion
+
+_text
+Types are very useful to group and organise your data. Try and consider using types where possible within your program. It will ultimately lead to neater, organised code.
+
+
+
+
+
+
+
+

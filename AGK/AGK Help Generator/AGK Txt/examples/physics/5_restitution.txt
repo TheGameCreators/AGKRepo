@@ -1,0 +1,156 @@
+﻿_header
+Restitution
+
+_sheader
+Description
+_text
+Physics enabled sprites have a wide range of properties that can be controlled. In this example we look at the effect of setting restitution on sprites. One way of explaining restitution is to say that it controls the bounciness of sprites when colliding. If a sprite had a high restitution value and fell from a distance onto, say the ground, then it would bounce up some distance, fall back down, bounce again and keep on doing this, until over time the energy would be lost and the sprite would come to a halt on the ground. If this same sprite had a restitution value of 0 (meaning it has no restitution), it would collide with the ground and simply stay there - there would be no response or flying back up into the air.
+
+_text
+Five sprites are placed in a row for this program, with differing levels of restitution. When you run the program observe how the restitution affects collisions.
+
+_image
+5_restitution.jpg
+
+_sheader
+Overview
+_text
+The code takes the following actions:
+
+_listbegin
+create 5 sprites
+position them along the top of the screen in a row
+switch physics on for the sprites
+apply individual restitution levels to each sprite
+_listend
+
+_sheader
+Applying restitution
+_text
+The function to set the restitution of a sprite is called <i>SetSpritePhysicsRestitution</i>. It takes two parameters. The first parameter is the ID number of the sprite you are referring to. The second parameter is the actual restitution property. This is handled as a floating point value and acceptable ranges are from 0.0 to 1.0. While it is possible to supply a value higher than 1.0 this is likely to cause undesirable results.
+
+_text
+Here's the code for our sprites. The value of the restitution property is increased for each sprite, so the sprites towards the left of the screen are lower, while the sprites over to the right have higher values: 
+
+_tier1
+SetSpritePhysicsRestitution ( 1, 0.0 )
+SetSpritePhysicsRestitution ( 1, 0.2 )
+SetSpritePhysicsRestitution ( 1, 0.4 )
+SetSpritePhysicsRestitution ( 1, 0.8 )
+SetSpritePhysicsRestitution ( 1, 1.0 )
+_tier1
+
+_tier2
+agk::SetSpritePhysicsRestitution ( 1, 0.0f );
+agk::SetSpritePhysicsRestitution ( 1, 0.2f );
+agk::SetSpritePhysicsRestitution ( 1, 0.4f );
+agk::SetSpritePhysicsRestitution ( 1, 0.8f );
+agk::SetSpritePhysicsRestitution ( 1, 1.0f );
+_tier2
+
+_sheader
+Main loop
+
+_text
+This example program does not take any action in the main loop other than making a call to <i>Sync</i>, so that the screen is updated:
+
+_tier1
+do
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background7.jpg" ) )
+<br>
+LoadImage ( 1, "small_ball.png" )
+<br>
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 1 )
+CreateSprite ( 3, 1 )
+CreateSprite ( 4, 1 )
+CreateSprite ( 5, 1 )
+<br>
+SetSpritePosition ( 1,   0, 0 )
+SetSpritePosition ( 2,  50, 0 )
+SetSpritePosition ( 3, 100, 0 )
+SetSpritePosition ( 4, 150, 0 )
+SetSpritePosition ( 5, 200, 0 )
+<br>
+SetSpritePhysicsOn ( 1, 2 )
+SetSpritePhysicsOn ( 2, 2 )
+SetSpritePhysicsOn ( 3, 2 )
+SetSpritePhysicsOn ( 4, 2 )
+SetSpritePhysicsOn ( 5, 2 )
+<br>
+SetSpritePhysicsRestitution ( 1, 0.0 )
+SetSpritePhysicsRestitution ( 2, 0.2 )
+SetSpritePhysicsRestitution ( 3, 0.4 )
+SetSpritePhysicsRestitution ( 4, 0.8 )
+SetSpritePhysicsRestitution ( 5, 1.0 )
+<br>
+do
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background7.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "small_ball.png" );
+<br>
+    agk::CreateSprite ( 1, 1 );
+    agk::CreateSprite ( 2, 1 );
+    agk::CreateSprite ( 3, 1 );
+    agk::CreateSprite ( 4, 1 );
+    agk::CreateSprite ( 5, 1 );
+<br>
+    agk::SetSpritePosition ( 1,   0, 0 );
+    agk::SetSpritePosition ( 2,  50, 0 );
+    agk::SetSpritePosition ( 3, 100, 0 );
+    agk::SetSpritePosition ( 4, 150, 0 );
+    agk::SetSpritePosition ( 5, 200, 0 );
+<br>
+    agk::SetSpritePhysicsOn ( 1, 2 );
+    agk::SetSpritePhysicsOn ( 2, 2 );
+    agk::SetSpritePhysicsOn ( 3, 2 );
+    agk::SetSpritePhysicsOn ( 4, 2 );
+    agk::SetSpritePhysicsOn ( 5, 2 );
+<br>
+    agk::SetSpritePhysicsRestitution ( 1, 0.0f );
+    agk::SetSpritePhysicsRestitution ( 2, 0.2f );
+    agk::SetSpritePhysicsRestitution ( 3, 0.4f );
+    agk::SetSpritePhysicsRestitution ( 4, 0.8f );
+    agk::SetSpritePhysicsRestitution ( 5, 1.0f );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+Notice how when the sprites fall to the floor, the impact of their collision is handled differently due to their levels of restitution. Try experimenting with varying levels of restitution to see how it affects the behaviour of sprites.
+
+

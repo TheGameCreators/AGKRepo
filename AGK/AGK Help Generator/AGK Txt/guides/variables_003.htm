@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Integers - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Integers</div><div class="page"><h1>Integers</h1><p>This is the default variable type in AppGameKit Studio and as mentioned earlier can be used to store positive or negative whole numbers. Here's the kind of data an integer variable may hold.</p><ul><li>Current score in the game</li><li>Which level the player is on</li><li>How many lives the player has left</li><li>The number of enemies in a game</li><li>A countdown timer controlling how much time is left to complete the level</li></ul><p>Variables to store this data could be declared as follows -</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">currentScore = 0
+currentLevel = 0
+lives = 0
+enemiesRemaining = 0
+timeLeft = 0
+</pre></div><div align="right"><button class="btn" data-clipboard-text="currentScore = 0
+currentLevel = 0
+lives = 0
+enemiesRemaining = 0
+timeLeft = 0
+">Copy Code</button></div><p>The name of the variables is entirely your choice. You can use whatever name you want, as long as it doesn't clash with existing commands. You can't have a variable named <i>print</i> as this will conflict with the command called <i>print</i>. The names don't have to be descriptive as shown in the above list. They could be renamed like this.</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">s = 0
+cl = 0
+l = 0
+e = 0
+t = 0
+</pre></div><div align="right"><button class="btn" data-clipboard-text="s = 0
+cl = 0
+l = 0
+e = 0
+t = 0
+">Copy Code</button></div><p>Although that is perfectly valid it's certainly not so clear as in the first attempt at declaring them. When dealing with variables it's a good idea to name them in a descriptive way where possible. Having a variable named <i>enemiesRemaining</i> should make it pretty obvious what kind of data it holds, whereas a variable called <i>e</i> could be just about anything.</p><p>You can be more explicit when it comes to declaring variables by specifying the type in the declaration. All of the integer variables can also be declared like this.</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">currentScore as integer = 0
+currentLevel as integer = 0
+lives as integer = 0
+enemiesRemaining as integer = 0
+timeLeft as integer = 0
+</pre></div><div align="right"><button class="btn" data-clipboard-text="currentScore as integer = 0
+currentLevel as integer = 0
+lives as integer = 0
+enemiesRemaining as integer = 0
+timeLeft as integer = 0
+">Copy Code</button></div><p>It is not necessary to give the variable a value when declaring it when using the keywords <i>as integer</i>, in which case it will automatically default to 0. All of these declarations are acceptable.</p><div id="basicCodeBlock4" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">currentScore as integer = 0
+currentLevel as integer = 50
+lives as integer
+enemiesRemaining as integer
+timeLeft = 123
+</pre></div><div align="right"><button class="btn" data-clipboard-text="currentScore as integer = 0
+currentLevel as integer = 50
+lives as integer
+enemiesRemaining as integer
+timeLeft = 123
+">Copy Code</button></div><p>Bear in mind when you declare a variable without specifying its type then you must give it a default value, as shown in the above listing where <i>timeLeft</i> is declared and given a value of 123.</p><div align="center"><a href="variables_002.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="variables_004.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

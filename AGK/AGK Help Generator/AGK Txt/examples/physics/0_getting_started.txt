@@ -1,0 +1,165 @@
+﻿_header
+Getting started with physics
+
+_sheader
+Description
+_text
+The physics command set within AppGameKit Studio provides a 2D rigid body simulation library for games. It can be used to make sprites move in believable ways and make games more interactive. In this example we explore the basics of getting started with physics by creating 5 sprites, positioning them in a row, turning physics on and seeing the results.
+
+_image
+0_getting_started.jpg
+
+
+_sheader
+Overview
+_text
+The process involved is as follows:
+_listbegin
+create 5 sprites and position them in a row
+turn physics on for the sprites
+within the main loop update the contents of the screen
+_listend
+
+_sheader
+Creating 5 sprites
+_text
+One image is loaded (a football), which is then used by 5 sprites and these sprites are all laid out alongside each other:
+
+_tier1
+LoadImage ( 1, "small_ball.png" )
+<br>
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 1 )
+CreateSprite ( 3, 1 )
+CreateSprite ( 4, 1 )
+CreateSprite ( 5, 1 )
+<br>
+SetSpritePosition ( 1, 0, 0 )
+SetSpritePosition ( 2, 60, 0 )
+SetSpritePosition ( 3, 120, 0 )
+SetSpritePosition ( 4, 180, 0 )
+SetSpritePosition ( 5, 240, 0 )
+_tier1
+
+_tier2
+agk::LoadImage ( 1, "chip5.png" );
+<br>
+agk::CreateSprite ( 1, 1 );
+agk::CreateSprite ( 2, 1 );
+agk::CreateSprite ( 3, 1 );
+agk::CreateSprite ( 4, 1 );
+agk::CreateSprite ( 5, 1 );
+<br>
+agk::SetSpritePosition ( 1, 0, 0 );
+agk::SetSpritePosition ( 2, 60, 0 );
+agk::SetSpritePosition ( 3, 120, 0 );
+agk::SetSpritePosition ( 4, 180, 0 );
+agk::SetSpritePosition ( 5, 240, 0 );
+_tier2
+
+_sheader
+Switching physics on
+_text
+As it stands now our sprites will be drawn on screen and only move based on our control of them. When switching physics on the underlying simulation code will take over and be responsible for providing a realistic simulation. Enabling physics for sprites is handled with a call to the function <i>SetSpritePhysicsOn</i>. By default sprites are not tied into the physics simulation The function <i>SetSpritePhysicsOn</i> takes two parameters - the first is the ID number of the sprite and the second is the type of physics objects, with suitable values being 1 for a static object, 2 for a dynamic object and 3 for a kinematic object. This demo is going to examine what happens when we switch all of our sprites to dynamic objects. This is handled with the following code:
+
+_tier1
+SetSpritePhysicsOn ( 1, 2 )
+SetSpritePhysicsOn ( 2, 2 )
+SetSpritePhysicsOn ( 3, 2 )
+SetSpritePhysicsOn ( 4, 2 )
+SetSpritePhysicsOn ( 5, 2 )
+_tier1
+
+_tier2
+agk::SetSpritePhysicsOn ( 1, 2 );
+agk::SetSpritePhysicsOn ( 2, 2 );
+agk::SetSpritePhysicsOn ( 3, 2 );
+agk::SetSpritePhysicsOn ( 4, 2 );
+agk::SetSpritePhysicsOn ( 5, 2 );
+_tier2
+
+_sheader
+Main loop
+_text
+The main loop in this example does not take any action. All it needs to do is make a call to Sync to ensure the screen is updated.
+
+_tier1
+do
+   Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Full code listing
+_text
+The final program only has one alteration and that is the addition of a background sprite. Here's the final code:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background3.jpg" ) )
+<br>
+LoadImage ( 1, "small_ball.png" )
+<br>
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 1 )
+CreateSprite ( 3, 1 )
+CreateSprite ( 4, 1 )
+CreateSprite ( 5, 1 )
+<br>
+SetSpritePosition ( 1, 0, 0 )
+SetSpritePosition ( 2, 60, 0 )
+SetSpritePosition ( 3, 120, 0 )
+SetSpritePosition ( 4, 180, 0 )
+SetSpritePosition ( 5, 240, 0 )
+<br>
+SetSpritePhysicsOn ( 1, 2 )
+SetSpritePhysicsOn ( 2, 2 )
+SetSpritePhysicsOn ( 3, 2 )
+SetSpritePhysicsOn ( 4, 2 )
+SetSpritePhysicsOn ( 5, 2 )
+<br>
+do
+   Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background3.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "small_ball.png" );
+<br>
+    agk::CreateSprite ( 1, 1 );
+    agk::CreateSprite ( 2, 1 );
+    agk::CreateSprite ( 3, 1 );
+    agk::CreateSprite ( 4, 1 );
+    agk::CreateSprite ( 5, 1 );
+<br>
+    agk::SetSpritePosition ( 1, 0, 0 );
+    agk::SetSpritePosition ( 2, 60, 0 );
+    agk::SetSpritePosition ( 3, 120, 0 );
+    agk::SetSpritePosition ( 4, 180, 0 );
+    agk::SetSpritePosition ( 5, 240, 0 );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+Try experimenting with switching physics on or off for sprites and see the impact it makes. Notice how physics enabled sprites are affected by forces such as gravity, which will result in them falling to the bottom of the screen.

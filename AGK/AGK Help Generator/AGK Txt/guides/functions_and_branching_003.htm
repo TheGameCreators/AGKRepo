@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Returning values in functions - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Returning values in functions</div><div class="page"><h1>Returning values in functions</h1><p>Returning data from a function is a simple process - just place the data to be returned to the caller directly after the <i>endfunction</i> keyword, as shown in this example.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+	print ( myFunction ( 10, 20 ) )
+	<br>	
+	sync ( )
+loop
+<br>
+function myFunction ( a as integer, b as integer )
+	c as integer = 0
+	c = a + b
+endfunction c
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+	print ( myFunction ( 10, 20 ) )
+
+	sync ( )
+loop
+
+function myFunction ( a as integer, b as integer )
+	c as integer = 0
+	c = a + b
+endfunction c
+">Copy Code</button></div><p>The variable <i>c</i> is declared after the keyword <i>endfunction</i>, resulting in the value of <i>c</i> being returned to the caller. The code within the function declares <i>c</i> as an integer and assigns it a default value of 0. The next line performs an expression to add the values of <i>a</i> and <i>b</i> and assign the result to <i>c</i>.</p><p>Inside the <i>do</i> loop, when the <i>print</i> command is called it passes in a function call to <i>myFunction</i> as a parameter. This is valid because when <i>myFunction</i> has run its return value passed as a parameter to the <i>print</i> command.</p><p>Return values can either be a variable, an expression or a literal value, as shown in this example.</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+	print ( myFunctionA ( 10, 20 ) )
+	print ( myFunctionB ( 10, 20 ) )
+	print ( myFunctionC ( 10, 20 ) )
+	print ( myFunctionD ( 10, 20 ) )
+	<br>
+	sync ( )
+loop
+<br>
+function myFunctionA ( a as integer, b as integer )
+	c as integer = 0
+	c = a + b
+endfunction c
+<br>
+function myFunctionB ( a as integer, b as integer )
+	c = a + b
+endfunction c
+<br>
+function myFunctionC ( a as integer, b as integer )
+<br>
+endfunction a + b
+<br>
+function myFunctionD ( a as integer, b as integer )
+<br>
+endfunction 30
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+	print ( myFunctionA ( 10, 20 ) )
+	print ( myFunctionB ( 10, 20 ) )
+	print ( myFunctionC ( 10, 20 ) )
+	print ( myFunctionD ( 10, 20 ) )
+
+	sync ( )
+loop
+
+function myFunctionA ( a as integer, b as integer )
+	c as integer = 0
+	c = a + b
+endfunction c
+
+function myFunctionB ( a as integer, b as integer )
+	c = a + b
+endfunction c
+
+function myFunctionC ( a as integer, b as integer )
+
+endfunction a + b
+
+function myFunctionD ( a as integer, b as integer )
+
+endfunction 30
+">Copy Code</button></div><p><i>myFunctionA</i> declares a variable <i>c</i>, and assigns it the value of <i>a</i> + <i>b</i>. The value of <i>c</i> is returned once the function has completed.</p><p><i>myFunctionB</i> declares a variable <i>c</i>, which is not explicitly declared, meaning it is treated as an integer, which is assigned the value of <i>a</i> + <i>b</i>. The value of <i>c</i> is returned once the function has completed.</p><p><i>myFunctionC</i> has nothing happening inside the function. Instead the return value is calculated directly after the <i>endfunction</i> keyword, where the values of <i>a</i> and <i>b</i> are added together and returned to the caller.</p><p><i>myFunctionD</i> returns a literal value to the calling function (30).</p><div align="center"><a href="functions_and_branching_002.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="functions_and_branching_004.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

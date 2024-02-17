@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Introduction to functions - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Introduction to functions</div><div class="page"><h1>Introduction to functions</h1><p>Functions follow the same set of rules as commands, except unlike commands it's your responsibility to define the behaviour of the function. Functions are used as way of isolating a specific block of code to perform certain tasks. They are an incredibly useful component within AppGameKit Studio and can be used to organise your code in a neat, effective and reusable manner.</p><p>A typical program will have many functions all contributing to the outcome. It could be some of these functions are responsible for creating enemies in a level, or perhaps they are used to load data that defines how the level should look, or they may be responsible for handling how the player responds to input.</p><p>This simple example shows what a function looks like and how it can be used within a program.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+	myFunction ( )
+	<br>
+	sync ( )
+loop
+<br>
+function myFunction ( )
+	print ( "inside a function" )
+endfunction
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+	myFunction ( )
+
+	sync ( )
+loop
+
+function myFunction ( )
+	print ( &quot;inside a function&quot; )
+endfunction
+">Copy Code</button></div><p>The code within the <i>do</i> loop contains a call to <i>myFunction</i> and <i>sync</i>. The functionality for the <i>sync</i> command is handled internally by AppGameKit. <i>myFunction</i> is not a command within AppGameKit, so it needs to be declared within our program. To do this we need to declare our function outside of a loop and also provide information about what parameters it requires and if it returns any data to the caller. This process is handled by the <i>function</i> keyword. As you can see in the code listing the <i>function</i> keyword is followed by a name. This can be whatever you want as long as it does not clash with the name of a command or start with a number or use symbols. This is followed by an opening bracket and then a closing bracket, indicating that this particular function has no parameters. Anything following this is code associated with the function. To declare the end point of the function the keyword <i>endfunction</i> is used.</p><p>When you run this program it displays the string "inside a function" on screen. When <i>myFunction</i> is called the program execution moves within the function, executes any lines within it and then returns back to where it was called from, in this case moving into the call to the <i>sync</i> command.</p><p>Any kind of functionality you require can be added into a function listing. You can use loops, if statements and call other commands and functions.</p><div align="center"><a href="functions_and_branching_0001.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="functions_and_branching_002.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

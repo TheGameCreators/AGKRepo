@@ -1,0 +1,74 @@
+
+
+_header
+What are types?
+
+_text
+Types provide a way to group data into a container. This is very useful as it allows you to keep your data organised. Let's consider a game where you want to keep track of a player's score, how many lives they have left and how many bullets they have remaining. This could be handled by declaring three separate variables.
+
+_tier1
+score as integer
+lives as integer
+bullets as integer
+_tier1
+
+_text
+An alternative approach would be to group this data together using a type. Here's how it would look.
+
+_tier1
+type playerType
+	score as integer
+	lives as integer
+	bullets as integer
+endtype
+_tier1
+
+_text
+The keyword <i>type</i> is used followed by a name, which is an identifier for the type. In this instance <i>playerType</i> has been used. The lines that follow declare variables that will be contained within this type. To finish the type declaration the keyword <i>endtype</i> is used.
+
+_text
+With the type declaration in place the next step is to declare a variable that uses this type. This is achieved by using the <i>as</i> keyword and works in the same way as declaring other variables, except we use the identifier name for the type instead of the typical float, integer or string.
+
+_tier1
+player as playerType
+_tier1
+
+_text
+The variable declaration for <i>player</i> tells the program that it's going to be of type <i>playerType</i>, that has been declared earlier.
+
+_text
+To access the variables contained within the type the dot operator is used. The next few lines show values being assigned to the variables within the type.
+
+_tier1
+player.score = 100
+player.lives = 3
+player.bullets = 5
+_tier1
+
+_text
+Here's a complete program that defines a type, declares a variable that uses the type, assigns values to the variable and then displays its values on screen.
+
+_tier1
+type playerType
+	score as integer
+	lives as integer
+	bullets as integer
+endtype
+<br>
+player as playerType
+<br>
+player.score = 100
+player.lives = 3
+player.bullets = 5
+<br>
+do
+	print ( player.score )
+	print ( player.lives )
+	print ( player.bullets )
+	<br>
+	sync ( )
+loop
+_tier1
+
+_navigation
+types.htm types_002.htm

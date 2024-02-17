@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commands - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Commands</div><div class="page"><h1>Commands</h1><p>If you have been following through the previous guides you will already be familiar with commands such as <i>print</i> and <i>sync</i>. These commands are built into AppGameKit Studio, providing you with numerous options to deal with all kinds of situations, such as playing music, drawing something on screen, responding to input, saving data to files and much more.</p><p>As you continue learning about AppGameKit Studio you will discover many more commands. Over time you will get a better understanding of which built in commands to use, so that you can create the functionality you require. For now though the aim is to explain a little bit more about how the syntax for some of these commands work. Let's begin with the <i>sync</i> command.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">sync ( )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="sync ( )
+">Copy Code</button></div><p>This line of code contains three parts - the name of the command, an opening bracket and a closing bracket. This lets AppGameKit Studio know that we want to call the <i>sync</i> command in our program. When this happens AppGameKit Studio will internally handle updating the contents of the screen. Once it has finished it comes back to our program and moves onto the next line.</p><p>All commands need to have an opening and closing bracket, although some need extra information to be placed within these brackets. These are known as parameters and are used as a way to pass data to the commands. The <i>sync</i> command has no parameters, so it just requires an open and closing bracket when being used. An example of a command that uses parameters is the <i>print</i> command. This command takes in one parameter, which can either be a float, an integer or a string. </p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">print ( 1.23 )
+print ( 1 )
+print ( "hello" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="print ( 1.23 )
+print ( 1 )
+print ( &quot;hello&quot; )
+">Copy Code</button></div><p>Some commands need more than one parameter. When this happens parameters are separated by a comma. As an example we'll look at a command called <i>SetSyncRate</i>. This command controls how fast the program runs. It has two parameters, one to control the desired frame rate and the second to control how it does this. For now it's not essential to go into too much detail, all we're interested in is seeing the syntax for commands when dealing with multiple paramters.</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetSyncRate ( 60, 0 )
+SetSyncRate ( 30, 1 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetSyncRate ( 60, 0 )
+SetSyncRate ( 30, 1 )
+">Copy Code</button></div><p>The data being passed into these commands as parameters can be constructed using literal values as shown in the examples, or using expressions. </p><p>The kind of data being passed into commands as parameters is governed by the definition of the command. The <i>SetSyncRate</i> command requires two integer parameters, therefore attempting to pass in a string or floating point value would fail, along with only attempting to pass in one parameter.</p><p>Some commands may also return a value. This is useful in situations where the command needs to act on its parameters and provide some back to the caller. One such command is called <i>GetDeviceWidth</i>. It takes no parameters and returns a value, letting the program know the width in pixels of the device the program is running on. Here's how it can be called.</p><div id="basicCodeBlock4" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">deviceWidth = GetDeviceWidth ( )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="deviceWidth = GetDeviceWidth ( )
+">Copy Code</button></div><p>The return value from the command is saved in the variable <i>deviceWidth</i>.</p><p>Just like with parameters it's important to consider what kind of data is being returned because some commands will return integers, whereas others will return strings or floating point values. </p><p>Information explaining how all of the internal commands operate is provided within other areas of the documentation. It's not too important to understand everything right now. The main point is to get an idea of how commands work in general.</p><div align="center"><a href="functions_and_branching.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="functions_and_branching_001.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

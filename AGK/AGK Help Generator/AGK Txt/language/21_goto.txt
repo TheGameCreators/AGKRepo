@@ -1,0 +1,28 @@
+_header
+goto
+
+_sheader
+Syntax
+
+_tier1
+goto jumpLabel
+_tier1
+
+_sheader
+Description
+
+_text
+This command will jump to the specified label in the program. Unlike the <i>gosub</i> command, you cannot return from a call when using the <i>goto</i> command. The label can be made up from any combination of alphabetic characters, but you must end the declaration of the label using a colon(:). You only need to use a colon when you are declaring the label, and should not be used when calling the label from a <i>goto</i> command. 
+
+_sheader
+Example
+
+_tier1
+print ( "start" )
+goto _jumplabel
+end
+<br>
+_jumplabel:
+print ( "new location in code" )
+end
+_tier1

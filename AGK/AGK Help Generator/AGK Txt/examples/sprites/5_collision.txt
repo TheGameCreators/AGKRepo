@@ -1,0 +1,270 @@
+﻿_header
+Collision between two sprites
+
+_sheader
+Description
+_text
+This example creates two sprites, places them on screen and moves one sprite towards the other. When they collide both sprites change colour.
+
+_image
+5_collision.jpg
+
+
+_sheader
+Overview
+_text
+The process involved is as follows:
+_listbegin
+load images and create sprites
+assign collision shapes
+_listend
+
+_text
+Within our main loop:
+_listbegin
+move one sprite across the screen
+find out whether a collision takes place - when this happens turn the colour of both sprites to green
+_listend
+
+_sheader
+Load images and create sprites
+_text
+Two images are going to be loaded and attached to two sprites which will then be positioned on screen:
+
+_tier1
+imageA = LoadImage ( "blue.png" )
+imageB = LoadImage ( "purple.png" )
+<br>
+spriteA = CreateSprite ( imageA )
+spriteB = CreateSprite ( imageB )
+<br>
+SetSpritePosition ( spriteA, 0, 200 )
+SetSpritePosition ( spriteB, 200, 200 )
+_tier1
+
+_tier2
+imageA = agk::LoadImage ( "blue.png" );
+imageB = agk::LoadImage ( "purple.png" );
+<br>
+spriteA = agk::CreateSprite ( imageA );
+spriteB = agk::CreateSprite ( imageB );
+<br>
+agk::SetSpritePosition ( spriteA, 0.0f, 200.0f );
+agk::SetSpritePosition ( spriteB, 200.0f, 200.0f );
+_tier2
+
+_text
+Here’s a breakdown of the code:
+_listbegin
+The image “blue.png” is loaded and its ID number stored in “imageA”.
+The image “purple.png” is loaded and its ID number stored in “imageB”.
+A sprite is created that uses “imageA” and its ID number is stored in “spriteA”.
+A sprite is created that uses “imageB” and its ID number is stored in “spriteB”.
+“spriteA” is positioned at 0, 200
+“spriteB” is positioned at 200, 200
+_listend
+
+_sheader
+Assign collision shapes
+_text
+Prior to performing collision between sprites it is necessary to specify how those sprites are to be represented by the collision system. The options available are boxes, circles and polygons. Which is the best shape or most appropriate fit is dependent on the sprite. In many cases having your sprites represented by bounding boxes or circles might be perfectly acceptable. In cases where much finer collision detection is required then having your sprite represented by a polygon shape may be more suitable, at the expense of speed.
+
+_text
+Setting the collision shape of a sprite is handled by the command <i>SetSpriteShape</i>. This command takes two parameters with the first being the ID number of the sprite and the second the shape type. Possible values for this are:
+
+_listbegin
+0 - no shape
+1 - circle
+2 - box
+3 - polygon
+_listend
+
+_text
+Given that our sprites are boxes it makes sense to select the box shape so our code is:
+
+_tier1
+SetSpriteShape ( spriteA, 2 )
+SetSpriteShape ( spriteB, 2 )
+_tier1
+
+_tier2
+agk::SetSpriteShape ( spriteA, 2 );
+agk::SetSpriteShape ( spriteB, 2 );
+_tier2
+
+_text
+If we used circles then the collision will still work, but perhaps not be entirely accurate. In another example we’ll look at this in more detail and understand the relationship between a sprite and its collision shape.
+
+_sheader
+Moving a sprite
+_text
+Within our main loop we’re going to move “spriteA” across the screen towards the right. At some point it’s going to collide with “spriteB”. Once it does then we can change the colour of both sprites to get a visual clue that the collision has been registered within our code.
+
+_text
+To move “spriteA” towards the right of the screen we call <i>SetSpritePosition</i>:
+
+_tier1
+SetSpritePosition ( spriteA, GetSpriteX ( spriteA ) + 1, 200 )
+_tier1
+
+_tier2
+agk::SetSpritePosition ( spriteA, agk::GetSpriteX ( spriteA ) + 1.0f, 200.0f );
+_tier2
+
+_text
+The first parameter is the ID number of our sprite (that was initially placed at 0, 200). The second parameter is the X coordinate. In this instance we retrieve the current X position of our sprite and then add 1 to it, thereby moving it over to the right. As we’re not altering the final parameter (the Y position) we simply pass in 200 so it remains at 200 on the Y axis.
+
+_sheader
+Checking for a collision
+_text
+To find out whether two sprites have collided requires a call to <i>GetSpriteCollision</i>. This command takes two parameters - the ID numbers of the two sprites you are checking. It then returns a value of 1 if a collision has occurred and value of 0 if no collision has taken place.
+
+_tier1
+if GetSpriteCollision ( spriteA, spriteB ) = 1
+<br>
+endif
+_tier1
+
+_tier2
+if ( agk::GetspriteCollision ( spriteA, spriteB ) == true )
+{
+<br>
+}
+_tier2
+
+_sheader
+Registering a collision
+_text
+The final part of our code is to provide a visual notification that the collision has taken place. A simple way of doing this is to turn the colour of both sprites to green. This is achieved by calling the command <i>SetSpriteColor</i>. This command takes four parameters:
+
+_listbegin
+ID number of the sprite
+red component going from 0 - 255
+green component going from 0 - 255
+blue component going from 0 - 255
+alpha component going from 0 - 255
+_listend
+
+_tier1
+if GetSpriteCollision ( spriteA, spriteB ) = 1
+    SetSpriteColor ( spriteA, 0, 255, 0, 255 )
+    SetSpriteColor ( spriteB, 0, 255, 0, 255 )
+endif
+_tier1
+
+_tier2
+if ( agk::GetspriteCollision ( spriteA, spriteB ) == true )
+{
+    agk::SetSpriteColor ( spriteA, 0, 255, 0, 255 );
+    agk::SetSpriteColor ( spriteB, 0, 255, 0, 255 );
+}
+_tier2
+
+_text
+The code above sets the red channel to 0, full on green with a value of 255, blue set to 0 and alpha set to 255.
+
+_sheader
+Main loop
+_text
+The final main loop is as follows:
+
+_tier1
+do
+    SetSpritePosition ( spriteA, GetSpriteX ( spriteA ) + 1, 200 )
+<br>
+    if GetSpriteCollision ( spriteA, spriteB ) = 1
+        SetSpriteColor ( spriteA, 0, 255, 0, 255 )
+        SetSpriteColor ( spriteB, 0, 255, 0, 255 )
+    endif
+<br>
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Loop ( void )
+{
+    agk::SetSpritePosition ( spriteA, agk::GetSpriteX ( spriteA ) + 1.0f, 200.0f );
+<br> 
+    if ( agk::GetspriteCollision ( spriteA, spriteB ) == true )
+    {
+        agk::SetSpriteColor ( spriteA, 0, 255, 0, 255 );
+        agk::SetSpriteColor ( spriteB, 0, 255, 0, 255 );
+    }
+<br>
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background2.jpg" ) )
+<br>
+imageA = LoadImage ( "blue.png" )
+imageB = LoadImage ( "purple.png" )
+<br>
+spriteA = CreateSprite ( imageA )
+spriteB = CreateSprite ( imageB )
+<br>
+SetSpritePosition ( spriteA, 0, 200 )
+SetSpritePosition ( spriteB, 200, 200 )
+<br>
+SetSpriteShape ( spriteA, 2 )
+SetSpriteShape ( spriteB, 2 )
+<br>
+do
+    SetSpritePosition ( spriteA, GetSpriteX ( spriteA ) + 1, 200 )
+<br>
+    if GetSpriteCollision ( spriteA, spriteB ) = 1
+        SetSpriteColor ( spriteA, 0, 255, 0, 255 )
+        SetSpriteColor ( spriteB, 0, 255, 0, 255 )
+    endif
+<br>
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<Br>
+    agk::CreateSprite ( agk::LoadImage ( "background2.jpg" ) );
+<br>
+    imageA = agk::LoadImage ( "blue.png" );
+    imageB = agk::LoadImage ( "purple.png" );
+<br>
+    spriteA = agk::CreateSprite ( imageA );
+    spriteB = agk::CreateSprite ( imageB );
+<br>
+    agk::SetSpritePosition ( spriteA, 0.0f, 200.0f );
+    agk::SetSpritePosition ( spriteB, 200.0f, 200.0f );
+<br>
+    agk::SetSpriteShape ( spriteA, 2 );
+    agk::SetSpriteShape ( spriteB, 2 );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::SetSpritePosition ( spriteA, agk::GetSpriteX ( spriteA ) + 1.0f, 200.0f );
+<br> 
+    if ( agk::GetspriteCollision ( spriteA, spriteB ) == true )
+    {
+        agk::SetSpriteColor ( spriteA, 0, 255, 0, 255 );
+        agk::SetSpriteColor ( spriteB, 0, 255, 0, 255 );
+    }
+<br>
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+This concludes the example of checking for collision between sprites. It’s a very simple process and by utilising these command it’s possible to let AppGameKit Studio take care of all collision problems.

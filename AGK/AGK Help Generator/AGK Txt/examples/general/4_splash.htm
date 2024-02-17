@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Splash screen - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Splash screen</div><div class="page"><h1>Splash screen</h1><h2>Description</h2><p>When your program launches a splash screen will be displayed. The benefit of having this is that there will be something on screen while AppGameKit Studio is internally handling the technical details to get up and running.</p><h2>Creating a splash screen</h2><p>Here's an example of a splash screen:</p><div align="center"><img src="AGKSplash.png"/></div><p>This image has been created in a paint program and is ready to be displayed at the beginning of our program.</p><h2>Storing the splash screen</h2><p>In order to have the splash screen image displayed it's necessary to save the image in the root folder of our application (next to the exe) with the filename "AGKSplash.png". There's no need for any code within our application. Simply ensure an image exists with this filename and it will be displayed at the beginning of your program.</p><h2>Update</h2><p>This method of displaying a splash screen still works in AGK version 2 but is no longer recommended. This is because the time between the app starting and control being handed to your code is usually so short that the splash screen doesn't have time to be noticed. For iOS we recommend you use the native splash screen support (for example using Default.png), and if you still wish to use a splash screen beyond this, or on other platforms, we recommend using the first few lines of your program to display a splash screen of your own whilst you load the rest of your media.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

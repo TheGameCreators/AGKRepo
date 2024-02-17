@@ -1,0 +1,76 @@
+
+
+_header
+Sorting and searching
+
+_text
+Arrays can be sorted using the <i>sort</i> command and searched using the <i>find</i> command.
+
+_text
+This program shows the <i>sort</i> command being used. It will organise the elements of an array into ascending order.
+
+_tier1
+speed as integer [ 5 ] = [ 0, 500, 300, 100, 400, 200 ]
+<br>
+speed.sort ( )
+<br>
+do
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+	<br>
+	sync ( )
+loop
+_tier1
+
+_text
+Prior to the sort command being used the array contains the values 500, 300, 100, 400 and 200. Once it has been sorted it will change to 100, 200, 300, 400 and 500.
+
+_text
+The <i>sort</i> command can sort arrays of floats, integers and strings. The next program uses it to sort an array of names.
+
+_tier1
+names as string [ 5 ] = [ "", "lee", "rick", "paul", "dave", "adam" ]
+<br>
+names.sort ( )
+<br>
+do
+	for i = 1 to names.length
+		print ( names [ i ] )
+	next i
+	<br>
+	sync ( )
+loop
+_tier1
+
+_text
+The <i>find</i> commands provides a way of locating specific information within the array. Say that you wanted to find which index the name "lee" is stored in.
+
+_tier1
+names as string [ 5 ] = [ "", "lee", "rick", "paul", "dave", "adam" ]
+<br>
+names.sort ( )
+<br>
+do
+	for i = 1 to names.length
+		print ( names [ i ] )
+	next i
+	<br>
+	print ( "" )
+	<br>
+	index = names.find ( "lee" )
+	<br>
+	print ( "lee is at index = " + str ( index ) )
+	<br>
+	sync ( )
+loop
+_tier1
+
+_text
+The array gets declared, sorted and then inside the main loop has its contents displayed on screen. The <i>find</i> command is called on the array, passing in the name "lee". The return value lets us know where "lee" is in the array.
+
+_text
+If you attempt to search for an integer, string or floating point value that is not contained within the array then the command will return -1.
+
+_navigation
+arrays_005.htm arrays_0061.htm

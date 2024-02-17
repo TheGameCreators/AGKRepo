@@ -1,0 +1,131 @@
+﻿_header
+Creating Text
+
+_sheader
+Description
+_text
+AppGameKit Studio provides a set of functions for creating text, setting its properties and displaying it on screen. In this example we’ll focus on the basics of creating text and displaying it.
+
+_image
+0_creating.jpg
+
+_sheader
+Overview
+_text
+The process involved is as follows:
+_listbegin
+create a text entity and set its size
+within the main loop set the colour of the text
+_listend
+
+_sheader
+Creating Text
+_text
+Just like other resources, text entities are handled with ID numbers. It’s possible to create them and manually assign an ID number or have an ID number automatically assigned in the creation process.
+
+_text
+The command to create text is called <i>CreateText</i>. It has either 1 or 2 parameters dependant on usage. If you want an ID number assigned automatically it only takes 1 parameter - the initial text of the entity. If you want to control the ID number it takes 2 parameters - the ID number followed by the initial text of the entry. Here's an example showing the 2 methods of creating text:
+
+_tier1
+CreateText ( 1, "HELLO AppGameKit Studio!" )
+text = CreateText ( "HELLO AppGameKit Studio!" )
+_tier1
+
+_tier2
+agk::CreateText ( 1, "HELLO AppGameKit Studio!" )
+text = agk::CreateText ( "HELLO AppGameKit Studio!" )
+_tier2
+
+_text
+For this example the approach of assigning ID numbers manually is used.
+
+_text
+The next stage deals with setting the size of the text. This is handled by the command <i>SetTextSize</i>. This function takes two parameters. The first parameter is the ID number of the text object. The second parameter is used to control the new size of the text. By default the size is set to 4. With this code the size is set to 6:
+
+_tier1
+SetTextSize ( 1, 6 )
+_tier1
+
+_tier2
+agk::SetTextSize ( 1, 6 );
+_tier2
+
+_text
+A lower size parameter will result in the text being smaller, while a larger value will make the text appear larger.
+
+_sheader
+Main loop
+_text
+For our main loop all we’re going to do is continually alter the colour of the text (randomly) and draw the screen. It’s handled with the following code:
+
+_tier1
+do
+    SetTextColor ( 1, Random ( 1, 255 ), Random ( 1, 255 ), Random ( 1, 255 ), 255 )
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Loop ( void )
+{
+    agk::SetTextColor ( 1, Random ( 1, 255 ), Random ( 1, 255 ), Random ( 1, 255 ), 255 );
+    agk::Sync ( );
+}
+_tier2
+
+_text
+The command <i>SetTextColor</i> takes four parameters:
+_listbegin
+ID number of the text
+red value going from 0 to 255
+green value going from 0 to 255
+blue value going from 0 to 255
+alpha value going from 0 to 255
+_listend
+
+_text
+The command <i>Random</i> is a utility function provided by AppGameKit Studio that will return a random number within the given range.  The code above asks for a random value between 1 - 255 for the red, green and blue components, and finally the alpha value is always set to 255.
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program:
+
+_tier1
+backdrop = CreateSprite ( LoadImage ( "background1b.jpg" ) )
+SetSpriteSize ( backdrop, 100, 100 )
+<br>
+<br>
+CreateText ( 1, "HELLO AppGameKit Studio!" )
+SetTextSize ( 1, 6 )
+<br>
+do
+    SetTextColor ( 1, Random ( 1, 255 ), Random ( 1, 255 ), Random ( 1, 255 ), 255 )
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    int backdrop = agk::CreateSprite ( agk::LoadImage ( "background1b.jpg" ) );
+    agk::SetSpriteSize ( backdrop, 100, 100 );
+<br>
+    agk::CreateText ( 1, "HELLO AGK!" );
+    agk::SetTextSize ( 1, 6 );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::SetTextColor ( 1, agk::Random ( 1, 255 ), agk::Random ( 1, 255 ), agk::Random ( 1, 255 ), 255 );
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+When you run the application the text on screen will continually change colour.
+
+_text
+A lot of properties are available for text such as being able to set the string, position, spacing, alignment and much more. Please refer to the reference guide for more details.

@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Properties of text - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Properties of text</div><div class="page"><h1>Properties of text</h1><h2>Description</h2><p>Text entities have a number of properties that can be set such as their alignment, size and spacing. This example demonstrates how to set these properties and see their effects.</p><div align="center"><img src="2_properties.jpg"/></div><h2>Process</h2><p>The process involved is as follows:</p><ul><li>create 5 text entities</li><li>for entity 1 adjust the position and size</li><li>for entity 2 adjust the position, size and alignment</li><li>for entity 3 adjust the position, size and alignment</li><li>for entity 4 adjust the position, size and spacing</li><li>for entity 5 adjust the position, size and color</li></ul><h2>Creating text entities</h2><p>Five text entities will be created with the first four having their contents set to "HELLO AGK!" and the remaining string showing "ABC":</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">CreateText ( 1, "HELLO AGK!" )
+CreateText ( 2, "HELLO AGK!" )
+CreateText ( 3, "HELLO AGK!" )
+CreateText ( 4, "HELLO AGK!" )
+CreateText ( 5, "ABC" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="CreateText ( 1, &quot;HELLO AGK!&quot; )
+CreateText ( 2, &quot;HELLO AGK!&quot; )
+CreateText ( 3, &quot;HELLO AGK!&quot; )
+CreateText ( 4, &quot;HELLO AGK!&quot; )
+CreateText ( 5, &quot;ABC&quot; )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::CreateText ( 1, "HELLO AGK!" );
+agk::CreateText ( 2, "HELLO AGK!" );
+agk::CreateText ( 3, "HELLO AGK!" );
+agk::CreateText ( 4, "HELLO AGK!" );
+agk::CreateText ( 5, "ABC" );
+</pre></div><h2>Positioning text</h2><p>To position text call the <i>SetTextPosition</i> command. This command has three parameters: ID number of the text, X position and Y position. For example, this line of code sets text 1 to be displayed at 100, 100:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetTextPosition ( 1, 100, 100 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetTextPosition ( 1, 100, 100 )
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetTextPosition ( 1, 100, 100 );
+</pre></div><h2>Size of text</h2><p>By setting the size of a text entity it's possible to have larger or smaller text displayed on screen. The command <i>SetTextSize</i> is responsible for controlling the size of text. It takes two parameters: ID number of the text and a size value (the default is 4). As the size value gets bigger so the text on screen increases in size. In this example text 1 is set to a size of 10, while the size of text 2 is set to 20 (making it twice as large as text 1):</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetTextSize ( 1, 10 )
+SetTextSize ( 2, 20 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetTextSize ( 1, 10 )
+SetTextSize ( 2, 20 )
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetTextSize ( 1, 10 );
+agk::SetTextSize ( 2, 20 );
+</pre></div><h2>Text alignment</h2><p>Text can be aligned to the left, center or right. To control the alignment of text call the command <i>SetTextAlignment</i>. This command takes two parameters: ID number of the text and a value controlling the alignment. By default the alignment is set to 0 meaning left justified. A value of 1 centers the text, while a value of 2 will justify text to the right. The lines that follow set text 1 to left alignment, text 2 to center alignment and text 3 to right alignment:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetTextAlignment ( 1, 0 )
+SetTextAlignment ( 2, 1 )
+SetTextAlignment ( 3, 2 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetTextAlignment ( 1, 0 )
+SetTextAlignment ( 2, 1 )
+SetTextAlignment ( 3, 2 )
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetTextAlignment ( 1, 0 );
+agk::SetTextAlignment ( 2, 1 );
+agk::SetTextAlignment ( 3, 2 );
+</pre></div><h2>Text spacing</h2><p>This property controls the space between individual letters, it's controlled with the command <i>SetTextSpacing</i>. Two parameters are required for this command: an ID number and a value controlling the spacing. By default the spacing is 0 meaning no gaps between letters. Increasing this value will result in larger gaps between letters. Decreasing this value will have the effect of letters overlapping each other. This line of code sets the spacing of text 1 to 20, resulting in there being a gap of 20 pixels per letter:</p><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetTextSpacing ( 1, 20 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetTextSpacing ( 1, 20 )
+">Copy Code</button></div><div id="cppCodeBlock10" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetTextSpacing ( 1, 20 );
+</pre></div><h2>Controlling text color</h2><p>Text can either have individual letters colored or be colored as a group. To color a specific character within a text entity call the command <i>SetTextCharColor</i> passing in an ID number, followed by an index representing the location of the character (starts at 0), then four values controlling the red, green, blue and alpha color channels. This example shows the first letter of text 1 being set to red:</p><div id="basicCodeBlock11" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetTextCharColor ( 1, 0, 255, 0, 0, 255 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetTextCharColor ( 1, 0, 255, 0, 0, 255 )
+">Copy Code</button></div><div id="cppCodeBlock12" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetTextCharColor ( 1, 0, 255, 0, 0, 255 );
+</pre></div><p>To change the color of the whole text entity call the command <i>SetTextColor</i> passing in an ID number, followed by the red, green, blue and alpha color channels. This line sets the whole of text 1 to be displayed as red:</p><div id="basicCodeBlock13" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetTextColor ( 1, 255, 0, 0, 255 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetTextColor ( 1, 255, 0, 0, 255 )
+">Copy Code</button></div><div id="cppCodeBlock14" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetTextColor ( 1, 255, 0, 0, 255 );
+</pre></div><h2>Text entity 1</h2><p>Now that we've seen how to control certain properties of text we can proceed to setting our text on screen. The position of text 1 is set to 150, 100 and its size set to 12:</p><div id="basicCodeBlock15" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetTextPosition ( 1, 150, 100 )
+SetTextSize ( 1, 12 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetTextPosition ( 1, 150, 100 )
+SetTextSize ( 1, 12 )
+">Copy Code</button></div><div id="cppCodeBlock16" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetTextPosition ( 1, 150, 100 );
+agk::SetTextSize ( 1, 12 );
+</pre></div><h2>Text entity 2</h2><p>This text is positioned directly below text 1, has its alignment set to the center and its size set to 12:</p><div id="basicCodeBlock17" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetTextPosition ( 2, 150, 100 + GetTextTotalHeight ( 1 ) )
+SetTextAlignment ( 2, 1 )
+SetTextSize ( 1, 12 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetTextPosition ( 2, 150, 100 + GetTextTotalHeight ( 1 ) )
+SetTextAlignment ( 2, 1 )
+SetTextSize ( 1, 12 )
+">Copy Code</button></div><div id="cppCodeBlock18" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetTextPosition ( 2, 150, 100 + agk::GetTextTotalHeight ( 1 ) );
+agk::SetTextAlignment ( 2, 1 );
+agk::SetTextSize ( 1, 12 );
+</pre></div><p>Note that the command <i>GetTextTotalHeight</i> is being used to control the Y position of this text entity. In this instance we're finding out the height of text 1. Therefore positioning our 2nd text entity at this height will result in it being placed directly underneath text 1.</p><h2>Text entity 3</h2><p>This text is placed underneath text 2, has its alignment set to the right and its size set to 12:</p><div id="basicCodeBlock19" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetTextPosition ( 3, 150, 100 + GetTextTotalHeight ( 1 ) + GetTextTotalHeight ( 2 ) )
+SetTextAlignment ( 3, 2 )
+SetTextSize ( 3, 12 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetTextPosition ( 3, 150, 100 + GetTextTotalHeight ( 1 ) + GetTextTotalHeight ( 2 ) )
+SetTextAlignment ( 3, 2 )
+SetTextSize ( 3, 12 )
+">Copy Code</button></div><div id="cppCodeBlock20" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetTextPosition ( 3, 150, 100 + agk::GetTextTotalHeight ( 1 ) + agk::GetTextTotalHeight ( 2 ) );
+agk::SetTextAlignment ( 3, 2 );
+agk::SetTextSize ( 3, 12 );
+</pre></div><p>As this text entity is being placed directly under the previous two text entities it's simply a case of adding their heights together to calculate the Y position for this entity.</p><h2>Text entity 4</h2><p>This text is positioned at 50, 200, has its size set to 12 and then its spacing set to a value of 10:</p><div id="basicCodeBlock21" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetTextPosition ( 4, 50, 200 )
+SetTextSize ( 4, 12 )
+SetTextSpacing ( 4, 10 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetTextPosition ( 4, 50, 200 )
+SetTextSize ( 4, 12 )
+SetTextSpacing ( 4, 10 )
+">Copy Code</button></div><div id="cppCodeBlock22" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetTextPosition ( 4, 50, 200 );
+agk::SetTextSize ( 4, 12 );
+agk::SetTextSpacing ( 4, 10 );
+</pre></div><h2>Text entity 5</h2><p>The final text entity has its position set, followed by a large size and finally each character is colored individually with the A being set to red, the B being set to green and the C being set to blue:</p><div id="basicCodeBlock23" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetTextPosition ( 5, 50, 250 )
+SetTextSize ( 5, 40 )
+SetTextCharColor ( 5, 0, 255, 0, 0, 255 )
+SetTextCharColor ( 5, 1, 0, 255, 0, 255 )
+SetTextCharColor ( 5, 2, 0, 0, 255, 255 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetTextPosition ( 5, 50, 250 )
+SetTextSize ( 5, 40 )
+SetTextCharColor ( 5, 0, 255, 0, 0, 255 )
+SetTextCharColor ( 5, 1, 0, 255, 0, 255 )
+SetTextCharColor ( 5, 2, 0, 0, 255, 255 )
+">Copy Code</button></div><div id="cppCodeBlock24" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetTextPosition ( 5, 50, 250 );
+agk::SetTextSize ( 5, 40 );
+agk::SetTextCharColor ( 5, 0, 255, 0, 0, 255 );
+agk::SetTextCharColor ( 5, 1, 0, 255, 0, 255 );
+agk::SetTextCharColor ( 5, 2, 0, 0, 255, 255 );
+</pre></div><h2>Full code listing</h2><p>Everything is now in place. Here's the final code for our program:</p><div id="basicCodeBlock25" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+backdrop = CreateSprite ( LoadImage ( "background7.jpg" ) )
+SetSpriteColorAlpha ( backdrop, 100 )
+<br>
+CreateText ( 1, "HELLO AGK!" )
+CreateText ( 2, "HELLO AGK!" )
+CreateText ( 3, "HELLO AGK!" )
+CreateText ( 4, "HELLO AGK!" )
+CreateText ( 5, "ABC" )
+<br>
+SetTextPosition ( 1, 150, 100 )
+SetTextSize ( 1, 12 )
+<br>
+SetTextPosition ( 2, 150, 100 + GetTextTotalHeight ( 1 ) )
+SetTextAlignment ( 2, 1 )
+SetTextSize ( 2, 12 )
+<br>
+SetTextPosition ( 3, 150, 100 + GetTextTotalHeight ( 1 ) + GetTextTotalHeight ( 2 ) )
+SetTextAlignment ( 3, 2 )
+SetTextSize ( 3, 12 )
+<br>
+SetTextPosition ( 4, 50, 200 )
+SetTextSize ( 4, 12 )
+SetTextSpacing ( 4, 10.0 )
+<br>
+SetTextPosition ( 5, 100, 250 )
+SetTextSize ( 5, 40 )
+SetTextCharColor ( 5, 0, 255, 0, 0, 255 )
+SetTextCharColor ( 5, 1, 0, 255, 0, 255 )
+SetTextCharColor ( 5, 2, 0, 0, 255, 255 )
+<br>
+do
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+backdrop = CreateSprite ( LoadImage ( &quot;background7.jpg&quot; ) )
+SetSpriteColorAlpha ( backdrop, 100 )
+
+CreateText ( 1, &quot;HELLO AGK!&quot; )
+CreateText ( 2, &quot;HELLO AGK!&quot; )
+CreateText ( 3, &quot;HELLO AGK!&quot; )
+CreateText ( 4, &quot;HELLO AGK!&quot; )
+CreateText ( 5, &quot;ABC&quot; )
+
+SetTextPosition ( 1, 150, 100 )
+SetTextSize ( 1, 12 )
+
+SetTextPosition ( 2, 150, 100 + GetTextTotalHeight ( 1 ) )
+SetTextAlignment ( 2, 1 )
+SetTextSize ( 2, 12 )
+
+SetTextPosition ( 3, 150, 100 + GetTextTotalHeight ( 1 ) + GetTextTotalHeight ( 2 ) )
+SetTextAlignment ( 3, 2 )
+SetTextSize ( 3, 12 )
+
+SetTextPosition ( 4, 50, 200 )
+SetTextSize ( 4, 12 )
+SetTextSpacing ( 4, 10.0 )
+
+SetTextPosition ( 5, 100, 250 )
+SetTextSize ( 5, 40 )
+SetTextCharColor ( 5, 0, 255, 0, 0, 255 )
+SetTextCharColor ( 5, 1, 0, 255, 0, 255 )
+SetTextCharColor ( 5, 2, 0, 0, 255, 255 )
+
+do
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock26" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+agk::SetVirtualResolution ( 320, 480 );
+<br>
+int backdrop = agk::CreateSprite ( agk::LoadImage ( "background7.jpg" ) );
+agk::SetSpriteColorAlpha ( backdrop, 100 );
+<br>
+agk::CreateText ( 1, "HELLO AGK!" );
+agk::CreateText ( 2, "HELLO AGK!" );
+agk::CreateText ( 3, "HELLO AGK!" );
+agk::CreateText ( 4, "HELLO AGK!" );
+agk::CreateText ( 5, "ABC" );
+<br>
+agk::SetTextPosition ( 1, 150, 100 );
+agk::SetTextSize ( 1, 12 );
+<br>
+agk::SetTextPosition ( 2, 150, 100 + agk::GetTextTotalHeight ( 1 ) );
+agk::SetTextAlignment ( 2, 1 ); 
+agk::SetTextSize ( 2, 12 );
+<br>
+agk::SetTextPosition ( 3, 150, 100 + agk::GetTextTotalHeight ( 1 ) + agk::GetTextTotalHeight ( 2 ) );
+agk::SetTextAlignment ( 3, 2 );
+agk::SetTextSize ( 3, 12 );
+<br>
+agk::SetTextPosition ( 4, 50, 200 );
+agk::SetTextSize ( 4, 12 );
+agk::SetTextSpacing ( 4, 10.0 );
+<br>
+agk::SetTextPosition ( 5, 100, 250 );
+agk::SetTextSize ( 5, 40 );
+agk::SetTextCharColor ( 5, 0, 255, 0, 0, 255 );
+agk::SetTextCharColor ( 5, 1, 0, 255, 0, 255 );
+agk::SetTextCharColor ( 5, 2, 0, 0, 255, 255 );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>By setting text properties it's possible to really customize the output so it's a perfect fit for your game.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

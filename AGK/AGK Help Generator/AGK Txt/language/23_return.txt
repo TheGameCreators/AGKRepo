@@ -1,0 +1,28 @@
+_header
+return
+
+_sheader
+Syntax
+
+_tier1
+return
+_tier1
+
+_sheader
+Description
+
+_text
+You can use the <i>return</i> command to return to the program location of the last jump performed. 
+
+_sheader
+Example
+
+_tier1
+print ( "start" )
+gosub _subroutine
+print ( "end" )
+<br>
+_subroutine:
+print ( "inside subroutine" )
+return
+_tier1

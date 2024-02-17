@@ -1,0 +1,30 @@
+_header
+Splash screen
+
+_sheader
+Description
+_text
+When your program launches a splash screen will be displayed. The benefit of having this is that there will be something on screen while AppGameKit Studio is internally handling the technical details to get up and running.
+
+_sheader
+Creating a splash screen
+_text
+Here's an example of a splash screen:
+
+_image
+AGKSplash.png
+
+_text
+This image has been created in a paint program and is ready to be displayed at the beginning of our program.
+
+_sheader
+Storing the splash screen
+
+_text
+In order to have the splash screen image displayed it's necessary to save the image in the root folder of our application (next to the exe) with the filename "AGKSplash.png". There's no need for any code within our application. Simply ensure an image exists with this filename and it will be displayed at the beginning of your program.
+
+_sheader
+Update
+
+_text
+This method of displaying a splash screen still works in AGK version 2 but is no longer recommended. This is because the time between the app starting and control being handed to your code is usually so short that the splash screen doesn't have time to be noticed. For iOS we recommend you use the native splash screen support (for example using Default.png), and if you still wish to use a splash screen beyond this, or on other platforms, we recommend using the first few lines of your program to display a splash screen of your own whilst you load the rest of your media.

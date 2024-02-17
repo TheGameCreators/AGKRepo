@@ -1,0 +1,31 @@
+_header
+Importing Spine Files
+
+_text
+Spine covers a few file formats that each have their own restrictions when importing them into AppGameKit Studio as not everything is supported. This document will list the things you should be aware of when dealing with Spine and AppGameKit Studio.
+
+_sheader
+Atlas Files
+
+_text
+Spine allows you to export your textures as an atlas file which combines the images used in your animation into a single image file. This is accompanied by a file with the extension .atlas which is similar to AppGameKit Studio's subimages.txt file. This is the easiest way to assign your images to a skeleton in AppGameKit Studio so exporting an atlas texture is highly recommended. The ability to load .atlas files has been added to AppGameKit Studio for version 2, so you may choose subimages.txt or .atlas to describe the sub images, subject to the following conditions.
+
+_listbegin
+The .atlas file must have the same filename as the image it refers to, for example myimage.png would be accompanied by myimage.atlas
+The .atlas file must only reference a single PNG or JPG file, Spine supports multiple images with a single .atlas file, AppGameKit Studio only supports a single image with an atlas file
+AppGameKit Studio does not support the rotation setting from the Spine export, be sure to uncheck the rotation box in the export settings before exporting
+AppGameKit Studio supports non-power of 2 images, but to save memory use power of 2 images if possible.
+_listend
+
+_sheader
+Skins
+
+_text
+Spine supports exporting multiple skins with the same skeleton file. AppGameKit Studio does not support this and will only load at the default skin. We are hoping to support changing the atlas texture at runtime in the future.
+
+_text
+Spine allows the attaching of bounding boxes to slots, currently AppGameKit Studio does not support this. 
+
+
+
+

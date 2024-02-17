@@ -1,0 +1,28 @@
+_header
+continue
+
+_sheader
+Syntax
+
+_tier1
+continue
+_tier1
+
+_sheader
+Description
+
+_text
+This command allows you to skip the current iteration of a loop and proceed immediately to the next iteration. Only control loops that have an uncertain exit condition can use this command such as <i>do loop</i>, <i>while</i>, <i>for</i> and <i>repeat</i> loops. <i>continue</i> will have no effect on <i>goto</i> loops during the running of your program. 
+
+_sheader
+Example
+
+_tier1
+for i = 1 to 10
+    if i = 5
+        continue
+    endif
+
+    SetSpriteVisible( i, 1 )
+next i
+_tier1

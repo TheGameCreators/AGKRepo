@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Nesting if statements - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="http://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Nesting if statements</div><div class="page"><h1>Nesting if statements</h1><p>If statements can contain other if statements within them (nesting), as shown in this example.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">value1 as integer = 0
+value2 as integer = 0
+value3 as integer = 0
+value4 as integer = 0
+<br>
+do
+	print ( value1 )
+	print ( value2 )
+	print ( value3 )
+	print ( value4 )
+	<br>
+	if value1 + value2 + value3 + value4 < 1000
+		if value1 < 100
+			value1 = value1 + 1
+		elseif value2 < 200 
+			value2 = value2 + 1
+		elseif value3 < 300
+			value3 = value3 + 1
+		elseif value4 < 400
+			value4 = value4 + 1
+		endif
+	endif
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="value1 as integer = 0
+value2 as integer = 0
+value3 as integer = 0
+value4 as integer = 0
+
+do
+	print ( value1 )
+	print ( value2 )
+	print ( value3 )
+	print ( value4 )
+
+	if value1 + value2 + value3 + value4 < 1000
+		if value1 < 100
+			value1 = value1 + 1
+		elseif value2 < 200 
+			value2 = value2 + 1
+		elseif value3 < 300
+			value3 = value3 + 1
+		elseif value4 < 400
+			value4 = value4 + 1
+		endif
+	endif
+
+	sync ( )
+loop
+">Copy Code</button></div><ul><li>This program declares four variables to be used as counters. </li><li>Inside the <i>do</i> loop the values of these variables are displayed on screen by using the <i>print</i> command.</li><li>The first <i>if</i> statement checks to see whether the values of all the variables are less than 1000. If they are then the block of code within this condition can be executed.</li><li>Each variable in turn is checked to see whether is below a certain value, if so it gets 1 added to it.</li></ul><p>When the program runs you will see <i>value1</i> go from 0 to 100, then <i>value2</i> will go from 0 to 200, then <i>value3</i> will go from 0 to 300, finally <i>value4</i> will go from 0 to 400. When all of these variables add up to 1000 the first <i>if</i> statement condition will be false, so nothing else happens with these variables.</p><div align="center"><a href="if_statements_006.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="if_statements_008.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="http://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

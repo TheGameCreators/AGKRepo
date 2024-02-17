@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Device Resolutions - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Device Resolutions</div><div class="page"><h1>Device Resolutions</h1><p>When developing an app it is important to understand the devices you are targeting, as this will impact the way your app is developed. Consideration must be given to supporting portrait, landscape or both orientations and how your app will look on different devices.</p><p>First of all you need to determine whether you are more comfortable dealing with virtual resolutions or the percentage system. Using a virtual resolution can complicate matters and for users getting started it's probably easier to deal with the percentage system. To enable this call the command SetDisplayAspect at the start of your program, passing in the aspect ratio of the device -</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">width#  = GetDeviceWidth ( )
+height# = GetDeviceHeight ( )
+aspect# = width# / height#
+SetDisplayAspect ( aspect# )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="width#  = GetDeviceWidth ( )
+height# = GetDeviceHeight ( )
+aspect# = width# / height#
+SetDisplayAspect ( aspect# )
+">Copy Code</button></div><p>An alternative approach that achieves the same objective is -</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetDisplayAspect ( ( GetDeviceWidth ( ) + 0.0 ) / ( GetDeviceHeight ( ) + 0.0 ) )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetDisplayAspect ( ( GetDeviceWidth ( ) + 0.0 ) / ( GetDeviceHeight ( ) + 0.0 ) )
+">Copy Code</button></div><p>Adding 0.0 to the values returned by GetDevideWidth and GetDeviceHeight results in the division dealing with floating point values, meaning you don't need to declare extra variables and convert integers to floats.</p><p>Calling SetDisplayAspect as shown above will ensure you app covers the full screen of the device. Try some tests by displaying sprites or text at different areas of the screen to see how this works.</p><p>Ideally test your app on your development device and use SetWindowSize to see how it looks and if necessary make any alterations for particular aspect ratios. In some cases your monitor may not support the resolution of the target device, in which case you can simply lower the resolution while maintaining the aspect ratio to determine how your app will look. For example the iPhone X has a portrait resolution of 1125 x 2436. You could divide both values by 2 to give a test resolution of 562 x 1218, thus allowing you to see how your app might look on this particular device.</p><p>The resolution of devices can vary greatly. Here's a few examples of iOS devices -</p><ul><li>iPhone XS Max		1242 x 2688</li><li>iPhone X			1125 x 2436</li><li>iPhone 8 Plus		1080 x 1920</li><li>iPhone 8			750 x 1334</li><li>iPad Pro 12.9-inch 	2048 x 2732</li><li>iPad Pro 10.5-inch	2224 x 1668</li><li>iPad Air 2			1536 x 2048</li></ul><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

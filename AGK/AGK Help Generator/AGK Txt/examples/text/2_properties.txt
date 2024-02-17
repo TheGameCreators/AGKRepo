@@ -1,0 +1,310 @@
+﻿_header
+Properties of text
+
+_sheader
+Description
+_text
+Text entities have a number of properties that can be set such as their alignment, size and spacing. This example demonstrates how to set these properties and see their effects.
+
+_image
+2_properties.jpg
+
+_sheader
+Process
+_text
+The process involved is as follows:
+_listbegin
+create 5 text entities
+for entity 1 adjust the position and size
+for entity 2 adjust the position, size and alignment
+for entity 3 adjust the position, size and alignment
+for entity 4 adjust the position, size and spacing
+for entity 5 adjust the position, size and color
+_listend
+
+_sheader
+Creating text entities
+_text
+Five text entities will be created with the first four having their contents set to "HELLO AGK!" and the remaining string showing "ABC":
+
+_tier1
+CreateText ( 1, "HELLO AGK!" )
+CreateText ( 2, "HELLO AGK!" )
+CreateText ( 3, "HELLO AGK!" )
+CreateText ( 4, "HELLO AGK!" )
+CreateText ( 5, "ABC" )
+_tier1
+
+_tier2
+agk::CreateText ( 1, "HELLO AGK!" );
+agk::CreateText ( 2, "HELLO AGK!" );
+agk::CreateText ( 3, "HELLO AGK!" );
+agk::CreateText ( 4, "HELLO AGK!" );
+agk::CreateText ( 5, "ABC" );
+_tier2
+
+_sheader
+Positioning text
+_text
+To position text call the <i>SetTextPosition</i> command. This command has three parameters: ID number of the text, X position and Y position. For example, this line of code sets text 1 to be displayed at 100, 100:
+
+_tier1
+SetTextPosition ( 1, 100, 100 )
+_tier1
+
+_tier2
+agk::SetTextPosition ( 1, 100, 100 );
+_tier2
+
+_sheader
+Size of text
+_text
+By setting the size of a text entity it's possible to have larger or smaller text displayed on screen. The command <i>SetTextSize</i> is responsible for controlling the size of text. It takes two parameters: ID number of the text and a size value (the default is 4). As the size value gets bigger so the text on screen increases in size. In this example text 1 is set to a size of 10, while the size of text 2 is set to 20 (making it twice as large as text 1):
+
+_tier1
+SetTextSize ( 1, 10 )
+SetTextSize ( 2, 20 )
+_tier1
+
+_tier2
+agk::SetTextSize ( 1, 10 );
+agk::SetTextSize ( 2, 20 );
+_tier2
+
+_sheader
+Text alignment
+_text
+Text can be aligned to the left, center or right. To control the alignment of text call the command <i>SetTextAlignment</i>. This command takes two parameters: ID number of the text and a value controlling the alignment. By default the alignment is set to 0 meaning left justified. A value of 1 centers the text, while a value of 2 will justify text to the right. The lines that follow set text 1 to left alignment, text 2 to center alignment and text 3 to right alignment:
+
+_tier1
+SetTextAlignment ( 1, 0 )
+SetTextAlignment ( 2, 1 )
+SetTextAlignment ( 3, 2 )
+_tier1
+
+_tier2
+agk::SetTextAlignment ( 1, 0 );
+agk::SetTextAlignment ( 2, 1 );
+agk::SetTextAlignment ( 3, 2 );
+_tier2
+
+_sheader
+Text spacing
+_text
+This property controls the space between individual letters, it's controlled with the command <i>SetTextSpacing</i>. Two parameters are required for this command: an ID number and a value controlling the spacing. By default the spacing is 0 meaning no gaps between letters. Increasing this value will result in larger gaps between letters. Decreasing this value will have the effect of letters overlapping each other. This line of code sets the spacing of text 1 to 20, resulting in there being a gap of 20 pixels per letter:
+
+_tier1
+SetTextSpacing ( 1, 20 )
+_tier1
+
+_tier2
+agk::SetTextSpacing ( 1, 20 );
+_tier2
+
+_sheader
+Controlling text color
+_text
+Text can either have individual letters colored or be colored as a group. To color a specific character within a text entity call the command <i>SetTextCharColor</i> passing in an ID number, followed by an index representing the location of the character (starts at 0), then four values controlling the red, green, blue and alpha color channels. This example shows the first letter of text 1 being set to red:
+
+_tier1
+SetTextCharColor ( 1, 0, 255, 0, 0, 255 )
+_tier1
+
+_tier2
+agk::SetTextCharColor ( 1, 0, 255, 0, 0, 255 );
+_tier2
+
+_text
+To change the color of the whole text entity call the command <i>SetTextColor</i> passing in an ID number, followed by the red, green, blue and alpha color channels. This line sets the whole of text 1 to be displayed as red:
+
+_tier1
+SetTextColor ( 1, 255, 0, 0, 255 )
+_tier1
+
+_tier2
+agk::SetTextColor ( 1, 255, 0, 0, 255 );
+_tier2
+
+_sheader
+Text entity 1
+_text
+Now that we've seen how to control certain properties of text we can proceed to setting our text on screen. The position of text 1 is set to 150, 100 and its size set to 12:
+
+_tier1
+SetTextPosition ( 1, 150, 100 )
+SetTextSize ( 1, 12 )
+_tier1
+
+_tier2
+agk::SetTextPosition ( 1, 150, 100 );
+agk::SetTextSize ( 1, 12 );
+_tier2
+
+_sheader
+Text entity 2
+_text
+This text is positioned directly below text 1, has its alignment set to the center and its size set to 12:
+
+_tier1
+SetTextPosition ( 2, 150, 100 + GetTextTotalHeight ( 1 ) )
+SetTextAlignment ( 2, 1 )
+SetTextSize ( 1, 12 )
+_tier1
+
+_tier2
+agk::SetTextPosition ( 2, 150, 100 + agk::GetTextTotalHeight ( 1 ) );
+agk::SetTextAlignment ( 2, 1 );
+agk::SetTextSize ( 1, 12 );
+_tier2
+
+_text
+Note that the command <i>GetTextTotalHeight</i> is being used to control the Y position of this text entity. In this instance we're finding out the height of text 1. Therefore positioning our 2nd text entity at this height will result in it being placed directly underneath text 1.
+
+_sheader
+Text entity 3
+_text
+This text is placed underneath text 2, has its alignment set to the right and its size set to 12:
+
+_tier1
+SetTextPosition ( 3, 150, 100 + GetTextTotalHeight ( 1 ) + GetTextTotalHeight ( 2 ) )
+SetTextAlignment ( 3, 2 )
+SetTextSize ( 3, 12 )
+_tier1
+
+_tier2
+agk::SetTextPosition ( 3, 150, 100 + agk::GetTextTotalHeight ( 1 ) + agk::GetTextTotalHeight ( 2 ) );
+agk::SetTextAlignment ( 3, 2 );
+agk::SetTextSize ( 3, 12 );
+_tier2
+
+_text
+As this text entity is being placed directly under the previous two text entities it's simply a case of adding their heights together to calculate the Y position for this entity.
+
+_sheader
+Text entity 4
+_text
+This text is positioned at 50, 200, has its size set to 12 and then its spacing set to a value of 10:
+
+_tier1
+SetTextPosition ( 4, 50, 200 )
+SetTextSize ( 4, 12 )
+SetTextSpacing ( 4, 10 )
+_tier1
+
+_tier2
+agk::SetTextPosition ( 4, 50, 200 );
+agk::SetTextSize ( 4, 12 );
+agk::SetTextSpacing ( 4, 10 );
+_tier2
+
+_sheader
+Text entity 5
+_text
+The final text entity has its position set, followed by a large size and finally each character is colored individually with the A being set to red, the B being set to green and the C being set to blue:
+
+_tier1
+SetTextPosition ( 5, 50, 250 )
+SetTextSize ( 5, 40 )
+SetTextCharColor ( 5, 0, 255, 0, 0, 255 )
+SetTextCharColor ( 5, 1, 0, 255, 0, 255 )
+SetTextCharColor ( 5, 2, 0, 0, 255, 255 )
+_tier1
+
+_tier2
+agk::SetTextPosition ( 5, 50, 250 );
+agk::SetTextSize ( 5, 40 );
+agk::SetTextCharColor ( 5, 0, 255, 0, 0, 255 );
+agk::SetTextCharColor ( 5, 1, 0, 255, 0, 255 );
+agk::SetTextCharColor ( 5, 2, 0, 0, 255, 255 );
+_tier2
+
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+backdrop = CreateSprite ( LoadImage ( "background7.jpg" ) )
+SetSpriteColorAlpha ( backdrop, 100 )
+<br>
+CreateText ( 1, "HELLO AGK!" )
+CreateText ( 2, "HELLO AGK!" )
+CreateText ( 3, "HELLO AGK!" )
+CreateText ( 4, "HELLO AGK!" )
+CreateText ( 5, "ABC" )
+<br>
+SetTextPosition ( 1, 150, 100 )
+SetTextSize ( 1, 12 )
+<br>
+SetTextPosition ( 2, 150, 100 + GetTextTotalHeight ( 1 ) )
+SetTextAlignment ( 2, 1 )
+SetTextSize ( 2, 12 )
+<br>
+SetTextPosition ( 3, 150, 100 + GetTextTotalHeight ( 1 ) + GetTextTotalHeight ( 2 ) )
+SetTextAlignment ( 3, 2 )
+SetTextSize ( 3, 12 )
+<br>
+SetTextPosition ( 4, 50, 200 )
+SetTextSize ( 4, 12 )
+SetTextSpacing ( 4, 10.0 )
+<br>
+SetTextPosition ( 5, 100, 250 )
+SetTextSize ( 5, 40 )
+SetTextCharColor ( 5, 0, 255, 0, 0, 255 )
+SetTextCharColor ( 5, 1, 0, 255, 0, 255 )
+SetTextCharColor ( 5, 2, 0, 0, 255, 255 )
+<br>
+do
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+agk::SetVirtualResolution ( 320, 480 );
+<br>
+int backdrop = agk::CreateSprite ( agk::LoadImage ( "background7.jpg" ) );
+agk::SetSpriteColorAlpha ( backdrop, 100 );
+<br>
+agk::CreateText ( 1, "HELLO AGK!" );
+agk::CreateText ( 2, "HELLO AGK!" );
+agk::CreateText ( 3, "HELLO AGK!" );
+agk::CreateText ( 4, "HELLO AGK!" );
+agk::CreateText ( 5, "ABC" );
+<br>
+agk::SetTextPosition ( 1, 150, 100 );
+agk::SetTextSize ( 1, 12 );
+<br>
+agk::SetTextPosition ( 2, 150, 100 + agk::GetTextTotalHeight ( 1 ) );
+agk::SetTextAlignment ( 2, 1 ); 
+agk::SetTextSize ( 2, 12 );
+<br>
+agk::SetTextPosition ( 3, 150, 100 + agk::GetTextTotalHeight ( 1 ) + agk::GetTextTotalHeight ( 2 ) );
+agk::SetTextAlignment ( 3, 2 );
+agk::SetTextSize ( 3, 12 );
+<br>
+agk::SetTextPosition ( 4, 50, 200 );
+agk::SetTextSize ( 4, 12 );
+agk::SetTextSpacing ( 4, 10.0 );
+<br>
+agk::SetTextPosition ( 5, 100, 250 );
+agk::SetTextSize ( 5, 40 );
+agk::SetTextCharColor ( 5, 0, 255, 0, 0, 255 );
+agk::SetTextCharColor ( 5, 1, 0, 255, 0, 255 );
+agk::SetTextCharColor ( 5, 2, 0, 0, 255, 255 );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+By setting text properties it's possible to really customize the output so it's a perfect fit for your game.

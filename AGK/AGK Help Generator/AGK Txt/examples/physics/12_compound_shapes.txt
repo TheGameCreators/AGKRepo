@@ -1,0 +1,157 @@
+_header
+Compound shapes
+
+_sheader
+Description
+
+_text
+There may be situations when it's necessary to have more control over the collision shape being used by AppGameKit Studio. This is where compound shapes come into play. They are used to add extra shapes on top of any existing collision shape that a sprite has.
+
+_text
+This example loads an image named penguin.png:
+
+_image
+penguin.png
+
+_text
+<br>Two sprites are created with one on the left using a convex shape and the one on the right using a convex shape and a small box at its feet, as shown in this screen shot:
+
+_image
+12_compound_shapes.jpg
+
+_text
+<br>By adding an extra shape to the sprite on the right it's possible to stabilise the penguin when it collides with the floor. When you run the example notice how the sprite on the left (using the default convex shape) topples over when hitting the floor, while the sprite on the right (with an extra box added) will remain standing upon impact.
+
+_sheader
+Getting started
+
+_text
+The initial set up code defines a virtual resolution of 320 x 480, followed by the creation of two sprites:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background7.jpg" ) )
+<br>
+LoadImage ( 1, "penguin.png" )
+<br>
+backdrop = CreateSprite ( LoadImage ( "background1.jpg" ) )
+SetSpriteColorAlpha ( backdrop, 255 )
+<br>
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 0, 20 )
+SetSpritePhysicsOn ( 1, 2 )
+SetSpriteShape ( 1, 3 )
+<br>
+CreateSprite ( 2, 1 )
+SetSpritePosition ( 2, 200, 20 )
+SetSpritePhysicsOn ( 2, 2 )
+SetSpriteShape ( 2, 3 )
+AddSpriteShapeBox ( 2, -40, 62, 40, 64, 0 )
+<br>
+SetPhysicsDebugOn ( )
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background7.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "penguin.png" );
+<br>
+    agk::CreateSprite ( 1, 1 );
+    agk::SetSpritePosition ( 1, 0, 20 );
+    agk::SetSpritePhysicsOn ( 1, 2 );
+    agk::SetSpriteShape ( 1, 3 );
+<br>
+    agk::CreateSprite ( 2, 1 );
+    agk::SetSpritePosition ( 2, 200, 20 );
+    agk::SetSpritePhysicsOn ( 2, 2 );
+    agk::SetSpriteShape ( 2, 3 );
+    agk::AddSpriteShapeBox ( 2, -40, 62, 40, 64, 0 );
+<br>
+    agk::SetPhysicsDebugOn ( );
+}
+_tier2
+
+_text
+Sprite 1 has a convex shape attached to it and is positioned on the left side of the screen. Sprite 2 is handled slightly differently, while it has a convex shape attached it also has an additional shape attached as a box, which gets placed at the feet of the penguin. This is achieved with the command <i>AddSpriteShapeBox</i>. This command takes several parameters: ID of the sprite, x, y, x2, y2 and an angle. The x and y parameters are used to define the top left position of the box and the x2 and y2 parameters define the bottom right of the box. Finally the angle parameter is used to supply rotation for the box. When you run the example notice how a little box appears under the penguin on the right.
+
+_text
+Circles and polygon shapes can also be added to sprites by using <i>AddSpriteShapeCircle</i> and <i>AddSpriteShapePolygon</i>. Any of these additional shapes can be removed by calling <i>ClearSpriteShapes</i>.
+
+_sheader
+Main loop
+
+_text
+The main loop of the program only needs to call <i>Sync</i>, as the aim of the example is to demonstrate how an additional collision shape can affect interactions.
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+LoadImage ( 1, "penguin.png" )
+<br>
+backdrop = CreateSprite ( LoadImage ( "background1.jpg" ) )
+SetSpriteColorAlpha ( backdrop, 255 )
+<br>
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 0, 20 )
+SetSpritePhysicsOn ( 1, 2 )
+SetSpriteShape ( 1, 3 )
+<br>
+CreateSprite ( 2, 1 )
+SetSpritePosition ( 2, 200, 20 )
+SetSpritePhysicsOn ( 2, 2 )
+SetSpriteShape ( 2, 3 )
+AddSpriteShapeBox ( 2, -40, 62, 40, 64, 0 )
+<br>
+SetPhysicsDebugOn ( )
+<br>
+do
+    Sync ( )
+loop
+_tier1
+
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::LoadImage ( 1, "penguin.png" );
+<br>
+    agk::CreateSprite ( 1, 1 );
+    agk::SetSpritePosition ( 1, 0, 20 );
+    agk::SetSpritePhysicsOn ( 1, 2 );
+    agk::SetSpriteShape ( 1, 3 );
+<br>
+    agk::CreateSprite ( 2, 1 );
+    agk::SetSpritePosition ( 2, 200, 20 );
+    agk::SetSpritePhysicsOn ( 2, 2 );
+    agk::SetSpriteShape ( 2, 3 );
+    agk::AddSpriteShapeBox ( 2, -40, 62, 40, 64, 0 );
+<br>
+    agk::SetPhysicsDebugOn ( );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+
+_sheader
+Conclusion
+
+_text
+The commands demonstrated in this example offer you complete control and extra flexibility when dealing with collisions. They are useful for many situations and are easy to use and implement.
+
+

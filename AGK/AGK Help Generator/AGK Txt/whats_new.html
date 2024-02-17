@@ -1,0 +1,2602 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+    <head>
+        <title>Whats New - AGK Help</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        
+        <link href="main.css" rel="styleSheet" type="text/css" />
+    </head>
+
+    <body>
+        <div class="header" style="background: #000 url('gfx/header-back.png') top center no-repeat;">
+            <div>
+                <div class="navigation">
+                    <a href="home.html"><img src="gfx/b-home.png" width="76" height="44" alt=""></a>
+                    <a href="javascript:history.go(-1)"><img src="gfx/b-back.png" width="71" height="44" alt=""></a>
+                    <a href="javascript:window.print()"><img src="gfx/b-print.png" width="75" height="44" alt=""></a>
+                </div>
+
+                <a href="http://www.appgamekit.com" target="_blank"><img class="logo" src="gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a>
+            </div>
+            
+            <img src="gfx/drop-shadow.png" width="1158" height="40" alt="">
+        </div>
+        
+        <div class="breadcrumbs">
+            <a href="home.html">Home</a> &gt; What's New
+        </div>
+        
+        <div class="page">
+
+<!--This file is parsed by a script, do not change the formatting-->
+<h1>Change Log</h1>
+
+
+
+<h2>Build Studio 2024.02.17</h2>
+
+<ul>
+<li>Prepared files for move from SVN internal to GITHUB repository</li>
+</ul>
+
+<h2>Build Studio 2023.08.23</h2>
+
+<ul>
+<li>Exported AABs now target API 33 on Android.</li>
+</ul>
+
+<h2>Build Studio 2023.01.25</h2>
+
+<ul>
+<li>VSCode extension now has buttons in the top right for compile, run, broadcast, and debug</li>
+<li>VSCode extension now allows only one broadcast or debug session at a time</li>
+<li>Added support for BMP image files</li>
+<li>Added GetInAppPurchaseIsRenewing to return subscription renewal state on Android</li>
+<li>Removed support for Windows XP and Vista</li>
+<li>Removed 32-bit support on Windows</li>
+<li>Fixed a crash when creating a banner ad with CreateAdvert and then sending the app to the background</li>
+<li>Fixed DeleteAdvert not removing the banner ad</li>
+<li>VSCode extension code completion now suggests user functions and variables</li>
+<li>VSCode extension go to declaration now handles local and type varaibles</li>
+<li>VSCode extension hover now handles local and type variables</li>
+<li>VSCode extension go to declaration on an include path will now go to that file</li>
+<li>Removed joystick support on Mac due to unsupported library</li>
+<li>Mac version now compiles to both arm64 and x86_64</li>
+<li>Updated to MoltenVK 1.2.1 on Mac and iOS</li>
+<li>iOS and MacOS Tier 2 apps now require XCode 14 or higher</li>
+<li>Tier 1 Compiler is now faster at compiling large projects</li>
+<li>Compiler will output stats such as the number of lines parsed and language tokens generated</li>
+<li>Tier 1 Compiler will now be more thorough in finding undefined variables in functions</li>
+<li>IDE now reports up to 30 errors at a time, increased from 10</li>
+<li>VSCode extension now shows type variable suggestions when typing a dot</li>
+<li>VSCode extension now shows plugin command suggestions when typing a dot</li>
+</ul>
+
+<h2>Build Studio 2022.12.12</h2>
+
+<ul>
+<li>Exported Amazon APKs now target API 31 (Android 12)</li>
+<li>Fixed Alt key combinations causing a system sound on Windows</li>
+<li>Fixed APK export causing a warning in google Play about the billing library version</li>
+<li>Fixed InAppPurchaseSetup failing unless both a normal and subscription product are added</li>
+<li>Fixed IndexOf when used on arrays of types</li>
+<li>Fixed JSON parser not decoding \u characters</li>
+<li>Fixed apps including the User Tracking description when it isn't used, causing rejections by Apple</li>
+<li>Fixed Chartboost not setting the COPPA restrictions if SetAdMobChildRating is set</li>
+<li>Fixed AdMob not setting MaxAdContentRating if SetAdMobChildRating is set</li>
+<li>Added VSCode extension to allow compiling, running, and broadcaster for VSCode</li>
+</ul>
+
+<h2>Build Studio 2022.09.26</h2>
+
+<ul>
+<li>Fixed compile error when returning a type from a function with more than 256 types defined in the project</li>
+<li>Fixed potential runtime issues when more than 256 types are defined in a project</li>
+<li>Added text shader commands</li>
+<li>Fixed SetPhysicsInitiallyAwake ignoring the provided value and always using true</li>
+<li>Fixed APK export with deep links for Android 12</li>
+<li>Added new In-App Purchase commands to deal with subscriptions with multiple plans and offers</li>
+<li>Added new common code folder for Android Tier 2 apps to simplify updates</li>
+<li>Fixed command name for GetFractalXYZ</li>
+<li>Updated MoltenVK library for iOS apps</li>
+<li>Added GetAppReceipt() command on iOS to return the list of AppStore transactions</li>
+<li>Added commands to return the size and position of any display cutouts on Android</li>
+<li>Added commands to return the safe area that avoids all cutouts on iOS and Android</li>
+<li>Updated Snapchat SDK on Android</li>
+<li>Updated Android target API to 31 (Android 12)</li>
+<li>Removed deprecated expansion file commands on Android</li>
+<li>Updated Chartboost SDK on Android</li>
+<li>Updated Firebase SDK on iOS and Android</li>
+<li>Added support for both Adaptive and Legacy icons in APK export</li>
+<li>Added command to check if the device has a dark theme enabled</li>
+<li>Added command to request the app be pinned on Android</li>
+<li>Fixed Android sometimes returning device width and height as 1 at start before returning the correct values</li>
+<li>Padded short sounds on Android to 400ms to avoid popping and distortion</li>
+<li>Fixed very long Print() string (100,000+ characters) causing a crash</li>
+<li>Fixed SetWindowSize on Windows not allowing windows bigger than the screen when allowOversize parameter is set to 1</li>
+</ul>
+
+<h2>Build Studio 2022.06.27</h2>
+
+<ul>
+<li>Added SetupNoise. Initialises Open Simplex noise generation.</li>
+<li>Added GetNoiseX. Returns 1D noise.</li>
+<li>Added GetNoiseXY. Returns 2D noise.</li>
+<li>Added GetNoiseXYZ. Returns 3D noise.</li>
+<li>Added GetFractalX. Returns Fractal/Fractional Brownian Motion 1D noise.</li>
+<li>GetFractalXY. Returns Fractal/Fractional Brownian Motion 2D noise.</li>
+<li>GetFractalXYZ. Returns Fractal/Fractional Brownian Motion 3D noise.</li>
+<li>Added SetSpritePhysicsGravityScale. Gravity scaling.</li>
+<li>Added SetSpritePhysicsInitiallyAwake. Set if the sprite is initially awake or set.</li>
+<li>Added SetSpritePhysicsAllowSleep. Allow a sprite to sleep.</li>
+<li>Added GetSpritePhysicsGravityScale. Return gravity scaling value.</li>
+<li>Added GetSpritePhysicsInertia. Returns current inertia.</li>
+<li>Added GetSpritePhysicsIsBullet. Returns true if the sprite is set as a bullet.</li>
+<li>Added GetSpritePhysicsIsAwake. Returns true if the sprite is awake.</li>
+<li>Added ClearTweenSprite. Clears all tweens for the sprite.</li>
+<li>Added ClearTweenCustom. Clears all tweens for the custom tween.</li>
+<li>Added ClearTweenText. Clears all tweens for the text.</li>
+<li>Added ClearTweenChar. Clears all tweens for the char.</li>
+<li>Added ClearTweenObject. Clears all tweens for the object.</li>
+<li>Added GetTweenSpriteTime. Get the current time for a sprite.</li>
+<li>Added GetTweenSpriteEndTime. Get the end time for a sprite tween.</li>
+<li>Added GetTweenCustomTime. Get the current custom time.</li>
+<li>Added GetTweenCustomEndTime. Get the end time for a custom tween.</li>
+<li>Added GetTweenTextTime. Get the current text time.</li>
+<li>Added GetTweenTextEndTime. Get the end time for a text tween.</li>
+<li>Added GetTweenCharTime. Get the current char time.</li>
+<li>Added GetTweenCharEndTime. Get the end time for a char tween.</li>
+<li>Added GetTweenObjectTime. Get the current object time.</li>
+<li>Added GetTweenObjectEndTime. Get the end time for an object tween.</li>
+<li>Fixed a crash when using the Spaces command when the length specified was negative.</li>
+</ul>
+
+<h2>Build Studio 2022.03.31</h2>
+
+<ul>
+<li>Resolved a problem with broadcasting when using older versions of the player.</li>
+</ul>
+
+<h2>Build Studio 2022.03.29</h2>
+
+<ul>
+<li>Android apps will use the full screen and render over notches and pinhole cameras.</li>
+<li>IDE export fields for keystore password, version name and alias password all extended to accept 255 characters.</li>
+<li>GetErrorMode command added.</li>
+<li>The ShowChooseImageScreen could cause your app to lockup on iOS if you didn't press the cancel button or pick an image. Fixed.</li>
+<li>Fixed case sensitive issues with Tier 2 projects on Linux.</li>
+</ul>
+
+<h2>Build Studio 2021.12.06</h2>
+
+<ul>
+<li>AAB export updated to ensure certain media is not compressed when the APK is delivered.</li>
+<li>Removed warning messages for deprecated commands such as EnableClearDepth and EnableClearColor.</li>
+<li>Updated documentation for the CreateMemblock command.</li>
+<li>IndexOf compiler error message updated.</li>
+<li>Fixed a memory leak caused by creating dynamic and kinematic bodies.</li>
+<li>Tools, Generate Keystore link updated to point to the correct location.</li>
+</ul>
+
+<h2>Build Studio 2021.09.30</h2>
+
+<ul>
+<li>Fixed problems when exporting for the Play Store on Mac and Linux</li>
+<li>Changed Java detection on Windows</li>
+<li>Fixed a bug where the IDE on Mac would always attempt to download the additional export files for Android</li>
+<li>Updated command list for the parser due to a flaw in the previous build</li>
+<li>Fixed inability to export HTML5</li>
+</ul>
+
+<h2>Build Studio 2021.09.20</h2>
+
+<ul>
+<li>Fixed a crash on iOS when attempting to restore purchases</li>
+<li>Updated Android export to enable exporting to an App Bundle for Google Play</li>
+<li>The Java Development Kit (JDK) must now be installed prior to exporting an APK or App Bundle</li>
+<li>APKs are now signed with both V1 and V2 signatures to support future versions of Android</li>
+<li>Fixed Google Service App ID field in Android Export dialog being limited to 12 characters</li>
+<li>Fixed array FromJSON() crashing when converting an empty string into an integer or float</li>
+<li>Fixed a problem with the print command not dealing with more than 20 digits in a float. Previously anything greater than this would cause a silent crash.</li>
+<li>Fixed a crash when using SetMusicLoopTimesOGG.</li>
+<li>Added a new find feature for unsorted arrays called IndexOf.</li>
+<li>SetEditBoxTextSize command reference updated.</li>
+<li>Updated command reference for Len and ByteLen.</li>
+<li>Additional information added to the tips section of the documentation explaining about case sensitivity and tier 1 apps and their bytecode.</li>
+<li>Updated iOS projects to correctly handle remote notifications and to ensure all local notifications aren't cancelled when the app enters the foreground.</li>
+<li>Fixed a crash on iOS when attempting to restore purchases</li>
+<li>Updated Android export to enable exporting to an App Bundle for Google Play</li>
+<li>The Java Development Kit (JDK) must now be installed prior to exporting an APK or App Bundle</li>
+<li>APKs are now signed with both V1 and V2 signatures to support future versions of Android</li>
+<li>Fixed Google Service App ID field in Android Export dialog being limited to 12 characters</li>
+<li>Fixed array FromJSON() crashing when converting an empty string into an integer or float</li>
+</ul>
+
+<h2>Studio Build 2021.06.14</h2>
+
+<ul>
+<li>Fixed SetImageSubImages command not being found</li>
+<li>Fixed Google Play warning about requestLegacyExternalStorage when submitting an app</li>
+<li>The SaveSharedVariable commands will no longer function on Android 10 or above due to Android changes</li>
+<li>Updated Android In App Billing library to version 3 as required by Google</li>
+<li>InAppPurchaseSetKeys is no longer required on Android</li>
+<li>Added InAppPurchaseResetPurchase to reset a consumable purchase back to a purchasable state</li>
+<li>Removed type 1 (consumable) products when using InAppPurchaseAddProductID in favour of explicitly consuming them with InAppPurchaseResetPurchase</li>
+<li>Both consumable and non-consumable products must now use type 0 in InAppPurchaseAddProductID with consumables using InAppPurchaseResetPurchase</li>
+<li>Added GetInAppPurchaseAvailable2 to provide more detail about the state of a purchase</li>
+<li>Deprecated GetInAppPurchaseState as multiple purchases can now be in progress at once, use GetInAppPurchaseAvailable2 to check a payment's progress</li>
+<li>InAppPurchaseRestore now functions on Android</li>
+<li>Added GetInAppPurchaseToken to return the Google Play purchase token used to verify and distinguish between purchases</li>
+<li>Broadcasting multiple times to the AGK player will now reset the IAP product list between broadcasts</li>
+<li>Removed Amazon Ads due to the Amazon Mobile Ads network shutting down</li>
+<li>Updated Chartboost to version 8.4.1 on iOS</li>
+<li>Updated Chartboost to version 8.2.1 on Android</li>
+<li>Updated AdMob to version 20.1.0 on Android</li>
+<li>Updated AdMob and Chartboost implementations for new consent dialog</li>
+<li>Check the Advert example projects for the new recommended consent process</li>
+<li>Updated iOS for iOS 14 ad tracking changes</li>
+</ul>
+
+<h2>Studio Build 2021.02.09</h2>
+
+<ul>
+<li>Fixed a bug where text objects could have missing characters if using DrawText with multiple text objects using the same font and character size with Vulkan</li>
+<li>Fixed TTF fonts rendering at lower quality if the text was place at a half pixel position</li>
+<li>Added support for the RequestAppReview command on Android (Google Play only)</li>
+<li>Updated iOS projects so they will now run on M1 (ARM) Macs</li>
+<li>Fixed AdMob reward videos on Android sometimes rendering incorrectly</li>
+<li>Added SetAdMobChildRating command to notify AdMob if the app is targeted at children</li>
+<li>Added GetRewardAdValueAdMob command to get the reward amount from a reward ad</li>
+<li>Added CreateImageFromPNGMemblock to convert a memblock containing a PNG file into an AGK image</li>
+<li>Added CreateSoundFromOGGMemblock to convert a memblock containing an OGG file into an AGK sound</li>
+<li>Added CreateMusicFromOGGMemblock to convert a memblock containing an OGG file into an AGK music file</li>
+<li>Added GetMemblockSHA1 to hash the contents of a memblock</li>
+<li>Added GetMemblockSHA256 to hash the contents of a memblock</li>
+<li>Added SetImageSubImages to change the subimages.txt file currently applied to an AGK image</li>
+</ul>
+
+<h2>Studio Build 2020.11.12</h2>
+
+<ul>
+<li>Fixed PlayVideoToImage and SetDeviceCameraToImage producing a black image on old 32-bit iOS devices</li>
+<li>Fixed image corruption and quality reduction on iPad Mini 5th Gen and iPad Air 3rd Gen</li>
+<li>Fixed video duration not resetting to 0 immediately after a LoadVideo call on Android</li>
+<li>Added code to allow In App Purchase promotions to be selected in iTunesConnect</li>
+<li>In app purchases on Android that fail to verify will now be ignored instead of causing an unrecoverable error during IAP setup</li>
+<li>Fixed local notifications on iOS causing a crash if tapped when the app is not running</li>
+<li>Fixed a bug causing AGKVR DLC to show a black screen on the headset when using OpenGL with some GPUs</li>
+<li>Fixed SetSyncRate always using mode 0 on Windows even if mode 1 is set</li>
+<li>Fixed frame rate not reaching the value requested with SetSyncRate on the latest version of Windows 10</li>
+<li>Fixed DrawEllipse drawing small ellipses incorrectly</li>
+<li>Increased the number of simultaneous HTTP connections on Windows from 2 to 8</li>
+<li>Fixed a crash on Android devices using the Adreno GPU when sending the app to the background</li>
+<li>Fixed a crash when using GetAppInstalled()</li>
+<li>Updated Firebase SDK to version 18.0.0 on Android</li>
+<li>Updated Chartboost SDK to version 8.1.0 on Android</li>
+<li>Updated AdMob SDK to version 19.5.0 on Android</li>
+<li>Removed Amazon Ads from the Google version of the Android player due to conflicts with Google's ad policy</li>
+<li>Removed Amazon Ads from Google APK export due to policy conflicts</li>
+<li>Updated Android Tier 2 projects for Android Studio 4.1</li>
+<li>Improved performance on Vulkan when using DrawSprite() to draw a sprite multiple times per frame</li>
+<li>Fixed performance degradation when broadcasting an app multiple times that contains a large number of entities (sprites, objects, text, etc)</li>
+<li>Fixed performance degradation when using one of the DeleteAll commands and then creating a large number of entities (sprites, objects, text, etc)</li>
+<li>Fixed a memory leak when creating and deleting objects from height maps</li>
+<li>Fixed ShareFile and ShareImage on Android 10 and higher</li>
+<li>Fixed SaveSharedVariable commands for Android 10 but they will no longer work on Android 11 or higher due to file system restrictions</li>
+<li>Writing to raw: file paths outside the app write folder will not work on Android 11 or higher due to file system restrictions</li>
+<li>Fixed screen recording on Android 10 and above, currently only works when using OpenGL</li>
+<li>IDE: Fixed switch current project selecting wrong tab</li>
+<li>IDE: Fixed help not displaying if Help window isn't visible</li>
+<li>IDE: Fixed <Ctrl>+<E> when UNCOMMENTING code replacing Clipboard contents with "//~"?</li>
+<li>IDE: Fixed Scene Editor EditBox using multiple scenes in same file generating compile errors</li>
+<li>IDE: Fixed Android export generating invalid .apk files</li>
+<li>IDE: Fixed IPA export generating invalid .ipa files</li>
+</ul>
+
+<h2>Studio Build 2020.07.28</h2>
+
+<ul>
+<li>Fixed a crash when running a Spriter animation that had a different number of keyframes per varying value</li>
+<li>Spriter image pivots can now be animated</li>
+<li>Spriter animations now support negative scales</li>
+<li>Spriter files no longer need to have the same bone structure across all their animations</li>
+<li>Numerous other small fixes to improve Spriter support</li>
+<li>Added SetSpriteBlendModes to set the blend modes manually when using transparency mode 3</li>
+<li>Fixed SetObjectMeshImage failing to remove the image if the image ID is set to 0</li>
+<li>Fixed SetSpriteScissor causing the sprite to not draw if the scissor values were greater than the virtual resolution</li>
+<li>Calling the Mod command with a divisor of 0 will now return 0</li>
+<li>Added missing libMoltenVKiOS.a and libMoltenVKMac.a to Mac Tier 2 files</li>
+<li>Fixed auto-generated tangents being incorrect on triangles with a normal equal to -1 in the Y direction</li>
+<li>Fixed occasional glitches in iOS apps when using MoltenVK</li>
+<li>Updated Snapchat SDK on Android to version 1.4.4</li>
+<li>Updated Firebase SDK on Android to version 17.4.4</li>
+<li>IDE: Fixed Sometimes Ctrl+tab failed to switch tabs</li>
+<li>IDE: Fixed New projects are now shown in the recent projects menu</li>
+<li>IDE: Added bookmarks work across all files of a project</li>
+<li>IDE: Fixed bug when toggle bookmark was used, bookmarks could move position</li>
+<li>IDE: Added Bracket highlighting, if you click next to one it will now highlight the partner bracket</li>
+<li>IDE: Added "Clear all boookmarks" now works on all project files</li>
+<li>IDE: Fixed Search and replace issue. If you searched for ")" it would causes multiple weird changes</li>
+<li>IDE: Fixed Search and replace # with nothing crashed the editor</li>
+<li>IDE: Fixed Code folding issue to do with colon characters</li>
+<li>IDE: Added IDE window now regains the focus after running an app</li>
+<li>IDE: Fixed Keyboard navigation improved. Ctrl+End / Ctrl+Shift+End behaviour fixed and other highlighting behaviours fine tuned.</li>
+<li>IDE: Fixed If line numbers are off, break points overlap folding icons</li>
+<li>IDE: Added Improve navigation of the help (when you come back out it didn't remember your scroll position)</li>
+<li>IDE: Debugger now has a flag to turn on and off break points without having to remove them</li>
+<li>IDE: Fixed Dragging and dropping a folder disappears from the asset browser Bookmarks have been moved from the same position as breakpoints (a bit larger), so they dont overlap code folding symbols</li>
+<li>IDE: Fixed Exporting to iOS does not compile the latest script</li>
+<li>IDE: Fixed Exporting an APK on Android can cause the IDE to lock up. This can happen frequently</li>
+</ul>
+
+<h2>Studio Build 2020.04.16</h2>
+
+<ul>
+<li>Fixed a memory leak when Vulkan apps were minimized</li>
+<li>Fixed a crash with Vulkan when using GetImage before any call to Sync or Swap</li>
+<li>Fixed Mac rendering to the bottom left corner of the window on retina displays</li>
+<li>Updated Mac full screen window code to be more reliable</li>
+<li>Fixed some Windows machines reporting error 0xc000007b when exporting an APK due to a missing DLL</li>
+<li>Fixed SetObjectReceiveShadow being set to 0 still overwriting object texture stages with shadow maps</li>
+<li>Fixed Mac IDE not being able to run apps when sandboxed</li>
+<li>Restored Android export in the Mac IDE via a separate download</li>
+<li>Removed Facebook SDK in favour of the ShareText/ShareImage commands</li>
+<li>Updated AdMob SDK to version 7.58.0 on iOS</li>
+<li>Updated Chartboost SDK to version 8.1.0 on iOS</li>
+<li>Updated AmazonAds SDK to version 3.0.0 on iOS</li>
+<li>Updated Firebase SDK to version 6.22.0 on iOS</li>
+</ul>
+
+<h2>Studio Build 2020.03.27</h2>
+
+<ul>
+<li>Added clipboard support to the Linux version</li>
+<li>Increase max local notifications to 100</li>
+<li>Fixed CopyNetworkMessage failing to copy messages that were not fully read</li>
+<li>Copied network messages can now be read and added to</li>
+<li>Added AddNetworkMessageBye and GetNetworkMessageByte</li>
+<li>Deprecated SetScreenResolution due to lack of support in newer renderers</li>
+<li>Added an error if the Mod command is used with a divisor of 0 to avoid a crash</li>
+<li>iOS now defaults to allowing audio from background apps to continue</li>
+<li>iOS Tier 2 projects have been updated to use launch storyboards instead of images</li>
+<li>iOS export has been updated to use a launch logo instead of a splash image, the logo will be centered on screen in any orientation</li>
+<li>Added Vulkan support to iOS</li>
+<li>Added Vulkan support to Mac</li>
+<li>Added Vulkan support to Linux</li>
+<li>Added partial Vulkan support to Android, PlayVideoToImage, SetDeviceCameraToImage, and AR are not supported with Vulkan</li>
+<li>The Android player will always use OpenGL ES for maximum compatibility, exported apps can choose to use Vulkan by using #renderer "Advanced"</li>
+<li>On all platforms, any device that does not support Vulkan will drop back to OpenGL automatically</li>
+<li>Fixed shadows not working on the Windows Vulkan renderer if depth clamping is not available</li>
+<li>Fixed SetShadowCascades not applying the given values</li>
+<li>Modified shadow algorithm so that the shadow bias can now be set much lower for cascade shadow maps, reducing the gap between objects and shadows</li>
+<li>Improved Android background behaviour so apps will pause and resume faster when sent to background</li>
+<li>Updated Android to target API 29 as required by Google</li>
+<li>Added FixCameraToObject command</li>
+<li>Added GetCameraWorldX/Y/Z commands to get the world coordinates of cameras attached to objects</li>
+<li>IDE: Fixed an error where the Android APK export feature would lock up from time to time</li>
+<li>IDE: Fixed export of APK or IPA. Could hang on second and subsequent attempts</li>
+<li>IDE: Fixed unzipping issue - 64-bit unzip with passwords</li>
+<li>IDE: Added undo to rotations actions</li>
+<li>IDE: Fixed Undo/Redo when using properties widgets</li>
+<li>IDE: Improved performance when using event based rendering</li>
+<li>IDE: Make sure all properties changes are saved</li>
+<li>IDE: Pressing Control+D in the IDE can sometimes cause a crash in the IDE</li>
+<li>IDE: Fixed a random crash when right clicking on an item and then choosing go to definition</li>
+<li>IDE: Now display the normal mouse pointer when over scrollbars</li>
+<li>IDE: Reset the cursor position when closing/opening a agc file</li>
+<li>IDE: Make sure code properties parameters entries are correct before opening the code properties window</li>
+<li>IDE: Created a larger area to select line text, when mouse over line numbers. margin moved a little bit.</li>
+<li>IDE: Fixed - Goto Definition search order, current file - open files in current project - open files all projects - all files current project - all files.</li>
+<li>IDE: Fixed - Sometimes CTRL-Tab didn't work as it should, this has been recoded and should much better now.</li>
+<li>IDE: Auto complete would sometimes hide the line you are typing</li>
+<li>IDE: Fixed an issue where Close Source File would not work on a new Source File</li>
+<li>IDE: Added - "Go To Definition" Scan for same files already opened in a tab, even if not in same project.</li>
+<li>IDE: Fixed - Pasting code at end of file caused the editor to jump to the first line</li>
+<li>IDE: Fixed multiple issues with scene editor (https://github.com/TheGameCreators/AGK-Studio/issues/619)</li>
+</ul>
+
+<h2>Studio Build 2019.12.17</h2>
+
+<ul>
+<li>Fixed GetRendererName incorrectly reporting Vulkan as OpenGLES</li>
+<li>Fixed CopyNetworkMessage failing to copy messages that were created locally</li>
+<li>Added GetNetworkClientIP to return the IP address of a network client</li>
+<li>Added GetNetworkServerIP to return the IP address of the server</li>
+<li>Fixed #import_plugin causing the #renderer value to be ignored</li>
+<li>Fixed edit boxes not being selectable if FixEditBoxToScreen and SetViewOffset are used</li>
+<li>Reverted fix to GetSpriteHitTest and GetSpriteHit which changed previous functionality, use the ScreenToWorld commands when using SetViewOffset instead</li>
+<li>Added commands to get the state of the fourth and fifth mouse buttons on Windows if available</li>
+<li>IDE: Added HTML5 export</li>
+<li>IDE: Fixed errors when using editboxes in the scene editor</li>
+<li>IDE: Fixed backslash issues in debug variables</li>
+<li>IDE: Fixed shift select when using the mouse</li>
+</ul>
+
+<h2>Studio Build 2019.11.28</h2>
+
+<ul>
+<li>Reinstated the ClearDepthBuffer command to clear the depth buffer in the middle of a frame</li>
+<li>Fixed a bug in Vulkan where using SetRenderToImage without a depth buffer could cause the color image to not clear correctly</li>
+<li>Fixed some keys not being recognised on Android physical keyboards</li>
+<li>Fixed SetMemblockByteSigned incorrectly truncating values to the range -127 to 128 instead of -128 to 127</li>
+<li>Fixed textured sprites or objects sometimes flickering between their assigned image and a black transparent image when using Vulkan</li>
+<li>Fixed GetSpriteHitTest and GetSpriteHit not reporting the correct values when SetViewOffset is used</li>
+<li>Fixed virtual button presses being offset from the button when SetViewOffset is used</li>
+<li>Fixed shadows sometimes becoming corrupt when drawing multiple boned objects</li>
+<li>Added old Android versions to the APK export dialog</li>
+<li>Fixed GetSystemFontPath sometimes causing a crash if the path contained backslashes</li>
+<li>HTML5 apps can now use SaveSharedVariable and LoadSharedVariable to store persistent data in cookies</li>
+<li>Fixed many help file spelling mistakes</li>
+<li>Fixed iOS export failing during submission to Apple</li>
+<li>Mac apps now use a write path based on the .app filename instead of a generic name shared by all apps</li>
+<li>Using SetObjectShader(ID,0) on a quad will now return it to the default quad shader</li>
+<li>Added array.length to the valid list of debug variables</li>
+<li>Added GetRendererName() command to return the name of the current renderer</li>
+<li>Debug call stack will now point to the line a function was called rather than the start of the function</li>
+<li>Fixed SetRawMousePosition on Mac not immediately setting the new mouse position</li>
+<li>Fixed Google Play Games achievements not displaying a popup when you unlock an achievement</li>
+<li>Added #renderer "None" to create a windowless app (Windows only), graphics commands will not work but Swap must be called every frame and it will use the SetSyncRate value to limit the frame rate</li>
+<li>IDE: Added DLC menu to open in explorer when selected.</li>
+<li>IDE: Fixed empty Virtual Button Text</li>
+<li>IDE: Fixed inconsistent when using forslash or backslash in "add new source file to project"</li>
+<li>IDE: Fixed inconsistent in .agk sections</li>
+<li>IDE: Fixed adding a new resolution to a scene not saving the change</li>
+<li>IDE: Allow breakpoints from files not part of the current project</li>
+<li>IDE: Allow open project over network path</li>
+<li>IDE: Fixed code folding bug when auto completion popup</li>
+<li>IDE: Errors from debugger now appear in red</li>
+<li>IDE: Fixed copy log to clipboard, now work as intended</li>
+<li>IDE: Added right click single line in message window to allow "Copy to Clipboard"</li>
+<li>IDE: Fixed allow "word" selection with continued mouse selections to respect first word selection</li>
+<li>IDE: Added ability to prevent selection of media on hidden layers</li>
+<li>IDE: Fixed crash if last compiled source was closed and you click on a message in "messages"</li>
+<li>IDE: Added new scene command "scene_create_window(0)" disable setting windows,"scene_create_window(1)" default setup window</li>
+<li>IDE: If you get error "..._create_window" is not a recognised function or command, open your scene and click "save"</li>
+<li>IDE: Added "Go To Definition" (CTRL+T) will now align the function near the top of the editor</li>
+<li>IDE: Arrays will now be re-arranged before saving scene files</li>
+<li>IDE: User defined debugger Run key (normally F5) will work as continue when in debug mode</li>
+<li>IDE: User defined debugger Step Into key (normally F10) will work as Step Out when also pressing shift</li>
+<li>IDE: Only one instance of Windows AppGameKit Studio is now allowed to run</li>
+<li>IDE: Added parsing of IDE command line parameters and support opening projects by double clicking .agk files in explorer</li>
+<li>IDE: Fixed Mac IPA Export, some files could have extended attributes or resource forks, this is now removed</li>
+<li>IDE: When selecting go to definition, "function" is now placed at the top of screen instead of at bottom</li>
+<li>IDE: Fixed a problem affecting moving between source file tabs</li>
+<li>IDE: When a word is highlighted and then press shift+arrow right, the cursor now moves to the end of the word</li>
+<li>IDE: Improved the display of comments surrounded by /* and */</li>
+<li>IDE: Fixed a bug causes all text to show as comments</li>
+<li>IDE: If search finds a result in the current file it will no longer load up another instance of it</li>
+<li>IDE: Added this search feature - when double clicking a search result it highlights, so if your search returns multiple results you know which one you selected last.</li>
+<li>IDE: Autocomplete of functions now allows unlimited suggestions</li>
+<li>IDE: Project settings are now saved as soon as you export your project.</li>
+</ul>
+
+<h2>Studio Build 2019.09.27</h2>
+
+<ul>
+<li>Fixed expansion file commands causing a crash on Android 9 and above</li>
+<li>Fixed SnapChat commands not working on Android</li>
+<li>Updated Android export dialog to remove unsupported versions of Android from the drop down list</li>
+<li>Fixed SnapChat commands not working in exported iOS apps</li>
+<li>Fixed deleting and re-creating lots of objects sometimes causing the new objects to retain the properties of an old object, causing flickering or corruption</li>
+<li>Fixed exported iOS apps not being signed correctly</li>
+<li>Fixed Android export not working on Mac an Linux</li>
+<li>Added deeplink parameter to SetLocalNotification command which will get passed to the app if the notification is tapped</li>
+<li>Fixed virtual buttons with non-square images incorrectly recording a button press when tapped outside the image</li>
+<li>SetVirtualButtonSize(id, x, y) will now set the button size correctly when using non-square images</li>
+<li>Fixed untextured sprites not drawing correctly on Intel GPUs</li>
+</ul>
+
+<h2>Studio Build 2019.09.17</h2>
+
+<ul>
+<li>Added SnapChat commands ShareSnapChatImage and SetSnapChatStickerSettings</li>
+<li>Added command GetAppInstalled to check if an app is installed on Android</li>
+<li>Fixed Random2 not being given a unique seed during startup</li>
+<li>Improved sprite rendering performance on both OpenGL and Vulkan</li>
+<li>Fixed crash when using SetPhysicsDebugOn()</li>
+<li>Fixed SetPhysicsDebugOn() not drawing some shapes</li>
+<li>Removed "Swap chain is out of date" error message which was used for internal testing</li>
+<li>Fixed immediate present mode still using a delayed present function</li>
+<li>Removed x86 compatibility from Android apps due to lack of device support and increasing binary size</li>
+<li>Minimum supported version of Android is now 4.4 (API 19)</li>
+<li>Added additional location description strings to exported plist files to satisfy Apple requirements</li>
+<li>Fixed 2D and 3D particles causing a crash if they aren't assigned an image</li>
+<li>Fixed 2D and 3D particles not interpolating colors correctly</li>
+<li>Fixed SetPresentMode and ForcePresent not being recognised as commands</li>
+<li>Improved shader error messages to refer to the base shader filename where available</li>
+<li>Fixed a failed shader compile causing all further shaders to fail to compile</li>
+<li>Fixed small dot sometimes appearing beween words when using new fonts</li>
+<li>Fixed performance issue when looping through thousands of objects or sprites</li>
+<li>If errors occur, always display "Message Window" even if it's been closed</li>
+<li>Fixed ignore case on include/insert file names, when locating file inside project.</li>
+<li>The IDE now remembers to restore your customised style on next startup</li>
+<li>Projects can be Dragged & Dropped into the IDE (Windows version)</li>
+<li>Instant right click menu when using "event based rendering"</li>
+<li>Enable code properties by default</li>
+<li>Allow the hiding of the tab drop down button</li>
+<li>Prevented right click popup windows from being moveable and dockable</li>
+<li>"Current project" selection in project window, will now always be visible in the top of the window</li>
+<li>After "Run" - disable restoring of cursor position, keep everything as is</li>
+<li>Corrected some spelling errors</li>
+<li>Install Additional Files - fixed "Installing C++ Libraries To" displaying the wrong folder name</li>
+<li>Code folding feature added (this is in Beta and has to be turned on via preferences, please report any issues)</li>
+<li>Allow the creation of source files using sub folders.</li>
+<li>Added - Save all edited files from all projects when compiling</li>
+<li>You can now drag & drop folder locations from Windows explorer</li>
+<li>Tool tips added to icon size icons</li>
+<li>Right click menu now has "Add folder location" option</li>
+<li>Source files can be Dragged & Dropped into the IDE (Windows version)</li>
+<li>Added right click project media folders to select "Open in Explorer" and "Refresh Files"</li>
+<li>New Code Folding added! Open and close areas of source code. You can use the new "foldstart" and "foldend" text markers and these control loops: while - endwhile, do - loop, function - endfunction, remstart - remend, select - endselect, case - endcase, for - next, if - endif, repeat - until. This new feature should be considered in BETA. If you find any issues with it please report them.</li>
+<li>Added - CRTL+SHIFT+F Advanced find dialog Fixed - Undo/Redo, auto indentation was not added to undo buffers and coulod cause a crash when using Undo/Redo</li>
+<li>Added right click menu to editor "tabs" - Close/Close All Other/Close All Support for Shift+Tab on a single line to unindent</li>
+<li>Fixed calling functions as parameters to functions causes the intellisense to break</li>
+<li>Mouse hover over a command now displays command Help Syntax</li>
+<li>Fixed CTRL+D not removing clipboard data anymore</li>
+<li>Fixed Rem tab breaking the syntax highlighting</li>
+<li>Fixed missing syntax highlight and F1 help for ForcePresent()/SetPresentMode(mode)</li>
+<li>Fixed Search/Replace - could sometimes crash the IDE</li>
+<li>Added support for shift+backspace</li>
+<li>Autocomplete menu now follow scrollbars</li>
+<li>Autocomplete menu will now display above the cursor if menu will go outside the editor window</li>
+<li>Fixed problem where you search and press left-right arrow, cursor was not always placed correct</li>
+<li>Improved "user function" parsing, when displaying user function syntax</li>
+<li>Fixed closing a tab (editor) it now selects a new active editor</li>
+<li>Fixed  a problem after closing an editor, the CTRL+TAB didn't work</li>
+<li>Fixed Undo/Redo could move breakpoints/markers/code folding markers</li>
+<li>Fixed a problem with shift-tab with selection.</li>
+<li>Fixed GOTO Line dialog, reset input and make sure we have a active editor</li>
+<li>Enable / Disable option for Hover over a command help syntax</li>
+<li>Added Hide Tab Dropdown Button option</li>
+<li>Added a new preference setting "Ask Before Quitting AppGameKit Studio.", when checked it will allow you to cancel quit.</li>
+<li>HDPI Default preferences 4k: fonts size 24/large icons. Surface Pro(and like): fonts size 22/large icons.</li>
+<li>Draw Mode - Fit Sprite Size to Grid is now set as off by default</li>
+<li>Draw Mode - Esc key exits draw mode</li>
+<li>Toolbar - 2D/Script options are now shown as a toggle button</li>
+<li>Added "Exit Draw Mode" button user in draw mode</li>
+<li>Added layer support and dialog to text/edit/sprite properties pages</li>
+<li>Toolbar Drop Downs - these now display all entries without scrollbars</li>
+<li>Fixed Font path issue - when project is moved cross platform, resolved the font path so they can be moved between platforms.</li>
+<li>Fixed a crash when a scene file with a non-existing font</li>
+<li>Fixed - scene_cleanup() now reset array groups.</li>
+<li>Added new Code Properties system</li>
+<li>You can now use: #export syntax to highlight items</li>
+<li>New and old syntax systems will work for code properties</li>
+<li>New format is as follows:
+<pre>
+	#export(header,"3D Car Demo." )
+	#export(message,"Make your source code changes below.")
+	#export(separator)
+	global mystring$ = "Level Name" #export ( string , "Change level name" )
+	global fogmin = 255 #export(integer,"Set fog minimum range" )
+	global bounce# = 300.000000 #export(float,"Bounce Car.")
+	global myobject$ = "SM_Veh_Car_Police_01.fbx" #export(selectfile,"Select 3D object file.")
+</pre></li>
+<li>Current project is now compiled before opening the export dialog, to make sure you have the latest changes</li>
+</ul>
+
+<h2>Studio Build 2019.08.05</h2>
+
+<ul>
+<li>Fixed SetVSync(1) still capping fps to the previous value passed to SetSyncRate</li>
+<li>Added SetPresentMode and ForcePresent to control when the back buffer is presented to the screen</li>
+<li>Changed the default present mode to immediate instead of delayed</li>
+<li>Added #renderer to Tier 1 to specify the renderer mode to use during app start up, options are "Prefer Best, "Advanced", and "Basic", however this does not work when broadcasting</li>
+<li>Fixed SetRenderToImage followed by ClearScreen and then changing render image without drawing anything not clearing the first render image</li>
+<li>Fixed an error caused by some OpenGL drivers generating shader location values greater than 65535</li>
+<li>Print text will now be cleared after a call to Render instead of after the call to Sync or Swap. If you want a Print statement to appear on more than one render image you must now call Print before each render</li>
+<li>Minimum supported version of Android is now 4.1 (API 16)</li>
+<li>Exported Android apps now target API 28 as required by Google</li>
+<li>Updated Chartboost SDK to version 7.3.1 on Android</li>
+<li>Updated AmazonAds to version 5.9.0 on Android</li>
+<li>Updated AdMob SDK to version 18.1.1 on Android</li>
+<li>Changed iOS audio category so AGK apps will no longer be silenced when the ringer is on silent</li>
+<li>Updated AdMob SDK to version 7.47.0 on iOS</li>
+<li>Updated Chartboost SDK to version 8.0.1 on iOS</li>
+<li>Updated AmazonAds to version 2.2.17.0 on iOS</li>
+<li>GameCircle on Amazon is no longer supported due to removal by Amazon</li>
+<li>Fixed TerminateApp not working on Windows</li>
+<li>Fixed crashes in the Android export dialog when trying to enter text into some of the fields</li>
+<li>Fixed crashes in the iOS export dialog when trying to enter text into some of the fields</li>
+</ul>
+
+<h2>Studio Build 2019.07.23</h2>
+
+<ul>
+<li>Added Vulkan renderer on Windows</li>
+<li>Improved OpenGL renderering performance on Windows when CPU bound</li>
+<li>Added IsInvertedDepth to return whether the depth buffer is inverted (true for Vulkan)</li>
+<li>Added GetClipSpaceMode to return if the current clip space is -1 to 1 or 0 to 1 (OpenGL and Vulkan respectively)</li>
+<li>Added IsTopLeftOrigin to return if the current renderer uses the top left or bottom left as its framebuffer origin</li>
+<li>Added GetDrawing3DSetupTime to return the amount of seconds spent preparing 3D objects for drawing</li>
+<li>Added additional version of MakeColor with an alpha parameter</li>
+<li>DrawLine DrawBox and DrawEllipse now support alpha blending</li>
+<li>Added shadow smoothing modes 3 and 4 that use 16 samples instead of the 4 samples in modes 1 and 2</li>
+<li>Fixed the app freezing if PlayObjectAnimation was told to loop with the start and end frames set to the same value, or set to values beyond the animation duration</li>
+</ul>
+
+<h2>Build 2019.06.11</h2>
+
+<ul>
+<li>Fixed text using new fonts jumping with moving across the screen</li>
+<li>Improved Android AR error message</li>
+<li>Fixed a memory leak in SetMeshMemblockVertexColor</li>
+<li>Fixed very short sounds failing to loop</li>
+</ul>
+
+<h2>Build 2019.05.22</h2>
+
+<ul>
+<li>Fixed horizontal resizing of a window not updating text font spacing until a vertical resize occurred</li>
+<li>Resizing an app on Windows will now refresh the contents of the window whilst resizing</li>
+<li>Added GetImageSizeFromFile command to get the size without loading the entire image</li>
+<li>Fixed GIF images failing to load in exported APKs</li>
+<li>Fixed shaders on Android losing their variable values if a shader constant was changed immediately after the app returns from the background</li>
+<li>Fixed TextToSpeech on iOS causing a crash if StopSpeaking was called too many times</li>
+<li>Hidden sprites will no longer show non-physics shapes when SetPhysicsDebugOn is used</li>
+<li>Fixed ShareFile on Android not sending the file contents correctly</li>
+<li>Fixed OGG playback sometimes causing a crash or silence when looping</li>
+</ul>
+
+<h2>Build 2019.02.18</h2>
+
+<ul>
+<li>Fixed a crash when calling CloseHTTPConnection or DeleteHTTPConnection on iOS or Mac whilst the connection is still downloading data, it will now cancel the download</li>
+<li>Added CancelZipExtract command to stop asynchronous zip extraction before it is finished</li>
+<li>Fixed GameCenter commands for Android changes to Google Plus</li>
+<li>Added GameCenterLogout command for Android</li>
+<li>Fixed SetSpriteFlip incorrectly adjusting the center of circle physics shapes</li>
+<li>Added more info to compiler errors when items are declared more than once</li>
+</ul>
+
+<h2>Build 2019.01.18</h2>
+
+<ul>
+<li>Added ExtractZipASync, GetZipExtractProgress, and GetZipExtractComplete commands to unzip files in the background</li>
+<li>Added GetWindowWidth/Height to return the size of the window, which may differ from GetDeviceWidth/Height on retina displays</li>
+<li>GetMaxDeviceWidth/Height now return the non-retina sizes on Macs with retina displays so they can be used with SetWindowSize</li>
+<li>Fixed ResizeImage not working with animated GIF images</li>
+<li>The debugger can now display the contents of a type variable</li>
+</ul>
+
+<h2>Build 2019.01.08</h2>
+
+<ul>
+<li>Fixed escaped JSON strings sometimes causing incorrect strings in AGK</li>
+<li>Fixed ShowImageCaptureScreen crashing on some Android devices</li>
+<li>Fixed GetTweenPlaying command continuing to return 1 for the last tween in a tween chain after the chain has finished playing</li>
+<li>Fixed GetMaxDeviceWidth/Height returning incorrect values on retina displays</li>
+<li>Mac fullscreen window no longer reveals the window title bar when the mouse cursor goes to the top of the screen</li>
+<li>Updated ARCore on Android which should provide support for more devices</li>
+<li>Fixed the ShareText/ShareImage commands not showing the option to choose an app if a default app was chosen previously</li>
+<li>Added UDP commands for Windows, Mac, Linux, iOS, and Android</li>
+<li>Added UDP example project to the networking folder</li>
+<li>Updated iOS export to use the iOS 12.1 SDK</li>
+</ul>
+
+<h2>Build 2018.12.12</h2>
+
+<ul>
+<li>Fixed cloud data commands on Android sometimes failing to connect to Google Drive</li>
+<li>Fixed iOS export with a blank Universal Link field causing the IDE to crash</li>
+<li>Fixed retina display on Mac causing AGK apps to render in the lower left corner of the window</li>
+<li>Fixed IPAs exported from the IDE causing errors about transparent icons during upload to iTunesConnect</li>
+<li>Fixed warning about iOS spash screen being stretched when it was actually fine</li>
+<li>Increased Android keystore generator certificate validity from 10,000 days to 20,000 days for Google Play store changes</li>
+<li>Fixed crash when loading a Spirter file that contains an image without a bone parent</li>
+<li>Added support for animated GIF images with the LoadImage command</li>
+<li>Added GetRawJoystickName to return the OS assigned name for a joystick on Windows and Linux</li>
+<li>Fixed Amazon IAP causing a crash at startup</li>
+<li>Added PlayYoutubeVideo for iOS and Android to play the video in a popup, desktop platforms will open the browser to play it</li>
+<li>Added ShareFile command for iOs and Android</li>
+</ul>
+
+<h2>Build 2018.11.08</h2>
+
+<ul>
+<li>Added SetObjectAlpha, GetObjectColorRed, GetObjectColorGreen, GetObjectColorBlue, and GetObjectAlpha commands</li>
+<li>Upgraded Mac apps to GLFW 3.2.1 to support MacOS 10.14</li>
+<li>Added the extra keyboard key support to Mac apps</li>
+<li>Fixed iOS Tier 2 projects for XCode 10</li>
+<li>Minimum supported version of iOS is now 8.0 due to Apple changes</li>
+<li>Added documentation for clipboard commands</li>
+<li>Fixed GetClipboardText on Android failing to get the text on some devices</li>
+<li>Added password field for ExtractZip (courtesy of Preben)</li>
+<li>Added support for .raw and .dat 16-bit height maps (courtesy of Preben)</li>
+<li>Added mesh visibility and collision commands (courtesy of Preben)</li>
+<li>Added commands to read object texture names from object file (courtesy of Preben)</li>
+<li>Improved drawing performance of objects when they are not visible or there are no lights (courtesy of Preben)</li>
+<li>Improved sorting performance for transparent 3D objects</li>
+</ul>
+
+<h2>Build 2018.10.10</h2>
+
+<ul>
+<li>Added GetCharBuffer and GetCharBufferLength to return any text entered on physical keyboards since then command was last called</li>
+<li>Add GetRawJoystickSlider and GetRawJoystickPOV to support additional features on joysticks</li>
+<li>Increased the number of joystick buttons to 64</li>
+<li>Added support for more keyboard keys on Windows and Linux, including left/right shift/ctrl/alt keys and distinguishing between numpad and top row number keys</li>
+<li>Updated the scan code list at https://www.appgamekit.com/documentation/guides/scancodes.htm for the new list of keys</li>
+<li>Fixed edit boxes flickering if the edit box width was less than the width of two characters</li>
+<li>Added CopyNetworkMessage command to copy a network message so that it can be resent</li>
+<li>Fixed audio failing to play on some iOS devices after sleeping the device with a magnetic cover</li>
+<li>Fixed some 3DS models failing to load on ARM devices</li>
+<li>Fixed GetPushNotificationToken sometimes returning an empty string on Android, you will now need to call SetPushNotificationKeys for it to work</li>
+<li>Fixed OpenToWrite on Android failing to create the necessary folders on some devices and failing to create the file</li>
+<li>Fixed GetHTTPFile on Android failing to create the necessary folders on some devices and failing to create the file</li>
+<li>Changed GetInternetState on iOS to better detect the lack of network connectivity</li>
+<li>Fixed sounds on iOS sometimes failing to play if the app is sent to the background and then resumed</li>
+<li>Fixed installing new versions of AGK over old versions on Windows causing APK export errors</li>
+<li>Fixed GetDeviceID on Android sometimes returning an empty string</li>
+<li>Added the option to add a URL scheme during Android and iOS export, so that the exported app can be opened by a browser link</li>
+<li>Added GetURLSchemeText to return the URL used to open the app on Android and iOS, if any</li>
+<li>Fixed APK export sometimes not parsing the Firebase JSON file correct</li>
+<li>Fixed GetHTTPFile failing to save the file if SetFolder is used whilst it is running</li>
+<li>Changed sprite and text scissors to allow one dimension to be 0 in size and still be a valid scissor</li>
+</ul>
+
+<h2>Build 2018.08.30</h2>
+
+<ul>
+<li>Fixed SetVideoPosition not doing anything on iOS and Mac</li>
+<li>Added GetSpriteFlippedH/V commands (courtesy of Laurie)</li>
+<li>Updated AdMob consent library to version 1.0.6 on Android and 1.0.3 on iOS which removes the 12 provider limit</li>
+<li>Added DrawParticles command to draw the particles immediately to the back buffer</li>
+<li>Added Draw3DParticles command to draw the 3D particles immediately to the back buffer</li>
+<li>Fixed a crash when loading some 3D model formats on Android due to unaligned memory access</li>
+<li>Fixed ViewFile and ShareImage commands not being able to use raw: file paths</li>
+<li>Added GetSpriteInScreen to return 1 if the sprite is in the visible screen area</li>
+<li>Removed 200fps limit with VSync enabled on Windows for monitors that can go up to 240Hz and beyond</li>
+<li>Fixed objects becoming corrupted on iOS if the device only supports OpenGL ES 2.0 and the object has more than 65535 vertices</li>
+<li>Fixed edit boxes incorrectly using the alternate input box if the view offset is being used</li>
+<li>Fixed alternate input box being too small on high resolution devices</li>
+<li>Screen recording on Android 7 or above will now pause when the app is sent to the background instead of stopping</li>
+<li>Improved performance when opening files from expansion files on Android</li>
+<li>Changed SSL library used on Android and Linux to provide better HTTPS support</li>
+<li>Fixed calling StopSpeaking during a delay on iOS causing future speech to fail</li>
+<li>Added SetClipboardText and GetClipboardText commands on Windows, Mac, iOS, and Android</li>
+<li>Fixed local notifications not working on Android 8.0 and above</li>
+<li>Added SetEditBoxInputType command to set the virtual keyboard to numbers only</li>
+<li>Fixed TTF fonts using lots of unicode characters causing a crash with some text sizes</li>
+<li>Added GetEditBoxDepth() and GetSkeleton2DDepth() (courtesy of bengismo)</li>
+<li>Fixed SendHTTPFile not checking for an empty filename string</li>
+<li>Added support for video playback on HTML5</li>
+</ul>
+
+<h2>Build 2018.07.12</h2>
+
+<ul>
+<li>Fixed missing help text for CreateObjectFromHeightMap command</li>
+<li>Fixed GetSupportedShaderVaryings returning the incorrect value on desktop platforms</li>
+<li>Updated Google Play Services on Android to version 15.0.0</li>
+<li>Updated Android to use Firebase Cloud Messaging instead of Google Cloud Messaging</li>
+<li>Fixed projects containing files outside the current project folder sometimes failing to open those files when the project was closed and re-opened</li>
+<li>Fixed a freeze on some Android devices when continuously loading and deleting OGG music files</li>
+<li>Fixed Android Tier 2 template projects causing a crash when sent to the background whilst in landscape on newer versions of Android</li>
+<li>Fixed a crash when loading .ms3d files on 64-bit versions of Android</li>
+<li>Added AddHTTPHeader and RemoveHTTPHeader commands to add and remove custom headers from HTTP requests</li>
+<li>Fixed GetSpeechNumVoices causing a crash on Android if the speech engine wasn't ready</li>
+<li>Changed the method for Android expansion file downloads to hopefully be more reliable</li>
+<li>Fixed ViewFile, ShareImage, and ShareTextAndImage not working on Android with the new API 26 target</li>
+<li>Added GetHTTPStatusCode command to return the response status from the server</li>
+<li>Fixed HTTP downloads on iOS sometimes showing progress as 0% even when the download is working</li>
+<li>Added code to Mac apps to detect window focus lost/gained through GetPaused and GetResumed</li>
+</ul>
+
+<h2>Build 2018.06.22</h2>
+
+<ul>
+<li>Fixed Android apps that set ARCore as required being rejected by Google due to missing AndroidManifest.xml feature</li>
+<li>Added check box in the IDE preference to produce 64-bit executables on Windows instead of 32-bit executables</li>
+<li>Fixed CURL error when running AGK apps on newer versions of Linux</li>
+<li>Changed AdMob ads to show non-personalised ads by default to comply with the GDPR</li>
+<li>Changed Charboost ads to show non-personalised ads by default to comply with the GDPR</li>
+<li>Added commands to request consent for personalised AdMob ads using the Google consent dialog (requires you to reduce your list of providers from the 200 commonly used ones to a maximum of 12 in your AdMob settings)</li>
+<li>Added OverrideConsentAdMob command to turn on personalised ads, if you have consent from the user from your own dialog</li>
+<li>Added OverrideConsentChartboost command to turn on personalised ads, if you have consent from the user from your own dialog</li>
+<li>Added an error message if FacebookActivateAppTracking is called before FacebookSetup</li>
+<li>Fixed SetSpriteAnimation not always reporting an error if the number of frames specified exceeds the image size</li>
+<li>Fixed an error about a missing games_app_id entry in the values.xml file when exporting for Amazon if the Google Play App ID field has a value even if it is greyed out</li>
+<li>Added command GetSupportedShaderVaryings to return the number of vec4 varyings that can be used in shaders</li>
+<li>Updated Chartboost SDK on Android to version 7.2.0</li>
+<li>Updated Chartboost SDK on iOS to version 7.2.0</li>
+<li>Updated Amazon Ads on Android to version 5.8.2</li>
+<li>Updated Amazon Ads on iOS to version 2.2.15.1</li>
+<li>Updated AdMob SDK on iOS to 7.31.0</li>
+<li>AdMob on Android is currently using version 11.8.0</li>
+<li>Fixed AdMob smart banner ads not apearing on Android</li>
+<li>Fixed AdMob smart banner ads on iOS not appearing in the correct location</li>
+<li>Fixed FBX files in text format sometimes causing errors during loading</li>
+<li>Fixed tapping on notifications from the app whilst the app is open on Android causing a blank screen or image corruption</li>
+<li>iOS will now automatically change the app orientation if SetOrientationAllowed is used when the device is in an orientation that is no longer allowed</li>
+<li>Added GetSpeechNumVoices, GetSpeechVoiceName, GetSpeechVoiceLanguage to return the available TextToSpeech voices on the current device</li>
+<li>Android expansion files can now be used to store 3D objects, OGG and WAV files, and any file opened with OpenToRead</li>
+<li>Use the prefix "expansion:" to load files from expansion files, e.g. OpenToRead("expansion:MyFile.txt"), the file will be extracted from the expansion file to the write folder then opened as normal, subsequent requests to open "expansion:MyFile.txt" will read the file directly from the write folder without re-extracting it, unless the file has been deleted</li>
+<li>Updated Android target to API 26 for Google apps, this does not affect the minimum supported version, but it now requires the permission commands to be used for certain commands to work</li>
+</ul>
+
+<h2>Build 2018.05.24</h2>
+
+<ul>
+<li>Fixed SetSpeechLangauge causing a crash on iOS</li>
+<li>Fixed RequestPermission generating a permission not found error</li>
+<li>Fixed Spriter files causing a corrupt animation if the bones are out of order</li>
+<li>Spriter import now supports bone hierarchy changes during animation, however tweening between two animations with different hierarchies will cause momentary distortion</li>
+<li>Fixed short touch events near the top and bottom of the screen on iOS 11 not registering as a pointer event</li>
+<li>Fixed DeleteFont crashing if LoadFont failed to load the font</li>
+<li>Fixed 3D animations becoming corrupt if a bone didn't have a keyframe near the animation end time</li>
+<li>Fixed transparency mode 2 (additive) on 3D objects not working properly with fog turned on</li>
+<li>Fixed setting the sprite shape to circle after SetSpriteScale causing the shape to be the incorrect size</li>
+<li>Fixed using the sprite shape commands to change an individual shape causing the other shapes to be deleted</li>
+<li>Fixed Ouya export causing an error when trying to load the Ouya image</li>
+<li>Added more DirectInput device types to list of recognised devices that can be used as AGK joysticks, e.g. flight controllers</li>
+<li>Fixed GetDeviceID on Windows sometimes returning different values for the same device</li>
+<li>Fixed objects or terrains with over 65536 vertices per mesh causing a crash on iOS, and invalid polygons on other platforms</li>
+</ul>
+
+<h2>Build 2018.05.02</h2>
+
+<ul>
+<li>Fixed CreateZip creating an invalid zip file on 32-bit Android devices</li>
+<li>Fixed SetMusicVolumeOGG failing to set the correct volume on 32-bit Android devices</li>
+<li>Fixed touch coordinates on Windows devices being offset slightly from their actual position</li>
+<li>On Windows pressing any mouse button will capture the mouse cursor until that button is release, previously only the left button would capture the pointer</li>
+<li>Added SetRawTouchMoveSensitivity to adjust the distance a touch event has to move before it gets classed as a drag event</li>
+<li>Added missing dependency to the Tier 2 Google Android project causing it to fail to compile</li>
+<li>Fixed spacebar on Raspberry Pi registering as key code 65 instead of 32</li>
+<li>Tapping near the end of an edit box string which extends beyond the edge of the edit box will now shift the text to make more of it visible</li>
+<li>Fixed the IDE crashing when loading an existing project if one of the source files is an invalid text file</li>
+<li>Fixed a shader error message when setting SetObjectLightMode to 0 on an animated object with SetFogMode set to 1</li>
+<li>Fixed Z order changes in Spriter files causing the animation to become corrupt</li>
+<li>Spriter images can now have their position, angle, scale, and ZOrder animated in addition to bones</li>
+<li>Added Move3DPhysicsCharacterController command that takes an X and Z component for the direction</li>
+<li>Fixed incorrect translations in the IDE</li>
+<li>Added FixSpriteToSkeleton2D to attach a sprite to a skeleton bone and have it move with the skeleton</li>
+<li>Fixed crash on some 32-bit Android devices when sending floats using the network commands</li>
+</ul>
+
+<h2>Build 2018.04.12</h2>
+
+<ul>
+<li>Added double buffering to PlayVideoToImage on iOS to avoid flickering on some devices</li>
+<li>Added double buffering to SetDeviceCameraToImage on iOS to avoid flickering on some devices</li>
+<li>Added GetTextAlignment to return the current alignment mode of the text</li>
+<li>Fixed JSON conversions being inaccurate with integers over 16 million due to floating point assumptions</li>
+<li>Fixed GetTweenPlaying commands crashing if a tween chain exists without being played</li>
+<li>Fixed LoadObject causing a crash with some FBX models, there may be further incompatibilities with newer FBX format specs</li>
+<li>Updated Google Play Services to version 11.8.0 on Android</li>
+<li>Minimum supported version of Android is now 4.0.3 (API 15)</li>
+<li>Added Cloud Data commands to save and load variables to iCloud Drive on iOS and Google Drive on Android which will sync across all devices on the same platform with the app installed</li>
+<li>Added commands to check and request permissions for certain Android features, such as camera access, sdcard read/write access, and GPS location tracking</li>
+<li>You must start using the new permission commands in your apps, even though they currently auto granted at startup, as a future version of AGK will switch to auto deny, as required by Google</li>
+<li>Changed iOS to use an OpenGL ES 3.0 context to support the larger shaders that AGK generates when using multiple features like normal mapping with cascade shadow mapping</li>
+<li>Fixed FacebookActivateAppTracking causing a crash on Android</li>
+<li>Fixed Android orientation changes sometimes causing the AGK render area to be offset from the visible display area</li>
+<li>Fixed physical keyboards on Android causing edit boxes to not accept any characters if the backspace key was pressed too many times</li>
+<li>Added 64-bit version of Android for better performance on 64-bit devices</li>
+<li>Updated Android Tier 2 libraries and projects to use libc++_static instead of stlport_static</li>
+<li>Added command to check the current network type (mobile or Wifi) or iOS and Android</li>
+<li>Added commands to get the current free space and total storage space on iOS and Android</li>
+<li>Added SetShadowCascadeValues command to set the size of each cascade level manually</li>
+<li>Added DrawText command to draw text immediately to the screen</li>
+<li>Fixed written files sometimes being invisible to external PCs connected via USB</li>
+<li>Fixed Android videos being replaced with a black texture after resuming the app on some devices</li>
+<li>Fixed GameCenter commands causing a crash on some Android devices</li>
+<li>Updated Firebase to version 4.5.0 on Android</li>
+<li>Updated Firebase to version 4.11.0 on iOS</li>
+<li>Disabled Firebase functionality on Amazon apps due to a crash when it checks for Google Play Services</li>
+<li>Added DeleteObjectTree command to delete an object plus all attached objects</li>
+<li>Fixed LoadFont failing to load from the system fonts folder when SetErrorMode is set to 2</li>
+<li>Added AR commands for iOS and Android</li>
+<li>AGK Type variables that begin with an underscore will now match with JSON fields that don't have the underscore, for example an AGK variable named "_type" will match a JSON field named "type", this allows JSON files to have keywords that can't be used as variable names in AGK</li>
+<li>Fixed CreateMemblockFromObjectMesh incorrectly increasing string padding when called on an object created with CreateObjectFromMeshMemblock</li>
+<li>Fixed SetSpriteAnimation causing a crash if called with a greater number of frames than the previous call</li>
+<li>Fixed SetObjectMeshFromMemblock crashing if the memblock contains more than 65536 vertices</li>
+<li>Increased maximum number of bones in a 3D object to 200, note that anything above 50 is out of spec and may not run on older devices</li>
+</ul>
+
+<h2>Build 2017.12.12</h2>
+
+<ul>
+<li>Improved the speed of toJSON for both arrays and types when using large data structures</li>
+<li>Fixed XInput1_3.dll missing error when running the 64-bit version of the player on Windows 8 or above</li>
+<li>Fixed GetDeivceID on Windows returning different values on the same machine in some cases</li>
+<li>Tapping outside an editbox to stop editing will now record a touch press with the GetPointer commands</li>
+<li>Fixed editbox text shifting slightly after using SetEditBoxText and then editing the text</li>
+<li>Fixed arrow keys adding characters to editboxes on Mac</li>
+<li>Fixed SetWindowAllowResize being called after SetWindowSize on Linux causing the window to revert to its original size</li>
+<li>Added DeleteShader and GetShaderExists commands</li>
+<li>Fixed shadows disappearing or causing a crash on Android when the app goes to the background</li>
+<li>Fixed shadow artifacts on some Android devices when the scene has large polygons</li>
+<li>Added commands to communicate with an Apple smart watch, the smart watch app must be created outside of AGK</li>
+<li>Added TextToSpeech commands for iOS and Android</li>
+<li>Added TextToSpeech example project to the Sounds folder</li>
+<li>Fixed Android apps closing when a hardware keyboard is attached or removed</li>
+<li>Fixed animated objects causing incorrect shadows if an object with more bones was loaded after an object with less bones</li>
+<li>Fixed GetImageChosen returning the last valid image choice when the user chooses cancel</li>
+<li>Added GetSpriteTransparency to return the current transparency mode of a sprite</li>
+<li>Added VS2017 template project and AGK lib to the Tier 2 folder on Windows</li>
+<li>Fixed SetEditBoxCursorPosition not working on iOS until the editbox regains focus</li>
+<li>Increased audio quality on Android when using StartScreenRecording</li>
+<li>Added new commands to pause and resume tweens</li>
+<li>The GetTweenPlaying commands will now return 1 if the tween is currently playing as part of a tween chain</li>
+<li>Array .sort() now accepts an optional parameter to ignore case when sorting strings, e.g. sort(1) to ignore case</li>
+<li>Fixed SetSkelton2DFlip causing an incorrect animation if the root bone has a positional offset</li>
+<li>Added GetNetworkExists command</li>
+<li>Fixed calling CloseNetwork whilst a connection was still in progress causing the app to freeze</li>
+<li>Fixed GetEditBoxLines not counting a new line unless a character existed on it, the line will now be counted as soon as the return key is pressed</li>
+<li>Added SetObjectBlendModes to set the transparency blend modes manually, also added SetObjectTransparency mode 3 to use these manual values</li>
+<li>Updated Box2D to version 2.3.2, but without the auto convex hull code, polygon vertices must still be convex</li>
+<li>Multiple 2D collision shapes can now be assigned to an object without it being set up for physics</li>
+<li>Shape properties like friction, restitution, and collision filters can now be modified on a per shape basis instead of one value for all shapes</li>
+<li>The SetSpriteShape commands can now change previously added shapes on a per shape basis</li>
+<li>Added GetSpriteNumShapes command to return the number of shapes currently assigned to a sprite</li>
+<li>Added GetSpriteShapeNumVertices command to return the number of vertices in a polygon shape</li>
+<li>Added GetSpriteShapeVertexX/Y commands to return the X/Y coordinates of a polygon vertex</li>
+<li>Added SetSpritePhysicsDensity to set the density of a shape</li>
+<li>Added SetJointMouseMaxForce command to limit the amount of force the mouse joint can use</li>
+<li>Added SetJointDamping command to set the softness parameters for distance, line/wheel, weld, and mouse joints</li>
+<li>Added CreateRopeJoint to limit the max distance between two sprites</li>
+<li>Added GetSpritePhysicsCOMX/Y to get the current center of mass for the physics shape</li>
+<li>Added SetSpriteShapeChain and AddSpriteShapeChain to create 2D chain shapes, these are the most suitable shape for 2D terrain</li>
+<li>Added ChainShape example to the Physics folder to demonstrate a simple 2D terrain</li>
+</ul>
+
+<h2>Build 2017.09.25</h2>
+
+<ul>
+<li>This version contains breaking changes, bytecode compiled with old version will not work with this version, and bytecode compiled with this version will not work with previous versions</li>
+<li>Fixed normal mapping producing artifacts on mobile devices when the normal Y value was very close but not equal to 1.0</li>
+<li>Fixed the spelling mistake in the Set3DPhysicsRadollBonesVisible, Set3DPhysicsTwistJointMaxMotorImpluse, and Set3DPhysicsHingeJointMaxMotorImpluse commands, any apps that use them will need to make the same corrections</li>
+<li>Increased Android screen recording quality from 0.5Mbit/s to 2Mbits/s</li>
+<li>Fixed Dutch keyboards not being able to enter single and double quotes in the IDE</li>
+<li>Fixed SetGerenateMipmaps(1) causing a shader error if subsequent image loads were not a power of two in size and applied to texture stage 1 of a 3D object</li>
+<li>Fixed iOS apps not working on iOS 7 or 8</li>
+<li>Fixed crash on Android if vibrate command called without vibrate permission</li>
+<li>Windows Windows 7 and below will now use the old DirectShow method of playing videos instead of the new Media Foundation. Windows 8 and above will still use the new method</li>
+<li>Removed MP3 support in the Raspberry Pi version to support a wider range of OS versions. Only OGG is supported on Raspberry Pi now</li>
+<li>Added type.toJSON() and type.fromJSON(string) to convert types to and from JSON strings</li>
+<li>Added array.toJSON() and array.fromJSON(string) to convert arrays to and from JSON strings</li>
+<li>Added array.save(filename) and array.load(filename) to load and save arrays as JSON files</li>
+<li>Added JSON load/save example to the General examples folder</li>
+<li>Fixed a crash when setting a breakpoint on the first line of a function whilst a function local type or array was in the debug variables list</li>
+</ul>
+
+<h2>Build 2017.09.04</h2>
+
+<ul>
+<li>Fixed MP3 files not playing on Windows, Mac, iOS, and Android</li>
+<li>Added StartScreenRecording, StopScreenRecording, and IsScreenRecording functions to record the screen to a file on iOS and Android</li>
+<li>Added screen recording example project to the video folder</li>
+<li>Updated HTTP commands on Android to use the latest version of cURL (7.55.1)</li>
+<li>Fixed internal memory leak when using HTTP commands on Android, Linux, and Raspberry Pi</li>
+<li>Fixed video playback on Windows having incorrect color conversion</li>
+<li>Delayed shadow shader generation to the point where shadows are turned on so it is not generated unless it is necessary, may be causing errors on older hardware</li>
+<li>Fixed LoadImageResized on non-power of two images with SetGenerateMipmaps enabled causing the image to become corrupt</li>
+<li>Fixed Quad objects, used for full screen shaders, not being able to draw sub images from atlas textures</li>
+<li>Fixed XAudio2_7.dll sometimes causing a crash when closing apps on Windows 7 and below</li>
+<li>Using SetEditBoxText to overwrite a long string with a short string will now reset the text position so it is all visible</li>
+<li>Objects with alpha masking enabled will now cast an alpha masked shadow</li>
+<li>Fixed non-power of two images loaded with mipmaps enabled not being applied correctly to 3D objects</li>
+<li>Restored .ms3d support for 3D objects</li>
+</ul>
+
+<h2>Build 2017.08.16</h2>
+
+<ul>
+<li>Fixed shadows not working with bone animated objects containing more than 40 bones</li>
+<li>Fixed vertex colors being all black in some cases</li>
+<li>Windows 10 apps no longer require the DirectX End-User Runtime to be installed</li>
+<li>Using GameCenterShowLeaderBoard while broadcasting to the Android player will no longer attempt to display non-AGK leaderboards, this may have been causing issues with those leaderboards becoming asscoiated with the AGK Player app</li>
+<li>Updated AGK icons</li>
+<li>Added help screen to AGK Player</li>
+<li>Restored support for the .LWO 3D model format</li>
+<li>Fixed FBX files sometimes failing to load objects containing tangents and binormals</li>
+<li>Separated the Log (debug) command from the Log (math) command in the help files</li>
+<li>Fixed texture stages 4-7 on 3D objects not working even if shadow mapping is disabled</li>
+<li>Images loaded from an atlas texture using LoadSubImage can now be applied to every 3D object texture stage</li>
+<li>Fixed DeleteSprite causing a crash if called inside a contact loop using GetFirstContact and GetNextContact with the deleted sprite</li>
+<li>Fixed VSync not working on Windows when in fullscreen mode</li>
+<li>GameCenter login on Android will no longer attempt to login twice if an error occurs or the user cancels the login</li>
+<li>Added GetMemblockPtr to the list of commands that can be called from a plugin</li>
+<li>Removed "Press back to return to the app" message when making an Android In App Purchase</li>
+<li>Fixed help files incorrectly stating that SetObjectDepthReadMode mode 7 was "equal" when it is actually "always pass", mode 8 doesn't exist</li>
+<li>Using ChoseRawFile and ShowChooseImageScreen on Windows from a fullscreen app will now minimise the app so the dialog is visible</li>
+<li>Fixed Unicode characters not working in edit boxes on desktop platforms</li>
+<li>Tier 2 Windows projects should now have the Unicode Character Set property set in the project settings</li>
+<li>Fixed ReadString and ReadLine when reading UTF-8 encoded files</li>
+<li>MakeFolder and DeleteFolder now accept filename starting with "raw:" to make and delete folders anywhere on the device</li>
+<li>Fixed PrintImage on Windows swapping the red and blue channels when sending the image to a printer</li>
+<li>Set Windows apps to be DPI aware so they can use the full resolution on scaled 4K displays</li>
+<li>Changed PlayVideoToImage on Windows from DirectShow to Windows Media Foundation for better playback support</li>
+<li>Changed PlayVideo on Windows to render directly into the AGK window instead of using an overlay window</li>
+<li>Fixed shadows disappearing on some objects if there was another object in the scene that didn't use shadows</li>
+</ul>
+
+<h2>Build 2017.07.19</h2>
+
+<ul>
+<li>This version contains breaking changes, bytecode compiled with older versions will not work with this version, and bytecode compiled with this version will not work with older players</li>
+<li>Fixed DrawLine on Linux sometimes being off by one</li>
+<li>DrawLine on all platforms will now draw the last pixel of a line whereas previously the last pixel was left blank</li>
+<li>Fixed LoadVideo not working with "raw:" file paths on non-Windows platforms</li>
+<li>Fixed LoadMusic not working with "raw:" file paths on all platforms</li>
+<li>Fixed SetSpritePhysicsOff causing a crash if called inside a contact loop using GetFirstContact and GetNextContact</li>
+<li>Fixed a crash when setting a physics sprite to a width or height of 0</li>
+<li>Added RequestAppReview for iOS 10.3 to rate the app from within the app itself</li>
+<li>The AGK Player on iOS will now display the Wifi IPv4 address over the mobile data one, if available</li>
+<li>Added FacebookActivateAppTracking command to send app events to the Facebook app console and record app installs</li>
+<li>Fixed Android ShowCaptureScreen in Tier 2 causing an exception</li>
+<li>Removed old Visual Studio projects, AGK now only supports VS2015</li>
+<li>Support for Visual Studio 2017 has been delayed, we're awaiting a bug fix from Microsoft to continue support</li>
+<li>Added a 64-bit template project for Windows using VS2015</li>
+<li>Added a 64-bit version of the Windows interpreter to the Players folder, it will not be used automatically to maintain backwards compatibility</li>
+<li>Added support for 64-bit plugins in the 64-bit Windows interpreter, 32-bit plugins can only be used with the 32-bit interpreter</li>
+<li>Added Example Plugin source code to the installed files on Windows, Mac, and Linux</li>
+<li>Added ShareImageAndText command to share both an image and text at the same time</li>
+<li>Updated Mac projects to use libc++, any Tier 2 projects will need to update their setings accordingly</li>
+<li>Fixed spelling mistake in GetSocketListnerConnection command name, this is a breaking change and will need to be corrected in existing apps</li>
+<li>Fixed network client disconnect not being forwarded to other clients</li>
+<li>Changed iOS splash screen to fade to black instead of white before displaying your app</li>
+<li>Added SetNetworkAllowClients to restart client listening after calling SetNetworkNoMoreClients</li>
+<li>Added KickNetworkClient to kick a network client off the network, only the host can do this</li>
+<li>Fixed ReplaceString cutting off the end of the string if the replace count limit is met</li>
+<li>Fixed Ouya Tier 2 template failing to compile</li>
+<li>Fixed Android GameCenter commands crashing if passed an empty string for the leaderboard name</li>
+<li>Exported Google Android apps should now be compatible with Android TV</li>
+<li>Fixed ViewFile and ShareImage failing after the first attempt in exported APKs</li>
+<li>Fixed virtual button commands reporting the wrong button ID in error messages</li>
+<li>Fixed OpenBrowser on iOS not accepting URLs containing spaces</li>
+<li>Restricted 3D model format support to .x .fbx .dae .3ds .obj .b3d .3d</li>
+<li>Added 3 shadow mapping modes to automatically cast shadows on 3D objects from the directional light</li>
+<li>Added the following commands to control shadows SetShadowMappingMode, SetShadowSmoothing, SetShadowMapSize, SetShadowRange, SetShadowBias, SetShadowLightStepSize, SetObjectCastShadow, SetObjectReceiveShadow</li>
+<li>Added a new example project to demonstrate shadow mapping to the 3D folder</li>
+<li>Added LoadShaderFromString command to specify the shader source code directly as a string</li>
+<li>Fixed assigning default values to an array of strings in a function generating an error if the number of values didn't match the array size exactly</li>
+<li>Changed the mesh to light distance calculation to prefer closer lights regardless of light range when the number of lights is exceeded</li>
+<li>If the number of pixel lights affecting a mesh exceeds the limit (currently 4) then the additional pixel lights will be applied to the mesh as vertex lights if possible</li>
+<li>Fixed DrawBox drawing unfilled boxes incorrectly if the virtual resolution didn't match the window size</li>
+<li>Debugging from the AGK IDE will now attempt to use the loopback addres if no other IP addresses could be found</li>
+<li>Fixed a memory leak when calling plugin commands</li>
+<li>Fixed GetResumed and GetPaused not working on Linux</li>
+<li>Linux apps should no longer exit when a socket disconnects</li>
+<li>Fixed a memory leak in CountStringTokens and GetStringToken</li>
+<li>Added 3D particle commands and a 3DParticle example to demonstrate their usage</li>
+<li>Added SetObjectNormalMap command to add a normal map to a 3D object that uses the default shaders</li>
+<li>Added support for tangent and binormal attributes in 3D objects loaded from external files</li>
+<li>Objects using a normal map that don't have any tangents or binormals will have them generated at runtime</li>
+<li>Added normal mapping example project</li>
+<li>Added support for the vertex color attribute for 3D objects using the default shaders</li>
+</ul>
+
+<h2>Build 2017.05.15</h2>
+
+<ul>
+<li>Fixed returning a float from a plugin crashing on Linux and Mac machines that don't have AVX instructions</li>
+<li>Fixed InAppPurchaseRestore causing a crash on iOS</li>
+<li>Fixed SetSoundInstanceBalance doing nothing on Linux and Mac</li>
+<li>Added ByteLen command to return the size of a string in bytes</li>
+<li>Updated iOS export icons and launch images for the latest devices</li>
+<li>Updated iOS Tier 2 template projects for new icons and launch images</li>
+<li>Updated iOS Tier 2 projects to XCode 8 and iOS 10.3</li>
+<li>Updated Mac Tier 2 projects to XCode 8 and MacOS 10.12 (Sierra)</li>
+<li>Fixed iOS export with version number set to 1.0 not setting the version number correctly</li>
+<li>Added a parameter to HostNetwork to set the port for IPv6 connections separately from the IPv4 port</li>
+<li>HostNetwork will no longer use IPv6 unless an IPv6 port is specified</li>
+<li>Fixed Android images loaded with LoadImageResized sometimes not being loaded</li>
+<li>Fixed Android SetDeviceCameraToImage somtimes cropping the image incorrectly</li>
+<li>Fixed Android PlayVideoToImage somtimes cropping the image incorrectly</li>
+<li>Fixed SetWindowAllowResize not working on Linux</li>
+<li>Fixed SetWindowSize on Linux repositioning the window to 0,0</li>
+<li>Switching between windowed and fullscreen mode on Windows now remembers window position</li>
+<li>Fixed middle mouse button not working on Linux</li>
+<li>Removed requirement that Memblock integers and floats be aligned to 4 byte offsets, although unaligned access will be slower than aligned values</li>
+<li>Added SimplifyPath, JoinPaths, and IsAbsolutePath commands to manage file paths</li>
+<li>Added CountWindowsDrives and GetWindowsDrive to get the drives available on Windows devices</li>
+<li>ChooseRawFile now has an extra parameter to return the full path instead of copying the file to the write folder</li>
+<li>Added OpenRawFolder, GetRawFolderNumFiles, GetRawFolderNumFolders, GetRawFolderFileName, and GetRawFolderFolderName to get the contents of any folder anywhere on the filesystem on all platforms</li>
+<li>Any command that takes a file path can now use an absolute path with the prefix "raw:" to allow access to files anywhere on the filesystem on all platforms, e.g. "raw:C:\MyFolder\MyFile.txt"</li>
+<li>SetRawWritePath is now deprecated in favour of the above raw folder commands and raw file paths</li>
+<li>Broadcasting will now only copy the plugins that are imported by the app, rather than all available plugins</li>
+<li>GetFirstFile, GetFirstFolder, GetFileCount, and GetFolderCount now have an extra parameter to return only files from the read folder, or write folder, or both (default)</li>
+<li>Added VibrateDevice command to enable vibration on Android and iOS</li>
+<li>Fixed SetVirtualResolution not working properly whilst rendering to an image</li>
+</ul>
+
+<h2>Build 2017.04.24</h2>
+
+<ul>
+<li>Fixed SetWindowAllowResize set to 0 on Mac causing full screen mode to appear corrupt</li>
+<li>Set Android camera to auto focus when using SetDeviceCameraToImage</li>
+<li>Fixed SetObject3DPhysicsCanSleep mode 1 causing the object to sleep forever</li>
+<li>Added plugin command agk::PluginError to pass an error to the normal AGK error channels</li>
+<li>Added plugin support to Linux (64bit only) and Mac</li>
+<li>Debugging apps from the IDE can now debug apps using plugins</li>
+<li>Broadcasting can now send plugins to Windows, Mac, and Linux players</li>
+</ul>
+
+<h2>Build 2017.04.11</h2>
+
+<ul>
+<li>Added SetCameraOffCenter and SetCameraBounds commands to set an off center projection matrix</li>
+<li>Fixed projects with spaces or special characters in the name failing to broadcast to Android</li>
+<li>Fixed projects with spaces or special characters in the name failing to debug on Windows and Linux</li>
+<li>Fixed SetEditBoxMaxChars on Android being off by one</li>
+<li>Fixed Android HTTP connections using SSL failing if multiple requests were made before closing the connection</li>
+<li>Fixed FacebookGetFriends sometimes failing on Android</li>
+<li>Fixed CloseNetwork freezing the app if it is still trying to connect</li>
+<li>Fixed edit boxes not clipping text properly</li>
+<li>Added reward video ads for both AdMob and Chartbost to Android and iOS</li>
+<li>Fixed DrawBox being off by one pixel in the X direction when drawing filled boxes, boxes will now be one pixel bigger in the X direction to match the Y size</li>
+<li>Fixed DrawLine being off by one in the Y direction when drawing horizontal lines</li>
+<li>Fixed SetObject3DPhysicsCanSleep not being able to re-enable sleeping after disabling it</li>
+<li>Fixed Windows XP failing to run the latest AGK apps</li>
+<li>Fixed StopAllSounds and StopSound sometimes failing to stop a looping sound on Android</li>
+<li>Fixed missing help file for GetInAppPurchaseSignature</li>
+</ul>
+
+<h2>Build 2017.03.31</h2>
+
+<ul>
+<li>This version contains breaking changes, bytecode compiled with older versions will not work with this version, and bytecode compiled with this version will not work with older players</li>
+<li>Fixed SetWindowPosition on Mac using the bottom left corner of the screen as the origin, it will now use the top left corner to match other platforms</li>
+<li>Fixed tab characters in a text object string causing inconsistent spacing when displayed</li>
+<li>The AGK Player no longer saves default images in the write folder during startup, default images are loaded from memory instead</li>
+<li>Fixed SetWindowAllowResize on Windows causing the window title bar to change size, causing the window itself to change resolution</li>
+<li>Fixed particles with rotation applied not being square when using the percentage based coordinate system</li>
+<li>Fixed InAppPurchaseRestore causing a crash on iOS</li>
+<li>Fixed a crash in the IDE if an open file was deleted outside the IDE and then closed without saving after double clicking it in the side bar</li>
+<li>Fixed a crash in SetSpritePhysicsMass using a polygon shape with a very small value passed to SetPhysicsScale</li>
+<li>Fixed Android Tier 2 projects failing to compile</li>
+<li>Fixed help files missing some command parameters</li>
+<li>Changed SetVirtualButtonSize so it can accept both an X and Y value</li>
+<li>Increased the number of virtual buttons allowed to 100</li>
+<li>Fixed a crash in GetGameCenterPlayerID on iOS if the player ID is null</li>
+<li>Added the ability to load plugins on Windows apps with #import_plugin</li>
+<li>Added an example project that demonstrates using a plugin</li>
+<li>Currently plugins will not work when debugging via the AGK IDE</li>
+</ul>
+
+<h2>Build 2017.02.28</h2>
+
+<ul>
+<li>Fixed HTML5 mouse wheel being inverted</li>
+<li>Fixed SetWindowSize command not accepting the new parameters</li>
+<li>Added GetGameCenterPlayerID and GetGameCenterPlayerDisplayName commands</li>
+</ul>
+
+<h2>Build 2017.02.21 Beta</h2>
+
+<ul>
+<li>Fixed HTTPEncode entering an infinite loop</li>
+<li>Fixed Android export not working with Firebase if the Firebase config file contained details for more than one Android app</li>
+<li>Fixed PlayVideoToTexture on Windows not working with WMV videos</li>
+<li>Fixed exported APK crashing if it uses GameCenter commands but was exported without a Game Services ID</li>
+<li>Using InAppPurchaseSetup will no longer display a message box if it is called multiple times in the AGK player, for example when broadcasting an app multiple times</li>
+<li>Updated Ouya export for the latest icon requirements</li>
+<li>Fixed SetObjectMeshFromMemblock sometimes corrupting the vertices of another object on non-Windows platforms</li>
+<li>Fixed 3D physics ragdoll commands reporting that a ragdoll does not exist when it does</li>
+<li>Fixed DrawSprite not using the scissor value set by SetSpriteScissor</li>
+<li>Fixed sprites with multiple images not using the scissor value set by SetSpriteScissor</li>
+<li>Fixed the skybox commands not working on some devices</li>
+<li>Added a new example project that experiments with Tone Mapping</li>
+<li>Removed hack on Android that was used to force the volume buttons to set the media volume rather than the notification volume, which may have been causing audio distortion</li>
+<li>Fixed ExtractZip not working on Android if the zip file was inside the APK</li>
+<li>Fixed key presses not being recorded by GetRawKeyState when the ALT key is held down</li>
+<li>Removed popup message when an image is saved to the device photos folder on iOS and Android</li>
+<li>Added MaximizeWindow command to maximize the window on Windows and Linux</li>
+<li>Added a parameter to SetWindowSize to ignore bounds checking so that over sized windows can be created</li>
+<li>Increased network client timeout from 5 seconds to 20 seconds</li>
+<li>Added IPv6 support to all platforms except HTML5</li>
+<li>Any network commands that accept an IP address will now accept an IPv4 or IPv6 address</li>
+<li>The HostNetwork command will listen on both IPv4 and IPv6 addresses (if available) and accept connections from both</li>
+<li>Added GetDeviceIPv6 to return the IPv6 address of the device, it will first look for global addresses and then local ones</li>
+<li>Existing Android Tier 2 projects will need to add the function GetIPv6 to their AGKHelper.java file, check the template project for details</li>
+<li>Removed armeabi (ARMv5) binary for Android which was only used by very old devices, AGK now requires ARMv7 or greater on Android. This reduces the APK size by about 4.5MB</li>
+<li>Consolidated OpenGL and OpenGLES files so there is less duplicated code, this should result in no visible change but may have introduced bugs</li>
+<li>Fixed Random2() producing too many instances of the start value</li>
+<li>Fixed GameCenterSubmitAchievement causing a crash on Google Game Services if the value 0 is used with an incremental achievement, it will now do nothing</li>
+<li>Added a menu option in the IDE to view the AGK video tutorials on Youtube</li>
+<li>Fixed RunApp command on Mac and Linux not accepting multiple parameters for some commands</li>
+<li>Changed to a new build system, should have no visible changes but may have introduced bugs</li>
+</ul>
+
+<h2>Build 2017.01.09</h2>
+
+<ul>
+<li>Trying out new build numbering system based on date</li>
+<li>Fixed LoadFont failing in exported Android apps</li>
+<li>Fixed FindStringCount causing an infinite loop if the second parameter was an empty string</li>
+<li>Fixed Android export not working when a Firebase config file is used</li>
+<li>Fixed Unicode characters in file paths not working properly on Windows</li>
+<li>Fixed local arrays in functions not setting their default value if given</li>
+<li>Fixed GameCenter commands sometimes failing to login on Android</li>
+<li>Fixed TrueType fonts becoming corrupt when the app is minimised on some Android devices</li>
+<li>Fixed SetWindowSize with the fullscreen parameter set to 1 on Windows not creating a proper fullscreen window</li>
+<li>SetWindowSize with the fullscreen parameter set to 1 now works on Linux</li>
+<li>Fixed SetObjectMeshFromMemblock sometimes corrupting the vertices of another object</li>
+<li>Added GetImageMemoryUsage command to return the amount of GPU memory currently being used to store images</li>
+<li>Fixed a crash when trying to export an APK in the Mac version</li>
+<li>Added SetPrintFont to use fonts loaded with LoadFont with the Print command</li>
+<li>Added SetEditBoxFont to use fonts loaded with LoadFont with edit boxes</li>
+<li>Fixed GetFacebookFriends on iOS appending to the friends list each time it was called instead of clearing the list first</li>
+</ul>
+            
+<h2>Build 2.0.22</h2>
+
+<ul>
+<li>Restored version 2.3.3 support on Amazon</li>
+<li>Fixed transparent images on HTML5 not automatically setting the sprite transparency flag when used on a sprite</li>
+<li>Fixed SetObjectScalePermanent with values less than 1 not scaling down the bone collision boxes on animated objects, this would cause ObjectRayCast to return a hit more than expected for this object</li>
+<li>Improved APK export error message on failure</li>
+<li>Updated iOS shared variable commands for iOS 10</li>
+<li>SetSharedVariableAppGroup must now be called on iOS for shared variables to work</li>
+<li>Increased minimum supported version of iOS to iOS 7</li>
+<li>Added SetMusicLoopTimesOGG to set the start and end points for loops</li>
+<li>Added SetMusicLoopCountOGG to change the number of times a file will loop whilst playing</li>
+<li>Fixed StopVideo on iOS skipping to the end of the video before hiding it</li>
+<li>Blackberry 10 platform is no longer supported</li>
+<li>Added Firebase analytics support to Android and iOS (exported apps only)</li>
+<li>Added FirebaseLogEvent() to log events with Firebase</li>
+<li>Increased maximum number of local notifications from 10 to 50</li>
+<li>Added InAppPurchaseGetSignature to get the receipt signature for a purchase</li>
+<li>Fixed SetObjectAnimationFrame freezing the app if called on object instance that was created whilst the original object was playing</li>
+<li>Fixed some JPEG images failing to load due to the JPEG loader to exceeding its max memory usage value</li>
+<li>Fixed the GameCenter commands on Android causing a crash if the user logs out of Google Games Services outside the app</li>
+<li>Fixed SetRawWritePath causing a crash when broadcast to a device and the broadcast is stopped</li>
+<li>Using SetWindowAllowResize to disable resizing will now also disable the maximize button on Windows</li>
+<li>Added Sha256 and Sha512 commands</li>
+<li>Fixed Amazon APK export not having the In App Purchase receiver set, which would cause a rejection by Amazon.</li>
+<li>Added GetDeviceDPI command for iOS and Android</li>
+<li>Fixed touch move events not registering on some Android devices</li>
+<li>Fixed GetFileExists sometimes returning 0 when the file does exist</li>
+<li>Fixed GetInternetState on iOS always returning 1</li>
+<li>Added the command GetFilePos and SetFilePos to get and change the current read position in a file</li>
+<li>Changed Tier 2 templates to enable returning 1 from the App::Loop function to close the app where possible</li>
+<li>Set a mimimum length on OGG music files to 0.5 seconds to prevent a crash on Android, anything short should be played with LoadSoundOGG instead</li>
+<li>Fixed Tier 2 Windows template projects not setting the agk::GetPaused() return value when the window goes to the background</li>
+<li>Added GetAppPackageName to get the Package Name or Bundle ID of the exported app</li>
+<li>Added GetDevicePlatform command that returns 1 when running on an Amazon device and 0 when on a Google device</li>
+<li>Fixed the export settings not loading from the project file if you close a project and then open another without closing the IDE</li>
+<li>Images can now be loaded from Android expansion files using LoadImage("expansion:ImageFilename.png"), the expansion file must be a zip file with no compression</li>
+<li>Fixed a crash during app startup on some iOS 10 devices</li>
+<li>Fixed exporting for Amazon or Ouya with orientation set to portrait causing error code 1</li>
+<li>Fixed SetDeviceCameraToImage causing a crash on some Android devices</li>
+<li>Fixed IDE keystore dialog showing an error message about the country code containing invalid characters if the city field contains a space</li>
+<li>Fixed joystick buttons not working on Linux and Raspberry Pi</li>
+<li>Fixed CreateSoundFromMemblock using an auto assigned ID failing to choose a valid ID</li>
+<li>Fixed occasional crash from LoadImageResized on Android devices using the SGX5xx family of GPUs</li>
+<li>Fixed SGX5xx GPUs sometimes losing image data after the app is sent to the background</li>
+<li>Fixed PlayVideoToImage displaying video corruption around the edge of the image on some Android devices</li>
+<li>Fixed Amazon edit boxes not accepting numbers and not being able to delete some characters</li>
+<li>Modified Linux player and Tier 2 projects to statically link some libraries which makes the binaries more portable</li>
+<li>Added agk::DeleteString to delete AGK returned strings for Tier 2 users who may be using a different C runtime library than AGK</li>
+<li>Added GetObjectName to return the name of child objects loaded with LoadObjectWithChildren as defined in the model file</li>
+<li>CreateImageFromMemblock will now produce an error if the image width or height are equal to 0</li>
+<li>Changed CreateAdvert to allow the banner size to be set by using the "type" parameter</li>
+<li>Added UTF-8 support to AGK strings</li>
+<li>All strings that are output by AGK, e.g. to files or HTTP post data, will now be encoded in UTF-8</li>
+<li>All strings that are input into AGK in the old Windows-1252 encoding will be internally converted to UTF-8</li>
+<li>Text objects using extended ascii font images will have their strings converted back to Windows-1252 when drawn so they continue to display the same as they do now, but the new Truetype fonts are recommended for unicode support</li>
+<li>Fixed Android notifications not opening the app when the user taps on them</li>
+<li>Updated AdMob SDK on iOS to version 7.15.0</li>
+<li>Added LoadFont to load a Truetype font into AGK, this can be from a file in your media folder or a system font</li>
+<li>Added GetFontExists to check a loaded font ID</li>
+<li>Added GetSystemFontExists to check if the current platform has the specified font</li>
+<li>Added DeleteFont to delete a font object</li>
+<li>Added SetTextFont to set a text object to use one of the new font objects</li>
+<li>Added SetTextAngle and SetTextAngleRad to rotate text objects</li>
+<li>Added SetTextBold to set all characters in a text object to bold (new fonts only)</li>
+<li>Added SetTextCharBold to set an individual character to bold (new fonts only)</li>
+<li>Added UseNewDefaultFonts to use a built in Truetype font by default instead of the default bitmap font, and to set Print text to use the new font</li>
+<li>Edit boxes will now use the new default font</li>
+<li>Edit boxes now support unicode characters</li>
+<li>Set Android sensors to update at their fastest rate</li>
+<li>Android sensors will now only activate when their values are first accessed, which will save battery if they are never used</li>
+</ul>
+            
+<h2>Build 2.0.21</h2>
+
+<ul>
+<li>Fixed GetInAppPurchaseLocalPrice() returning the incorrect price for the given index on iOS</li>
+<li>Fixed CreateObjectFromObjectMesh causing a crash if the mesh uses bones</li>
+<li>Fixed SaveImage not creating any missing folders in the save path</li>
+<li>Added StringToBase64 and HexToBase64 commands to convert strings to Base64</li>
+<li>Fixed SetHTTPHost username and password not being set correctly on Windows, Mac, and iOS</li>
+<li>Fixed GetImage only working on Windows</li>
+<li>Fixed Broadcaster sometimes failing to send large projects to a device</li>
+<li>Fixed UpdateTweenText, UpdateTweenChar, UpdateTweenObject, and UpdateTweenCamera not doing anything</li>
+<li>Improved the resizing performance of LoadImageResized by using the GPU to do the scaling</li>
+<li>Removed the caching ability of LoadImageResized as it is no longer beneficial due to the better resizing performance</li>
+<li>Fixed ViewFile, ShareText, and ShareImage causing a crash when exporting for Amazon or Ouya</li>
+<li>Fixed ViewFile, ShareText, and ShareImage causing a crash when used in Tier 2 on Android</li>
+<li>Fixed StopSound(0) not resetting all the instance counts for GetSoundsPlaying and GetSoundInstances</li>
+<li>Fixed OGG music not resuming on iOS after the app has been in the background</li>
+<li>Added an error message if SaveSharedVariable is used with a variable name that is too long on iOS</li>
+<li>Fixed Android shared variables not working across multiple apps</li>
+<li>Note that this version will not be able to access shared variables saved with a previous version on both Android and iOS</li>
+<li>Removed the requirement to set the SharedUserID on Android for shared variables</li>
+<li>Fixed some Android devices not registering touch move events</li>
+<li>Fixed DrawBox freezing the app on Windows if the window is minimized</li>
+<li>Added SetImmersiveMode command to hide the navigation bar on Android 4.4 and above</li>
+<li>Fixed local and push notification icons appearing as a white square when targeting above API 19 on Android</li>
+<li>Added notification icon field to APK export dialog to chose your own notification icon</li>
+<li>Amazon and Ouya exports now have a minimum Android version of 4.0.3 to match their devices, Google export remains at 2.3.3</li>
+<li>Added quotes around the keystore and alias passwords when signing APKs so that special characters don't cause an error</li>
+<li>Added SetMusicSystemVolumeOGG to control global volume for OGG music files</li>
+<li>Fixed iOS alarms and phone calls preventing the app from playing sounds and OGG music when it resumes</li>
+<li>Removed lower limit of 0.1 on SetParticlesFrequency, 0 can now be used to pause particle emission whilst allowing existing particles to continue</li>
+<li>Fixed Linux IDE not being able to open the PDF DLCs from the menu</li>
+<li>Added an extract from the Tutorial Guide to the help files</li>
+<li>Updated Chartboost SDK on Android to 6.4.2</li>
+<li>Updated Chartboost SDK on iOS to 6.4.7</li>
+<li>Added Amazon IAP support to the IAP commands</li>
+<li>Fixed LoadObject and LoadObjectWithChildren failing to load after about 600 objects had been loaded</li>
+<li>Fixed PlayMusicOGG failing to loop in some cases</li>
+<li>Fixed GetSoundInstancePlaying taking up to a second to register the end of a sound instance on Android</li>
+<li>Updated the developer tips section of the help files for the latest changes</li>
+<li>Made Android pad any sounds that are shorter than 175ms with silence as they wouldn't play on some devices if they were shorter than this</li>
+<li>Fixed EncodeQRCode not producing the correct QR image</li>
+<li>Fixed DecodeQRCode not returning the correct text for a QR image</li>
+<li>Fixed SetObjectScalePermanent causing the object to be incorrectly culled from view if it used bones and was made bigger</li>
+<li>Changed ObjectRayCast to check the bone bounding boxes instead of the mesh on animated objects, it won't be 100% accurate compared to the mesh but it will take animations into account</li>
+<li>Fixed GetCapturedImage not returning a valid image on Android</li>
+<li>Fixed frame buffer warning on Mac if SetRenderToImage is used without a colour image</li>
+<li>Fixed SetVideoVolume causing a crash on Android</li>
+<li>Added PlayVideoToImage command to play videos on to an image instead of displaying them on screen on iOS, Android, and Windows</li>
+<li>SetRawWritePath now works on Android, allowing you to set the write path to the public sdcard folder</li>
+<li>Changed GetDocumentsPath on Android to return the path to the public sdcard folder (which usually isn't an actual sdcard)</li>
+<li>Added SetDeviceCameraToImage to display the device camera onto an image, works on iOS, Windows, and Android 4.0.3 and above</li>
+<li>Added GetNumDeviceCameras to return the number of cameras available on the device</li>
+<li>Added GetDeviceCameraType to check whether a camera is front or back facing</li>
+<li>Removed PlayMusic on Linux to support a wider number of releases. Use PlayMusicOGG instead</li>
+</ul>
+            
+<h2>Build 2.0.20</h2>
+
+<ul>
+<li>Breaking changes: this version cannot run previous bytecode, and old versions cannot run bytecode from this version</li>
+<li>Added new compiler directive #company_name to create a more unique write folder for your apps on Windows and Linux, see the Language section of the help for more details</li>
+<li>Removed 2048x2048 size limit on images, now only limited by device capabilities</li>
+<li>Fixed LoadImage down sizing images above the size limit causing sub images to have their offset values corrupted</li>
+<li>Be aware of GPU memory when using large images, a 4096x4096 image will use 64MB, regardless of its file size</li>
+<li>Fixed the debugger not being able to set a breakpoint on source files contained in folders in some cases</li>
+<li>Fixed FBX loader causing a crash on ARM devices</li>
+<li>Fixed frustum culling not working correctly when using an orthographic camera</li>
+<li>Added ViewFile() command to open a specified file in an external app, usually the system default for that extension</li>
+<li>Added ShareText() and ShareImage() commands to share text and images with external apps, asks the user to choose the app</li>
+<li>Fixed local notifications not showing on Android if the app is closed when in the background</li>
+<li>Fixed GetManagedSpriteCount always returning 0</li>
+<li>Fixed a crash in LoadObjectWithChildren when loading an object with a single bone</li>
+<li>Added OGG music commands that can play multiple music files at the same time, and allows seamless looping</li>
+<li>OGG music commands will work the same on all platforms</li>
+<li>Old music commands are now deprecated in favour of the OGG music commands</li>
+<li>Significantly improved image loading times on all platforms</li>
+<li>Fixed iOS export causing an error when the app is submitted to Apple</li>
+<li>Updated AGK to use libPNG 1.5.27 due to a security vulnerability</li>
+<li>Fixed a crash on Android when loading a 3D object that contains multiple primitive types (point, line, triangle, or polygon) in a single mesh</li>
+<li>Fixed some Android devices not keeping the correct GetPointerX and GetPointerY values after a touch release</li>
+<li>Fixed objects created with CreateObjectFromObjectMesh not being drawn properly</li>
+<li>AGK will no longer add a default precision to shaders on mobile devices if it detects the string "#if", which implies you have added it yourself</li>
+<li>Added joystick support to HTML5</li>
+<li>Fixed SetVSync command on HTML5</li>
+<li>Added sharedUserID field to Android export dialog so shared variables can be used in Tier 1</li>
+<li>Modified Android GetRawRotationVector commands to use the game rotation vector sensor where available, which isn't affected by magnets</li>
+<li>Fixed joystick ranges for non-XInput devices on Windows, causing some devices to report incorrect values</li>
+<li>Modified IDE export options to compile the project before exporting to make sure it is up to date</li>
+<li>Loading an image that is not a power of two in size will no longer pad it to the nearest power of two internally, unless SetGenerateMipmaps is set to 1</li>
+<li>Using SetImageWrapU or SetImageWrapV with mode 1 (repeat) on an image that is not a power of two will now do nothing</li>
+<li>CreateRenderImage can now use non-power of two sizes when the mipmap parameter is set to 0</li>
+<li>Fixed SetErrorMode(2) not displaying error messages properly on Android</li>
+<li>Fixed the stop broadcast button sometimes failing to stop the app on a device</li>
+<li>Fixed SetClearColor not working on HTML5</li>
+<li>Fixed Facebook warnings about Graph 2.0 calls</li>
+<li>Added option to iOS export to allow all orientations</li>
+<li>IDE export settings are now store inside the project file for each project</li>
+<li>Added GetInAppPurchaseLocalPrice() command to get the item price in the local currency</li>
+<li>Added GetInAppPurchaseDesciption() command to get the item description</li>
+<li>Added the Euro currency symbol to the default font</li>
+<li>Fixed a crash when trying to use joysticks on a Mac</li>
+<li>Updated Mac apps to be 64-bit, if you are using Tier 2 be sure to set your valid architectures build setting to x86_64</li>
+<li>Added SetTweenDuration() to change the duration of a tween after it has been created</li>
+<li>Fixed SetObjectCollisionMode() not creating collision data if used on an instance object when the parent has collision turned off and has no collision data of its own</li>
+<li>Added GetFacebookAccessToken to return the access token that can be used with graph API calls using the HTTP commands</li>
+<li>Updated RunApp() to work on Linux, Mac, and Raspberry Pi</li>
+<li>Fixed virtual buttons becoming distorted if broadcasting and app that uses a virtual resolution after an app that uses percentage coordinates</li>
+</ul>
+            
+<h2>Build 2.0.19</h2>
+
+<ul>
+<li>Note that all platforms now behave the same way with UV scrolling, images must be a power of 2 in size to wrap properly</li>
+<li>Fixed Windows touch pen tap not triggering GetPointerPressed</li>
+<li>GetDeviceName will now return "html5" on HTML5</li>
+<li>Fixed edit boxes not working on HTML5</li>
+<li>Fixed Android not accepting SSL certificate chains if they were sent out of order</li>
+<li>Fixed LoadSound failing if the automatically assigned ID reaches 299, it would fail for one load before returning to ID 1 as expected</li>
+<li>Added GetPaused command to Windows to return 1 when the window loses focus</li>
+<li>Fixed HTML5 export crashing if the project contains lots of media files</li>
+<li>Fixed OpenBrowser() not working on HTML5</li>
+<li>Allowed RunApp() to use absolute paths, and to search the path environment variable for the executable on Windows</li>
+<li>HTML5 now exports to a folder</li>
+<li>Added option to use dynamic memory when exporting HTML5 to use more than 256MB of RAM</li>
+</ul>
+            
+<h2>Build 2.0.19 BETA</h2>
+
+<ul>
+<li>Joystick X/Y commands on Windows will now return 0 instead of -1 if the axis doesn't exist</li>
+<li>Fixed instanced objects disppearing on Android if the app was sent to the background</li>
+<li>Fixed depth textures as render targets not working on Windows, they were being replaced by internal depth buffers</li>
+<li>Fixed transparent objects not rendering properly when drawn over the dynamic skybox</li>
+<li>Fixed loading shaders with more than about 4000 characters causing a crash if it uses lights or fog</li>
+<li>Add RunApp(), GetAppRunning(), and TerminateApp() commands to Windows</li>
+<li>Set Android sensor refresh rate to 60fps to try and improve the update frequency on some devices</li>
+<li>Transitioned Windows, iOS, and Mac to use the image loading routine used by the other platforms, namely libPNG and libJPEG</li>
+<li>Windows now only supports the officially supported image formats PNG and JPEG</li>
+<li>Removed the dependency on atls.lib on Windows which improves compatibility with Express versions of Visual Studio</li>
+<li>Updated Android lib to version r11b of the Android NDK</li>
+<li>Updated SetRenderToImage to use 24bit depth buffers instead of 16bit where possible</li>
+<li>Added Raspberry Pi support</li>
+<li>Modified OpenToRead and OpenToWrite to be able to access the GPIO pins on Raspberry Pi</li>
+<li>Added new sample project to demonstrate GPIO pin usage</li>
+<li>Fixed GetUnixFromDate not returning the correct value if the year parameter is a leap year</li>
+<li>Fixed an object getting incorrectly culled if it had more than one mesh</li>
+<li>Added shader guide to detail how to write shaders for use with AGK</li>
+<li>Added commands to get the size of an object or mesh</li>
+<li>Fixed CloneObject not copying animation names to the new object</li>
+<li>Changed SetCameraFOV command to accept an FOV value of 0 to generate an orthographic matrix instead of a projection matrix</li>
+<li>Increase Tier 1 stack size from 1024 to 32768 to allow more recursion</li>
+<li>Fixed SetLocalNotification not overwriting the message of an existing notification</li>
+<li>Fixed CancelLocalNotification causing future notifications to have a blank message</li>
+<li>Using SetSyncRate with a value of 60 no longer activates VSync, only the SetVsync command will activate VSync</li>
+<li>Added LoadImageResized to load an image whilst resizing it</li>
+<li>Added ResizeImage to resize and existing image</li>
+<li>Added SaveSharedVariable, LoadSharedVariable, and DeleteSharedVariable for sharing values between apps on iOS and Android</li>
+<li>Fixed GetDeviceLanguage not returning the correct value on Linux</li>
+<li>Fixed GetDeviceType on Linux not returning anything</li>
+<li>Updated CA bundle for Android SSL certificate verification</li>
+<li>Fixed PrintImage not correctly saving images that were created with SetRenderToImage</li>
+<li>Changed shaders to use high precision values for UV coordinates, some cases like 2048x2048 atlas animations need this</li>
+<li>Fixed DeleteTween causing a crash if an empty tween chain exists, or a tween chain exists that has not yet been played</li>
+<li>Added network socket commands to establish and receive TCP connections directly to other devices</li>
+<li>Modified subimage.txt to accept floating point values</li>
+<li>Added HTML5 export to the IDE
+</ul>
+            
+<h2>Build 2.0.18</h2>
+
+<ul>
+<li>Fixed a error in the default shader when an object or mesh has an image in both texture stage 0 and 1</li>
+<li>Assigning arrays using [1,2,3,4] with fewer values than its current size now shrinks the array</li>
+<li>Fixed a crash when using CloneObject on an object containing index data</li>
+<li>Fixed ChooseRawFile not returning the path to the file on Linux</li>
+<li>Fixed Visual Studio 2015 template project trying to compile in 64-bit mode, which is not supported on Windows</li>
+<li>Fixed Windows failing to setup the window if multisampling is not supported</li>
+<li>Fixed setup.agc file being ignored on Mac and Linux</li>
+<li>Fixed GetHTTPResponseReady on Windows never returning 1 when using GetHTTPFile</li>
+<li>Changed the ASC command to return unsigned values instead of signed values, only affects ASCII codes above 127</li>
+<li>Fixed Android apps failing to resume if SetRenderToImage is used</li>
+<li>Fixed SetObject3DPhysicsAngularVelocity not setting the angular velocity correctly</li>
+<li>Android apps now clean up their audio objects when quitting</li>
+<li>Fixed SetObjectScalePermanent not updating the collision object</li>
+<li>Updated GoogleAdsSDK on iOS to 7.7.0 and improved interstitial loading</li>
+</ul>
+            
+<h2>Build 2.0.17</h2>
+
+<ul>
+<li>Fixed GetStringTokens2 not returning the correct string for index 1</li>
+<li>Fixed ObjectRayCast not working on scaled objects</li>
+<li>Fixed ChooseRawFile not working on Linux</li>
+<li>Fixed SetObjectTransparency mode 2 only working on Windows</li>
+<li>Fixed Mac generating an error report if an app is closed whilst playing a sound file</li>
+<li>Added the ability to assign array values at any time using [1,2,3,4]</li>
+<li>Fixed iOS not returning 1 for GetEditBoxChanged()</li>
+<li>Updated the Android Tier 2 guide for Android Studio</li>
+<li>Added a warning when the case of a filename does not match the file on disk, so that other platforms can help debug the file not found error this causes on Android</li>
+<li>Updated 3D format loader to the latest version which fixes many bugs and adds the FBX file format</li>
+<li>Removed the .m3 file format</li>
+<li>Fixed InstanceObject and CloneObject not working on animated objects</li>
+<li>Fixed GameCenterShowLeaderBoard command causing a crash on Android</li>
+<li>Added SetObjectAlphaMask as an alternative form of transparency that doesn't suffer from depth sorting issues</li>
+<li>Added SetObjectUVOffset and SetObjectUVScale to modify the UVs of an object's meshes</li>
+<li>Fixed memory leak when deleting objects that use index data</li>
+<li>Reduced memory usage of 3D objects by deleting unused copies of the vertex data</li>
+<li>Added CreateObjectFromHeightMap to create terrain type objects from height maps</li>
+<li>Fixed custom shaders used on 3D objects getting replaced with generated shaders</li>
+<li>Removed the 2 million vertex limit on meshes, now only limited by memory</li>
+<li>Frustum culling is now done per mesh instead of per object</li>
+<li>Enabled Windows apps to use up to 4GB of memory instead of just 2GB</li>
+<li>Fixed broadcaster sometimes sending files that hadn't changed</li>
+<li>Fixed normals being inverted when object scale is negative</li>
+<li>Increased maximum number of bones from 40 to 100, but some old devices may fail to draw objects with more than about 50 bones</li>
+<li>Fixed SetObjectShaderConstantByName not updating the shader values</li>
+<li>Added SetAntialiasMode to set Anti-aliasing on Windows, Mac, and Linux, it is off by default</li>
+<li>Added 3D fog commands to gradually fade objects over distance, and to create atmospheric effects</li>
+<li>Split the Android Tier 2 library into 3 parts to improve compile time, be sure to update your Android.mk file from the template project</li>
+<li>Added GetObjectBoneWorldAngleX and GetObjectBoneWorldQuatW, and others, to get the bone angle in world space</li>
+<li>Added RestoreWindow to unminimize a window on Windows, Mac, and Linux only</li>
+<li>Fixed debugger not being able to view strings in the variable window if the string contained a colon</li>
+<li>Added SkyBox commands to draw a horizon and movable sun behind all other objects</li>
+<li>Fixed SetShaderConstantByName and SetShaderConstantArrayByName not working on loaded shaders that use lights</li>
+<li>Added SetObjectDepthRange command to force the object to a specific depth value or range of values</li>
+<li>Fixed single channel greyscale PNG images not loading on Android</li>
+<li>Added a new sample project in AGKProjects/3D/Terrain that demonstrates terrain, fog, and the new sky box</li>
+<li>Fixed a crash when calling GetGameCenterExists on Android</li>
+<li>Added GetObjectHeightMapHeight to return the height of a terrain object at a specific point</li>
+<li>Added Chartboost functionality to Amazon APK export option</li>
+<li>Added SetAmazonAdDetails command to use Amazon Ads</li>
+<li>Added ShowFullscreenAdvertAdMob, ShowFullscreenAdvertChartboost, and ShowFullscreenAdvertAmazon commands to manually choose which provider to use</li>
+<li>Added GetFullscreenAdvertLoadedAdMob, GetFullscreenAdvertLoadedChartboost, and GetFullscreenAdvertLoadedAmazon to check advert availability</li>
+<li>CreateFullscreenAdvert is deprecated in favour of the above commands</li>
+<li>Added a new sample project in AGKProjects/Adverts/Interstitials to demonstrate the fullscreen advert commands</li>
+<li>Removed armv7s architecture from iOS apps to reduce executable file size by 33%, performance on iPhone 5 may be slightly reduced</li>
+<li>Added GetUnixTime command to return the current date and time in unix format</li>
+<li>Added local notification commands to schedule notifications for iOS and Android</li>
+<li>Added a new sample project in AGKProjects/Extras/ to demonstrate local notifications</li>
+<li>Fixed arrays with 1 element not being able to have a default value</li>
+</ul>
+
+<h2>Build 2.0.16</h2>
+
+<ul>
+<li>Fixed ObjectRayCast, and other collision commands, not working with cloned objects</li>
+<li>Fixed ObjectRayCast not working on scaled objects</li>
+<li>Added SetObjectMeshShader to set a shader on a per mesh basis</li>
+<li>Added GetObjectMeshVSSource and GetObjectMeshPSSource to get the source code for auto generated mesh shader</li>
+<li>Added SetWindowPosition to change the window position on screen on Windows, Mac, and Linux</li>
+<li>Modified the SetObjectMeshLightMap command to use the first set of UV coordinates if a second set does not exist</li>
+<li>Fixed exporting Amazon apps that use the Facebook commands having corrupt text during the Facebook loading screen</li>
+<li>Fixed ObjectRayCast sometimes not detecting the closest collision point when multiple intersections occur</li>
+<li>Fixed GPS commands sometimes reporting no GPS sensor on iOS 9.1</li>
+<li>Fixed Mac apps not being able to make HTTP connections on El Capitan</li>
+<li>Fixed SetObjectTransparency not recognising mode 2 as additive blending</li>
+<li>Adjusted the pixel light shader to support Android devices with low precision floats</li>
+<li>Increased maximum number of IAP products to 25 on both iOS and Android</li>
+<li>Fixed setting SetObjectLightMode to 0 causing a shader error on animated objects</li>
+<li>Added vector ID assert to GetObject3DPhysicsContactVector()</li>
+<li>Added command Get3DPhysicsRayCastObjectHit()</li>
+<li>Added command Get3DPhysicsRayCastContactPosition()</li>
+<li>Added command Get3DPhysicsRayCastClosestContactPosition()</li>
+<li>Fixed a Tier 2 bug in SaveObjectShape() command</li>
+<li>Fixed Help file for RayCast3DPhysicsObject()</li>
+<li>Fixed CreateObjectCapsule not creating a valid object</li>
+<li>Windows 8 and 10 no longer require the DirectX End-User Runtime to be installed, Windows 7 and below still require it for audio</li>
+<li>Objects will no longer rebuild their collision data when mesh vertices change if SetObjectCollisionMode is set to 0</li>
+<li>Fixed a crash when using CloneSprite on a sprite created from LoadSprite and then deleting the cloned sprite</li>
+<li>Fixed missing DLC menu on Mac IDE</li>
+<li>Fixed ChooseRawFile() not working on Mac El Capitan</li>
+<li>Added project name to source file tabs</li>
+<li>Fixed a crash when using file commands with an empty string as the file name</li>
+<li>Updated all Android Tier 2 projects to Android Studio</li>
+<li>Added Google Game Service Achievements to Android player, controlled using the GameCenter commands</li>
+<li>Added Amazon GameCircle Achievements to Amazon player, controlled using the GameCenter commands</li>
+<li>Updated iOS GameCenter for iOS 9</li>
+</ul>
+
+<h2>Build 2.0.15d</h2>
+
+<ul>
+<li>Changed all the asserts for physics to return from the function</li>
+<li>Added an Assert to all commands to check if the physics world exists</li>
+<li>Fixed bug in Delete3DPhysicsWorld()  not clearing the DynamicsWorldArray()</li>
+<li>Fixed memory leak in Delete3DPhysicsWorld()</li>
+<li>Added a call to the Delete3dPhysicsWorld() when an app is finished broadcasting</li>
+<li>Fixed bug in ragdoll where it was not deleting from rigid body manager</li>
+<li>Updated information for Create3DPhysicsWorld() help about calculating scale factor and minimum size of objects that solver can handle</li>
+<li>Fixed quad objects failing to draw when the camera moves</li>
+<li>Added SetObjectScreenCulling to turn off frustum culling in certain cases</li>
+<li>Fixed DeleteAllSprites causing a crash if an edit box or text object exists</li>
+<li>Fixed SetMusicSystemVolume not having any effect on Linux</li>
+<li>Fixed SetMeshMemblockVertexNormal setting the position instead of the normal</li>
+<li>Fixed SetMeshMemblockVertexUV setting the position instead of the UV</li>
+<li>Changed LoadObjectWithChildren to ignore all scaling on bones, use SetObjectScalePermanent after loading instead</li>
+<li>Fixed loading Collada objects sometimes failing with duplicate node name</li>
+</ul>
+
+<h2>Build 2.0.15c</h2>
+
+<ul>
+<li>Fixed Linux GetRawKeyState returning 0 after one second when the key is held</li>
+<li>Fixed InstanceObject and CloneObject causing a crash when Sync is called between creating the original object and the copy</li>
+<li>Fixed music volume on Linux not having any effect</li>
+<li>Fixed music on Linux not looping</li>
+<li>Fixed ShowChooseImageScreen not working on Linux</li>
+<li>Fixed ShowChooseImageScreen not working on iOS</li>
+<li>Fixed bug in Create3DPhysicsCharacterController() when width equals depth</li>
+<li>Fixed PlayTweenChar not having any effect</li>
+<li>Fixed GPS commands not working on iOS 8 and 9</li>
+<li>Fixed CreateObjectFromMeshMemblock not creating the object properly</li>
+<li>GetObjectInScreen is now fully functional</li>
+<li>Fixed sending an Android app to the background causing 3D objects to disappear</li>
+<li>Fixed Android taking up to 15 seconds to create an HTTPS connection</li>
+<li>HTTPS connections using self signed certificates will now fail verification</li>
+<li>Added SetHTTPVerifyCertificate to turn off certificate verification in certain cases</li>
+</ul>
+
+<h2>Build 2.0.15b</h2>
+
+<ul>
+<li>Fixed a crash when using InstanceObject or CloneObject</li>
+<li>Fixed crash when using CreateFullscreenAdvert on Android</li>
+<li>Fixed Android apps not being able to resume after being sent to the background</li>
+<li>Fixed not being able to set breakpoints when debugging in Tier 1</li>
+<li>Added missing tier 2 include files</li>
+</ul>
+
+<h2>Build 2.0.15</h2>
+
+<ul>
+<li>Updated iOS libraries to iOS 9 and XCode 7</li>
+<li>Updated iOS Google Ads SDK to version 7.5.1</li>
+<li>Minimum supported version of iOS has increased from 5.1.1 to 6.0, this only affects the iPad 1</li>
+<li>Increased number of raw joysticks to 8. Note that Microsoft still limit XBox controllers to 4 per PC.</li>
+<li>Added Visual Studio 2015 lib and template</li>
+<li>Added ragdoll and character controller commands for 3D physics</li>
+<li>Fixed a bug with SetObjectShapeCylinder</li>
+<li>Fixed spelling of Create3DPhysicStaticBody() to Create3DPhysicsStaticBody()</li>
+<li>Fixed LoadObjectWithChildren() not loading some models when using an auto assigned object ID</li>
+<li>Fixed FindStringCount returning the wrong value</li>
+<li>Removed CompareStringIgnoreCase command</li>
+<li>Changed CompareString to have an ignoreCase parameter</li>
+<li>Fixed FixObjectPivot not working correctly on bone animated objects</li>
+<li>Added DLC menu to the IDE to access installed DLC packs</li>
+<li>Note that Tier 2 projects now require these include paths ../../bullet and ../../bullet/BulletCollision/CollisionShapes</li>
+</ul>
+
+<h2>Build 2.0.15 Alpha</h2>
+
+<ul>
+<li>Added a check for invalid Android package names containing a dot followed by a number during APK export</li>
+<li>Fixed putting ExitFunction as the final statement of the last Case block in a Select statement causing a crash</li>
+<li>Fixed compiler crash if a source file contained a line longer than 1024 characters</li>
+<li>Updated iOS AdMob SDK to 7.2.2 to fix a validation warning</li>
+<li>Updated HTTP commands on Android to support SSL connections to hosts that use a single cetificate for multiple domains, such as CloudFlare</li>
+<li>Updated HTTP commands on Android to use the latest version of the curl library</li>
+<li>If AGK on Windows fails to detect a sound output device it will now continue running instead of throwing an error</li>
+<li>Added a check for DrawEllipse with a radius of 0, previously this caused a crash</li>
+<li>Fixed GetSpriteHit and GetSpriteHitTest not checking all shapes when additional shapes have been added to the sprite</li>
+<li>Modified auto assigned IDs to start at 100,000 instead of 10,000</li>
+<li>Added support for the following 3D file formats: .X .3ds .md3 .smd .md5 .lwo. .ac .b3d .dae .3d .lws .ms3d .blend .m3</li>
+<li>Fixed ClearTweenChain accidentally deleting the chain ID</li>
+<li>Modified the debugger so it should work on a local machine with no network connection</li>
+<li>Fixed calling StepPhysics followed by adding some forces and then calling Sync accidentally clearing those forces</li>
+<li>.obj files no longer support a previous hack to add a second set of UV coords to the file</li>
+<li>.ago files now require a Mesh{} tag around all the vertex data</li>
+<li>There can now only be one directional light which is enabled by default and called the sun for ease of use</li>
+<li>Point light command names have been rearranged to be easy to read, e.g. SetLightPointPosition is now SetPointLightPosition</li>
+<li>Added FixObjectToObject to create hierarchies of objects, similar to limbs from DarkBasic</li>
+<li>Added FixObjectToBone to attach objects to bones in skeletal objects</li>
+<li>Added LoadObjectWithChildren to load a model file that contains limbs or bones, as well as any associated animation</li>
+<li>Added bone commands to get and set the position and rotation of any bones an object contains</li>
+<li>Added new string commands FindStringCount, FindString, FindStringReverse, CompareString, CompareStringIgnoreCase, ReplaceString, StripString, TrimString, TruncateString, CountStringTokens2, GetStringToken2</li>
+<li>Added SetTweenSpriteXByOffset and SetTweenSpriteYByOffset</li>
+<li>Added commands to create a custom tween with up to 4 float and 4 integer values, and read the values as it is running</li>
+<li>Added GetSpriteOffsetX and GetSpriteOffsetY to return the current offset point</li>
+<li>Added animation commands for 3D objects, they will only work on objects created with LoadObjectWithChildren</li>
+<li>Fixed the tween commands not working properly when broadcasting multiple apps to a device</li>
+<li>Fixed DeleteAllSprites preventing text and edit boxes from drawing</li>
+<li>Fixed DeleteFile not refreshing the file list when using GetFirstFile</li>
+<li>Fixed OpenBrowser on Windows sometimes not detecting the correct default browser</li>
+<li>Added MinimizeApp command to minimize an app</li>
+<li>Fixed CreateMemblockFromImage not working on render images on Android</li>
+<li>Fixed render images becoming blank on Android when an app is sent to the background</li>
+<li>Added SetObjectZBias to prevent Z fighting</li>
+<li>Changed GetEditBoxChanged to no longer reset after being called, it will now return 1 until the next Sync or Swap call</li>
+<li>Fixed GetSoundsPlaying not recognising when a sound is stopped with StopSoundInstance </li>
+<li>Added a Log command that accepts a float to return the logarithm of a value</li>
+<li>Fixed SetSpriteAnimation from moving and repeatedly scaling the sprite when the sprite has been scaled with SetSpriteScale</li>
+<li>Fixed a crash when using transparent 3D objects on 64bit devices</li>
+<li>Fixed memblocks not getting deleted between broadcasts of an app</li>
+<li>Object colors are no longer limited to 0-255, to allow over saturation and negative colors that subtract light</li>
+<li>Objects can now be lit by up to 8 vertex lights and 4 pixel lights, if more lights exist in the scene then the closest will be used</li>
+</ul>
+
+<h2>Build 2.0.14b</h2>
+
+<ul>
+<li>Changed SetSpriteSnap to function the same way it did in 2.0.13</li>
+<li>Corrected "uses adverts" check box in export IPA being inverted</li>
+<li>Updated IPA export process to match Apple changes</li>
+</ul>
+
+<h2>Build 2.0.14</h2>
+
+<ul>
+<li>Fixed LoadSpriteShader(filename) without specifying an ID not using the correct vertex shader</li>
+<li>Added a check for development profiles in the IPA export, use AdHoc or Store profiles instead</li>
+<li>Fixed error about missing file or directory when exporting Amazon or Ouya APK</li>
+<li>CreateMemblock command will now zero the memblock during creation</li>
+<li>Fixed SetScissor generating a warning in the debug log window</li>
+<li>Added GetSpriteScaleX() and GetSpriteScaleY()</li>
+<li>Added Spriter support with LoadSkeleton2DFromSpriterFile()</li>
+<li>Added ability to loop an animation a specified number of times with a loop count greater than 1</li>
+<li>Fixed iOS export with the advert box unticked not removing the advertising identifier (IDFA) from the app</li>
+<li>Fixed a bug where drawing more than 12000 sprites that share the same image could end up drawing nothing</li>
+<li>Added WriteString2 and ReadString2 that use a faster method of reading strings from a file</li>
+<li>Fixed GetResumed not being called on iOS after the app goes to sleep for the first time</li>
+<li>Updated iOS AdMob SDK to 7.2.1 which fixes a black screen after showing a full screen ad</li>
+<li>Updated Android Google Play Services (which includes the AdMob SDK) to 7.3</li>
+<li>Enabled copying of debug variable values using Ctrl-C on a selected row in the Variables window</li>
+<li>Enabled copying of debug log text using Ctrl-C on a selected row in the Debug Log window</li>
+<li>Fixed crash if an item is deleted that is currently being tweened</li>
+<li>Fixed Android not caching a full screen AdMob ad before the first call to CreateFullscreenAdvert</li>
+<li>Fixed DrawBox command sometimes producing boxes that aren't perfectly straight</li>
+<li>Fixed ResetTimer not resetting to exactly 0 on some platforms</li>
+<li>Fixed not being able to stop broadcasting if the app generated a lot of warnings while running</li>
+<li>Fixed switching edit boxes on Android sometimes hiding the keyboard for the new edit box</li>
+<li>Fixed SetTextScissor not working properly when SetViewOffset or FixTextToScreen are used</li>
+</ul>
+
+<h2>Build 2.0.13</h2>
+
+<ul>
+<li>Updated help files to fix squashed logo in the top left</li>
+<li>Fixed Android apps sent to background returning as a blank screen</li>
+<li>Fixed broadcasting sometimes not being able to stop</li>
+<li>Typing a new variable expression in the debug tab whilst the app is paused now evaulates it immediately</li>
+<li>Fixed occasional crash on Android when ending a broadcasted app</li>
+<li>Fixed Facebook commands causing a crash on Android when used in an exported app</li>
+<li>Fixed fullscreen window on Windows sometimes shifting sprite positions downwards</li>
+<li>Fixed exporting of iOS apps from the IDE not passing validation</li>
+<li>Fixed declaring a local variable immediately after declaring a global variable in a function causing the local declaration to be skipped</li>
+<li>Fixed having a global variable declaration on the first line in main.agc causing a compiler crash</li>
+<li>Fixed resizing arrays with more than 2 dimensions using .length on the base array causing a crash</li>
+<li>Changed IDE project file to always save paths with forward slashes to make them portable across platforms</li>
+<li>Updated Chartboost SDK on Android to 5.2.0</li>
+<li>Added option to APK export to support expansion files, currently these can only contain video files and are loaded with LoadVideo("expansion:MyFile.mp4")</li>
+<li>Fixed SaveSound producing corrupt WAV files</li>
+<li>Fixed IPA export sometimes producing an error when nothing was wrong</li>
+<li>Added xxhdpi and xxxhdpi icons to the Android interpreter, when exporting use a 192x192 icon from now on</li>
+<li>Added new Android Tier 2 project interpreter_android_expansion that supports expansion files and builds with API 21</li>
+<li>Fixed tweens not changing a value if the start and end values are the same</li>
+<li>Added tween interpolation mode of -1 to turn off interpolation for a specified value</li>
+<li>Fixed tween chains containing delays jumping to the first frame of the next tween before the delay was finished</li>
+<li>Added SetTweenChainTime to jump to a specific time in the tween chain</li>
+<li>Added GetTweenChainEndTime to return the total length of the tween chain</li>
+<li>Fixed iOS exported apps being able to change orientation during startup before SetOrientationAllowed can take effect</li>
+<li>Fixed iOS exported apps always resuming in the initial interface orientation instead of the current interface orientation, if allowed</li>
+<li>Changed the Android text input method to use a hidden Android editbox to receive input, this should support third party input methods</li>
+<li>Fixed Android keyboard not being able to accept input on Android 5.0 when in landscape mode</li>
+</ul>
+
+<h2>Build 2.0.12</h2>
+
+<ul>
+<li>Fixed an occasional crash caused by calling GetDeviceID()</li>
+<li>Fixed enlarging a multi-dimensional array using .length sometimes causing a crash</li>
+<li>Added a media refresh call after PrintImage() on Android to make the file appear to external apps</li>
+<li>Fixed repeated broadcasting apps leaking memory on the receiving device</li>
+<li>Fixed saving an image to the pictures folder with PrintImage on Android not refreshing the file system</li>
+<li>Fixed Android sensors all returning zero until the app is sent to the background and resumed</li>
+<li>Fixed a crash when passing a type returned from one function into multiple sub functions</li>
+<li>Fixed render images not being restored properly after resuming on Android</li>
+<li>Added SetEditBoxCursorPosition command to bring a certain portion of the text into view</li>
+<li>Fixed iOS exported apps not having the beta entitlement used for the new TestFlight implementation</li>
+<li>Fixed iOS exported apps missing the push notification entitlement</li>
+<li>Fixed network messages sent from one client to another not being received</li>
+<li>Added option to iOS export to add or remove the Advertising Identifier from the exported app</li>
+<li>AGK apps run on Windows will remember their last window position when closed so they don't always start in the center of the screen</li>
+<li>Changed app closing on Android to use the finish activity method rather than force quitting the app, which looks like a crash to some devices</li>
+<li>Added debugger to IDE</li>
+</ul>
+
+<h2>Build 2.0.11</h2>
+
+<ul>
+<li>Fixed only being able to export the iOS player when no project is open</li>
+<li>Added Linux IDE, compiler, broadcaster, and player</li>
+<li>Fixed runtime errors in exported apps closing the app instead of displaying the error</li>
+<li>Made Android broadcast app paths case sensitive to match their exported versions</li>
+<li>Fixed a runtime error about no instructions found when assigning an array of strings some default values</li>
+<li>Fixed arrays of strings larger than their default values not initialising the rest to the empty string</li>
+<li>Changed export app name to accept a wider variety of characters</li>
+<li>Changed Random2(int,int) to accept and return values in the range -2,147,483,648 and 2,147,483,647</li>
+<li>Fixed iOS export sometimes not finding the Team ID in the provisioning profile</li>
+<li>Fixed videos not stopping on Android when the device is locked or goes to sleep</li>
+<li>Fixed landscape apps on Android sometimes continuing to run when the app is put to sleep</li>
+<li>Fixed .OBJ files taking a long time to load</li>
+<li>Fixed SeekMusic on Android always using absolute positioning even when mode is set to 1</li>
+<li>Allowed function parameters to have a new line after a comma</li>
+<li>Fixed GetVideoPlaying on Android still returning 1 when the video is paused</li>
+<li>Modified Tier 2 template project on Mac to use a more reliable method when fullscreen define is set to 1</li>
+<li>Modified Chartboost on Android to cache interstitials to improve loading time</li>
+<li>Fixed using backslashes in #include paths not working on Mac</li>
+<li>Fixed bitwise NOT operator "!" actually doing a boolean NOT</li>
+<li>Fixed binary and hexadecimal numbers not being able to represent negative numbers</li>
+<li>Changed bitwise shift right to use an unsigned shift rather than a signed shift</li>
+<li>Updated Facebook SDK to version 3.22.0 on iOS and Android</li>
+<li>Added build number field to iOS export dialog</li>
+<li>Added option to make an iPhone only or iPad only app to the iOS export dialog</li>
+<li>Added 180x180 icon to exported iOS apps</li>
+<li>Added splash screen fields to iOS export</li>
+<li>Fixed using SetSpriteShape on sprites with images created using SetRenderToImage not being able to calculate a polygon shape</li>
+<li>Added build option to turn off Steam integration when testing apps with the IDE</li>
+<li>Added music commands to Linux vesion (requires libavcodec54 and libavformat54 packages)</li>
+<li>Added 32 bit version of AGK for Linux</li>
+</ul>
+
+<h2>Build 2.0.10</h2>
+
+<ul>
+<li>Any AGK players that have been compiled manually will need to be updated to work with this version, and AGK players for this version will not work with old bytecode</li>
+<li>Fixed a crash on Mac if loading an image greater than 2048x2048 that isn't divisable by an appropriate power of 2</li>
+<li>Fixed Blackberry lib missing SetSpriteAdditionalImage command</li>
+<li>Added support for Visual Studio 2013</li>
+<li>Updated the guides section of the help files</li>
+<li>Fixed push notifications not working on iOS 8 and sometimes freezing the app</li>
+<li>Fixed parsing of #insert causing an error</li>
+<li>Removing an item from an array with .remove() now initialises that array index back to zero if it is reused</li>
+<li>Fixed a compiler error when using a variable with inc or dec above the point where it is initialised</li>
+<li>Fixed DrawLine, DrawBox, and DrawEllipse sometimes having the wrong color value when rendering to an image</li>
+<li>Fixed For-Next loops defined in functions failing if the Step value is negative on one call and positive on another</li>
+<li>Set the default file encoding for new files to Windows-1252 to support extended ASCII</li>
+<li>Added Steam overlay to Windows interpreter when run from the IDE</li>
+<li>Fixed SetGlobal3DDepth not working and sprites always appearing in front of 3D</li>
+</ul>
+            
+<h2>Build 2.0.9</h2>
+
+<ul>
+<li>Fixed DeleteTween crashing if the tween is currently in use</li>
+<li>Fixed arrays declared without a type but with a comment after them not appearing in the symbols list</li>
+<li>Fixed full screen adverts sometimes getting cropped</li>
+<li>Added support for Amazon controller trigger buttons</li>
+<li>Changed Android fragment shaders to use highp precision if device claims support, since some devices
+  incorrectly implement mediump as lowp. This may reduce performance so you are encouraged to override 
+  it with "precision mediump float;" if you want to force it back to mediump in all cases</li>
+<li>Fixed Mac LoadImage with the BlackToAlpha parameter set to 1 not working</li>
+<li>Fixed misspelling in the Android location permission causing it to fail</li>
+<li>Fixed GetSoundMaxRate on Android returning the minimum rate instead</li>
+<li>Fixed SetRawMousePosition not working properly on Mac</li>
+<li>Fixed #insert not being recognised by the compiler</li>
+<li>Fixed a bug causing IsSupportedDepthTexture to not be recognised as a valid command</li>
+<li>Fixed FacebookPostOnMyWall crashing if called when not logged in</li>
+<li>Added Blackberry support</li>
+<li>Fixed cut/copy/paste in Mac IDE dialog boxes not working properly</li>
+<li>Fixed cut/copy/paste in Mac and Windows IDE dialog boxes if the default key bindings are changed</li>
+<li>Fixed Mac menu bar not updating its shortcuts if the default key bindings are changed</li>
+<li>Fixed Android apps freezing when rotating the device after using SetScreenResolution </li>
+<li>Added build option to connect directly to a device IP for when broadcasting can't detect the device</li>
+<li>Fixed interpreter sometimes disconnecting from the IDE after broadcasting an app</li>
+<li>Fixed scissor commands not working when using SetRenderToImage</li>
+<li>Added SetSpriteAdditionalImage command to set multiple texture stages per sprite for use with shaders</li>
+</ul>
+
+<h2>Build 2.0 Alpha 8</h2>
+
+<ul>
+<li>Opening configuration files no longer adds them to the current project</li>
+<li>Fixed a crash when deleting an image assigned to a cloned sprite</li>
+<li>Fixed local function variables not being assigned their default value</li>
+<li>Fixed float variables not accepting a default integer value </li>
+<li>Added Alt key code for Windows</li>
+<li>Allowed array default values to span muiltiple lines</li>
+<li>Fixed SetBorderColor not working properly on Mac</li>
+<li>Added #option_explicit and #insert to the help files</li>
+<li>Fixed using Exit, Continue, or ExitFunction inside a Case statement causing stack corruption</li>
+<li>Removed the ability to use Goto and labels inside select statements due to stack corruption</li>
+<li>Fixed a crash when returning an array from a function that was declared inside that function</li>
+<li>Fixed global variables defined in functions with AS in a comma separated list creating both a global and local variable</li>
+<li>Added Spine commands to get animated bone positions in world coordinates</li>
+<li>Added Spine commands to get skeleton root position</li>
+<li>Added CreateFullscreenAdvert command to display AdMob interstitial ads</li>
+<li>Added SetChartboostDetails to allow the advert commands to display Chartboost ads (currently fullscreen only)</li>
+<li>Changed default shader version on Windows to GLSL 110 to support OpenGL 2.0 cards such as old Intel integrated graphics</li>
+<li>Added support for using "#version <versionnum>" at the beginning of Windows shaders to allow higher versions</li>
+<li>Added GetRawGPSAltitude to all platforms</li>
+<li>Fixed Spine sprites sometimes disappearing when near the edge of the screen</li>
+<li>Changed iOS magnet sensor commands to use the calibrated magnetic field</li>
+<li>Creating a new project with a path that doesn't end in a slash no longer causes an error when compiling</li>
+<li>Fixed broadcasting sometimes not sending updated files if the device time was ahead of the host time</li>
+<li>Fixed DeleteTween causing a crash on Android</li>
+<li>Added XInput support for XBox 360 controllers on Windows</li>
+<li>Added GetRawJoystickConnected to detect if a joystick was removed or reconnected</li>
+<li>Rearranged joystick button numbers on Mac so they match Windows and Android</li>
+<li>Changed SetScreenResolution to only accept width and height</li>
+<li>Added SetWindowSize to change window size and fullscreen modes instead</li>
+<li>IDE now remembers the order of tabs within a project</li>
+<li>When opening a project the IDE now opens files at last known cursor position</li>
+<li>Added install dialog to IDE Tools menu to allow manual installation of projects and tier 2 files</li>
+<li>Added SetCameraAspect to change the aspect ratio when rendering 3D</li>
+</ul>
+
+<h2>Build 2.0 Alpha 7.1</h2>
+
+<ul>
+<li>Fixed repeatedly pressing the back button crashing Android</li>
+<li>Fixed GetResumed() not working in tier 1</li>
+<li>Fixed "AGK Projects" folder getting installed in the "All Users" documents instead of the current user</li>
+<li>Added GetDocumentsPath() command to get the current user's documents folder</li>
+<li>Fixed iOS lib not working with iOS 8 SDK</li>
+<li>Upgraded iOS libs and projects to iOS 8</li>
+<li>Updated AGK icon</li>
+<li>Made APK export icon optional</li>
+<li>Made IPA export icon optional</li>
+<li>Fixed Close All Projects menu option not working</li>
+<li>Fixed Mac video position being incorrect if repositioned every frame</li>
+<li>Fixed a crash on Windows when switching music tracks</li>
+</ul>
+
+<h2>Build 2.0 Alpha 7</h2>
+
+<ul>
+<li>Removed dialog asking to create the new folder when creating a new project</li>
+<li>Updated the main.agc template to include window size commands</li>
+<li>Creating a new project no longer creates a setup.agc by default, it can still be used if desired</li>
+<li>Moved default installation path for "AGK Projects" folder to inside "My Documents" on Windows</li>
+<li>Moved AGK write folder for apps from "My Documents/AGK" to "AppData/Local/AGKApps" on Windows</li>
+<li>Creating a new project will no longer overwrite main.agc if it already exists in the project folder</li>
+<li>Fixed compiler path being incorrect on Windows</li>
+<li>Fixed Mac IDE not liking spaces in its path</li>
+<li>Fixed a bug preventing arrays of types being passed into functions</li>
+<li>Attempted to target MacOS 10.7, unable to test</li>
+<li>Added arm64 architecture to iOS lib</li>
+<li>Deactivated Twitter commands due to build problems with arm64</li>
+<li>Fixed message window not remembering its height in some cases</li>
+<li>Changed Windows interpreter so it will attempt to load an "icon.ico" file before defaulting to the AGK logo</li>
+<li>Fixed "open in new window" menu option not working</li>
+<li>Added IDE option to remember open projects when closing</li>
+<li>Fixed Mac compiler not replacing old .app file with the new version</li>
+<li>Added displaying of function parameters on typing a comma in addition to an open bracket</li>
+<li>Fixed broadcasted app not being able to play video if a previous app didn't delete its video</li>
+<li>Fixed Mac video position not matching the coordinates given</li>
+<li>Added SetSkeleton2DFlip to flip a skeleton in the horizontal or vertical axis</li>
+<li>Can now open a project or document's folder by right clicking on it in the side bar</li>
+</ul>
+
+<h2>Build 2.0 Alpha 6</h2>
+
+<ul>
+<li>Fixed joysticks on Mac</li>
+<li>Fixed escaped strings (using single quotes) not correctly escaping new line characters</li>
+<li>Fixed FileEOF on Android APK apps not being consistent with other platforms (did not affect broadcasted apps)</li>
+<li>Fixed Facebook photo downloads going to different folders on iOS and Android, they will now both be placed in the current folder</li>
+<li>Fixed SetSpriteShapeCircle() with setPhysicsDebugOn() not showing the correct position of the shape</li>
+<li>Fixed HTTP file uploads on iOS when using HTTP authentication</li>
+<li>Fixed adding new files to a project not updating the side bar properly</li>
+<li>Fixed assigning a variable the lowest possible integer value -2147483648</li>
+<li>Fixed syntax highlighting of hexidecimal numbers</li>
+<li>Fixed Dwmapi.dll sometimes causing a crash</li>
+<li>Added some themes for the main IDE look </li>
+<li>Added an IDE option to highlight other instances of the currently selected word (on by default)</li>
+<li>Fixed message window in Mac IDE getting progressively lower when auto hide is turned on</li>
+<li>Fixed paste not working in the Mac editor window</li>
+<li>Fixed Mac key bindings so they default to the Cmd key</li>
+<li>Added app broadcasting on the Mac</li>
+<li>Fixed Find In Files freezing the IDE on Mac</li>
+<li>Added Gyro/Magnetic/Rotation/AmbientLight sensor commands for Android</li>
+<li>Added Gyro/Magnetic/Rotation sensor commands for iOS</li>
+<li>Added GPS commands to Windows, Mac, Android, and iOS</li>
+<li>Removed redundant ultrabook sensor commands like inclinometer, these can be calculated from the accelerometer</li>
+<li>Separated documentation for input commands into a raw section and a universal section</li>
+<li>Added GetFileCount and GetFolderCount commands</li>
+<li>Added GetDeviceID command</li>
+<li>Added CopyMemblock command</li>
+<li>Fixed Mac IDE sometimes saying compilation failed without showing the compiler errors</li>
+<li>Added runtime error for integer division by zero</li>
+<li>Updated help files for iOS and Android push notifications</li>
+<li>Added SetPushNotificaitonKeys so the AGKHelper.java file doesn't have to be edited</li>
+<li>Added export APK option to the IDE</li>
+<li>Fixed network bug where a disconnected socket would prevent the broadcaster reconnecting</li>
+<li>Added export to IPA option for Mac users</li>
+<li>Added menu item to generate an Android keystore</li>
+<li>Added menu option to generate the iOS AGK Player on Mac</li>
+</ul>
+
+<h2>Build 2.0 Alpha 5</h2>
+
+<ul>
+<li>Fixed Compile/Run/Debug buttons becoming enabled before a project was opened</li>
+<li>Added tool tips to the Compile/Run/Debug buttons to mention a project must be open to enable them</li>
+<li>Fixed compiler error "Invalid path for CopyFile" sometimes appearing due to a memory error</li>
+<li>Modified the default syntax highlighting color scheme and added support for alternate color schemes</li>
+<li>Merged the project menu into the File menu</li>
+<li>Fixed the symbols list not rendering multidimensional arrays properly</li>
+<li>Changed toolbar New and Open buttons to refer to projects instead of files</li>
+<li>Fixed adding a new file to a project when the save dialog is cancelled</li>
+<li>Fixed native dialogs not redrawing properly if the Windows Aero theme is turned off or not applicable</li>
+<li>Fixed interpreter not responding during long loading routines</li>
+<li>Fixed saving new project file not defaulting to the project path</li>
+<li>Fixed the project open/import dialogs ignoring the native dialog setting</li>
+<li>Creating a new project now creates the default files main.agc and setup.agc in the project folder</li>
+<li>Fixed declarations like "global dim myarray" not appearing in the symbols list correctly</li>
+<li>Fixed indentation settings to stop converting tabs to spaces on saving</li>
+<li>Simplified indentation settings to be global only, which are changed in the preferences dialog</li>
+<li>Auto indentation now recognises AGK keywords like DO and IF as valid targets for indenting the next line</li>
+<li>Pressing F1 will now look for a command at the current cursor position and display the relevant help page</li>
+<li>Trying to load a project file with Open File will prompt to open it as a project instead</li>
+<li>Fixed single quote strings not being recognised</li>
+<li>Fixed SetErrorMode(2) on mobile devices not showing the error</li>
+<li>Improved SetErrorMode(2) in tier 1 by adding the line number and include file to any errors</li>
+<li>The symbol sidebar now recognises variables inside types, and constants</li>
+<li>Autocomplete will now suggest variables inside types after a period</li>
+<li>Code folding now recognises select statements and cases</li>
+<li>Added the commands FoldStart and FoldEnd to manually fold sections of code</li>
+<li>Added the ability to auto hide the message window when not focused</li>
+<li>Added a separate broadcast button instead of having run and broadcast as one button</li>
+<li>Added session files to the project file so it remembers what files were open</li>
+</ul>
+
+<h2>Build 2.0 Alpha 4</h2>
+
+<ul>
+<li>Fixed crash when deleting a physics sprite while looping over another sprite's contacts with GetNextContact</li>
+<li>Fixed crash when deleting the most recently created sprite or text object</li>
+<li>Reduced memory leak when playing OGG files, but can't remove it completely, I recommend M4A or MP2 for royalty free music</li>
+<li>Completely new compiler that should solve a lot of tier 1 issues</li>
+<li>Types can now contain arrays </li>
+<li>Types and arrays can now be passed by reference into functions</li>
+<li>Types and arrays can now be passed by value into and out of functions</li>
+<li>Arrays can now be sorted and searched</li>
+<li>Completely new IDE that should help write tier 1 apps</li>
+<li>IDE now supports auto complete</li>
+<li>IDE now supports code folding for AGK specific structures</li>
+<li>IDE now has symbol parsing to show you what functions/types/variables exist in a file</li>
+<li>Compiler errors now appear in the IDE instead of in message boxes and can now show multiple errors at once</li>
+<li>Fixed a memory leak when loading and deleting Spine skeletons</li>
+<li>Upgraded Android to NDK version r9d</li>
+</ul>
+
+<h2>Build 2.0 Alpha 3</h2>
+
+<ul>
+<li>Fixed crash when deleting an image assigned to a currently active frame buffer</li>
+<li>Fixed crash when a shader fails to compile with a lot of errors</li>
+<li>Fixed a bug where text greater than depth 0 would not display</li>
+<li>Added all features from Alpha 2 to Android</li>
+<li>Added all features from Alpha 2 to iOS and Mac except for sound balance</li>
+<li>Added all features from Alpha 2 to Blackberry except new music commands, video meta data commands, and SetScreenResolution</li>
+<li>Added new command InAppPurchaseSetKeys to set public keys unique to each app</li>
+<li>Added new random number commands Random2() that have a longer period before repetition and greater range</li>
+<li>Fixed LoadSkeleton2DFromSpineFile scale parameter not working</li>
+<li>Fixed sprites not appearing on screen if any sprites were drawn with SetRenderToImage active</li>
+</ul>
+
+<h2>Build 2.0 Alpha 2</h2>
+
+<ul>
+<li>Fixed tier 2 libs for VS2010</li>
+<li>Fixed AddTweenChainCamera</li>
+<li>Fixed Spine skeletons sometimes not being transparent</li>
+<li>Fixed shader error message on ATI cards</li>
+<li>Fixed crash when closing an app that used SetRenderToImage</li>
+<li>Attempted to fix missing pixel in DrawBox, may be GPU dependent</li>
+<li>Fixed DrawEllipse having some incorrect pixel colors when using gradients</li>
+<li>Fixed skeletons disappearing when using SetViewOffset</li>
+<li>Added commands to get properties of skeleton bones</li>
+<li>Fixed particles appearing behind sprites at the same depth</li>
+<li>Fixed skeletons always appearing above everything else</li>
+<li>Added commands SetSkeleton2DDepth, FixSkeleton2DToScreen, GetSkeleton2DExists, DeleteSkeleton2D</li>
+<li>Added commands GetSkeleton2DBoneX, GetSkeleton2DBoneY, GetSkeleton2DBoneAngle</li>
+</ul>
+            
+<h2>Build 2.0 Alpha 1</h2>
+
+<ul>
+<li>Fixed GetPointerX and GetPointerY being affected by interaction with virtual buttons and joysticks</li>
+<li>Fixed SetSpritePhysicsDelete not clearing the SetSpritePhysicsIsSensor attribute</li>
+<li>Added Quad object primitive for drawing full screen shaders</li>
+<li>Added SetRenderToImage for drawing to images instead of the screen</li>
+<li>Added SetRenderToScreen to return drawing to the screen</li>
+<li>Added SetScreenResolution to modify the resolution of the final render target, and the window size on platforms that use windows</li>
+<li>Modified sprites to set their transparency mode based on whether their image contains transparent pixels unless previously overridden by SetSpriteTransparency</li>
+<li>Added new additive blend mode for sprites with SetSpriteTransparency</li>
+<li>Added new additive blend mode for particles</li>
+<li>Fixed memory leak when changing orientation on iOS</li>
+<li>Fixed memory leak when deleting 3D objects</li>
+<li>Fixed memory leak when setting the default font image</li>
+<li>Added ellipse and rectangle drawing commands</li>
+<li>Added random particle rotation controlled with a min and max setting</li>
+<li>Added particle size modification based on keyframes</li>
+<li>Added particle offset command to change existing particle positions</li>
+<li>Added sound instance commands to change volume, playback rate, and balance per instance</li>
+<li>Modified sound looping to allow looping a fixed number of times before stopping</li>
+<li>Added sound memblock commands</li>
+<li>Added save sound command</li>
+<li>Added music seeking and music duration commands</li>
+<li>Added file memblock commands to convert between files and memblocks</li>
+<li>Added memblock string commands to get and set strings</li>
+<li>Added copy memblock command to copy a portion of one memblock to another</li>
+<li>Added skeleton commands for 2D sprite animation with Spine support</li>
+<li>Added tween commands inspired by TrezSoft</li>
+</ul>
+
+<h2>Build 1.08.19</h2>
+
+<ul>
+<li>Fixed OpenBrowser not working with tel: and mailto: addresses on Android</li>
+<li>Fixed music not looping after using SetFolder or SetCurrentDir commands</li>
+<li>Fixed screen tearing when using fullscreen apps on Windows</li>
+<li>Fixed GetSpriteInBox with sprites using the circle shape</li>
+<li>Fixed GetSpriteCollision between world sprites and fixed to screen sprites</li>
+</ul>
+
+<h2>Build 1.08.18</h2>
+
+<ul>
+<li>Fixed passing UDTs to functions not working in some cases</li>
+<li>Fixed Windows tier 2 templates not having mouse wheel functionality</li>
+<li>Fixed Android crashing when passing a URL to OpenBrowser that doesn't have a protocol</li>
+<li>Fixed Blackberry GetInternetState returning undefined values.</li>
+<li>Fixed iOS edit box cursor not moving properly when tapped</li>
+</ul>
+
+<h2>Build 1.08.17</h2>
+
+<ul>
+<li>Fixed iOS edit box cursor not working properly in some cases.</li>
+</ul>
+
+<h2>Build 1.08.16</h2>
+
+<ul>
+<li>Fixed Mac tier 2 apps not receiving key pressed and released events</li>
+<li>Fixed print text appearing behind opaque sprites with depth 8 or less</li>
+<li>Fixed template_android_lite project not compiling</li>
+<li>Fixed iOS edit boxes not responding to touch events to move the cursor</li>
+<li>Fixed a crash on Ouya if an app was started with a joystick held off center</li>
+<li>Fixed a crash when using virtual joysticks in multiple broadcasts to the AGK Player </li>
+<li>Reduced memory footprint of font images</li>
+</ul>
+
+<h2>Build 1.08.15</h2>
+
+<ul>
+<li>Fixed crash on some Android devices that try to send the app to the background before it is initialised</li>
+<li>Fixed crash on Ouya when too many input events are received</li>
+<li>Fixed crash on Ouya when sending the app to and from the background</li>
+<li>For those people compiling apps with the Android NDK please go to the AGK\IDE\platform\android\Source folder and view the readme file about updating an NDK file</li>
+<li>Fixed Ouya controllers not working with the joystick commands </li>
+<li>Removed Ouya key codes as they are now accessed through the joystick commands</li>
+<li>Fixed possible crash when using CreateImageFromMemblock every frame.</li>
+<li>Set SetImageSavePixels to default to 0 as it reduced performance when doing frequent image updates and performance gain in general was negligible</li>
+<li>Fixed built in point light shaders on Samsung Galaxy S3 and other Mali-400 devices</li>
+<li>Fixed GetMemblockPtr removing the memblock ID from the memblock</li>
+<li>Fixed SetMusicFileVolume not updating the volume whilst the file is playing</li>
+<li>Added lite versions of the Android and iOS templates and interpreters to exclude Facebook, Twitter, Push Notifications, and Game Center</li>
+</ul>
+
+<h2>Build 1.08.14</h2>
+
+<ul>
+<li>Fixed compiler not recognising array declarations with square brackets like ["a","b","c"]</li>
+<li>Updated offline help files</li>
+<li>Fixed images on iOS having the bottom row of pixels cut off when using SetIntendedDeviceSize</li>
+<li>Fixed GetOrientation on Android not responding to orientation changes after ResetTimer is used </li>
+<li>Fixed app broadcast sometimes failing with "already listening on port 5687" error</li>
+</ul>
+
+<h2>Build 1.08.13</h2>
+
+<ul>
+<li>Removed Default Location prompt unless using the location commands</li>
+<li>Fixed the IDE F1 context sensitive help not working on core language commands like "if" and "for"</li>
+<li>Changed timeout on HTTP connections to 6 seconds</li>
+<li>Modified the GetScreenBounds commands to return correct values when SetScissor(0,0,0,0) is not being used</li>
+<li>Fixed DrawLine when using a blue value between 128 and 192 not displaying correctly</li>
+<li>Added padding option to the Image Joiner utility to add extra pixels around images</li>
+<li>Windows apps now reset the mouse state when losing focus</li>
+<li>Added tier 2 command agk::GetMemblockPtr to get direct access to the memory</li>
+<li>Added tier 2 command cImage::LoadFromData to load uncompressed image data directly from memory</li>
+<li>Fixed GetTextHit when FixTextToScreen is used to function the same as the sprite versions</li>
+
+</ul>
+<h2>Build 1.08.12</h2>
+
+<ul>
+<li>Fixed tapping on an editbox sometimes not showing the keyboard</li>
+<li>Fixed back button crash on Galaxy Note 2</li>
+<li>For those people compiling apps with NDK go to the AGK\IDE\platform\android\Source folder and view the readme file about fixing an NDK bug.</li>
+<li>Fixed GetPointerPressed on devices with both mouse and touch inputs</li>
+<li>Fixed missing commands in the help files</li>
+<li>Text objects now use less memory but extended font images must match the format of normal font images, i.e. both must be fixed width, or both must be variable width.</li>
+<li>Fixed memory corruption bug when debugging in tier 2</li>
+<li>All Android projects MUST use the new AGKHelper.java file from the interpreter_android_prebuilt (tier 1) or template_android (tier 2) projects to avoid crashing. It is also recommended to copy the other java files from these projects to get the latest fixes.</li>
+<li>Rewrote Android video handling to allow pausing and resuming of videos without a jump</li>
+<li>Upgraded Android to API 10 (2.3.3) as the minimum version</li>
+<li>Removed ATL requirement from the VS2008 projects</li>
+<li>Added OUYA key codes 102-107 to the android interpreter (untested)</li>
+<li>Fixed camera and choose image commands on Android not returning valid images on some devices</li>
+<li>Fixed loading of large JPG images on Android</li>
+<li>Fixed pressing enter in an editbox not setting the GetEditBoxChanged flag</li>
+<li>Fixed a crash when deleting lots of images immediately after they are created</li>
+<li>Fixed crash with OpenToWrite when using the overwrite parameter</li>
+<li>Due to the above fix the 106 and 107 compilers are no longer compatible with the 108 player</li>
+<li>Fixed OpenToWrite not defaulting to overwrite when using no parameter</li>
+<li>Added support for x86 (Intel) devices running Android (anyone using NDK should copy the jni/x86 folder from the template_android project into their projects and note the change to jni/Application.mk)</li>
+<li>Added support for mouse wheel and middle mouse button on Mac and Windows (those using tier 2 be sure to update your Core.cpp files from the template project)</li>
+<li>Modified GetmultiTouchExists on Windows to detect touch screen support rather than assuming true, may still assume true on Windows 7 and 8 even if no touch screen exists.</li>
+<li>Changed DrawLine to draw lines that are less than 1 pixel in length as a dot.</li>
+<li>Fixed Blackberry hide keyboard button not ending text entry</li>
+<li>Added the following video commands to Blackberry: LoadVideo, PlayVideo, PauseVideo, StopVideo, DeleteVideo, GetVideoPosition, SetVideoDimensions, and GetVideoPlaying</li>
+<li>The following commands are not possible on Blackberry: GetVideoDuration, GetVideoWidth, GetVideoHeight</li>
+<li>Mac windows now resize themselves when they are bigger than the desktop resolution</li>
+<li>Changed the way Windows apps resize themselves when they bigger than the desktop resolution to maintain aspect ratio</li>
+<li>Added right ALT to Windows key input commands</li>
+<li>Reduced memory usage for text objects when using fixed width font images</li>
+<li>Fixed SetHTTPHost when using a username and password</li>
+<li>Fixed crash when using SendHTTPRequest with a large response string on iOS and Mac</li>
+<li>Fixed SetTextDefaultMagFilter and SetTextDefaultMinFilter not affecting extended characters</li>
+<li>Fixed SetEditBoxTextSize and SetEditBoxSize causing SetEditBoxWrapMode to behave incorrectly</li>
+<li>Stopped all sounds (in addition to music) when sending the app to the background on Android and Blackberry. Sounds will not be resumed like music so if you want a continuous sound playing you must use GetResumed to detect when it should be restarted.</li>
+<li>Fixed extended characters not displaying when using a variable width font</li>
+<li>Updated iOS AdMob SDK to prevent apps getting rejected for using the uniqueIdentifier</li>
+
+</ul>
+<h2>Build 1.08.11</h2>
+
+<ul>
+<li>Fixed pressing the sleep button on Android devices with the lock screen turned off not stopping music</li>
+<li>Fixed inneractive adverts sometimes not displaying</li>
+<li>Fixed GetImage when using a clear color other than black</li>
+<li>Fixed GameCenterShowLeaderBoard not showing the correct leader board</li>
+<li>Fixed PauseMusic/ResumeMusic on Blackberry restarting from the beginning</li>
+<li>Fixed GetResumed being triggered by the app start on all platforms</li>
+<li>Added HTTP commands to Blackberry</li>
+<li>Added message box command to Blackberry</li>
+<li>Fixed GetDeviceName crash on Blackberry</li>
+<li>Updated editboxes on blackberry to match the other platforms</li>
+<li>Fixed edit box cursor disappearing at small resolutions</li>
+
+</ul>
+<h2>Build 1.08.10</h2>
+
+<ul>
+<li>Fixed instance objects with images displaying incorrectly if the original object did not have an image</li>
+<li>Fixed a crash when using CloseNetwork immediately after HostNetwork</li>
+<li>Fixed a bug that meant large projects would sometimes fail to broadcast to the player</li>
+<li>Updated Android In App Billing to use version 3 of the API, should be more reliable</li>
+<li>Fixed a bug with alpha transparent sprites in GetImage results</li>
+<li>Fixed VS2010 libs</li>
+<li>Updated help files with the latest commands</li>
+<li>Changed InAppPurchaseAddProductID to add a parameter for the type of product being added</li>
+
+</ul>
+<h2>Build 1.08.9</h2>
+
+<ul>
+<li>Fixed GetObjectVisible always returning 0</li>
+<li>Improved performance when handling hundreds of text objects</li>
+<li>Fixed GetObjectDepthWrite returning values outside the range 0-1</li>
+<li>Fixed CloneObject crash on objects without indexed vertices</li>
+<li>Can now load GIF images with LoadImage</li>
+<li>Fixed Android memory leak when using Java helper functions</li>
+<li>Improved performance when using Sync with only 2D items</li>
+<li>Fixed AGKSplash.png splash screen on Android devices</li>
+<li>Added help description for SetObjectScale</li>
+<li>Fixed GetChosenImage on Android so that it returns 0 if the user cancelled</li>
+<li>Fixed memory leak on Android</li>
+<li>Changed Android PrintImage so that it saves the image to the pictures folder and increments the image name</li>
+<li>Fixed sprite sorting bug when using Render() without Update()</li>
+<li>Added check for extended ASCII characters in edit boxes that do not have an extended font image</li>
+<li>Completed Game Center commands</li>
+<li>Added command SetEditBoxExtendedFontImage to support extended ASCII characters</li>
+<li>Added parmater to RateApp(ID,title) to change the dialog box title text</li>
+<li>Added SetEditBoxUseAlternateInput to set whether the edit box will use the default text input screen or not</li>
+<li>Improved edit box apperance to be consistent across resolutions</li>
+<li>Improved quality of default Arial font image</li>
+<li>Fixed a not responding message when selecting an image from Picasa</li>
+<li>Changed the Android Message command to be an actual message box</li>
+<li>Fixed Android keyboard missing key presses</li>
+<li>Changed alpha blending when using GetImage to preserve opaque areas</li>
+<li>Improved video play back on Android, now less likely to crash.</li>
+<li>Fixed FacebookPostOnMyWall command</li>
+<li>Improved text creation speed</li>
+<li>Fixed crash on iOS when images greater than 1024 with an odd number of pixels in height get scaled down</li>
+<li>Fixed FacebookSetup on iOS so it now uses the given AppID instead of needing a project setting</li>
+<li>Fixed SetFolder on Android sometimes crashing with an empty string</li>
+<li>Fixed Android crash when back button pressed during text entry</li>
+<li>Improved text rendering speed when some of the letters are off screen</li>
+<li>Changed alpha blending when using GetImage to preserve opaque areas</li>
+<li>Fixed GetEditBoxChanged so it no longer misses updates on iOS</li>
+<li>Added InAppPurchaseRestore command for iOS</li>
+<li>Added SetIntendedDeviceSize command so AGK can scale down images on low resolution devices if you have designed your app for high resolution devices</li>
+<li>Fixed screen flash when app is rotated on iOS and Android</li>
+<li>SetSpriteImage now clears any existing animation frames for that sprite</li>
+<li>Fixed SetSpriteShapeBox with an offset box not being calculated correctly</li>
+<li>Fixed GetSpriteCollision between a sphere and an offset box sometimes being wrong</li>
+<li>Fixed bug on iOS when using AdMob adverts with an offset on the iPad 3 using incorrect position</li>
+<li>Fixed GetSpriteContactWorldX not returning the correct value in some situations</li>
+<li>Fixed GetPhysicsCollisionWorldX not returning the correct value in some situations</li>
+<li>Fixed GetSpriteYFromWorld not returning the correct value</li>
+<li>Fixed crash when deleting a joint if the sprite it was connected to has been deleted</li>
+<li>Changed GetResumed on Windows to return 1 when the user restores the AGK window from the background</li>
+<li>Fixed image filter on Android and iOS reseting to linear after resuming from the background</li>
+<li>Fixed GetDeviceLanguage on Windows</li>
+<li>Fixed cloned and instance objects appearing in front of transparent objects even when they are positioned behind</li>
+<li>Fixed crash when deleting transparent objects</li>
+
+</ul>
+<h2>Build 1.08.8</h2>
+
+<ul>
+<li>Fixed DeleteAllSprites not clearing everything from memory</li>
+<li>Fixed SaveImage on iOS and Android not saving PNG images properly</li>
+<li>Fixed CopyImage and SetImageMask modifying the wrong image in some rare cases</li>
+<li>Changed the draw order to draw opaque objects in the order they were created, useful when using sky boxes with depth write off</li>
+<li>Added Delayed DLL Loading to Compiler for Windows XP compatibility</li>
+
+</ul>
+<h2>Build 1.08.7</h2>
+
+<ul>
+<li>Fixed VS2010 LIB issue causing VS2010 projects not to compile</li>
+
+</ul>
+<h2>Build 1.08.6</h2>
+
+<ul>
+<li>Added FACEBOOK app back in apps folder, need to include this when building Android T1/T2 apps in Eclipse</li>
+<li>Updated T1 and T2 guides for Android and iOS to reflect newer SDKs being used now</li>
+<li>Added a collection of memblock commands for direct memory access</li>
+<li>Added conversion between images and memblocks for direct pixel access</li>
+<li>Changed GetHTTPResponseReady to return -1 if the current task has finished but returned an error</li>
+<li>Fixed tranparent 3D objects sometimes appearing behind opaque objects</li>
+<li>Fixed video playback bug on Android where playing after stopping wouldn't work</li>
+<li>Fixed video playback bug on iOS and Android where GetVideoPlaying would not immediately return 1 after PlayVideo</li>
+<li>Fixed long load time when using large strings in CreateText</li>
+<li>Fixed crash when using CloneObject</li>
+<li>Fixed SetFolder("..") not working</li>
+<li>Fixed UDT assignment in functions</li>
+<li>Fixed global or literal strings returning from functions</li>
+<li>Fixed END now forces exit even if in subroutines or functions</li>
+
+</ul>
+<h2>Build 1.08.5</h2>
+
+<ul>
+<li>Added a few more dummy commands and tweaks to Facebook commands (should be command set complete now)</li>
+<li>Fixed issue with Mac not allowing choose image and capture image to work properly</li>
+<li>Ensured Android, Mac, iOS and Windows platforms all working together</li>
+
+</ul>
+<h2>Build 1.08.4</h2>
+
+<ul>
+<li>Added ability to save image in JPEG format on iOS</li>
+<li>Added CloneObject command to copy an object</li>
+<li>Added InstanceObject command to copy an object whilst sharing 3D data</li>
+<li>Fixed Android videos not starting from the beginning when stopped</li>
+<li>Added code for Android in-app purchase, although may be broken, sometimes returns errors from Google Play</li>
+<li>Added PushNotificationSetup to register for push notifcations on iOS</li>
+<li>Added GetPushNotificationToken to get push notification token for the device</li>
+<li>Improved image loading time on all platforms</li>
+<li>Improved performance of SetFolder and SetCurrentDir</li>
+<li>Added GetDeviceLanguage to return the ISO 639 language code of the device</li>
+<li>Fixed crash if ResumeSprite was called before PlaySprite</li>
+<li>Added code for Ultrabook Sensors and Multitouch</li>
+<li>Allowed VS2008 project to use above features (works from XP through to Windows 8)</li>
+<li>Replaced SensorsAPI with LocationAPI for GPS longitude and latitude (100% success)</li>
+
+</ul>
+<h2>Build 1.08.3</h2>
+
+<ul>New V108 Commands:
+
+<li>Added SetObjectScale command to scale an object in X, Y, or Z</li>
+<li>Added DrawLine command to draw 2D lines directly to the screen</li>
+<li>Added SetCameraRange command to set the near and far clip planes</li>
+<li>Added SetCameraFOV command to change the camera field of view angle</li>
+<li>Added Set3DGlobalDepth command to place all 3D objects at a specified sprite depth value</li>
+<li>Added LoadObject command that returns an ID</li>
+<li>Added LoadShader command that returns an ID</li>
+<li>Added WriteByte command to write single bytes to a file</li>
+<li>Added ReadByte command to read a single byte from a file</li>
+<li>Added RenderBack command to draw only the sprites behind 3D, Render() now only draws those in front of 3D</li>
+<li>Added SetObjectDepthReadMode to set the depth test function, if it passes the depth test the pixel is drawn, 0=never pass, 1=less than, 2=equal, 3=less than or equal, 4=greater than, 5=not equal, 6=greater than or equal, 7=equal, 8=always pass</li>
+<li>Added SetObjectDepthWrite to set whether a pixel that passes the depth test writes its depth value to the depth buffer</li>
+<li>Added SetObjectTransparency to set alpha transaprency on or off</li>
+<li>Added SetObjectCullMode to set the cull mode of the object 0=draw both front and back faces, 1=draw front faces, 2=draw back faces</li>
+<li>Added SetObjectVisible to set an object as visible or hidden</li>
+<li>Added GetObjectDepthReadMode returns the current depth func for this object</li>
+<li>Added GetObjectDepthWrite returns the current depth write mode for this object</li>
+<li>Added GetObjectTransparency returns the current transparency mode for this object</li>
+<li>Added GetObjectCullMode returns the current cull mode for this object</li>
+<li>Added GetObjectVisible returns the current visibility mode for this object</li>
+<li>Added GetObjectInScreen returns 1 if the object is in screen, 0 if not, this is only an estimate and may assume an object is on screen when it is actually not</li>
+<li>Added GetWorldXFromSprite converts sprite coordinates into world coordinates, for example the top of a sprite rotated by 90 would actually be to the right of the sprite in world coordinates</li>
+<li>Added GetWorldYFromSprite</li>
+<li>Added GetSpriteXFromWorld converts world coordinates into sprite coordinates</li>
+<li>Added GetSpriteYFromWorld</li>
+<li>Added GetScreenXFrom3D returns the screen coordinates of the given 3D point</li>
+<li>Added GetScreenYFrom3D</li>
+<li>Added Get3DVectorXFromScreen returns a vector pointing into the 3D world from the given screen coordinates</li>
+<li>Added Get3DVectorYFromScreen</li>
+<li>Added Get3DVectorZFromScreen</li>
+<li>Added DeleteAllImages deletes all images loaded with LoadImage or LoadSubImage</li>
+<li>Added DeleteAllSprites deletes all sprites created with CreateSprite, LoadSprite, or CloneSprite</li>
+<li>Added DeleteAllText deletes all text objects created with CreateText</li>
+<li>Added GetScreenBoundsLeft returns the edge of the screen in you chosen virtual resolution, this takes black borders into account to the left of the screen my be a negative value in your current virtual resolution</li>
+<li>Added GetScreenBoundsRight returns the edge of the screen taking black borders into account</li>
+<li>Added GetScreenBoundsTop returns the edge of the screen taking black borders into account</li>
+<li>Added GetScreenBoundsBottom returns the edge of the screen taking black borders into account</li>
+<li>Added GetReadPath to return the path of the current application exectuable</li>
+<li>Added GetLoadedImages returns the number of images loaded with LoadImage or LoadSubImage</li>
+<li>Added GetUnassignedImages returns the number of loaded images that are not currently assigned to a sprite or text object</li>
+<li>Added GetUnassignedImageFileName returns the file name of a specified unassigned image</li>
+<li>All tier 2 Windows projects must add "Dwmapi.dll" the linker option "Delay Loaded DLLs" to maintain Windows XP support</li>
+<li>Fixed edit boxes that are fixed to the screen not detecting mouse clicks properly</li>
+<li>Fixed iOS video when changing orientation, fixed iOS GetVideoPosition command</li>
+<li>Added Mac video playback suport</li>
+<li>Added Windows video playback suport</li>
+<li>Fixed a crash is DeleteImage was used on an image that had previously been used in SetTextDefaultFontImage</li>
+<li>Fixed occasional stutter in frame rate on Windows Vista and Windows 7</li>
+<li>Fixed mipmaps not working on some platforms and generating an error about glGenerateMipmap</li>
+<li>Fixed particles so they can use images loaded from atlas textures</li>
+<li>Returned default wrap mode to 0 (clamp) to solve some edge bleeding issues, use SetImageWrap to use mode 1 (repeat)</li>
+<li>Fixed compiler issue with round brackets crashing compiler, now prompts square bracket error</li>
+<li>Fixed bug with network integers causing a crash</li>
+<li>Fixed text extending beyond the edge of the text input box</li>
+<li>Added better network disconnetion detection, previously this would take up to 30 seconds to detect, now 5 seconds.</li>
+<li>Due to this network change 1083 clients cannot connect to pre-1083 servers, however 1083 servers can accept pre-1083 clients.</li>
+<li>For anyone implementing the AGK network spec a server must now respond to message ID 7 with message ID 6.</li>
+<li>Old Android Dev Kits need to download and install the latest Android SDK and select Tools & API 13 to install over any existing files you may have. Re-using the SDK folder location will help</li>
+<li>If Eclipse gives you problems, go to Help > Check For Updates to install missing elements</li>
+<li>In Android project fails to compile, enter project properties > Android and tick Android 3.2 then Apply</li>
+
+</ul>
+<h2>04/10/12 - Build 1.08.1</h2>
+
+<ul>
+<li>Added Social, 3D, Sensor and Misc. commands</li>
+<li>Modified compiler to allow auto-conversion to JavaScript</li>
+<li>HTML5 Platform added as part of the Freedom-Engine deployment system</li>
+<li>Unified V108 command between AGK and Freedom-Engine</li>
+<li>Removed MeeGo and Bada from Platform Support (obsolete platforms)</li>
+<li>Replaced template projects with template creation guide</li>
+
+</ul>
+<h2>10/06/12 - Build 1.07.7</h2>
+
+<ul>
+<li>Added error message to prevent accidental statement such as a=3=5</li>
+<li>Fixed compiler to allow a comment at the end of IF THEN ELSE statement</li>
+<li>Fixed compiler so REMSTART REMEND are now handled within SELECT statements</li>
+<li>Fixed UDT.customtype=UDT.customtype to account for offsets within UDT type</li>
+<li>Compiler no longer accepts an expression as a literal into a declaration</li>
+<li>Compiler prevents code from calling user functions with GOTO or GOSUB</li>
+<li>Increased the maximum size of strings returned from the STR(float) command</li>
+<li>Commented out 'Failed to get OpenGL extension glBindFramebufferEXT' warning</li>
+
+</ul>
+<h2>06/06/12 - Build 1.07.6</h2>
+
+<ul>
+<li>Fixed GetImage(ID,x,y,w,h) command</li>
+<li>Fixed AGKSplash.png screen for new orientations</li>
+<li>Fixed android orientation for non-standard tablets</li>
+<li>Changed CreateSprite(filename) to LoadSprite(filename) and other small tweaks</li>
+<li>Added fix for small memory leak</li>
+<li>Fixed orientation changes on Android</li>
+<li>Fixed clear color bleeding around full screen sprites</li>
+<li>Made texture repeat the default wrap mode to reduce flickering issue</li>
+<li>Modified 1076 build to allow STARTTEXTINPUT to be extended with new parameter</li>
+
+</ul>
+<h2>23/05/12 - Build 1.07.5</h2>
+
+<ul>
+<li>Modified orientation system to allow TRUE portrait and landscape modes (Android/iOS)</li>
+<li>Small tweaks to Scissor feature</li>
+<li>Solved a number of memory issues on the Android platform</li>
+
+</ul>
+<h2>17/05/12 - Build 1.07</h2>
+
+<ul>
+<li>Changed DBPRO to AGKPROJ to remove old legacy compiler extensions</li>
+<li>Upgraded internal foundation to allow backward/forward compatibility between compiler & players</li>
+<li>Line numbers no longer corrupted during compile errors when #constants used</li>
+<li>Cannot pass string out of function via UDT fixed</li>
+<li>Teir 1 -> undim does not appear to work fixed</li>
+<li>Remmed out line still affect running the code fixed     </li>
+<li>INC and DEC keyword not recognised fixed</li>
+<li>Tier1 a remark with accent desactivate a line of code fixed</li>
+<li>Constant declaration with remark fixed</li>
+<li>SELECT compiler crash fixed</li>
+<li>IDE: Core commands don't link to help fixed</li>
+<li>Not possible to transfer in a successive way UDT to functions fixed</li>
+<li>Fixed BUG001 - string can now be returned from a locally created UDT</li>
+<li>Fixed Mac library to allow AGK Player (Mac Store) to accept broadcast app in standby</li>
+<li>Fixed issue causing Mac App to quit prematurely</li>
+<li>Over 60 New commands (advert, HTTP, camera, image manipulation and saving)</li>
+
+</ul>
+<h2>16/11/11 - Build 1.06</h2>
+
+<ul>
+<li>Updated Android Player to Version Code 3</li>
+<li>Final tweak for MeeGo On 106</li>
+<li>Fixed MeeGo app broadcasting for the version 1061 compiler</li>
+<li>Adding Android to 106 build</li>
+<li>Compiled final libs and players (iOS and Mac) for 106 build</li>
+<li>Fixed changing friction with existing physics contacts</li>
+<li>Fixed iOS code to not play music if iPod music is already playing</li>
+<li>Fixed a bug in the android make file</li>
+<li>Bada tweak to template (Bada 2 SDK)</li>
+<li>Simplified android makefiles</li>
+<li>Added icon the android interpreter</li>
+<li>Added android libs</li>
+<li>Made android text input box appear in portrait</li>
+<li>Changed iOS project to support 3.2 as a minimum version</li>
+<li>Increased compiler wait time when broadcasting, fixed samsung sound not muting when screen is locked</li>
+<li>Tweak compiler for AGK Viewer stability</li>
+<li>Corrected XIB files used in AdMob 4.2 work - killed 3.2 compatibility!</li>
+<li>Fixed issue with AGK Viewer not running on 3.2 devices</li>
+<li>removed scrapper code from ios player (not viewer)</li>
+<li>Added VSync command</li>
+<li>Fixed issue with AGK Viewer not sending the very latest coordinate back when pressed/touched. Affected virtual buttons.</li>
+<li>AGK Viewer further tweaks</li>
+<li>Fix for android devices that reject the default render buffer format (producing a black or corrupted screen)</li>
+<li>Removed 5 second timeout</li>
+<li>Tweaks to improve the free version of AGK</li>
+<li>Made busy waiting the default method of controlling sync rate, fixed loading of images with 87 pixels in height on Windows</li>
+<li>Changed iOS App Viewer to quit instead of run in the background</li>
+<li>Fixed iOS not shutting down sockets properly when closing</li>
+<li>Modified physics step code to not clear forces on manual step, only on sync</li>
+<li>Fixed bug where iOS may get stuck waiting for a socket to close</li>
+<li>Modified interpreter to broadcast to the compiler instead of the other way around, fixed time out bug for broadcasting large tier 1 projects</li>
+<li>Updated samsung bada libs, player and template for Bada 2.0.2</li>
+<li>New bada 2.0.2 removes need for simulator lib</li>
+<li>Changes to reference documentation.</li>
+<li>Fixed samsung template for sim and debug</li>
+<li>Updated tweaks to ensure source (T2) for meego and bada work</li>
+<li>AGK Viewer tweaks to sync well with Windows scraper app</li>
+<li>Fixed issues with AGK Viewer freezing Windows app when cancelled.</li>
+
+<li>Improved networking code to warn of firewall block</li>
+<li>fixed the XCODE4 template</li>
+
+<li>Scheduled Work for Build 107: Issues board fixes, New HTTP and ADVERT commands</li>
+
+</ul>
+<h2>24/10/11 - Build 1.05</h2>
+
+<ul>
+<li>Added New Placement Editor into Utilities folder</li>
+<li>Updated tweaks to ensure source (T2) for meego and bada work better</li>
+<li>Removed debug file from Mac player</li>
+<li>AGK Viewer tweaks to sync well with Windows streamer</li>
+<li>Fixed issues with AGK Viewer freezing Windows app when cancelled.</li>
+<li>Improved networking code to warn of firewall block</li>
+<li>Fixed the XCODE4 template</li>
+<li>Cleaned up Tier 2 projects to compile first time (apps/templates)</li>
+<li>Added INTERPRETER_MAC\BUILD\RELEASE folder with final Mac binary</li>
+<li>Perfected AGK Viewer and AGK Player system.</li>
+<li>Added free version of Windows Tier 2 Lib into trial</li>
+<li>Ensured AGK Viewer broadcast does not crash when maximise Window</li>
+<li>Added better device emulation during AGK Viewer mode (fakes device name, device resolution) and resets app to beginning using new faked properties</li>
+<li>Finished AGK Viewer complete with re-start mode when iOS scraper mode detected - all examples work with AGK Viewer</li>
+<li>Adjusted AGK Viewer network to run in parallel to main AGK Player network (no more interference)</li>
+<li>Added multi-resolution support to new AGK Viewer, added touch input, accelerometer input</li>
+<li>Added new AGK Viewer app (replacement for AGK Player on App Store)</li>
+<li>Added support for accelerometer to be passed back from AGK Viewer to AGK Stream feature</li>
+<li>Fixed error causing LARGE programs to create VERY LARGE allocations of memory that some devices could not create</li>
+<li>Added code to detect when byte code memory allocation exceeds device limits and produces safe error message (not crash)</li>
+<li>Fixed issue causing arrays used before the DIM statement parsed to fail to compile even though subscript counts valid</li>
+<li>Fixed slow Samsung startup</li>
+<li>Fixed issue caused by LARGE AGK programs being expanded, but variable offsets within byte code not being processed properly</li>
+<li>Fixed polygon hit test bug</li>
+<li>Fixed virtual joystick image when aspect ratio changed</li>
+<li>Fixed DeleteText memory leak</li>
+<li>Fixed button text with scrolling view</li>
+<li>Fixed physics walls with SetPhysicsScale command</li>
+</ul>
+
+        </div>
+        
+        <div class="footer" style="background: #000 url('gfx/footer-back.png') top center no-repeat;">
+            <div>
+                <p>
+                    <a href="http://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br/>
+                    <strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a>
+                </p>
+            </div>
+        </div>
+        
+    </body>
+</html>

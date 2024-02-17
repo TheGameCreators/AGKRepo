@@ -1,0 +1,87 @@
+﻿_header
+TrueType Font Text
+
+_sheader
+Description
+_text
+Internally AppGameKit Studio represents fonts using images, whereby each character is placed onto an image and can then be utilised by the text commands.
+
+_text
+For many situations the usage of the default font will be more than adequate, especially when displaying information on screen to assist with debugging. However, many games may require an extra element of customization that necessitates the use of different looking fonts.
+
+_sheader
+TrueType Fonts
+
+_text
+With just one command you can improve the quality of the text in AppGameKit Studio. We recommend you use this in all of your projects to ensure they look their best.
+
+_text
+<br>This one command <i>UseNewDefaultFonts()</i> will change the text system to start using TrueType Fonts. Here's some code to illustrate:
+
+_tier1
+UseNewDefaultFonts(1)
+do
+	Print ("True Type Fonts look GREAT!")
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::Print ( "True Type Fonts look GREAT" );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_text
+Will produce this result:
+
+_image
+ttf_text1.jpg
+
+_text
+Let's say you want to use a different TrueType Font to match the style of your app. All that's required is for the TrueType font to be copied into the media folder of your project and then you use the <i>Load Font()</i> command to load it at the start of your project and then use <i>SetPrintFont()</i> to ensure all future <i>Print()</i> commands use the new style font. Take a look at this small example and note the command line <i>FontID=LoadFont("comicbd.ttf")</i>, this is where the font is loaded.
+
+_tier1
+UseNewDefaultFonts(1)
+FontID=LoadFont("comicbd.ttf")
+SetPrintFont(FontID)
+SetPrintSize(10)
+do
+	Print("This test is using COMIC Sans!")
+	Sync()
+loop
+_tier1
+
+_tier2
+agk::UseNewDefaultFonts(1);
+int FontID=LoadFont("comicbd.ttf");
+agk::SetPrintFont(FontID);
+agk::SetPrintSize(10);
+
+void app::Begin ( void )
+{
+    agk::Print ( "True Type Fonts look GREAT" );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_text
+Will produce this result:
+
+_image
+ttf_text2.jpg
+
+_sheader
+Conclusion
+_text
+To create more pleasing and professional results, use the TrueType font support built into AppGameKit Studio.

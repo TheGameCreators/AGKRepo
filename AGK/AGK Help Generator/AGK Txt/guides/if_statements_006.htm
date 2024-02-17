@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Using the elseif keyword - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="http://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Using the elseif keyword</div><div class="page"><h1>Using the elseif keyword</h1><p>The <i>elseif</i> keyword provides you with a way of building up more complex <i>if</i> statements, letting you test for multiple conditions.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">score as integer = 1
+<br>
+do
+	if score = 0 
+		print ( "the score is 0" )
+	elseif score = 1
+		print ( "the score is 1" )
+	endif
+	<br>	
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="score as integer = 1
+
+do
+	if score = 0 
+		print ( &quot;the score is 0&quot; )
+	elseif score = 1
+		print ( &quot;the score is 1&quot; )
+	endif
+
+	sync ( )
+loop
+">Copy Code</button></div><p>The program will initially check if the <i>score</i> is 0. This condition is false, therefore the program checks the <i>elseif</i>, which checks if the <i>score</i> is 1. This condition is true so the string "the score is 1" gets printed out on screen.</p><p>When using <i>if</i> and <i>elseif</i> you can have multiple statements between the conditional checks. You cannot use the <i>then</i> keyword and place statements on one line.</p><p>The following example shows a <i>score</i> variable that gets continually incremented. A number of <i>if</i> statements are used to check the current range of the value. Based on its value a character will be displayed on screen.</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">score as integer = 1
+<br>
+do
+	print ( score )
+<br>		
+	score = score + 1
+<br>	
+	if score >= 0 and score < 50
+		print ( "a" )
+	endif
+<br>	
+	if score >= 50 and score < 100
+		print ( "b" )
+	endif
+<br>	
+	if score >= 100 and score < 150
+		print ( "c" )
+	endif
+<br>	
+	if score >= 150 and score < 200
+		print ( "d" )
+	endif
+<br>	
+	if score >= 200 and score < 250
+		print ( "e" )
+	endif
+<br>	
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="score as integer = 1
+
+do
+	print ( score )
+
+	score = score + 1
+
+	if score >= 0 and score < 50
+		print ( &quot;a&quot; )
+	endif
+
+	if score >= 50 and score < 100
+		print ( &quot;b&quot; )
+	endif
+
+	if score >= 100 and score < 150
+		print ( &quot;c&quot; )
+	endif
+
+	if score >= 150 and score < 200
+		print ( &quot;d&quot; )
+	endif
+
+	if score >= 200 and score < 250
+		print ( &quot;e&quot; )
+	endif
+
+	sync ( )
+loop
+">Copy Code</button></div><p>As the program runs it will check the condition for the first <i>if</i> statement. Then it will check the condition for the second <i>if</i> statement and for the third, fourth and fifth. This process is repeated as the <i>do</i> loop cycles round, so we end up with 5 <i>if</i> statements being checked continually. Using <i>elseif</i> is a way of ensuring your program performs less work. The same program written using <i>elseif</i> is far more efficient.</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">score as integer = 1
+<br>
+do
+	print ( score )
+	<br>
+	score = score + 1
+	<br>	
+	if score >= 0 and score < 50
+		print ( "a" )
+	elseif score >= 50 and score < 100
+		print ( "b" )
+	elseif score >= 100 and score < 150
+		print ( "c" )
+	elseif score >= 150 and score < 200
+		print ( "d" )
+	elseif score >= 200 and score < 250
+		print ( "e" )
+	else
+		print ( "f" )
+	endif
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="score as integer = 1
+
+do
+	print ( score )
+
+	score = score + 1
+
+	if score >= 0 and score < 50
+		print ( &quot;a&quot; )
+	elseif score >= 50 and score < 100
+		print ( &quot;b&quot; )
+	elseif score >= 100 and score < 150
+		print ( &quot;c&quot; )
+	elseif score >= 150 and score < 200
+		print ( &quot;d&quot; )
+	elseif score >= 200 and score < 250
+		print ( &quot;e&quot; )
+	else
+		print ( &quot;f&quot; )
+	endif
+
+	sync ( )
+loop
+">Copy Code</button></div><p>When this program runs the first <i>if</i> statement is evaluated. Initially this condition of the score being greater than or equal to 0 and less than 50 is true, therefore "a" will get printed out on screen. Given the <i>elseif</i> keyword has been used the remaining checks to determine the value of <i>score</i> are ignored. Instead of continually checking the conditions of 5 <i>if</i> statements only 1 is being checked initially. As time passes and the <i>score</i> becomes 50 or higher then the first <i>if</i> statement is false, so the first <i>elseif</i> is checked and if it's true all the remaining conditions are ignored. When <i>score</i> becomes higher than 250 then 5 <i>if</i> conditions are being checked just like with the first example, however, less code has had to be run in order to get to this stage.</p><p>The advantage of <i>elseif</i> is that it allows you to reduce the amount of conditional checks that are made in your program and this ultimately benefits the performance of your program. Where possible it's better to use <i>if</i> and <i>elseif</i> to perform checks instead of having lots of individual <i>if</i> statements.</p><div align="center"><a href="if_statements_005.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="if_statements_007.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="http://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

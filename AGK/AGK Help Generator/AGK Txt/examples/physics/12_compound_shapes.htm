@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Compound shapes - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Compound shapes</div><div class="page"><h1>Compound shapes</h1><h2>Description</h2><p>There may be situations when it's necessary to have more control over the collision shape being used by AppGameKit Studio. This is where compound shapes come into play. They are used to add extra shapes on top of any existing collision shape that a sprite has.</p><p>This example loads an image named penguin.png:</p><div align="center"><img src="penguin.png"/></div><p><br>Two sprites are created with one on the left using a convex shape and the one on the right using a convex shape and a small box at its feet, as shown in this screen shot:</p><div align="center"><img src="12_compound_shapes.jpg"/></div><p><br>By adding an extra shape to the sprite on the right it's possible to stabilise the penguin when it collides with the floor. When you run the example notice how the sprite on the left (using the default convex shape) topples over when hitting the floor, while the sprite on the right (with an extra box added) will remain standing upon impact.</p><h2>Getting started</h2><p>The initial set up code defines a virtual resolution of 320 x 480, followed by the creation of two sprites:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background7.jpg" ) )
+<br>
+LoadImage ( 1, "penguin.png" )
+<br>
+backdrop = CreateSprite ( LoadImage ( "background1.jpg" ) )
+SetSpriteColorAlpha ( backdrop, 255 )
+<br>
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 0, 20 )
+SetSpritePhysicsOn ( 1, 2 )
+SetSpriteShape ( 1, 3 )
+<br>
+CreateSprite ( 2, 1 )
+SetSpritePosition ( 2, 200, 20 )
+SetSpritePhysicsOn ( 2, 2 )
+SetSpriteShape ( 2, 3 )
+AddSpriteShapeBox ( 2, -40, 62, 40, 64, 0 )
+<br>
+SetPhysicsDebugOn ( )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+CreateSprite ( LoadImage ( &quot;background7.jpg&quot; ) )
+
+LoadImage ( 1, &quot;penguin.png&quot; )
+
+backdrop = CreateSprite ( LoadImage ( &quot;background1.jpg&quot; ) )
+SetSpriteColorAlpha ( backdrop, 255 )
+
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 0, 20 )
+SetSpritePhysicsOn ( 1, 2 )
+SetSpriteShape ( 1, 3 )
+
+CreateSprite ( 2, 1 )
+SetSpritePosition ( 2, 200, 20 )
+SetSpritePhysicsOn ( 2, 2 )
+SetSpriteShape ( 2, 3 )
+AddSpriteShapeBox ( 2, -40, 62, 40, 64, 0 )
+
+SetPhysicsDebugOn ( )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background7.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "penguin.png" );
+<br>
+    agk::CreateSprite ( 1, 1 );
+    agk::SetSpritePosition ( 1, 0, 20 );
+    agk::SetSpritePhysicsOn ( 1, 2 );
+    agk::SetSpriteShape ( 1, 3 );
+<br>
+    agk::CreateSprite ( 2, 1 );
+    agk::SetSpritePosition ( 2, 200, 20 );
+    agk::SetSpritePhysicsOn ( 2, 2 );
+    agk::SetSpriteShape ( 2, 3 );
+    agk::AddSpriteShapeBox ( 2, -40, 62, 40, 64, 0 );
+<br>
+    agk::SetPhysicsDebugOn ( );
+}
+</pre></div><p>Sprite 1 has a convex shape attached to it and is positioned on the left side of the screen. Sprite 2 is handled slightly differently, while it has a convex shape attached it also has an additional shape attached as a box, which gets placed at the feet of the penguin. This is achieved with the command <i>AddSpriteShapeBox</i>. This command takes several parameters: ID of the sprite, x, y, x2, y2 and an angle. The x and y parameters are used to define the top left position of the box and the x2 and y2 parameters define the bottom right of the box. Finally the angle parameter is used to supply rotation for the box. When you run the example notice how a little box appears under the penguin on the right.</p><p>Circles and polygon shapes can also be added to sprites by using <i>AddSpriteShapeCircle</i> and <i>AddSpriteShapePolygon</i>. Any of these additional shapes can be removed by calling <i>ClearSpriteShapes</i>.</p><h2>Main loop</h2><p>The main loop of the program only needs to call <i>Sync</i>, as the aim of the example is to demonstrate how an additional collision shape can affect interactions.</p><h2>Full code listing</h2><p>Everything is now in place. Here's the final code for our program:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+LoadImage ( 1, "penguin.png" )
+<br>
+backdrop = CreateSprite ( LoadImage ( "background1.jpg" ) )
+SetSpriteColorAlpha ( backdrop, 255 )
+<br>
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 0, 20 )
+SetSpritePhysicsOn ( 1, 2 )
+SetSpriteShape ( 1, 3 )
+<br>
+CreateSprite ( 2, 1 )
+SetSpritePosition ( 2, 200, 20 )
+SetSpritePhysicsOn ( 2, 2 )
+SetSpriteShape ( 2, 3 )
+AddSpriteShapeBox ( 2, -40, 62, 40, 64, 0 )
+<br>
+SetPhysicsDebugOn ( )
+<br>
+do
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+LoadImage ( 1, &quot;penguin.png&quot; )
+
+backdrop = CreateSprite ( LoadImage ( &quot;background1.jpg&quot; ) )
+SetSpriteColorAlpha ( backdrop, 255 )
+
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 0, 20 )
+SetSpritePhysicsOn ( 1, 2 )
+SetSpriteShape ( 1, 3 )
+
+CreateSprite ( 2, 1 )
+SetSpritePosition ( 2, 200, 20 )
+SetSpritePhysicsOn ( 2, 2 )
+SetSpriteShape ( 2, 3 )
+AddSpriteShapeBox ( 2, -40, 62, 40, 64, 0 )
+
+SetPhysicsDebugOn ( )
+
+do
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::LoadImage ( 1, "penguin.png" );
+<br>
+    agk::CreateSprite ( 1, 1 );
+    agk::SetSpritePosition ( 1, 0, 20 );
+    agk::SetSpritePhysicsOn ( 1, 2 );
+    agk::SetSpriteShape ( 1, 3 );
+<br>
+    agk::CreateSprite ( 2, 1 );
+    agk::SetSpritePosition ( 2, 200, 20 );
+    agk::SetSpritePhysicsOn ( 2, 2 );
+    agk::SetSpriteShape ( 2, 3 );
+    agk::AddSpriteShapeBox ( 2, -40, 62, 40, 64, 0 );
+<br>
+    agk::SetPhysicsDebugOn ( );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>The commands demonstrated in this example offer you complete control and extra flexibility when dealing with collisions. They are useful for many situations and are easy to use and implement.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

@@ -1,0 +1,237 @@
+_header
+IDE
+
+_text
+The IDE (Integrated Development Environment) is used for developing applications in AppGameKit Studio using Tier 1 (BASIC).
+
+_sheader
+Launching the IDE
+
+_text
+Upon launching the IDE you will be presented with this screen, from where you can handle tasks such as creating or opening a project, altering IDE settings and viewing the documentation:
+
+_image
+ide_1.jpg
+
+_sheader
+Viewing the documentation
+
+_text
+AppGameKit Studio comes supplied with extensive documentation covering areas such as the principles of the language (BASIC), guides explaining topics like sprites, full explanations of all examples and a reference section covering the command set. To view the documentation select the <i>Help</i> menu and then click on the <i>Help</i> link:
+
+_image
+ide_2.jpg
+
+_text
+The documentation will open in your default web browser and display the home page, from where you can access all of the content:
+
+_image
+ide_3.jpg
+
+_sheader
+Opening an existing project
+
+_text
+The IDE displays a <i>Welcome</i> screen upon launch. This screen provides the option to create a new project or open an existing project or workspace. A project is a standalone program, while a workspace is a collection of projects. Click on the link to <i>Open an existing project</i>:
+
+_image
+ide_4.jpg
+
+_text
+Using the open file dialog, navigate to the location where AppGameKit Studio is installed and enter the <i>Projects</i> folder:
+
+_image
+ide_5.jpg
+
+_text
+The Projects folder contains 2 folders; <i>Basic</i> and <i>Native</i>. The <i>Basic</i> folder contains contents for Tier 1 users, while the <i>Native</i> folder contains content for Tier 2 users. Select the <i>Basic</i> folder:
+
+_image
+ide_6.jpg
+
+_text
+Within the <i>Basic</i> folder is a file named <i>examples.workspace</i>. This workspace holds a collection of all the example programs provided with AppGameKit Studio. Select <i>examples.workspace</i> and click on the <i>Open</i> button.
+
+_image
+ide_7.jpg
+
+_text
+Once the workspace has opened, the <i>Projects Panel</i> on the left side of the IDE will display a list of projects. Each of these projects is a self contained program that can be run on its own.
+
+_image
+ide_8.jpg
+
+_sheader
+Example projects
+
+_text
+By default the workspace <i>General - Core</i> will be in bold. This means that this is the currently active project. Click on the + button next to <i>General - Core</i>. You will now see a blue folder called <i>Source Code</i>. Click on the + button next to <i>Source Code</i>. This will expand to show you <i>main.agc</i>, which contains the source code for this particular project. Double click on <i>main.agc</i>:
+
+_image
+ide_9.jpg
+
+_sheader
+Viewing the code
+
+_text
+After double clicking on <i>main.agc</i> the IDE will open a code window on the right side:
+
+_image
+ide_10.jpg
+
+_sheader
+Running a program
+
+_text
+To run this program select the <i>Build</i> menu and then <i>Compile, run and broadcast</i>:
+
+_image
+ide_11.jpg
+
+_text
+The <i>Compile, run and broadcast</i> button can also be selected from the toolbar:
+
+_image
+ide_12.jpg
+
+_text
+After selecting <i>Compile, run and broadcast</i> either from the toolbar or menu the example program <i>General - Core</i> will be launched and a small window will pop up on screen and display some information:
+
+_image
+ide_13.jpg
+
+_sheader
+Compile options
+
+_text
+Three options are available for the compilation process -
+
+_text
+The <i>Compile</i> button will only compile the program. This is useful for checking whether there are any syntax errors within your program:
+
+_image
+ide_28.jpg
+
+_text
+The <i>Run</i> button will launch the last compiled program. If you haven't made any changes to your program and want to launch it again select the <i>Run</i> option. The benefit of this is that your program does not need to be compiled again and can save time:
+
+_image
+ide_29.jpg
+
+_text
+The <i>Compile, run and broadcast</i> button will compile the program, run it and broadcast it across your network for testing on platforms that use the AppGameKit Studio Player:
+
+_image
+ide_30.jpg
+
+
+
+
+_sheader
+Running another project
+
+_text
+The <i>Compile, run and broadcast</i> option runs the currently activated project. To activate the project <i>Sprites - SpriteProperties</i> select it from the list of projects in the <i>Projects Panel</i>:
+
+_image
+ide_14.jpg
+
+_text
+Right click and a popup menu will appear, click on <i>Activate project</i>:
+
+_image
+ide_15.jpg
+
+_text
+Expand the items for <i>Sprites - SpriteProperties</i> in the <i>Projects Panel</i>:
+
+_image
+ide_16.jpg
+
+_text
+Double click on <i>main.agc</i> and the source code will be displayed in the main editing area:
+
+_image
+ide_17.jpg
+
+_text
+Now that the project <i>Sprites - SpriteProperties</i> is active, select <i>Compile, run and broadcast</i> from the toolbar:
+
+_image
+ide_18.jpg
+
+_text
+The program will launch and be displayed on screen:
+
+_image
+ide_19.jpg
+
+_sheader
+Creating a new project
+
+_text
+To return to the <i>Welcome</i> screen close the currently open workspace by going to the <i>File</i> menu and selecting <i>Close Workspace</i>. The <i>Welcome</i> will be displayed. Select <i>Create a new project</i>:
+
+_image
+ide_20.jpg
+
+_text
+A dialog will be displayed that allows you to select what kind of project you want to create. The available options are:
+
+_listbegin
+AppGameKit Studio Generic Project - will create a project that does not define any display data
+AppGameKit Studio Landscape Project - will create a project with a landscape aspect ratio
+AppGameKit Studio Portrait Project - will create a project with a portrait aspect ratio
+_listend
+
+_image
+ide_21.jpg
+
+_text
+Select <i>AppGameKit Studio Landscape Project</i> and click on the <i>Go</i> button:
+
+_image
+ide_22.jpg
+
+_text
+A dialog will be displayed with more information. Select <i>Next</i> to continue:
+
+_image
+ide_23.jpg
+
+_text
+The next dialog will prompt you for more details about the project. After suppling a name for the project the other fields will be filled in automatically. Click on <i>Finish</i> to complete the process:
+
+_image
+ide_24.jpg
+
+_text
+You will now be presented with your project:
+
+_image
+ide_25.jpg
+
+_text
+Within the <i>Projects Panel</i> expand the projects file listings:
+
+_image
+ide_26.jpg
+
+_text
+Double click on <i>main.agc</i> and the code for this file will appear in the main editing area:
+
+_image
+ide_27.jpg
+
+_text
+The file named <i>setup.agc</i> will be automatically added to any new project. This file is used to set properties for your application when running on platforms that create a window, such as Mac OS X and Microsoft Windows. Try opening the file:
+
+_image
+ide_31.jpg
+
+_text
+You can edit each of the fields within this source file to modify the window title, the width and height of the window and whether the application is to launch in full screen mode. For example, on Windows you may prefer your application to have a windows size of 1024 x 768, so you need to open setup.agc, edit the width line so it shows width=1024 and then edit the height line to height=768. The fullscreen value is 0 by default, meaning a window will be created, changing this to 1 will ensure your application uses full screen on Windows and Mac OS X.
+
+
+
+

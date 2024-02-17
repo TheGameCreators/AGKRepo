@@ -1,0 +1,26 @@
+_header
+#insert
+
+_sheader
+Syntax
+
+_tier1
+#insert filename$
+_tier1
+
+_sheader
+Description
+
+_text
+You can use this command to simplify your main program by writing sub-programs that hold re-usable independent functions. It is similar to #include except the code from the inserted file will be inserted into the main program at the location where #insert is called. In other words the #insert line will be replaced with the contains of the inserted file.
+
+_text
+If you insert the same file more than once then you cannot declare any variables, functions, or types in the inserted file as they will be declared twice and cause a compiler error.
+
+_sheader
+Example
+
+_tier1
+#insert "myUtilityFunctions.agc"
+#insert "player.agc"
+_tier1

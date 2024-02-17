@@ -1,0 +1,6 @@
+
+_header
+Conclusion
+
+_text
+By now you should have a reasonable idea of what arrays are and how they can be used. In a follow up guide more details will be provided on arrays including a different method of declaring them and some extra functionality that has not been covered just yet.

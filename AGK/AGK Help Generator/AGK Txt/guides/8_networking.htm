@@ -1,0 +1,251 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Basic Networking with AppGameKit Studio by Kevin Summers - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Basic Networking with AppGameKit Studio by Kevin Summers</div><div class="page"><h1>Basic Networking with AppGameKit Studio by Kevin Summers</h1><p>Using a Top 10 High Score list as an example, this tutorial will attempt to demonstrate the following.</p><ul><li>How to set up a server app to listen for network connections</li><li>Use the first data item in a network packet to determine what action to take</li><li>Assembling and sending a network packet to a specific client</li><li>How to connect a client app to a server</li><li>Use the first data item in a network packet to tell the server what you want</li><li>Receive a network packet</li></ul><h2>The Server App</h2><p>To set up a server listening on a network requires only one command. This command sets up a network called myNetwork using the client name Server and listens for TCP connections on port 4100. For connections coming in to the server from the Internet, you will have to set up your router to forward that port to the machine running your server app.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">INetID = HostNetwork("myNetwork", "Server", 4100)
+</pre></div><div align="right"><button class="btn" data-clipboard-text="INetID = HostNetwork(&quot;myNetwork&quot;, &quot;Server&quot;, 4100)
+">Copy Code</button></div><p>Now that we are listening on the network, we need to add a little maintenance routine to clean up after clients that have disconnected. This routines checks to see if a client that was previously connected has disconnected, and it deletes the associated client ID making room for the next client connection.</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">for x = 1 to 50
+    if x = 1
+        id = GetNetworkFirstClient(iNetID)
+    else
+        id = GetNetworkNextClient(iNetID)
+    endif
+    if id = 0 then exit
+    if GetNetworkClientDisconnected(iNetID, id) = 1
+        DeleteNetworkClient(iNetID, id)
+    endif
+next x
+</pre></div><div align="right"><button class="btn" data-clipboard-text="for x = 1 to 50
+    if x = 1
+        id = GetNetworkFirstClient(iNetID)
+    else
+        id = GetNetworkNextClient(iNetID)
+    endif
+    if id = 0 then exit
+    if GetNetworkClientDisconnected(iNetID, id) = 1
+        DeleteNetworkClient(iNetID, id)
+    endif
+next x
+">Copy Code</button></div><p>Now we are ready to check for incoming messages. We'll ask the network if there are any in the queue and grab it if there are. Then check the client ID to make sure it's coming from a client and not the server. (the server uses client ID 1)</p><p>When we have received a packet, we check the first data item, which in this case happens to be a float. We are using that float to determine what action to take. For this app, if the float equals 1.0, then we are sending the high score list to the client. If it equals 1.1, then the client has sent a high score to the server to be considered for placement in the top 10.</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">msg = GetNetworkMessage(iNetID)
+if msg > 0
+    ClientID = GetNetworkMessageFromClient(msg)
+        if ClientID > 1
+            f# = GetNetworkMessageFloat(msg)
+            if f# = 1.0 // Send High Score List
+                newMsg = CreateNetworkMessage()
+                AddNetworkMessageFloat(newMsg, 1.0)
+                for x = 1 to 10
+                    AddNetworkMessageString(newMsg, HiScores[x].init$)
+                    AddNetworkMessageInteger(newMsg, HiScores[x].score)
+                next x
+                SendNetworkMessage(iNetID, ClientID, newMsg)
+                DeleteNetworkMessage(newMsg)
+            endif
+            if f# = 1.1
+                // Receive Score from Client
+                temp$ = GetNetworkMessageString(msg)
+                score = GetNetworkMessageInteger(msg)
+                // See if the submitted score is high enough for the top 10
+                // If it is, place it where it belongs and shuffle the rest
+                // of the scores down one position.
+                for x = 1 to 10
+                    if score > HiScores[x].score then exit
+                next x
+            if x < 11
+                for y = 10 to x+1 step -1
+                    HiScores[y].init$ = HiScores[y-1].init$
+                    HiScores[y].score = HiScores[y-1].score
+                next y
+                HiScores[x].init$ = init$
+                HiScores[x].score = score
+            endif
+        endif
+    endif
+    DeleteNetworkMessage(msg)
+endif
+</pre></div><div align="right"><button class="btn" data-clipboard-text="msg = GetNetworkMessage(iNetID)
+if msg > 0
+    ClientID = GetNetworkMessageFromClient(msg)
+        if ClientID > 1
+            f# = GetNetworkMessageFloat(msg)
+            if f# = 1.0 // Send High Score List
+                newMsg = CreateNetworkMessage()
+                AddNetworkMessageFloat(newMsg, 1.0)
+                for x = 1 to 10
+                    AddNetworkMessageString(newMsg, HiScores[x].init$)
+                    AddNetworkMessageInteger(newMsg, HiScores[x].score)
+                next x
+                SendNetworkMessage(iNetID, ClientID, newMsg)
+                DeleteNetworkMessage(newMsg)
+            endif
+            if f# = 1.1
+                // Receive Score from Client
+                temp$ = GetNetworkMessageString(msg)
+                score = GetNetworkMessageInteger(msg)
+                // See if the submitted score is high enough for the top 10
+                // If it is, place it where it belongs and shuffle the rest
+                // of the scores down one position.
+                for x = 1 to 10
+                    if score > HiScores[x].score then exit
+                next x
+            if x < 11
+                for y = 10 to x+1 step -1
+                    HiScores[y].init$ = HiScores[y-1].init$
+                    HiScores[y].score = HiScores[y-1].score
+                next y
+                HiScores[x].init$ = init$
+                HiScores[x].score = score
+            endif
+        endif
+    endif
+    DeleteNetworkMessage(msg)
+endif
+">Copy Code</button></div><h2>The Client App</h2><p>For the sake of simplicity I'll only be showing the subroutines that handle network communications. It will be up to you to create the game that ultimately feeds this the player's initials and score.</p><h2>The SendHighScore subroutine.</h2><p>For the client to connect to the server requires just one command. It specifies the IP address of the server, the port, and a client name. The client name when connecting to a server must be different than any other client name currently connected to the server, so we're using a Random number to keep it unique.</p><div id="basicCodeBlock4" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">InetID = JoinNetwork("192.168.100.5", 4100, "Client"+str(Random()))
+</pre></div><div align="right"><button class="btn" data-clipboard-text="InetID = JoinNetwork(&quot;192.168.100.5&quot;, 4100, &quot;Client&quot;+str(Random()))
+">Copy Code</button></div><p>Then we enter a loop that checks to see if we have connected, and times out in 4 seconds if we don't. Remember to give enough time for a connection to happen. On devices such as cell phones, congestion and poor signal, are very common and can produce long delays.</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">// If we don't connect within 4 seconds, print an error and exit
+t# = timer()
+do
+    c = GetNetworkNumClients(iNetID)
+    if c > 1 then exit
+    if timer() - t# > 4.0
+        print("Server could not be reached.")
+        exit
+    endif
+    sync()
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="// If we don't connect within 4 seconds, print an error and exit
+t# = timer()
+do
+    c = GetNetworkNumClients(iNetID)
+    if c > 1 then exit
+    if timer() - t# > 4.0
+        print(&quot;Server could not be reached.&quot;)
+        exit
+    endif
+    sync()
+loop
+">Copy Code</button></div><p>Once the connection is established, we assemble the network packet, and send it off to the server.</p><div id="basicCodeBlock6" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">If c > 1
+    ServerID = GetNetworkServerID(iNetID)
+    newMsg = CreateNetworkMessage()
+    AddNetworkMessageFloat(newMsg, 1.1)
+    // Add the packet identifier
+    AddNetworkMessageString(newMsg, init$)
+    // Add the player's initials
+    AddNetworkMessageInteger(newMsg, score) // Add the player's score
+    SendNetworkMessage(iNetID, ServerID, newMsg)
+    // Send it to the server
+    DeleteNetworkMessage(newMsg)
+    CloseNetwork(iNetID)
+endif
+</pre></div><div align="right"><button class="btn" data-clipboard-text="If c > 1
+    ServerID = GetNetworkServerID(iNetID)
+    newMsg = CreateNetworkMessage()
+    AddNetworkMessageFloat(newMsg, 1.1)
+    // Add the packet identifier
+    AddNetworkMessageString(newMsg, init$)
+    // Add the player's initials
+    AddNetworkMessageInteger(newMsg, score) // Add the player's score
+    SendNetworkMessage(iNetID, ServerID, newMsg)
+    // Send it to the server
+    DeleteNetworkMessage(newMsg)
+    CloseNetwork(iNetID)
+endif
+">Copy Code</button></div><h2>The GetHighScores subroutine</h2><p>The first part of this routine is identical to the SendHighScore subroutine.</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">InetID = JoinNetwork("192.168.100.5", 4100, "Client"+str(Random()))
+// If we don't connect within 4 seconds, print an error and exit
+t# = timer()
+do
+    c = GetNetworkNumClients(iNetID)
+    if c > 1 then exit
+    if timer() - t# > 4.0
+        print("Server could not be reached.")
+        exit
+    endif
+    sync()
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="InetID = JoinNetwork(&quot;192.168.100.5&quot;, 4100, &quot;Client&quot;+str(Random()))
+// If we don't connect within 4 seconds, print an error and exit
+t# = timer()
+do
+    c = GetNetworkNumClients(iNetID)
+    if c > 1 then exit
+    if timer() - t# > 4.0
+        print(&quot;Server could not be reached.&quot;)
+        exit
+    endif
+    sync()
+loop
+">Copy Code</button></div><p>Once the connection is established, we send off just the float in a packet by itself. This tells the server we want it to send the full high score list. Then we enter a loop waiting for the packet to arrive from the server.</p><div id="basicCodeBlock8" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">If c > 1
+    ServerID = GetNetworkServerID(iNetID) // get server's ID
+    newMsg = CreateNetworkMessage() // add the packet identifier
+    AddNetworkMessageFloat(newMsg, 1.0) // send it to the server
+    SendNetworkMessage(iNetID, ServerID, newMsg)
+    DeleteNetworkMessage(newMsg)
+    msg = 0
+    t# = timer()
+    while msg = 0
+        msg = GetNetworkMessage(iNetID)
+        if timer() - t# > 2.0 then exit
+        sync()
+    endwhile
+    if msg > 0
+        f# = GetNetworkMessageFloat(msg)
+        if f# = 1.0
+        for x = 1 to 10
+            HiScores[x].init$ = GetNetworkMessageString(msg)
+            HiScores[x].score = GetNetworkMessageInteger(msg)
+        next x
+    endif
+    endif
+    DeleteNetworkMessage(msg)
+    CloseNetwork(iNetID)
+endif
+</pre></div><div align="right"><button class="btn" data-clipboard-text="If c > 1
+    ServerID = GetNetworkServerID(iNetID) // get server's ID
+    newMsg = CreateNetworkMessage() // add the packet identifier
+    AddNetworkMessageFloat(newMsg, 1.0) // send it to the server
+    SendNetworkMessage(iNetID, ServerID, newMsg)
+    DeleteNetworkMessage(newMsg)
+    msg = 0
+    t# = timer()
+    while msg = 0
+        msg = GetNetworkMessage(iNetID)
+        if timer() - t# > 2.0 then exit
+        sync()
+    endwhile
+    if msg > 0
+        f# = GetNetworkMessageFloat(msg)
+        if f# = 1.0
+        for x = 1 to 10
+            HiScores[x].init$ = GetNetworkMessageString(msg)
+            HiScores[x].score = GetNetworkMessageInteger(msg)
+        next x
+    endif
+    endif
+    DeleteNetworkMessage(msg)
+    CloseNetwork(iNetID)
+endif
+">Copy Code</button></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

@@ -1,0 +1,39 @@
+_header
+if
+
+_sheader
+Syntax
+
+_tier1
+if condition
+_tier1
+
+_sheader
+Description
+
+_text
+This command will allow your program to perform a sequences of commands based on the result of a condition. If the condition is true any commands that follow are performed. If the condition is false any following commands are skipped.
+
+_text
+When an <i>if</i> statement is followed by the <i>then</i> keyword then only the next statement is affected.
+
+_text
+An alternative approach to using an <i>if</i> statement is to ignore the <i>then</i> keyword. In this instance a number of lines of code can be executed. If you take this approach to finish the conditional check add <i>endif</i>.
+
+
+_sheader
+Example
+
+_tier1
+rem example 1
+if a = 1 then print ( "a is 1" )
+
+<br>
+
+rem example 2
+if a = 1
+
+    print ( "a is 1" )
+
+endif
+_tier1

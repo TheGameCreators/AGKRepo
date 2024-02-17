@@ -1,0 +1,28 @@
+_header
+endcase
+
+_sheader
+Syntax
+
+_tier1
+endcase
+_tier1
+
+_sheader
+Description
+
+_text
+An endcase statement specifies the end of a piece of code you are specifying for a case statement. Use this command in combination with <i>case</i>, <i>endcase</i>, <i>select</i> and <i>endselect</i> to create a select statement. 
+
+_sheader
+Example
+
+_tier1
+state = 1
+<br>
+select state
+    case 1:
+        print ( "state is 1" )
+    endcase
+endselect
+_tier1

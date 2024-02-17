@@ -1,0 +1,59 @@
+
+_header
+Commands
+
+_text
+If you have been following through the previous guides you will already be familiar with commands such as <i>print</i> and <i>sync</i>. These commands are built into AppGameKit Studio, providing you with numerous options to deal with all kinds of situations, such as playing music, drawing something on screen, responding to input, saving data to files and much more.
+
+_text
+As you continue learning about AppGameKit Studio you will discover many more commands. Over time you will get a better understanding of which built in commands to use, so that you can create the functionality you require. For now though the aim is to explain a little bit more about how the syntax for some of these commands work. Let's begin with the <i>sync</i> command.
+
+_tier1
+sync ( )
+_tier1
+
+_text
+This line of code contains three parts - the name of the command, an opening bracket and a closing bracket. This lets AppGameKit Studio know that we want to call the <i>sync</i> command in our program. When this happens AppGameKit Studio will internally handle updating the contents of the screen. Once it has finished it comes back to our program and moves onto the next line.
+
+_text
+All commands need to have an opening and closing bracket, although some need extra information to be placed within these brackets. These are known as parameters and are used as a way to pass data to the commands. The <i>sync</i> command has no parameters, so it just requires an open and closing bracket when being used. An example of a command that uses parameters is the <i>print</i> command. This command takes in one parameter, which can either be a float, an integer or a string. 
+
+_tier1
+print ( 1.23 )
+print ( 1 )
+print ( "hello" )
+_tier1 
+
+_text
+Some commands need more than one parameter. When this happens parameters are separated by a comma. As an example we'll look at a command called <i>SetSyncRate</i>. This command controls how fast the program runs. It has two parameters, one to control the desired frame rate and the second to control how it does this. For now it's not essential to go into too much detail, all we're interested in is seeing the syntax for commands when dealing with multiple paramters.
+
+_tier1
+SetSyncRate ( 60, 0 )
+SetSyncRate ( 30, 1 )
+_tier1
+
+_text
+The data being passed into these commands as parameters can be constructed using literal values as shown in the examples, or using expressions. 
+
+_text
+The kind of data being passed into commands as parameters is governed by the definition of the command. The <i>SetSyncRate</i> command requires two integer parameters, therefore attempting to pass in a string or floating point value would fail, along with only attempting to pass in one parameter.
+
+_text
+Some commands may also return a value. This is useful in situations where the command needs to act on its parameters and provide some back to the caller. One such command is called <i>GetDeviceWidth</i>. It takes no parameters and returns a value, letting the program know the width in pixels of the device the program is running on. Here's how it can be called.
+
+_tier1
+deviceWidth = GetDeviceWidth ( )
+_tier1
+
+_text
+The return value from the command is saved in the variable <i>deviceWidth</i>.
+
+_text
+Just like with parameters it's important to consider what kind of data is being returned because some commands will return integers, whereas others will return strings or floating point values. 
+
+_text
+Information explaining how all of the internal commands operate is provided within other areas of the documentation. It's not too important to understand everything right now. The main point is to get an idea of how commands work in general.
+
+_navigation
+functions_and_branching.htm functions_and_branching_001.htm
+

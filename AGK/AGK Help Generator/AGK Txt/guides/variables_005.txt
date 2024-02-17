@@ -1,0 +1,22 @@
+
+
+_sheader
+Strings
+
+_text
+The final basic data type are strings. This kind of variable can be used to store characters and words. Some examples might include storing the name of a player, a description for the level that you're playing and instructions on how to play the game.
+
+_text
+Just like with floats when dealing with strings you will need to explicitly declare the variable, although you don't need to specify a default value. If you choose not to assign your variable a value it will default to a blank string.
+
+_tier1
+playerName as string = "player 1"
+levelDescription as string
+levelInstruction as string
+_tier1
+
+_text
+In this instance <i>playerName</i> has been declared as a string and been assigned the string "player 1". The other two variables are empty strings that can be filled in later on.
+
+_navigation
+variables_004.htm variables_006.htm

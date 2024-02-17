@@ -1,0 +1,183 @@
+_header
+Arithmetic, Relational, Boolean and Bitwise Operators
+
+_text
+We have already used one type of well-known operator in the preceding examples. Operators are the term given to a mathematical symbol used in all calculations. The most common operators are arithmetic operators and are quickly identified. All operators require two operands of data that are placed on each side of the operator.
+
+_sheader
+Arithmetic Operators
+
+_text
+An arithmetic operator can represent an Addition, Subtraction, Multiplication or Division. These operators are represented symbolically as (+) (-) (*) (/) respectively.
+
+_text
+The Plus(+) sign specifies that the data on the right of the plus sign must be added to the data on the left. Examples of which you have already seen are:
+
+_tier1
+3 + 4 equals 7
+A + B equals the value of B added to the value of A
+_tier1
+
+_text
+The minus(-) sign specifies that the data to the right of the minus sign must be subtracted from the data to the left of the minus sign:
+
+_tier1
+3 - 4 equals -1
+A - B equals the value of B subtracted from the value of A
+_tier1
+
+_text
+An asterix(*) specifies that the data on the right side of the asterix is multiplied by the data on the left side of the asterix:
+
+_tier1
+3 * 4 equals 12
+A * B equals the value of B multiplied by the value of A
+_tier1
+
+_text
+The slash(/) specifies that the data on the left side of the slash is to be divided by the data on the right side of the slash. Whether the data types are integer or real numbers play a factor:
+
+_tier1
+10 / 4 equals 2
+A / B equals the integer value of A divided as an integer by the integer value of B
+10 / 4.0 equals 2.5
+A / B equals the real value of A divided as a real by the real value of B
+_tier1
+
+_text
+The MOD command specifies that first argument is to be divided by the second argument, and the remainder of the division is the result:
+
+_tier1
+Mod(11, 2) equals 1
+Mod(A, B) equals the remainder of the division between A and B
+_tier1
+
+_text
+The "Power" symbol specifies a result that is the left side value to the power of the right side value. For example 2^3 equates to the calculation 2*2*2, thus:
+
+_tier1
+2^3 equals 8
+A ^ B equals A to the power B
+_tier1
+
+_sheader
+Relational Operators
+
+_text
+These operators are less common, unless you have programming experience. These operators represent conditions that are applied to data. The conditions handled are Equal To, Greater Than, Less Than, Greater or Equal To, Less or Equal To and Not Equal To. The purposes of these conditions are to determine the result of a comparison between two data values. A condition result can only be of two possible values. If the condition is false, the resulting value is zero. If the condition is true, the resulting value is one. Take the following examples:
+
+_tier1
+10 = 9 results in 0 because 10 is not the same as 9
+10 = 10 results in 1 because 10 is the same as 10
+10 > 9 results in 1 because 10 is greater than 9
+100 >= 100 results in 1 because 100 is greater or equal to 100
+_tier1
+
+_text
+You can also have less than symbols which work just like the above greater-than symbols except that they will return the result of one if the left parameter is less than the right parameter. Using a less-than symbol, then a greater-than symbol next to each other denotes a not-equal operator, and will only return a true value of one if the parameters on either side are not the same value.
+
+_text
+The same relational operators can be applied to real numbers, integer and real variables and in some case strings and string variables. You can compare whether two strings are the same or not the same, and even test whether one string is greater or less than another.
+
+_sheader
+Boolean Operators
+
+_text
+AppGameKit Studio allows you to use AND, OR, and NOT operators on your data. They are used when assembling multiple conditional expressions, such as:
+
+_tier1
+IF a=1 AND b=2 THEN c=3
+IF a=1 OR b=2 THEN c=3
+IF NOT b=2 THEN c=3
+_tier1
+
+_text
+The AND operator works with any integer value, but for demonstration purposes the general rule applies when using this operator:
+
+_tier1
+0 AND 0 = 0
+0 AND 1 = 0
+1 AND 0 = 0
+1 AND 1 = 1
+_tier1
+
+_text
+What you see is the decision tree of the AND operator. It shows that the result will only be a 1 if both data operands of the AND operator are 1. Otherwise a 0 will be returned. To see how this logic works in reality, take the following example:
+
+_tier1
+A=5
+B=25
+(A > 10) AND (B > 20) so what is the resulting value?
+_tier1
+
+_text
+We can determine the result of the parts enclosed in brackets first. We can see the relational operators provide us with the following results:
+
+_tier1
+(A > 10) results in 0 because 5 is not greater than 10
+(B > 20) results in 1 because 25 is greater than 20
+_tier1
+
+_text
+Our updated calculation looks something like this:
+
+_tier1
+(0) AND (1) results in 0 as our table shows 0 AND 1 = 0
+_tier1
+
+_text
+The logic of the table is that only when both sides of the AND operand are 1 will the result of the calculation be 1 also. What would happen if you change the value of A to 15?
+
+_text
+The OR operator works in a similar fashion, but using the following table. If either the left side or right side has a value of 1, the result will be 1:
+
+_tier1
+0 OR 0 = 0
+0 OR 1 = 1
+1 OR 0 = 1
+1 OR 1 = 1
+_tier1
+
+_text
+The NOT operator works using the following table. This operator is a unary operator and only requires a single right-side value: 
+
+_tier1
+IF NOT 0 THEN PRINT "this will print"
+IF NOT 1 THEN PRINT "this will not print"
+_tier1
+
+_sheader
+Bitwise Operators
+
+_text
+Bitwise operators, unlike boolean operators work on all the bits of the specified variable or value. There are six bitwise operators as follows:
+
+_tier1
+BITWISE LSHIFT using two less-than symbols shift bits 1 space to the left.
+%0111 << 1 becomes %1110.
+BITWISE RSHIFT using two greater-than symbols shift bits 1 space to the right.
+%0111 >> 1 becomes %0011.
+BITWISE AND signified by the symbol && will AND all bits of one value with another.
+%1111 && %0011 becomes %0011.
+BITWISE OR signified by the symbol || will OR all bits of one value with another.
+%1110 || %0011 becomes %1111.
+BITWISE XOR signified by the symbol ~~ will XOR all bits of one value with another.
+%1111 ~~ %0011 becomes %1100.
+BITWISE NOT signified by the symbol ! will NOT all bits of the right value.
+!%1010 becomes %0101.
+_tier1
+
+_text
+You will discover how useful these operators become when writing conditions for your programs. Being able to write conditions with multiple parts will become increasingly important as you begin to write more complex programs.
+
+_sheader
+XOR Truth Table
+
+_tier1
+Input Output 
+ A B 
+ 0 0    0
+ 1 0    1
+ 0 1    1
+ 1 1    0
+_tier1

@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Errors, Warnings and The Compiler - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../principles.html">Principles</a> &gt; Errors, Warnings and The Compiler</div><div class="page"><h1>Errors, Warnings and The Compiler</h1><p>There are many types of errors you will encounter while programming and running your creations, but they fall into four main categories:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">"SYNTAX ERROR"
+</pre></div><div align="right"><button class="btn" data-clipboard-text="&quot;SYNTAX ERROR&quot;
+">Copy Code</button></div><p>You have tried to compile your program but a command statement was not recognized or understood.</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">"PARAMETER MISMATCH"
+</pre></div><div align="right"><button class="btn" data-clipboard-text="&quot;PARAMETER MISMATCH&quot;
+">Copy Code</button></div><p>You have tried to compile your program but a known command has been given the wrong parameter data. You must provide the correct types of parameters for the command, and in the right order.</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">"RUNTIME WARNING"
+</pre></div><div align="right"><button class="btn" data-clipboard-text="&quot;RUNTIME WARNING&quot;
+">Copy Code</button></div><p>The program has compiled and run successfully, but the command failed due to the reasons given with the warning. A warning will not be given in a standalone executable version of the program!</p><div id="basicCodeBlock4" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">"RUNTIME ERROR"
+</pre></div><div align="right"><button class="btn" data-clipboard-text="&quot;RUNTIME ERROR&quot;
+">Copy Code</button></div><p>The program has compiled and run successfully, but the command failed due to the reasons given with the error. An error will terminate a standalone executable version of the program and provide a reason for the error!</p><h2>The Compiler</h2><p>To help understand the compiler better, here are a few notes that will help as you start to compile your programs. Some of the notes may be a little advanced, and are not essential reading for the beginner.</p><p>1. To reduce iterations, the compiler will process TYPE declarations and FUNCTION declarations in the same sweep, so if you place the TYPE ENDTYPE command after the function, the function will not be able to compile as it will not know what the TYPE is. Make sure you declare all your types before declaring any functions that use them.</p><p>2. Comments can be created as an appendage to an existing line, or as a command in itself. To append a comment to a line, simply use the ` symbol before adding the descriptive text you wish to apply. Comments can also be created as standalone commands using the REM statement, which you can abbreviate to the ` symbol if you wish. You should only place "appendage" comments inside type declarations or select statements. You can place a command comment anywhere a normal command can go. Common mistakes is to try and place REM commands inside TYPE or SELECT statements, which the compiler will find illegal.</p><p>3. The compiler will treat an ambiguous name as an array before a user function. A name will be treated as a user function call only if there is a FUNCTION declaration elsewhere in the program.</p><p>4. When the compiler processes a program that includes more than one .AGC source code file, it must first produce a single listing before it can be processed. This single listing can be found in the Media\SourceCode.agc file for reference. If the resulting executables throws a runtime error during its execution, the line number it reports refers to this master file, and not the main source code file from the project.</p><p>5. Error messages can sometimes be confusing if read out of context. Here is an explanation of an error that might cause confusion;</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">CODE: A$ = "X: " + TIMER()
+ERROR: Types "$$1" and "TEMP0" are incompatible at line X.
+EXPLANATION: This means the string and value cannot be added. The $$ symbol refers to a string, the TEMP0 refers to a temporary variable internally required by the compiler. The solution is to convert one so that you are adding the same type, i.e.: A$ = "X: " + STR(TIMER())
+</pre></div><div align="right"><button class="btn" data-clipboard-text="CODE: A$ = &quot;X: &quot; + TIMER()
+ERROR: Types &quot;$$1&quot; and &quot;TEMP0&quot; are incompatible at line X.
+EXPLANATION: This means the string and value cannot be added. The $$ symbol refers to a string, the TEMP0 refers to a temporary variable internally required by the compiler. The solution is to convert one so that you are adding the same type, i.e.: A$ = &quot;X: &quot; + STR(TIMER())
+">Copy Code</button></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

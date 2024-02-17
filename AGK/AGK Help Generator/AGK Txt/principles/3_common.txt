@@ -1,0 +1,261 @@
+_header
+Common Statements
+
+_sheader
+Assignment statements
+
+_text
+You have already used an assignment statement, and it is probably the most commonly used part of any programming language. The Equal Symbol (=) is used to assign a value to a variable or array. Take the following examples:
+
+_tier1
+a=42
+a#=99.9
+a$="HELLO"
+lottery[1,1]=49
+_tier1
+
+_sheader
+Branch statements
+
+_text
+Normally, a program executes statements in sequence starting at the top. A branch statement allows you to jump to another part of the program to continue execution. A GOSUB command will jump to a label and continue from its new location. When the program encounters a RETURN command, the program will jump back to the GOSUB from where it originally came. Take the following example:
+
+_tier1
+PRINT ( "Hello" )
+GOSUB MySubroutine
+END
+ 
+MySubroutine:
+  PRINT ( "World" )
+RETURN
+_tier1
+
+_text
+The program will print the "Hello" text to the screen, then jump to the MySubroutine line of the program and continue execution. The next command it finds will print "World" to the screen. The RETURN command then returns the program to the point it left, where it then proceeds onto the next command after the GOSUB command which in this case is the END command.
+
+_text
+A GOTO command however, does not remember from where it jumped and will continue running from its new location permanently. It is not recommended you use GOTO commands often, as there are better ways to control the flow of your programs. Here is an example, however, of a simple GOTO command:
+
+_tier1
+MyLabel:
+  PRINT ( "Hello World " )
+  SYNC()
+GOTO MyLabel
+_tier1
+
+_text
+Or alternatively, a better way would be:
+
+_tier1
+DO
+  PRINT ( "Hello World " )
+  SYNC()
+LOOP
+_tier1
+
+_text
+You will agree the last example is a much better, cleaner and friendly way of doing the above and demonstrates how the use of GOTO can be eliminated. GOTO is retained in the AppGameKit Studio language for compatibility with older BASIC languages.
+
+_sheader
+For next statements
+
+_text
+You may recall the use of the FOR NEXT statement in earlier examples. The FOR NEXT commands are used to create a finite loop in which a variable is incremented or decremented from a value to a value. A simple example would be:
+
+_tier1
+FOR T=1 TO 5
+  PRINTC ( T )
+  PRINTC ( " " )
+NEXT T
+PRINT ( "Done" )
+_tier1
+
+_text
+The output to the screen would read:
+
+_tier1
+1 2 3 4 5 Done
+_tier1
+
+_text
+The program would set T to a value of 1 and then go to the next two lines to print the value of T followed by a space. After printing, the NEXT command would return the program to the FOR command and increment the value of T to make it 2. When the PRINT commands are encountered again, the value of T has changed and a new value is printed. This continues until T has gone from 1 through to 5, then the loop ends and the program is permitted to continue. The next command after the NEXT statement prints "Done" to the screen showing the program has left the loop.
+
+_text
+You can also nest loops to create a loop within a loop, as the following example shows:
+
+_tier1
+FOR A=1 TO 5
+  PRINTC ( "MAIN A=" )
+  PRINT ( A )
+  FOR B=1 TO 10
+    PRINTC ( "LITTLE B=" )
+    PRINT ( B )
+  NEXT B
+NEXT A
+_tier1
+
+_text
+The FOR NEXT statement loops the main A variable from 1 to 5, but for every loop of A the FOR NEXT statement inside the first loop must also loop its variable B from 1 to 10. This is known as a nested loop as the loop in the middle is nested inside an outer loop. 
+
+_text
+Such loops are especially useful for working on array data by using the variables that increment as position indexes for the arrays. As an example, we could list all our lottery numbers using the following example:
+
+_tier1
+FOR week=1 TO 52 STEP 4
+  PRINTC ( "LOTTERY NUMBER FOR WEEK " )
+  PRINTC ( week )
+  PRINTC ( " ARE " )
+  FOR index=1 to 6
+    PRINTC ( lottery[week,index] )
+    PRINT ( " " )
+  NEXT index
+NEXT week
+_tier1
+
+_text
+Notice the new STEP command added to the end of the FOR NEXT statement. The STEP command is used to change the default increment value from 1 to another value. In this case, the program will only print the lottery numbers for every fourth week.
+
+_sheader
+If then statements
+
+_text
+The IF statement allows your program to make decisions that controls the flow of your program. The IF statement requires an expression to evaluate results as either true or false. If the expression is true, the commands following the THEN command will be executed. If the expression is false, the program will move onto the next statement and ignore the rest of the IF THEN statement. Take the following example:
+
+_tier1
+age=20
+IF age>=16 THEN PRINT ( "You can buy a lottery ticket" )
+_tier1
+
+_text
+This program demonstrates a simple IF THEN Statement. To understand how this works we must look at the IF command in a little more detail. First, we must take the expression and evaluate it:
+
+_tier1
+age>=16
+_tier1
+
+_text
+We can determine from our earlier coverage of operators, that this relational operator will result in either a zero or a one depending on whether age is greater or equal to 16. The IF command considers a value of zero to be false and all other values as true. So we can determine that if age is indeed greater or equal to 16 then the result will be 1, and the expression according to the IF command will be true.
+
+_text
+The expression can be any combination of values, variables, arrays and operators providing the expression makes sense. These expressions will make sense:
+
+_tier1
+IF A THEN PRINT ( "ok" )
+IF A = B THEN PRINT ( "ok" )
+IF A > (B - 5) THEN PRINT ( "ok" )
+IF A = (B + (A * 2)) THEN PRINT ( "ok" )
+IF A=1 AND B=2 THEN PRINT ( "ok" )
+IF A#=1.5 OR LOTTERY[10,2]=20 THEN PRINT ( "ok" )
+_tier1
+
+_text
+These expressions will not make sense:
+
+_tier1
+IF A = B = THEN PRINT ( "not ok" )
+IF > A = B THEN PRINT ( "not ok" )
+IF A B THEN PRINT ( "not ok" )
+IF AND A THEN PRINT ( "not ok" )
+IF B OR THEN PRINT ( "not ok" )
+_tier1
+
+_text
+On occasions where one line is not enough after the THEN command, you can use the IF ENDIF statement. Using the same IF logic as above, instead of a THEN Command, simply provide your commands to be executed on the lines following the IF command. You must then mark the end of the commands to be executed with an ENDIF command, as the following example shows:
+
+_tier1
+IF A = B
+  PRINT ( "Hello A and B!" )
+ENDIF
+_tier1
+
+_text
+This is the same as:
+
+_tier1
+IF A = B THEN PRINT ( "Hello A and B!" )
+_tier1
+
+_text
+But the main advantage is that the first piece of code can be adapted to do this:
+
+_tier1
+IF A = B
+  PRINT ( "Hello A!" )
+  PRINT ( "Hello B!" )
+  PRINT ( "Hello A and B!" )
+  PRINT ( "Hello B and A!" )
+  PRINT ( "Hello Everything!" )
+ENDIF
+_tier1
+
+_text
+You can also respond to an IF command if the expression turns out to be false. In cases where you wish to execute a different piece of code if the condition is false, the ELSE command should be used as follows:
+
+_tier1
+IF A = B
+  PRINT ( "The values are the same!" )
+ELSE
+  PRINT ( "The values are different!" )
+ENDIF
+_tier1
+
+_text
+It is important to make sure that you always use an ENDIF when THEN is not in use. You will note ENDIF is used whether or not the ELSE command is utilized.
+
+_text
+You can also make use of the ELSEIF statement, which only executes further statements based on a condition being true, such as:
+
+_tier1
+IF A = 1
+  PRINT ( "The value of A is 1!" )
+ELSEIF A=2
+  PRINT ( "The value of A is 2!"  )
+ENDIF
+_tier1
+
+_sheader
+Print Statements
+
+_text
+The PRINT command is capable of printing out more than a single value. The command allows you to specify a list of data items that can be printed one after the other on the same line. The data items can be of any type. Although the use of PRINT has been frequent in the above examples, there are some unique features you may not be aware of. To print out more than one value on a line you can do this:
+
+_tier1
+a = 1
+b = 2
+name$ = "richard"
+
+PRINT ( name$ + STR ( a ) + STR ( b ) )
+_tier1
+
+_text
+Note that the STR command is used to convert numbers into a string that is compatible with the PRINT command.
+
+_text
+When the PRINT command is used to print data to the screen, the print cursor that is used to paste the individual letters to the screen resets to the left of the screen and one line down when the print is complete. A string of PRINT commands will print to the screen one line at a time. You can change this by leaving the cursor at the end of the printed line after a PRINT command. You achieve this by using the alternative command PRINTC, for example:
+
+_tier1
+PRINTC ( "Hello " )
+PRINT ( "World" )
+_tier1
+
+_text
+There are much more sophisticated text commands in AppGameKit Studio that handle bitmap fonts, colors, sizes and styles but you will discover these as you explore the rest of the help system.
+
+_sheader
+End and Exit statements
+
+_text
+The END command will terminate the execution of a program and end the application immediately.
+
+_text
+The EXIT command can be used to escape a conditional loop early, often as the result of a particular objective being achieved. For example:
+
+_tier1
+FOR T=1 TO 100 STEP 10
+  PRINT ( T )
+  IF T=51
+    PRINT ( "got to 51!" )
+    EXIT
+  ENDIF
+NEXT T
+_tier1

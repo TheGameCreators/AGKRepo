@@ -1,0 +1,97 @@
+_header
+Android Push Notifications
+
+_sheader
+Before you begin
+
+_text
+You will need a server capable of running PHP scripts for this example to work
+
+_text
+Note that these notifications will not work on Amazon or Ouya devices
+
+_text
+Push Notifications on Android are handled by the Firebase Cloud Messaging API, You will need to create a Firebase project for your app in the Firebase console here https://console.firebase.google.com
+
+_text
+In the Firebase console project settings you should see a tab labelled "Cloud Messaging". In there should be a field called "Server key", you will need this for the PHP script. You will also need the "SenderID" field also on this page
+
+_sheader
+Implementation
+
+_text
+Two android projects (interpreter_android_google, and template_android_google) are setup to use Push Notifications, the instructions are the same for both of these projects.
+
+_text
+In your tier 1 code first call SetPushNotificationKeys with your SenderID value like so 
+
+_tier1
+SetPushNotificationKeys( "SenderID", "9102938475" )
+_tier1
+
+_text
+The "SenderID" field is case sensitive and must be exactly as above, the senderID value should be all numbers. After that you can call PushNotificationSetup(). If this returns 0 then this platform does not support push notifications. Otherwise wait for GetPushNotificationToken() to return something other than an empty string, if it returns "Error" then something went wrong. Once you have the token you need to send it to your server, you might also want to send some identifying information like a userID so you know who this token belongs to. The code we use looks something like this
+
+_tier1
+g_Net_UserID = 01234 // some user ID that your server can use to recognise whos key this is
+result = PushNotificationSetup()
+if ( result = 1 )
+    token = GetPushNotificationToken()
+    while ( token = "" )
+        token = GetPushNotificationToken()
+    endwhile
+
+    params$ = "token="+token+"&platform="+getdevicebasename() + "&id=" + str(g_Net_UserID)
+    SendHTTPRequestASync( conn, "sendToken.php", params$ ) // we do not need the server to return anything so we can ignore getting the response
+endif
+_tier1
+
+_text
+In this example we also send the output of GetDeviceBaseName so we know which platform this token belongs to, iOS and Android use different methods. The server will need to remember the token and who it belongs to so you can send them push notifications later, be aware that the tokens can be 183 characters or more in the case of Android. The device takes no further action after this, it simply sends off its token and the server decides when to send a notification.
+
+_text
+When you want to send a notification to an Android device use the following PHP script to send a message to a particular device token, replacing the $apiKey field with your API key generated earlier. For example when two users are playing a turn based game and one device notifies your server it has finished its turn, the server can use the user ID to find the token that belongs to the opponent and send them a notification.
+
+_tier1
+function SendPushNotificationAndroid( $deviceToken, $message )
+{
+    // Replace with real SERVER API key from Google APIs
+    $apiKey = "Server Key From Firebase Console";
+ 
+    // Set POST variables
+    $url = 'https://fcm.googleapis.com/fcm/send';
+ 
+    $fields = array(
+        'to'   => $deviceToken,
+        'notification' => array( "body" => $message ),
+    );
+ 
+    $headers = array( 
+       'Authorization: key=' . $apiKey,
+       'Content-Type: application/json'
+    );
+     
+    // Open connection
+    $ch = curl_init();
+ 
+    // Set the url, number of POST vars, POST data
+    curl_setopt( $ch, CURLOPT_URL, $url );
+    curl_setopt( $ch, CURLOPT_POST, true );
+    curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+ 
+    curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $fields ) );
+ 
+    // Execute post
+    echo "Sending";
+    $result = curl_exec($ch);
+ 
+    // Close connection
+    curl_close($ch);
+ 
+    echo "Result: " . $result;
+}
+_tier1
+
+_text
+Note that Firebase also allows sending of messages directly from the Firebase console, if you only want to use this functionality to send messages to all users of your app then you do not need to worry about the device token or having a PHP server.

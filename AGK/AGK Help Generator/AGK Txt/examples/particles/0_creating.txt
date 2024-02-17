@@ -1,0 +1,288 @@
+﻿_header
+Creating particles
+
+_sheader
+Description
+_text
+Particles can be used for a wide variety of effects such as creating smoke, explosions, stars and much more. In this document the process of creating particles and displaying them on screen is demonstrated.
+
+_image
+0_creating.jpg
+
+_text
+<br>This example program relies on an external image named "particle.png". The image uses several shades of white and grey so it is not clearly visible, so for the purposes of this page a negative image is used:
+_image
+particle.png
+
+_sheader
+Overview
+_text
+Several steps need to take place before particles are ready to be displayed on screen. This list demonstrates the typical process when creating particles:
+
+_listbegin
+create particles
+set an image
+set the emit zone
+set the direction for emitted particles
+set properties such as lifespan and size
+add color key frames
+_listend
+
+_sheader
+Creating particles
+_text
+Just like other resources, particle entities are handled with ID numbers. It’s possible to create them and manually assign an ID number or have an ID number automatically assigned in the creation process.
+
+_text
+The command to create particles is called <i>CreateParticles</i>. It has either 2 or 3 parameters dependant on usage. If you want an ID number assigned automatically it only takes 2 parameters - position on the X axis and position on the Y axis. If you want to control the ID number it takes 3 parameters - the ID number followed by the position on the X axis and position on the Y axis. Here's an example showing the 2 methods of creating particles:
+
+_tier1
+CreateParticles ( 1, 100, 200 )
+particles = CreateParticles ( 100, 200 )
+_tier1
+
+_tier2
+agk::CreateParticles ( 1, 100, 200 );
+particles = agk::CreateParticles ( 100, 200 );
+_tier2
+
+_text
+For this example the approach of assigning ID numbers manually is used.
+
+_text
+Our particle entity will be created with an ID number of 1 and its position set to 150, 10:
+
+_tier1
+CreateParticles ( 1, 150, 10 )
+_tier1
+
+_tier2
+agk::CreateParticles ( 1, 150, 10 );
+_tier2
+
+_sheader
+Set an image
+_text
+The next step is to supply an image for the particle. To do this load an image with the <i>LoadImage</i> command and then call the command <i>SetParticlesImage</i> passing in the ID of your particles and then the ID of the image. These lines of code load the image "particle.png" into ID slot 1 and then apply this to the particles:
+
+_tier1
+LoadImage ( 1, "particle.png" )
+SetParticlesImage ( 1, 1 )
+_tier1
+
+_tier2
+agk::LoadImage ( 1, "particle.png" );
+agk::SetParticlesImage ( 1, 1 );
+_tier2
+
+_sheader
+The emit zone
+_text
+Particles can either emit from their position or from a particular zone. The command <i>SetParticlesStartZone</i> allows you to specify a particular area from where particles will be emitted. This command takes several parameters: ID number of the particles, the X coordinate of the top left corner of the start zone, the Y coordinate of the top left corner of the start zone, X coordinate of the bottom right corner of the start zone and finally a Y coordinate of the bottom right corner of the start zones. Coordinates for the start zone are relative to the position of the particle entity, therefore if a particle entity was positioned at 150, 10 and the start zone was set to -10, 0, 10, 0 then particles would be emitted from 140, 10 to 160, 10.
+
+_text
+For our example the particles will be emitted from a fairly large zone that expands by 100 pixels on each side of the original position, with a little variation on the Y axis:
+
+_tier1
+SetParticlesStartZone ( 1, -100, -10, 100, 10 )
+_tier1
+
+_tier2
+agk::SetParticlesStartZone ( 1, -100, -10, 100, 10 );
+_tier2
+
+_text
+Our starting position is 150, 10 so particles will be emitted within the box 50, 0 (top left) to 250, 20 (bottom right).
+
+_text
+If no start zone is defined then all particles will emit from the position 150, 10.
+
+_sheader
+Direction of particles
+_text
+In the majority of cases you will want to specify a direction for particles. The command <i>SetParticlesDirection</i> controls the direction in which particles are emitted. This command takes three parameters: ID number of the particles, direction on the X axis and direction on the Y axis. To move our particles down the screen this command is called with no direction on the X axis and a value of 50 on the Y axis:
+
+_tier1
+SetParticlesDirection ( 1, 0, 50 )
+_tier1
+
+_tier2
+agk::SetParticlesDirection ( 1, 0, 50 );
+_tier2
+
+_text
+Increasing the direction value will result in particles being emitted at a fast speed, while decreasing the value will have the opposite effect.
+
+_sheader
+Properties
+_text
+Particles have several properties that control the way in which they behave. Properties include the life span of particles, their size, a range of angles for being emitted and the frequency. By altering these properties it's possible to completely change the effect of particles.
+
+_text
+The command <i>SetParticlesLife</i> determines how long each particle should live for. It takes two parameters: the ID number of the particles and a value controlling the life span (specified as a time). In this example all particles are set to live (be active and on screen) for 9 seconds:
+
+_tier1
+SetParticlesLife ( 1, 9 )
+_tier1
+
+_tier2
+agk::SetParticlesLife ( 1, 9 );
+_tier2
+
+_text
+After a particle has been active for 9 seconds it will disappear.
+
+_text
+The command <i>SetParticlesSize</i> controls the size of particles. It takes two parameters: the ID number of the particles and a value controlling the size. Given that it's likely for particles to be high in number, it's often the case that they are small e.g 64 pixels or less. It's advisable to keep this size relatively low for performance reasons.
+
+_text
+The command <i>SetParticlesAngle</i> can be used to control the range of variation from the initial direction. This can be useful to create a more natural effect instead of particles simply falling down in a constant direction. Only two parameters are required for this command: the ID number of the particles and a value controlling the angle. In our case an angle of 15 is set:
+
+_tier1
+SetParticlesAngle ( 1, 15 )
+_tier1
+
+_tier2
+agk::SetParticlesAngle ( 1, 15 );
+_tier2
+
+_text
+The frequency of particles determines how many particles are produced per second. A high value will result in many particles being emitted, while a low value will have the opposite effect. Our particles are emitted at a rate of 60 per second through the use of the command <i>SetParticlesFrequency</i>. This command takes two parameters: an ID number for the particles and a value controlling how many particles are produced per second.
+
+_tier1
+SetParticlesFrequency ( 1, 60 )
+_tier1
+
+_tier2
+agk::SetParticlesFrequency ( 1, 60 );
+_tier2
+
+_text
+Another command, <i>SetParticlesVelocityRange</i> is useful for ensuring your particles move at a random velocity within a given range. This command takes three parameters: ID number of the particles, minimum multiplier for velocity and maximum mulitplier for velocity. With this call we set a range whereby our particles can move by 1x the initial velocity up to 4x:
+
+_tier1
+SetParticlesVelocityRange ( 1, 1, 4 )
+_tier1
+
+_tier2
+agk::SetParticlesVelocityRange ( 1, 1.0f, 4.0f );
+_tier2
+
+_sheader
+Adding color key frames
+_text
+Particles have the ability to change color over the span of their life. This is useful for effects such as particles transitioning to a weaker color or fading out over time. The way it works is that you can specify a color at a specific time, for example, a particle may start out as white and when it nears the end of its life span turn to red. To handle this use the command <i>AddParticlesColorKeyFrame</i>. This command takes several parameters: ID number of the particles, time at which the key frame is to be used, followed by red, green, blue and alpha values.
+
+_text
+These lines of code set color key frames for our particles. It begins by setting the color to 0, 100, 255, 0 at time 0 (the beginning of a particles life). The next line changes the color by bringing in the alpha to 255 at time 0.5. This has the effect of quickly fading in the particles. This is followed by a change to color 150, 50, 100 at time 2. Finally the particle is faded out when it nears the end of its life at time 9:
+
+_tier1
+AddParticlesColorKeyFrame ( 1, 0, 0, 100, 255, 0 )
+AddParticlesColorKeyFrame ( 1, 0.5, 0, 100, 255, 255 )
+AddParticlesColorKeyFrame ( 1, 2.0, 150, 50, 100, 255 )
+AddParticlesColorKeyFrame ( 1, 9.0, 0, 0, 0, 0 )
+_tier1
+
+_tier2
+agk::AddParticlesColorKeyFrame ( 1, 0, 0, 100, 255, 0 );
+agk::AddParticlesColorKeyFrame ( 1, 0.5, 0, 100, 255, 255 );
+agk::AddParticlesColorKeyFrame ( 1, 2.0, 150, 50, 100, 255 );
+agk::AddParticlesColorKeyFrame ( 1, 9.0, 0, 0, 0, 0 );
+_tier2
+
+
+_sheader
+Main Loop
+_text
+Our main loop simply needs to make a call to <i>Sync</i> to update the screen:
+
+_tier1
+do
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+backdrop = CreateSprite ( LoadImage ( "background1.jpg" ) )
+<br>
+LoadImage ( 1, "particle.png" )
+<br>
+CreateParticles           ( 1, 150, 10 )
+SetParticlesImage         ( 1, 1 )
+<br>
+SetParticlesStartZone     ( 1, -100, -10, 100, 10 )
+<br>	
+SetParticlesDirection     ( 1, 0, 50.0 )
+<br>
+SetParticlesLife          ( 1, 9 )
+SetParticlesSize          ( 1, 24 )
+SetParticlesAngle         ( 1, 15 )
+SetParticlesFrequency     ( 1, 60 )
+SetParticlesVelocityRange ( 1, 1, 4 )
+<br>
+AddParticlesColorKeyFrame ( 1, 0, 0, 100, 255, 0 )
+AddParticlesColorKeyFrame ( 1, 0.5, 0, 100, 255, 255 )
+AddParticlesColorKeyFrame ( 1, 2.0, 150, 50, 100, 255 )
+AddParticlesColorKeyFrame ( 1, 9.0, 0, 0, 0, 0 )
+<br>
+do
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+agk::SetVirtualResolution ( 320, 480 );
+<br>
+int backdrop = agk::CreateSprite ( agk::LoadImage ( "background1.jpg" ) );
+<br>
+agk::LoadImage ( 1, "particle.png" );
+<br>
+agk::CreateParticles           ( 1, 150, 10 );
+agk::SetParticlesImage         ( 1, 1 );
+<br>
+agk::SetParticlesStartZone     ( 1, -100, -10, 100, 10 );
+<br>	
+agk::SetParticlesDirection     ( 1, 0, 50.0f );
+<br>
+agk::SetParticlesLife          ( 1, 9 );
+agk::SetParticlesSize          ( 1, 24 );
+agk::SetParticlesAngle         ( 1, 15 );
+agk::SetParticlesFrequency     ( 1, 60 );
+agk::SetParticlesVelocityRange ( 1, 1.0f, 4.0f );
+<br>
+agk::AddParticlesColorKeyFrame ( 1, 0, 0, 100, 255, 0 );
+agk::AddParticlesColorKeyFrame ( 1, 0.5, 0, 100, 255, 255 );
+agk::AddParticlesColorKeyFrame ( 1, 2.0, 150, 50, 100, 255 );
+agk::AddParticlesColorKeyFrame ( 1, 9.0, 0, 0, 0, 0 );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+When you run the application the particles on screen will continually change colour.
+
+_text
+Getting particles on screen is a fairly simple process. By experimenting with their settings it's possible to create all kinds of interesting effects to enhance your games.

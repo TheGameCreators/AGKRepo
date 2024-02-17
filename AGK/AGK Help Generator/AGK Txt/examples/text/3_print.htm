@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Basic print commands - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Basic print commands</div><div class="page"><h1>Basic print commands</h1><h2>Description</h2><p>A set of print commands are provided with AppGameKit Studio. Their purpose is to provide a very quick and effective way of outputting text on screen, which is particularly useful for debugging.</p><p>This example will demonstrate how the print commands can be used.</p><div align="center"><img src="3_print.jpg"/></div><h2>Printing text</h2><p>The <i>Print</i> command takes one parameter. It will accept a string, an integer or a floating point variable. These lines of code demonstrate printing out the different types:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">Print ( "some text" )
+Print ( 123 )
+Print ( 9.473 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="Print ( &quot;some text&quot; )
+Print ( 123 )
+Print ( 9.473 )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::Print ( "some text" );
+agk::Print ( 123 );
+agk::Print ( 9.473f );
+</pre></div><p>After calling these commands the contents will be output on screen, with each subsequent call to <i>Print</i> generating a new line.</p><h2>Printing properties</h2><p>It's possible to adjust size, spacing and color properties for printing text on screen.</p><p>The command <i>SetPrintSize</i> controls the size of printed text. It only takes one parameter that controls the size. Increase the size to have larger text printed. The default size is calculated based on whether you have specified an aspect ratio or are using a virtual resolution.</p><p>The command <i>SetPrintSpacing</i> controls the spacing between characters. This command takes one parameter that controls the spacing. By default this is 0 meaning there are no spaces between characters. Use a larger value to increase spacing between characters.</p><p>The command <i>SetPrintColor</i> takes four parameters: red, green, blue and alpha values. This command is used to control the color of text displayed with the <i>Print</i> command. By default all of these values are 255, which will display white text on screen.</p><h2>Full code listing</h2><p>Our final program makes three calls to the <i>Print</i> command:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">backdrop = CreateSprite ( LoadImage ( "background3.jpg" ) )
+SetSpriteColorAlpha ( backdrop, 200 )
+SetSpriteSize ( backdrop, 100, 100 )
+<br>
+do
+    Print ( "some text" )
+    Print ( 123 )
+    Print ( 9.473 )
+<br>
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="backdrop = CreateSprite ( LoadImage ( &quot;background3.jpg&quot; ) )
+SetSpriteColorAlpha ( backdrop, 200 )
+SetSpriteSize ( backdrop, 100, 100 )
+
+do
+    Print ( &quot;some text&quot; )
+    Print ( 123 )
+    Print ( 9.473 )
+
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    int backdrop = agk::CreateSprite ( agk::LoadImage ( "background3.jpg" ) );
+    agk::SetSpriteColorAlpha ( backdrop, 200 );
+    agk::SetSpriteSize ( backdrop, 100, 100 );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Print ( "some text" );
+    agk::Print ( 123 );
+    agk::Print ( 9.473 );
+<br>
+    agk::Sync ( );
+}
+</pre></div><h2>Making sure text is on screen</h2><p>Any text printed out by the <i>Print</i> command will be displayed when the <i>Sync</i> command is called. At this point any text within the print buffer will be cleared. Therefore if you made a call to <i>Print</i> outside of your main loop then the text would be flashed on screen and then disappear. To ensure text with the <i>Print</i> command is displayed on screen then it's advisable to call <i>Print</i> within your main loop.</p><h2>Conclusion</h2><p>The <i>Print</i> command is ideal for quickly displaying text on screen. If you need extra control and customization then it's advisable to use the text commands.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

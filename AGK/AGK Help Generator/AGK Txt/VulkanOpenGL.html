@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+    <head>
+        <title>Vulkan & OpenGL - AGK Help</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        
+        <link href="main.css" rel="styleSheet" type="text/css" />
+    </head>
+
+    <body>
+        <div class="header" style="background: #000 url('gfx/header-back.png') top center no-repeat;">
+            <div>
+                <div class="navigation">
+                    <a href="home.html"><img src="gfx/b-home.png" width="76" height="44" alt=""></a>
+                    <a href="javascript:history.go(-1)"><img src="gfx/b-back.png" width="71" height="44" alt=""></a>
+                    <a href="javascript:window.print()"><img src="gfx/b-print.png" width="75" height="44" alt=""></a>
+                </div>
+
+                <a href="http://www.appgamekit.com" target="_blank"><img class="logo" src="gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a>
+            </div>
+            
+            <img src="gfx/drop-shadow.png" width="1158" height="40" alt="">
+        </div>
+        
+        <div class="breadcrumbs">
+            <a href="home.html">Home</a> &gt; Vulkan & OpenGL
+        </div>
+        
+        <div class="page">
+
+            <h1>Vulkan & OpenGL</h1>
+            <p>
+            AppGameKit Studio features both OpenGL and Vulkan rendering engines. 
+			</p>
+			<p>
+			The OpenGL engine works on all supported platforms, it uses OpenGL 2.0 on Windows, Mac, and Linux, and OpenGL ES 2.0 on Android, iOS, and HTML5.
+			</p>
+			<p>
+			The new Vulkan engine works and is now the default on Windows, Mac, Linux, and iOS. 
+			On iOS and Mac the Vulkan renderer runs on top of Metal using the MoltenVK wrapper, whilst it is not a native implementation of Vulkan it should perform the same as Vulkan on the other platforms. 
+			</p>
+			<p>
+			Android has partial support for Vulkan, currently PlayVideoToImage, SetDeviceCameraToImage, and the AR commands are not supported with Vulkan.
+			Therefore the Android player will always run OpenGL ES 2.0 to allow maximum compatibility with apps broadcast to it. 
+			If you do not use any of these commands then you can choose to use the Vulkan renderer in your exported apps using the <b>#renderer "Advanced"</b> line in your Tier 1 code as detailed below.
+			</p>
+			
+			<h1>Choosing The Renderer</h1>
+			<p>
+			To force AGK to use a particular renderer you can use <b>#renderer</b> followed by a string to tell AGK which renderer you want to use. The valid strings are
+			<ul>
+			<li>"Basic" to use OpenGL 2.0 or OpenGL ES 2.0 depending on the platform, if this is not supported the app will close</li>
+			<li>"Advanced" to use Vulkan, if this is not supported then the app will close (except on Android where it will then fallback to OpenGL ES 2.0)</li>
+			<li>"Prefer Best" will try to use Vulkan and fall back to OpenGL if Vulkan is not supported by the current device</li>
+			</ul>
+			</p>
+			<p>
+			This can be used at any point in your Tier 1 code, it will be read by the compiler and applied when your app first starts.
+			</p>
+			<p>
+			The renderer cannot change once it has been set up, so #renderer will do nothing when broadcast to a player, since the player will already have started and chosen a renderer before it runs your Tier 1 code. 
+			The #renderer option only applies to apps run using the Run button in the IDE, apps exported from the IDE, or apps run directly from their project folders.
+			</p>
+			<p>
+			Shaders are automatically converted to a format suitable for the current renderer. All shaders must be in the GLSL V110 format, if the renderer is OpenGL or OpenGL ES then they are used as is in GLSL format. If the renderer is Vulkan then AppGameKit Studio converts them into SPIRV format or Metal Shading Language as appropriate.
+			</p>
+			
+			<p>
+			If you experience any problems running your apps on OpenGL or Vulkan hardware then please report your issues to our team here: <a href="https://github.com/TheGameCreators/AGK-Studio/issues">AppGameKit Studio Issues</a> 
+			</p>
+            <br><br>
+        </div>
+        
+        <div class="footer" style="background: #000 url('gfx/footer-back.png') top center no-repeat;">
+            <div>
+                <p>
+                    <a href="http://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br/>
+                    <strong>App Game Kit</strong> &nbsp;&copy; TheGameCreators Ltd. All Rights Reserved. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a>
+                </p>
+            </div>
+        </div>
+        
+    </body>
+</html>

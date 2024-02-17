@@ -1,0 +1,22 @@
+_header
+#option_explicit
+
+_sheader
+Syntax
+
+_tier1
+#option_explicit
+_tier1
+
+_sheader
+Description
+
+_text
+Use this anywhere in your program to force variables to be declared before using them. No matter where it is used, it applies to the entire program.
+
+_sheader
+Example
+
+_tier1
+#option_explicit
+_tier1

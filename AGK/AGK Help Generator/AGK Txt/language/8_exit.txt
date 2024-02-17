@@ -1,0 +1,26 @@
+_header
+exit
+
+_sheader
+Syntax
+
+_tier1
+exit
+_tier1
+
+_sheader
+Description
+
+_text
+This command allows you to break from a program loop at any time. Only control loops that have an uncertain exit condition can use this command such as <i>do loop</i>, <i>while</i>, <i>for</i> and <i>repeat</i> loops. <i>exit</i> will have no effect on <i>goto</i> loops during the running of your program. 
+
+_sheader
+Example
+
+_tier1
+do
+    if GetPointerPressed ( ) = 1
+        exit
+    endif
+loop
+_tier1

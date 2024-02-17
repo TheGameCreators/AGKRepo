@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Making a purchase - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="http://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Making a purchase</div><div class="page"><h1>Making a purchase</h1><p>The process of making a purchase will typically go like this.</p><ul><li>Provide the user with an option to make the purchases e.g. a screen with buttons on showing all the different products available.</li><li>Attempt to purchase the product.</li><li>Wait until the purchase process has completed.</li><li>Determine whether the purchase succeeded or failed.</li><li>If appropriate supply the user with the product.</li></ul><p>The key commands involved in this process are -</p><ul><li><i>InAppPurchaseActivate</i> - this takes an ID number that corresponds to the product IDs set up by <i>InAppPurchaseAddProductID</i>.</li><li><i>GetInAppPurchaseState</i> - determine the current state when a product has been activated. A value of 0 indicates that the process is taking place. A value of 1 means the process has finished. This only relates to the state of attempting a purchase that may have succeeded or failed.</li><li><i>GetInAppPurchaseAvailable</i> - used to check whether a product is available after <i>GetInAppPurchaseState</i> has finished.</li></ul><p>Code to handle a purchase could look like this.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">InAppPurchaseActivate ( 0 )
+<br>
+do
+	if GetInAppPurchaseState ( ) = 1
+		exit
+	endif
+	<br>
+	sync ( )
+loop
+<br>
+if GetInAppPurchaseAvailable ( 0 ) = 1
+	// provide the content
+endif
+</pre></div><div align="right"><button class="btn" data-clipboard-text="InAppPurchaseActivate ( 0 )
+
+do
+	if GetInAppPurchaseState ( ) = 1
+		exit
+	endif
+
+	sync ( )
+loop
+
+if GetInAppPurchaseAvailable ( 0 ) = 1
+	// provide the content
+endif
+">Copy Code</button></div><p>The call to <i>InAppPurchaseActivate</i> starts the process of purchasing the product with ID 0. In our case this is "productID1". After calling this command it is necessary to wait and check the state of the in app purchase. </p><p>The <i>do</i> loop checks the state of the purchase by calling <i>GetInAppPurchaseState</i>. Inside the <i>do</i> loop is a call to <i>sync</i>. This is important - you cannot simply wait in a loop without passing control back to AppGameKit, so ensure you call <i>sync</i> while waiting. Bear in mind that there may be a small delay after calling <i>InAppPurchaseActivate</i> prior to any dialogs appear on screen, therefore at this point it would be a good idea to display something on screen indicating to the user that an attempt is being made to purchase the product.</p><p>The final stage is a call to <i>GetInAppPurchaseAvailable</i>. If this returns 1 then the purchase was a success and our product can be presented to the user. If this returns 0 then something went wrong e.g. the user decided to cancel at some point in the process or the payment failed to go through, in which case we must not let the user have the product.</p><div align="center"><a href="iap_006.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="iap_008.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="http://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

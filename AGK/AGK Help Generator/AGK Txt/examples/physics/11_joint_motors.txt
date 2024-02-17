@@ -1,0 +1,193 @@
+_header
+Joint motors
+
+_sheader
+Description
+
+_text
+Line, prismatic and revolute joints support motors, which can be used to continuously move a joint until it is prevented by a collision. Motors work by applying a force to achieve a set speed, if they meet resistance they increase the force until either the motor is moving at the desired speed or a maximum force is reached. Motors can be used for all kinds of interesting scenarios. In this example a motor is attached to a revolute joint, that will continually spin a sprite around another sprite.
+
+_image
+11_joint_motors.jpg
+
+_sheader
+Getting started
+
+_text
+The code will perform the following:
+
+_listbegin
+set a virtual resolution of 320 x 480
+load images named silver1.png (a crate) and small_ball.png
+create a static sprite that uses the crate
+create a dynamic sprite that uses the ball, this will be placed below the crate
+create a revolute joint that connects the crate and chip together
+turn a motor on for the joint
+switch physics debug on
+_listend
+
+_sheader
+Setting the virtual resolution and loading images
+
+_text
+A virtual resolution is set along with two images being loaded:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+LoadImage ( 1, "silver1.png" )
+LoadImage ( 2, "small_ball.png" )
+_tier1
+
+_tier2
+agk::SetVirtualResolution ( 320, 480 );
+<br>
+agk::LoadImage ( 1, "silver1.png" );
+agk::LoadImage ( 2, "small_ball.png" );
+_tier2
+
+_sheader
+Creating a static sprite
+
+_text
+Sprite 1 will be created that uses the crate image. It will get placed at 150, 150 and have physics turned on, with its state being set to static:
+
+_tier1
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 150, 150 )
+SetSpritePhysicsOn ( 1, 1 )
+_tier1
+
+_tier2
+agk::CreateSprite ( 1, 1 );
+agk::SetSpritePosition ( 1, 150, 150 );
+agk::SetSpritePhysicsOn ( 1, 1 );
+_tier2
+
+_sheader
+Creating a dynamic sprite
+
+_text
+Sprite 2 will be created. This sprite will use the chip image and will get placed directly below the crate at a position of 150, 250. Its shape will be set to a circle, as this is a closer match than the default box for collision, and physics will be turned on with its state being set to dynamic:
+
+_tier1
+CreateSprite ( 2, 2 )
+SetSpritePosition ( 2, 150, 250 )
+SetSpriteShape ( 2, 1 )
+SetSpritePhysicsOn ( 2, 2 )
+_tier1
+
+_tier2
+agk::CreateSprite ( 2, 2 );
+agk::SetSpritePosition ( 2, 150, 250 );
+agk::SetSpriteShape ( 2, 1 );
+agk::SetSpritePhysicsOn ( 2, 2 );
+_tier2
+
+_sheader
+Creating a revolute joint
+
+_text
+A revolute joint is created with an ID of 1, connecting sprite 1 and 2 together with the anchor point being 174, 174 which is roughly the center point of the crate:
+
+_tier1
+CreateRevoluteJoint ( 1, 1, 2, 174, 174, 0 )
+_tier1
+
+_tier2
+agk::CreateRevoluteJoint ( 1, 1, 2, 174, 174, 0 );
+_tier2
+
+_sheader
+Turning the motor on
+
+_text
+To turn a motor on for the joint use the command <i>SetJointMotorOn</i>. This command requires the ID number of the joint, a value controlling how fast the motor is and finally a value that determines the maximum amount of force that can be applied. In our case the motor is turned on for joint 1 (the revolute joint) and has a speed of 0.5 and a maximum force of 20,000:
+
+_tier1
+SetJointMotorOn ( 1, 0.5, 20000 )
+_tier1
+
+_tier2
+agk::SetJointMotorOn ( 1, 0.5, 20000 );
+_tier2
+
+_text
+When the program runs, the motor will force the chip to revolve around the crate at a relatively low speed. Changing the speed value from 0.5 to a higher value, such as 10, would result in the chip revolving around the crate at a much greater speed.
+
+_text
+Notice how the maximum force is at a reasonably high value. Try lowering this to 10,000 and notice the impact it has - with a lower maximum force the motor doesn't have enough power to push the chip around the crate.
+
+_text
+If you need to switch the motor off call the command <i>SetJointMotorOff</i> and pass in the ID number of the joint.
+
+_sheader
+Full code listing
+_text
+Everything is now in place. The only extras needed are to enable physics debugging and to ensure <i>Sync</i> is called within the main loop. Here's the final code for our program:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background1.jpg" ) )
+<br>
+LoadImage ( 1, "silver1.png" )
+LoadImage ( 2, "small_ball.png" )
+<br>
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 150, 150 )
+SetSpritePhysicsOn ( 1, 1 )
+<br>
+CreateSprite ( 2, 2 )
+SetSpritePosition ( 2, 150, 250 )
+SetSpriteShape ( 2, 1 )
+SetSpritePhysicsOn ( 2, 2 )
+<br>
+CreateRevoluteJoint ( 1, 1, 2, 174, 174, 0 )
+<br>
+SetJointMotorOn ( 1, 0.5, 20000 )
+<br>
+SetPhysicsDebugOn ( )
+<br>
+do
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+    agk::CreateSprite ( agk::LoadImage ( "background1.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "silver1.png" );
+    agk::LoadImage ( 2, "small_ball.png" );
+<br>
+    agk::CreateSprite ( 1, 1 );
+    agk::SetSpritePosition ( 1, 150, 150 );
+    agk::SetSpritePhysicsOn ( 1, 1 );
+<br>
+    agk::CreateSprite ( 2, 2 );
+    agk::SetSpritePosition ( 2, 150, 250 );
+    agk::SetSpriteShape ( 2, 1 );
+    agk::SetSpritePhysicsOn ( 2, 2 );
+<br>
+    agk::CreateRevoluteJoint ( 1, 1, 2, 174, 174, 0 );
+<br>
+    agk::SetJointMotorOn ( 1, 0.5, 20000 );
+<br>
+    agk::SetPhysicsDebugOn ( );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+Whilst this is a simple example, it should give you an insight into what might be possible when using motors with joints. There is potential for all kinds of interesting effects that could really liven up your game.
+
+

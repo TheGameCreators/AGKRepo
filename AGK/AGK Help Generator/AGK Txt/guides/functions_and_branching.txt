@@ -1,0 +1,30 @@
+
+_header
+Functions and variable scope
+
+_sheader
+Beginner Level Tutorial
+
+_sheader
+What you will learn
+
+_text
+This guide explains what commands are, deals with functions, variable scope and branching. It's important to understand these elements so that you can write effective programs and control their flow.
+
+_listbegin
+<a href="functions_and_branching_0001.htm">Commands</a>
+<a href="functions_and_branching_001.htm">Introduction to functions</a>
+<a href="functions_and_branching_002.htm">Function parameters</a>
+<a href="functions_and_branching_003.htm">Returning values in functions</a>
+<a href="functions_and_branching_004.htm">Exiting functions</a>
+<a href="functions_and_branching_005.htm">Experimenting with functions</a>
+<a href="functions_and_branching_006.htm">Variable scope</a>
+<a href="functions_and_branching_007.htm">Local variables</a>
+<a href="functions_and_branching_008.htm">Global variables</a>
+<a href="functions_and_branching_009.htm">Global and local precedence</a>
+<a href="functions_and_branching_010.htm">Branching</a>
+<a href="functions_and_branching_011.htm">Conclusion</a>
+_listend
+
+_navigation
+functions_and_branching_0001.htm

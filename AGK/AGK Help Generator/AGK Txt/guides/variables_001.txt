@@ -1,0 +1,27 @@
+
+_header
+What is a variable?
+
+_text
+Every program you create is going to consist of a bunch of common elements, one of which are variables. They are used to store information that your program needs. Take the example of a Space Invader style game. A game like this will need to store data, such as how many lives the player has left, how many points they have scored, how many enemies are still alive etc. This is where variables come into play. You can use them to deal with all the data that your game requires.
+
+_text
+A variable can be declared in your program by giving it a name and assigning it a value. Say our game requires a variable to hold the score. It could be set up like this.
+
+_tier1
+score = 0
+<br>
+do
+	print ( score )
+	sync ( )
+loop
+_tier1
+
+_text
+The first line has declared a variable named <i>score</i> and assigned it a value of 0. Following on from that there's a <i>do</i> loop, that will display the contents of <i>score</i> on screen by calling the <i>print</i> command and passing in <i>score</i> as its parameter. If you run the program all you will see on screen is the number 0 in the top left corner.
+
+_imageclick
+variables001.jpg
+
+_navigation
+variables.htm variables_002.htm

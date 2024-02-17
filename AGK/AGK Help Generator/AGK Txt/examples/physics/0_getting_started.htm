@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Getting started with physics - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Getting started with physics</div><div class="page"><h1>Getting started with physics</h1><h2>Description</h2><p>The physics command set within AppGameKit Studio provides a 2D rigid body simulation library for games. It can be used to make sprites move in believable ways and make games more interactive. In this example we explore the basics of getting started with physics by creating 5 sprites, positioning them in a row, turning physics on and seeing the results.</p><div align="center"><img src="0_getting_started.jpg"/></div><h2>Overview</h2><p>The process involved is as follows:</p><ul><li>create 5 sprites and position them in a row</li><li>turn physics on for the sprites</li><li>within the main loop update the contents of the screen</li></ul><h2>Creating 5 sprites</h2><p>One image is loaded (a football), which is then used by 5 sprites and these sprites are all laid out alongside each other:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadImage ( 1, "small_ball.png" )
+<br>
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 1 )
+CreateSprite ( 3, 1 )
+CreateSprite ( 4, 1 )
+CreateSprite ( 5, 1 )
+<br>
+SetSpritePosition ( 1, 0, 0 )
+SetSpritePosition ( 2, 60, 0 )
+SetSpritePosition ( 3, 120, 0 )
+SetSpritePosition ( 4, 180, 0 )
+SetSpritePosition ( 5, 240, 0 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadImage ( 1, &quot;small_ball.png&quot; )
+
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 1 )
+CreateSprite ( 3, 1 )
+CreateSprite ( 4, 1 )
+CreateSprite ( 5, 1 )
+
+SetSpritePosition ( 1, 0, 0 )
+SetSpritePosition ( 2, 60, 0 )
+SetSpritePosition ( 3, 120, 0 )
+SetSpritePosition ( 4, 180, 0 )
+SetSpritePosition ( 5, 240, 0 )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::LoadImage ( 1, "chip5.png" );
+<br>
+agk::CreateSprite ( 1, 1 );
+agk::CreateSprite ( 2, 1 );
+agk::CreateSprite ( 3, 1 );
+agk::CreateSprite ( 4, 1 );
+agk::CreateSprite ( 5, 1 );
+<br>
+agk::SetSpritePosition ( 1, 0, 0 );
+agk::SetSpritePosition ( 2, 60, 0 );
+agk::SetSpritePosition ( 3, 120, 0 );
+agk::SetSpritePosition ( 4, 180, 0 );
+agk::SetSpritePosition ( 5, 240, 0 );
+</pre></div><h2>Switching physics on</h2><p>As it stands now our sprites will be drawn on screen and only move based on our control of them. When switching physics on the underlying simulation code will take over and be responsible for providing a realistic simulation. Enabling physics for sprites is handled with a call to the function <i>SetSpritePhysicsOn</i>. By default sprites are not tied into the physics simulation The function <i>SetSpritePhysicsOn</i> takes two parameters - the first is the ID number of the sprite and the second is the type of physics objects, with suitable values being 1 for a static object, 2 for a dynamic object and 3 for a kinematic object. This demo is going to examine what happens when we switch all of our sprites to dynamic objects. This is handled with the following code:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetSpritePhysicsOn ( 1, 2 )
+SetSpritePhysicsOn ( 2, 2 )
+SetSpritePhysicsOn ( 3, 2 )
+SetSpritePhysicsOn ( 4, 2 )
+SetSpritePhysicsOn ( 5, 2 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetSpritePhysicsOn ( 1, 2 )
+SetSpritePhysicsOn ( 2, 2 )
+SetSpritePhysicsOn ( 3, 2 )
+SetSpritePhysicsOn ( 4, 2 )
+SetSpritePhysicsOn ( 5, 2 )
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetSpritePhysicsOn ( 1, 2 );
+agk::SetSpritePhysicsOn ( 2, 2 );
+agk::SetSpritePhysicsOn ( 3, 2 );
+agk::SetSpritePhysicsOn ( 4, 2 );
+agk::SetSpritePhysicsOn ( 5, 2 );
+</pre></div><h2>Main loop</h2><p>The main loop in this example does not take any action. All it needs to do is make a call to Sync to ensure the screen is updated.</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+   Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+   Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+</pre></div><h2>Full code listing</h2><p>The final program only has one alteration and that is the addition of a background sprite. Here's the final code:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background3.jpg" ) )
+<br>
+LoadImage ( 1, "small_ball.png" )
+<br>
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 1 )
+CreateSprite ( 3, 1 )
+CreateSprite ( 4, 1 )
+CreateSprite ( 5, 1 )
+<br>
+SetSpritePosition ( 1, 0, 0 )
+SetSpritePosition ( 2, 60, 0 )
+SetSpritePosition ( 3, 120, 0 )
+SetSpritePosition ( 4, 180, 0 )
+SetSpritePosition ( 5, 240, 0 )
+<br>
+SetSpritePhysicsOn ( 1, 2 )
+SetSpritePhysicsOn ( 2, 2 )
+SetSpritePhysicsOn ( 3, 2 )
+SetSpritePhysicsOn ( 4, 2 )
+SetSpritePhysicsOn ( 5, 2 )
+<br>
+do
+   Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+CreateSprite ( LoadImage ( &quot;background3.jpg&quot; ) )
+
+LoadImage ( 1, &quot;small_ball.png&quot; )
+
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 1 )
+CreateSprite ( 3, 1 )
+CreateSprite ( 4, 1 )
+CreateSprite ( 5, 1 )
+
+SetSpritePosition ( 1, 0, 0 )
+SetSpritePosition ( 2, 60, 0 )
+SetSpritePosition ( 3, 120, 0 )
+SetSpritePosition ( 4, 180, 0 )
+SetSpritePosition ( 5, 240, 0 )
+
+SetSpritePhysicsOn ( 1, 2 )
+SetSpritePhysicsOn ( 2, 2 )
+SetSpritePhysicsOn ( 3, 2 )
+SetSpritePhysicsOn ( 4, 2 )
+SetSpritePhysicsOn ( 5, 2 )
+
+do
+   Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background3.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "small_ball.png" );
+<br>
+    agk::CreateSprite ( 1, 1 );
+    agk::CreateSprite ( 2, 1 );
+    agk::CreateSprite ( 3, 1 );
+    agk::CreateSprite ( 4, 1 );
+    agk::CreateSprite ( 5, 1 );
+<br>
+    agk::SetSpritePosition ( 1, 0, 0 );
+    agk::SetSpritePosition ( 2, 60, 0 );
+    agk::SetSpritePosition ( 3, 120, 0 );
+    agk::SetSpritePosition ( 4, 180, 0 );
+    agk::SetSpritePosition ( 5, 240, 0 );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>Try experimenting with switching physics on or off for sprites and see the impact it makes. Notice how physics enabled sprites are affected by forces such as gravity, which will result in them falling to the bottom of the screen.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

@@ -1,0 +1,71 @@
+_header
+Exiting functions
+
+_text
+There may be occasions where you want to exit out of a function dependent on certain conditions. The keyword <i>exitfunction</i> lets you do this. When used it immediately exits the function resulting in no further instructions beyond being executed. The following program shows it being used.
+
+_tier1
+do
+	myFunction ( 10, 20 )
+	<br>
+	sync ( )
+loop
+<br>
+function myFunction ( a as integer, b as integer )
+	print ( a )
+	exitfunction
+	print ( b )
+endfunction 
+_tier1
+
+_text
+The function <i>myFunction</i> takes in two integer parameters (<i>a</i> and <i>b</i>). The code within the function makes a call to the <i>print</i> command passing in the value of <i>a</i>. This is followed by a call to the <i>exitfunction</i> command. The effect of this is such that the next call to <i>print</i> using the parameter <i>b</i> is ignored, as the function immediately exits out upon coming to <i>exitfunction</i>. When this program runs the only thing you will see on screen is the number 10. The call to display the value of <i>b</i> on screen is never executed.
+
+_text
+This kind of functionality to exit out of a function can be useful. Let's look at the program again, but this time with a condition added in.
+
+_tier1
+do
+	myFunction ( 10, 20 )
+	<br>
+	sync ( )
+loop
+<br>
+function myFunction ( a as integer, b as integer )
+	if a <= 10
+		exitfunction
+	endif
+	<br>
+	print ( a )
+	print ( b )
+endfunction
+_tier1
+
+_text
+The function <i>myFunction</i> has an if statement that determines whether the parameter <i>a</i> is less than or equal to 10. If this condition is met <i>exitfunction</i> is used to immediately return out of the function and continue execution from where the function was called. If this condition is not met then the values of <i>a</i> and <i>b</i> are displayed on screen. Given that <i>myFunction</i> is called and supplied with values of 10 and 20 this function will immediately exit. If the first parameter is changed to 11 then the function will display 11 and 20 on screen.
+
+_text
+When you need to exit out of a function that returns a value simply add the return value directly after the call to <i>exitfunction</i>, as shown in this example.
+
+_tier1
+do
+	print ( myFunction ( 10, 20 ) )
+	<br>
+	sync ( )
+loop
+<br>
+function myFunction ( a as integer, b as integer )
+	if a <= 10
+		exitfunction 1
+	endif
+endfunction a + b
+<br>
+_tier1
+
+_text
+If the value of <i>a</i> within <i>myFunction</i> is less than or equal to 10 the function will immediately exit, returning a value of 1, otherwise the function will return the sum of <i>a</i> and <i>b</i>.
+
+_navigation
+functions_and_branching_003.htm functions_and_branching_005.htm
+
+

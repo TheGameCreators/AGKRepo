@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title> - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; </div><div class="page"><h2>Variables in action</h2><p>Now it's time to take everything you have discovered so far and put it into practice, by creating a program where we can see how variables can be used. To do this we'll display something on screen that can have its position controlled by variables. In the interests of keeping things simple the something we'll display on screen will actually be a small blue rectangle, but with a bit of imagination this could be a space ship flying around a level you have constructed. Admittedly to get something other than text being displayed on screen we are kind of jumping ahead of ourselves a little, but it's going to be a lot more interesting than staring at text.</p><p>Here's the starting point for our program. Copy this code and run it.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">CreateImageColor ( 1, 0, 0, 255, 255 )
+CreateSprite ( 1, 1 )
+SetSpriteSize ( 1, 10, 10 )
+<br>
+do
+	SetSpritePosition ( 1, 30, 40 )
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="CreateImageColor ( 1, 0, 0, 255, 255 )
+CreateSprite ( 1, 1 )
+SetSpriteSize ( 1, 10, 10 )
+
+do
+	SetSpritePosition ( 1, 30, 40 )
+
+	sync ( )
+loop
+">Copy Code</button></div><p>A glorious blue rectangle displayed on screen! Let's break it down and see what is happening.</p><div align="center"><a class="example-image-link" href="variables003_large.jpg" data-lightbox="example-1"><img class="example-image" src="variables003.jpg" alt="image-1" /></a></div><ul><li><i>CreateImageColor</i> is used to create a blue image</li><li><i>CreateSprite</i> will allow us to take the image and display it on screen</li><li><i>SetSpriteSize</i> lets us define how big the sprite will be on screen</li><li>Finally in the <i>do</i> loop the sprite is positioned</li></ul><p>There's a lot going on here, although for now it's not too important to explore all of this in minute detail. The main thing is we've got something on screen that we can experiment with. The key command we'll explore in this program is <i>SetSpritePosition</i>. Three values are passed into this command 1, 30 and 40. These are known as parameters. The first parameter is 1, the second parameter is 30 and the third parameter is 40. Try changing the second parameter 30 to 0 and running the program. Notice how the blue rectangle has been moved over to the left side of the screen. This parameter controls the position of the rectangle on the X axis. As this value increases the rectangle will move over to the right and as it decreases it will move over to the left. Now try modifying the third parameter to 0. Note this time that the rectangle has moved up. This parameter controls the position of the rectangle on the Y axis. As it decreases the rectangle moves up the screen and as it increases the rectangle moves down.</p><p>Instead of passing in a fixed number such as 30 to control the X position we can instead use a variable. Lets declare a variable named <i>shipPositionX</i> in our program and pass it into the command <i>SetSpritePosition</i>.</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">shipPositionX as integer = 0
+<br>
+CreateImageColor ( 1, 0, 0, 255, 255 )
+CreateSprite ( 1, 1 )
+SetSpriteSize ( 1, 10, 10 )
+<br>
+do
+	SetSpritePosition ( 1, shipPositionX, 40 )
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="shipPositionX as integer = 0
+
+CreateImageColor ( 1, 0, 0, 255, 255 )
+CreateSprite ( 1, 1 )
+SetSpriteSize ( 1, 10, 10 )
+
+do
+	SetSpritePosition ( 1, shipPositionX, 40 )
+
+	sync ( )
+loop
+">Copy Code</button></div><p>When the program runs the value of <i>shipPositionX</i> is 0, therefore the position of our ship / blue rectangle is over to the left side of the screen.</p><div align="center"><a class="example-image-link" href="variables004_large.jpg" data-lightbox="example-1"><img class="example-image" src="variables004.jpg" alt="image-1" /></a></div><p>Now what you will find is that the ships position (at least on the X axis - going from left to right on the screen) is being controlled by the value assigned to <i>shipPositionX</i>. Try changing the initial value of <i>shipPositionX</i> to 50. Notice how the rectangle has moved over to the right of the screen.</p><p>With one simple change our rectangle can be made to move or fly from one side of the screen to the other. The addition of this line in our <i>do</i> loop is all that is needed -</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">shipPositionX = shipPositionX + 1
+</pre></div><div align="right"><button class="btn" data-clipboard-text="shipPositionX = shipPositionX + 1
+">Copy Code</button></div><p>What it does is first of all work out the value of <i>shipPositionX</i> + 1 and then assigns the result to <i>shipPositionX</i>. So it will start off at 0, then 1, then 2 and continually count upwards. To help make things a little clearer the <i>print</i> command will be called passing in <i>shipPositionX</i> so we can see its value on screen. Again this line can be added into our <i>do</i> loop.</p><div id="basicCodeBlock4" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">print ( shipPositionX )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="print ( shipPositionX )
+">Copy Code</button></div><p>Our latest program should now look like this.</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">shipPositionX as integer = 0
+<br>
+CreateImageColor ( 1, 0, 0, 255, 255 )
+CreateSprite ( 1, 1 )
+SetSpriteSize ( 1, 10, 10 )
+<br>
+do
+	print ( shipPositionX )
+	<br>
+	SetSpritePosition ( 1, shipPositionX, 40 )
+	shipPositionX = shipPositionX + 1
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="shipPositionX as integer = 0
+
+CreateImageColor ( 1, 0, 0, 255, 255 )
+CreateSprite ( 1, 1 )
+SetSpriteSize ( 1, 10, 10 )
+
+do
+	print ( shipPositionX )
+
+	SetSpritePosition ( 1, shipPositionX, 40 )
+	shipPositionX = shipPositionX + 1
+
+	sync ( )
+loop
+">Copy Code</button></div><p>Now when you run the program the blue rectangle will move from the left side of the screen to the right.</p><div align="center"><a class="example-image-link" href="variables005_large.jpg" data-lightbox="example-1"><img class="example-image" src="variables005.jpg" alt="image-1" /></a></div><p>This examples displays a scenario where we might not be using the best data type for what we're trying to achieve. The rectangle moves across the screen very quickly and as we're only adding 1 to its position each cycle of the loop (the smallest amount we can add), then we can't slow it down so easily. If we wanted to move it at a slower rate then we would be better suited to using a floating point variable instead and adding a smaller value to <i>shipPositionX</i> each cycle of the loop. Here's how it can be achieved.</p><div id="basicCodeBlock6" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">shipPositionX as float = 0
+<br>
+CreateImageColor ( 1, 0, 0, 255, 255 )
+CreateSprite ( 1, 1 )
+SetSpriteSize ( 1, 10, 10 )
+<br>
+do
+	print ( shipPositionX )
+	<br>
+	SetSpritePosition ( 1, shipPositionX, 40 )
+	shipPositionX = shipPositionX + 0.01
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="shipPositionX as float = 0
+
+CreateImageColor ( 1, 0, 0, 255, 255 )
+CreateSprite ( 1, 1 )
+SetSpriteSize ( 1, 10, 10 )
+
+do
+	print ( shipPositionX )
+
+	SetSpritePosition ( 1, shipPositionX, 40 )
+	shipPositionX = shipPositionX + 0.01
+
+	sync ( )
+loop
+">Copy Code</button></div><p>Now when you run the program the blue rectangle will move very slowly across the screen. The advantage of using a floating point variable is that we now have greater control over the precision of our movement.</p><div align="center"><a href="variables_006.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="variables_008.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

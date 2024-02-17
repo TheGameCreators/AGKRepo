@@ -1,0 +1,56 @@
+_header
+Microsoft Windows
+
+_text
+This guide explains the process involved in creating projects when using Tier 2 on the Microsoft Windows platform. AppGameKit Studio currently supports Microsoft Visual Studio 2015 and Microsoft Visual Studio 2017, which is available to download from here: https://visualstudio.microsoft.com
+
+_sheader
+Libraries and include files
+
+_text
+The template projects and any of your own custom projects are dependent on several library and include files. Their install locations are -
+
+_listbegin
+Include Files
+\The Game Creators\AGKStudio\Tier 2\common\include\
+\The Game Creators\AGKStudio\Tier 2\common\Collision\
+\The Game Creators\AGKStudio\Tier 2\bullet
+\The Game Creators\AGKStudio\Tier 2\bullet\BulletCollision\CollisionShapes
+_listend
+
+_listbegin
+Libraries (VS 2015)
+\The Game Creators\AGKStudio\Tier 2\platform\windows\Lib\VS2015\Debug\
+\The Game Creators\AGKStudio\Tier 2\platform\windows\Lib\VS2015\Release\
+_listend
+
+_listbegin
+Libraries (VS 2017)
+\The Game Creators\AGKStudio\Tier 2\platform\windows\Lib\VS2017\Debug\
+\The Game Creators\AGKStudio\Tier 2\platform\windows\Lib\VS2017\Release\
+_listend
+
+_text
+If necessary you can launch AGKStudio, then go to the Tools menu and select the option to Install Additional Files. This option allows you to install the C++ Tier 2 files to a location of your choice, instead of referencing them from the default location.
+
+_sheader
+Templates
+
+_text
+Several templates are included that provide a starting point for your applications. These can be found within - \The Game Creators\AGKStudio\Tier 2\apps. The key templates are -
+
+_listbegin
+template_windows_vs2015 - 32 bit template for VS 2015
+template_windows_vs2015_64 - 64 bit template for VS 2015
+template_windows_vs2017 - 32 bit template for VS 2017
+template_windows_vs2017_64 - 64 bit template for VS 2017
+_listend
+
+_text
+All of these projects are set up with relative links to the AGK libraries and include files and are ready to compile. Making new projects outside this location or moving the existing projects to another location will result in you needing to update the library and include links within the project settings to ensure the app compiles.
+
+_text
+Make a copy of the appropriate project and place it within the apps folder, then open the project within Visual Studio. Attempt to compile the project by going to the Build menu and selecting Build Solution. If all goes well, a message will appear in the Output window showing Build succeeded. Any failure at this point may be due to an issue with the platform toolset, that can be fixed by entering the project settings, going to the general section and selecting an available platform toolset.
+
+_text
+The project will consist of three main files - core.cpp, template.cpp and template.h. Core.cpp is the starting point for your application as a whole, which in most cases can be ignored and is only relevant for more advanced users. Template.h contains a class declaration for your app and template.cpp contains the definition, with three functions already defined - Begin, Loop and End. Begin is the entry point for your application and is used for initial setup. Loop will be called every cycle and should be the location of your logic etc. Finally End is called when the app closes down and can be used to free up resources etc.

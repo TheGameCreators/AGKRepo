@@ -1,0 +1,180 @@
+﻿_header
+Static and dynamic objects
+
+_sheader
+Description
+
+_text
+When using physics enabled sprites, one of the key decisions to make is whether a sprite should be a static or dynamic entity. Controlling this state is a fairly simple process, as outlined in this example, which creates four dynamic sprites and releases them into the scene, followed by a fifth sprite that is set to be a static entity.
+
+_image
+1_static_dynamic.jpg
+
+_sheader
+Overview
+_text
+The steps to create this example are as follows:
+
+_listbegin
+create our sprites and set their dynamic or static states
+turn physics on for the sprites
+within the main loop update the contents of the screen
+_listend
+
+_sheader
+Creating the sprites
+_text
+An image named "small_blue.png" gets loaded, followed by the creation of five sprites that use this image. All of the sprites are positioned in a row and at 0 on the Y axis, except for sprite three that is lower down the screen (this sprite will later be turned into a static entity):
+
+_tier1
+LoadImage ( 1, "small_blue.png" )
+<br>
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 1 )
+CreateSprite ( 3, 1 )
+CreateSprite ( 4, 1 )
+CreateSprite ( 5, 1 )
+<br>
+SetSpritePosition ( 1,  50,   0 )
+SetSpritePosition ( 2, 100,   0 )
+SetSpritePosition ( 3, 140, 200 )
+SetSpritePosition ( 4, 170,   0 )
+SetSpritePosition ( 5, 220,   0 )
+_tier1
+
+_tier2
+agk::LoadImage ( 1, "small_blue.png" );
+<br>
+agk::CreateSprite ( 1, 1 );
+agk::CreateSprite ( 2, 1 );
+agk::CreateSprite ( 3, 1 );
+agk::CreateSprite ( 4, 1 );
+agk::CreateSprite ( 5, 1 );
+<br>
+agk::SetSpritePosition ( 1,  50,   0 );
+agk::SetSpritePosition ( 2, 100,   0 );
+agk::SetSpritePosition ( 3, 140, 200 );
+agk::SetSpritePosition ( 4, 170,   0 );
+agk::SetSpritePosition ( 5, 220,   0 );
+_tier2
+
+_sheader
+Switching physics on
+_text
+Sprites one, two, four and five have physics switched on and get set to dynamic objects, while sprite three (which is lower down the screen) is set to be a static object. The command <i>SetSpritePhysicsOn</i> is called to control the physics state for a sprite. The first parameter is the ID of the sprite, while the second parameter is used to control the actual state. A value of 1 means the sprite will be a static entity, a value of 2 is used for a dynamic entity and last of all a value of 3 is used to specify that the sprite will be a kinematic entity.
+
+_text
+When a sprite is set to be a static entity it will never move or rotate, it will simply remain locked in position. Switching a sprite to be dynamic will result in the sprite responding to all collisions and forces it encounters, including gravity and collisions with static objects. The kinematic option is a special case which can be thought of as a moving static body, it will not respond to collisions or forces and will continue at its specified velocity forever, but dynamic items will respond to it and effectively be pushed out of the way.
+
+_text
+Here's the code for setting the states of our sprites:
+
+_tier1
+SetSpritePhysicsOn ( 1, 2 )
+SetSpritePhysicsOn ( 2, 2 )
+SetSpritePhysicsOn ( 3, 1 ) ` set as static
+SetSpritePhysicsOn ( 4, 2 )
+SetSpritePhysicsOn ( 5, 2 )
+_tier1
+
+_tier2
+agk::SetSpritePhysicsOn ( 1, 2 );
+agk::SetSpritePhysicsOn ( 2, 2 );
+agk::SetSpritePhysicsOn ( 3, 1 ); // set as static
+agk::SetSpritePhysicsOn ( 4, 2 );
+agk::SetSpritePhysicsOn ( 5, 2 );
+_tier2
+
+_sheader
+Main loop
+_text
+The main loop in this example does not take any action. All it needs to do is make a call to <i>Sync</i> to ensure the screen is updated.
+
+_tier1
+do
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background7.jpg" ) )
+<br>
+LoadImage ( 1, "small_blue.png" )
+<br>
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 1 )
+CreateSprite ( 3, 1 )
+CreateSprite ( 4, 1 )
+CreateSprite ( 5, 1 )
+<br>
+SetSpritePosition ( 1,  50,   0 )
+SetSpritePosition ( 2, 100,   0 )
+SetSpritePosition ( 3, 140, 200 )
+SetSpritePosition ( 4, 170,   0 )
+SetSpritePosition ( 5, 220,   0 )
+<br>
+SetSpritePhysicsOn ( 1, 2 )
+SetSpritePhysicsOn ( 2, 2 )
+SetSpritePhysicsOn ( 3, 1 ) ` set as static
+SetSpritePhysicsOn ( 4, 2 )
+SetSpritePhysicsOn ( 5, 2 )
+<br>
+do
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background7.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "small_blue.png" );
+<br>
+    agk::CreateSprite ( 1, 1 );
+    agk::CreateSprite ( 2, 1 );
+    agk::CreateSprite ( 3, 1 );
+    agk::CreateSprite ( 4, 1 );
+    agk::CreateSprite ( 5, 1 );
+<br>
+    agk::SetSpritePosition ( 1,  50,   0 );
+    agk::SetSpritePosition ( 2, 100,   0 );
+    agk::SetSpritePosition ( 3, 140, 200 );
+    agk::SetSpritePosition ( 4, 170,   0 );
+    agk::SetSpritePosition ( 5, 220,   0 );
+<br>
+    agk::SetSpritePhysicsOn ( 1, 2 );
+    agk::SetSpritePhysicsOn ( 2, 2 );
+    agk::SetSpritePhysicsOn ( 3, 1 ); // set as static
+    agk::SetSpritePhysicsOn ( 4, 2 );
+    agk::SetSpritePhysicsOn ( 5, 2 );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+
+_text
+Many games may need to take more action after deciding the state of a physics sprite, for example, it may be necessary to set properties such as friction, damping and restitution. For more assistance with these areas please check the other examples and the reference guide.
+

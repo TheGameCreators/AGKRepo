@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Joysticks - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Joysticks</div><div class="page"><h1>Joysticks</h1><p>Certain games may require more complex input than simple touches or clicks. For example, a game on Windows may need to use the keyboard to handle input, but how does this translate across to other devices? One possible solution is to use the AppGameKit Studio joystick commands. This set of commands will automatically utilise the most appropriate input mechanism. For example, on Windows and Mac keyboard input may be utilised in your game, whereas on mobile devices a virtual joystick may get displayed on screen. The priority is to use a real joystick if possible and then fall back to a keyboard, and if no keyboard is present use a virtual joystick. Here's what a virtual joystick looks like:</p><div align="center"><img src="virtual_joystick.jpg"/></div><p><br>A directional pad is provided on the left and optional buttons can be added into the system, as shown on the right.</p><p>What this means is that your game can use different inputs dependent on the device and use the same few commands to deal with the input regardless of what is driving it. AppGameKit Studio will seamlessly handle this transition for you and simplify the whole process of dealing with different types of input</p><h2>Overview</h2><p>This example will show a sprite being controlled by a real joystick or keyboard on Windows and Mac and by a virtual joystick on mobile devices.</p><p>The process of dealing with this is as follows:</p><ul><li>set up a virtual resolution</li><li>create a sprite</li><li>set the location of the virtual joystick for those platforms that use it</li><li>within our main loop update the position of the sprite based on input from the joystick commands</li></ul><h2>Initial set up</h2><p>To begin with a virtual resolution is set of 320 x 480. This is followed by the creation of a sprite that is positioned near the center of the screen:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( 1, LoadImage ( "green.png" ) )
+SetSpritePosition ( 1, 160, 200 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+CreateSprite ( 1, LoadImage ( &quot;green.png&quot; ) )
+SetSpritePosition ( 1, 160, 200 )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( 1, agk::LoadImage ( "green.png" ) );
+    agk::SetSpritePosition ( 1, 160, 200 );
+}
+</pre></div><h2>Virtual joystick</h2><p>AppGameKit Studio needs to know the location of the joystick on screen for those platforms that rely on it. To specify the location call the command <i>SetJoystickScreenPosition</i>. This command takes three parameters: X position on screen, Y position on screen and a size parameter that controls how large the joystick is on screen. To position our joystick close to the bottom of the screen with dimensions of 64 x 64 call:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetJoystickScreenPosition ( 50, 300, 64 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetJoystickScreenPosition ( 50, 300, 64 )
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetJoystickScreenPosition ( 50, 300, 64 );
+</pre></div><p>The ideal location to place this is within your initial set up code and prior to the main loop.</p><p>Windows and Mac platforms will emulate the joystick functionality using the keyboard, therefore no virtual joystick will be placed on screen, instead it will be hidden from view.  It is only on platforms such as iOS and Samsung Bada that the virtual joystick will be displayed. If a real joystick is present on Windows or Mac then this will take precedence over the keyboard.</p><h2>Obtaining joystick input</h2><p>Two commands are provided that return values in the range of -1 to 1 indicating input from the virtual joystick, real joystick or keyboard. These commands are named <i>GetJoystickX</i> and <i>GetJoystickY</i>, both of which take no parameters and return a floating point value.</p><p>The example program will take input from the joystick and apply it to the sprite, thus moving it around the screen:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+    x# = GetJoystickX ( )
+    y# = GetJoystickY ( )
+<br>
+    SetSpritePosition ( 1, GetSpriteX ( 1 ) + x#, GetSpriteY ( 1 ) + y# )
+<br>
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+    x# = GetJoystickX ( )
+    y# = GetJoystickY ( )
+
+    SetSpritePosition ( 1, GetSpriteX ( 1 ) + x#, GetSpriteY ( 1 ) + y# )
+
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Loop ( void )
+{
+    float x = agk::GetJoystickX ( );
+    float y = agk::GetJoystickY ( );
+<br>
+    agk::SetSpritePosition ( 1, agk::GetSpriteX ( 1 ) + x, agk::GetSpriteY ( 1 ) + y );
+<br>
+    agk::Sync ( );
+}
+</pre></div><h2>Visibility of the virtual joystick</h2><p>The call to <i>SetJoystickScreenPosition</i> will ensure a virtual joystick is displayed on screen for mobile platforms. Behind the scenes AppGameKit Studio will take no action on Windows and Mac platforms, however, on mobile platforms it will create a virtual joystick with an ID number of 1 by internally calling the command <i>AddVirtualJoystick</i>. If you require more control of this virtual joystick you can directly alter it using the virtual joystick command set and handle tasks such as adding buttons and controlling the visiblity.</p><p>To test whether a virtual joystick has been created make a call to the command <i>GetVirtualJoystickExists</i> and pass in the ID number 1. If this command returns true then the virtual joystick has been created and you are therefore running on a mobile device. The code that follows demonstrates how to check whether the virtual joystick is in use and proceeds to hide it from view:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">if ( GetVirtualJoystickExists ( 1 ) = 1 )
+    SetVirtualJoystickVisible ( 1, 0 )
+endif
+</pre></div><div align="right"><button class="btn" data-clipboard-text="if ( GetVirtualJoystickExists ( 1 ) = 1 )
+    SetVirtualJoystickVisible ( 1, 0 )
+endif
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">if ( agk::GetVirtualJoystickExists ( 1 ) == 1 )
+    agk::SetVirtualJoystickVisible ( 1, 0 );
+</pre></div><p>The command <i>SetVirtualJoystickVisible</i> takes in the ID number of the joystick, followed by 0 to indicate that the joystick should be hidden. This code could be used at the start of the game to hide the virtual joystick on mobile devices, later when the game is ready this code could be used to display it:</p><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">if ( GetVirtualJoystickExists ( 1 ) = 1 )
+    SetVirtualJoystickVisible ( 1, 1 )
+endif
+</pre></div><div align="right"><button class="btn" data-clipboard-text="if ( GetVirtualJoystickExists ( 1 ) = 1 )
+    SetVirtualJoystickVisible ( 1, 1 )
+endif
+">Copy Code</button></div><div id="cppCodeBlock10" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">if ( agk::GetVirtualJoystickExists ( 1 ) == 1 )
+    agk::SetVirtualJoystickVisible ( 1, 1 );
+</pre></div><h2>Full code listing</h2><p>Everything is now in place to run our program. The final listing makes a few alterations including printing out the input from the joystick on screen, along with ensuring the sprite cannot move out of the boundaries of the screen.</p><p>On Windows and Mac platforms use the keys w, s, a and d to move the sprite around, while on mobile platforms use the on screen virtual joystick.</p><div id="basicCodeBlock11" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( 1, LoadImage ( "green.png" ) )
+SetSpritePosition ( 1, 160, 200 )
+<br>
+SetJoystickScreenPosition ( 50, 300, 64 )
+<br>
+do
+    x# = GetJoystickX ( )
+    y# = GetJoystickY ( )
+<br>
+    Print ( x# )
+    Print ( y# )
+<br>
+    SetSpritePosition ( 1, GetSpriteX ( 1 ) + x#, GetSpriteY ( 1 ) + y# )
+<br>
+    if ( GetSpriteX ( 1 ) < 10 )
+        SetSpriteX ( 1, 10 )
+    endif
+<br>
+    if ( GetSpriteX ( 1 ) > 260 )
+        SetSpriteX ( 1, 260 )
+    endif
+<br>
+    if ( GetSpriteY ( 1 ) < 10 )
+        SetSpriteY ( 1, 10 )
+    endif
+<br>
+    if ( GetSpriteY ( 1 ) > 430 )
+        SetSpriteY ( 1, 430 )
+    endif
+<br>
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+CreateSprite ( 1, LoadImage ( &quot;green.png&quot; ) )
+SetSpritePosition ( 1, 160, 200 )
+
+SetJoystickScreenPosition ( 50, 300, 64 )
+
+do
+    x# = GetJoystickX ( )
+    y# = GetJoystickY ( )
+
+    Print ( x# )
+    Print ( y# )
+
+    SetSpritePosition ( 1, GetSpriteX ( 1 ) + x#, GetSpriteY ( 1 ) + y# )
+
+    if ( GetSpriteX ( 1 ) < 10 )
+        SetSpriteX ( 1, 10 )
+    endif
+
+    if ( GetSpriteX ( 1 ) > 260 )
+        SetSpriteX ( 1, 260 )
+    endif
+
+    if ( GetSpriteY ( 1 ) < 10 )
+        SetSpriteY ( 1, 10 )
+    endif
+
+    if ( GetSpriteY ( 1 ) > 430 )
+        SetSpriteY ( 1, 430 )
+    endif
+
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock12" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+agk::SetVirtualResolution ( 320, 480 );
+<br>
+agk::CreateSprite ( 1, agk::LoadImage ( "green.png" ) );
+agk::SetSpritePosition ( 1, 160, 200 );
+<br>
+agk::SetJoystickScreenPosition ( 50, 300, 64 );
+}
+<br>
+void app::Loop ( void )
+{
+    float x = agk::GetJoystickX ( );
+    float y = agk::GetJoystickY ( );
+<br>
+    agk::Print ( x );
+    agk::Print ( y );
+<br>
+    agk::SetSpritePosition ( 1, agk::GetSpriteX ( 1 ) + x, agk::GetSpriteY ( 1 ) + y );
+<br>
+    if ( agk::GetSpriteX ( 1 ) < 10 )
+        agk::SetSpriteX ( 1, 10.0f );
+<br>
+    if ( agk::GetSpriteX ( 1 ) > 260 )
+        agk::SetSpriteX ( 1, 260.0f );
+<br>
+    if ( agk::GetSpriteY ( 1 ) < 10 )
+        agk::SetSpriteY ( 1, 10.0f );
+<br>
+    if ( agk::GetSpriteY ( 1 ) > 430 )
+        agk::SetSpriteY ( 1, 430.0f );
+}
+</pre></div><h2>Conclusion</h2><p>With only a few lines of code it has been possible to move a sprite around with a real joystick or keyboard on Windows and Mac platforms, while introducing a virtual joystick for mobile platforms. </p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

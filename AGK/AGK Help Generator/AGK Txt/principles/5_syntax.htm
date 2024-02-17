@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Reserved Words, Remarks and Spacing - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../principles.html">Principles</a> &gt; Reserved Words, Remarks and Spacing</div><div class="page"><h1>Reserved Words, Remarks and Spacing</h1><h2>Reserved words</h2><p>Words that are deemed to be reserved are the commands of the language. You will not be able to name your variables, arrays or user functions if they exist as part of the language as commands. As you become more familiar with the language, you will be able to naturally avoid using reserved words for your variables, array names and user functions.</p><h2>REMARKS</h2><p>You are able to write statements in your program that will be completely ignored when run. This may seem strange at first, but actually provides one of the most important features of your programming armoury. Remarks, also known as code commentary or documentation, are the plain English descriptions of what your program does at any point in the code.</p><p>Although BASIC is quite concise as a readable language, it"s never entirely clear what a piece of code is supposed to do if you read it for the first time. Do not be fooled into thinking the code you write yourself is for your eyes only. Returning to a piece of code you wrote 3 months previous will dispel any concerns you may have over the importance of remarks.</p><p>The trick is to write only a summary of what a piece of code does. Leave out details, data and snippets that may change or be removed. Avoid typing a half-page description as the likelihood is that you"ll never find the time to read it. Remarks become a highly powerful part of your program if used correctly.</p><p>You can use the REM command to make a comment, as follows:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">REM Print a greeting for the user
+PRINT ( "Hello World" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="REM Print a greeting for the user
+PRINT ( &quot;Hello World&quot; )
+">Copy Code</button></div><p>There are other ways to make remarks in a program, such as the single open quote symbol:</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">` Print a greeting for the user
+PRINT ( "Hello World" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="` Print a greeting for the user
+PRINT ( &quot;Hello World&quot; )
+">Copy Code</button></div><p>Or the more common double forward slash used in other languages:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">// Print a greeting for the user
+PRINT ( "Hello World" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="// Print a greeting for the user
+PRINT ( &quot;Hello World&quot; )
+">Copy Code</button></div><p>If you wish to "comment out" a number of lines in your program, you can avoid adding a REM command at the start of each line by using the following:</p><div id="basicCodeBlock4" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">REMSTART
+PRINT ( "Hello World" )
+PRINT ( "Hello World" )
+PRINT ( "Hello World" )
+REMEND
+</pre></div><div align="right"><button class="btn" data-clipboard-text="REMSTART
+PRINT ( &quot;Hello World&quot; )
+PRINT ( &quot;Hello World&quot; )
+PRINT ( &quot;Hello World&quot; )
+REMEND
+">Copy Code</button></div><p>Anything between the REMSTART command and the REMEND command will be ignored when the program is run. These commands are especially useful for temporarily removing parts of the program for testing purposes.</p><p>You can also use the symbols /* and */ to comment multiple lines. This is an alternative to REMSTART and REMEND and will be more familiar to users of other languages, for example:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">/*
+PRINT ( "Hello World" )
+PRINT ( "Hello World" )
+PRINT ( "Hello World" )
+*/
+</pre></div><div align="right"><button class="btn" data-clipboard-text="/*
+PRINT ( &quot;Hello World&quot; )
+PRINT ( &quot;Hello World&quot; )
+PRINT ( &quot;Hello World&quot; )
+*/
+">Copy Code</button></div><h2>Use of spacing</h2><p>Unlike other BASIC languages, spaces are very important in your programs. It is important to separate commands and parameters, otherwise your program will not be understood. Take for example the line:</p><div id="basicCodeBlock6" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">FOR T=1 TO 10
+</pre></div><div align="right"><button class="btn" data-clipboard-text="FOR T=1 TO 10
+">Copy Code</button></div><p>This would not be recognized if written as:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">FORT=1TO10
+</pre></div><div align="right"><button class="btn" data-clipboard-text="FORT=1TO10
+">Copy Code</button></div><p>Nor would this be easy to read either. Providing you use spaces to separate commands and parameters, you will encounter no problems with spacing.</p><p>You can also use it where it might make code easier to understand, even if the spaces are not necessary. For example both of the following are valid, and do exactly the same thing, but the latter might be easier to understand for someone else looking at your code</p><div id="basicCodeBlock8" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">b=4-6*c
+a=2*(b+1)+c/4
+</pre></div><div align="right"><button class="btn" data-clipboard-text="b=4-6*c
+a=2*(b+1)+c/4
+">Copy Code</button></div><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">b = 4 - 6*c
+a = 2*(b+1) + c/4
+</pre></div><div align="right"><button class="btn" data-clipboard-text="b = 4 - 6*c
+a = 2*(b+1) + c/4
+">Copy Code</button></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

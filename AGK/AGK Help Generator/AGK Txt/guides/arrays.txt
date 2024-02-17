@@ -1,0 +1,27 @@
+
+_header
+Arrays
+
+_sheader
+Beginner Level Tutorial
+
+_sheader
+What you will learn
+
+_text
+This guide explains what arrays are and how they can be used in your programs.
+
+_listbegin
+<a href="arrays_001.htm">What is an array?</a>
+<a href="arrays_002.htm">Arrays in action</a>
+<a href="arrays_003.htm">Size of an array</a>
+<a href="arrays_004.htm">Indexing and assignment</a>
+<a href="arrays_005.htm">Inserting and removing items into an array</a>
+<a href="arrays_006.htm">Sorting and searching</a>
+<a href="arrays_0061.htm">Multidimensional arrays</a>
+<a href="arrays_0062.htm">Passing arrays to functions</a>
+<a href="arrays_007.htm">Conclusion</a>
+_listend
+
+_navigation
+arrays_001.htm

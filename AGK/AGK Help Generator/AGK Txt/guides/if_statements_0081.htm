@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Select statements - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="http://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Select statements</div><div class="page"><h1>Select statements</h1><p>Select statements provide an alternative approach to testing conditions. You can use a select statement to examine the value of a variable or expression and act on it in different ways, dependent on what that value is. Here's a simple program that uses the <i>select</i>, <i>case</i>, <i>endcase</i> and <i>endselect</i> keywords to perform a select statement.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">number as integer = 1
+<br>
+do
+	select number
+		case 1:
+			print ( "1" )
+		endcase
+		<br>
+		case 2:
+			print ( "2" )
+		endcase
+		<br>
+		case 3:
+			print ( "3" )
+		endcase
+	endselect
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="number as integer = 1
+
+do
+	select number
+		case 1:
+			print ( &quot;1&quot; )
+		endcase
+
+		case 2:
+			print ( &quot;2&quot; )
+		endcase
+
+		case 3:
+			print ( &quot;3&quot; )
+		endcase
+	endselect
+
+	sync ( )
+loop
+">Copy Code</button></div><p>The program look will display either "1", "2" or "3" on screen dependent on the value of the variable <i>number</i></p><p>The code begins by declaring a variable named <i>number</i> and assigning it a value of 1. This is followed by a <i>do</i> loop where the select statement is implemented. </p><p>A select statements operates by looking at the value of a variable or expression and then taking actions based on what that value is. Directly after the <i>select</i> keyword the name of the variable to examine must be supplied. Our program is going to check the value of <i>number</i>, so this is placed after the <i>select</i> keyword.</p><p>To act on the variable being checked by the <i>select</i> statement the <i>case</i> keyword is used, followed by a value or expression to check, which if true will allow any code within the <i>case</i> block to be executed. To close a <i>case</i> statement the keyword <i>endcase</i> is used.</p><p>Our program has three case statements, handling three possibilities for the <i>number</i> variable. If the value is 1 then the code within the first case statement will be executed. If the value is 2 then the code within the second case statement will be executed. Last of all if the value is 3 then the code within the third and final case statement will run. Try changing the value of <i>number</i> to 2 and then run the program again. Repeat the process by changing its value to 3.</p><p>In the event that no case statement deals with the value of the variable then a default case statement can be used. This is achieved by using the <i>default</i> keyword after using <i>case</i>. This program shows how it works.</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">data as integer = 99
+<br>
+do
+	select data
+		case 1:
+			print ( "1" )
+		endcase
+		<br>
+		case 2:
+			print ( "2" )
+		endcase
+		<br>
+		case 3:
+			print ( "3" )
+		endcase
+		<br>
+		case default:
+			print ( "none of the main conditions triggered" )
+		endcase
+	endselect
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="data as integer = 99
+
+do
+	select data
+		case 1:
+			print ( &quot;1&quot; )
+		endcase
+
+		case 2:
+			print ( &quot;2&quot; )
+		endcase
+
+		case 3:
+			print ( &quot;3&quot; )
+		endcase
+
+		case default:
+			print ( &quot;none of the main conditions triggered&quot; )
+		endcase
+	endselect
+
+	sync ( )
+loop
+">Copy Code</button></div><p>The select statement in our program looks at the value of <i>data</i> and has code to deal with it being 1, 2 and 3. Given that <i>data</i> is assigned a value of 99 when declared then none of these conditions will be met, so the code within the <i>case default</i> block will be executed.</p><div align="center"><a href="if_statements_008.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="if_statements_009.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="http://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

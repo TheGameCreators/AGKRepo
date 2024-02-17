@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Repeat until - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="http://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Repeat until</div><div class="page"><h1>Repeat until</h1><p>This is a similar kind of loop to the <i>while</i> loop, except the condition for the loop ending is placed at the end of the loop, which means that the loop will always run at least once. This program demonstrates a <i>repeat</i> loop being used.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">exitProgram as integer = 0
+<br>
+repeat
+	print ( "inside a repeat loop" )
+	<br>
+	sync ( )	
+until exitProgram = 1
+</pre></div><div align="right"><button class="btn" data-clipboard-text="exitProgram as integer = 0
+
+repeat
+	print ( &quot;inside a repeat loop&quot; )
+
+	sync ( )	
+until exitProgram = 1
+">Copy Code</button></div><p>To start this loop use the <i>repeat</i> keyword. Anything placed after it up to the <i>until</i> keyword will form part of the loop. The condition to end the loop must be placed directly after the <i>until</i> keyword. This loop is useful if you do not know the condition to end the loop until the loop code has been executed.</p><p>This program shows a <i>repeat</i> loop being used to add 1 to a variable named <i>counter</i>. It will exit the loop when this variable reaches the value 10. This is followed by a <i>do</i> loop that is used to print the value of the <i>counter</i> variable on the screen.</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">counter as integer = 0
+<br>
+repeat
+	counter = counter + 1
+until counter = 10
+<br>
+do
+	print ( counter )
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="counter as integer = 0
+
+repeat
+	counter = counter + 1
+until counter = 10
+
+do
+	print ( counter )
+
+	sync ( )
+loop
+">Copy Code</button></div><p>It's important to remember that the loop will always execute at least once, as demonstrated in this program.</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">counter as integer = 10
+<br>
+repeat
+	counter = counter + 1
+	print ( counter )
+	sync ( )
+until counter = 10
+<br>
+do
+	print ( counter )
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="counter as integer = 10
+
+repeat
+	counter = counter + 1
+	print ( counter )
+	sync ( )
+until counter = 10
+
+do
+	print ( counter )
+	sync ( )
+loop
+">Copy Code</button></div><p>The variable <i>counter</i> is assigned a value of 10 and then the <i>repeat</i> loop is declared with a condition to exit when <i>counter</i> has a value of 10. However, because the code preceeding it will be executed before the condition is met then by the time the condition is checked <i>counter</i> will have had 1 added to it and have a value of 11, therefore the exit condition will not be met and the loop will continue around. In this particular example the loop will continue infinitely as the exit condition will never be met.</p><div align="center"><a href="loops_002.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="loops_004.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="http://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

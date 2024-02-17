@@ -1,0 +1,27 @@
+_header
+Global and local precedence
+
+_text
+If a local variable is declared that has the same name as a global variable, then it will take precedence over the global variable. The program that follows declares a global named <i>value</i>, however, the function <i>myFunction</i> declares a local variable named <i>value</i> and gives it a floating point value. This variable has priority over the global.
+
+_tier1
+global value as integer = 1
+<br>
+do
+	print ( value )
+	myFunction ( )
+	<br>
+	sync ( )
+loop
+<br>
+function myFunction ( )
+	value as float = 1.2
+	print ( value )
+endfunction
+_tier1
+
+_text
+When you run the program you will see 1 and 1.2 displayed on screen. Due to the local variable taking precedence within the function any attempt to work with <i>value</i> inside <i>myFunction</i> affects the local and not the global.
+
+_navigation
+functions_and_branching_008.htm functions_and_branching_010.htm

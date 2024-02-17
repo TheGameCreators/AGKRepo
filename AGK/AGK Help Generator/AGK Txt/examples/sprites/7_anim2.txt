@@ -1,0 +1,192 @@
+﻿_header
+Animating sprites - part 2
+
+_sheader
+Description
+_text
+There are three options when it comes to animating a sprite. These are:
+
+_listbegin
+load a series of images and manually update the sprites image using timers
+add a series of images to a sprite and use the command <i>PlaySprite</i> to handle animation
+use a texture atlas (a series of animation frames on one image), call <i>SetSpriteAnimation</i> to hook up atlas to the system, then call <i>PlaySprite</i> to handle animation
+_listend
+
+_text
+In this example we’re going to examine the third option and see how to use a texture atlas.
+
+_image
+7_anim2.jpg
+
+_sheader
+External media
+_text
+This example program relies on a single image named "mole.png". This single image contains all of our animation frames bundled together. Here's what it looks like:
+_image
+mole.png
+
+_sheader
+Overview
+_text
+The process involved is as follows:
+
+_listbegin
+load our animation image
+create a sprite
+apply animation information to our sprite
+play our sprite animation
+main loop where we update the contents of the screen
+_listend
+
+_sheader
+Load our animation image
+_text
+The animation image we are using in this example has all of the individual frames contained in this one image. It is treated just like any other image when it comes to loading:
+
+_tier1
+LoadImage ( 1, "mole.png" )
+_tier1
+
+_tier2
+agk::LoadImage ( 1, "mole.png" );
+_tier2
+
+_text
+If you examine this image in an image viewer you will notice how there are 11 individual mole frames. Later on we’ll tell AppGameKit Studio to only display one of these frames at a time.
+
+_sheader
+Create a sprite
+_text
+With our animation image already loaded it’s now time to create our sprite. An ID number of 1 is used for the sprite, followed by another 1 to indicate that this sprite uses image 1:
+
+_tier1
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 125, 200 )
+_tier1
+
+_tier2
+agk::CreateSprite ( 1, 1 );
+agk::SetSpritePosition ( 1, 125, 200 );
+_tier2
+
+_sheader
+Apply animation information
+_text
+If you were to run the application at this point all of image 1 would be displayed. To ensure only specific frames are displayed we call the command <i>SetSpriteAnimation</i>. This has several parameters:
+_listbegin
+ID number of the sprite
+how large each frame is on the X axis
+how large each frame is on the Y axis
+how many frames exist
+_listend
+
+_text
+Our image has 11 frames of animation and each one is of dimensions 82 x 88, therefore the call to <i>SetSpriteAnimation</i> should be:
+
+_tier1
+SetSpriteAnimation ( 1, 82, 88, 11 )
+_tier1
+
+_tier2
+agk::SetSpriteAnimation ( 1, 82, 88, 11 );
+_tier2
+
+_text
+After making this call AppGameKit Studio knows enough information about the texture atlas, and it can display each frame individually.
+
+_sheader
+Playing a sprite
+_text
+Our sprite now has a texture atlas attached to it, along with vital animation information and we’re now in a position to animate it. All it takes is a call to the command <i>PlaySprite</i>. This command has several parameters:
+
+_listbegin
+ID number for the sprite
+how many frames per second should be displayed
+whether the sprite is to loop or not
+start frame for the animation
+end frame for the animation
+_listend
+
+_text
+For our example the ID number is 1, the frame rate is set to 10 (a higher value will make it play faster while a lower value will result in a slower animation), 1 is used to indicate the animation will loop, the start point gets set to frame 1 and finally the end frame is set to frame 11:
+
+_tier1
+PlaySprite ( 1, 10, 1, 1, 11 )
+_tier1
+
+_tier2
+agk::PlaySprite ( 1, 10, 1, 1, 11 );
+_tier2
+
+_text
+After calling <i>PlaySprite</i> the sprite will continually animate until such time that we choose to stop it.
+
+_sheader
+Main loop
+_text
+At this point everything is set up and ready to launch. All that remains is for our main loop to update the screen by making a simple call to <i>Sync</i>, as shown here:
+
+_tier1
+do
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background.jpg" ) )
+<br>
+LoadImage ( 1, "mole.png" )
+<br>
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 125, 200 )
+<br>
+SetSpriteAnimation ( 1, 82, 88, 11 )
+<br>
+PlaySprite ( 1, 10, 1, 1, 11 )
+<br>
+do
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "mole.png" );
+<br>
+    agk::CreateSprite ( 1, 1 );
+    agk::SetSpritePosition ( 1, 125, 200 );
+<br>
+    agk::SetSpriteAnimation ( 1, 82, 88, 11 );
+<br>
+    agk::PlaySprite ( 1, 10, 1, 1, 11 );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+Animating sprites using a texture atlas can result in a minimal amount of code and be very efficient. For platforms where speed is of concern it’s advisable to use texture atlases.

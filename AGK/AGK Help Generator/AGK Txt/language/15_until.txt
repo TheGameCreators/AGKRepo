@@ -1,0 +1,24 @@
+_header
+until
+
+_sheader
+syntax
+
+_tier1
+until condition
+_tier1
+
+_sheader
+Description
+
+_text
+These commands will define a loop that will repeat until the Condition becomes true. Unlike the <i>while</i> command, the repeat loop allows the command sequence within your loop to run at least once before the condition is checked. You are able to break from the loop at any time by using the <i>exit</i> command. 
+
+_sheader
+Example
+
+_tier1
+repeat
+    print ( "in a conditional loop" )
+until GetPointerPressed ( ) = 1
+_tier1

@@ -1,0 +1,46 @@
+_header
+Branching
+
+_text
+There's a number of other options available for controlling the flow of your program alongside functions including <i>gosub</i> and <i>goto</i>. These commands are present for completeness and are not recommended to be used. They date back to the early days of the BASIC language before functions existed.
+
+_text
+Normally, a program executes statements in sequence starting at the top. A branch statement allows you to jump to another part of the program to continue execution. A <i>gosub</i> command will jump to a label and continue from its new location. When the program encounters a <i>return</i> command, the program will jump back to the <i>gosub</i> from where it originally came. Here's an example:
+
+_tier1
+do
+	gosub myGosub
+<br>	
+	sync ( )
+loop
+<br>
+myGosub:
+	print ( "inside the gosub" )
+return
+_tier1
+
+_text
+This program behaves in a similar way to a function, except there's no parameters or return value. If the <i>return</i> keyword was not used the program would continue to execute any code that is beneath it, in our case nothing, so the program would simply end.
+
+_text
+The <i>goto</i> command is similar in behaviour to a <i>gosub</i>, except this does not remember the location where it came from. The example that follows demonstrate how it's possible to jump around the program.
+
+_tier1
+partA:
+do
+	print ( "inside a do loop and partA" )
+	goto partB
+	print ( "this code will never be executed" )
+loop
+<br>
+partB:
+	print ( "inside partB" )
+	sync ( )
+	goto partA
+_tier1
+
+_text
+The commands to branch around the program can be useful, albeit in very limited circumstances. In the main it's advisable to stay away from them and instead control the flow of your program using functions.
+
+_navigation
+functions_and_branching_009.htm functions_and_branching_011.htm

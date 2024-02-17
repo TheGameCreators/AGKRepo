@@ -1,0 +1,178 @@
+_header
+Cloning sprites
+
+_sheader
+Description
+_text
+Cloning a sprite allows you to create a replica that has the exact same properties. This example looks at the process of cloning by creating a base sprite, from which other sprites are created when the user taps or clicks the screen.
+
+_image
+13_clone_sprite.jpg
+
+_sheader
+Getting started
+
+_text
+The program begins by setting a virtual resolution of 320 x 480, loading an image named penguin.png, creating a sprite and setting several properties and finally a call to switch physics debug on:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+LoadImage ( 1, "penguin.png" )
+<br>
+CreateSprite      ( 1, 1 )
+SetSpritePosition ( 1, 200, 200 )
+SetSpriteScale    ( 1, 0.6, 0.6 )
+SetSpriteAngle    ( 1, 30 )
+SetSpriteColor    ( 1, 0, 255, 255, 200 )
+SetSpriteShape    ( 1, 3 )
+<br>
+SetPhysicsDebugOn ( )
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::LoadImage ( 1, "penguin.png" );
+<br>
+    agk::CreateSprite      ( 1, 1 );
+    agk::SetSpritePosition ( 1, 200, 200 );
+    agk::SetSpriteScale    ( 1, 0.6, 0.6 );
+    agk::SetSpriteAngle    ( 1, 30 );
+    agk::SetSpriteColor    ( 1, 0, 255, 255, 200 );
+    agk::SetSpriteShape    ( 1, 3 );
+<br>
+    agk::SetPhysicsDebugOn ( );
+}
+_tier2
+
+_text
+Sprite 1 uses the penguin image, has its position set to 200, 200, is scaled down slightly to 60% of its original size, has a rotation angle of 30 degrees set, has its color altered and finally a polygon shape specified for collision.
+
+_sheader
+Cloning a sprite
+
+_text
+Within our main loop, whenever the user touches or clicks on the screen a new sprite is cloned from sprite 1 and positioned at the location of the input. The command to clone a sprite is called <i>CloneSprite</i>. Two variations of this command exist. The first returns an ID number for the newly cloned sprite and takes a parameter indicating the source sprite:
+
+_tier1
+clonedSprite = CloneSprite ( 1 )
+_tier1
+
+_tier2
+clonedSprite = agk::CloneSprite ( 1 );
+_tier2
+
+_text
+The second variation of this command allows you to manually specify the ID of the cloned sprite. This example shows sprite 1 being cloned, with the clone's ID number being set to 99:
+
+_tier1
+CloneSprite ( 1, 99 )
+_tier1
+
+_tier2
+agk::CloneSprite ( 1, 99 );
+_tier2
+
+_text
+Here's the code for cloning sprite 1 whenever the user hits the screen:
+
+_tier1
+if ( GetPointerPressed ( ) = 1 )
+    newSprite = CloneSprite ( 1 )
+<br>
+    SetSpritePosition ( newSprite, GetPointerX ( ), GetPointerY ( ) )
+endif
+_tier1
+
+_tier2
+if ( agk::GetPointerPressed ( ) )
+{
+    int iNewSprite = agk::CloneSprite ( 1 );
+<br>
+    agk::SetSpritePosition ( iNewSprite, agk::GetPointerX ( ), agk::GetPointerY ( ) );
+}
+_tier2
+
+
+_sheader
+Full code listing
+_text
+Now we're ready to run the program and see the results. Simply click or touch the screen to clone sprite 1 at that location, notice how all of the properties set on sprite 1, such as its scale and angle are retained on the newly created sprite. Here's the final code for our program:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background2.jpg" ) )
+<br>
+LoadImage ( 1, "penguin.png" )
+<br>
+CreateSprite      ( 1, 1 )
+SetSpritePosition ( 1, 200, 200 )
+SetSpriteScale    ( 1, 0.6, 0.6 )
+SetSpriteAngle    ( 1, 30 )
+SetSpriteColor    ( 1, 0, 255, 255, 200 )
+SetSpriteShape    ( 1, 3 )
+<br>
+SetPhysicsDebugOn ( )
+<br>
+SetPrintColor ( 255, 0, 0, 255 )
+<br>
+do
+    Print ( "Click or touch the screen to" )
+    Print ( "clone a sprite at that point" )
+<br>
+    if ( GetPointerPressed ( ) = 1 )
+        newSprite = CloneSprite ( 1 )
+<br>
+        SetSpritePosition ( newSprite, GetPointerX ( ), GetPointerY ( ) )
+    endif
+<br>
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background2.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "penguin.png" );
+<br>
+    agk::CreateSprite      ( 1, 1 );
+    agk::SetSpritePosition ( 1, 200, 200 );
+    agk::SetSpriteScale    ( 1, 0.6, 0.6 );
+    agk::SetSpriteAngle    ( 1, 30 );
+    agk::SetSpriteColor    ( 1, 0, 255, 255, 200 );
+    agk::SetSpriteShape    ( 1, 3 );
+<br>
+    agk::SetPhysicsDebugOn ( );
+<br>
+    agk::SetPrintColor ( 255, 0, 0, 255 );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Print ( "Click or touch the screen to" );
+    agk::Print ( "clone a sprite at that point" );
+<br>
+    if ( agk::GetPointerPressed ( ) )
+    {
+        int iNewSprite = agk::CloneSprite ( 1 );
+<br>
+        agk::SetSpritePosition ( iNewSprite, agk::GetPointerX ( ), agk::GetPointerY ( ) );
+    }
+<br>
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+
+_text
+Cloning a sprite will result in most of the original properties being copied, however, when copying a physics sprite the cloned version will end up being a non physics sprite.

@@ -1,0 +1,40 @@
+
+_sheader
+Alternative variable declarations
+
+_text
+There is an alternative method of declaring variables as floats and strings. Instead of using the <i>as float</i> or <i>as string</i> keywords you can instead use <i>#</i> and <i>$</i>. Here's some examples of the alternative method for declaring some floating point variables.
+
+_tier1
+shipSpeed# = 5.8
+shipRotationSpeed# = 1.3
+_tier1
+
+_text
+Now we can see the alternative method for declaring string variables.
+
+_tier1
+playerName$ = "player 1"
+_tier1
+
+_text
+The additional symbols at the end of the variable name are used to identify the variable types and become part of the variable name. If you want to reference these variables later on be sure to include the symbols on the end. This example shows the variables being declared and printed on screen.
+
+_tier1
+shipSpeed# = 5.8
+shipRotationSpeed# = 1.3
+playerName$ = "player 1"
+<br>
+do
+	print ( shipSpeed# )
+	print ( shipRotationSpeed# )
+	print ( playerName$ )
+	sync ( )
+loop
+_tier1
+
+_text
+Whether you declare variables using the <i>as</i> keyword or go for the alternative method is your choice. Ideally it's best to stick with one method and use that throughout your programs. This will help to ensure your code is consistent.
+
+_navigation
+variables_007.htm variables_009.htm

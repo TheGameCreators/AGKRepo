@@ -1,0 +1,228 @@
+_header
+Sprite depth
+
+_sheader
+Description
+_text
+The order in which sprites are drawn is controlled either by the order in which they are created or by altering their depth property. Understanding how this works is important for games that rely on multiple layers of sprites being displayed.
+
+_text
+This example takes a penguin sprite:
+
+_image
+penguin.png
+
+_text
+<br>And a football sprite:
+
+_image
+ball1.png
+
+_text
+<br>And demonstrates the impact of load order and controlling sprite depth using the in-built commands.
+
+_sheader
+Load order
+
+_text
+This block of code creates a sprite using the penguin image and then creates a sprite using the football image:
+
+_tier1
+LoadImage ( 1, "penguin.png" )
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 100, 300 )
+<br>
+LoadImage ( 2, "ball1.png" )
+CreateSprite ( 2, 2 )
+SetSpritePosition ( 2, 125, 300 )
+_tier1
+
+_tier2
+agk::LoadImage ( 1, "penguin.png" );
+agk::CreateSprite ( 1, 1 );
+agk::SetSpritePosition ( 1, 100, 300 );
+<br>
+agk::LoadImage ( 2, "ball1.png" );
+agk::CreateSprite ( 2, 2 );
+agk::SetSpritePosition ( 2, 125, 300 );
+_tier2
+
+_text
+At this point the penguin sprite will be drawn first, followed by the football sprite:
+
+_image
+14_sprite_depth1.jpg
+
+_text
+The code is now adjusted so that the football sprite is created first and the penguin sprite second:
+
+_tier1
+LoadImage ( 2, "ball1.png" )
+CreateSprite ( 2, 2 )
+SetSpritePosition ( 2, 125, 300 )
+<br>
+LoadImage ( 1, "penguin.png" )
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 100, 300 )
+_tier1
+
+_tier2
+agk::LoadImage ( 2, "ball1.png" );
+agk::CreateSprite ( 2, 2 );
+agk::SetSpritePosition ( 2, 125, 300 );
+<br>
+agk::LoadImage ( 1, "penguin.png" );
+agk::CreateSprite ( 1, 1 );
+agk::SetSpritePosition ( 1, 100, 300 );
+_tier2
+
+_text
+This will result in the football being drawn first and then the penguin:
+
+_image
+14_sprite_depth2.jpg
+
+_sheader
+Controlling the draw order
+
+_text
+Altering the order in which sprites are created isn't always going to be the best approach for controlling draw order. There may be situations where you want to have some sprites drawn at the front or nearer the back and be able to handle this whilst the game is running. To do this use the command <i>SetSpriteDepth</i>. This command takes two parameters - the ID of the sprite and a value controlling the depth, which is by default a value of 10. Lowering this value will force a sprite to be drawn nearer to the front of the screen and increasing this value will send the sprite to the back of the screen.
+
+_text
+The first example code showed the penguin being loaded first, followed by the football, resulting in the penguin drawing first and the football being drawn last. To swap the order of drawing, without adjusting the load order, the <i>SetSpriteDepth</i> command can be used:
+
+_tier1
+LoadImage ( 1, "penguin.png" )
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 100, 300 )
+<br>
+LoadImage ( 2, "ball1.png" )
+CreateSprite ( 2, 2 )
+SetSpritePosition ( 2, 125, 300 )
+<br>
+SetSpriteDepth ( 1, 0 )
+SetSpriteDepth ( 2, 1 )
+_tier1
+
+_tier2
+agk::LoadImage ( 1, "penguin.png" );
+agk::CreateSprite ( 1, 1 );
+agk::SetSpritePosition ( 1, 100, 300 );
+<br>
+agk::LoadImage ( 2, "ball1.png" );
+agk::CreateSprite ( 2, 2 );
+agk::SetSpritePosition ( 2, 125, 300 );
+<br>
+agk::SetSpriteDepth ( 1, 0 );
+agk::SetSpriteDepth ( 2, 1 );
+_tier2
+
+_text
+The penguin has its depth set to 0, meaning it will be drawn last, and the football has its depth set to 1, resulting in it being drawn first:
+
+_image
+14_sprite_depth2.jpg
+
+_sheader
+Finding the depth of a sprite
+
+_text
+To retrieve the depth of a sprite call the command <i>GetSpriteDepth</i>, for example, this code will find the depth of sprite 1 and 2:
+
+_tier1
+depth1 = GetSpriteDepth ( 1 )
+depth2 = GetSpriteDepth ( 2 )
+_tier1
+
+_tier2
+depth1 = agk::GetSpriteDepth ( 1 );
+depth2 = agk::GetSpriteDepth ( 2 );
+_tier2
+
+
+_sheader
+Full code listing
+
+_text
+The final program has the penguin created first, followed by the football. Within the main loop, whenever the user clicks or touches the screen the draw order is swapped around. Here's the final code for our program:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background3.jpg" ) )
+<br>
+LoadImage ( 1, "penguin.png" )
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 100, 300 )
+<br>
+LoadImage ( 2, "ball1.png" )
+CreateSprite ( 2, 2 )
+SetSpritePosition ( 2, 125, 300 )
+<br>
+do
+    Print ( "Click or touch the screen to change" )
+    Print ( "the order in which sprites are drawn" )
+<br>
+    if ( GetPointerPressed ( ) = 1 )
+	if ( state = 0 )
+	    SetSpriteDepth ( 1, 0 )
+	    SetSpriteDepth ( 2, 1 )
+	    state = 1
+	else
+	    SetSpriteDepth ( 1, 1 )
+	    SetSpriteDepth ( 2, 0 )
+            state = 0
+	endif
+    endif
+<br>
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background3.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "penguin.png" );
+    agk::CreateSprite ( 1, 1 );
+    agk::SetSpritePosition ( 1, 100, 300 );
+<br>
+    agk::LoadImage ( 2, "ball1.png" );
+    agk::CreateSprite ( 2, 2 );
+    agk::SetSpritePosition ( 2, 125, 300 );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Print ( "Click or touch the screen to change" );
+    agk::Print ( "the order in which sprites are drawn" );
+<br>
+    if ( agk::GetPointerPressed ( ) == 1 )
+    {
+        if ( state == 0 )
+	{
+	    agk::SetSpriteDepth ( 1, 0 );
+	    agk::SetSpriteDepth ( 2, 1 );
+	    state = 1;
+	}
+	else
+	{
+	    agk::SetSpriteDepth ( 1, 1 );
+	    agk::SetSpriteDepth ( 2, 0 );
+	    state = 0;
+	}
+    }
+<br>
+    agk::Sync ( );
+}
+_tier2
+
+
+_sheader
+Conclusion
+
+_text
+Being able to control the order in which sprites are drawn is an important task and as seen in this example, AppGameKit Studio provides the ability to control this whether it be through the load order of sprites or the <i>SetSpriteDepth</i> command.

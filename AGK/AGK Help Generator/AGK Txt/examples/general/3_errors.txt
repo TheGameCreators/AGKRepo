@@ -1,0 +1,84 @@
+﻿_header
+Error messages
+
+_text
+When something goes wrong in your program it may be necessary to show an error message or a warning. 
+
+_text
+This example demonstrates the available options when dealing with errors:
+
+_listbegin
+display an error
+display a warning
+set the error mode
+_listend
+
+_sheader
+Display an error
+_text
+In the event that something doesn't quite behave as expected you can call the command <i>Error</i> to display an error message on screen:
+
+_tier1
+Error ( "something has broken" )
+_tier1
+
+_tier2
+agk::Error ( "something has broken" );
+_tier2
+
+_sheader
+Display a warning
+_text
+Warnings can be used when something may be amiss, but it's not quite critical to the running of the application. To display a warning use the command <i>Warning</i>. A warning will get displayed in the debug output of the IDE:
+
+_tier1
+Warning ( "missing some data" )
+_tier1
+
+_tier2
+agk::Warning ( "missing some data" );
+_tier2
+
+_sheader
+Setting the error mode
+_text
+When an error occurs, AppGameKit Studio can take one of three options - ignore it, report it and continue or report it and stop the program. This is controlled with the command <i>SetErrorMode</i>. The command takes one parameter with a value of 0 meaning errors are ignored, a value of 1 will report errors and allow the program to continue, and finally a value of 2 will report the error and then stop the program. The default value is 1. This line sets our program to ignore all errors:
+
+_tier1
+SetErrorMode ( 0 )
+_tier1
+
+_tier2
+agk::SetErrorMode ( 0 );
+_tier2
+
+_sheader
+Full code listing
+_text
+This code will display an error, then a warning, followed by the error mode being set to 0 (so errors are ignored) and then attempting to display another error which will not be shown:
+
+_tier1
+Error ( "something has broken" )
+Warning ( "missing some data" )
+<br>
+SetErrorMode ( 0 )
+<br>
+Error ( "this error will not be shown" )
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::Error ( "something has broken" );
+    agk::Warning ( "missing some data" );
+<br>
+    agk::SetErrorMode ( 0 );
+<br>
+    agk::Error ( "this error will not be shown" );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+Not all applications will need to check for errors, but when it's necessary this extra care in your coding will be appreciated by your users.

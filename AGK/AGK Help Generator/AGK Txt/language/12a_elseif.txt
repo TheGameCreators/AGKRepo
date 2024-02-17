@@ -1,0 +1,26 @@
+_header
+elseif
+
+_sheader
+Syntax
+
+_tier1
+elseif
+_tier1
+
+_sheader
+Description
+
+_text
+This command will allow your program to perform two different sequences of commands based on the result of a condition. If the condition is true, the commands immediately following the <i>if</i> command are performed. If the condition is false, the commands immediately following the <i>elseif</i> command are checked and if this statement is true the commands following it are used. You must always use an <i>endif</i> to mark the end of the <elseif> command sequence. 
+
+_sheader
+Example
+
+_tier1
+if a = 0
+    print ( "a is 0" )
+elseif a = 1
+    print ( "a is 1" )
+endif
+_tier1

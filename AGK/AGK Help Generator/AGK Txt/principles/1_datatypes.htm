@@ -1,0 +1,251 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Data Types, Variables and Arrays - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../principles.html">Principles</a> &gt; Data Types, Variables and Arrays</div><div class="page"><h1>Data Types, Variables and Arrays</h1><h2>Data Types</h2><p>We have established that statements are used to write a program. A statement can be broken up into a command and its data. The command is the operation, or task you wish to perform. The data is that which must be used by the command to complete the operation. The data is also referred to as the parameter(s).</p><p>There are many types of data you can use, including integer numbers, real numbers and string. Each type of data holds a slightly different type of value.</p><h2>Integer Numbers</h2><p>An integer number can hold a whole number, but no fraction. For the value to be negative, you must place a hyphen symbol (-) before the value. You must not use commas as part of the number as this would generate a Syntax Error. Examples of integer numbers:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">42
+10000
+-233000
+-100
+</pre></div><div align="right"><button class="btn" data-clipboard-text="42
+10000
+-233000
+-100
+">Copy Code</button></div><h2>Real Numbers</h2><p>A real number (also known as a float) can hold a whole number or a fractional number that uses a decimal point. For the value to be negative, you must place a hyphen symbol (-) before the value. Examples of real numbers:</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">20.0005
+99.9
+-5000.12
+-9999.9991
+</pre></div><div align="right"><button class="btn" data-clipboard-text="20.0005
+99.9
+-5000.12
+-9999.9991
+">Copy Code</button></div><h2>Strings</h2><p>String data is non-numerical, and is used to store characters and words. All strings consist of characters enclosed within double quotation marks. The string data can include numbers and other numerical symbols but will be treated as text. Examples of strings are:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">"A"
+"Hello World"
+"Telephone"
+"I am 99 years old"
+"1.2.3.4.5.6.7.8.9"
+</pre></div><div align="right"><button class="btn" data-clipboard-text="&quot;A&quot;
+&quot;Hello World&quot;
+&quot;Telephone&quot;
+&quot;I am 99 years old&quot;
+&quot;1.2.3.4.5.6.7.8.9&quot;
+">Copy Code</button></div><p>Each string can consist of as many characters as the memory allows. You can also have a string with no data whatsoever, represented by an empty pair of double quotation marks.</p><h2>Data Type Ranges</h2><p>Each type of data has a maximum and minimum value known as the range. It is important to know these ranges, especially when dealing with smaller datatypes. Below is a list of datatypes and their ranges:</p><div id="basicCodeBlock4" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">INTEGER Range : -2,147,483,648 to 2,147,483,647
+REAL Range : 3.4E +/- 38 (7 significant figures)
+</pre></div><div align="right"><button class="btn" data-clipboard-text="INTEGER Range : -2,147,483,648 to 2,147,483,647
+REAL Range : 3.4E +/- 38 (7 significant figures)
+">Copy Code</button></div><p>Note that whilst the range for Real numbers is very large its accuracy is limited to 7 significant figures. So you could represent 143670000.0 or 0.000053712, each has 5 significant figures, but not both in the same value 143670000.000053712 as the combined value has 18 significant figures. If you tried to store such a value it would be rounded to 143670000.0</p><h2>Variables</h2><p>The best way to demonstrate what a variable does is by way of an example. Take the calculation:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">A = 3 + 4
+</pre></div><div align="right"><button class="btn" data-clipboard-text="A = 3 + 4
+">Copy Code</button></div><p>A variable is used to store a value. It's that simple. You can have a variable that stores any type of data, and you can have as many as you want. The following program shows you how the contents of the variable can be output to the screen:</p><div id="basicCodeBlock6" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">A = 3 + 4
+PRINT ( A )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="A = 3 + 4
+PRINT ( A )
+">Copy Code</button></div><p>Now take the next example to show you how variables can be used as freely as standard number types:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">A = 2
+B = 8
+C = A + B
+PRINT ( C )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="A = 2
+B = 8
+C = A + B
+PRINT ( C )
+">Copy Code</button></div><p>In the preceding example, 2 is stored in the A variable, 8 is stored in the B variable and C is given the result of the calculation between A and B. The calculation is based on the values stored within the variables and so the calculation is actually C = 2 + 8. The result, which in this case is 10, is stored as the new value of C and this is the value that eventually gets printed to the screen.</p><p>So far, we have seen variables used to store and recall integer values. Variables can also store real numbers and strings. In order to allow a variable to store these other types of data, you must make sure the variable is recognized as a real or string variable. To name a real number variable, you must add a hash character (#) as the last character of the variable name. If you want your variable to store a string, you must add a dollar character ($) as the last character of the variable name. Let us see these new variables used to store and recall real values and strings:</p><div id="basicCodeBlock8" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">mydata#=42.5
+PRINT ( mydata# )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="mydata#=42.5
+PRINT ( mydata# )
+">Copy Code</button></div><p>By adding the (#) symbol, we are instructing the program to treat the variable as a real number variable. Exactly the same rule applies to a string variable:</p><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">myname$="Lee"
+PRINT ( myname$ )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="myname$=&quot;Lee&quot;
+PRINT ( myname$ )
+">Copy Code</button></div><p>All variable names can use either upper or lower case characters, which means a variable called NAME$ is the same variable as name$ or Name$. String variables even support the use of limited maths. The following example adds two strings together and the result is a concatenation of the two strings:</p><div id="basicCodeBlock10" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">a$="Hello"
+b$="World"
+c$=a$+b$
+PRINT ( c$ )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="a$=&quot;Hello&quot;
+b$=&quot;World&quot;
+c$=a$+b$
+PRINT ( c$ )
+">Copy Code</button></div><p>To run this example, the text "HelloWorld" will be printed to the screen. Would you be able to alter this example to place a space between "Hello" and "World"?</p><p>If you prefer not to use (#) and ($) symbols in your code, you can also declare your variables as your chosen data type using the AS statement. Here is an example of this:</p><div id="basicCodeBlock11" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">a as string
+b as float
+c as integer
+</pre></div><div align="right"><button class="btn" data-clipboard-text="a as string
+b as float
+c as integer
+">Copy Code</button></div><h2>Arrays</h2><p>Arrays are going to be a very important part of your future programs. They allow you to store large amounts of data under a single name. You can then access the data by index rather than by name alone.</p><p>If you had to write a program that stored each weeks lottery numbers, typing out 52 unique variable names is a lot of work, hard to maintain and quite unnecessary. Arrays allow you to create a special kind of variable that can store more than one item of data. You might start your program like this:</p><div id="basicCodeBlock12" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">lottery1$="43,76,12,34,12,11"
+lottery2$="76,12,34,12,11,44"
+lottery3$="12,34,12,02,05,07"
+etc..
+</pre></div><div align="right"><button class="btn" data-clipboard-text="lottery1$=&quot;43,76,12,34,12,11&quot;
+lottery2$=&quot;76,12,34,12,11,44&quot;
+lottery3$=&quot;12,34,12,02,05,07&quot;
+etc..
+">Copy Code</button></div><p>Two hours later, you realize you could have written it like this:</p><div id="basicCodeBlock13" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">DIM lottery$[52]
+lottery$[1]="43,76,12,34,12,11"
+lottery$[2]="76,12,34,12,11,44"
+lottery$[3]="12,34,12,02,05,07"
+etc..
+</pre></div><div align="right"><button class="btn" data-clipboard-text="DIM lottery$[52]
+lottery$[1]=&quot;43,76,12,34,12,11&quot;
+lottery$[2]=&quot;76,12,34,12,11,44&quot;
+lottery$[3]=&quot;12,34,12,02,05,07&quot;
+etc..
+">Copy Code</button></div><p>We declare a string array using the DIM command followed by a name for our array. Like variables, when we use a dollar symbol after the name we instruct the program to use the array to store only strings. We then enclose in square brackets how many items of data we wish the array to store. The array can be filled almost like a variable, but you must also provide the position within the array you wish to store your data.</p><p>But you then ask yourself what benefits I would have gained using the second approach. If you were also required to print out all 52 lottery numbers to the screen with your first approach you would have to add another 52 statements that printed each variable:</p><div id="basicCodeBlock14" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">PRINT ( lottery1$ )
+PRINT ( lottery2$ )
+PRINT ( lottery3$ )
+etc..
+</pre></div><div align="right"><button class="btn" data-clipboard-text="PRINT ( lottery1$ )
+PRINT ( lottery2$ )
+PRINT ( lottery3$ )
+etc..
+">Copy Code</button></div><p>But if you had used an array, the same example would look like this:</p><div id="basicCodeBlock15" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">PRINT ( lottery$[1] )
+PRINT ( lottery$[2] )
+PRINT ( lottery$[3] )
+etc..
+</pre></div><div align="right"><button class="btn" data-clipboard-text="PRINT ( lottery$[1] )
+PRINT ( lottery$[2] )
+PRINT ( lottery$[3] )
+etc..
+">Copy Code</button></div><p>You will have noticed that by using an array, you no longer have to refer to your data using a unique variable name. You can now point to the data you want using a position number. Accessing data this way has a thousand advantages over trying to access data by variable name alone, as you will discover. One example would be to improve the above like this:</p><div id="basicCodeBlock16" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">FOR T=1 TO 52
+PRINT ( lottery$[T] )
+NEXT T
+</pre></div><div align="right"><button class="btn" data-clipboard-text="FOR T=1 TO 52
+PRINT ( lottery$[T] )
+NEXT T
+">Copy Code</button></div><p>Incredibly the above code replaced 52 PRINT statements with just 3 statements. With the above example, T is incremented from 1 to 52 within a loop that prints out the contents of the array at that position.</p><p>Arrays can also store multiple levels of data. At the moment our lottery entries are stored as strings and the numbers are hard to get at. Let us say we wanted to store all six numbers for every lottery week, we would create an array like this:</p><div id="basicCodeBlock17" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">DIM lottery[52,6]
+</pre></div><div align="right"><button class="btn" data-clipboard-text="DIM lottery[52,6]
+">Copy Code</button></div><p>Without the dollar symbol($), we are declaring the array to store integer numbers instead of strings. You will also notice we have a second number separated by a comma. This means for every array position from 1 to 52, there is a sub-set numbered 1 to 6 in which multiple data can be stored. You can visualize this array as a filing cabinet with large draws numbered 1 to 52. Within each of the 52 draws is a tray with 6 boxes inside. You can store a value in each box. In all you can store 312 (52 x 6) values in this array. You can have up to five dimensions in your array, which means you can create an array as big as (1,2,3,4,5). Be careful when declaring dimensions, as large arrays consume large amounts of memory and may reduce overall performance and stability of your program.</p><p>Entering data into our new array is elementary:</p><div id="basicCodeBlock18" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">lottery[1,1]=43
+lottery[1,2]=76
+lottery[1,3]=12
+lottery[1,4]=34
+lottery[1,5]=12
+lottery[1,6]=11
+lottery[2,1]=43
+lottery[2,2]=76
+lottery[2,3]=12
+lottery[2,4]=34
+lottery[2,5]=12
+lottery[2,6]=11
+</pre></div><div align="right"><button class="btn" data-clipboard-text="lottery[1,1]=43
+lottery[1,2]=76
+lottery[1,3]=12
+lottery[1,4]=34
+lottery[1,5]=12
+lottery[1,6]=11
+lottery[2,1]=43
+lottery[2,2]=76
+lottery[2,3]=12
+lottery[2,4]=34
+lottery[2,5]=12
+lottery[2,6]=11
+">Copy Code</button></div><p>You are now able to give your program access to much more useful data. Unlike the string approach, you could make your program count how many times a certain number has appeared.</p><p>As you have determined, arrays need to be declared as a particular type. You can have an array of integer numbers, real numbers or strings. You cannot have multiple types in the same array, but you can declare new arrays dedicated to holding such data. See user defined types below.</p><p>All arrays are created as global arrays, which means you can access their data from anywhere in your program. It is important to note that a global array must be declared at the top of the main source code of the program as arrays are dynamically created only when the DIM command is executed. Placing DIM commands at the top of included source code will not dynamically create the array unless it lies within a subroutine called from the main program. Essentially, your program has to DIM the array before it can access the array for reading and writing.</p><p>An array can also be declared and initialised as follows:</p><div id="basicCodeBlock19" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">dim a [ 5 ] as integer = [ 10, 20, 30, 40, 50 ]
+dim b [ 3 ] as float = [ 1.2, 1.3, 1.4 ]
+</pre></div><div align="right"><button class="btn" data-clipboard-text="dim a [ 5 ] as integer = [ 10, 20, 30, 40, 50 ]
+dim b [ 3 ] as float = [ 1.2, 1.3, 1.4 ]
+">Copy Code</button></div><h2>User Defined Types</h2><p>If the current set of datatypes is inadequate for your needs, you can create your own data types using user-defined-type. User defined types are useful for storing data using logical fields rather than the unfriendly list of subscripts used by arrays.</p><p>To create a user defined type, you must first declare it at the top of your program. To do so, you would give your type a name and a list of fields it contains:</p><div id="basicCodeBlock20" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">TYPE MyType
+ Fieldname1
+ Fieldname2
+ Fieldname3
+ENDTYPE
+</pre></div><div align="right"><button class="btn" data-clipboard-text="TYPE MyType
+ Fieldname1
+ Fieldname2
+ Fieldname3
+ENDTYPE
+">Copy Code</button></div><p>The above code creates a type called MyType with three fields contained within it. As the fields have no declaration, they are assumed to be integers. The same code could also be truncated to a single line like so:</p><div id="basicCodeBlock21" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">TYPE MyType Fieldname1 Fieldname2 Fieldname3 ENDTYPE
+</pre></div><div align="right"><button class="btn" data-clipboard-text="TYPE MyType Fieldname1 Fieldname2 Fieldname3 ENDTYPE
+">Copy Code</button></div><p>You can also declare different data types for each field, using either the type symbols or using the AS statement, like so:</p><div id="basicCodeBlock22" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">TYPE MyType
+ Fieldname1
+ Fieldname2
+ Fieldname3
+ Fieldname4 AS integer
+ Fieldname5 AS float
+ Fieldname6 AS string
+ENDTYPE
+</pre></div><div align="right"><button class="btn" data-clipboard-text="TYPE MyType
+ Fieldname1
+ Fieldname2
+ Fieldname3
+ Fieldname4 AS integer
+ Fieldname5 AS float
+ Fieldname6 AS string
+ENDTYPE
+">Copy Code</button></div><p>To use your type, you simply create a variable and declare it with your new type. To declare a variable as a specific type, you would use the AS statement:</p><div id="basicCodeBlock23" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">MyVariable AS MyType
+</pre></div><div align="right"><button class="btn" data-clipboard-text="MyVariable AS MyType
+">Copy Code</button></div><p>You can then assign data to your variable as normal, with the added bonus of the fields you have given your variable like so:</p><div id="basicCodeBlock24" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">MyVariable.Fieldname1 = 41
+MyVariable.Fieldname2 = 42
+MyVariable.Fieldname3 = 43
+</pre></div><div align="right"><button class="btn" data-clipboard-text="MyVariable.Fieldname1 = 41
+MyVariable.Fieldname2 = 42
+MyVariable.Fieldname3 = 43
+">Copy Code</button></div><p>At the moment, the type is assuming our fields are integers. We may wish to declare our fields as a real number, string or other datatype. We can do so using the same AS statement within the type definition, so the following code makes more sense we shall give our type and fields sensible names:</p><div id="basicCodeBlock25" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">TYPE AccountEntryType
+ Number AS INTEGER
+ Name AS STRING
+ Amount AS FLOAT
+ENDTYPE
+</pre></div><div align="right"><button class="btn" data-clipboard-text="TYPE AccountEntryType
+ Number AS INTEGER
+ Name AS STRING
+ Amount AS FLOAT
+ENDTYPE
+">Copy Code</button></div><p>You can use a type like any other, so creating and using an array of the above is simply a case of declaring the array with your new type:</p><div id="basicCodeBlock26" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">DIM Accounts[100] AS AccountEntryType
+Accounts[1].Number=12345
+Accounts[1].Name="Lee"
+Accounts[1].Amount=0.42
+</pre></div><div align="right"><button class="btn" data-clipboard-text="DIM Accounts[100] AS AccountEntryType
+Accounts[1].Number=12345
+Accounts[1].Name=&quot;Lee&quot;
+Accounts[1].Amount=0.42
+">Copy Code</button></div><p>As you will eventually discover you can have types within types for more complex data structures so we can imagine one of the fields contains more than one value. We would define two user defined types, and then use one of them in the declaration of one of the fields, as follows:</p><div id="basicCodeBlock27" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">TYPE AmountsType
+ CurrentBalance AS FLOAT
+ SavingsBalance AS FLOAT
+ CreditCardBalance AS FLOAT
+ENDTYPE
+TYPE AccountEntryType
+ Number AS INTEGER
+ Name AS STRING
+ Amount AS AmountsType
+ENDTYPE
+DIM Accounts[100] AS AccountEntryType
+Accounts[1].Number=12345
+Accounts[1].Name="Lee"
+Accounts[1].Amount.CurrentBalance=0.42
+Accounts[1].Amount.SavingsBalance=100.0
+Accounts[1].Amount.CreditCardBalance=-5000.0
+</pre></div><div align="right"><button class="btn" data-clipboard-text="TYPE AmountsType
+ CurrentBalance AS FLOAT
+ SavingsBalance AS FLOAT
+ CreditCardBalance AS FLOAT
+ENDTYPE
+TYPE AccountEntryType
+ Number AS INTEGER
+ Name AS STRING
+ Amount AS AmountsType
+ENDTYPE
+DIM Accounts[100] AS AccountEntryType
+Accounts[1].Number=12345
+Accounts[1].Name=&quot;Lee&quot;
+Accounts[1].Amount.CurrentBalance=0.42
+Accounts[1].Amount.SavingsBalance=100.0
+Accounts[1].Amount.CreditCardBalance=-5000.0
+">Copy Code</button></div><p>As you can see, user defined types are not only powerful, they make the readability of your programs far easier. Using named fields instead of a subscript value within an array, you can save yourself many hours all for the sake of an incorrect subscript value throwing out your program results.</p><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

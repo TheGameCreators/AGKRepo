@@ -1,0 +1,46 @@
+_header
+Macintosh - OS X
+
+_text
+This guide explains the process involved in creating projects when using Tier 2 when using the Macintosh OS X platform. In order to compile projects on the Mac you will need Xcode 10 or higher running Mac OS X 10.13.6 or later. Xcode is available for free by visiting https://developer.apple.com/xcode/. Alternatively you can obtain it from within the Mac App Store by searching for Xcode.
+
+_text
+All of the relevant files for Tier 2 development are bundled within the main package of AppGameKit Studio. To access them navigate to the install location for AppGameKit Studio e.g. Applications/AGKStudio and right click on the icon for AGKStudio and select Show Package Contents. From here enter the Contents folder and then the Resources folder where you will see a Tier 2 folder with libraries, include files and examples projects for Mac OS X development.
+
+_sheader
+Libraries and include files
+
+_text
+The template projects and any of your own custom projects are dependent on several library and include files. Their install locations are -
+
+_listbegin
+Include Files
+Applications\AGKStudio\Contents\Resources\Tier 2\common\include\
+Applications\AGKStudio\Contents\Resources\Tier 2\common\Collision\
+Applications\AGKStudio\Contents\Resources\Tier 2\bullet
+Applications\AGKStudio\Contents\Resources\Tier 2\bullet\BulletCollision\CollisionShapes
+_listend
+
+_listbegin
+Libraries
+Applications\AGKStudio\Contents\Resources\platform\mac\Lib\Release
+_listend
+
+_sheader
+Templates
+
+_text
+A template is included that provides a starting point for your application. This can be found within -
+
+_listbegin
+\Applications\AGKStudio\Contents\Resources\Tier 2\apps
+_listend
+
+_text
+The main project of interest is called template_mac. This project is set up with relative links to the AppGameKit Studio libraries and include files and are ready to compile. Making new projects outside this location or moving the existing projects to another location will result in you needing to update the library and include links within the project settings to ensure the app compiles.
+
+_text
+Make a copy of the template_mac and place it within the apps folder, then open the project within Xcode. Attempt to compile the project by going to the Project menu and selecting Build. When your project has built a message will show up saying it has succeeded. From here you can run the app by going to the Product menu and selecting the Run option.
+
+_text
+The project will consist of three main files - core.mm, template.cpp and template.h. Core.mm is the starting point for your application as a whole, which in most cases can be ignored and is only relevant for more advanced users. Template.h contains a class declaration for your app and template.cpp contains the definition, with three functions already defined - Begin, Loop and End. Begin is the entry point for your application and is used for initial setup. Loop will be called every cycle and should be the location of your logic etc. Finally End is called when the app closes down and can be used to free up resources etc.

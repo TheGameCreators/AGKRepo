@@ -1,0 +1,459 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Getting started with multiplayer - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Getting started with multiplayer</div><div class="page"><h1>Getting started with multiplayer</h1><h2>Description</h2><p>AppGameKit Studio provides a set of commands that can be used to quickly and easily get communications up and running for a multiplayer enabled game. The commands provided allow you to host or join a network, send messages around the network, retrieve messages and find out information such as the amount and names of players in a game.</p><p>This example progam demonstrates the process of creating a simple multiplayer game. It has support for two players, with one being able to host the game, while the other can join the game. The host player can move around the screen by using the accelerometer, and the player who joined the game can observe the host player moving around on their device.</p><p>It's important to realise that one player is always responsible for hosting or starting a game and once a game has been hosted other players can join in.</p><div align="center"><img src="0_getting_started.jpg"/></div><h2>Overview</h2><p>This example will handle the following:</p><ul><li>set up a screen which has two sprites</li><li>the user can click on one sprite to host a game</li><li>click on the other sprite to join a game</li><li>once a game has been joined or hosted any players information is printed out on screen</li><li>the host can move its sprite around on screen using the accelerometer</li><li>the host will send its sprite position to the player who joins the game</li><li>the player who joined will check for any incoming messages</li><li>when incoming messages are found the position of the host's sprite will be updated</li></ul><h2>Initial set up</h2><p>The game relies on two images, chip5.png and chip25.png:</p><div align="center"><img src="chip5.png"/></div><div align="center"><img src="chip25.png"/></div><p>The yellow chip (chip5.png) is used for the host and the blue chip (chip25.png) is for the player who joins the game.</p><p>To get started a display aspect of 4.0 / 3.0 is chosen. This is effectively the same thing as saying our base resolution will match 1024 x 768. When the game runs on a device that has a different base resolution it will scale accordingly, while maintaining the aspect ratio of 4.0 / 3.0.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetDisplayAspect ( 4.0 / 3.0 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetDisplayAspect ( 4.0 / 3.0 )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetDisplayAspect ( 4.0 / 3.0 );
+</pre></div><p>The two chip images are loaded with chip5.png using ID 1 and chip25.png using ID 2. We'll also setup a background sprite.</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadImage ( 1, "chip5.png" )
+LoadImage ( 2, "chip25.png" )
+backdrop=CreateSprite ( LoadImage ( "background1b.jpg" ) )
+SetSpriteSize (backdrop,100,100)
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadImage ( 1, &quot;chip5.png&quot; )
+LoadImage ( 2, &quot;chip25.png&quot; )
+backdrop=CreateSprite ( LoadImage ( &quot;background1b.jpg&quot; ) )
+SetSpriteSize (backdrop,100,100)
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::LoadImage ( 1, "chip5.png" );
+agk::LoadImage ( 2, "chip25.png" );
+agk::CreateSprite ( LoadImage ( "background1b.jpg" ) );
+agk::SetSpriteSize (backdrop,100,100);
+</pre></div><p>The next step is to create a sprite that uses the yellow chip, this sprite will be positioned on the left side of the screen. After this another sprite is created, which will use the blue chip and this gets positioned on the right side of the screen:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 10, 20 )
+SetSpriteSize ( 1, 10, -1 )
+<br>
+CreateSprite ( 2, 2 )
+SetSpritePosition ( 2, 50, 20 )
+SetSpriteSize ( 2, 10, -1 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 10, 20 )
+SetSpriteSize ( 1, 10, -1 )
+
+CreateSprite ( 2, 2 )
+SetSpritePosition ( 2, 50, 20 )
+SetSpriteSize ( 2, 10, -1 )
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::CreateSprite ( 1, 1 );
+agk::SetSpritePosition ( 1, 10, 20 );
+agk::SetSpriteSize ( 1, 10, -1 );
+<br>
+agk::CreateSprite ( 2, 2 );
+agk::SetSpritePosition ( 2, 50, 20 );
+agk::SetSpriteSize ( 2, 10, -1 );
+</pre></div><h2>Hosting or joining a game</h2><p>The main loop needs to deal with several tasks, the first of which is to allow the user to decide whether to host or join a game. A user can host a game by touching or clicking the yellow sprite on the left. If the user wants to join a game they can touch or click the blue sprite on the right.</p><h2>Hosting a game</h2><p>One player will need to host the game on their network. To start hosting a game call the command <i>HostNetwork</i>. This command takes several parameters:</p><ul><li>network name - this is a string that is used to identify the network</li><li>player name - a string that is used to identify the player hosting the network</li><li>port - an integer that controls the port being used to handle network communication, this port value must be between 1025 and 65535, the higher the better as lower numbers tend to be used by other applications</li></ul><p>The command also returns an integer that contains an ID number for the hosted network. This value needs to be stored for use later on.</p><p>This line shows a network being hosted that is called "AGK Test Game", with the player being called "Player 1", using port 48230 and returning the ID number of the network into the variable <i>NetworkID</i>:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">NetworkID = HostNetwork ( "AGK Test Game", "Player 1", 48230 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="NetworkID = HostNetwork ( &quot;AGK Test Game&quot;, &quot;Player 1&quot;, 48230 )
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">NetworkID = agk::HostNetwork ( "AGK Test Game", "Player 1", 48230 );
+</pre></div><h2>Joining a game</h2><p>To join a hosted game call the command <i>JoinNetwork</i>. There are two ways of calling this command. The first option is to call <i>JoinNetwork</i> and pass in a network name and the name of the player e.g.</p><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">NetworkID = JoinNetwork ( "AGK Test Game", "Player 2" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="NetworkID = JoinNetwork ( &quot;AGK Test Game&quot;, &quot;Player 2&quot; )
+">Copy Code</button></div><div id="cppCodeBlock10" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">NetworkID = agk::JoinNetwork ( "AGK Test Game", "Player 2" );
+</pre></div><p>In this instance we are attempting to join a network that is called "AGK Test Game" and our player name is specified as "Player 2". Internally AGK will search for this game over the network, which is ideally suited to local area networks, where a group of devices are connected together.</p><p>The alternative variation of the command <i>JoinNetwork</i> will be needed when a player wants to join a game over the internet. This command's parameters are - an IP address, a port number and the name of the player. It can be called like this:</p><div id="basicCodeBlock11" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">NetworkID = JoinNetwork ( "123.4.5.6", 48230, "Player 2" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="NetworkID = JoinNetwork ( &quot;123.4.5.6&quot;, 48230, &quot;Player 2&quot; )
+">Copy Code</button></div><div id="cppCodeBlock12" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">NetworkID = agk::JoinNetwork ( "123.4.5.6", 48230, "Player 2" );
+</pre></div><p>For this situation the player hosting the game will need to let the player joining the game know their IP address and the port they have selected.</p><h2>Choosing to host or join a game</h2><p>As mentioned earlier the yellow chip is for the player hosting the game and the blue chip is for the player joining the game. The code will check for input and find out which sprite was hit. If the sprite hit has an ID of 1 (the yellow sprite) then a network will be hosted. If the sprite hit has an ID of 2 (the blue sprite) then a network will be joined. This example will not use IP addresses as it is intended to run on a local area network. The code will also display instructions for the user through two calls to <i>Print</i>. Here's an extract of the code:</p><div id="basicCodeBlock13" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">Print ( "Select yellow chip to host a game" )
+Print ( "Select blue chip to join a game" )
+<br>
+if GetPointerPressed ( ) = 1
+    hit = GetSpriteHit ( GetPointerX ( ), GetPointerY ( ) )
+<br>
+    if ( hit = 1 )
+        NetworkID = HostNetwork ( "AGK Test Game", "Player 1", 48230 )
+        Typ = 0
+    endif
+<br>
+    if ( hit = 2 )
+        NetworkID = JoinNetwork ( "AGK Test Game", "Player 2" )
+        Typ = 1
+    endif
+endif
+</pre></div><div align="right"><button class="btn" data-clipboard-text="Print ( &quot;Select yellow chip to host a game&quot; )
+Print ( &quot;Select blue chip to join a game&quot; )
+
+if GetPointerPressed ( ) = 1
+    hit = GetSpriteHit ( GetPointerX ( ), GetPointerY ( ) )
+
+    if ( hit = 1 )
+        NetworkID = HostNetwork ( &quot;AGK Test Game&quot;, &quot;Player 1&quot;, 48230 )
+        Typ = 0
+    endif
+
+    if ( hit = 2 )
+        NetworkID = JoinNetwork ( &quot;AGK Test Game&quot;, &quot;Player 2&quot; )
+        Typ = 1
+    endif
+endif
+">Copy Code</button></div><div id="cppCodeBlock14" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::Print ( "Select yellow chip to host a game" );
+agk::Print ( "Select blue chip to join a game" );
+<br>
+if ( agk::GetPointerPressed ( ) )
+{
+    int iHit = agk::GetSpriteHit ( agk::GetPointerX ( ), agk::GetPointerY ( ) );
+<br>
+    if ( iHit == 1 )
+    {
+        NetworkID = agk::HostNetwork ( "AGK Test Game", "Player 1", 48230 );
+        Typ = 0;
+    }   
+<br>
+    if ( iHit == 2 )
+    {
+        NetworkID = agk::JoinNetwork ( "AGK Test Game", "Player 2" );
+        Typ = 1;
+    }
+}
+</pre></div><p>Another point to mention is that the variable <i>Typ</i> is used to store the choice of the user, this is required later on in the game so that we know whether a user has joined or hosted a game.</p><h2>Finding players in a game</h2><p>After hosting or joining a game, one task that needs to be carried out is to determine how many players are involved and find out information such as their name. To begin this process call the command <i>GetNetworkFirstClient</i> and pass in the ID number of the hosted or joined network. This command returns an ID number for the first client or player in the game:</p><div id="basicCodeBlock15" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">id = GetNetworkFirstClient ( NetworkID )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="id = GetNetworkFirstClient ( NetworkID )
+">Copy Code</button></div><div id="cppCodeBlock16" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">id = agk::GetNetworkFirstClient ( NetworkID );
+</pre></div><p>Once you have the ID number for a client you can call commands such as <i>GetNetworkClientName</i> and pass in the ID of the network and the ID of the player e.g.</p><div id="basicCodeBlock17" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">id = GetNetworkFirstClient ( NetworkID )
+<br>
+name$ = GetNetworkClientName ( NetworkID, id )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="id = GetNetworkFirstClient ( NetworkID )
+
+name$ = GetNetworkClientName ( NetworkID, id )
+">Copy Code</button></div><div id="cppCodeBlock18" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">id = agk::GetNetworkFirstClient ( NetworkID );
+<br>
+name = agk::GetNetworkClientName ( NetworkID, id ) );
+</pre></div><p>After calling <i>GetNetworkFirstClient</i>, you can determine other clients in the list by calling <i>GetNetworkNextClient</i>, which will return an ID number for the next player in the list. Keep on calling this command until it returns 0, which means you have hit the end of the list and have found all the clients.</p><p>This example code demonstrates the typical procedure of finding players in a game and retrieving information, like their name:</p><div id="basicCodeBlock19" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">id = GetNetworkFirstClient ( NetworkID )
+<br>
+while id <> 0
+    Print ( GetNetworkClientName ( NetworkID, id ) )
+<br>
+    id = GetNetworkNextClient ( NetworkID )
+endwhile
+</pre></div><div align="right"><button class="btn" data-clipboard-text="id = GetNetworkFirstClient ( NetworkID )
+
+while id <> 0
+    Print ( GetNetworkClientName ( NetworkID, id ) )
+
+    id = GetNetworkNextClient ( NetworkID )
+endwhile
+">Copy Code</button></div><div id="cppCodeBlock20" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">id = agk::GetNetworkFirstClient ( NetworkID );
+<br>
+while ( id != 0 )
+{
+    agk::Print ( agk::GetNetworkClientName ( NetworkID, id ) );
+<br>
+    id = agk::GetNetworkNextClient ( NetworkID );
+}
+</pre></div><h2>The host</h2><p>For this example the host player will be allowed to move the yellow sprite around through the use of the accelerometer (or keyboard if no accelerometer is present). To handle this a check is first made to see whether the player is hosting the game (by checking the variable <i>Typ</i>) and then the yellow sprite's position is updated based on any input:</p><div id="basicCodeBlock21" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">if ( Typ = 0 )
+    x# = GetSpriteX ( 1 ) + GetDirectionX ( )
+    y# = GetSpriteY ( 1 ) + GetDirectionY ( )
+<br>
+    SetSpritePosition ( 1, x#, y# )
+endif
+</pre></div><div align="right"><button class="btn" data-clipboard-text="if ( Typ = 0 )
+    x# = GetSpriteX ( 1 ) + GetDirectionX ( )
+    y# = GetSpriteY ( 1 ) + GetDirectionY ( )
+
+    SetSpritePosition ( 1, x#, y# )
+endif
+">Copy Code</button></div><div id="cppCodeBlock22" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">if ( Typ == 0 )
+{
+    float x = agk::GetSpriteX ( 1 ) + agk::GetDirectionX ( );
+    float y = agk::GetSpriteY ( 1 ) + agk::GetDirectionY ( );
+<br>
+    agk::SetSpritePosition ( 1, x, y );
+}
+</pre></div><h2>Sending data from the host</h2><p>The host is going to send the location of its sprite to the player that joins the game. The way to deal with this is to initially create a network message. Once created a message can have data added to it and then sent out across the network. A message gets created by using the command <i>CreateNetworkMessage</i>. This command returns an ID number for the message, which needs to be saved. This line demonstrates the creation of a message:</p><div id="basicCodeBlock23" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">message = CreateNetworkMessage ( )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="message = CreateNetworkMessage ( )
+">Copy Code</button></div><div id="cppCodeBlock24" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">message = agk::CreateNetworkMessage ( );
+</pre></div><p>Integers, floats and strings can be added to the message by using the commands <i>AddNetworkMessageInteger</i>, <i>AddNetworkMessageFloat</i> and <i>AddNetworkMessageString</i>. These commands all have two parameters - the first is the ID number of the message and the second is the actual data. For our example the location of the host's sprite is going to be sent over the network. This can be handled using these lines of code:</p><div id="basicCodeBlock25" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">AddNetworkMessageFloat ( message, GetSpriteX ( 1 ) )
+AddNetworkMessageFloat ( message, GetSpriteY ( 1 ) )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="AddNetworkMessageFloat ( message, GetSpriteX ( 1 ) )
+AddNetworkMessageFloat ( message, GetSpriteY ( 1 ) )
+">Copy Code</button></div><div id="cppCodeBlock26" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::AddNetworkMessageFloat ( message, agk::GetSpriteX ( 1 ) );
+agk::AddNetworkMessageFloat ( message, agk::GetSpriteY ( 1 ) );
+</pre></div><p>With the message in place the only task remaining is to send it out. To send a message call the command <i>SendNetworkMessage</i>. This command has three parameters - the ID of the network to send the message over, the ID of the client to send the message to, the ID of the message to send. In our example this line is used:</p><div id="basicCodeBlock27" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SendNetworkMessage ( NetworkID, 0, message )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SendNetworkMessage ( NetworkID, 0, message )
+">Copy Code</button></div><div id="cppCodeBlock28" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SendNetworkMessage ( NetworkID, 0, message );
+</pre></div><p>This has the effect of sending out the previously created message to all players on the network. The reason why all players will receive this message is because a value of 0 has been used for the client ID parameter. In situations where a message needs to go to a specific player then store the player ID from the list of players and use this as the second parameter.</p><p>The host does not need to do any more work. At this point it will continually send out the position of its sprite to the player who joins.</p><h2>Retrieving data</h2><p>The client can poll for messages from the server by calling the command <i>GetNetworkMessage</i>. This command will return an ID number for a message. If this ID number is not 0 then a message is available to be read. The aim is to continually loop round while messages are available and deal with their data. This example code demonstrates a typical way of dealing with messages:</p><div id="basicCodeBlock29" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">message = GetNetworkMessage ( NetworkID )
+<br>
+while message <> 0 
+    // get data from message
+<br>
+    // delete the current message as it is no longer needed
+    DeleteNetworkMessage ( message )
+<br>
+    // find the next message
+    message = GetNetworkMessage ( NetworkID )
+endwhile
+</pre></div><div align="right"><button class="btn" data-clipboard-text="message = GetNetworkMessage ( NetworkID )
+
+while message <> 0 
+    // get data from message
+
+    // delete the current message as it is no longer needed
+    DeleteNetworkMessage ( message )
+
+    // find the next message
+    message = GetNetworkMessage ( NetworkID )
+endwhile
+">Copy Code</button></div><div id="cppCodeBlock30" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">message = agk::GetNetworkMessage ( NetworkID );
+<br>
+while ( message != 0 )
+{
+    // get data from message
+<br>
+    // delete the current message as it is no longer needed
+    agk::DeleteNetworkMessage ( message );
+<br>
+    // find the next message
+    message = agk::GetNetworkMessage ( NetworkID );
+}
+</pre></div><p>Notice that after data has been retrieved from the message the actual message needs to be deleted by calling <i>DeleteNetworkMessage</i> and passing in the ID of the message.</p><p>Data from a message can be retrieved by calling <i>GetNetworkMessageInteger</i>, <i>GetNetworkMessageFloat</i> and <i>GetNetworkMessageString</i>. Messages being sent out from the host contain the X and Y positions of the host's sprite, therefore to process a message correctly on the client side it's a case of retrieving the message and then making two calls to <i>GetNetworkMessageFloat</i> and saving the X and Y positions. The previous code block can be modified to this:</p><div id="basicCodeBlock31" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">message = GetNetworkMessage ( NetworkID )
+<br>
+while message <> 0 
+    // get data from message
+    x# = GetNetworkMessageFloat ( message )
+    y# = GetNetworkMessageFloat ( message )
+<br>
+    SetSpritePosition ( 1, x#, y# )
+<br>
+    // delete the current message as it is no longer needed
+    DeleteNetworkMessage ( message )
+<br>
+    // find the next message
+    message = GetNetworkMessage ( NetworkID )
+endwhile
+</pre></div><div align="right"><button class="btn" data-clipboard-text="message = GetNetworkMessage ( NetworkID )
+
+while message <> 0 
+    // get data from message
+    x# = GetNetworkMessageFloat ( message )
+    y# = GetNetworkMessageFloat ( message )
+
+    SetSpritePosition ( 1, x#, y# )
+
+    // delete the current message as it is no longer needed
+    DeleteNetworkMessage ( message )
+
+    // find the next message
+    message = GetNetworkMessage ( NetworkID )
+endwhile
+">Copy Code</button></div><div id="cppCodeBlock32" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">message = agk::GetNetworkMessage ( NetworkID );
+<br>
+while ( message != 0 )
+{
+    // get data from message
+    x = agk::GetNetworkMessageFloat ( message );
+    y = agk::GetNetworkMessageFloat ( message );
+<br>
+    agk::SetSpritePosition ( 1, x, y );
+<br>
+    // delete the current message as it is no longer needed
+    agk::DeleteNetworkMessage ( message );
+<br>
+    // find the next message
+    message = agk::GetNetworkMessage ( NetworkID );
+}
+</pre></div><p>After the X and Y positions have been retrieved from the message these get applied to sprite 1 (the host's sprite).</p><h2>Full code listing</h2><p>Everything is now in place. Here's the final code for our program:</p><div id="basicCodeBlock33" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetDisplayAspect ( 4.0 / 3.0 )
+<br>
+LoadImage ( 1, "chip5.png" )
+LoadImage ( 2, "chip25.png" )
+backdrop=CreateSprite ( LoadImage ( "background1b.jpg" ) )
+SetSpriteSize (backdrop,100,100)
+<br>
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 10, 20 )
+SetSpriteSize ( 1, 10, -1 )
+<br>
+CreateSprite ( 2, 2 )
+SetSpritePosition ( 2, 50, 20 )
+SetSpriteSize ( 2, 10, -1 )
+<br>
+State = 0
+Typ = 0
+NetworkID = 0
+<br>
+do
+    if State = 0
+        Print ( "Select yellow chip to host a game" )
+	Print ( "Select blue chip to join a game" )
+	<br>
+        if GetPointerPressed ( ) = 1
+            hit = GetSpriteHit ( GetPointerX ( ), GetPointerY ( ) )
+        <br>
+            if ( hit = 1 )
+                NetworkID = HostNetwork ( "AGK Test Game", "Player 1", 48230 )
+                Typ = 0
+            endif
+        <br>
+            if ( hit = 2 )
+                NetworkID = JoinNetwork ( "AGK Test Game", "Player 2" )
+                Typ = 1
+            endif
+            State = 1
+        endif
+    endif
+<br>
+    if State = 1 and IsNetworkActive ( NetworkID ) <> 0
+        id = GetNetworkFirstClient ( NetworkID )
+        <br>
+        while id <> 0
+            Print ( GetNetworkClientName ( NetworkID, id ) )
+        <br>
+            id = GetNetworkNextClient ( NetworkID )
+        endwhile
+        <br>
+        if Typ = 0
+            x# = GetSpriteX ( 1 ) + GetDirectionX ( )
+            y# = GetSpriteY ( 1 ) + GetDirectionY ( )
+        <br>
+            SetSpritePosition ( 1, x#, y# )
+        <br>
+            message = CreateNetworkMessage ( )
+            <br>
+            AddNetworkMessageFloat ( message, x# )
+            AddNetworkMessageFloat ( message, y# )
+            <br>
+            SendNetworkMessage ( NetworkID, 0, message )
+        endif
+        <br>
+        if Typ = 1
+            message = GetNetworkMessage ( NetworkID )
+            <br>
+            while message <> 0 
+                x# = GetNetworkMessageFloat ( message )
+                y# = GetNetworkMessageFloat ( message )
+                <br>
+                SetSpritePosition ( 1, x#, y# )
+                <br>
+                DeleteNetworkMessage ( message )
+                <br>
+                message = GetNetworkMessage ( NetworkID )
+            endwhile
+        endif
+    endif
+<br>
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetDisplayAspect ( 4.0 / 3.0 )
+
+LoadImage ( 1, &quot;chip5.png&quot; )
+LoadImage ( 2, &quot;chip25.png&quot; )
+backdrop=CreateSprite ( LoadImage ( &quot;background1b.jpg&quot; ) )
+SetSpriteSize (backdrop,100,100)
+
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 10, 20 )
+SetSpriteSize ( 1, 10, -1 )
+
+CreateSprite ( 2, 2 )
+SetSpritePosition ( 2, 50, 20 )
+SetSpriteSize ( 2, 10, -1 )
+
+State = 0
+Typ = 0
+NetworkID = 0
+
+do
+    if State = 0
+        Print ( &quot;Select yellow chip to host a game&quot; )
+	Print ( &quot;Select blue chip to join a game&quot; )
+
+        if GetPointerPressed ( ) = 1
+            hit = GetSpriteHit ( GetPointerX ( ), GetPointerY ( ) )
+
+            if ( hit = 1 )
+                NetworkID = HostNetwork ( &quot;AGK Test Game&quot;, &quot;Player 1&quot;, 48230 )
+                Typ = 0
+            endif
+
+            if ( hit = 2 )
+                NetworkID = JoinNetwork ( &quot;AGK Test Game&quot;, &quot;Player 2&quot; )
+                Typ = 1
+            endif
+            State = 1
+        endif
+    endif
+
+    if State = 1 and IsNetworkActive ( NetworkID ) <> 0
+        id = GetNetworkFirstClient ( NetworkID )
+
+        while id <> 0
+            Print ( GetNetworkClientName ( NetworkID, id ) )
+
+            id = GetNetworkNextClient ( NetworkID )
+        endwhile
+
+        if Typ = 0
+            x# = GetSpriteX ( 1 ) + GetDirectionX ( )
+            y# = GetSpriteY ( 1 ) + GetDirectionY ( )
+
+            SetSpritePosition ( 1, x#, y# )
+
+            message = CreateNetworkMessage ( )
+
+            AddNetworkMessageFloat ( message, x# )
+            AddNetworkMessageFloat ( message, y# )
+
+            SendNetworkMessage ( NetworkID, 0, message )
+        endif
+
+        if Typ = 1
+            message = GetNetworkMessage ( NetworkID )
+
+            while message <> 0 
+                x# = GetNetworkMessageFloat ( message )
+                y# = GetNetworkMessageFloat ( message )
+
+                SetSpritePosition ( 1, x#, y# )
+
+                DeleteNetworkMessage ( message )
+
+                message = GetNetworkMessage ( NetworkID )
+            endwhile
+        endif
+    endif
+
+    Sync ( )
+loop
+">Copy Code</button></div><h2>Conclusion</h2><p>This is a very simplistic approach to dealing with multiplayer functionality. A game is likely to need much more comprehensive code to deal with extra players, and in particular extra attention to the messages being sent and retrieved. Unlike this example, which simply sends X and Y positions of a sprite, a more realistic scenario would be for a game to be sending numerous messages. As an example, a host may need to keep track of player lives, scores, positions and certain in game actions such as firing weapons. One way of dealing with this is to ensure that every message being sent out always starts with an ID number, followed by the relevant data. This example shows two messages being sent out, the first is given an arbitrary ID of 10 and contains the number of lives for the host, the second has an ID of 50 and shows the score for the host:</p><div id="basicCodeBlock34" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">message = CreateNetworkMessage ( )
+AddNetworkMessageInteger ( message, 10 )
+AddNetworkMessageInteger ( message, lives)
+SendNetworkMessage ( networkID, 0, message )
+<br>
+message = agk::CreateNetworkMessage ( )
+AddNetworkMessageInteger ( message, 50 )
+AddNetworkMessageInteger ( message, score )
+SendNetworkMessage ( networkID, 0, message )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="message = CreateNetworkMessage ( )
+AddNetworkMessageInteger ( message, 10 )
+AddNetworkMessageInteger ( message, lives)
+SendNetworkMessage ( networkID, 0, message )
+
+message = agk::CreateNetworkMessage ( )
+AddNetworkMessageInteger ( message, 50 )
+AddNetworkMessageInteger ( message, score )
+SendNetworkMessage ( networkID, 0, message )
+">Copy Code</button></div><div id="cppCodeBlock35" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">message = agk::CreateNetworkMessage ( );
+agk::AddNetworkMessageInteger ( message, 10 );
+agk::AddNetworkMessageInteger ( message, lives);
+agk::SendNetworkMessage ( networkID, 0, message );
+<br>
+message = agk::CreateNetworkMessage ( );
+agk::AddNetworkMessageInteger ( message, 50 );
+agk::AddNetworkMessageInteger ( message, score );
+agk::SendNetworkMessage ( networkID, 0, message );
+</pre></div><p>Whenever retrieving messages the code would need to call <i>GetNetworkMessageInteger</i> to find out what kind of message is being delivered e.g. lives or score and from there know the exact layout and whether it's necessary to obtain 2 floats and an integer or a string, 1 float and 5 integers.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

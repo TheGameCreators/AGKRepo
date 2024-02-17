@@ -1,0 +1,36 @@
+
+_header
+Default code
+
+_text
+AppGameKit will automatically provide you with a basic program that can be used as a starting point for your project. Here's what it looks like.
+
+_tier1
+// Project: First project 
+// Created: 2017-01-10
+
+// show all errors
+SetErrorMode(2)
+
+// set window properties
+SetWindowTitle( "First project" )
+SetWindowSize( 1024, 768, 0 )
+
+// set display properties
+SetVirtualResolution( 1024, 768 )
+SetOrientationAllowed( 1, 1, 1, 1 )
+SetSyncRate( 30, 0 ) // 30fps instead of 60 to save battery
+UseNewDefaultFonts( 1 ) // since version 2.0.20 we can use nicer default fonts
+
+do
+    Print( ScreenFPS() )
+    Sync()
+loop
+_tier1
+
+_text
+For our project this code isn't required, so select it all and delete it, leaving you with an empty source file. To remove the code either click and drag to select all of the code, then hit the delete key. Alternatively press ctrl + a on Windows or cmd + a on the Mac to select everything, then press the delete key. 
+
+_navigation
+creating_first_project_002.htm creating_first_project_004.htm
+

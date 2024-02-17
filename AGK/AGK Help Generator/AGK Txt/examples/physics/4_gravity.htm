@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Gravity - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Gravity</div><div class="page"><h1>Gravity</h1><h2>Description</h2><p>All physics enabled sprites can be affected by a global gravity property. This property can be used to define whether sprites get pulled to the ground quickly, pulled upwards or even to the side.</p><p>The example creates five dynamic sprites that are placed alongside each other. The global gravitational force is then set to 10 on the X axis and 10 on the Y axis. This has the effect of pulling all our sprites to the right of the screen and downwards.</p><div align="center"><img src="4_gravity.jpg"/></div><h2>Overview</h2><p>The process involved is as follows:</p><ul><li>create our sprites and set their dynamic or static states</li><li>turn physics on for the sprites</li><li>set gravity</li><li>within the main loop simply update the contents of the screen</li></ul><h2>Creating the sprites</h2><p>One image is loaded, which is used by five sprites that are all laid out alongside each other:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadImage ( 1, "small_silver.png" )
+<br>
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 1 )
+CreateSprite ( 3, 1 )
+CreateSprite ( 4, 1 )
+CreateSprite ( 5, 1 )
+<br>
+SetSpritePosition ( 1,   0, 0 )
+SetSpritePosition ( 2,  50, 0 )
+SetSpritePosition ( 3, 100, 0 )
+SetSpritePosition ( 4, 150, 0 )
+SetSpritePosition ( 5, 200, 0 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadImage ( 1, &quot;small_silver.png&quot; )
+
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 1 )
+CreateSprite ( 3, 1 )
+CreateSprite ( 4, 1 )
+CreateSprite ( 5, 1 )
+
+SetSpritePosition ( 1,   0, 0 )
+SetSpritePosition ( 2,  50, 0 )
+SetSpritePosition ( 3, 100, 0 )
+SetSpritePosition ( 4, 150, 0 )
+SetSpritePosition ( 5, 200, 0 )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::LoadImage ( 1, "small_silver.png" );
+<br>
+agk::CreateSprite ( 1, 1 );
+agk::CreateSprite ( 2, 1 );
+agk::CreateSprite ( 3, 1 );
+agk::CreateSprite ( 4, 1 );
+agk::CreateSprite ( 5, 1 );
+<br>
+agk::SetSpritePosition ( 1,   0, 0 );
+agk::SetSpritePosition ( 2,  50, 0 );
+agk::SetSpritePosition ( 3, 100, 0 );
+agk::SetSpritePosition ( 4, 150, 0 );
+agk::SetSpritePosition ( 5, 200, 0 );
+</pre></div><h2>Switching physics on</h2><p>All five sprites have physics enabled:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetSpritePhysicsOn ( 1, 2 )
+SetSpritePhysicsOn ( 2, 2 )
+SetSpritePhysicsOn ( 3, 2 )
+SetSpritePhysicsOn ( 4, 2 )
+SetSpritePhysicsOn ( 5, 2 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetSpritePhysicsOn ( 1, 2 )
+SetSpritePhysicsOn ( 2, 2 )
+SetSpritePhysicsOn ( 3, 2 )
+SetSpritePhysicsOn ( 4, 2 )
+SetSpritePhysicsOn ( 5, 2 )
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetSpritePhysicsOn ( 1, 2 );
+agk::SetSpritePhysicsOn ( 2, 2 );
+agk::SetSpritePhysicsOn ( 3, 2 );
+agk::SetSpritePhysicsOn ( 4, 2 );
+agk::SetSpritePhysicsOn ( 5, 2 );
+</pre></div><h2>Gravity</h2><p>Gravity is applied with the function SetPhysicsGravity. This function takes two parameters. The first parameter controls the gravitational force on the X axis, while the second parameter deals with gravity on the Y axis. Whatever values are set here get applied to all your physics enabled sprites. In this example gravity is set to 10 on the X and Y axis:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetPhysicsGravity ( 10, 10 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetPhysicsGravity ( 10, 10 )
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetPhysicsGravity ( 10, 10 );
+</pre></div><h2>Main loop</h2><p>The main loop in this example does not take any action. All it needs to do is make a call to <i>Sync</i> to ensure the screen is updated.</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+</pre></div><h2>Full code listing</h2><p>The final code listing carries out the tasks mentioned above as well as providing a background image:</p><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background4.jpg" ) )
+<br>
+LoadImage ( 1, "small_silver.png" )
+<br>
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 1 )
+CreateSprite ( 3, 1 )
+CreateSprite ( 4, 1 )
+CreateSprite ( 5, 1 )
+<br>
+SetSpritePosition ( 1,   0, 0 )
+SetSpritePosition ( 2,  50, 0 )
+SetSpritePosition ( 3, 100, 0 )
+SetSpritePosition ( 4, 150, 0 )
+SetSpritePosition ( 5, 200, 0 )
+<br>
+SetSpritePhysicsOn ( 1, 2 )
+SetSpritePhysicsOn ( 2, 2 )
+SetSpritePhysicsOn ( 3, 2 )
+SetSpritePhysicsOn ( 4, 2 )
+SetSpritePhysicsOn ( 5, 2 )
+<br>
+SetPhysicsGravity ( 10, 10 )
+<br>
+do
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+CreateSprite ( LoadImage ( &quot;background4.jpg&quot; ) )
+
+LoadImage ( 1, &quot;small_silver.png&quot; )
+
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 1 )
+CreateSprite ( 3, 1 )
+CreateSprite ( 4, 1 )
+CreateSprite ( 5, 1 )
+
+SetSpritePosition ( 1,   0, 0 )
+SetSpritePosition ( 2,  50, 0 )
+SetSpritePosition ( 3, 100, 0 )
+SetSpritePosition ( 4, 150, 0 )
+SetSpritePosition ( 5, 200, 0 )
+
+SetSpritePhysicsOn ( 1, 2 )
+SetSpritePhysicsOn ( 2, 2 )
+SetSpritePhysicsOn ( 3, 2 )
+SetSpritePhysicsOn ( 4, 2 )
+SetSpritePhysicsOn ( 5, 2 )
+
+SetPhysicsGravity ( 10, 10 )
+
+do
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock10" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background4.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "small_silver.png" );
+<br>
+    agk::CreateSprite ( 1, 1 );
+    agk::CreateSprite ( 2, 1 );
+    agk::CreateSprite ( 3, 1 );
+    agk::CreateSprite ( 4, 1 );
+    agk::CreateSprite ( 5, 1 );
+<br>
+    agk::SetSpritePosition ( 1,   0, 0 );
+    agk::SetSpritePosition ( 2,  50, 0 );
+    agk::SetSpritePosition ( 3, 100, 0 );
+    agk::SetSpritePosition ( 4, 150, 0 );
+    agk::SetSpritePosition ( 5, 200, 0 );
+<br>
+    agk::SetSpritePhysicsOn ( 1, 2 );
+    agk::SetSpritePhysicsOn ( 2, 2 );
+    agk::SetSpritePhysicsOn ( 3, 2 );
+    agk::SetSpritePhysicsOn ( 4, 2 );
+    agk::SetSpritePhysicsOn ( 5, 2 );
+}
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>Being able to set the gravity for your sprites allows you to create some interesting effects. Try experimenting with the gravity values and see the results.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

@@ -1,0 +1,109 @@
+﻿_header
+Basic print commands
+
+_sheader
+Description
+_text
+A set of print commands are provided with AppGameKit Studio. Their purpose is to provide a very quick and effective way of outputting text on screen, which is particularly useful for debugging.
+
+_text
+This example will demonstrate how the print commands can be used.
+
+_image
+3_print.jpg
+
+_sheader
+Printing text
+_text
+The <i>Print</i> command takes one parameter. It will accept a string, an integer or a floating point variable. These lines of code demonstrate printing out the different types:
+
+_tier1
+Print ( "some text" )
+Print ( 123 )
+Print ( 9.473 )
+_tier1
+
+_tier2
+agk::Print ( "some text" );
+agk::Print ( 123 );
+agk::Print ( 9.473f );
+_tier2
+
+_text
+After calling these commands the contents will be output on screen, with each subsequent call to <i>Print</i> generating a new line.
+
+_sheader
+Printing properties
+_text
+It's possible to adjust size, spacing and color properties for printing text on screen.
+
+_text
+The command <i>SetPrintSize</i> controls the size of printed text. It only takes one parameter that controls the size. Increase the size to have larger text printed. The default size is calculated based on whether you have specified an aspect ratio or are using a virtual resolution.
+
+_text
+The command <i>SetPrintSpacing</i> controls the spacing between characters. This command takes one parameter that controls the spacing. By default this is 0 meaning there are no spaces between characters. Use a larger value to increase spacing between characters.
+
+_text
+The command <i>SetPrintColor</i> takes four parameters: red, green, blue and alpha values. This command is used to control the color of text displayed with the <i>Print</i> command. By default all of these values are 255, which will display white text on screen.
+
+_sheader
+Full code listing
+_text
+Our final program makes three calls to the <i>Print</i> command:
+
+_tier1
+backdrop = CreateSprite ( LoadImage ( "background3.jpg" ) )
+SetSpriteColorAlpha ( backdrop, 200 )
+SetSpriteSize ( backdrop, 100, 100 )
+<br>
+do
+    Print ( "some text" )
+    Print ( 123 )
+    Print ( 9.473 )
+<br>
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    int backdrop = agk::CreateSprite ( agk::LoadImage ( "background3.jpg" ) );
+    agk::SetSpriteColorAlpha ( backdrop, 200 );
+    agk::SetSpriteSize ( backdrop, 100, 100 );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Print ( "some text" );
+    agk::Print ( 123 );
+    agk::Print ( 9.473 );
+<br>
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Making sure text is on screen
+_text
+Any text printed out by the <i>Print</i> command will be displayed when the <i>Sync</i> command is called. At this point any text within the print buffer will be cleared. Therefore if you made a call to <i>Print</i> outside of your main loop then the text would be flashed on screen and then disappear. To ensure text with the <i>Print</i> command is displayed on screen then it's advisable to call <i>Print</i> within your main loop.
+
+_sheader
+Conclusion
+_text
+The <i>Print</i> command is ideal for quickly displaying text on screen. If you need extra control and customization then it's advisable to use the text commands.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

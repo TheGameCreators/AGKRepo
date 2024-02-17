@@ -1,0 +1,31 @@
+_header
+global
+
+_sheader
+Syntax
+
+_tier1
+global variable
+_tier1
+
+_sheader
+Description
+
+_text
+Use the <i>global</i> keyword to define a variable that will have global scope for all of your code. When a variable is global it can be referenced anywhere within your source code.
+
+_sheader
+Example
+
+_tier1
+global myValue = 10
+<br>
+for i = 1 to 5
+    myFunction ( )
+next i
+<br>
+function myFunction ( )
+   Print ( myValue )
+   myValue = myvalue * 2
+endfunction
+_tier1

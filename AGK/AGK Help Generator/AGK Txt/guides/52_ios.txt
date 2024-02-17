@@ -1,0 +1,126 @@
+﻿_header
+Tier 1 (BASIC) Publishing for iOS
+
+_text
+In AppGameKit Studio you can export an IPA of your application from the drop down menu "File/Export Project to iOS". To do this you will need a Mac, and an iOS developer account ($99 per year), and a provisioning profile for your app from the Apple developer site. Once you have your IPA you can upload it to iTunes Connect using Apple's 'Application Loader' program.
+
+_sheader
+Distribution certificate
+
+_text
+Once enrolled as an Apple Developer, the first step is to create a distribution certificate for your Apple account, here are the steps you need to follow to do this:
+
+_listbegin
+Sign into your OS developer account - https://developer.apple.com/
+Select Certificates, Identifiers & Profiles.
+The menu on the left side displays Certificates, Keys, Identifiers, Devices and Provisioning Profiles.
+From the Certificates section select the Production link.
+Press the plus icon to create a new certificate.
+A list of options will be presented to you including Development and Production.
+At the bottom of this page is a link to an Intermediate Certificate.
+Download and install this certificate - Worldwide Developer Relations Certificate Authority.
+While on the same page from the Production listing select App Store and Ad Hoc and then press the continue button.
+Full instructions will be provided on the website explaining the next steps.
+Follow through this process and finally download and install your distribution certificate.
+_listend
+
+_text
+Once completed, your production certificate will be available for a period of 12 months and is used for all of the apps that you create. When this certificate expires you will need to renew it by returning to the page and following the prompts.
+
+_sheader
+App requirements
+
+_text
+Every application you want to distribute will require:
+
+_listbegin
+An application ID
+An Ad Hoc or App Store distribution profile
+_listend
+
+_sheader
+Application ID
+
+_text
+This is a unique identifier for your application and is also used to determine which services your application might need access to, for example iCloud, Push Notifications, etc. To create an application ID:
+
+_listbegin
+Sign into your developer account.
+Select Certificates, Identifiers & Profiles.
+From the menu on the left look for the Identifiers listing and select App IDs.
+Press the + button to create a new App ID.
+You will be presented with a page asking you to fill in the App ID description, App ID Prefix, App ID Suffix and App Services.
+Enter a name for your app in the App ID Description section.
+Typically, the App ID Prefix will only have one option available - your latest distribution certificate.
+For the App ID Suffix select Explicit App ID and create a Bundle ID using a reverse domain name style string e.g. uk.co.mywebsite.mygame
+From the App Services listing tick any relevant functionality that your app may link to.
+Finally press the Continue button to create your Application ID.
+_listend
+
+_sheader
+Ad Hoc or App Store distribution profile
+
+_text
+The next stage is to create a distribution certificate that can be used to install your app on a device:
+
+_listbegin
+Sign into your developer account.
+Select Certificates, Identifiers & Profiles.
+From the menu on the left look for Provisioning Profiles and select Distribution.
+Press the plus button to create a new profile.
+A page will be displayed showing a number of options for Development and Distribution.
+From the Distribution section you can either select App Store or Ad Hoc.
+The App Store selection allows your app to be uploaded to the App Store where you can use programs like TestFlight to easily distribute and test your app before release.
+The Ad Hoc option lets you install your app on a device manually. If you choose this option you will need to add any devices you want to support into a list that can be found in the Devices, All section. Visit this page and follow the instructions to add devices you want to support.
+Select the deployment option and press the Continue button.
+At this point you will be prompted to select the App ID that you want to use.
+Pressing Continue will display another page where you need to select the distribution certificate being used, typically only one option will be present. Select this and press Continue.
+If you selected an Ad Hoc profile you will be asked to choose which devices the app can run on.
+Now you can download the provisioning profile. Your AppGameKit Studio project will need to reference this file, so place it in a convenient location.
+_listend
+
+_sheader
+Exporting an app
+
+_text
+With the Apple Developer account all set up and the App Id and Distribution profile in place, you’re now ready to export your app. Open AppGameKit Studio (Mac version only) and then open your project. From the File menu select the Export Project to iOS. A dialog box will be displayed where you will need to fill in the majority of fields aside from those listed in the optional section.
+
+_text
+The executable file type on iOS is called an IPA file (iOS App Store Package). Due to Apple rules you can only create IPAs by using a Mac desktop or laptop. As usual you can access the Export option from the File menu where you will find both APK and IPA export options.
+
+_text
+The Export system in AppGameKit Studio will build an IPA from all your media and bytecode. This can then be run on any iOS devices that have been added to your Apple developer account and is running iOS7 or greater. You must have the correct distribution certificate and corresponding private key in your keychain for the provisioning profile you are using. It can also be used to produce an IPA suitable for uploading to the AppStore if you use an Appstore provisioning profile you will need to install Application Loader, or install Xcode (available here - https://developer.apple.com/xcode/ ) and use its Application Loader, to submit the actual IPA to iTunes Connect. Note that only AdHoc and App Store provisioning profiles will work with this exporter.
+
+_sheader
+Installing an app using an Ad Hoc profile
+
+_text
+When using an Ad Hoc profile, you will need to manually install the IPA by connecting your iOS device to your computer, opening iTunes, drag the IPA file into the library and then sync the device. Alternatively you can install the latest version of Xcode (Mac OS only) and from within it select the Window menu, then Devices and Simulators, where you will see any devices connected. From here you can drag the IPA file to the list of apps, which will install it to your device.
+
+_sheader
+Installing an app using an App Store profile
+
+_text
+An app listing will need to be generated prior to uploading any files.
+
+_listbegin
+Login to App Store Connect ( https://appstoreconnect.apple.com/ ) and select My Apps.
+Press the plus button and select New App.
+Fill in the details and select the Bundle ID (App ID) from the listing that you created in the developer portal. More details on App Store Connect - https://developer.apple.com/support/app-store-connect/
+The next step is to install Xcode (https://developer.apple.com/xcode/), Mac OS only. Once this is installed search for Application Loader. Run this app and sign into your developer account.
+From within Application Loader press the choose button and navigate to and select your IPA. Follow the on-screen prompts to complete the upload.
+Once the upload is complete a short period of automated processing may be necessary.
+When this has finished you will be automatically emailed with a message confirming that app processing has ended. At this point return to App Store Connect (https://appstoreconnect.apple.com/) and select My Apps and your app. Links will display for App Store, Features, TestFlight and Activity.
+Select the TestFlight option to see your uploaded build.
+Click on the build and enter any relevant information. Finally, from the TestFlight page select App Store Connect users and add people into the testing list, who will be emailed and invited into the testing process. Anyone testing your app will be invited to install TestFlight from the App Store. Once TestFlight is installed invited users can install your app.
+_listend
+
+_text
+More details on TestFlight (https://developer.apple.com/testflight/)
+
+_sheader
+Notes
+_listbegin
+The Apple website has comprehensive tutorials on every step of the development and submission process when submitting applications, and is highly recommended reading.
+YouTube is a great source of video tutorials on the various steps involved in registering an Apple account, installing your certificates and going through the validation process.
+_listend

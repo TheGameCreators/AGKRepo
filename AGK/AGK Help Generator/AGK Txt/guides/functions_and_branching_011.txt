@@ -1,0 +1,6 @@
+
+_header
+Conclusion
+
+_text
+There's a lot to take in with functions, parameters, return values, variable scope and branching. Try and spend some time to familiarise yourself with the concepts shown and experiment with the programs in this guide to discover what happens when you change values etc.

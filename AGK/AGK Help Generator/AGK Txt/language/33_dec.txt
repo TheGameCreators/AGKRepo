@@ -1,0 +1,27 @@
+_header
+dec
+
+_sheader
+Syntax
+
+_tier1
+dec variable, value
+_tier1
+
+_sheader
+Description
+
+_text
+The <i>dec</i> command will decrement a variable by a specified value or by a default of 1. Both integer and real variables can be decremented by either an integer or real value, in addition to array and data type elements. 
+
+_sheader
+Example
+
+_tier1
+a = 10
+print ( a )
+dec a
+print ( a )
+dec a, 4
+print ( a )
+_tier1

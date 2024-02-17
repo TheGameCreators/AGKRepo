@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Collision with zones - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Collision with zones</div><div class="page"><h1>Collision with zones</h1><h2>Description</h2><p>It's possible to determine whether two sprites have collided by using the command <i>GetSpriteCollision</i>. But what happens if you wanted to check whether a sprite has entered a specific area on screen? This is where two specific commands come into play:</p><ul><li><i>GetSpriteInBox</i></li><li><i>GetSpriteInCircle</i></li></ul><p>These two commands allow you to perform collision checks between a sprite and an area. This is particularly useful for many situations e.g. checking whether a player has crossed a race line or finding out if a player is within a heal zone that restores health.</p><p>In this example a sprite will move across the screen and be tested for entering an invisible box. When this event is triggered the sprite will have its color changed to green.</p><div align="center"><img src="11_zones.jpg"/></div><h2>Overview</h2><p>The process involved is as follows:</p><ul><li>create a sprite and position it on screen</li></ul><p>Within the main loop:</p><ul><li>move the sprite towards the right</li><li>check the sprite for entering an invisible collision box</li><li>when the sprite enters this box turn its color to green</li></ul><h2>Creating a sprite</h2><p>An image is loaded, followed with a call to create a sprite and set its position:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadImage ( 1, "peach.png" )
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 0, 0 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadImage ( 1, &quot;peach.png&quot; )
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 0, 0 )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::LoadImage ( 1, "peach.png" );
+agk::CreateSprite ( 1, 1 );
+agk::SetSpritePosition ( 1, 0.0f, 0.0f );
+</pre></div><h2>Main loop</h2><p>The first step within our main loop is to move the sprite over to the right of the screen. This is handled with a call to the command <i>SetSpriteX</i>:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetSpriteX ( 1, GetSpriteX ( 1 ) + 1 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetSpriteX ( 1, GetSpriteX ( 1 ) + 1 )
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetSpriteX ( 1, agk::GetSpriteX ( 1 ) + 1.0f );
+</pre></div><p>The next part deals with checking when the sprite enters an invisible box. The commnd <i>GetSpriteInBox</i> is called. This command has five parameters:</p><ul><li>ID</li><li>topLeftX</li><li>topLeftY</li><li>bottomRightX</li><li>bottomRightY</li></ul><p>It works by taking an ID number of the sprite you are checking, followed by several parameters that define the location of the collision box. With this line of code sprite 1 is checked (our crate) against a box that has its top left as 200, 0 and its bottom right as 300, 50:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">if GetSpriteInBox ( 1, 200, 0, 300, 50 )
+<br>
+endif
+</pre></div><div align="right"><button class="btn" data-clipboard-text="if GetSpriteInBox ( 1, 200, 0, 300, 50 )
+
+endif
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">if ( agk::GetSpriteInBox ( 1, 200, 0, 300, 50 ) )
+{
+<br>
+}
+</pre></div><p>As soon as our sprite enters this box our collision event will be triggered and the sprite can be turned green:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetSpriteColor ( 1, 0, 255, 0, 255 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetSpriteColor ( 1, 0, 255, 0, 255 )
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetSpriteColor ( 1, 0, 255, 0, 255 );
+</pre></div><p>All that's left in the main loop is a call to <i>Sync</i> to ensure the screen is updated:</p><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">Sync ( )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="Sync ( )
+">Copy Code</button></div><div id="cppCodeBlock10" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::Sync ( );
+</pre></div><h2>Full code listing</h2><p>Everything is now in place. Here's the final code for our program:</p><div id="basicCodeBlock11" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background6.jpg" ) )
+<br>
+LoadImage ( 1, "peach.png" )
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 0, 0 )
+<br>
+do
+    SetSpriteX ( 1, GetSpriteX ( 1 ) + 1 )
+<br>
+    if GetSpriteInBox ( 1, 200, 0, 300, 50 )
+        SetSpriteColor ( 1, 0, 255, 0, 255 )
+    endif
+<br>
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+CreateSprite ( LoadImage ( &quot;background6.jpg&quot; ) )
+
+LoadImage ( 1, &quot;peach.png&quot; )
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 0, 0 )
+
+do
+    SetSpriteX ( 1, GetSpriteX ( 1 ) + 1 )
+
+    if GetSpriteInBox ( 1, 200, 0, 300, 50 )
+        SetSpriteColor ( 1, 0, 255, 0, 255 )
+    endif
+
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock12" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background6.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "peach.png" );
+    agk::CreateSprite ( 1, 1 );
+    agk::SetSpritePosition ( 1, 0.0f, 0.0f );
+}
+<br>
+void app::Loop ( void )
+{
+    if ( agk::GetSpriteInBox ( 1, 200, 0, 300, 50 ) )
+    {
+        agk::SetSpriteColor ( 1, 0, 255, 0, 255 );
+    }
+<br>
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>This example has demonstrated the use of the command <i>GetSpriteInBox</i>. This command along with <i>GetSpriteInCircle</i> is useful for a wide variety of scenarios. </p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

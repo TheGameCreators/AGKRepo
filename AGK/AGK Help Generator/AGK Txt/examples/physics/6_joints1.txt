@@ -1,0 +1,271 @@
+﻿_header
+Joints - Part 1
+
+_sheader
+Description
+_text
+Joints are used as a way of making connections between sprites. At the most basic level this could mean attaching two sprites through the use of a weld joint. AppGameKit Studio provides support for several different kinds of joints including a distance joint, revolute joint, prismatic joint, pulley joint, mouse joint, line joint and weld joint.
+
+_text
+This example demonstrates the use of a simple weld joint and the impact this makes on two sprites.
+
+_image
+6_joints1.jpg
+
+
+_sheader
+Overview
+_text
+The process involved is as follows:
+
+_listbegin
+loading images
+create two sprites, align them next to each other and turn physics on
+weld the sprites together
+repeat the process with another two sprites, placing them lower down the screen
+make an obstacle so that when the sprites fall (due to gravity) we can see the impact of a collision
+_listend
+
+_sheader
+Loading images
+_text
+Two images are loaded, that can later be attached to the sprites:
+
+_tier1
+LoadImage ( 1, "green.png" )
+LoadImage ( 2, "small_ball.png" )
+_tier1
+
+_tier2
+agk::LoadImage ( 1, "green.png" );
+agk::LoadImage ( 2, "small_ball.png" );
+_tier2
+
+_sheader
+First set of sprites
+_text
+The first set of sprites will be created alongside each other at the top of the screen. Both of them will use the crate texture (ID 1) and have physics turned on (as dynamic objects):
+
+_tier1
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 100, 0 )
+SetSpritePhysicsOn ( 1, 2 )
+<br>
+CreateSprite ( 2, 1 )
+SetSpritePosition ( 2, 164, 0 )
+SetSpritePhysicsOn ( 2, 2 )
+_tier1
+
+_tier2
+agk::CreateSprite ( 1, 1 )
+agk::SetSpritePosition ( 1, 100.0f, 0.0f );
+agk::SetSpritePhysicsOn ( 1, 2 );
+<br>
+agk::CreateSprite ( 2, 1 );
+agk::SetSpritePosition ( 2, 164.0f, 0.0f );
+agk::SetSpritePhysicsOn ( 2, 2 );
+_tier2
+
+_sheader
+Welding two sprites together
+_text
+By welding two sprites together we create a solid, invisible link that effectively transforms the two sprites into one single entity. The creation of a weld joint is handled with the command <i>CreateWeldJoint</i>. This command takes several parameters:
+
+_listbegin
+sprite A
+sprite B
+x
+y
+colConnected
+_listend
+
+_text
+The first two parameters of this command refer to the sprites that are being welded together. The <i>X</i> and <i>Y</i> parameters control the anchor point of the weld. For most cases setting the anchor point to the centre point of both sprites makes sense. The final parameter <i>colConnected</i> sets wheather the two sprites can collide (0=no, 1=yes).
+
+_text
+For our example the previously created sprites with ID numbers of 1 and 2 will be connected, with the anchor point being the centre point of both sprites:
+
+_tier1
+CreateWeldJoint ( 1, 2, 164, 32, 0 )
+_tier1
+
+_tier2
+agk::CreateWeldJoint ( 1, 2, 164.0f, 32.0f, 0 );
+_tier2
+
+_text
+Both sprite 1 and sprite 2 use image 1 (the crate) which has dimensions of 64 x 64. These sprites are positioned directly alongside each other at 100, 0 and 164, 0. Therefore setting the <i>X</i> parameter to 164 results in the central point on the X axis between both sprites. Setting the <i>Y</i> paramter to 32 means the anchor point is halfway down and in the centre point on the Y axis. After calling <i>CreateWeldJoint</i> with the above parameters our sprites are connected at the anchor point.
+
+_text
+The command <i>CreateWeldJoint</i> returns an ID number for the joint. This ID number can be used to edit properties of joints and also deleting the joint. For the purpose of this example it's not necessary to know and retain the ID, so the return value is ignored.
+
+_sheader
+More sprites
+
+_text
+Another two sprites will be created. These sprites will be placed further down the screen and below our previous sprites, they will not be connected by any joints:
+
+_tier1
+CreateSprite ( 3, 1 )
+SetSpritePosition ( 3, 100, 140 )
+SetSpritePhysicsOn ( 3, 2 )
+<br>
+CreateSprite ( 4, 1 )
+SetSpritePosition ( 4, 164, 140 )
+SetSpritePhysicsOn ( 4, 2 )
+_tier1
+
+_tier2
+agk::CreateSprite ( 3, 1 );
+agk::SetSpritePosition ( 3, 100.0f, 140.0f );
+agk::SetSpritePhysicsOn ( 3, 2 );
+<br>
+agk::CreateSprite ( 4, 1 );
+agk::SetSpritePosition ( 4, 164.0f, 140.0f );
+agk::SetSpritePhysicsOn ( 4, 2 )
+_tier2
+
+_text
+By creating these two sprites without a joint we can examine the difference between collisions on individual sprites and those attached with joints.
+
+_sheader
+An obstacle
+
+_text
+A static physics sprite will be created directly below both sets of sprites. This sprite is placed here so that the dynamically created sprites will collide with this obstacle. The sprite uses image 2 (the chip) and has its shape set to 1 so it's represented as a circle within the simulation. It is also set to be a static object. Here's the code:
+
+_tier1
+CreateSprite ( 5, 2 )
+SetSpritePosition ( 5, 132, 250 )
+SetSpritePhysicsOn ( 5, 1 )
+SetSpriteShape ( 5, 1 )
+_tier1
+
+_tier2
+agk::CreateSprite ( 5, 2 );
+agk::SetSpritePosition ( 5, 132.0f, 250.0f );
+agk::SetSpritePhysicsOn ( 5, 1 );
+agk::SetSpriteShape ( 5, 1 );
+_tier2
+
+_sheader
+Physics debug mode
+_text
+The final part before moving onto the main loop is a call to the command <i>SetPhysicsDebugOn</i>. After calling this command overlays will be placed on our sprites, which will help us to understand how the physics simulation represents our sprites:
+
+_tier1
+SetPhysicsDebugOn ( )
+_tier1
+
+_tier2
+agk::SetPhysicsDebugOn ( );
+_tier2
+
+_sheader
+Main loop
+_text
+The only code required within our main loop is a call to <i>Sync</i> that will ensure the screen is updated. Nothing else needs to happen, we'll let the simulation play itself out and view the results on screen:
+
+_tier1
+do
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Full code listing
+_text
+The final code for our program is as follows:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background3.jpg" ) )
+<br>
+LoadImage ( 1, "green.png" )
+LoadImage ( 2, "small_ball.png" )
+<br>
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 100, 0 )
+SetSpritePhysicsOn ( 1, 2 )
+<br>
+CreateSprite ( 2, 1 )
+SetSpritePosition ( 2, 164, 0 )
+SetSpritePhysicsOn ( 2, 2 )
+<br>
+CreateWeldJoint ( 1, 2, 164, 32, 0 )
+<br>
+CreateSprite ( 3, 1 )
+SetSpritePosition ( 3, 100, 140 )
+SetSpritePhysicsOn ( 3, 2 )
+<br>
+CreateSprite ( 4, 1 )
+SetSpritePosition ( 4, 164, 140 )
+SetSpritePhysicsOn ( 4, 2 )
+<br>
+CreateSprite ( 5, 2 )
+SetSpritePosition ( 5, 132, 250 )
+SetSpritePhysicsOn ( 5, 1 )
+SetSpriteShape ( 5, 1 )
+<br>
+SetPhysicsDebugOn ( )
+<br>
+do
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+    <br>
+    agk::CreateSprite ( agk::LoadImage ( "background3.jpg" ) );
+    <br>
+    agk::LoadImage ( 1, "green.png" );
+    agk::LoadImage ( 2, "small_ball.png" );
+    <br>
+    agk::CreateSprite ( 1, 1 )
+    agk::SetSpritePosition ( 1, 100.0f, 0.0f );
+    agk::SetSpritePhysicsOn ( 1, 2 );
+    <br>
+    agk::CreateSprite ( 2, 1 );
+    agk::SetSpritePosition ( 2, 164.0f, 0.0f );
+    agk::SetSpritePhysicsOn ( 2, 2 );
+    <br>
+    agk::CreateWeldJoint ( 1, 2, 164.0f, 32.0f, 0 );
+    <br>
+    agk::CreateSprite ( 3, 1 );
+    agk::SetSpritePosition ( 3, 100.0f, 140.0f );
+    agk::SetSpritePhysicsOn ( 3, 2 );
+    <br>
+    agk::CreateSprite ( 4, 1 );
+    agk::SetSpritePosition ( 4, 164.0f, 140.0f );
+    agk::SetSpritePhysicsOn ( 4, 2 )
+    <br>
+    agk::CreateSprite ( 5, 2 );
+    agk::SetSpritePosition ( 5, 132.0f, 250.0f );
+    agk::SetSpritePhysicsOn ( 5, 1 );
+    agk::SetSpriteShape ( 5, 1 );
+    <br>
+    agk::SetPhysicsDebugOn ( );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+When you run the program notice how the sprites collision response is different. The two sprites connected with a weld joint act as one, whereas the second set of sprites act individually. Through the use of joints it's possible to create all kinds of interesting scenarios. While this particular example is simple it should give you some kind of insight into what might be possible with joints.
+

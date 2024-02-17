@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>The accelerometer - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; The accelerometer</div><div class="page"><h1>The accelerometer</h1><p>Platforms such as iOS and Bada have support for an accelerometer, which is responsible for measuring the acceleration of the device. As an example if a mobile device is tilted to one side the accelerometer can detect this and a game can react accordingly e.g moving the player around the screen based on the level of motion. Platforms such as Windows and Mac OS X do not have built in accelerometers, however, AppGameKit Studio provides a fallback mechanism whereby the accelerometer can be emulated through keyboard input. This means you can create an accelerometer based game that will run on all platforms without needing alteration.</p><p>This example demonstrates the usage of the accelerometer commands by placing a sprite on screen that has its movement controlled by any data coming from the accelerometer.</p><div align="center"><img src="1_accelerometer.jpg"/></div><h2>Overview</h2><p>The process for this example is as follows:</p><ul><li>set a virtual resolution</li><li>create a sprite and place it near the center of the screen</li><li>update our sprite's position based on accelerometer data</li></ul><h2>Initial set up</h2><p>The initial set up code deals with setting a virtual resolution of 320 x 480, followed with a call to create a sprite with an ID of 1 and position it near the center of the screen:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( 1, LoadImage ( "peach.png" ) )
+SetSpritePosition ( 1, 160, 200 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+CreateSprite ( 1, LoadImage ( &quot;peach.png&quot; ) )
+SetSpritePosition ( 1, 160, 200 )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetVirtualResolution ( 320, 480 );
+<br>
+agk::CreateSprite ( 1, agk::LoadImage ( "peach.png" ) );
+agk::SetSpritePosition ( 1, 160, 200 );
+</pre></div><h2>Retrieving accelerometer data</h2><p>Two commands are used to retrieve data from the accelerometer, they are <i>GetDirectionX</i> and <i>GetDirectionY</i>. Both commands take no parameters and return acceleration on the X and Y axis. When an accelerometer is present on the platform any values returned will come straight from the hardware, when no accelerometer is present (such as on Windows and Mac OS X) then the arrow keys are used.</p><p>When checking accelerometer data on the X axis, if the value is negative the device is tilting left or the left arrow key is being pressed. If the value that gets returned is positive then the device is tilting right or the right arrow key is being pressed.</p><p>When checking accelerometer data on the Y axis, if the value is negative the device is tilting upwards or the up arrow key is being pressed. If the value that gets returned is positive then the device is tilting downwards or the down arrow key is being pressed.</p><p>For our purposes, whenever accelerometer data is returned, these values will be applied to the sprite. This code must go within our main loop and is as follows:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">x# = GetDirectionX ( )
+y# = GetDirectionY ( )
+<br>
+SetSpritePosition ( 1, GetSpriteX ( 1 ) + x#, GetSpriteY ( 1 ) + y# )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="x# = GetDirectionX ( )
+y# = GetDirectionY ( )
+
+SetSpritePosition ( 1, GetSpriteX ( 1 ) + x#, GetSpriteY ( 1 ) + y# )
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">float x = agk::GetDirectionX ( );
+float y = agk::GetDirectionY ( );
+<br>
+agk::SetSpritePosition ( 1, agk::GetSpriteX ( 1 ) + x, agk::GetSpriteY ( 1 ) + y );
+</pre></div><p>The code begins by saving the values returned from <i>GetDirectionX</i> and <i>GetDirectionY</i> into variables named <i>x</i> and <i>y</i>. These values are then printed on screen, so as to provide a visual aid in understanding the data being received. The final line sets the position of the sprite, by taking its original position and adding any values from the accelerometer, therefore as the device is tilted or the arrow keys pressed our sprite will move around the screen.</p><h2>Full code listing</h2><p>Everything is now in place. An extra adjustment is made to ensure the sprite doesn't move off the screen, this is handled with the addition of a few if statements before calling <i>Sync</i>. Here's the final code for our program:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background3.jpg" ) )
+<br>
+CreateSprite ( 1, LoadImage ( "peach.png" ) )
+SetSpritePosition ( 1, 160, 200 )
+<br>
+do
+    x# = GetDirectionX ( )
+    y# = GetDirectionY ( )
+<br>
+    Print ( "Tilt the device to move the sprite" )
+    Print ( "Or use the arrow keys if a keyboard" )
+    Print ( "is present" )
+    Print ( "" )
+<br>
+    Print ( x# )
+    Print ( y# )
+<br>
+    SetSpritePosition ( 1, GetSpriteX ( 1 ) + x#, GetSpriteY ( 1 ) + y# )
+<br>
+    if ( GetSpriteX ( 1 ) < 10 )
+        SetSpriteX ( 1, 10 )
+    endif
+<br>
+    if ( GetSpriteX ( 1 ) > 260 )
+        SetSpriteX ( 1, 260 )
+    endif
+<br>
+    if ( GetSpriteY ( 1 ) < 10 )
+        SetSpriteY ( 1, 10 )
+    endif
+<br>
+    if ( GetSpriteY ( 1 ) > 430 )
+        SetSpriteY ( 1, 430 )
+    endif
+<br>
+    sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+CreateSprite ( LoadImage ( &quot;background3.jpg&quot; ) )
+
+CreateSprite ( 1, LoadImage ( &quot;peach.png&quot; ) )
+SetSpritePosition ( 1, 160, 200 )
+
+do
+    x# = GetDirectionX ( )
+    y# = GetDirectionY ( )
+
+    Print ( &quot;Tilt the device to move the sprite&quot; )
+    Print ( &quot;Or use the arrow keys if a keyboard&quot; )
+    Print ( &quot;is present&quot; )
+    Print ( &quot;&quot; )
+
+    Print ( x# )
+    Print ( y# )
+
+    SetSpritePosition ( 1, GetSpriteX ( 1 ) + x#, GetSpriteY ( 1 ) + y# )
+
+    if ( GetSpriteX ( 1 ) < 10 )
+        SetSpriteX ( 1, 10 )
+    endif
+
+    if ( GetSpriteX ( 1 ) > 260 )
+        SetSpriteX ( 1, 260 )
+    endif
+
+    if ( GetSpriteY ( 1 ) < 10 )
+        SetSpriteY ( 1, 10 )
+    endif
+
+    if ( GetSpriteY ( 1 ) > 430 )
+        SetSpriteY ( 1, 430 )
+    endif
+
+    sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+agk::SetVirtualResolution ( 320, 480 );
+<br>
+agk::CreateSprite ( agk::LoadImage ( "background3.jpg" ) );
+<br>
+agk::CreateSprite ( 1, agk::LoadImage ( "peach.png" ) );
+agk::SetSpritePosition ( 1, 160, 200 );
+}
+<br>
+void app::Loop ( void )
+{
+    float x = agk::GetDirectionX ( );
+    float y = agk::GetDirectionY ( );
+<br>
+    agk::Print ( "Tilt the device to move the sprite" );
+    agk::Print ( "Or use the arrow keys if a keyboard" );
+    agk::Print ( "is present" );
+    agk::Print ( "" );
+<br>
+    agk::Print ( x );
+    agk::Print ( y );
+<br>
+    agk::SetSpritePosition ( 1, agk::GetSpriteX ( 1 ) + x, agk::GetSpriteY ( 1 ) + y );
+<br>
+    if ( agk::GetSpriteX ( 1 ) < 10 )
+        agk::SetSpriteX ( 1, 10.0f );
+<br>
+    if ( agk::GetSpriteX ( 1 ) > 260 )
+        agk::SetSpriteX ( 1, 260.0f );
+<br>
+    if ( agk::GetSpriteY ( 1 ) < 10 )
+        agk::SetSpriteY ( 1, 10.0f );
+<br>
+    if ( agk::GetSpriteY ( 1 ) > 430 )
+        agk::SetSpriteY ( 1, 430.0f );
+}
+</pre></div><h2>Conclusion</h2><p>As you can see from this example, obtaining accelerometer data and acting on it doesn't require a great deal of code. What is also important is that this example will run on all platforms without any modification.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

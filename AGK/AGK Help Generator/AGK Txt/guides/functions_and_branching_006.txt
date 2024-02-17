@@ -1,0 +1,42 @@
+_header
+Variable scope
+
+_text
+The scope of variables relates to how a variable is seen by a particular block of code. Let's look at an example.
+
+_tier1
+value as integer = 1
+<br>
+do
+	myFunction ( )
+	sync ( )
+loop
+<br>
+function myFunction ( )
+	print ( value )
+endfunction
+_tier1
+
+_text
+At the start of this program the variable <i>value</i> is declared and assigned a value of 1. This is followed by a <i>do</i> loop, that calls our custom function <i>myFunction</i> and the <i>sync</i> command to update the screen. All that <i>myFunction</i> attempts to do is to print the contents of <i>value</i> on screen. This program will not work. Attempting to compile or run it will result in an error, telling you that the variable "value" is used without being defined or initialised within the function. The reason for this is that the variable is only visible to the area where it has been defined, in this case anything before or after the <i>do</i> loop can deal with it. The function declaration is considered another block of code, therefore it doesn't know about the existence of the variable <i>value</i>. Let's examine the program with a few changes.
+
+_tier1
+value as integer = 1
+<br>
+do
+	print ( value )
+	myFunction ( )
+	sync ( )
+loop
+<br>
+function myFunction ( )
+	value as integer = 2
+	print ( value )
+endfunction
+_tier1
+
+_text
+This time <i>myFunction</i> declares a variable named <i>value</i> inside it, resulting in the code being valid, so it can compile and run, but we have already declared a variable called <i>value</i> outside of this function, so what is happening? Well, the way it works is that the variable declared inside of the function is within the scope of the function, so it's unique to the function. The program treats it as a different variable to the one declared outside of the function. When you run the program the values 1 and 2 will be displayed on screen because these are unrelated variables.
+
+_navigation
+functions_and_branching_005.htm functions_and_branching_007.htm

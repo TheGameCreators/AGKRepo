@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Cloning sprites - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Cloning sprites</div><div class="page"><h1>Cloning sprites</h1><h2>Description</h2><p>Cloning a sprite allows you to create a replica that has the exact same properties. This example looks at the process of cloning by creating a base sprite, from which other sprites are created when the user taps or clicks the screen.</p><div align="center"><img src="13_clone_sprite.jpg"/></div><h2>Getting started</h2><p>The program begins by setting a virtual resolution of 320 x 480, loading an image named penguin.png, creating a sprite and setting several properties and finally a call to switch physics debug on:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+LoadImage ( 1, "penguin.png" )
+<br>
+CreateSprite      ( 1, 1 )
+SetSpritePosition ( 1, 200, 200 )
+SetSpriteScale    ( 1, 0.6, 0.6 )
+SetSpriteAngle    ( 1, 30 )
+SetSpriteColor    ( 1, 0, 255, 255, 200 )
+SetSpriteShape    ( 1, 3 )
+<br>
+SetPhysicsDebugOn ( )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+LoadImage ( 1, &quot;penguin.png&quot; )
+
+CreateSprite      ( 1, 1 )
+SetSpritePosition ( 1, 200, 200 )
+SetSpriteScale    ( 1, 0.6, 0.6 )
+SetSpriteAngle    ( 1, 30 )
+SetSpriteColor    ( 1, 0, 255, 255, 200 )
+SetSpriteShape    ( 1, 3 )
+
+SetPhysicsDebugOn ( )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::LoadImage ( 1, "penguin.png" );
+<br>
+    agk::CreateSprite      ( 1, 1 );
+    agk::SetSpritePosition ( 1, 200, 200 );
+    agk::SetSpriteScale    ( 1, 0.6, 0.6 );
+    agk::SetSpriteAngle    ( 1, 30 );
+    agk::SetSpriteColor    ( 1, 0, 255, 255, 200 );
+    agk::SetSpriteShape    ( 1, 3 );
+<br>
+    agk::SetPhysicsDebugOn ( );
+}
+</pre></div><p>Sprite 1 uses the penguin image, has its position set to 200, 200, is scaled down slightly to 60% of its original size, has a rotation angle of 30 degrees set, has its color altered and finally a polygon shape specified for collision.</p><h2>Cloning a sprite</h2><p>Within our main loop, whenever the user touches or clicks on the screen a new sprite is cloned from sprite 1 and positioned at the location of the input. The command to clone a sprite is called <i>CloneSprite</i>. Two variations of this command exist. The first returns an ID number for the newly cloned sprite and takes a parameter indicating the source sprite:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">clonedSprite = CloneSprite ( 1 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="clonedSprite = CloneSprite ( 1 )
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">clonedSprite = agk::CloneSprite ( 1 );
+</pre></div><p>The second variation of this command allows you to manually specify the ID of the cloned sprite. This example shows sprite 1 being cloned, with the clone's ID number being set to 99:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">CloneSprite ( 1, 99 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="CloneSprite ( 1, 99 )
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::CloneSprite ( 1, 99 );
+</pre></div><p>Here's the code for cloning sprite 1 whenever the user hits the screen:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">if ( GetPointerPressed ( ) = 1 )
+    newSprite = CloneSprite ( 1 )
+<br>
+    SetSpritePosition ( newSprite, GetPointerX ( ), GetPointerY ( ) )
+endif
+</pre></div><div align="right"><button class="btn" data-clipboard-text="if ( GetPointerPressed ( ) = 1 )
+    newSprite = CloneSprite ( 1 )
+
+    SetSpritePosition ( newSprite, GetPointerX ( ), GetPointerY ( ) )
+endif
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">if ( agk::GetPointerPressed ( ) )
+{
+    int iNewSprite = agk::CloneSprite ( 1 );
+<br>
+    agk::SetSpritePosition ( iNewSprite, agk::GetPointerX ( ), agk::GetPointerY ( ) );
+}
+</pre></div><h2>Full code listing</h2><p>Now we're ready to run the program and see the results. Simply click or touch the screen to clone sprite 1 at that location, notice how all of the properties set on sprite 1, such as its scale and angle are retained on the newly created sprite. Here's the final code for our program:</p><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background2.jpg" ) )
+<br>
+LoadImage ( 1, "penguin.png" )
+<br>
+CreateSprite      ( 1, 1 )
+SetSpritePosition ( 1, 200, 200 )
+SetSpriteScale    ( 1, 0.6, 0.6 )
+SetSpriteAngle    ( 1, 30 )
+SetSpriteColor    ( 1, 0, 255, 255, 200 )
+SetSpriteShape    ( 1, 3 )
+<br>
+SetPhysicsDebugOn ( )
+<br>
+SetPrintColor ( 255, 0, 0, 255 )
+<br>
+do
+    Print ( "Click or touch the screen to" )
+    Print ( "clone a sprite at that point" )
+<br>
+    if ( GetPointerPressed ( ) = 1 )
+        newSprite = CloneSprite ( 1 )
+<br>
+        SetSpritePosition ( newSprite, GetPointerX ( ), GetPointerY ( ) )
+    endif
+<br>
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+CreateSprite ( LoadImage ( &quot;background2.jpg&quot; ) )
+
+LoadImage ( 1, &quot;penguin.png&quot; )
+
+CreateSprite      ( 1, 1 )
+SetSpritePosition ( 1, 200, 200 )
+SetSpriteScale    ( 1, 0.6, 0.6 )
+SetSpriteAngle    ( 1, 30 )
+SetSpriteColor    ( 1, 0, 255, 255, 200 )
+SetSpriteShape    ( 1, 3 )
+
+SetPhysicsDebugOn ( )
+
+SetPrintColor ( 255, 0, 0, 255 )
+
+do
+    Print ( &quot;Click or touch the screen to&quot; )
+    Print ( &quot;clone a sprite at that point&quot; )
+
+    if ( GetPointerPressed ( ) = 1 )
+        newSprite = CloneSprite ( 1 )
+
+        SetSpritePosition ( newSprite, GetPointerX ( ), GetPointerY ( ) )
+    endif
+
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock10" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background2.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "penguin.png" );
+<br>
+    agk::CreateSprite      ( 1, 1 );
+    agk::SetSpritePosition ( 1, 200, 200 );
+    agk::SetSpriteScale    ( 1, 0.6, 0.6 );
+    agk::SetSpriteAngle    ( 1, 30 );
+    agk::SetSpriteColor    ( 1, 0, 255, 255, 200 );
+    agk::SetSpriteShape    ( 1, 3 );
+<br>
+    agk::SetPhysicsDebugOn ( );
+<br>
+    agk::SetPrintColor ( 255, 0, 0, 255 );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Print ( "Click or touch the screen to" );
+    agk::Print ( "clone a sprite at that point" );
+<br>
+    if ( agk::GetPointerPressed ( ) )
+    {
+        int iNewSprite = agk::CloneSprite ( 1 );
+<br>
+        agk::SetSpritePosition ( iNewSprite, agk::GetPointerX ( ), agk::GetPointerY ( ) );
+    }
+<br>
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>Cloning a sprite will result in most of the original properties being copied, however, when copying a physics sprite the cloned version will end up being a non physics sprite.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

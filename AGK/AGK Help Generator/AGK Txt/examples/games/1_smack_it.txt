@@ -1,0 +1,238 @@
+_header
+Smack It
+
+_sheader
+Description
+
+_text
+One of the first games that The Game Creators developed for mobile platforms was Smack It. This is a whack a mole game that managed to make it to number 1 in the family and kids charts on the iPhone in the US and UK. At the time AppGameKit Studio didn't exist, so the game was written using a mixture of C++, Objective C and OpenGL.
+
+_text
+Now that AppGameKit Studio has arrived, as a test, it was decided to port a version of Smack It across to tier 1 and tier 2. Even though the logic and general structure remains the same in the original compared to the conversion, the actual development process has been simplified massively by using AppGameKit Studio and also brings the benefit of being able to run on multiple platforms.
+
+_text
+This guide provides an overview of the code for tier 1 version of Smack It (using BASIC).
+
+_image
+1_smack_it.jpg
+
+_sheader
+Overview
+
+_text
+The main menu is the starting point for the game. This consists of a background, a start button and several animated entities being displayed on screen.
+
+_text
+When the game starts a collection of moles pop up and down and the user must hit them to score points. As time progresses the game speeds up and it becomes more frantic and tests the players reaction skills.
+
+_text
+Once the time for the level has elapsed a collection of statistics will be shown. If the player reaches a certain target they will win, if not they will lose.
+
+_text
+The game is fairly simple to code, as there's nothing really complicated going on, it's mainly a case of animating some sprites and moving them around.
+
+_sheader
+Globals and types
+
+_text
+At the top of the source code is a collection of global variables and type listings.
+
+_text
+<i>sItem</i> is used to store information about a balloon that flies across the screen (the user can hit this to get a big bonus added to their score).
+
+_text
+Another type is declared <i>sEnemy</i>. This is used for all the moles that pop up on the main menu and in game. It contains data such as sprite ID numbers and timers.
+
+_text
+<i>sLevel</i> is the final type. This contains everything related to a level such as the ID numbers of sprites, ID numbers of text, the current score, statistics and more. In this conversion of Smack It only 1 level is utilised, so it could be possible to have these variables outside of a type, however, it does help to encapsulate this data, especially if more levels were to be used in the future (like in the original game).
+
+_sheader
+Initial Set up
+
+_text
+Prior to entering the main loop a custom function <i>SetupMainMenu</i> is called. This function is responsible for setting up the main menu and getting its contents ready to be displayed on screen. It performs the following actions:
+
+_listbegin
+Sets a virtual resolution of 320 x 480.
+Loads an image for the background.
+Loads an image for the foreground (to be placed at the bottom of the screen).
+Loads the logo image.
+Creates an empty sprite for the balloon that gets moved across the screen. This is followed by loading animation frames for the balloon and a puff of smoke that gets displayed when it is hit. These are all added into the sprite by using <i>AddSpriteAnimationFrame</i>. Finally the balloon sprite is positioned off screen.
+3 moles will be placed on the main menu at the bottom of the screen. Their animation images are loaded and saved in a global array. The reason for this is that these images are reused in the main game.
+The 3 mole sprites are created in a for loop and positioned at the bottom of the screen.
+An overlay is loaded and placed at the bottom. This is used as a mask to ensure the moles are hidden before popping up.
+3 cloud sprites are created and positioned - later in the main loop they will be moved across the screen.
+Text is created and positioned on screen. The user can touch or click this text to start the game.
+An overlay sprite is loaded that gets its size set so it fills the screen. This is used as a simple way of creating a fade in / out effect.
+Finally music and sound is loaded.
+_listend
+
+_sheader
+Main loop
+
+_text
+The main loop consists of a simple <i>select</i> block based on the variable <i>g_State</i>. The seqeunce is fairly straightforward:
+
+_listbegin
+0 = <i>DisplayFadeIn</i>
+1 = <i>DisplayMainContents</i>
+2 = <i>DisplayStartGame</i>
+3 = <i>LoadLevel</i>
+4 = <i>PlayLevel</i>
+5 = <i>HandlePause</i>
+6 = <i>HandleWin</i>
+7 = <i>HandleLose</i>
+_listend
+
+_text
+Initially <i>g_State</i> is 0 therefore <i>DisplayFadeIn</i> will be called first, which will handle a simple fade in transition. The state will then move to <i>DisplayMainContents</i>. At this point the game will wait until the user chooses to start the game and then it moves to  <i>DisplayStartGame</i>, <i>LoadLevel</i> and then <i>PlayLevel</i>. When the game is being played the state can move to <i>HandlePause</i> if the user chooses to pause the game and they can either resume the game or go back to the main menu (which begins at state 0). Once the game has finished either <i>HandleWin</i> or <i>HandleLose</i> is called and after this section has been displayed the state goes back to 0 and the main menu is displayed once again.
+
+_sheader
+The main menu
+
+_text
+The states relating to the main menu are 0, 1 and 2 that call <i>DisplayFadeIn</i>, <i>DisplayMainContents</i> and <i>DisplayStartGame</i>.
+
+_text
+The function <i>DisplayFadeIn</i> will reduce the alpha of the overlay sprite until it reaches 0, at which point the state will change to 1. This overlay sprite covers the whole screen and is white, so reducing its alpha down to 0 creates a simple fade in effect.
+
+_text
+The function <i>DisplayMainContents</i> will wait until the user presses the "Start" text on screen. When this happens the state will change to to 2.
+
+_text
+The final function for the main menu is <i>DisplayStartGame</i>. This is very similar to <i>DisplayFadeIn</i>, except this time it's raising the alpha of the overlay back to full white. It also hides some text and moves the state onto 3 so that the level can be loaded. It would probably make sense to merge this function with <i>DisplayFadeIn</i> and have a parameter that controls whether the overlay fades in or out.
+
+_text
+Notice that all these three functions call <i>UpdateItems</i>, <i>UpdateClouds</i> and <i>UpdateEnemies</i>. The first deals with the balloon moving across the screen, the second handles the clouds and the third is responsible for moles popping up.
+
+_text
+<i>UpdateItems</i> is used on the main menu and in the game as a way of moving a bonus sprite across the screen, when hitting this in game you get extra points added to your score. The original game had numerous items that would go across the screen, but for the conversion only a hot air balloon is used. The function will randomly launch the balloon from the left or right of the screen. As it moves across a check is made to see whether the user hits it and if so a smoke animation is played. Finally it gets reset so that it can be launched again.
+
+_text
+<i>UpdateClouds</i> simply moves the 3 clouds over to the left of the screen at varying speeds. Once they have gone past the screen they get placed back to the right of the screen so they can scroll back in.
+
+_text
+The final function <i>UpdateEnemies</i> deals with the 3 moles popping up at the bottom of the screen. It checks whether all 3 moles are down and if so will release one of them. It will then cycle through the moles and update them based on their state. The final block of code checks whether a mole has been hit and if so plays a sound effect and changes the state of the mole.
+
+_sheader
+Loading the level
+
+_text
+When the user presses the "Start" button on the main menu the state switches to 3, which will call the function <i>LoadLevel</i>. This function handles the following:
+
+_listbegin
+Loads a background image.
+Loads a foreground image.
+Loads pause and play icons.
+Creates 9 enemy sprites that get palced on screen. The positions of these sprites are stored in an array rather than being calculated. Animation frames are added (from the images which were loaded earlier) and then the sprites depth is set dependent on its position. The depth is adjusted because 3 masks are used to cover each row of moles so they have a hiding place.
+3 overlays are loaded and have their depths adjusted.
+Several text entities get created to show score and time etc.
+Finally some globals are set, which control the likes of time limits and targets.
+_listend
+
+_sheader
+Playing the game
+
+_text
+When the user enters the game from the main menu the function <i>PlayLevel</i> is called. In turn this function calls another set of functions:
+
+_listbegin
+UpdateItems
+UpdateEnemiesInGame
+CheckForPause
+CheckForInput
+UpdateInfo
+UpdateTime
+_listend
+
+_text
+The <i>UpdateItems</i> function is the same as the one used in the main menu - it simply sets up the balloon moving across the top of the screen.
+
+_text
+<i>UpdateEnemiesInGame</i> is pretty much similar to <i>UpdateEnemies</i>. The alterations relate to the way an enemy is popped up and dealing with scoring. Probably a good option to merge these two functions and have a parameter to control the mode. Here's what this function does:
+
+_listbegin
+Increments the level timer.
+When the level timer is over the preset limit then a random list is generated.
+A for loop cycles through the enemies (using the random list order) and finds an unused enemy, at this point it will force it to pop up. There's also a block of code that is used to speed up movement over time.
+A for loop cycles through the 9 enemies on screen, checks their state and updates them accordingly.
+_listend
+
+_text
+The <i>CheckForPause</i> function allows the user to pause the game by clicking or touching the pause button at the top left of the screen. If this happens the state of the game is switched so that <i>HandlePause</i> will be called.
+
+_text
+<i>CheckForInput</i> checks if the user hits or clicks the screen. When this happens we see if the user hit a mole or empty space. If they missed a mole a miss icon appears on screen and 5 seconds of time are lost. If they hit a mole the score is incremented by 5.
+
+_text
+The <i>UpdateInfo</i> function updates the score and time display.
+
+_text
+The final function call within <i>PlayLevel</i> is <i>UpdateTime</i>. This function will slowly reduce the time down from an initial 60 seconds to 0. When the time limit has been reached a check is made to see whether player has won or lost the game and based on this a new state is set.
+
+_sheader
+Pausing the game
+
+_text
+When the game is in a paused state the function <i>HandlePause</i> gets continually called. At this point the user can either continue the game or return to the menu by selecting the option on screen.
+
+_text
+The initial state for pause (<i>g_PauseState</i>) will be 0 when the function is first called. There is a section of code that will display the "Continue" and "Main Menu" text options on screen. When there is input if the user pressed the pause / play button or the "Continue" text <i>g_PauseState</i> gets set to 1. If the user hits the "Main Menu" text then <i>g_PauseState</i> gets set to 2.
+
+_text
+When <i>g_PauseState</i> is not 0 the "Continue" and "Main Menu" text will fade out, after which time action is taken to either return to the game or go to the main menu. If the user returns to the game it's a simple case of setting <i>g_State</i> back to <i>ePlayLevel</i>. Returning to the main menu is handled with a call to <i>UnloadLevel</i>, which will free all resources used by the level, followed by <i>g_State</i> being set to <i>eDisplayFadeIn</i> which results in returning to the main menu state.
+
+_sheader
+Winning or losing the game
+
+_text
+When the game is over either <i>HandleWin</i> or <i>HandleLose</i> gets called. These functions will display a bunch of statistics on screen, such as how many hit attempts were made, and then wait until the user touches the screen and then return to the main menu. The only difference between these functions is that one needs to show "Well Done" while the other must show "Game Over", so they are handled with a call to <i>EndLevel</i>, which takes a parameter allowing us to specify which text to display.
+
+_text
+The <i>EndLevel</i> function has its own state stored in <i>g_GameOverState</i>. It does the following:
+
+_listbegin
+0 = Move all enemies down and fade the balloon off (in case it's on screen). When all of this has finished set the state to 1.
+1 = Hide the score and time text. Create a group of text entities and display them on screen showing the likes of the score, number of hit attempts etc. Then set the state to 2.
+2 = Fade in all of the text and wait until the user performs input and then unload the level and return to the main menu.
+_listend
+
+_sheader
+Other functionality
+
+_text
+Logic for the moles is handled with a for loop, that checks the state and then calls one of:
+
+_listbegin
+<i>HandleEnemyUp</i> - Will move a mole out of its hole and up the screen, fading the mole in as this happens. When it reaches the top will switch to <i>HandleEnemyTop</i>.
+<i>HandleEnemyTop</i> - Will leave the mole at the top of the screen for a short while. When this delay is over the mole will move down by switching to <i>HandleEnemyDown</i>.
+<i>HandleEnemyDown</i> - Moves a mole back into its hole, and also fades the mole out. Once this process has finished the mole returns to a waiting state and can be selected to enter the level again.
+<i>HandleEnemyHit</i> - When the player hits a mole it gets moved down the screen slightly, turns red, plays its hit animation, and after a short while fades out. All of this is dealt with in <i>HandleEnemyHit</i>.
+_listend
+
+
+_sheader
+Conclusion
+
+_text
+Porting a basic version of Smack It to AppGameKit Studio turned out to be fairly easy and brings benefits such as simpler code (no need to deal with all the technical issues) and the ability to run on multiple platforms.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

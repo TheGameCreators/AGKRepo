@@ -1,0 +1,36 @@
+
+_header
+Assigning default values to variables
+
+_text
+When declaring a variable in most cases you will provide it with an initial value. This is known as assigning the variable a value, as shown in the following lines.
+
+_tier1
+playerLives as integer = 10
+playerScore as integer = 0
+_tier1
+
+_text
+<i>playerLives</i> is assigned a value of 10, whereas <i>playerScore</i> is assigned a value of 0.
+
+_text
+Later on in your program you can assign these variables other values. These could be literal values or the values contained in other variables. However, at the point of declaration if you choose to assign a default value to a variable it must be a literal value (or a constant which we'll examine another time). You cannot, for example, attempt to set the default value of a variable to that of another variable. If the previous code listing was changed so that <i>playerScores</i> was assigned the value of <i>playerLives</i> then the program will fail to compile.
+
+_tier1
+playerLives as integer = 10
+playerScore as integer = playerLives
+_tier1
+
+_text
+When an error is detected in a program a message will appear in the Compiler tab of the Message Window explaining what the problem is, which in this case is that the variable default value for <i>playerScore</i> must be a literal or constant. Therefore in this instance to correct the error simply change the code so that <i>playerScore</i> is assigned a literal value such as 0.
+
+_text
+As both variables have been declared as integers then an error would also be detected upon compilation if you attempted to assign these variables non integer values. For example this code listing will fail.
+
+_tier1
+playerLives as integer = 10.12
+playerScore as integer = "hello"
+_tier1
+
+_navigation
+assignments_and_expressions.htm assignments_and_expressions_002.htm 

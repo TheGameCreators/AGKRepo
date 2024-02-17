@@ -1,0 +1,29 @@
+
+_header
+Launching the IDE
+
+_text
+Here's what you will see when opening AppGameKit for the first time.
+
+_imageclick
+firstproject001.jpg
+
+_text
+The editor or IDE (Integrated Development Environment) is used to write your programs. It is comprised of several parts.
+
+_listbegin
+File menu
+Toolbar
+Sidebar
+Message window
+_listend
+
+_imageclick
+firstproject002.jpg
+
+_text
+For now we're just going to focus on what is needed for creating your first project, and as we move through the process you will get a better understanding of how the IDE works. The aim of the project is to simply print some text on screen.
+
+_navigation
+creating_first_project.htm creating_first_project_002.htm
+

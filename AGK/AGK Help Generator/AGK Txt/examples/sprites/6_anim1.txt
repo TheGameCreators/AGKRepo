@@ -1,0 +1,219 @@
+﻿_header
+Animating sprites - part 1
+
+_sheader
+Description
+_text
+There are three options when it comes to animating a sprite. These are:
+
+_listbegin
+load a series of images and manually update the sprites image using timers
+add a series of images to a sprite and use the command <i>PlaySprite</i> to handle animation
+use a texture atlas (a series of animation frames on one image), call <i>SetSpriteAnimation</i> to hook up atlas to the system, then call <i>PlaySprite</i> to handle animation
+_listend
+
+_text
+In this example we’re going to examine the second option.
+
+_image
+6_anim1.jpg
+
+_sheader
+External media
+_text
+This example program relies on several images:
+_image
+item0.png
+_image
+item1.png
+_image
+item2.png
+_image
+item3.png
+_image
+item4.png
+
+_sheader
+Overview
+_text
+The process involved is as follows:
+_listbegin
+create a sprite
+load our animation frames and add them into the sprite
+play our sprite animation
+main loop where we update the contents of the screen
+_listend
+
+_sheader
+Creating a sprite
+_text
+When creating a sprite that is going to have multiple animation frames added, no image gets passed into the CreateSprite call. This is handled by passing in a parameter of 0 for the image ID as shown here:
+
+_tier1
+CreateSprite ( 1, 0 )
+_tier1
+
+_tier2
+agk::CreateSprite ( 1, 0 );
+_tier2
+
+_text
+After making this call a sprite with ID number 1 has been created, but does not have an image attached to it.
+
+_sheader
+Loading and adding animation frames
+_text
+The next stage of the process is to attach animation frames to our sprite. There are two ways of approaching this:
+
+_listbegin
+load our images, then pass their IDs into the command <i>AddSpriteAnimationFrame</i>
+call <i>AddSpriteAnimationFrame</i> and load the images within it
+_listend
+
+_text
+This code demonstrates the first method:
+
+_tier1
+LoadImage ( 1, "item0.png" )
+AddSpriteAnimationFrame ( 1, 1 )
+_tier1
+
+_tier2
+agk::LoadImage ( 1, "item0.png" )
+agk::AddSpriteAnimationFrame ( 1, 1 );
+_tier2
+
+_text
+The first call is to <i>LoadImage</i> where the image “item0.png” is loaded into ID slot 1. The next call relates to animation. The command <i>AddSpriteAnimationFrame’s</i> first parameter is the ID number of the sprite. The second parameter is the ID number of the image. By calling this command we’re telling AppGameKit Studio to add “item0.png” into sprite 1s animation sequence.
+
+_text
+The alternative method moves the LoadImage call directly into the second parameter of <i>AddSpriteAnimationFrame</i>. By doing this we bypass the need to store the image ID. It’s a slightly quicker method as it’s combining the calls, but not necessarily suitable for all cases:
+
+_tier1
+AddSpriteAnimationFrame ( 1, LoadImage ( "item0.png" ) )
+_tier1
+
+_tier2
+agk::AddSpriteAnimationFrame ( 1, agk::LoadImage ( "item0.png" ) );
+_tier2
+
+_text
+The call above merges everything into one convenient line, at the expense of not storing or knowing the ID number of the image. This method is used to add all of the frames to the sprite, turning our final block of code into this:
+
+_tier1
+AddSpriteAnimationFrame ( 1, LoadImage ( "item0.png" ) )
+AddSpriteAnimationFrame ( 1, LoadImage ( "item1.png" ) )
+AddSpriteAnimationFrame ( 1, LoadImage ( "item2.png" ) )
+AddSpriteAnimationFrame ( 1, LoadImage ( "item3.png" ) )
+AddSpriteAnimationFrame ( 1, LoadImage ( "item4.png" ) )
+_tier1
+
+_tier2
+agk::AddSpriteAnimationFrame ( 1, agk::LoadImage ( "item0.png" ) );
+agk::AddSpriteAnimationFrame ( 1, agk::LoadImage ( "item1.png" ) );
+agk::AddSpriteAnimationFrame ( 1, agk::LoadImage ( "item2.png" ) );
+agk::AddSpriteAnimationFrame ( 1, agk::LoadImage ( "item3.png" ) );
+agk::AddSpriteAnimationFrame ( 1, agk::LoadImage ( "item4.png" ) );
+_tier2
+
+_text
+When dealing with more animation frames it’s more optimal to use some kind of loop and build the image string up programmatically rather than hard coding it as shown in this example.
+
+_sheader
+Playing a sprite
+_text
+Our sprite now has five animation frames (images) attached to it and we’re now in a position to animate it. All it takes is a call to the command <i>PlaySprite</i>. This command has several parameters:
+
+_listbegin
+ID number for the sprite
+how many frames per second should be displayed
+whether the sprite is to loop or not
+start frame for the animation
+end frame for the animation
+_listend
+
+_text
+For our example the ID number is 1, the frame rate is set to 10 (a higher value will make it play faster while a lower value will result in a slower animation), 1 is used to indicate the animation will loop, the start point gets set to frame 1 / “item0.png” and finally the end frame is set to frame 5 / “item4.png”:
+
+_tier1
+PlaySprite ( 1, 10, 1, 1, 5 )
+_tier1
+
+_tier2
+agk::PlaySprite ( 1, 10, 1, 1, 5 );
+_tier2
+
+_text
+After calling <i>PlaySprite</i> the sprite will continually animate until such time that we choose to stop it.
+
+_sheader
+Main loop
+_text
+At this point everything is set up and ready to launch. All that remains is for our main loop to update the screen by making a simple call to <i>Sync</i>, as shown here:
+
+_tier1
+do
+   Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Loop ( void )
+{
+   agk::Sync ( );
+}
+_tier2
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background.jpg" ) )
+<br>
+CreateSprite ( 1, 0 )
+<br>
+AddSpriteAnimationFrame ( 1, LoadImage ( "item0.png" ) )
+AddSpriteAnimationFrame ( 1, LoadImage ( "item1.png" ) )
+AddSpriteAnimationFrame ( 1, LoadImage ( "item2.png" ) )
+AddSpriteAnimationFrame ( 1, LoadImage ( "item3.png" ) )
+AddSpriteAnimationFrame ( 1, LoadImage ( "item4.png" ) )
+<br>
+PlaySprite ( 1, 10, 1, 1, 5 )
+<br>
+do
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background.jpg" ) );
+<br>
+    agk::CreateSprite ( 1, 0 );
+<br>
+    agk::AddSpriteAnimationFrame ( 1, agk::LoadImage ( "item0.png" ) );
+    agk::AddSpriteAnimationFrame ( 1, agk::LoadImage ( "item1.png" ) );
+    agk::AddSpriteAnimationFrame ( 1, agk::LoadImage ( "item2.png" ) );
+    agk::AddSpriteAnimationFrame ( 1, agk::LoadImage ( "item3.png" ) );
+    agk::AddSpriteAnimationFrame ( 1, agk::LoadImage ( "item4.png" ) );
+<br>
+    agk::PlaySprite ( 1, 10, 1, 1, 5 );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+This is just one example of animating sprites within your application. Part 2 demonstrates how to use a texture atlas.

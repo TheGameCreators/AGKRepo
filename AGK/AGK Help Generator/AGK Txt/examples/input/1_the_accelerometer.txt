@@ -1,0 +1,170 @@
+_header
+The accelerometer
+
+_text
+Platforms such as iOS and Bada have support for an accelerometer, which is responsible for measuring the acceleration of the device. As an example if a mobile device is tilted to one side the accelerometer can detect this and a game can react accordingly e.g moving the player around the screen based on the level of motion. Platforms such as Windows and Mac OS X do not have built in accelerometers, however, AppGameKit Studio provides a fallback mechanism whereby the accelerometer can be emulated through keyboard input. This means you can create an accelerometer based game that will run on all platforms without needing alteration.
+
+_text
+This example demonstrates the usage of the accelerometer commands by placing a sprite on screen that has its movement controlled by any data coming from the accelerometer.
+
+_image
+1_accelerometer.jpg
+
+_sheader
+Overview
+
+_text
+The process for this example is as follows:
+
+_listbegin
+set a virtual resolution
+create a sprite and place it near the center of the screen
+update our sprite's position based on accelerometer data
+_listend
+
+_sheader
+Initial set up
+
+_text
+The initial set up code deals with setting a virtual resolution of 320 x 480, followed with a call to create a sprite with an ID of 1 and position it near the center of the screen:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( 1, LoadImage ( "peach.png" ) )
+SetSpritePosition ( 1, 160, 200 )
+_tier1
+
+_tier2
+agk::SetVirtualResolution ( 320, 480 );
+<br>
+agk::CreateSprite ( 1, agk::LoadImage ( "peach.png" ) );
+agk::SetSpritePosition ( 1, 160, 200 );
+_tier2
+
+_sheader
+Retrieving accelerometer data
+
+_text
+Two commands are used to retrieve data from the accelerometer, they are <i>GetDirectionX</i> and <i>GetDirectionY</i>. Both commands take no parameters and return acceleration on the X and Y axis. When an accelerometer is present on the platform any values returned will come straight from the hardware, when no accelerometer is present (such as on Windows and Mac OS X) then the arrow keys are used.
+
+_text
+When checking accelerometer data on the X axis, if the value is negative the device is tilting left or the left arrow key is being pressed. If the value that gets returned is positive then the device is tilting right or the right arrow key is being pressed.
+
+_text
+When checking accelerometer data on the Y axis, if the value is negative the device is tilting upwards or the up arrow key is being pressed. If the value that gets returned is positive then the device is tilting downwards or the down arrow key is being pressed.
+
+_text
+For our purposes, whenever accelerometer data is returned, these values will be applied to the sprite. This code must go within our main loop and is as follows:
+
+_tier1
+x# = GetDirectionX ( )
+y# = GetDirectionY ( )
+<br>
+SetSpritePosition ( 1, GetSpriteX ( 1 ) + x#, GetSpriteY ( 1 ) + y# )
+_tier1
+
+_tier2
+float x = agk::GetDirectionX ( );
+float y = agk::GetDirectionY ( );
+<br>
+agk::SetSpritePosition ( 1, agk::GetSpriteX ( 1 ) + x, agk::GetSpriteY ( 1 ) + y );
+_tier2
+
+_text
+The code begins by saving the values returned from <i>GetDirectionX</i> and <i>GetDirectionY</i> into variables named <i>x</i> and <i>y</i>. These values are then printed on screen, so as to provide a visual aid in understanding the data being received. The final line sets the position of the sprite, by taking its original position and adding any values from the accelerometer, therefore as the device is tilted or the arrow keys pressed our sprite will move around the screen.
+
+_sheader
+Full code listing
+_text
+Everything is now in place. An extra adjustment is made to ensure the sprite doesn't move off the screen, this is handled with the addition of a few if statements before calling <i>Sync</i>. Here's the final code for our program:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background3.jpg" ) )
+<br>
+CreateSprite ( 1, LoadImage ( "peach.png" ) )
+SetSpritePosition ( 1, 160, 200 )
+<br>
+do
+    x# = GetDirectionX ( )
+    y# = GetDirectionY ( )
+<br>
+    Print ( "Tilt the device to move the sprite" )
+    Print ( "Or use the arrow keys if a keyboard" )
+    Print ( "is present" )
+    Print ( "" )
+<br>
+    Print ( x# )
+    Print ( y# )
+<br>
+    SetSpritePosition ( 1, GetSpriteX ( 1 ) + x#, GetSpriteY ( 1 ) + y# )
+<br>
+    if ( GetSpriteX ( 1 ) < 10 )
+        SetSpriteX ( 1, 10 )
+    endif
+<br>
+    if ( GetSpriteX ( 1 ) > 260 )
+        SetSpriteX ( 1, 260 )
+    endif
+<br>
+    if ( GetSpriteY ( 1 ) < 10 )
+        SetSpriteY ( 1, 10 )
+    endif
+<br>
+    if ( GetSpriteY ( 1 ) > 430 )
+        SetSpriteY ( 1, 430 )
+    endif
+<br>
+    sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+agk::SetVirtualResolution ( 320, 480 );
+<br>
+agk::CreateSprite ( agk::LoadImage ( "background3.jpg" ) );
+<br>
+agk::CreateSprite ( 1, agk::LoadImage ( "peach.png" ) );
+agk::SetSpritePosition ( 1, 160, 200 );
+}
+<br>
+void app::Loop ( void )
+{
+    float x = agk::GetDirectionX ( );
+    float y = agk::GetDirectionY ( );
+<br>
+    agk::Print ( "Tilt the device to move the sprite" );
+    agk::Print ( "Or use the arrow keys if a keyboard" );
+    agk::Print ( "is present" );
+    agk::Print ( "" );
+<br>
+    agk::Print ( x );
+    agk::Print ( y );
+<br>
+    agk::SetSpritePosition ( 1, agk::GetSpriteX ( 1 ) + x, agk::GetSpriteY ( 1 ) + y );
+<br>
+    if ( agk::GetSpriteX ( 1 ) < 10 )
+        agk::SetSpriteX ( 1, 10.0f );
+<br>
+    if ( agk::GetSpriteX ( 1 ) > 260 )
+        agk::SetSpriteX ( 1, 260.0f );
+<br>
+    if ( agk::GetSpriteY ( 1 ) < 10 )
+        agk::SetSpriteY ( 1, 10.0f );
+<br>
+    if ( agk::GetSpriteY ( 1 ) > 430 )
+        agk::SetSpriteY ( 1, 430.0f );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+As you can see from this example, obtaining accelerometer data and acting on it doesn't require a great deal of code. What is also important is that this example will run on all platforms without any modification.
+
+
+

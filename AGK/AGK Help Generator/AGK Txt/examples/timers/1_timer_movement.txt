@@ -1,0 +1,216 @@
+_header 
+Timer Based Movements
+
+_sheader 
+Description
+
+_text 
+In many cases a game may run at the maximum frame rate possible on all platforms, usually 60 frames per second when vsync is on (it is on by default). This may well be the case for more simplistic games that aren't pushing the capabilities of the hardware too much. In other situations you may find that a game runs at different frames, for example, on Windows it may run at 60 frames per second, but on the iPhone at 30 frames per second. This will have the effect of the game running perfectly normal on Windows, but at half the speed on the iPhone, which is far from ideal. The way to counteract this problem is to introduce timer based movement into your game, which will result in your entities moving at the same speed regardless of the frame rate.
+
+_text
+One approach to dealing with this problem is to calculate the time passed between frames / each cycle of the main loop and use this value as a multiplier that gets applied to any movement.
+
+_text
+This example places a sprite on screen that is moved from the left over to the right. When it gets moved its new X location is calculated by applying a time based multiplier to it.
+
+_image
+1_timer_movement.jpg
+
+_sheader
+Getting started
+
+_text
+The initial code for this example displays a background image and then creates another sprite that will later be moved on screen. The current time is also stored in the variable <i>lastFrame</i>:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background7.jpg" ) )
+<br>
+LoadImage ( 1, "blue.png" )
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 0, 200 )
+<br>
+lastFrame# = Timer ( )
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background7.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "blue.png" );
+    agk::CreateSprite ( 1, 1 );
+    agk::SetSpritePosition ( 1, 0, 200 );
+<br>
+    lastFrame = Timer ( );
+}
+_tier2
+
+_sheader
+Calculating the multiplier
+
+_text
+The process of calculating the difference between frames is fairly simple. At the beginning of the main loop the current time is stored, the difference is then calculated based on deducting the previous time from the current time, and finally the previous time is updated to the current time as shown here:
+
+_tier1
+do
+    thisFrame#  = Timer ( )
+    difference# = thisFrame# - lastFrame#
+    lastFrame#  = thisFrame#
+<br>
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Loop ( )
+{
+    thisFrame  = agk::Timer ( );
+    difference = thisFrame - lastFrame;
+    lastFrame  = thisFrame;
+<br>
+    agk::Sync ( );
+}
+_tier2
+
+_text
+The key data here is the difference between times, this needs to be saved and used in all movement based code.
+
+_sheader
+Moving a sprite
+
+_text
+Moving a sprite over to the right might typically look like this:
+
+_tier1
+x# = GetSpriteX ( 1 )
+x# = x# + 20
+SetSpriteX ( 1, x# )
+_tier1
+
+_tier2
+x = GetSpriteX ( 1 );
+x = x + 20;
+agk::SetSpriteX ( 1, x );
+_tier2
+
+_text
+In order to ensure movement is handled by time a small alteration is needed:
+
+_tier1
+x# = GetSpriteX ( 1 )
+x# = x# + 20 * difference#
+SetSpriteX ( 1, x# )
+_tier1
+
+_tier2
+x = GetSpriteX ( 1 );
+x = x + 20 * difference;
+agk::SetSpriteX ( 1, x );
+_tier2
+
+_text
+Notice how this time the movement is being multiplied by the time difference between frames, therefore the frame rate jumping up or down won't matter as our sprites movement takes into account these time differences. The end result is that this sprite will move across the screen at the same speed regardless of whether the game is running at 10 or 100 frames per second.
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program. A few additional lines have been added so that the frame rate can be adjusted (for those platforms that support it). This adjustment will make the program run at half the speed, yet the sprite will continually move at the same speed:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background7.jpg" ) )
+<br>
+LoadImage ( 1, "blue.png" )
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 0, 200 )
+<br>
+vsync = 1
+<br>
+lastFrame# = Timer ( )
+do
+    thisFrame#  = Timer ( )
+    difference# = thisFrame# - lastFrame#
+    lastFrame#  = thisFrame#
+<br>
+    x# = GetSpriteX ( 1 )
+    x# = x# + 20.0 * difference#
+    SetSpriteX ( 1, x# )
+<br>
+    Print ( "Touch or click the screen to turn" )
+    Print ( "Vsync on or off" )
+    Print ( "" )
+    Print ( "Vsync = " + str ( vsync ) )
+    Print ( "Frame rate = " + str ( screenFPS ( ) ) )
+<br>
+    if GetPointerPressed ( ) = 1
+        if vsync = 1
+            SetSyncRate ( 30, 1 )
+            vsync = 0
+        else
+            SetSyncRate ( 60, 1 )
+            vsync = 1
+        endif
+    endif
+<br>
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background7.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "blue.png" );
+    agk::CreateSprite ( 1, 1 );
+    agk::SetSpritePosition ( 1, 0, 200 );
+<br>
+    vsync = 1;
+}
+<br>
+void app::Loop ( void )
+{
+    thisFrame  = agk::Timer ( );
+    difference = thisFrame - lastFrame;
+    lastFrame  = thisFrame;
+<br>
+    x = agk::GetSpriteX ( 1 );
+    x = x + 20.0 * difference;
+    agk::SetSpriteX ( 1, x );
+<br>
+    agk::Print ( "Touch or click the screen to turn" );
+    agk::Print ( "Vsync on or off" );
+    agk::Print ( "" );
+    agk::Print ( "Vsync = " + agk::str ( vsync ) );
+    agk::Print ( "Frame rate = " + agk::str ( agk::screenFPS ( ) ) );
+<br>
+    if ( agk::GetPointerPressed ( ) == 1 )
+    {
+        if ( vsync == 1 )
+        {
+            agk::SetSyncRate ( 30, 1 );
+            vsync = 0;
+        }
+        else
+        {
+            agk::SetSyncRate ( 60, 1 );
+            vsync = 1;
+        }
+    }
+<br>
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+
+_text
+This is a good start in understanding how to implement timer based movement. A more advanced solution might implement interpolation so that on slower platforms the movement would remain smooth, whereas with this example it would be somewhat jerky. It's also worth taking into account whether the extra overhead is necessary, as with some games it simply won't be an issue, but this is something that needs to be decided early on in the development otherwise you could end up running into issues changing styles later on.

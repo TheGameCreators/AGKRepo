@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Experimenting with if statements - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="http://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Experimenting with if statements</div><div class="page"><h1>Experimenting with if statements</h1><p>This program demonstrates how <i>if</i> statements can be used to control a rectangle that moves across the screen.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">CreateImageColor ( 1, 255, 255, 255, 255 )
+CreateSprite ( 1, 1 )
+SetSpriteSize ( 1, 5, 5 )
+<br>
+direction as integer = 0
+x as float = 0.0
+y as float = 50.0
+speed as float = 10.0
+angle as float = 0.0
+<br>
+do
+	SetSpritePosition ( 1, x, y )
+	<br>
+	speed = ( x + 1 ) / 30
+	y = y + sin ( angle ) / 2.0
+	angle = angle + speed + 4
+	<br>
+	if direction = 0
+		print ( "moving right" )
+		<br>
+		x = x + speed
+		<br>
+		if x > 100 then direction = 1
+	elseif direction = 1
+		print ( "moving left" )
+		<br>
+		x = x - speed
+		<br>
+		if x < 0 then direction = 0
+	endif
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="CreateImageColor ( 1, 255, 255, 255, 255 )
+CreateSprite ( 1, 1 )
+SetSpriteSize ( 1, 5, 5 )
+
+direction as integer = 0
+x as float = 0.0
+y as float = 50.0
+speed as float = 10.0
+angle as float = 0.0
+
+do
+	SetSpritePosition ( 1, x, y )
+
+	speed = ( x + 1 ) / 30
+	y = y + sin ( angle ) / 2.0
+	angle = angle + speed + 4
+
+	if direction = 0
+		print ( &quot;moving right&quot; )
+
+		x = x + speed
+
+		if x > 100 then direction = 1
+	elseif direction = 1
+		print ( &quot;moving left&quot; )
+
+		x = x - speed
+
+		if x < 0 then direction = 0
+	endif
+
+	sync ( )
+loop
+">Copy Code</button></div><p>Understanding everything that is going on here isn't totally necessary right now, this example is being used as a more interesting way of looking at <i>if</i> statements instead of just viewing more text on screen. Essentially what is happening is that a small rectangle is created and its movement is controlled by the variable <i>direction</i>. An <i>if</i> statement is used to check the value of <i>direction</i>. When the value is 0 the rectangle is moved across to the right. Inside this is another <i>if</i> statement, that checks whether the rectangle's position has moved to the far right and if so changes the <i>direction</i> to 1. When <i>direction</i> is 1 the rectangle will move to the left. Again this <i>if</i> statement has another <i>if</i> statement within it, checking if the position of the rectangle is over to the far left, in which case it resets the <i>direction</i> to 0. The rectangle will move across to the right, then back to the left, back to the right, then to the left again, continually repeating this process as determined by the <i>if</i> statements being used.</p><div align="center"><a href="if_statements_007.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="if_statements_0081.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="http://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

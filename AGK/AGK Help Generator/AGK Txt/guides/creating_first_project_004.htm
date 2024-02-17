@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Adding your own code - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Adding your own code</div><div class="page"><h1>Adding your own code</h1><p>For now let's try and display something on screen by adding a line of code.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">print ( "hello world" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="print ( &quot;hello world&quot; )
+">Copy Code</button></div><p>Here's how the code will look in the editor.</p><div align="center"><a class="example-image-link" href="firstproject010_large.jpg" data-lightbox="example-1"><img class="example-image" src="firstproject010.jpg" alt="image-1" /></a></div><p>This code calls a command named print and passes in the string "hello world" as a parameter. It is a command that is used to display text on screen. Try running this program - you will see a window appear on screen and immediately close, returning you back to the IDE. The reason why this happens is that your program only contains one line of instructions. Once that particular instruction has been executed there's nothing left for the program to do, therefore it finishes execution and terminates itself. We can correct this by adding in a loop, that can be used to continually cycle through a series of commands within it. Let's take a look at how our previous code can be modified to continually loop around.</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+	print ( "hello world" )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+	print ( &quot;hello world&quot; )
+loop
+">Copy Code</button></div><p>Two extra lines have been added to our program, specifically "do" and "loop". This effectively tells the program that any instructions contained within this block should continually loop around, until such time that the program tells it not to.</p><p>Prior to running this program one extra step remains. We need to call another command that tells AppGameKit to update the contents of the screen. This is called the "sync" command and should be called whenever you want to update or refresh the screen. The additional command can be added into our program within the do loop.</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+	print ( "hello world" )
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+	print ( &quot;hello world&quot; )
+	sync ( )
+loop
+">Copy Code</button></div><p>The end result is that our program will continually execute the print and sync calls in sequence as fast as it possibly can, giving us something to see on screen. Let's run the program.</p><div align="center"><a class="example-image-link" href="firstproject008_large.jpg" data-lightbox="example-1"><img class="example-image" src="firstproject008.jpg" alt="image-1" /></a></div><p>Now it's working exactly as we want it to - we can see our text on screen and terminate the application by closing the window.</p><p>Try replacing the text "hello world" with something of your own and run the program again.</p><div align="center"><a href="creating_first_project_003.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="creating_first_project_005.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

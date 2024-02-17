@@ -1,0 +1,136 @@
+_header
+Play a sound
+
+_sheader
+Description
+_text
+In this example we're going to find out how to load a sound file and play it when the user clicks / touches the screen.
+
+_image
+0_sound.jpg
+
+_text
+We rely on an external piece of media for this example. It's a Wave file named "countdown.wav". AppGameKit Studio supports the Wave format for sound and the OGG format for music.
+
+_sheader
+Process
+_text
+The process involved is as follows:
+_listbegin
+load a sound
+when the user clicks / touches the screen play our sound
+_listend
+
+_sheader
+Load a sound
+_text
+As with other resources sounds use ID numbers. These ID numbers are specifically for sounds, so it's possible to have a sound with an ID number of 1 and a sprite with an ID of 1. Just like with other resources it's possible to have an ID number assigned automatically or provide one yourself. Either approach works just as well. In this example we'll take the approach of automatically assigned ID numbers.
+
+_text
+In order to load a sound we simply need to call the function LoadSound and pass in a string that refers to our Wave file, and save the returned ID number:
+
+_tier1
+sound = LoadSound ( "countdown.wav" )
+_tier1
+
+_tier2
+sound = agk::LoadSound ( "countdown.wav" );
+_tier2
+
+_text
+After calling this our file "countdown.wav" has been loaded into memory and ready to be used. We can later refer to it through the ID number we have saved in the variable <i>sound</i>.
+
+_text
+For the sake of comparison here's the alternative approach:
+
+_tier1
+LoadSound ( 1, "countdown.wav" )
+_tier1
+
+_tier2
+agk::LoadSound ( 1, "countdown.wav" );
+_tier2
+
+_text
+In this example instead of being assigned an ID number we specify it with the first parameter. This may be more convenient in some cases as you don't have to store an ID number in a variable. The drawback is that as your project becomes larger it's likely to cause problems as you end up dealing with lots of numbers, whereas having it automatically assigned means you don't have to care about it.
+
+_sheader
+Main loop
+_text
+Within our main loop we will trigger the playing of our sound whenever the user touches / clicks the screen.
+
+_tier1
+do
+    if GetPointerPressed ( ) = 1
+        PlaySound ( sound )
+    endif
+<br>
+    sync ( )
+loop
+_tier1
+
+_tier2
+void app::Loop ( void )
+{
+    if ( agk::GetPointerPressed ( ) == 1 )
+    {
+        agk::PlaySound ( sound );
+    }
+}
+_tier2
+
+_text
+As we're not interested in where the touch events take place, only that it has taken place, our input loop is fairly simple. It begins by initially checking for a touch event, followed by a call to <i>PlaySound</i> where we pass in the ID number of our sound.
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program:
+
+_tier1
+backdrop = CreateSprite ( LoadImage ( "background1b.jpg" ) )
+SetSpriteColorAlpha ( backdrop, 100 )
+SetSpriteSize ( backdrop, 100, 100 )
+<br>
+sound = LoadSound ( "countdown.wav" )
+<br>
+do
+    Print ( "Touch or click the screen" )
+    Print ( "to play a sound" )
+<br>
+    if GetPointerPressed ( ) = 1
+        PlaySound ( sound )
+    endif
+<br>
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    backdrop = agk::CreateSprite ( agk::LoadImage ( "background1b.jpg" ) );
+    agk::SetSpriteColorAlpha ( backdrop, 100 );
+    agk::SetSpriteSize ( backdrop, 100, 100 );
+<br>
+    agk::LoadSound ( 1, "countdown.wav" );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Print ( "Touch or click the screen" );
+    agk::Print ( "to play a sound" );
+<br>
+    if ( agk::GetPointerPressed ( ) == 1 )
+    {
+        agk::PlaySound ( sound );
+    }
+<br>
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+We're now all set to run our application and see the results on screen. Once the application has launched try touching the screen or clicking on it and listen for the sound being played.

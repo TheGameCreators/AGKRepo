@@ -1,0 +1,222 @@
+_header
+Convex shapes
+
+_sheader
+Description
+
+_text
+When a convex shape is generated for a sprite, a maximum of 8 points will be used to construct the shape. A command named <i>SetPhysicsMaxPolygonPoints</i> can be used to reduce or increase this value, from a minimum of 2 to a maximum of 12 points, which can be used to ensure that a sprite is being represented by the most optimal convex shape. Using a lower value will result in better performance at the expense of accuracy, so it's a case of deciding whether certain sprites that require convex shapes can get away with lower points or if they require more. As is often the case, when writing games it tends to come down to a balancing act between a number of different factors.
+
+_text
+This example will take a sprite that is ideally suited to using a convex shape for collision:
+
+_image
+penguin.png
+
+_text
+Three sprites will be created in a line that all use a convex hull for their collision. The first sprite will be allowed a maximum of 5 points, the second sprite a maximum of 8 points and the final sprite will be given a maximum of 12 points.
+
+_image
+10_convex_shapes.jpg
+
+_sheader
+Creating the sprites
+
+_text
+A virtual resolution is set of 320 x 480, then the penguin image is loaded into ID slot 1:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+LoadImage ( 1, "penguin.png" )
+_tier1
+
+_tier2
+agk::SetVirtualResolution ( 320, 480 );
+<br>
+agk::LoadImage ( 1, "penguin.png" );
+_tier2
+
+_text
+The next block of code creates three sprites that sit alongside each other. When each sprite is created the maximum number of points is set, along with the position, turning the convex shape on, turning physics on, scaling the sprite down to 60% of its original size and then adding some restitution:
+
+_tier1
+x# = 0
+<br>
+for i = 1 to 3
+    if i = 1 then SetPhysicsMaxPolygonPoints ( 5 )
+    if i = 2 then SetPhysicsMaxPolygonPoints ( 8 )
+    if i = 3 then SetPhysicsMaxPolygonPoints ( 12 )
+<br>
+    sprite = CreateSprite ( 1 )
+<br>
+    SetSpritePosition           ( sprite, x#, 0 )
+    SetSpriteShape              ( sprite, 3 )
+    SetSpritePhysicsOn          ( sprite, 2 )
+<br>
+    SetSpriteScale              ( sprite, 0.6, 0.6 )
+    SetSpritePhysicsRestitution ( sprite, 0.5 )
+<br>
+    x# = x# + 100
+next i
+_tier1
+
+_tier2
+float x = 0.0f;
+<br>
+for ( int i = 0; i < 3; i++ )
+{
+    if ( i == 0 ) agk::SetPhysicsMaxPolygonPoints ( 5 );
+    if ( i == 1 ) agk::SetPhysicsMaxPolygonPoints ( 8 );
+    if ( i == 2 ) agk::SetPhysicsMaxPolygonPoints ( 12 );
+<br>
+    int sprite = agk::CreateSprite ( 1 );
+<br>
+    agk::SetSpritePosition           ( sprite, x, 0 );
+    agk::SetSpriteShape              ( sprite, 3 );
+    agk::SetSpritePhysicsOn          ( sprite, 2 );
+<br>
+    agk::SetSpriteScale              ( sprite, 0.6, 0.6 );
+    agk::SetSpritePhysicsRestitution ( sprite, 0.5f );
+<br>
+    x += 100;
+}
+_tier2
+
+_sheader
+How the maximum number of points affects each sprite
+
+_text
+The first sprite is limited to a maxmimum of 5 points being used for its convex hull. When <i>SetPhysicsDebugOn</i> is called we can see how this affects the sprite:
+
+_image
+s1.jpg
+
+_text
+<br>The bottom of the sprite is generally well represented, however, notice the shape at the top cuts out portions of the head on the left and right. There's also a section of penguin's left arm not included in the physics shape. The conclusion for this is that 5 points is too low and not going to be acceptable for accurate collision.
+
+_text
+The second sprite is limited to a maximum of 8 points being used for its convex hull:
+
+_image
+s2.jpg
+
+_text
+<br>The result is much better this time and generally provides a pretty tight fit around the sprite. While it's not perfect it would be much more acceptable than the result when using 5 points.
+
+_text
+<br>The third and final sprite has its maximum number of points set to 12 (which is the limit for AppGameKit Studio). This provides us with the most accurate result:
+
+_image
+s3.jpg
+
+_text
+<br>While using 12 points for sprite three undoubtedly gives the best result, one must consider whether it's actually worth it. Would a player notice the difference when collisions take place between sprite 2 and 3 in a fast paced game? It's unlikely, but of course it's all down to personal preference, but beware that using the maximum number of points for convex shapes may have a negative effect on performance. Where possible try and use a lower value or stick to the default 8 points for optimal performance.
+
+_sheader
+Full code listing
+_text
+This is the final listing for the example:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background6.jpg" ) )
+<br>
+LoadImage ( 1, "penguin.png" )
+<br>
+x# = 0
+<br>
+for i = 1 to 3
+    if i = 1 then SetPhysicsMaxPolygonPoints ( 5 )
+    if i = 2 then SetPhysicsMaxPolygonPoints ( 8 )
+    if i = 3 then SetPhysicsMaxPolygonPoints ( 12 )
+<br>
+    sprite = CreateSprite ( 1 )
+<br>
+    SetSpritePosition           ( sprite, x#, 0 )
+    SetSpriteShape              ( sprite, 3 )
+    SetSpritePhysicsOn          ( sprite, 2 )
+<br>
+    SetSpriteScale              ( sprite, 0.6, 0.6 )
+    SetSpritePhysicsRestitution ( sprite, 0.5 )
+<br>
+    x# = x# + 100
+next i
+<br>
+SetPhysicsDebugOn ( )
+<br>
+do
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background6.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "penguin.png" );
+<br>
+    float x = 0.0f;
+<br>
+    for ( int i = 0; i < 3; i++ )
+    {
+        if ( i == 0 ) agk::SetPhysicsMaxPolygonPoints ( 5 );
+        if ( i == 1 ) agk::SetPhysicsMaxPolygonPoints ( 8 );
+        if ( i == 2 ) agk::SetPhysicsMaxPolygonPoints ( 12 );
+<br>
+        int sprite = agk::CreateSprite ( 1 );
+<br>
+        agk::SetSpritePosition           ( sprite, x, 0 );
+        agk::SetSpriteShape              ( sprite, 3 );
+        agk::SetSpritePhysicsOn          ( sprite, 2 );
+<br>
+        agk::SetSpriteScale              ( sprite, 0.6, 0.6 );
+        agk::SetSpritePhysicsRestitution ( sprite, 0.5f );
+<br>
+        x += 100;
+    }
+<br>
+    agk::SetPhysicsDebugOn ( );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+
+_sheader
+Conclusion
+
+_text
+The main command covered in this example is likely to come into use for many games. It's important to understand how it works and the impact it has on sprites.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

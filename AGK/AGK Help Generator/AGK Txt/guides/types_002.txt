@@ -1,0 +1,141 @@
+
+_header
+Declaring types
+
+_text
+Types can contain regular variables such as floating point values, integers and strings. They can also contain arrays and other types. This section of the documentation provides several examples showing the different ways in which types can be declared.
+
+_text
+The program that follows defines and uses a type named <i>myType</i>.
+
+_tier1
+type myType
+	a as integer
+	b as float
+	c as string
+endtype
+<br>
+data as myType
+<br>
+data.a = 1
+data.b = 1.23
+data.c = "hello"
+<br>
+do
+	print ( data.a )
+	print ( data.b )
+	print ( data.c )
+	<br>
+	sync ( )
+loop
+_tier1
+
+_text
+The type declaration for <i>myType</i> contains three variables named <i>a</i>, <i>b</i> and <i>c</i>. <i>a</i> is declared as an integer, <i>b</i> is declared as a floating point value and finally <i>c</i> is declared as a string. A variable named <i>data</i> is declared that is of type <i>myType</i>. This is followed by three lines that assign values to the contents of <i>data</i>. Then there's the loop that continually prints out the values within <i>data</i>
+
+_text
+The next program shows how a type can contain an array.
+
+_tier1
+type myType
+	a as string [ 4 ]
+	b as integer [ 4 ]
+endtype
+<br>
+data as myType
+<br>
+data.a [ 1 ] = "a"
+data.a [ 2 ] = "b"
+data.a [ 3 ] = "c"
+data.a [ 4 ] = "d"
+<br>
+for i = 1 to 4
+	data.b [ i ] = i * 5
+next i
+<br>
+do
+	for i = 1 to 4
+		print ( data.a [ i ] + " " + str ( data.b [ i ] ) )
+	next i
+	<br>
+	sync ( )
+loop
+_tier1
+
+_text
+A string array named <i>a</i> is declared within the type declaration along with an integer array named <i>b</i>. The way they are declared is just the same as when dealing with regular arrays, except these arrays are contained within <i>myType</i>. This is followed by a few lines that assign values to the arrays within <i>data</i>. Then the loop simply prints out the contents of <i>data.a</i> and <i>data.b</i>
+
+_text
+Types can also contain other types, as displayed in this program.
+
+_tier1
+type myTypeA
+	score as integer
+	names as string [ 4 ]
+endtype
+<br>
+type myTypeB
+	sub as myTypeA
+	value as float
+endtype
+<br>
+data as myTypeB
+<br>
+data.sub.score = 1
+data.sub.names [ 1 ] = "a"
+data.sub.names [ 2 ] = "b"
+data.sub.names [ 3 ] = "c"
+data.sub.names [ 4 ] = "d"
+data.value = 1.45
+<br>
+do
+	print ( data.sub.score )
+	<br>
+	for i = 1 to 4
+		print ( data.sub.names [ i ] )
+	next i
+	<br>
+	print ( data.value )
+	<br>
+	sync ( )
+loop
+_tier1
+
+_text
+The type <i>myTypeA</i> is declared, which is then followed by the declaration for <i>myTypeB</i>. This type declares a variable <i>sub</i> that uses the type <i>myTypeA</i>. The next few lines beneath this show how to access a type within a type.
+
+_text
+The final program shows how you can have an array of a type.
+
+_tier1
+type playerType
+	score as integer
+	name as string
+endtype
+<br>
+players as playerType [ 3 ]
+<br>
+players [ 1 ].score = -1000
+players [ 1 ].name = "lee"
+players [ 2 ].score = 100
+players [ 2 ].name = "paul"
+players [ 3 ].score = 500
+players [ 3 ].name = "rick"
+<br>
+do
+	for i = 1 to players.length
+		print ( players [ i ].name + " = " + str ( players [ i ].score ) )
+	next i
+	<br>
+	sync ( )
+loop
+_tier1
+
+_text
+To specify that a variable using a type is going to be an array just add on the opening bracket, the size of the array and lastly the closing bracket, just like you would do with a regular floating point, string or integer array.
+
+_text
+The variable <i>players</i> is treated like a regular array, so it's possible to use the likes of <i>length</i> and <i>sort</i> with it, as shown in the <i>for</i> loop that iterates from 1 to the size or length of the array.
+
+_navigation
+types_001.htm types_003.htm

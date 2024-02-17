@@ -1,0 +1,204 @@
+_header
+Getting started
+
+_text
+Dependent on the platform, input could be provided by the keyboard, a mouse, touch events, an accelerometer, a joystick or a combination thereof. This example looks at the most basic input available and demonstrates how to respond to a simple touch / click event.
+
+_image
+0_basics.jpg
+
+_sheader
+Types of input
+
+_text
+The type of input available is dependent on the platform, for example, on Windows you can expect mouse and keyboard input and possibly a joystick, whereas on an iPhone we're limited to touch events and an accelerometer. 
+
+_text
+Input supported by AppGameKit Studio includes:
+
+_listbegin
+keyboard
+mouse
+touch
+accelerometer
+joystick
+_listend
+
+_sheader
+Platform dependent input
+
+_text
+The choice when dealing with input is to decide whether your game is expected to work on mutiple platforms or if it's targeting a specific platform. For example, if your game is only targeting Windows then you could call commands such as <i>GetRawMouseX</i> and <i>GetRawMouseY</i> to retrieve information about the position of the mouse pointer. Commands such as these are platform dependent. Another example would be a game that is using the accelerometer. This game could call <i>GetAccelX</i> to obtain acceleration data on the X axis, and again this is platform dependent and is only currently supported on iOS and Bada - it would not return any values on Windows or Mac.
+
+_text
+When using platform dependent input commands it's important to realise that this restricts the portability of your game. While it wouldn't necessarily stop your game from working, it would mean that you introduce code that only works on certain platforms, and this would result in needing to implement different input routines on each platform. In some cases this could be the desired result, as it may be that your game's input is tailored to each platform. The key point is to consider input early and make a choice as to whether your input will be platform dependent or platform agnostic.
+
+_sheader
+Platform agnostic input
+
+_text
+The platform agnostic commands will function on all platforms, for example, the command <i>GetPointerPressed</i> can be used to determine whether there has been a touch event on mobile devices, or if the mouse has been pressed on the likes of Windows and Mac. The objective behind these commands is to ensure that you can write your input routines once and have them behave the same on all platforms.
+
+_text
+The usage of any platform agnostic commands may slightly limit the functionality of input handling, but brings the benefit of working on all platforms, thus ensuring your games will run on all platforms supported by AppGameKit Studio without needing to make any changes.
+
+_sheader
+Responding to input
+
+_text
+This example will focus on platform agnostic commands, in particular commands that allow us to check whether the user has touched or clicked on the screen. The example will perform the following actions:
+
+_listbegin
+set a virtual resolution
+create a sprite and place it on screen
+whenever the user touches / clicks on the screen the sprite will move to that location
+_listend
+
+_sheader
+Setup
+
+_text
+A virtual resolution is set of 320 x 480, followed by a call to the command <i>CreateSprite</i> where an ID of 1 is specified for the first parameter, while the second parameter involves making a call to <i>LoadImage</i> to load the image "lime.png", which in turn returns an ID number for the image to the <i>CreateSprite</i> command. 
+
+_text
+The initial set up code is as follows:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( 1, LoadImage ( "lime.png" ) )
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( 1, agk::LoadImage ( "lime.png" ) );
+}
+_tier2
+
+_sheader
+Checking for input
+
+_text
+The command <i>GetPointerPressed</i> can be used to determine whether the user has touched or clicked on the screen. It takes no parameters and returns a value of 1 when input has occurred. Once input has taken place other information is available such as the location of that input. This is accessible through the commands <i>GetPointerX</i> and <i>GetPointerY</i>. These commands take no parameters and return the location of input on the X and Y axis.
+
+_text
+The code to deal with simple input is relatively straightforward, with a call to <i>GetPointerPressed</i> being made, and if it returns 1 then we have some input to deal with:
+
+_tier1
+if ( GetPointerPressed ( ) = 1 )
+<br>
+endif
+_tier1
+
+_tier2
+if ( agk::GetPointerPressed ( ) == 1 )
+{
+<br>
+}
+_tier2
+
+_text
+The next step is to call <i>GetPointerX</i> and <i>GetPointerY</i> within the if statement:
+
+_tier1
+if ( GetPointerPressed ( ) = 1 )
+    x# = GetPointerX ( )
+    y# = GetPointerY ( )
+endif
+_tier1
+
+_tier2
+if ( agk::GetPointerPressed ( ) == 1 )
+{
+    float x = agk::GetPointerX ( );
+    float y = agk::GetPointerY ( );
+}
+_tier2
+
+_text
+We now know that an input event has occurred and we also know the location. The remaining code simply positions our sprite at the location of the input event:
+
+_tier1
+if ( GetPointerPressed ( ) = 1 )
+    x# = GetPointerX ( )
+    y# = GetPointerY ( )
+<br>
+    SetSpritePosition ( 1, x#, y# )
+endif
+_tier1
+
+_tier2
+if ( agk::GetPointerPressed ( ) == 1 )
+{
+    float x = agk::GetPointerX ( );
+    float y = agk::GetPointerY ( );
+<br>
+    agk::SetSpritePosition ( 1, x, y );
+}
+_tier2
+
+
+_sheader
+Full code listing
+_text
+The final code for our program includes the addition of a background sprite along with some instructions being printed out within the main loop:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background5.jpg" ) )
+<br>
+CreateSprite ( 1, LoadImage ( "lime.png" ) )
+<br>
+do
+    Print ( "Touch or click the screen" )
+    Print ( "to move the sprite" )
+<br>
+    if ( GetPointerPressed ( ) = 1 )
+        x# = GetPointerX ( )
+        y# = GetPointerY ( )
+<br>
+        SetSpritePosition ( 1, x#, y# )
+    endif
+<br>
+    sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background5.jpg" ) );
+<Br>
+    agk::CreateSprite ( 1, agk::LoadImage ( "lime.png" ) );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Print ( "Touch or click the screen" );
+    agk::Print ( "to move the sprite" );
+<br>
+    if ( agk::GetPointerPressed ( ) == 1 )
+    {
+        float x = agk::GetPointerX ( );
+        float y = agk::GetPointerY ( );
+<br>
+        agk::SetSpritePosition ( 1, x, y );
+    }
+<br>
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+This document has explored some of the important concepts when dealing with input, it has also provided a brief example showing how to handle basic input that will function on all platforms.
+
+
+

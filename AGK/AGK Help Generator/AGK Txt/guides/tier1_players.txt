@@ -1,0 +1,44 @@
+_header
+Tier 1 Players
+
+_sheader
+Overview
+
+_text
+A collection of player applications are available for use with Tier 1. The purpose of these applications is to allow you to test your game on multiple platforms. For example, you can be developing your game on the Windows platform, install the player app on an iPad, launch it, hit the run, compile and broadcast button in the AppGameKit Studio IDE and your game will be transmitted and launched on the iPad.
+
+_sheader
+Windows Player
+
+_text
+The Windows player comes bundled with AppGameKit Studio. If installing to the default directory you can locate it here:
+_text
+"\Program Files\The Game Creators\AGKStudio\Players\Windows"
+
+_sheader
+iOS
+
+_text
+The player is available to download directly from the App Store. Just click the Help drop down menu in Studio and select AppGameKit Player for iOS and you'll be taken to the app store location.
+
+_sheader
+Mac OS X
+
+_text
+The Mac player comes bundled with AppGameKit Studio. If installing to the default directory you can locate it here:
+
+_text
+Applications\AGKStudio\Players\Mac
+
+_sheader
+Android
+
+_text
+You can obtain the Android player from the Google Play store, just click the Help drop down menu in Studio and select AppGameKit Player for Android and you'll be taken to the app store download page on Google Play. You can also side load the version that comes with AppGameKit Studio, you'll find it here:
+_text
+C:\Program Files\The Game Creators\AGKStudio\Players\Android
+_text
+You will need to have "Unknown Sources" ticked in your device security settings to side load an app.
+
+
+

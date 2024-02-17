@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Initial Setup - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="http://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Initial Setup</div><div class="page"><h1>Initial Setup</h1><p>AppGameKit provides several commands to deal with in app purchase. The typical logic for dealing with in app purchases is -</p><ul><li>Set up in app purchase</li><li>Add product ID's (from the store listings)</li><li>Check whether the user has purchased non-consumable items and restore them if needed</li><li>Ensure any consumable items are loaded and kept up to date</li><li>Provide an option for the user to buy in app purchases</li></ul><p>The initial set up can be handled with the following commands.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">InAppPurchaseSetTitle ( "your app title" )
+InAppPurchaseSetKeys ( "key1", "" )
+InAppPurchaseAddProductID ( "productID1", 0 )
+InAppPurchaseAddProductID ( "productID2", 0 )
+InAppPurchaseAddProductID ( "productID3", 0 )
+InAppPurchaseAddProductID ( "productID4", 0 )
+InAppPurchaseSetup ( )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="InAppPurchaseSetTitle ( &quot;your app title&quot; )
+InAppPurchaseSetKeys ( &quot;key1&quot;, &quot;&quot; )
+InAppPurchaseAddProductID ( &quot;productID1&quot;, 0 )
+InAppPurchaseAddProductID ( &quot;productID2&quot;, 0 )
+InAppPurchaseAddProductID ( &quot;productID3&quot;, 0 )
+InAppPurchaseAddProductID ( &quot;productID4&quot;, 0 )
+InAppPurchaseSetup ( )
+">Copy Code</button></div><p>The command <i>InAppPurchaseSetTitle</i> takes a string parameter that defines the name of your application. This name may be displayed on any dialogs that get displayed when the user attempts to make an in app purchase.</p><p>If your app is to be released on the Google Play Store then you must call <i>InAppPurchaseSetKeys</i> passing in the public key for your application. This can be found within the Google Play Developer console application listing under the Services & APIs section titled "Your license key for this application". If your app does not target the Google Play Store then you do not need to call this command.</p><p>Each product you create comes with a unique identifier. This identifier needs to be supplied to the in app purchase set of commands using the <i>InAppPurchaseAddProductID</i> command. For each product you have created call <i>InAppPurchaseAddProductID</i> passing in the product ID and the type of product e.g. non-consumable (0) or consumable (1). When a product is added it will be given a number ID starting with 0. In our example "productID1" has an ID of 0, "productID2" an ID of 1, "productID3" an ID of 2 and "productID4" an ID of 3. These ID numbers are used in the purchase process.</p><p>The final step is to make a call to <i>InAppPurchaseSetup</i>. This will use the title, keys and product identifiers to finalise the process of setting up the in app purchase system. It is only after this command has been called that purchases can be made or previous purchases restored.</p><div align="center"><a href="iap_005.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="iap_007.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="http://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

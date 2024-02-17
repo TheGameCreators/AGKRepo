@@ -1,0 +1,294 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Moving sprites - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Moving sprites</div><div class="page"><h1>Moving sprites</h1><h2>Description</h2><p>In this example we explore a very simple technique that allows us to gradually move a sprite from its initial location to the point where a user taps / clicks the screen.</p><div align="center"><img src="8_move.jpg"/></div><h2>Overview</h2><p>The process involved is as follows:</p><ul><li>load an image and create a sprite</li></ul><p>Within our main loop:</p><ul><li>respond to user input</li><li>calculate the destination point of our sprite</li><li>turn on a flag to move our sprite</li><li>move the sprite to its destination point</li></ul><h2>Load an image and create a sprite</h2><p>One image is going to be loaded and used for a sprite:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">image = LoadImage ( "lime.png" )
+sprite = CreateSprite ( image )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="image = LoadImage ( &quot;lime.png&quot; )
+sprite = CreateSprite ( image )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">image = agk::LoadImage ( "lime.png" );
+sprite = agk::CreateSprite ( image );
+</pre></div><h2>Respond to input</h2><p>When the user touches or clicks on the screen we will do the following:</p><ul><li>only respond if the sprite is not already moving to a location</li><li>save the position of our sprite</li><li>store the destination as the point where the user touched or clicked on the screen</li><li>work out the distance between the original position and the destination</li><li>set a flag that notifies our sprite it needs to move to the new location</li></ul><p>Basic touch or click input is handled through the use of three commands:</p><ul><li><i>GetPointerPressed</i></li><li><i>GetPointerX</i></li><li><i>GetPointerY</i></li></ul><p>The command <i>GetPointerPressed</i> returns a value of 1 whenever the user has touched or clicked the screen. When this happens you can use <i>GetPointerX</i> and <i>GetPointerY</i> to determine the location of the input.</p><p>Here’s the code for handling input and setting up a new location for the sprite:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">if GetPointerPressed ( ) = 1
+    x = GetPointerX ( )
+    y = GetPointerY ( )
+<br>
+    if ( move = 0 )
+        originalX# = GetSpriteX ( sprite )
+        originalY# = GetSpriteY ( sprite )
+<br>   
+        destinationX# = x
+        destinationY# = y
+        distanceX# = destinationX# - originalX#
+        distanceY# = destinationY# - originalY#
+        distanceFromAtoB# = sqrt ( ( distanceX# * distanceX# ) + ( distanceY# * distanceY# ) )
+<br>
+        if ( distanceFromAtoB# <> 0.0 )
+            directionX# = distanceX# / distanceFromAtoB#
+            directionY# = distanceY# / distanceFromAtoB#
+        endif
+    endif
+endif
+</pre></div><div align="right"><button class="btn" data-clipboard-text="if GetPointerPressed ( ) = 1
+    x = GetPointerX ( )
+    y = GetPointerY ( )
+
+    if ( move = 0 )
+        originalX# = GetSpriteX ( sprite )
+        originalY# = GetSpriteY ( sprite )
+
+        destinationX# = x
+        destinationY# = y
+        distanceX# = destinationX# - originalX#
+        distanceY# = destinationY# - originalY#
+        distanceFromAtoB# = sqrt ( ( distanceX# * distanceX# ) + ( distanceY# * distanceY# ) )
+
+        if ( distanceFromAtoB# <> 0.0 )
+            directionX# = distanceX# / distanceFromAtoB#
+            directionY# = distanceY# / distanceFromAtoB#
+        endif
+    endif
+endif
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">if ( agk::GetPointerPressed ( ) == 1 )
+{
+    x = agk::GetPointerX ( );
+    y = agk::GetPointerY ( );
+<br>
+    if ( move = 0 )
+    {
+        originalX = agk::GetSpriteX ( sprite );
+        originalY = agk::GetSpriteY ( sprite );
+<br>   
+        destinationX = x;
+        destinationY = y;
+        distanceX = destinationX - originalX;
+        distanceY = destinationY - originalY;
+        distanceFromAtoB = sqrt ( ( distanceX * distanceX ) + ( distanceY * distanceY ) );
+<br>
+        if ( distanceFromAtoB != 0.0f )
+        {
+            directionX = distanceX / distanceFromAtoB;
+            directionY = distanceY / distanceFromAtoB;
+        }
+    }
+}
+</pre></div><h2>Move the sprite to its destination point</h2><p>With the previous block of code we worked out a location for the sprite to move to and a flag was set to notify us of this change. Within the remainder of the main loop we need to check whether this flag is true, and if so update the position of our sprite, using the following process:</p><ul><li>see whether the move value is greater than 0</li><li>determine where we need to move to based on the original location and the direction</li><li>update the position of our sprite</li><li>reset the move value once the sprite reaches its destination</li></ul><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">if ( move > 0 )
+    newX# = originalX# + directionX# * move
+    newY# = originalY# + directionY# * move
+<br>
+    if ( move < distanceFromAtoB# )
+        move = move + 2
+    else
+        move = 0
+    endif
+<br>   
+    SetSpritePosition ( sprite, newX#, newY# )
+endif
+</pre></div><div align="right"><button class="btn" data-clipboard-text="if ( move > 0 )
+    newX# = originalX# + directionX# * move
+    newY# = originalY# + directionY# * move
+
+    if ( move < distanceFromAtoB# )
+        move = move + 2
+    else
+        move = 0
+    endif
+
+    SetSpritePosition ( sprite, newX#, newY# )
+endif
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">if ( move > 0 )
+{
+    newX = originalX + directionX * move;
+    newY = originalY + directionY * move;
+<br>
+    if ( move < distanceFromAtoB )
+    {
+        move = move + 2;
+    }
+    else
+    {
+        move = 0;
+    }
+<br>   
+    agk::SetSpritePosition ( sprite, newX, newY );
+}
+</pre></div><p>The <i>move</i> variable is used as a way of saying how far we are along the line to our new destination. Initially it is 0, and after a user has touched / clicked the screen and the sprite starts moving, it gets incremented by 2 pixels each frame. Once it is greater than or equal to the distance value we know our sprite has reached its location.</p><h2>Full code listing</h2><p>Everything is now in place. Here's the final code for our program:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background4.jpg" ) )
+<br>
+image = LoadImage ( "lime.png" )
+sprite = CreateSprite ( image )
+<br>
+do
+    Print ( "Touch or click the screen to move the" )
+    Print ( "sprite to that location" )
+<br>
+    if GetPointerPressed ( ) = 1
+<br>
+        x = GetPointerX ( )
+        y = GetPointerY ( )
+        if ( move = 0 )
+            move = 1
+<br>
+            originalX# = GetSpriteX ( sprite )
+            originalY# = GetSpriteY ( sprite )
+<br>   
+            destinationX# = x
+            destinationY# = y
+            distanceX# = destinationX# - originalX#
+            distanceY# = destinationY# - originalY#
+            distanceFromAtoB# = sqrt ( ( distanceX# * distanceX# ) + ( distanceY# * distanceY# ) )
+<br>
+            if ( distanceFromAtoB# <> 0.0 )
+                directionX# = distanceX# / distanceFromAtoB#
+                directionY# = distanceY# / distanceFromAtoB#
+            endif
+        endif
+    endif
+<br>
+    if ( move > 0 )
+        newX# = originalX# + directionX# * move
+        newY# = originalY# + directionY# * move
+<br>
+        if ( move < distanceFromAtoB# )
+            move = move + 2
+        else
+            move = 0
+        endif
+<br>   
+        SetSpritePosition ( sprite, newX#, newY# )
+    endif
+<br>
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+CreateSprite ( LoadImage ( &quot;background4.jpg&quot; ) )
+
+image = LoadImage ( &quot;lime.png&quot; )
+sprite = CreateSprite ( image )
+
+do
+    Print ( &quot;Touch or click the screen to move the&quot; )
+    Print ( &quot;sprite to that location&quot; )
+
+    if GetPointerPressed ( ) = 1
+
+        x = GetPointerX ( )
+        y = GetPointerY ( )
+        if ( move = 0 )
+            move = 1
+
+            originalX# = GetSpriteX ( sprite )
+            originalY# = GetSpriteY ( sprite )
+
+            destinationX# = x
+            destinationY# = y
+            distanceX# = destinationX# - originalX#
+            distanceY# = destinationY# - originalY#
+            distanceFromAtoB# = sqrt ( ( distanceX# * distanceX# ) + ( distanceY# * distanceY# ) )
+
+            if ( distanceFromAtoB# <> 0.0 )
+                directionX# = distanceX# / distanceFromAtoB#
+                directionY# = distanceY# / distanceFromAtoB#
+            endif
+        endif
+    endif
+
+    if ( move > 0 )
+        newX# = originalX# + directionX# * move
+        newY# = originalY# + directionY# * move
+
+        if ( move < distanceFromAtoB# )
+            move = move + 2
+        else
+            move = 0
+        endif
+
+        SetSpritePosition ( sprite, newX#, newY# )
+    endif
+
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background4.jpg" ) );
+<br>
+    image = agk::LoadImage ( “lime.png” );
+    sprite = agk::CreateSprite ( image );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Print ( "Touch or click the screen to move the" );
+    agk::Print ( "sprite to that location" );
+<br>
+    if ( agk::GetPointerPressed ( ) == 1 )
+    {
+        x = agk::GetPointerX ( );
+        y = agk::GetPointerY ( );
+<br>
+        if ( move == 0 )
+        {
+            move = 1;
+<br> 
+            originalX = agk::GetSpriteX ( sprite );
+            originalY = agk::GetSpriteY ( sprite );
+<br>   
+            destinationX = x;
+            destinationY = y;
+            distanceX = destinationX - originalX;
+            distanceY = destinationY - originalY;
+            distanceFromAtoB = sqrt ( ( distanceX * distanceX ) + ( distanceY * distanceY ) );
+<br>
+            if ( distanceFromAtoB != 0.0f )
+            {
+                directionX = distanceX / distanceFromAtoB;
+                directionY = distanceY / distanceFromAtoB;
+            }
+        }
+    }
+<br>
+    if ( move > 0 )
+    {
+        newX = originalX + directionX * move;
+        newY = originalY + directionY * move;
+<br>
+        if ( move < distanceFromAtoB )
+        {
+            move = move + 2;
+        }
+        else
+        {
+            move = 0;
+        }
+<br>   
+        agk::SetSpritePosition ( sprite, newX, newY );
+    }
+}
+</pre></div><h2>Conclusion</h2><p>This concludes the example of moving a sprite from one point to another. It’s a very simple technique that can be used for sprites in your games.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

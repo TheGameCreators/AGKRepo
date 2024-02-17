@@ -1,0 +1,85 @@
+_header
+Plugins in AppGameKit Studio
+_sheader
+Creating a plugin
+_text
+AppGameKit Studio supports third party plugins on Windows, written in any language that can export to a DLL. Linux and Mac plugins are now also supported in the form of .so files on Linux and .dylib files on Mac. To write a plugin does not require AppGameKit Studio to be installed, you just have to include one header file and one source file in your plugin project, these can be found here: https://www.appgamekit.com/documentation/ExamplePlugin.zip along with example projects that uses them for Windows, Mac, and Linux. Alternatively the AppGameKit Studio installer comes with a copy of these files and they will be installed in the Example Plugin folder. Those included files will allow AppGameKit Studio to interface with your plugin and give you access to all the AppGameKit Studio commands when your plugin is loaded by a Tier 1 project. Note that AppGameKit Studio commands are not thread safe and should not be called from any threads that you create.
+_text
+Any functions that you create in the plugin that you want to be accessible to AppGameKit Studio must start with the text DLL_EXPORT like so
+_tier1
+DLL_EXPORT void SetI( int value )
+{
+    i = value;
+}
+_tier1
+_text
+You can use AppGameKit Studio functions as you would in Tier 2 like so
+_tier1
+DLL_EXPORT void CreateRedSquare()
+{
+    agk::CreateSprite( 1, 0 );
+    agk::SetSpriteSize( 1, 100, 100 );
+    agk::SetSpritePosition( 1, 10, 100 );
+    agk::SetSpriteColor( 1, 255,0,0,255 );
+}
+_tier1
+_text
+When you have created your plugin you will need to find the function names that Visual Studio or GCC created for your functions (called the mangled or decorated name). They will look something like this ?CreateRedSquare@@YAXXZ and can be discovered using a DLL explorer like Dependency Walker (http://www.dependencywalker.com/). On Linux and Mac you can use the command "nm -g --defined-only MyPluginFile.so". Alternatively you can export your functions in a clean format like this
+_tier1
+extern "C" DLL_EXPORT void CreateRedSquare()
+{
+    agk::CreateSprite( 1, 0 );
+    agk::SetSpriteSize( 1, 100, 100 );
+    agk::SetSpritePosition( 1, 10, 100 );
+    agk::SetSpriteColor( 1, 255,0,0,255 );
+}
+_tier1
+_text
+In which case your function will be exported as CreateRedSquare, but you won't be able to have multiple functions of the same name, for example when they have different parameters.
+_text
+Once you know the function names that your plugin contains you need to create a Commands.txt file that will tell AppGameKit Studio about them, so it can load them into a Tier 1 project. This file has one command per line, with fields separated by a comma, any line beginning with a # will be ignored. It might look something like this:
+_tier1
+#this line will be ignored, can be used for comments
+SetI,0,I,?SetI@@YAXH@Z,_Z4SetIi,_Z4SetIi,0,0,?SetI@@YAXH@Z
+CreateRedSquare,0,0,?CreateRedSquare@@YAXXZ,_Z15CreateRedSquarev,_Z15CreateRedSquarev,0,0,?CreateRedSquare@@YAXXZ
+_tier1
+_text
+It starts with the name you want to use for this command in Tier 1, this can be anything you like and doesn't have to resemble the exported function name. Next is the return type, it must be a single character equal to I, F, or S, representing an Integer, Float, or String return value respectively. If the function doesn't return anything use 0 (zero) instead. The third field denotes the parameter types, and must contain one character per parameter, using the same characters as mentioned above. For example FII would mean the function takes one float and two integer parameters, in that order. Or SS would mean it takes two string parameters. If the function takes no parameters use 0 (zero) here instead. The fourth parameter is the mangled name for the function contained in the Windows DLL (or the clean name depending on how you exported it). The fifth parameter is mangled name for the Linux version of the plugin, and the sixth parameter is the mangled name for the Mac version of the plugin. If the plugin does not exist for any of these platforms then its mangled name can be set to 0. (Note that Mac function names have an additional underscore at the start, which you should ignore when filling out this file, for example __ZMyFunc would become _ZMyFunc) The next 2 fields are currently not used and must be set to 0. The final parameter is the mangled name for Windows 64-bit plugins, which is sometimes different from the Windows 32-bit version.
+_text
+The .DLL/.so/.dylib file and the Commands.txt file are all you need to add the plugin to AppGameKit Studio. Simply place them in the AGKStudio\Tier 1\Compiler\Plugins\MyNewPlugin folder, replacing MyNewPlugin with a name of your choice, which will be used as the name of your plugin in AppGameKit Studio. Finally, rename the 32-bit DLL to Windows.dll, the 64-bit DLL to Windows64.dll, the Linux .so file to Linux64.so, and the Mac .dylib file to Mac64.dylib. If any of these are missing then the plugin will not work on that platform. It is now ready to be used by an AppGameKit Studio Tier 1 project.
+_text
+On Mac place the plugin files next to the AppGameKit.app package in a folder named Plugins. On Linux place the plugin files in the Tier1/Compiler/Plugins folder. The renaming rules still apply to Mac and Linux, i.e. the plugins must be renamed to Windows.dll, Windows64.dll, Mac64.dylib, and Linux64.so. It would only be necessary to include the Windows.dll file on Linux in the event that you want to broadcast from the Linux IDE to a player running on Windows. The same applies to the other platform combinations. 
+_sheader
+Using a plugin
+_text
+In a Tier 1 project you can load a plugin by using the line "#import_plugin MyNewPlugin", where MyNewPlugin matches the folder name you created for the plugin. Note that the plugin name is case sensitive on Mac and Linux. You can then call functions from it like so:
+_tier1
+#import_plugin MyNewPlugin
+
+MyNewPlugin.CreateRedSquare()
+MyNewPlugin.SetI( 11 )
+
+do
+    Sync()
+loop
+_tier1
+_text
+Using the plugin name to call functions is not case sensitive, it is only for the initial import. You can also set a custom name for the plugin in your project, for example:
+_tier1
+#import_plugin MyNewPlugin as MNP
+
+MNP.CreateRedSquare()
+MNP.SetI( 11 )
+
+do
+    Sync()
+loop
+_tier1
+_text
+This custom name is not case sensitive in any cases. You can use a plugin function anywhere that you can use a normal AppGameKit Studio function.
+_sheader
+Strings
+_text
+You must be careful when creating or deleting strings in your plugin that are shared with AppGameKit Studio, as any attempt to delete memory in one that was allocated in the other will crash. Therefore any plugin function you write that wants to return a string must call agk::CreateString(size) to allocate memory for it. You can then fill it with string data as normal and return it from your plugin function. This is so that AppGameKit Studio can delete the pointer when it is done with it. Similarly, if you call any AppGameKit Studio function that returns a string you must call agk::DeleteString(str) on it when you are done with it.
+_text
+Strings passed to your plugin as function parameters must be const and not deleted or modified in any way, as AGK may use it for something else. To modify a string passed as a paramter you must create a copy of it and then modify the copy. 

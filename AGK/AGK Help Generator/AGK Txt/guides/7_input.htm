@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Input - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Input</div><div class="page"><h1>Input</h1><h2>Overview</h2><p>The input commands provide the ability to deal with a variety of different inputs for example, joysticks, buttons and the accelerometer. The commands are divided up into two main categories - Universal and Raw, and it's important to understand the distinction between these categories.</p><h2>Universal Input</h2><p>The universal input commands will function on all platforms. Here's an example demonstrating the process:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">if ( GetPointerPressed ( ) = 1 )
+    // do something
+endif
+</pre></div><div align="right"><button class="btn" data-clipboard-text="if ( GetPointerPressed ( ) = 1 )
+    // do something
+endif
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">if ( agk::GetPointerPressed ( ) == 1 )
+{
+    // do something
+}
+</pre></div><p>This particular command will adapt its behaviour dependent on the platform. When running on a platform that uses a mouse it will return a value of 1 when the left mouse button has been pressed. When running on a platform that uses a touch screen it will return a value of 1 when the user taps the screen.</p><p>All the other universal commands operate in a similar fashion. As another example here's a line showing the usage for a command named <i>GetDirectionX</i>:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">x# = GetDirectionX ( )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="x# = GetDirectionX ( )
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">x = GetDirectionY ( );
+</pre></div><p>When running this code on a device that supports an accelerometer the data being returned will come directly from the accelerometer. When running on a platform such as Windows, where no accelerometer is pressent, AppGameKit Studio will provide a fallback mechanism and emulate the functionality by using the arrow keys on the keyboard.</p><p>What we end up with is a set of generic commands that will behave the same way regardless of the platform being used. If you want to maintain the philosophy of AppGameKit Studio to write once and deploy everywhere then you must ensure you use the universal input commands.</p><h2>Raw Input</h2><p>In some circumstances a game may only be directed at a specific platform or a subset rather than all the platforms that AppGameKit Studio supports. In cases like this, it might be more convenient to handle all of the input functionality provided by those devices. For example, on mobile devices it would be possible to pick up much more information relating to touch input, whereas when targeting all platforms and using the universal commands a more limited set of data is provided.</p><p>This example highlights the differences between universal and raw commands:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">x# = GetRawAccelX ( )
+y# = GetRawAccelY ( )
+z# = GetRawAccelZ ( )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="x# = GetRawAccelX ( )
+y# = GetRawAccelY ( )
+z# = GetRawAccelZ ( )
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">x = agk::GetRawAccelX ( );
+y = agk::GetRawAccelY ( );
+z = agk::GetRawAccelZ ( );
+</pre></div><p>In this instance the code is extracting data from an accelerometer on the X, Y and Z axis. Data will only be returned when an accelerometer is present on the platform e.g. on Samsung Bada. Obtaining this level of data is not possible when using the universal commands.</p><h2>How can I respond to basic input?</h2><p>Some of the universal commands to deal with basic input are:</p><ul><li><i>GetPointerPressed</i></li><li><i>GetPointerX</i></li><li><i>GetPointerY</i></li></ul><p>These three commands can be used to respond to mouse or touch input. The initial command to use is <i>GetPointerPressed</i>. This command returns a value of 1 upon input and after this point you can determine the X and Y position of the input:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">if ( GetPointerPressed ( ) = 1 )
+    x# = GetPointerX ( )
+    y# = GetPointerY ( )
+endif
+</pre></div><div align="right"><button class="btn" data-clipboard-text="if ( GetPointerPressed ( ) = 1 )
+    x# = GetPointerX ( )
+    y# = GetPointerY ( )
+endif
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">if ( agk::GetPointerPressed ( ) == 1 )
+    x = agk::GetPointerX ( );
+    y = agk::GetPointerY ( );
+endif
+</pre></div><h2>How can I use a virtual joystick on one platform and keyboard input on another?</h2><p>This might be a common scenario for many games, whereby a virtual joystick controller is displayed on screen for mobile devices and keyboard input is preferred for platforms that support it. AppGameKit Studio will automatically take care of this transition if you use the following commands:</p><ul><li><i>SetJoystickScreenPosition</i></li><li><i>GetJoystickX</i></li><li><i>GetJoystickY</i></li></ul><p>The command <i>SetJoystickScreenPosition</i> is used to place a virtual joystick on screen when appropriate. It takes 3 parameters:</p><ul><li>x</li><li>y</li><li>size</li></ul><p>The <i>x</i> and <i>y</i> parameters control the position of the on screen joystick, while the <i>size</i> parameter controls the diameter of the joystick. This command has no effect when your game is running on a platform that has a real joystick or keyboard available, but it's still important to call it if you require this transition so that a virtual joystick will be displayed when necessary.</p><p>The commands <i>GetJoystickX</i> and <i>GetJoystickY</i> will return data either when the W, A, S and D keys are pressed or a real joystick is being used or when a virtual joystick is being used. </p><p>For an example of this process in action please check out the Space Game example provided with AppGameKit Studio.</p><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

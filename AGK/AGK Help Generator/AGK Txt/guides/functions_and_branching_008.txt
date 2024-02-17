@@ -1,0 +1,28 @@
+_header
+Global variables
+
+_text
+Global variables can be used when you require a variable to be visible by all of the program. To transform a variable into a global simply add the keyword <i>global</i> prior to its declaration.
+
+_tier1
+global value as integer = 1
+<br>
+do
+	myFunction ( )
+	<br>
+	sync ( )
+loop
+<br>
+function myFunction ( )
+	print ( value )
+endfunction
+_tier1
+
+_text
+Now that the variable <i>value</i> has been declared as global it becomes visible in the function <i>myFunction</i>.
+
+_text
+Globals have their place and can be useful, but at the same time can contribute to making a large program unwieldy, as it can often lead to confusion with one variable being able to be modified in multiple locations throughout a program. It's probably better to pass data around your program where possible by using parameters and return values in functions, which is perhaps an easier way to manage data and keep track of what is happening.
+
+_navigation
+functions_and_branching_007.htm functions_and_branching_009.htm

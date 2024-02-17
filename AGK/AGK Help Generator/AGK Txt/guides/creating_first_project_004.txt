@@ -1,0 +1,54 @@
+
+_header
+Adding your own code
+
+_text
+For now let's try and display something on screen by adding a line of code.
+
+_tier1
+print ( "hello world" )
+_tier1
+
+_text
+Here's how the code will look in the editor.
+
+_imageclick
+firstproject010.jpg
+
+_text
+This code calls a command named print and passes in the string "hello world" as a parameter. It is a command that is used to display text on screen. Try running this program - you will see a window appear on screen and immediately close, returning you back to the IDE. The reason why this happens is that your program only contains one line of instructions. Once that particular instruction has been executed there's nothing left for the program to do, therefore it finishes execution and terminates itself. We can correct this by adding in a loop, that can be used to continually cycle through a series of commands within it. Let's take a look at how our previous code can be modified to continually loop around.
+
+_tier1
+do
+	print ( "hello world" )
+loop
+_tier1
+
+_text
+Two extra lines have been added to our program, specifically "do" and "loop". This effectively tells the program that any instructions contained within this block should continually loop around, until such time that the program tells it not to.
+
+_text
+Prior to running this program one extra step remains. We need to call another command that tells AppGameKit to update the contents of the screen. This is called the "sync" command and should be called whenever you want to update or refresh the screen. The additional command can be added into our program within the do loop.
+
+_tier1
+do
+	print ( "hello world" )
+	sync ( )
+loop
+_tier1
+
+_text
+The end result is that our program will continually execute the print and sync calls in sequence as fast as it possibly can, giving us something to see on screen. Let's run the program.
+
+_imageclick
+firstproject008.jpg
+
+_text
+Now it's working exactly as we want it to - we can see our text on screen and terminate the application by closing the window.
+
+_text
+Try replacing the text "hello world" with something of your own and run the program again.
+
+_navigation
+creating_first_project_003.htm creating_first_project_005.htm
+

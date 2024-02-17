@@ -1,0 +1,551 @@
+_header
+Getting started with multiplayer
+
+_sheader
+Description
+
+_text
+AppGameKit Studio provides a set of commands that can be used to quickly and easily get communications up and running for a multiplayer enabled game. The commands provided allow you to host or join a network, send messages around the network, retrieve messages and find out information such as the amount and names of players in a game.
+
+_text
+This example progam demonstrates the process of creating a simple multiplayer game. It has support for two players, with one being able to host the game, while the other can join the game. The host player can move around the screen by using the accelerometer, and the player who joined the game can observe the host player moving around on their device.
+
+_text
+It's important to realise that one player is always responsible for hosting or starting a game and once a game has been hosted other players can join in.
+
+_image
+0_getting_started.jpg
+
+_sheader
+Overview
+
+_text
+This example will handle the following:
+
+_listbegin
+set up a screen which has two sprites
+the user can click on one sprite to host a game
+click on the other sprite to join a game
+once a game has been joined or hosted any players information is printed out on screen
+the host can move its sprite around on screen using the accelerometer
+the host will send its sprite position to the player who joins the game
+the player who joined will check for any incoming messages
+when incoming messages are found the position of the host's sprite will be updated
+_listend
+
+_sheader
+Initial set up
+
+_text
+The game relies on two images, chip5.png and chip25.png:
+
+_image
+chip5.png
+
+_image
+chip25.png
+
+_text
+The yellow chip (chip5.png) is used for the host and the blue chip (chip25.png) is for the player who joins the game.
+
+_text
+To get started a display aspect of 4.0 / 3.0 is chosen. This is effectively the same thing as saying our base resolution will match 1024 x 768. When the game runs on a device that has a different base resolution it will scale accordingly, while maintaining the aspect ratio of 4.0 / 3.0.
+
+_tier1
+SetDisplayAspect ( 4.0 / 3.0 )
+_tier1
+
+_tier2
+agk::SetDisplayAspect ( 4.0 / 3.0 );
+_tier2
+
+_text
+The two chip images are loaded with chip5.png using ID 1 and chip25.png using ID 2. We'll also setup a background sprite.
+
+_tier1
+LoadImage ( 1, "chip5.png" )
+LoadImage ( 2, "chip25.png" )
+backdrop=CreateSprite ( LoadImage ( "background1b.jpg" ) )
+SetSpriteSize (backdrop,100,100)
+_tier1
+
+_tier2
+agk::LoadImage ( 1, "chip5.png" );
+agk::LoadImage ( 2, "chip25.png" );
+agk::CreateSprite ( LoadImage ( "background1b.jpg" ) );
+agk::SetSpriteSize (backdrop,100,100);
+_tier2
+
+_text
+The next step is to create a sprite that uses the yellow chip, this sprite will be positioned on the left side of the screen. After this another sprite is created, which will use the blue chip and this gets positioned on the right side of the screen:
+
+_tier1
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 10, 20 )
+SetSpriteSize ( 1, 10, -1 )
+<br>
+CreateSprite ( 2, 2 )
+SetSpritePosition ( 2, 50, 20 )
+SetSpriteSize ( 2, 10, -1 )
+_tier1
+
+_tier2
+agk::CreateSprite ( 1, 1 );
+agk::SetSpritePosition ( 1, 10, 20 );
+agk::SetSpriteSize ( 1, 10, -1 );
+<br>
+agk::CreateSprite ( 2, 2 );
+agk::SetSpritePosition ( 2, 50, 20 );
+agk::SetSpriteSize ( 2, 10, -1 );
+_tier2
+
+_sheader
+Hosting or joining a game
+
+_text
+The main loop needs to deal with several tasks, the first of which is to allow the user to decide whether to host or join a game. A user can host a game by touching or clicking the yellow sprite on the left. If the user wants to join a game they can touch or click the blue sprite on the right.
+
+_sheader
+Hosting a game
+
+_text
+One player will need to host the game on their network. To start hosting a game call the command <i>HostNetwork</i>. This command takes several parameters:
+
+_listbegin
+network name - this is a string that is used to identify the network
+player name - a string that is used to identify the player hosting the network
+port - an integer that controls the port being used to handle network communication, this port value must be between 1025 and 65535, the higher the better as lower numbers tend to be used by other applications
+_listend
+
+_text
+The command also returns an integer that contains an ID number for the hosted network. This value needs to be stored for use later on.
+
+_text
+This line shows a network being hosted that is called "AGK Test Game", with the player being called "Player 1", using port 48230 and returning the ID number of the network into the variable <i>NetworkID</i>:
+
+_tier1
+NetworkID = HostNetwork ( "AGK Test Game", "Player 1", 48230 )
+_tier1
+
+_tier2
+NetworkID = agk::HostNetwork ( "AGK Test Game", "Player 1", 48230 );
+_tier2
+
+_sheader
+Joining a game
+
+_text
+To join a hosted game call the command <i>JoinNetwork</i>. There are two ways of calling this command. The first option is to call <i>JoinNetwork</i> and pass in a network name and the name of the player e.g.
+
+_tier1
+NetworkID = JoinNetwork ( "AGK Test Game", "Player 2" )
+_tier1
+
+_tier2
+NetworkID = agk::JoinNetwork ( "AGK Test Game", "Player 2" );
+_tier2
+
+_text
+In this instance we are attempting to join a network that is called "AGK Test Game" and our player name is specified as "Player 2". Internally AGK will search for this game over the network, which is ideally suited to local area networks, where a group of devices are connected together.
+
+_text
+The alternative variation of the command <i>JoinNetwork</i> will be needed when a player wants to join a game over the internet. This command's parameters are - an IP address, a port number and the name of the player. It can be called like this:
+
+_tier1
+NetworkID = JoinNetwork ( "123.4.5.6", 48230, "Player 2" )
+_tier1
+
+_tier2
+NetworkID = agk::JoinNetwork ( "123.4.5.6", 48230, "Player 2" );
+_tier2
+
+_text
+For this situation the player hosting the game will need to let the player joining the game know their IP address and the port they have selected.
+
+_sheader
+Choosing to host or join a game
+
+_text
+As mentioned earlier the yellow chip is for the player hosting the game and the blue chip is for the player joining the game. The code will check for input and find out which sprite was hit. If the sprite hit has an ID of 1 (the yellow sprite) then a network will be hosted. If the sprite hit has an ID of 2 (the blue sprite) then a network will be joined. This example will not use IP addresses as it is intended to run on a local area network. The code will also display instructions for the user through two calls to <i>Print</i>. Here's an extract of the code:
+
+_tier1
+Print ( "Select yellow chip to host a game" )
+Print ( "Select blue chip to join a game" )
+<br>
+if GetPointerPressed ( ) = 1
+    hit = GetSpriteHit ( GetPointerX ( ), GetPointerY ( ) )
+<br>
+    if ( hit = 1 )
+        NetworkID = HostNetwork ( "AGK Test Game", "Player 1", 48230 )
+        Typ = 0
+    endif
+<br>
+    if ( hit = 2 )
+        NetworkID = JoinNetwork ( "AGK Test Game", "Player 2" )
+        Typ = 1
+    endif
+endif
+_tier1
+
+_tier2
+agk::Print ( "Select yellow chip to host a game" );
+agk::Print ( "Select blue chip to join a game" );
+<br>
+if ( agk::GetPointerPressed ( ) )
+{
+    int iHit = agk::GetSpriteHit ( agk::GetPointerX ( ), agk::GetPointerY ( ) );
+<br>
+    if ( iHit == 1 )
+    {
+        NetworkID = agk::HostNetwork ( "AGK Test Game", "Player 1", 48230 );
+        Typ = 0;
+    }   
+<br>
+    if ( iHit == 2 )
+    {
+        NetworkID = agk::JoinNetwork ( "AGK Test Game", "Player 2" );
+        Typ = 1;
+    }
+}
+_tier2
+
+_text
+Another point to mention is that the variable <i>Typ</i> is used to store the choice of the user, this is required later on in the game so that we know whether a user has joined or hosted a game.
+
+_sheader
+Finding players in a game
+
+_text
+After hosting or joining a game, one task that needs to be carried out is to determine how many players are involved and find out information such as their name. To begin this process call the command <i>GetNetworkFirstClient</i> and pass in the ID number of the hosted or joined network. This command returns an ID number for the first client or player in the game:
+
+_tier1
+id = GetNetworkFirstClient ( NetworkID )
+_tier1
+
+_tier2
+id = agk::GetNetworkFirstClient ( NetworkID );
+_tier2
+
+_text
+Once you have the ID number for a client you can call commands such as <i>GetNetworkClientName</i> and pass in the ID of the network and the ID of the player e.g.
+
+_tier1
+id = GetNetworkFirstClient ( NetworkID )
+<br>
+name$ = GetNetworkClientName ( NetworkID, id )
+_tier1
+
+_tier2
+id = agk::GetNetworkFirstClient ( NetworkID );
+<br>
+name = agk::GetNetworkClientName ( NetworkID, id ) );
+_tier2
+
+_text
+After calling <i>GetNetworkFirstClient</i>, you can determine other clients in the list by calling <i>GetNetworkNextClient</i>, which will return an ID number for the next player in the list. Keep on calling this command until it returns 0, which means you have hit the end of the list and have found all the clients.
+
+_text
+This example code demonstrates the typical procedure of finding players in a game and retrieving information, like their name:
+
+_tier1
+id = GetNetworkFirstClient ( NetworkID )
+<br>
+while id <> 0
+    Print ( GetNetworkClientName ( NetworkID, id ) )
+<br>
+    id = GetNetworkNextClient ( NetworkID )
+endwhile
+_tier1
+
+_tier2
+id = agk::GetNetworkFirstClient ( NetworkID );
+<br>
+while ( id != 0 )
+{
+    agk::Print ( agk::GetNetworkClientName ( NetworkID, id ) );
+<br>
+    id = agk::GetNetworkNextClient ( NetworkID );
+}
+_tier2
+
+_sheader
+The host
+
+_text
+For this example the host player will be allowed to move the yellow sprite around through the use of the accelerometer (or keyboard if no accelerometer is present). To handle this a check is first made to see whether the player is hosting the game (by checking the variable <i>Typ</i>) and then the yellow sprite's position is updated based on any input:
+
+_tier1
+if ( Typ = 0 )
+    x# = GetSpriteX ( 1 ) + GetDirectionX ( )
+    y# = GetSpriteY ( 1 ) + GetDirectionY ( )
+<br>
+    SetSpritePosition ( 1, x#, y# )
+endif
+_tier1
+
+_tier2
+if ( Typ == 0 )
+{
+    float x = agk::GetSpriteX ( 1 ) + agk::GetDirectionX ( );
+    float y = agk::GetSpriteY ( 1 ) + agk::GetDirectionY ( );
+<br>
+    agk::SetSpritePosition ( 1, x, y );
+}
+_tier2
+
+_sheader
+Sending data from the host
+
+_text
+The host is going to send the location of its sprite to the player that joins the game. The way to deal with this is to initially create a network message. Once created a message can have data added to it and then sent out across the network. A message gets created by using the command <i>CreateNetworkMessage</i>. This command returns an ID number for the message, which needs to be saved. This line demonstrates the creation of a message:
+
+_tier1
+message = CreateNetworkMessage ( )
+_tier1
+
+_tier2
+message = agk::CreateNetworkMessage ( );
+_tier2
+
+_text
+Integers, floats and strings can be added to the message by using the commands <i>AddNetworkMessageInteger</i>, <i>AddNetworkMessageFloat</i> and <i>AddNetworkMessageString</i>. These commands all have two parameters - the first is the ID number of the message and the second is the actual data. For our example the location of the host's sprite is going to be sent over the network. This can be handled using these lines of code:
+
+_tier1
+AddNetworkMessageFloat ( message, GetSpriteX ( 1 ) )
+AddNetworkMessageFloat ( message, GetSpriteY ( 1 ) )
+_tier1
+
+_tier2
+agk::AddNetworkMessageFloat ( message, agk::GetSpriteX ( 1 ) );
+agk::AddNetworkMessageFloat ( message, agk::GetSpriteY ( 1 ) );
+_tier2
+
+_text
+With the message in place the only task remaining is to send it out. To send a message call the command <i>SendNetworkMessage</i>. This command has three parameters - the ID of the network to send the message over, the ID of the client to send the message to, the ID of the message to send. In our example this line is used:
+
+_tier1
+SendNetworkMessage ( NetworkID, 0, message )
+_tier1
+
+_tier2
+agk::SendNetworkMessage ( NetworkID, 0, message );
+_tier2
+
+_text
+This has the effect of sending out the previously created message to all players on the network. The reason why all players will receive this message is because a value of 0 has been used for the client ID parameter. In situations where a message needs to go to a specific player then store the player ID from the list of players and use this as the second parameter.
+
+_text
+The host does not need to do any more work. At this point it will continually send out the position of its sprite to the player who joins.
+
+_sheader
+Retrieving data
+
+_text
+The client can poll for messages from the server by calling the command <i>GetNetworkMessage</i>. This command will return an ID number for a message. If this ID number is not 0 then a message is available to be read. The aim is to continually loop round while messages are available and deal with their data. This example code demonstrates a typical way of dealing with messages:
+
+_tier1
+message = GetNetworkMessage ( NetworkID )
+<br>
+while message <> 0 
+    // get data from message
+<br>
+    // delete the current message as it is no longer needed
+    DeleteNetworkMessage ( message )
+<br>
+    // find the next message
+    message = GetNetworkMessage ( NetworkID )
+endwhile
+_tier1
+
+_tier2
+message = agk::GetNetworkMessage ( NetworkID );
+<br>
+while ( message != 0 )
+{
+    // get data from message
+<br>
+    // delete the current message as it is no longer needed
+    agk::DeleteNetworkMessage ( message );
+<br>
+    // find the next message
+    message = agk::GetNetworkMessage ( NetworkID );
+}
+_tier2
+
+_text
+Notice that after data has been retrieved from the message the actual message needs to be deleted by calling <i>DeleteNetworkMessage</i> and passing in the ID of the message.
+
+_text
+Data from a message can be retrieved by calling <i>GetNetworkMessageInteger</i>, <i>GetNetworkMessageFloat</i> and <i>GetNetworkMessageString</i>. Messages being sent out from the host contain the X and Y positions of the host's sprite, therefore to process a message correctly on the client side it's a case of retrieving the message and then making two calls to <i>GetNetworkMessageFloat</i> and saving the X and Y positions. The previous code block can be modified to this:
+
+_tier1
+message = GetNetworkMessage ( NetworkID )
+<br>
+while message <> 0 
+    // get data from message
+    x# = GetNetworkMessageFloat ( message )
+    y# = GetNetworkMessageFloat ( message )
+<br>
+    SetSpritePosition ( 1, x#, y# )
+<br>
+    // delete the current message as it is no longer needed
+    DeleteNetworkMessage ( message )
+<br>
+    // find the next message
+    message = GetNetworkMessage ( NetworkID )
+endwhile
+_tier1
+
+_tier2
+message = agk::GetNetworkMessage ( NetworkID );
+<br>
+while ( message != 0 )
+{
+    // get data from message
+    x = agk::GetNetworkMessageFloat ( message );
+    y = agk::GetNetworkMessageFloat ( message );
+<br>
+    agk::SetSpritePosition ( 1, x, y );
+<br>
+    // delete the current message as it is no longer needed
+    agk::DeleteNetworkMessage ( message );
+<br>
+    // find the next message
+    message = agk::GetNetworkMessage ( NetworkID );
+}
+_tier2
+
+_text
+After the X and Y positions have been retrieved from the message these get applied to sprite 1 (the host's sprite).
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program:
+_tier1
+SetDisplayAspect ( 4.0 / 3.0 )
+<br>
+LoadImage ( 1, "chip5.png" )
+LoadImage ( 2, "chip25.png" )
+backdrop=CreateSprite ( LoadImage ( "background1b.jpg" ) )
+SetSpriteSize (backdrop,100,100)
+<br>
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 10, 20 )
+SetSpriteSize ( 1, 10, -1 )
+<br>
+CreateSprite ( 2, 2 )
+SetSpritePosition ( 2, 50, 20 )
+SetSpriteSize ( 2, 10, -1 )
+<br>
+State = 0
+Typ = 0
+NetworkID = 0
+<br>
+do
+    if State = 0
+        Print ( "Select yellow chip to host a game" )
+	Print ( "Select blue chip to join a game" )
+	<br>
+        if GetPointerPressed ( ) = 1
+            hit = GetSpriteHit ( GetPointerX ( ), GetPointerY ( ) )
+        <br>
+            if ( hit = 1 )
+                NetworkID = HostNetwork ( "AGK Test Game", "Player 1", 48230 )
+                Typ = 0
+            endif
+        <br>
+            if ( hit = 2 )
+                NetworkID = JoinNetwork ( "AGK Test Game", "Player 2" )
+                Typ = 1
+            endif
+
+            State = 1
+        endif
+    endif
+<br>
+    if State = 1 and IsNetworkActive ( NetworkID ) <> 0
+        id = GetNetworkFirstClient ( NetworkID )
+        <br>
+        while id <> 0
+            Print ( GetNetworkClientName ( NetworkID, id ) )
+        <br>
+            id = GetNetworkNextClient ( NetworkID )
+        endwhile
+        <br>
+        if Typ = 0
+            x# = GetSpriteX ( 1 ) + GetDirectionX ( )
+            y# = GetSpriteY ( 1 ) + GetDirectionY ( )
+        <br>
+            SetSpritePosition ( 1, x#, y# )
+        <br>
+            message = CreateNetworkMessage ( )
+            <br>
+            AddNetworkMessageFloat ( message, x# )
+            AddNetworkMessageFloat ( message, y# )
+            <br>
+            SendNetworkMessage ( NetworkID, 0, message )
+        endif
+        <br>
+        if Typ = 1
+            message = GetNetworkMessage ( NetworkID )
+            <br>
+            while message <> 0 
+                x# = GetNetworkMessageFloat ( message )
+                y# = GetNetworkMessageFloat ( message )
+                <br>
+                SetSpritePosition ( 1, x#, y# )
+                <br>
+                DeleteNetworkMessage ( message )
+                <br>
+                message = GetNetworkMessage ( NetworkID )
+            endwhile
+        endif
+    endif
+<br>
+    Sync ( )
+loop
+_tier1
+
+_sheader
+Conclusion
+
+_text
+This is a very simplistic approach to dealing with multiplayer functionality. A game is likely to need much more comprehensive code to deal with extra players, and in particular extra attention to the messages being sent and retrieved. Unlike this example, which simply sends X and Y positions of a sprite, a more realistic scenario would be for a game to be sending numerous messages. As an example, a host may need to keep track of player lives, scores, positions and certain in game actions such as firing weapons. One way of dealing with this is to ensure that every message being sent out always starts with an ID number, followed by the relevant data. This example shows two messages being sent out, the first is given an arbitrary ID of 10 and contains the number of lives for the host, the second has an ID of 50 and shows the score for the host:
+
+_tier1
+message = CreateNetworkMessage ( )
+AddNetworkMessageInteger ( message, 10 )
+AddNetworkMessageInteger ( message, lives)
+SendNetworkMessage ( networkID, 0, message )
+<br>
+message = agk::CreateNetworkMessage ( )
+AddNetworkMessageInteger ( message, 50 )
+AddNetworkMessageInteger ( message, score )
+SendNetworkMessage ( networkID, 0, message )
+_tier1
+
+_tier2
+message = agk::CreateNetworkMessage ( );
+agk::AddNetworkMessageInteger ( message, 10 );
+agk::AddNetworkMessageInteger ( message, lives);
+agk::SendNetworkMessage ( networkID, 0, message );
+<br>
+message = agk::CreateNetworkMessage ( );
+agk::AddNetworkMessageInteger ( message, 50 );
+agk::AddNetworkMessageInteger ( message, score );
+agk::SendNetworkMessage ( networkID, 0, message );
+_tier2
+
+_text
+Whenever retrieving messages the code would need to call <i>GetNetworkMessageInteger</i> to find out what kind of message is being delivered e.g. lives or score and from there know the exact layout and whether it's necessary to obtain 2 floats and an integer or a string, 1 float and 5 integers.
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comments - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="http://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Comments</div><div class="page"><h1>Comments</h1><h2>Beginner Level Tutorial</h2><h2>What you will learn</h2><p>What comments are and how they are used in your program.</p><h2>What are comments?</h2><p>Comments are a way of providing notations to your code. This is really helpful as it means you can add descriptions to your code explaining what is happening. Take a look at this very simple program.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">score as integer = 0
+<br>
+do
+	print ( score )
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="score as integer = 0
+
+do
+	print ( score )
+	sync ( )
+loop
+">Copy Code</button></div><p>The code declares a variable named <i>score</i>, assigns it a value of 0 and then performs a <i>do</i> loop, continually printing the value of <i>score</i> to the screen.</p><p>Let's return to the program, although this time with comments added.</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">// create a variable called score that will hold the score for the game
+score as integer = 0
+<br>
+// loop round
+do
+	// print the value of score to the screen
+	print ( score )
+	<br>
+	// update the screen
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="// create a variable called score that will hold the score for the game
+score as integer = 0
+
+// loop round
+do
+	// print the value of score to the screen
+	print ( score )
+
+	// update the screen
+	sync ( )
+loop
+">Copy Code</button></div><p>The additional lines all begin with the characters //. This indicates to the program that we're leaving a comment on this line. Anything that follows it is ignored by the program. It's simply there as a mechanism for the programmer to provide more information about what is taking place.</p><p>To add a comment to your code start the line with // and enter useful information.</p><h2>Other ways of adding comments</h2><p>There are two alternative ways of adding single line comments, by using the keywords <i>rem</i> and <i>`</i>, as shown in this program.</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">rem create a variable called score that will hold the score for the game
+score as integer = 0
+<br>
+` loop round
+do
+	rem print the value of score to the screen
+	print ( score )
+	<br>
+	` update the screen
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="rem create a variable called score that will hold the score for the game
+score as integer = 0
+
+` loop round
+do
+	rem print the value of score to the screen
+	print ( score )
+
+	` update the screen
+	sync ( )
+loop
+">Copy Code</button></div><h2>Using blocks with comments</h2><p>There may be occasions when you want to comment out a block of code or perhaps write a series of lines without wanting to use a single line comment marker. If this is the case you can use the keywords <i>remstart</i> and <i>remend</i> and <i>/*</i> and <i>*/</i>. Here's a modification to the previous program with the inclusion of these new keywords.</p><div id="basicCodeBlock4" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">// create a variable called score that will hold the score for the game
+score as integer = 0
+<br>
+remstart
+player1 as integer = 0
+player2 as integer = 0
+remend
+<br>
+` loop round
+do
+	rem print the value of score to the screen
+	print ( score )
+	<br>
+	/*
+	anything included within 
+	this section is a comment
+	*/
+	<br>
+	 ` update the screen
+    sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="// create a variable called score that will hold the score for the game
+score as integer = 0
+
+remstart
+player1 as integer = 0
+player2 as integer = 0
+remend
+
+` loop round
+do
+	rem print the value of score to the screen
+	print ( score )
+
+	/*
+	anything included within 
+	this section is a comment
+	*/
+
+	 ` update the screen
+    sync ( )
+loop
+">Copy Code</button></div><p>Any lines between <i>remstart</i> and <i>remend</i> are treated as comments. The same is also true of lines between the <i>/*</i> and <i>*/</i>.</p><h2>Conclusion</h2><p>Comments are really simple to add into your program and will prove to be very useful in the long term. It's a good idea to get into the habit of commenting your code. In the short term it may not seem to be so helpful, particularly when dealing with small programs, however, as the complexity and size of your programs increase it undoubtedly becomes harder to manage. The addition of many comments in your code will prove to be useful reminders and explanations of how parts of your program work.</p><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="http://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

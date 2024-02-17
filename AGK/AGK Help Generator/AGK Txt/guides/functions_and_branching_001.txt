@@ -1,0 +1,35 @@
+_header
+Introduction to functions
+
+_text
+Functions follow the same set of rules as commands, except unlike commands it's your responsibility to define the behaviour of the function. Functions are used as way of isolating a specific block of code to perform certain tasks. They are an incredibly useful component within AppGameKit Studio and can be used to organise your code in a neat, effective and reusable manner.
+
+_text
+A typical program will have many functions all contributing to the outcome. It could be some of these functions are responsible for creating enemies in a level, or perhaps they are used to load data that defines how the level should look, or they may be responsible for handling how the player responds to input.
+
+_text
+This simple example shows what a function looks like and how it can be used within a program.
+
+_tier1
+do
+	myFunction ( )
+	<br>
+	sync ( )
+loop
+<br>
+function myFunction ( )
+	print ( "inside a function" )
+endfunction
+_tier1
+
+_text
+The code within the <i>do</i> loop contains a call to <i>myFunction</i> and <i>sync</i>. The functionality for the <i>sync</i> command is handled internally by AppGameKit. <i>myFunction</i> is not a command within AppGameKit, so it needs to be declared within our program. To do this we need to declare our function outside of a loop and also provide information about what parameters it requires and if it returns any data to the caller. This process is handled by the <i>function</i> keyword. As you can see in the code listing the <i>function</i> keyword is followed by a name. This can be whatever you want as long as it does not clash with the name of a command or start with a number or use symbols. This is followed by an opening bracket and then a closing bracket, indicating that this particular function has no parameters. Anything following this is code associated with the function. To declare the end point of the function the keyword <i>endfunction</i> is used.
+
+_text
+When you run this program it displays the string "inside a function" on screen. When <i>myFunction</i> is called the program execution moves within the function, executes any lines within it and then returns back to where it was called from, in this case moving into the call to the <i>sync</i> command.
+
+_text
+Any kind of functionality you require can be added into a function listing. You can use loops, if statements and call other commands and functions.
+
+_navigation
+functions_and_branching_0001.htm functions_and_branching_002.htm

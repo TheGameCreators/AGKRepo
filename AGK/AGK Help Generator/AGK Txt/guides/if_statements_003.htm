@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Boolean operators - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="http://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Boolean operators</div><div class="page"><h1>Boolean operators</h1><p>This set of three operators (and, or, not) can be used to create multiple conditional expressions.</p><ul><li>and, if both conditions are true</li><li>or, if either condition is true</li><li>not, if the condition is not true</li></ul><p>This example demonstrates all three operators being used.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">score as integer = 50
+lives as integer = 3
+<br>
+do
+	if score = 50 and lives = 3
+		print ( "score is 50 and lives is 3" )
+	endif
+	<br>
+	if score = 50 and not lives = 3
+		print ( "score is 50 and lives is not 3" )
+	endif
+	<br>
+	if score = 25 or lives = 1
+		print ( "score is 25 or lives is 1" )
+	endif
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="score as integer = 50
+lives as integer = 3
+
+do
+	if score = 50 and lives = 3
+		print ( &quot;score is 50 and lives is 3&quot; )
+	endif
+
+	if score = 50 and not lives = 3
+		print ( &quot;score is 50 and lives is not 3&quot; )
+	endif
+
+	if score = 25 or lives = 1
+		print ( &quot;score is 25 or lives is 1&quot; )
+	endif
+
+	sync ( )
+loop
+">Copy Code</button></div><ul><li>The first if statement checks whether the <i>score</i> is 50 and <i>lives</i> is 3. This condition is true.</li><li>The second if statement checks if the <i>score</i> is 50 and <i>lives</i> is not 3. This condition is false as the <i>lives</i> variable has been set to 3.</li><li>The third if statement checks if the <i>score</i> is 25 or <i>lives</i> is 1. This condition is false as neither of the conditions are true.</li></ul><p>Try experimenting by setting <i>score</i> and <i>lives</i> to different values. How can the variables be set so that the second if statement becomes true? What needs to happen for the third if statement to become true?</p><div align="center"><a href="if_statements_002.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="if_statements_004.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="http://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

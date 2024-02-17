@@ -1,0 +1,145 @@
+_header
+Sound
+
+_sheader
+Overview
+
+_text
+This guide provides an overview of loading and playing sound in AppGameKit Studio.
+
+_sheader
+What formats are supported?
+
+_text
+AppGameKit Studio supports the Wave file format. No other formats are currently supported.
+
+_sheader
+How do I load a sound?
+_text
+The command <i>LoadSound</i> allows you to load a sound. A sound can be loaded using the LoadSound command:
+
+_tier1
+LoadSound ( id, file )
+id = LoadSound ( file )
+_tier1
+
+_tier2
+void LoadSound ( UINT id, uString file );
+UINT LoadSound ( uString file );
+_tier2
+
+_text
+A sound file can be loaded by either assigning an ID number manually or having it provided to you automatically. The next step is to let AppGameKit Studio know which file you want to load e.g. "mySound.wav". Please note that ID numbers are unique for a command set. Therefore it's feasible to have a sound loaded with an ID number of 1 and a sprite with an ID of 1.
+
+_text
+Here's one approach to loading a sound. The command <i>LoadSound</i> is called, an ID number of 1 is specified and the file to load is "mySound.wav":
+
+_tier1
+LoadSound ( 1, "mySound.wav" )
+_tier1
+
+_tier2
+agk::LoadSound ( 1, "mySound.wav" );
+_tier2
+
+_text 
+This alternative method demonstrates how a sound can be loaded with an automatically assigned ID number:
+
+_tier1
+sound = LoadSound ( "mySound.wav" )
+_tier1
+
+_tier2
+sound = agk::LoadSound ( "mySound.wav" )
+_tier2
+
+_sheader
+How can I play a sound?
+
+_text
+Once a sound has been loaded it can be played with the <i>PlaySound</i> command. Several variants of this command exist:
+
+_tier1
+PlaySound ( id )
+playSound ( id, volume )
+PlaySound ( id, volume, loop )
+PlaySound ( id, volume, loop, priority )
+_tier1
+
+_tier2
+agk::PlaySound ( UINT id, int vol = 100, int loop = 0, int priority = 0 );
+_tier2
+
+_text
+The parameters for this command are as follows:
+
+_listbegin
+ID
+volume
+loop
+priority
+_listend
+
+_text
+The ID number refers to the ID of the sound you want to play. The volume is a value between 0 and 100. By default the volume is set at 100, which will result in the sound being played at the maximum volume. Reducing this to a lower value will result in a quieter sound. The loop parameter controls whether the sound will be looped. A value of 0 will only play the sound once, while a value of 1 will loop playback. The final parameter is used to control whether the sound has priority for playback over other sounds, by default this is 0, changing this to 1 will give this sound priority. The priority value is used in instances where multiple sounds are playing at once.
+
+_text
+The following lines of code demonstrate a sound being loaded with an ID of 1, and then the sound is played with a volume of 50 and set to loop:
+
+_tier1
+LoadSound ( 1, "mySound.wav" )
+PlaySound ( 1, 50, 1 )
+_tier1
+
+_tier2
+agk::LoadSound ( 1, "mySound.wav" );
+agk::PlaySound ( 1, 50, 1 );
+_tier2
+
+_sheader
+How do I stop a sound from playing?
+
+_text
+To stop a particular sound from playing call the <i>StopSound</i> command. This command only requires one parameter, and that is the ID number of the sound. This example shows a sound being loaded, played and then immediately stopped:
+
+_tier1
+LoadSound ( 1, "mySound.wav" )
+PlaySound ( 1, 50, 1 )
+StopSound ( 1 )
+_tier1
+
+_tier2
+agk::LoadSound ( 1, "mySound.wav" );
+agk::PlaySound ( 1, 50, 1 );
+agk::StopSound ( 1 );
+_tier2
+
+_sheader
+How do I delete a sound?
+
+_text
+It may be necessary to delete previously loaded sound and free up available memory. To delete a sound entity call the command <i>DeleteSound</i>:
+
+_tier1
+DeleteSound ( id )
+_tier1
+
+_tier2
+void DeleteSound ( UINT id );
+_tier2
+
+_text
+This command only requires the ID number of the sound you want to delete.
+
+_text
+Here's an example of loading a sound and then deleting it:
+
+_tier1
+LoadSound ( 1, "mySound.wav" )
+DeleteSound ( 1 )
+_tier1
+
+_tier2
+agk::LoadSound ( 1, "mySound.wav" );
+agk::DeleteSound ( 1 );
+_tier2

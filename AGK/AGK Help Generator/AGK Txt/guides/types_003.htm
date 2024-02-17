@@ -1,0 +1,527 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Types in action - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Types in action</div><div class="page"><h1>Types in action</h1><p>To give you an idea how of types can be used a program has been made that creates a space ship, that flies left and right, firing lasers at set intervals.</p><div align="center"><a class="example-image-link" href="types001_large.jpg" data-lightbox="example-1"><img class="example-image" src="types001.jpg" alt="image-1" /></a></div><p>This program relies on some external media. The easiest way of running this program is to click <a href="https://www.appgamekit.com/documentation/guides/types.zip">here</a> and download the project. Once the file has been downloaded, extract the files and open MyFirstAGKProject.agk within AppGameKit Studio.</p><p>There's a lot to take in with this program, as it's using types and a number of functions. Try running the program first and watch it for several seconds to see what happens.</p><p>The program moves the space ship left and right whilst continually firing lasers. The kind of data we need to store includes the speed of the ship, which direction the ship is moving in, how often the ship should fire, the speed at which the lasers move etc. All of this data could be declared as individual variables. For example, the ship's data might look like this.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">sprite as integer
+speed as integer
+direction as integer
+fireTimer as float
+<br>
+laserSprite as integer [ 10 ]
+laserSpeed as float [ 10 ]
+laserState as integer [ 10 ]
+</pre></div><div align="right"><button class="btn" data-clipboard-text="sprite as integer
+speed as integer
+direction as integer
+fireTimer as float
+
+laserSprite as integer [ 10 ]
+laserSpeed as float [ 10 ]
+laserState as integer [ 10 ]
+">Copy Code</button></div><p>This approach does work, but it's not necessarily the best way of storing the data. Think about what might happen if you needed more data for the laser - you would need to declare another array to store it. The problem is that all this data is connected to each other, but stored in lots of different arrays. It's not an ideal method to deal with your data.</p><p>Given the relationship between the data it would make sense to utilise types. The laser that gets fired could be considered as one type, while the ship could be considered as another type that contains an array of lasers. The above code could be rewritten as.</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">type laserType
+	sprite as integer
+	speed as float
+	state as integer
+endtype
+<br>
+type shipType
+	sprite as integer
+	speed as integer
+	direction as integer
+	fireTimer as float
+	lasers as laserType [ 10 ]
+endtype
+</pre></div><div align="right"><button class="btn" data-clipboard-text="type laserType
+	sprite as integer
+	speed as float
+	state as integer
+endtype
+
+type shipType
+	sprite as integer
+	speed as integer
+	direction as integer
+	fireTimer as float
+	lasers as laserType [ 10 ]
+endtype
+">Copy Code</button></div><p>This results in more effective way of dealing with our data. To declare one ship we simply do this.</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">spaceShip as shipType
+</pre></div><div align="right"><button class="btn" data-clipboard-text="spaceShip as shipType
+">Copy Code</button></div><p>If we needed multiple ships it's just a case of changing the declaration to an array.</p><div id="basicCodeBlock4" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">spaceShip as shipType [ 5 ]
+</pre></div><div align="right"><button class="btn" data-clipboard-text="spaceShip as shipType [ 5 ]
+">Copy Code</button></div><p>By taking this approach everything we need is now contained within the variable <i>spaceShip</i>. This makes our code much easier to read and manage.</p><p>Now let's take a look at the whole program.</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;"><br>
+// create a space ship on screen that flies left and right
+// and also fires lasers
+<br>
+// declare a type to store data for our lasers
+type laserType
+	sprite as integer
+	speed as float
+	state as integer
+endtype
+<br>
+// declare a type to store data for our ship
+type shipType
+	sprite as integer
+	speed as integer
+	direction as integer
+	fireTimer as float
+	lasers as laserType [ 10 ]
+endtype
+<br>
+// variable for our ship, make it global so it can be
+// easily accessed by all parts of the program
+global spaceShip as shipType
+<br>
+// set a virtual resolution of 1024 x 768
+SetVirtualResolution ( 1024, 768 )
+<br>
+// call functions to set up the ship and its lasers
+SetupShip ( )
+SetupLasers ( )
+<br>
+// our main loop
+do
+	// call functions to update the ship and its lasers
+	UpdateShip ( )
+	UpdateLasers ( )
+	<br>
+	// update the screen
+	sync ( )
+loop
+<br>
+function SetupLasers ( )
+	<br>
+	// this function will set up the lasers
+	<br>
+	// load an image for the laser
+	image = LoadImage ( "laser.png" )
+	<br>
+	// create sprites for each laser
+	for i = 1 to spaceShip.lasers.length
+		spaceShip.lasers [ i ].sprite = CreateSprite ( image )
+		ResetLaser ( i, 0 )
+	next i
+	<br>
+endfunction
+<br>
+function ResetLaser ( index as integer, visible as integer )
+	<br>
+	// this function will reset the lasers, giving them default values
+	<br>
+	// state, speed, position to match the ship and visibility
+	spaceShip.lasers [ index ].state = 0
+	spaceShip.lasers [ index ].speed = Random ( 80, 100 ) / 10.0
+	SetSpritePosition ( spaceShip.lasers [ index ].sprite, GetSpriteX ( spaceShip.sprite ) + GetSpriteWidth ( spaceShip.sprite ) / 2 - 8 , GetSpriteY ( spaceShip.sprite ) - 12 )
+	SetSpriteVisible ( spaceShip.lasers [ index ].sprite, visible )
+	<br>
+endfunction
+<br>
+function UpdateLasers ( )
+	<br>
+	// this function updates the lasers
+	<br>
+	// increment the timer to control when the lasers should fire
+	spaceShip.fireTimer = spaceShip.fireTimer + 0.01
+	<br>
+	// run through all the lasers
+	for i = 1 to spaceShip.lasers.length
+		<br>
+		// if the state is 0 then this laser is available
+		if spaceShip.lasers [ i ].state = 0
+			<br>
+			// only fire the laser if the fire timer is over 0.25
+			if spaceShip.fireTimer >= 0.25
+				<br>
+				// reset the laser, set the state to 1 and reset the timer
+				ResetLaser ( i, 1 )
+				spaceShip.lasers [ i ].state = 1
+				spaceShip.fireTimer = 0.0
+				<br>
+			endif
+			<br>
+		endif
+		<br>
+		// when the state is 1 the laser has been fired
+		if spaceShip.lasers [ i ].state = 1
+			<br>
+			// move the laser up the screen
+			SetSpritePosition ( spaceShip.lasers [ i ].sprite, GetSpriteX ( spaceShip.lasers [ i ].sprite ), GetSpriteY ( spaceShip.lasers [ i ].sprite ) - spaceShip.lasers [ i ].speed )
+			<br>
+			// check for the laser leaving the screen
+			if GetSpriteY ( spaceShip.lasers [ i ].sprite ) < 0
+				<br>
+				// reset the laser and allow it to be used again
+				ResetLaser ( i, 0 )
+				<br>
+			endif
+		endif
+	next i
+	<br>
+endfunction
+<br>
+function SetupShip ( )
+	<br>
+	// set up for our ship
+	<br>
+	// create a sprite, control how fast it moves and set its initial direction
+	spaceShip.sprite = CreateSprite ( LoadImage ( "TopFighter1.png" ) )
+	spaceShip.speed = 2
+	spaceShip.direction = 0
+	<br>
+	// position the sprite towards the centre and near the bottom of the screen
+	SetSpritePosition ( spaceShip.sprite, 1024 / 2, 626 )
+	<br>
+endfunction
+<br>
+function UpdateShip ( )
+	<br>
+	// control the movement of the ship
+	<br>
+	// get the X coordinate of the ship
+	x = GetSpriteX ( spaceShip.sprite )
+	<br>
+	// find out whether it has moved to the left or right side
+	if ( spaceShip.direction = 0 and x > 976 ) or ( spaceShip.direction = 1 and x < 0 )
+		<br>
+		// reverse the speed and direction
+		spaceShip.speed = -spaceShip.speed
+		spaceShip.direction = not spaceShip.direction
+		<br>
+	endif
+	<br>
+	// add the current speed to the X position
+	x = x + spaceShip.speed
+	<br>
+	// update the position of our ship
+	SetSpritePosition ( spaceShip.sprite, x, GetSpriteY ( spaceShip.sprite ) )
+	<br>
+endfunction
+</pre></div><div align="right"><button class="btn" data-clipboard-text="
+// create a space ship on screen that flies left and right
+// and also fires lasers
+
+// declare a type to store data for our lasers
+type laserType
+	sprite as integer
+	speed as float
+	state as integer
+endtype
+
+// declare a type to store data for our ship
+type shipType
+	sprite as integer
+	speed as integer
+	direction as integer
+	fireTimer as float
+	lasers as laserType [ 10 ]
+endtype
+
+// variable for our ship, make it global so it can be
+// easily accessed by all parts of the program
+global spaceShip as shipType
+
+// set a virtual resolution of 1024 x 768
+SetVirtualResolution ( 1024, 768 )
+
+// call functions to set up the ship and its lasers
+SetupShip ( )
+SetupLasers ( )
+
+// our main loop
+do
+	// call functions to update the ship and its lasers
+	UpdateShip ( )
+	UpdateLasers ( )
+
+	// update the screen
+	sync ( )
+loop
+
+function SetupLasers ( )
+
+	// this function will set up the lasers
+
+	// load an image for the laser
+	image = LoadImage ( &quot;laser.png&quot; )
+
+	// create sprites for each laser
+	for i = 1 to spaceShip.lasers.length
+		spaceShip.lasers [ i ].sprite = CreateSprite ( image )
+		ResetLaser ( i, 0 )
+	next i
+
+endfunction
+
+function ResetLaser ( index as integer, visible as integer )
+
+	// this function will reset the lasers, giving them default values
+
+	// state, speed, position to match the ship and visibility
+	spaceShip.lasers [ index ].state = 0
+	spaceShip.lasers [ index ].speed = Random ( 80, 100 ) / 10.0
+	SetSpritePosition ( spaceShip.lasers [ index ].sprite, GetSpriteX ( spaceShip.sprite ) + GetSpriteWidth ( spaceShip.sprite ) / 2 - 8 , GetSpriteY ( spaceShip.sprite ) - 12 )
+	SetSpriteVisible ( spaceShip.lasers [ index ].sprite, visible )
+
+endfunction
+
+function UpdateLasers ( )
+
+	// this function updates the lasers
+
+	// increment the timer to control when the lasers should fire
+	spaceShip.fireTimer = spaceShip.fireTimer + 0.01
+
+	// run through all the lasers
+	for i = 1 to spaceShip.lasers.length
+
+		// if the state is 0 then this laser is available
+		if spaceShip.lasers [ i ].state = 0
+
+			// only fire the laser if the fire timer is over 0.25
+			if spaceShip.fireTimer >= 0.25
+
+				// reset the laser, set the state to 1 and reset the timer
+				ResetLaser ( i, 1 )
+				spaceShip.lasers [ i ].state = 1
+				spaceShip.fireTimer = 0.0
+
+			endif
+
+		endif
+
+		// when the state is 1 the laser has been fired
+		if spaceShip.lasers [ i ].state = 1
+
+			// move the laser up the screen
+			SetSpritePosition ( spaceShip.lasers [ i ].sprite, GetSpriteX ( spaceShip.lasers [ i ].sprite ), GetSpriteY ( spaceShip.lasers [ i ].sprite ) - spaceShip.lasers [ i ].speed )
+
+			// check for the laser leaving the screen
+			if GetSpriteY ( spaceShip.lasers [ i ].sprite ) < 0
+
+				// reset the laser and allow it to be used again
+				ResetLaser ( i, 0 )
+
+			endif
+		endif
+	next i
+
+endfunction
+
+function SetupShip ( )
+
+	// set up for our ship
+
+	// create a sprite, control how fast it moves and set its initial direction
+	spaceShip.sprite = CreateSprite ( LoadImage ( &quot;TopFighter1.png&quot; ) )
+	spaceShip.speed = 2
+	spaceShip.direction = 0
+
+	// position the sprite towards the centre and near the bottom of the screen
+	SetSpritePosition ( spaceShip.sprite, 1024 / 2, 626 )
+
+endfunction
+
+function UpdateShip ( )
+
+	// control the movement of the ship
+
+	// get the X coordinate of the ship
+	x = GetSpriteX ( spaceShip.sprite )
+
+	// find out whether it has moved to the left or right side
+	if ( spaceShip.direction = 0 and x > 976 ) or ( spaceShip.direction = 1 and x < 0 )
+
+		// reverse the speed and direction
+		spaceShip.speed = -spaceShip.speed
+		spaceShip.direction = not spaceShip.direction
+
+	endif
+
+	// add the current speed to the X position
+	x = x + spaceShip.speed
+
+	// update the position of our ship
+	SetSpritePosition ( spaceShip.sprite, x, GetSpriteY ( spaceShip.sprite ) )
+
+endfunction
+">Copy Code</button></div><p>The program begins by declaring our types. <i>laserType</i> contains data for the lasers and <i>shipType</i> contains data about the ship, including an array of 10 lasers.</p><div id="basicCodeBlock6" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">type laserType
+	sprite as integer
+	speed as float
+	state as integer
+endtype
+<br>
+type shipType
+	sprite as integer
+	speed as integer
+	direction as integer
+	fireTimer as float
+	lasers as laserType [ 10 ]
+endtype
+</pre></div><div align="right"><button class="btn" data-clipboard-text="type laserType
+	sprite as integer
+	speed as float
+	state as integer
+endtype
+
+type shipType
+	sprite as integer
+	speed as integer
+	direction as integer
+	fireTimer as float
+	lasers as laserType [ 10 ]
+endtype
+">Copy Code</button></div><p>A variable is declared named <i>spaceShip</i> using the type <i>shipType</i>. It has global prefixed to the declaration so that it will be accessible throughout the whole program, as later on some of the functions require access to it. It is possible to pass in types as parameters to functions, but for now declaring the variable as global will do.</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">global spaceShip as shipType
+</pre></div><div align="right"><button class="btn" data-clipboard-text="global spaceShip as shipType
+">Copy Code</button></div><p>The next part contains two calls to functions.</p><div id="basicCodeBlock8" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetupShip ( )
+SetupLasers ( )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetupShip ( )
+SetupLasers ( )
+">Copy Code</button></div><p>Let's take a look at what the function <i>SetupShip</i> does.</p><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">function SetupShip ( )
+	spaceShip.sprite = CreateSprite ( LoadImage ( "TopFighter1.png" ) )
+	spaceShip.speed = 2
+	spaceShip.direction = 0
+	<br>
+	SetSpritePosition ( spaceShip.sprite, 1024 / 2, 626 )
+endfunction
+</pre></div><div align="right"><button class="btn" data-clipboard-text="function SetupShip ( )
+	spaceShip.sprite = CreateSprite ( LoadImage ( &quot;TopFighter1.png&quot; ) )
+	spaceShip.speed = 2
+	spaceShip.direction = 0
+
+	SetSpritePosition ( spaceShip.sprite, 1024 / 2, 626 )
+endfunction
+">Copy Code</button></div><p>The function creates a sprite using the image "TopFighter1.png" and stores the sprite ID within the <i>sprite</i> variable, that is part of the <i>spaceShip</i> variable. It also assigns a value of 2 to the <i>speed</i> part of <i>spaceShip</i>. This is later used to determine how fast the ship moves across the screen. A lower value will make the ship move slower, whereas a higher value will make it move quickly. This is followed by the <i>direction</i> part of <i>spaceShip</i> getting assigned 0. This variable controls the direction in which the ship moves. If <i>direction</i> is 0 then the ship moves from left to right. If <i>direction</i> is 1 then the ship moves from right to left. The final call is used to position the newly created sprite towards the centre and bottom of the screen.</p><p>After <i>SetupShip</i> has finished its work a call is made to <i>SetupLasers</i>. This function is responsible for creating 10 lasers that the ship will fire. Let's see the code.</p><div id="basicCodeBlock10" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">function SetupLasers ( )
+	<br>
+	image = LoadImage ( "laser.png" )
+	<br>
+	for i = 1 to spaceShip.lasers.length
+		spaceShip.lasers [ i ].sprite = CreateSprite ( image )
+		ResetLaser ( i, 0 )
+	next i
+endfunction
+</pre></div><div align="right"><button class="btn" data-clipboard-text="function SetupLasers ( )
+
+	image = LoadImage ( &quot;laser.png&quot; )
+
+	for i = 1 to spaceShip.lasers.length
+		spaceShip.lasers [ i ].sprite = CreateSprite ( image )
+		ResetLaser ( i, 0 )
+	next i
+endfunction
+">Copy Code</button></div><p>It begins by loading an image named "laser.png" and storing its ID within the variable <i>image</i>. This is followed by a loop that will cycle from 1 to the size or length of the <i>lasers</i> array (10) contained within the <i>spaceShip</i> variable. For each iteration of the loop a sprite is created, with its identifier stored in the <i>lasers</i> array. This will give us 10 separate laser sprites that can be used by the ship. It's finished off with a call to <i>ResetLaser</i>.</p><div id="basicCodeBlock11" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">function ResetLaser ( index as integer, visible as integer )
+	spaceShip.lasers [ index ].state = 0
+	spaceShip.lasers [ index ].speed = Random ( 80, 100 ) / 10.0
+	SetSpritePosition ( spaceShip.lasers [ index ].sprite, GetSpriteX ( spaceShip.sprite ) + GetSpriteWidth ( spaceShip.sprite ) / 2 - 8 , GetSpriteY ( spaceShip.sprite ) - 12 )
+	SetSpriteVisible ( spaceShip.lasers [ index ].sprite, visible )
+endfunction
+</pre></div><div align="right"><button class="btn" data-clipboard-text="function ResetLaser ( index as integer, visible as integer )
+	spaceShip.lasers [ index ].state = 0
+	spaceShip.lasers [ index ].speed = Random ( 80, 100 ) / 10.0
+	SetSpritePosition ( spaceShip.lasers [ index ].sprite, GetSpriteX ( spaceShip.sprite ) + GetSpriteWidth ( spaceShip.sprite ) / 2 - 8 , GetSpriteY ( spaceShip.sprite ) - 12 )
+	SetSpriteVisible ( spaceShip.lasers [ index ].sprite, visible )
+endfunction
+">Copy Code</button></div><p>The <i>ResetLaser</i> function is used to apply default values to the lasers. It takes in two parameters letting us specify the laser to modify with the <i>index</i>, and the visibility of the sprite using <i>visible</i>. <i>SetupLasers</i> calls this function to modify all 10 lasers that get created and sets <i>visible</i> to 0. The actual function sets the state of each laser to 0 (the state determines whether it's available to be fired), gives it a random speed, sets its position to match that of the space ship and finally sets the sprite to be visible or invisible.</p><p>The next part of the program is the main loop.</p><div id="basicCodeBlock12" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+	UpdateShip ( )
+	UpdateLasers ( )
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+	UpdateShip ( )
+	UpdateLasers ( )
+
+	sync ( )
+loop
+">Copy Code</button></div><p>It calls the functions <i>UpdateShip</i> and <i>UpdateLasers</i>.</p><p>Here's the <i>UpdateShip</i> function.</p><div id="basicCodeBlock13" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">function UpdateShip ( )
+	x = GetSpriteX ( spaceShip.sprite )
+	<br>
+	if ( spaceShip.direction = 0 and x > 976 ) or ( spaceShip.direction = 1 and x < 0 )
+		spaceShip.speed = -spaceShip.speed
+		spaceShip.direction = not spaceShip.direction
+	endif
+	<br>
+	x = x + spaceShip.speed
+	<br>
+	SetSpritePosition ( spaceShip.sprite, x, GetSpriteY ( spaceShip.sprite ) )
+endfunction
+</pre></div><div align="right"><button class="btn" data-clipboard-text="function UpdateShip ( )
+	x = GetSpriteX ( spaceShip.sprite )
+
+	if ( spaceShip.direction = 0 and x > 976 ) or ( spaceShip.direction = 1 and x < 0 )
+		spaceShip.speed = -spaceShip.speed
+		spaceShip.direction = not spaceShip.direction
+	endif
+
+	x = x + spaceShip.speed
+
+	SetSpritePosition ( spaceShip.sprite, x, GetSpriteY ( spaceShip.sprite ) )
+endfunction
+">Copy Code</button></div><p>The function performs a few simple operations. It gets the X position of the space ship sprite. It then checks whether the ship is moving left or right and if it has left the boundaries of the screen. If this condition is met the ship is set to move in the opposite direction. Finally the position of the ship is updated using the modified X value.</p><p>The <i>UpdateLasers</i> function cycles through all 10 lasers and will launch one every so often.</p><div id="basicCodeBlock14" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">function UpdateLasers ( )
+	spaceShip.fireTimer = spaceShip.fireTimer + 0.01
+	<br>
+	for i = 1 to spaceShip.lasers.length
+		if spaceShip.lasers [ i ].state = 0
+			if spaceShip.fireTimer >= 0.25
+				<br>
+				ResetLaser ( i, 1 )
+				spaceShip.lasers [ i ].state = 1
+				spaceShip.fireTimer = 0.0
+			endif
+		endif
+		<br>
+		if spaceShip.lasers [ i ].state = 1
+			SetSpritePosition ( spaceShip.lasers [ i ].sprite, GetSpriteX ( spaceShip.lasers [ i ].sprite ), GetSpriteY ( spaceShip.lasers [ i ].sprite ) - spaceShip.lasers [ i ].speed )
+			<br>
+			if GetSpriteY ( spaceShip.lasers [ i ].sprite ) < 0
+				ResetLaser ( i, 0 )
+			endif
+		endif
+	next i
+endfunction
+</pre></div><div align="right"><button class="btn" data-clipboard-text="function UpdateLasers ( )
+	spaceShip.fireTimer = spaceShip.fireTimer + 0.01
+
+	for i = 1 to spaceShip.lasers.length
+		if spaceShip.lasers [ i ].state = 0
+			if spaceShip.fireTimer >= 0.25
+
+				ResetLaser ( i, 1 )
+				spaceShip.lasers [ i ].state = 1
+				spaceShip.fireTimer = 0.0
+			endif
+		endif
+
+		if spaceShip.lasers [ i ].state = 1
+			SetSpritePosition ( spaceShip.lasers [ i ].sprite, GetSpriteX ( spaceShip.lasers [ i ].sprite ), GetSpriteY ( spaceShip.lasers [ i ].sprite ) - spaceShip.lasers [ i ].speed )
+
+			if GetSpriteY ( spaceShip.lasers [ i ].sprite ) < 0
+				ResetLaser ( i, 0 )
+			endif
+		endif
+	next i
+endfunction
+">Copy Code</button></div><p>The function performs the following tasks.</p><ul><li>It begins by incrementing a timer contained within <i>spaceShip</i> by 0.01 every time the function is called.</li><li>It then performs a for loop cycling through all of the lasers that the ship has.</li><li>If the state of the laser is 0 then another check is made to see if the <i>fireTimer</i> is greater than or equal to 0.25. If this is the case a laser can be fired.</li><li>When the condition is met to launch a laser the <i>ResetLaser</i> function is called passing in the index of the laser to launch and setting its visibility to 1. This is followed by a state change to 1, meaning this laser has been launched. Last of all the <i>fireTimer</i> is reset to 0.0 letting us specify a delay before firing the next laser.</li><li>When the state of a laser is 1 this means the laser has been fired. Any lasers with this state must continually move up the screen. When the laser is off screen (checked by its Y value being less than 0), it gets reset and its visibility set to 0. The reset function returns its state to 0, meaning that it can be used to fire again.</li></ul><p>Overall it's quite a simple program but it does demonstrate how effective types can be when grouping data together.</p><div align="center"><a href="types_002.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="types_004.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

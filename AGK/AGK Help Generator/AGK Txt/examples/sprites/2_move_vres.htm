@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Moving sprites using the virtual resolution - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Moving sprites using the virtual resolution</div><div class="page"><h1>Moving sprites using the virtual resolution</h1><h2>Description</h2><p>In this example we're going to place a sprite on screen and move it using the approach of a virtual resolution.</p><div align="center"><img src="2_move_vres.jpg"/></div><h2>Overview</h2><p>The process involved is as follows:</p><ul><li>set the virtual resolution</li><li>load an image</li><li>create a sprite</li><li>main loop</li><li>move our sprite in the main loop</li></ul><h2>Virtual Resolution</h2><p>We begin by setting our virtual resolution to dimensions of 320 x 480:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetVirtualResolution ( 320, 480 );
+</pre></div><h2>Load an image</h2><p>Now we can load an image for our sprite:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">image = LoadImage ( "blue.png" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="image = LoadImage ( &quot;blue.png&quot; )
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">image = agk::LoadImage ( "blue.png" );
+</pre></div><p>This line calls <i>LoadImage</i> passing in the filename "blue.png", it then returns an ID number which gets saved in the variable <i>image</i>. This ID number is now treated as a handle to our image and can be used later on when referring to it.</p><h2>Creating a sprite</h2><p>Now that we have an image loaded into memory we're ready to create a sprite and attach this image to it. This is achieved by calling the command <i>CreateSprite</i>.</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">sprite = CreateSprite ( image )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="sprite = CreateSprite ( image )
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">sprite = agk::CreateSprite ( image );
+</pre></div><p>Here we call <i>CreateSprite</i> passing in an ID number for our image and returning an ID number for the sprite. We're effectively saying create a sprite, attach this image to it and give us back an ID number for this sprite. This ID number for the sprite can be stored for use later on when dealing with sprite properties, for example.</p><h2>Main Loop</h2><p>Up to this point we have set a virtual resolution, loaded an image and created a sprite that uses this image. We're nearly ready to run our application and see the results. Prior to this we need to ensure one more thing - in our main loop we must call <i>Sync</i> to ensure the screen gets updated and its contents drawn. The command <i>Sync</i> takes no parameters and can be called in your main loop like this:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+</pre></div><h2>Move our sprite in the main loop</h2><p>To move our sprite around the screen we call the function <i>SetSpritePosition</i>. This function takes three parameters - the ID number of the sprite, new X position on screen and the new Y position on screen. As we're using a virtual resolution the X and Y positions refer to screen coordinates. If we were using the percentage based system these coordinates would be percentages. For our purposes we want to move our sprite from its initial position (which will be 0, 0 by default) and over towards the right hand side of the screen. This is achieved by setting a variable to 0, incrementing it slowly each frame and then passing it into SetSpritePosition, as shown in this code:</p><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetSpritePosition ( sprite, x#, 0 )
+<br>
+x# = x# + 0.5
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetSpritePosition ( sprite, x#, 0 )
+
+x# = x# + 0.5
+">Copy Code</button></div><div id="cppCodeBlock10" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">SetSpritePosition ( iSprite, x, 0.0f );
+<br>
+x = x + 0.5f;
+</pre></div><h2>Full code listing</h2><p>Everything is now in place. Here's the final code for our program:</p><div id="basicCodeBlock11" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background1.jpg" ) )
+<Br>
+image = LoadImage ( "blue.png" )
+<br>
+sprite = CreateSprite ( image )
+<br>
+do
+    SetSpritePosition ( sprite, x#, 0 )
+<br>
+    x# = x# + 0.5
+<br>
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+CreateSprite ( LoadImage ( &quot;background1.jpg&quot; ) )
+<Br>
+image = LoadImage ( &quot;blue.png&quot; )
+
+sprite = CreateSprite ( image )
+
+do
+    SetSpritePosition ( sprite, x#, 0 )
+
+    x# = x# + 0.5
+
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock12" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background1.jpg" ) );
+<br>
+    image = LoadImage ( "blue.png" );
+<br>
+    sprite = CreateSprite ( image );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::SetSpritePosition ( sprite, x, 0.0f );
+<br>
+    x = x + 0.5;
+<br>
+    agk::sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>We're now all set to run our application and see the results on screen.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

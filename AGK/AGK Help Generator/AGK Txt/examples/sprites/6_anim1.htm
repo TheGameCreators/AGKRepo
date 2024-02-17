@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Animating sprites - part 1 - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Animating sprites - part 1</div><div class="page"><h1>Animating sprites - part 1</h1><h2>Description</h2><p>There are three options when it comes to animating a sprite. These are:</p><ul><li>load a series of images and manually update the sprites image using timers</li><li>add a series of images to a sprite and use the command <i>PlaySprite</i> to handle animation</li><li>use a texture atlas (a series of animation frames on one image), call <i>SetSpriteAnimation</i> to hook up atlas to the system, then call <i>PlaySprite</i> to handle animation</li></ul><p>In this example we’re going to examine the second option.</p><div align="center"><img src="6_anim1.jpg"/></div><h2>External media</h2><p>This example program relies on several images:</p><div align="center"><img src="item0.png"/></div><div align="center"><img src="item1.png"/></div><div align="center"><img src="item2.png"/></div><div align="center"><img src="item3.png"/></div><div align="center"><img src="item4.png"/></div><h2>Overview</h2><p>The process involved is as follows:</p><ul><li>create a sprite</li><li>load our animation frames and add them into the sprite</li><li>play our sprite animation</li><li>main loop where we update the contents of the screen</li></ul><h2>Creating a sprite</h2><p>When creating a sprite that is going to have multiple animation frames added, no image gets passed into the CreateSprite call. This is handled by passing in a parameter of 0 for the image ID as shown here:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">CreateSprite ( 1, 0 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="CreateSprite ( 1, 0 )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::CreateSprite ( 1, 0 );
+</pre></div><p>After making this call a sprite with ID number 1 has been created, but does not have an image attached to it.</p><h2>Loading and adding animation frames</h2><p>The next stage of the process is to attach animation frames to our sprite. There are two ways of approaching this:</p><ul><li>load our images, then pass their IDs into the command <i>AddSpriteAnimationFrame</i></li><li>call <i>AddSpriteAnimationFrame</i> and load the images within it</li></ul><p>This code demonstrates the first method:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadImage ( 1, "item0.png" )
+AddSpriteAnimationFrame ( 1, 1 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadImage ( 1, &quot;item0.png&quot; )
+AddSpriteAnimationFrame ( 1, 1 )
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::LoadImage ( 1, "item0.png" )
+agk::AddSpriteAnimationFrame ( 1, 1 );
+</pre></div><p>The first call is to <i>LoadImage</i> where the image “item0.png” is loaded into ID slot 1. The next call relates to animation. The command <i>AddSpriteAnimationFrame’s</i> first parameter is the ID number of the sprite. The second parameter is the ID number of the image. By calling this command we’re telling AppGameKit Studio to add “item0.png” into sprite 1s animation sequence.</p><p>The alternative method moves the LoadImage call directly into the second parameter of <i>AddSpriteAnimationFrame</i>. By doing this we bypass the need to store the image ID. It’s a slightly quicker method as it’s combining the calls, but not necessarily suitable for all cases:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">AddSpriteAnimationFrame ( 1, LoadImage ( "item0.png" ) )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="AddSpriteAnimationFrame ( 1, LoadImage ( &quot;item0.png&quot; ) )
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::AddSpriteAnimationFrame ( 1, agk::LoadImage ( "item0.png" ) );
+</pre></div><p>The call above merges everything into one convenient line, at the expense of not storing or knowing the ID number of the image. This method is used to add all of the frames to the sprite, turning our final block of code into this:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">AddSpriteAnimationFrame ( 1, LoadImage ( "item0.png" ) )
+AddSpriteAnimationFrame ( 1, LoadImage ( "item1.png" ) )
+AddSpriteAnimationFrame ( 1, LoadImage ( "item2.png" ) )
+AddSpriteAnimationFrame ( 1, LoadImage ( "item3.png" ) )
+AddSpriteAnimationFrame ( 1, LoadImage ( "item4.png" ) )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="AddSpriteAnimationFrame ( 1, LoadImage ( &quot;item0.png&quot; ) )
+AddSpriteAnimationFrame ( 1, LoadImage ( &quot;item1.png&quot; ) )
+AddSpriteAnimationFrame ( 1, LoadImage ( &quot;item2.png&quot; ) )
+AddSpriteAnimationFrame ( 1, LoadImage ( &quot;item3.png&quot; ) )
+AddSpriteAnimationFrame ( 1, LoadImage ( &quot;item4.png&quot; ) )
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::AddSpriteAnimationFrame ( 1, agk::LoadImage ( "item0.png" ) );
+agk::AddSpriteAnimationFrame ( 1, agk::LoadImage ( "item1.png" ) );
+agk::AddSpriteAnimationFrame ( 1, agk::LoadImage ( "item2.png" ) );
+agk::AddSpriteAnimationFrame ( 1, agk::LoadImage ( "item3.png" ) );
+agk::AddSpriteAnimationFrame ( 1, agk::LoadImage ( "item4.png" ) );
+</pre></div><p>When dealing with more animation frames it’s more optimal to use some kind of loop and build the image string up programmatically rather than hard coding it as shown in this example.</p><h2>Playing a sprite</h2><p>Our sprite now has five animation frames (images) attached to it and we’re now in a position to animate it. All it takes is a call to the command <i>PlaySprite</i>. This command has several parameters:</p><ul><li>ID number for the sprite</li><li>how many frames per second should be displayed</li><li>whether the sprite is to loop or not</li><li>start frame for the animation</li><li>end frame for the animation</li></ul><p>For our example the ID number is 1, the frame rate is set to 10 (a higher value will make it play faster while a lower value will result in a slower animation), 1 is used to indicate the animation will loop, the start point gets set to frame 1 / “item0.png” and finally the end frame is set to frame 5 / “item4.png”:</p><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">PlaySprite ( 1, 10, 1, 1, 5 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="PlaySprite ( 1, 10, 1, 1, 5 )
+">Copy Code</button></div><div id="cppCodeBlock10" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::PlaySprite ( 1, 10, 1, 1, 5 );
+</pre></div><p>After calling <i>PlaySprite</i> the sprite will continually animate until such time that we choose to stop it.</p><h2>Main loop</h2><p>At this point everything is set up and ready to launch. All that remains is for our main loop to update the screen by making a simple call to <i>Sync</i>, as shown here:</p><div id="basicCodeBlock11" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+   Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+   Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock12" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Loop ( void )
+{
+   agk::Sync ( );
+}
+</pre></div><h2>Full code listing</h2><p>Everything is now in place. Here's the final code for our program:</p><div id="basicCodeBlock13" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background.jpg" ) )
+<br>
+CreateSprite ( 1, 0 )
+<br>
+AddSpriteAnimationFrame ( 1, LoadImage ( "item0.png" ) )
+AddSpriteAnimationFrame ( 1, LoadImage ( "item1.png" ) )
+AddSpriteAnimationFrame ( 1, LoadImage ( "item2.png" ) )
+AddSpriteAnimationFrame ( 1, LoadImage ( "item3.png" ) )
+AddSpriteAnimationFrame ( 1, LoadImage ( "item4.png" ) )
+<br>
+PlaySprite ( 1, 10, 1, 1, 5 )
+<br>
+do
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+CreateSprite ( LoadImage ( &quot;background.jpg&quot; ) )
+
+CreateSprite ( 1, 0 )
+
+AddSpriteAnimationFrame ( 1, LoadImage ( &quot;item0.png&quot; ) )
+AddSpriteAnimationFrame ( 1, LoadImage ( &quot;item1.png&quot; ) )
+AddSpriteAnimationFrame ( 1, LoadImage ( &quot;item2.png&quot; ) )
+AddSpriteAnimationFrame ( 1, LoadImage ( &quot;item3.png&quot; ) )
+AddSpriteAnimationFrame ( 1, LoadImage ( &quot;item4.png&quot; ) )
+
+PlaySprite ( 1, 10, 1, 1, 5 )
+
+do
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock14" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background.jpg" ) );
+<br>
+    agk::CreateSprite ( 1, 0 );
+<br>
+    agk::AddSpriteAnimationFrame ( 1, agk::LoadImage ( "item0.png" ) );
+    agk::AddSpriteAnimationFrame ( 1, agk::LoadImage ( "item1.png" ) );
+    agk::AddSpriteAnimationFrame ( 1, agk::LoadImage ( "item2.png" ) );
+    agk::AddSpriteAnimationFrame ( 1, agk::LoadImage ( "item3.png" ) );
+    agk::AddSpriteAnimationFrame ( 1, agk::LoadImage ( "item4.png" ) );
+<br>
+    agk::PlaySprite ( 1, 10, 1, 1, 5 );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>This is just one example of animating sprites within your application. Part 2 demonstrates how to use a texture atlas.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

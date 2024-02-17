@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Simple Physics Example - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Simple Physics Example</div><div class="page"><h1>Simple Physics Example</h1><h2>Description</h2><p>By utilising the physics commands within AppGameKit Studio it's possible to greatly simplify complex tasks such as collision and physics based movement. Transforming sprites into physics based entities is covered in this example. It's a simple demonstration program that creates physics sprites every so often, sets some properties and leaves it to the physics engine to deal with movement and collision response.</p><div align="center"><img src="3_simple.jpg"/></div><h2>Overview</h2><p>A few steps are carried out in this program:</p><ul><li>add a background sprite</li><li>load an image to be used by our sprites</li><li>set some basic physics properties</li><li>within our main loop, every so often create a sprite and set some physics properties</li></ul><h2>Background sprite</h2><p>First we'll load in a backdrop image and display it as a sprite with an alpha value of 40 so it's no so bright:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">backdrop = CreateSprite ( LoadImage ( "background1.jpg" ) )
+SetSpriteColorAlpha ( backdrop, 40 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="backdrop = CreateSprite ( LoadImage ( &quot;background1.jpg&quot; ) )
+SetSpriteColorAlpha ( backdrop, 40 )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">int backdrop = agk::CreateSprite ( agk::LoadImage ( "background1.jpg" ) );
+agk::SetSpriteColorAlpha ( backdrop, 40 );
+</pre></div><h2>Sprite image</h2><p>Before moving onto the main loop an image is loaded:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadImage ( 2, "silver.png" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadImage ( 2, &quot;silver.png&quot; )
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::LoadImage ( 2, "silver.png" );
+</pre></div><p>This image is going to be used by all the sprites that get created within the main loop.</p><h2>Physics properties</h2><p>The final part before the main loop is to set the gravity vector for all physics based sprites. For this example, gravity is only required on the Y axis at a rate of 0.1 meters per second squared. This is handled with a call to <i>SetPhysicsGravity</i>:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetPhysicsGravity ( 0, 0.5 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetPhysicsGravity ( 0, 0.5 )
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetPhysicsGravity ( 0.0f, 0.5f );
+</pre></div><p>When our sprites enter the scene they will constantly be affected by the gravity. Increasing the Y value will have the effect of pushing the sprites to the ground much faster.</p><h2>Main loop</h2><p>After every 75 cycles of the main loop the following will take place:</p><ul><li>a sprite will be created and use the image that was loaded earlier</li><li>the sprite will be positioned near the top of the screen</li><li>physics will be turned on for the sprite with a call to <i>SetSpritePhysicsOn</i>, this function takes two parameters, the first is the ID number of the sprite, while the second parameter controls how the sprite responds within the simulator, whether it is a static entity, dynamic or kinematic</li><li>the sprite will be randomly sized</li><li>a box shape is then assigned to the sprite so it is represented within the simulation correctly</li><li>finally some properties are set such as an angular impulse, velocity, random colour for the sprite and its restitution</li></ul><h2>Adjusting physics properties</h2><p>Our sprites will have an angular impulse applied along with a velocity and the setting of resitution upon creation. When an angular impulse gets applied to a sprite it will affect the rotation of the sprite. The reaction to an angular impulse is dependent on the size of our sprites. Larger sprites will rotate slower than smaller sprites given the same impulse.</p><p>Velocity being applied to a sprite will have the effect of pushing a sprite towards a particular direction. Directly after our sprites have been created they will have a random velocity applied to them. This will have the effect of shooting our sprites out in random directions on the X and Y axis.</p><p>Resitution controls how our sprites react upon collision. If two sprites collided and they had a low restitution they might come together and upon impact stop and lose all of their momentum, after that they might fall to the ground as they are affected by gravity. If these two sprites had a high restitution, upon impact they might go flying off in opposite directions.</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">time = 0
+index = 10
+<br>
+do
+    time = time + 1
+<br>
+    if ( time >= 75 )
+        CreateSprite ( index, 2 )
+        SetSpritePosition ( index, 50, 0 )
+        SetSpritePhysicsOn ( index, 2 )
+<br>   
+        size = 20 + Random ( 0, 30 )
+        SetSpriteSize ( index, size, size )
+        SetSpriteShape ( index, 2 )
+        SetSpritePhysicsAngularImpulse ( index, 10000 + Random ( 0, 350 ) )
+        SetSpritePhysicsVelocity ( index, 100 + Random ( 0, 100 ), 100 + Random ( 0, 100 ) )
+        SetSpriteColor ( index, Random ( 0, 255 ), Random ( 0, 255 ), Random ( 0, 255 ) )
+        SetSpritePhysicsRestitution ( index, 0.5 )
+<br>
+        index = index + 1
+        time = 0
+    endif
+<br>
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="time = 0
+index = 10
+
+do
+    time = time + 1
+
+    if ( time >= 75 )
+        CreateSprite ( index, 2 )
+        SetSpritePosition ( index, 50, 0 )
+        SetSpritePhysicsOn ( index, 2 )
+
+        size = 20 + Random ( 0, 30 )
+        SetSpriteSize ( index, size, size )
+        SetSpriteShape ( index, 2 )
+        SetSpritePhysicsAngularImpulse ( index, 10000 + Random ( 0, 350 ) )
+        SetSpritePhysicsVelocity ( index, 100 + Random ( 0, 100 ), 100 + Random ( 0, 100 ) )
+        SetSpriteColor ( index, Random ( 0, 255 ), Random ( 0, 255 ), Random ( 0, 255 ) )
+        SetSpritePhysicsRestitution ( index, 0.5 )
+
+        index = index + 1
+        time = 0
+    endif
+
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Loop ( void )
+{
+    time = time + 1;
+<br>
+    if ( time >= 75 )
+    {
+        agk::CreateSprite ( index, 2 );
+        agk::SetSpritePosition ( index, 50, 0 );
+        agk::SetSpritePhysicsOn ( index, 2 );
+<br>   
+        size = 20 + agk::Random ( 0, 30 );
+        agk::SetSpriteSize ( index, size, size );
+        agk::SetSpriteShape ( index, 2 );
+        agk::SetSpritePhysicsAngularImpulse ( index, 10000 + agk::Random ( 0, 350 ) );
+        agk::SetSpritePhysicsVelocity ( index, 100 + agk::Random ( 0, 100 ), 100 + agk::Random ( 0, 100 ) );
+        agk::SetSpriteColor ( index, agk::Random ( 0, 255 ), agk::Random ( 0, 255 ), agk::Random ( 0, 255 ), 255 );
+        agk::SetSpritePhysicsRestitution ( index, 0.5 );
+<br>
+        index = index + 1;
+        time = 0;
+    }
+<br>
+    agk::Sync ( );
+}
+</pre></div><h2>Full code listing</h2><p>Everything is now in place. Here's the final code for our program:</p><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+backdrop = CreateSprite ( LoadImage ( "background1.jpg" ) )
+SetSpriteColorAlpha ( backdrop, 40 )
+<br>
+LoadImage ( 2, "silver.png" )
+<br>
+SetPhysicsGravity ( 0, 0.5 )
+<br>
+time = 0
+index = 10
+<br>
+do
+    time = time + 1
+<br>
+    if ( time >= 75 )
+        CreateSprite ( index, 2 )
+        SetSpritePosition ( index, 50, 0 )
+        SetSpritePhysicsOn ( index, 2 )
+<br>   
+        size = 20 + Random ( 0, 30 )
+        SetSpriteSize ( index, size, size )
+        SetSpriteShape ( index, 2 )
+        SetSpritePhysicsAngularImpulse ( index, 10000 + Random ( 0, 350 ) )
+        SetSpritePhysicsVelocity ( index, 100 + Random ( 0, 100 ), 100 + Random ( 0, 100 ) )
+        SetSpriteColor ( index, Random ( 0, 255 ), Random ( 0, 255 ), Random ( 0, 255 ), 255 )
+        SetSpritePhysicsRestitution ( index, 0.5 )
+<br>
+        index = index + 1
+        time = 0
+    endif
+<br>
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+backdrop = CreateSprite ( LoadImage ( &quot;background1.jpg&quot; ) )
+SetSpriteColorAlpha ( backdrop, 40 )
+
+LoadImage ( 2, &quot;silver.png&quot; )
+
+SetPhysicsGravity ( 0, 0.5 )
+
+time = 0
+index = 10
+
+do
+    time = time + 1
+
+    if ( time >= 75 )
+        CreateSprite ( index, 2 )
+        SetSpritePosition ( index, 50, 0 )
+        SetSpritePhysicsOn ( index, 2 )
+
+        size = 20 + Random ( 0, 30 )
+        SetSpriteSize ( index, size, size )
+        SetSpriteShape ( index, 2 )
+        SetSpritePhysicsAngularImpulse ( index, 10000 + Random ( 0, 350 ) )
+        SetSpritePhysicsVelocity ( index, 100 + Random ( 0, 100 ), 100 + Random ( 0, 100 ) )
+        SetSpriteColor ( index, Random ( 0, 255 ), Random ( 0, 255 ), Random ( 0, 255 ), 255 )
+        SetSpritePhysicsRestitution ( index, 0.5 )
+
+        index = index + 1
+        time = 0
+    endif
+
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock10" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    int backdrop = agk::CreateSprite ( agk::LoadImage ( "background1.jpg" ) );
+    agk::SetSpriteColorAlpha ( backdrop, 40 );
+<br>
+    agk::LoadImage ( 2, “silver.png” );
+<br>
+    agk::SetPhysicsGravity ( 0.0f, 0.5f );
+}
+void app::Loop ( void )
+{
+    time = time + 1;
+<br>
+    if ( time >= 75 )
+    {
+        agk::CreateSprite ( index, 2 );
+        agk::SetSpritePosition ( index, 50, 0 );
+        agk::SetSpritePhysicsOn ( index, 2 );
+<br>   
+        size = 20 + agk::Random ( 0, 30 );
+        agk::SetSpriteSize ( index, size, size );
+        agk::SetSpriteShape ( index, 2 );
+        agk::SetSpritePhysicsAngularImpulse ( index, 10000 + agk::Random ( 0, 350 ) );
+        agk::SetSpritePhysicsVelocity ( index, 100 + agk::Random ( 0, 100 ), 100 + agk::Random ( 0, 100 ) );
+        agk::SetSpriteColor ( index, agk::Random ( 0, 255 ), agk::Random ( 0, 255 ), agk::Random ( 0, 255 ) );
+        agk::SetSpritePhysicsRestitution ( index, 0.5 );
+<br>
+        index = index + 1;
+        time = 0;
+    }
+<br>
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>This example demonstrates how it’s possible to get a fairly complex situation being played out on screen with a minimal amount of effort.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

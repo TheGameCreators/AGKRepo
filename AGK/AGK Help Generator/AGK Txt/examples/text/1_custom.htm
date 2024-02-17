@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>TrueType Font Text - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; TrueType Font Text</div><div class="page"><h1>TrueType Font Text</h1><h2>Description</h2><p>Internally AppGameKit Studio represents fonts using images, whereby each character is placed onto an image and can then be utilised by the text commands.</p><p>For many situations the usage of the default font will be more than adequate, especially when displaying information on screen to assist with debugging. However, many games may require an extra element of customization that necessitates the use of different looking fonts.</p><h2>TrueType Fonts</h2><p>With just one command you can improve the quality of the text in AppGameKit Studio. We recommend you use this in all of your projects to ensure they look their best.</p><p><br>This one command <i>UseNewDefaultFonts()</i> will change the text system to start using TrueType Fonts. Here's some code to illustrate:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">UseNewDefaultFonts(1)
+do
+	Print ("True Type Fonts look GREAT!")
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="UseNewDefaultFonts(1)
+do
+	Print (&quot;True Type Fonts look GREAT!&quot;)
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::Print ( "True Type Fonts look GREAT" );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+</pre></div><p>Will produce this result:</p><div align="center"><img src="ttf_text1.jpg"/></div><p>Let's say you want to use a different TrueType Font to match the style of your app. All that's required is for the TrueType font to be copied into the media folder of your project and then you use the <i>Load Font()</i> command to load it at the start of your project and then use <i>SetPrintFont()</i> to ensure all future <i>Print()</i> commands use the new style font. Take a look at this small example and note the command line <i>FontID=LoadFont("comicbd.ttf")</i>, this is where the font is loaded.</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">UseNewDefaultFonts(1)
+FontID=LoadFont("comicbd.ttf")
+SetPrintFont(FontID)
+SetPrintSize(10)
+do
+	Print("This test is using COMIC Sans!")
+	Sync()
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="UseNewDefaultFonts(1)
+FontID=LoadFont(&quot;comicbd.ttf&quot;)
+SetPrintFont(FontID)
+SetPrintSize(10)
+do
+	Print(&quot;This test is using COMIC Sans!&quot;)
+	Sync()
+loop
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::UseNewDefaultFonts(1);
+int FontID=LoadFont("comicbd.ttf");
+agk::SetPrintFont(FontID);
+agk::SetPrintSize(10);
+void app::Begin ( void )
+{
+    agk::Print ( "True Type Fonts look GREAT" );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+</pre></div><p>Will produce this result:</p><div align="center"><img src="ttf_text2.jpg"/></div><h2>Conclusion</h2><p>To create more pleasing and professional results, use the TrueType font support built into AppGameKit Studio.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

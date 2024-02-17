@@ -1,0 +1,206 @@
+﻿_header
+Debugging Physics
+
+_sheader
+Description
+_text
+Internally AppGameKit Studio represents physics objects by providing a bounding box, a circle or a convex hull around sprites. By switching the physics debug mode on you can get to see how AppGameKit Studio is representing your sprites in the physics simulation. Switching this mode on will force AppGameKit Studio to draw the physics representations of your sprites on top of all sprites. This is great for debugging. Being able to see this on screen can help make a big difference to understanding how and why the physics simulation provides results.
+
+_text
+This example creates four dynamic sprites that are placed alongside each other. A fifth sprite is created, that is positioned slightly below the other sprites and is static. Finally debug mode is switched on for physics.
+
+_image
+2_debugging.jpg
+
+_sheader
+Overview
+_text
+The steps involved in this example are:
+
+_listbegin
+create our sprites and set their dynamic or static states
+turn physics on for the sprites
+turn physics debug on
+within the main loop simply update the contents of the screen
+_listend
+
+_sheader
+Creating the sprites
+_text
+One image is loaded, which is then used by five sprites, which are laid out in a row, except for sprite three that is slightly lower down the screen:
+
+_tier1
+LoadImage ( 1, "small_silver.png" )
+<br>
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 1 )
+CreateSprite ( 3, 1 )
+CreateSprite ( 4, 1 )
+CreateSprite ( 5, 1 )
+<br>
+SetSpritePosition ( 1,  50,   0 )
+SetSpritePosition ( 2, 100,   0 )
+SetSpritePosition ( 3, 140, 200 )
+SetSpritePosition ( 4, 170,   0 )
+SetSpritePosition ( 5, 220,   0 )
+_tier1
+
+_tier2
+agk::LoadImage ( 1, "small_silver.png" );
+<br>
+agk::CreateSprite ( 1, 1 );
+agk::CreateSprite ( 2, 1 );
+agk::CreateSprite ( 3, 1 );
+agk::CreateSprite ( 4, 1 );
+agk::CreateSprite ( 5, 1 );
+<br>
+agk::SetSpritePosition ( 1,  50,   0 );
+agk::SetSpritePosition ( 2, 100,   0 );
+agk::SetSpritePosition ( 3, 140, 200 );
+agk::SetSpritePosition ( 4, 170,   0 );
+agk::SetSpritePosition ( 5, 220,   0 );
+_tier2
+
+_sheader
+Switching physics on
+_text
+Four of the sprites are enabled as dynamic objects, while one is set up as a static object.
+
+_tier1
+SetSpritePhysicsOn ( 1, 2 )
+SetSpritePhysicsOn ( 2, 2 )
+SetSpritePhysicsOn ( 3, 1 )
+SetSpritePhysicsOn ( 4, 2 )
+SetSpritePhysicsOn ( 5, 2 )
+_tier1
+
+_tier2
+agk::SetSpritePhysicsOn ( 1, 2 );
+agk::SetSpritePhysicsOn ( 2, 2 );
+agk::SetSpritePhysicsOn ( 3, 1 );
+agk::SetSpritePhysicsOn ( 4, 2 );
+agk::SetSpritePhysicsOn ( 5, 2 );
+_tier2
+
+_sheader
+Debug mode
+_text
+To switch debug mode on for physics it’s simply a case of calling the command <i>SetPhysicsDebugOn</i>. This function takes no parameters. To switch it off call <i>SetPhysicsDebugOff</i>. Please note that switching debug mode on is likely to negatively impact the frame rate of your game. Once switched on the overlaid shapes will be drawn with the following colours, in order to help you identify the kind of object they are:
+
+_listbegin
+cream - used for dynamic objects
+green - used for static objects
+blue - used for kinematic objects
+grey - displays sleeping dynamic objects
+_listend
+
+_text
+Prior to our main loop the function <i>SetPhysicsDebugOn</i> is called:
+
+_tier1
+SetPhysicsDebugOn ( )
+_tier1
+
+_tier2
+agk::SetPhysicsDebugOn ( );
+_tier2
+
+_sheader
+Main loop
+_text
+The main loop in this example does not take any action. All it needs to do is make a call to <i>Sync</i> to ensure the screen is updated.
+
+_tier1
+do
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Full code listing
+_text
+The only alteration for the final program is the addition of a background image, which has its alpha level reduced to 100. Here's the final listing:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+backdrop = CreateSprite ( LoadImage ( "background2.jpg" ) )
+SetSpriteColorAlpha ( backdrop, 100 )
+<br>
+LoadImage ( 1, "small_silver.png" )
+<br>
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 1 )
+CreateSprite ( 3, 1 )
+CreateSprite ( 4, 1 )
+CreateSprite ( 5, 1 )
+<br>
+SetSpritePosition ( 1,  50,   0 )
+SetSpritePosition ( 2, 100,   0 )
+SetSpritePosition ( 3, 140, 200 )
+SetSpritePosition ( 4, 170,   0 )
+SetSpritePosition ( 5, 220,   0 )
+<br>
+SetSpritePhysicsOn ( 1, 2 )
+SetSpritePhysicsOn ( 2, 2 )
+SetSpritePhysicsOn ( 3, 1 )
+SetSpritePhysicsOn ( 4, 2 )
+SetSpritePhysicsOn ( 5, 2 )
+<br>
+SetPhysicsDebugOn ( )
+<br>
+do
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    int backdrop = agk::CreateSprite ( agk::LoadImage ( "background2.jpg" ) );
+    agk::SetSpriteColorAlpha ( backdrop, 100 );
+<br>
+    agk::LoadImage ( 1, "small_silver.png" );
+<br>
+    agk::CreateSprite ( 1, 1 );
+    agk::CreateSprite ( 2, 1 );
+    agk::CreateSprite ( 3, 1 );
+    agk::CreateSprite ( 4, 1 );
+    agk::CreateSprite ( 5, 1 );
+<br>
+    agk::SetSpritePosition ( 1,  50,   0 );
+    agk::SetSpritePosition ( 2, 100,   0 );
+    agk::SetSpritePosition ( 3, 140, 200 );
+    agk::SetSpritePosition ( 4, 170,   0 );
+    agk::SetSpritePosition ( 5, 220,   0 );
+<br>
+    agk::SetSpritePhysicsOn ( 1, 2 );
+    agk::SetSpritePhysicsOn ( 2, 2 );
+    agk::SetSpritePhysicsOn ( 3, 1 );
+    agk::SetSpritePhysicsOn ( 4, 2 );
+    agk::SetSpritePhysicsOn ( 5, 2 );
+<br>
+    agk::SetPhysicsDebugOn ( ); 
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+This simple command is a great way of understanding how your sprites are represented in the physics simulation. It can be used to determine such things as whether a bounding box isn’t providing a tight fit around a sprite, and whether it’s better to use an alternative.
+
+

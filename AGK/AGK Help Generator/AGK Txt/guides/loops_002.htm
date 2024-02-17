@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>While loops - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="http://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; While loops</div><div class="page"><h1>While loops</h1><p>This kind of loop will continually execute until a certain condition is met. Here's an example showing it in action.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">exitProgram as integer = 0
+<br>
+while exitProgram <> 1
+	print ( "inside a while loop" )
+	<br>
+	sync ( )
+endwhile
+</pre></div><div align="right"><button class="btn" data-clipboard-text="exitProgram as integer = 0
+
+while exitProgram <> 1
+	print ( &quot;inside a while loop&quot; )
+
+	sync ( )
+endwhile
+">Copy Code</button></div><p>The condition that determines the loop is specified after the <i>while</i> keyword. Any kind of expression can be used to determine the condition. Our example uses the variable <i>exitProgram</i>, that has an initial value of 0. The <i>while</i> loop will run until <i>exitProgram</i> is different to 1. As this variable is only set to 0 and not altered afterwards the loop will continually run. The loop will only finish if code is added that sets the value of <i>exitProgram</i> to 1.</p><p>The loop will only run if the condition is met, otherwise the program execution will move onto the next block of code. This program uses a loop where the condition to run the loop is that the variable <i>exitLoop</i> must be different to 1, but it sets this variable to 1 when it is declared, so what happens is that none of the code associated with this loop runs and the program continues onward.</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">exitLoop as integer = 1
+<br>
+while exitLoop <> 1
+	print ( "inside a while loop" )
+	<br>
+	sync ( )
+endwhile
+<br>
+do
+	print ( "fallen into the do loop ")
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="exitLoop as integer = 1
+
+while exitLoop <> 1
+	print ( &quot;inside a while loop&quot; )
+
+	sync ( )
+endwhile
+
+do
+	print ( &quot;fallen into the do loop &quot;)
+	sync ( )
+loop
+">Copy Code</button></div><div align="center"><a href="loops_001.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="loops_003.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="http://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

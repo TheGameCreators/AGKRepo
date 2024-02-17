@@ -1,0 +1,23 @@
+
+_header
+Types
+
+_sheader
+Beginner Level Tutorial
+
+_sheader
+What you will learn
+
+_text
+This guide demonstrates how types can be used to manage data within your program.
+
+_listbegin
+<a href="types_001.htm">What are types?</a>
+<a href="types_002.htm">Declaring types</a>
+<a href="types_003.htm">Types in action</a>
+<a href="types_004.htm">Passing types to functions</a>
+<a href="types_005.htm">Conclusion</a>
+_listend
+
+_navigation
+types_001.htm

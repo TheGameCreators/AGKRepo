@@ -1,0 +1,170 @@
+_header
+Collision with zones
+
+_sheader
+Description
+_text
+It's possible to determine whether two sprites have collided by using the command <i>GetSpriteCollision</i>. But what happens if you wanted to check whether a sprite has entered a specific area on screen? This is where two specific commands come into play:
+
+_listbegin
+<i>GetSpriteInBox</i>
+<i>GetSpriteInCircle</i>
+_listend
+
+_text
+These two commands allow you to perform collision checks between a sprite and an area. This is particularly useful for many situations e.g. checking whether a player has crossed a race line or finding out if a player is within a heal zone that restores health.
+
+_text
+In this example a sprite will move across the screen and be tested for entering an invisible box. When this event is triggered the sprite will have its color changed to green.
+
+_image
+11_zones.jpg
+
+_sheader
+Overview
+_text
+The process involved is as follows:
+_listbegin
+create a sprite and position it on screen
+_listend
+
+_text
+Within the main loop:
+
+_listbegin
+move the sprite towards the right
+check the sprite for entering an invisible collision box
+when the sprite enters this box turn its color to green
+_listend
+
+_sheader
+Creating a sprite
+_text
+An image is loaded, followed with a call to create a sprite and set its position:
+
+_tier1
+LoadImage ( 1, "peach.png" )
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 0, 0 )
+_tier1
+
+_tier2
+agk::LoadImage ( 1, "peach.png" );
+agk::CreateSprite ( 1, 1 );
+agk::SetSpritePosition ( 1, 0.0f, 0.0f );
+_tier2
+
+_sheader
+Main loop
+_text
+The first step within our main loop is to move the sprite over to the right of the screen. This is handled with a call to the command <i>SetSpriteX</i>:
+
+_tier1
+SetSpriteX ( 1, GetSpriteX ( 1 ) + 1 )
+_tier1
+
+_tier2
+agk::SetSpriteX ( 1, agk::GetSpriteX ( 1 ) + 1.0f );
+_tier2
+
+_text
+The next part deals with checking when the sprite enters an invisible box. The commnd <i>GetSpriteInBox</i> is called. This command has five parameters:
+
+_listbegin
+ID
+topLeftX
+topLeftY
+bottomRightX
+bottomRightY
+_listend
+
+_text
+It works by taking an ID number of the sprite you are checking, followed by several parameters that define the location of the collision box. With this line of code sprite 1 is checked (our crate) against a box that has its top left as 200, 0 and its bottom right as 300, 50:
+
+_tier1
+if GetSpriteInBox ( 1, 200, 0, 300, 50 )
+<br>
+endif
+_tier1
+
+_tier2
+if ( agk::GetSpriteInBox ( 1, 200, 0, 300, 50 ) )
+{
+<br>
+}
+_tier2
+
+_text
+As soon as our sprite enters this box our collision event will be triggered and the sprite can be turned green:
+
+_tier1
+SetSpriteColor ( 1, 0, 255, 0, 255 )
+_tier1
+
+_tier2
+agk::SetSpriteColor ( 1, 0, 255, 0, 255 );
+_tier2
+
+_text
+All that's left in the main loop is a call to <i>Sync</i> to ensure the screen is updated:
+
+_tier1
+Sync ( )
+_tier1
+
+_tier2
+agk::Sync ( );
+_tier2
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background6.jpg" ) )
+<br>
+LoadImage ( 1, "peach.png" )
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 0, 0 )
+<br>
+do
+    SetSpriteX ( 1, GetSpriteX ( 1 ) + 1 )
+<br>
+    if GetSpriteInBox ( 1, 200, 0, 300, 50 )
+        SetSpriteColor ( 1, 0, 255, 0, 255 )
+    endif
+<br>
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background6.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "peach.png" );
+    agk::CreateSprite ( 1, 1 );
+    agk::SetSpritePosition ( 1, 0.0f, 0.0f );
+}
+<br>
+void app::Loop ( void )
+{
+    if ( agk::GetSpriteInBox ( 1, 200, 0, 300, 50 ) )
+    {
+        agk::SetSpriteColor ( 1, 0, 255, 0, 255 );
+    }
+<br>
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+This example has demonstrated the use of the command <i>GetSpriteInBox</i>. This command along with <i>GetSpriteInCircle</i> is useful for a wide variety of scenarios. 

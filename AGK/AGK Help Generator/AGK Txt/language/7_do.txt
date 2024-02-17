@@ -1,0 +1,24 @@
+_header
+do
+
+_sheader
+Syntax
+
+_tier1
+do
+_tier1
+
+_sheader
+Description
+
+_text
+These commands will define a loop that will repeat indefinitely. You are able to break from the loop at any time by using the <i>exit</i> command. 
+
+_sheader
+Example
+
+_tier1
+do
+    print ( "in a loop" )
+loop
+_tier1

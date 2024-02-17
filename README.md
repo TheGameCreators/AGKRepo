@@ -1,5 +1,5 @@
 # AGK Repository
-New Home of AGK Source Code for 2024 and Beyond.
+New Home of AGK Source Code for 2024 and Beyond. THIS GITHUB REPO IS CURRENTLY IN CONSTRUCTION AND TESTING. FEEL FREE TO CHECK OUT THE CODE. WE WILL ANNOUNCE WHEN IT IS READY FOR CONTRIBUTIONS.
 
 ## Pre-requisites to compile AGK Studio
 Ensure the following are installed with particular attention to the versions:
@@ -31,5 +31,5 @@ You need to open in Android Studio and build these projects once before attempti
 - Add Environment Variable called USERNAMEFORAGK with your Username (maybe 'fred' as might appear in "C:\Users\fred\Documents\")
 - Open the AGKBuild project found here "\AGK\tools\AGKBuildSystem\Windows"
 - Stick with Debug x64 and select REBUILD on the project shown
-
+- When compile completes, you can run this to open a command line menu to handle the build processes
 

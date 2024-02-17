@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Collision walls - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Collision walls</div><div class="page"><h1>Collision walls</h1><h2>Description</h2><p>The wall commands within AppGameKit Studio provide a convenient mechanism for stopping physics entities from leaving the screen. This may not be suitable dependent on the kind of game being developed, for example, a scrolling game may not require any physics boundaries.</p><p>This example examines the wall commands and demonstrates how it's possible to control boundaries to the top, bottom, left and right of the screen. By default these boundaries are switched on, so in this example we'll turn the boundary off for the bottom of the screen and see how it affects our program.</p><div align="center"><img src="8_walls.jpg"/></div><h2>Overview</h2><p>The process involved is as follows:</p><ul><li>create a dynamic sprite and position it on screen</li><li>turn the physics boundary off for the bottom of the screen</li><li>apply an impulse to our sprite, pushing it to the right of the screen</li></ul><h2>Creating a dynamic sprite</h2><p>An image is loaded, followed by a call to create a sprite, which is then positioned and finally has physics turned on setting its state to be dynamic:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadImage ( 1, "gold.png" )
+<br>
+CreateSprite ( 1, 1 )
+<br>
+SetSpritePosition ( 1, 150, 50 )
+SetSpritePhysicsOn ( 1, 2 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadImage ( 1, &quot;gold.png&quot; )
+
+CreateSprite ( 1, 1 )
+
+SetSpritePosition ( 1, 150, 50 )
+SetSpritePhysicsOn ( 1, 2 )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::LoadImage ( 1, "gold.png" );
+<br>
+agk::CreateSprite ( 1, 1 );
+<br>
+agk::SetSpritePosition ( 1, 150.0f, 50.0f );
+agk::SetSpritePhysicsOn ( 1, 2 );
+</pre></div><h2>Turning a boundary off</h2><p>By default boundaries are provided for our scene, therefore at this particular point if we ran our program the result would be the crate falling to the bottom of the screen and hitting an invisible wall. To stop this behaviour and instead allow the crate to continue falling past the extents of the screen you can call the command <i>SetPhysicsWallBottom</i>. This command allows you to disable the invisible boundary at the bottom of the screen. It takes one parameter that controls whether the wall is on or off. A value of 0 switches the wall off, while a value of 1 switches it on. This line of code switches the bottom wall off:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetPhysicsWallBottom ( 0 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetPhysicsWallBottom ( 0 )
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetPhysicsWallBottom ( 0 );
+</pre></div><p>It's also possible to set the state of walls on other sides of the screen using these commands:</p><ul><li><i>SetPhysicsWallTop</i></li><li><i>SetPhysicsWallLeft</i></li><li><i>SetPhysicsWallRight</i></li></ul><p>Given that our bottom wall has been switched off, running our program at this point will result in our crate falling to the bottom of the scene and straight off the screen.</p><h2>Applying an impulse</h2><p>For the example only the bottom wall has been turned off leaving the top, left and right walls in place. As a test we'll apply an impulse to our crate and force it over to the right of the screen. As it moves towards the right it will hit the invisible wall on this part of the screen and rebound. The crate will then fall downwards and as we have disabled the wall at the bottom of the screen it will continue falling downwards and off the screen. To achieve this the command <i>SetSpritePhysicsImpulse</i> is called, with the impulse being applied at the position of the sprite and on the X axis:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetSpritePhysicsImpulse ( 1, 150, 50, 10000, 0 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetSpritePhysicsImpulse ( 1, 150, 50, 10000, 0 )
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetSpritePhysicsImpulse ( 1, 150.0f, 50.0f, 10000.0f, 0.0f );
+</pre></div><h2>Main loop</h2><p>The main loop in this example does not take any action. All it needs to do is make a call to the command <i>Sync</i> to ensure the screen is updated.</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+   Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+   Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+</pre></div><h2>Full code listing</h2><p>Everything is now in place. Here's the final code for our program:</p><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background2.jpg" ) )
+<br>
+LoadImage ( 1, "gold.png" )
+<br>
+CreateSprite ( 1, 1 )
+<br>
+SetSpritePosition ( 1, 150, 50 )
+SetSpritePhysicsOn ( 1, 2 )
+<br>
+SetPhysicsWallBottom ( 0 )
+<br>
+SetSpritePhysicsImpulse ( 1, 150, 50, 10000, 0 )
+<br>
+do
+   Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+CreateSprite ( LoadImage ( &quot;background2.jpg&quot; ) )
+
+LoadImage ( 1, &quot;gold.png&quot; )
+
+CreateSprite ( 1, 1 )
+
+SetSpritePosition ( 1, 150, 50 )
+SetSpritePhysicsOn ( 1, 2 )
+
+SetPhysicsWallBottom ( 0 )
+
+SetSpritePhysicsImpulse ( 1, 150, 50, 10000, 0 )
+
+do
+   Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock10" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::CreateSprite ( agk::LoadImage ( "background2.jpg" ) )
+<br>
+    agk::LoadImage ( 1, "gold.png" );
+<br>
+    agk::CreateSprite ( 1, 1 );
+<br>
+    agk::SetSpritePosition ( 1, 150.0f, 50.0f );
+    agk::SetSpritePhysicsOn ( 1, 2 );
+<br>
+    agk::SetPhysicsWallBottom ( 0 );
+<br>
+    agk::SetSpritePhysicsImpulse ( 1, 150.0f, 50.0f, 10000.0f, 0.0f );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>This example has helped us to understand the impact of switching the invisible physics walls off. Understanding how these boundaries work is important, as they may play a crucial part in your game.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

@@ -1,0 +1,76 @@
+_header
+Looping and Syncing
+
+_text
+In order to create programs that can be operated by an end user, you need to be able to sustain a program loop and to display the contents of your program to the screen. Fail to do this and you will find your programs quit instantly, or appear to freeze with a black screen. This is because the program runs through your commands and reaches the end so quits, or sustains a loop but is never instructed to draw the program out to the screen.
+
+_sheader
+The Loop
+
+_text
+The simplest form of loop is the DO LOOP, which creates an infinite loop, and looks something like this:
+
+_tier1
+DO
+LOOP
+_tier1
+
+_text
+This will create a viable loop, but of course has nothing to display. So we insert something to display:
+
+_tier1
+DO
+ PRINT ( "hello world" )
+LOOP
+_tier1
+
+_text
+When you run this code, you will still have a viable loop and the program has something to do, but the screen still remains black. In order to see anything, you need to issue the SYNC command which instructs the device to render the program to the screen.
+
+_tier1
+DO
+ PRINT ( "hello world" )
+ SYNC()
+LOOP
+_tier1
+
+_text
+Presto, you now have all the commands required to sustain a loop and draw the program output to the screen. By remembering to use loops and syncs in your programs, your programs will run and draw normally.
+
+_text
+There are other types of loop available too, such as the WHILE ENDWHILE loop which allows you to use a condition to decide whether the loop should continue, such as:
+
+_tier1
+A=1
+WHILE A<30
+ INC A
+ PRINT ( A )
+ SYNC()
+ SLEEP(50)
+ENDWHILE
+_tier1
+
+_text
+The above program will enter the while loop and the code within will increment the variable A. When the value stored in variable A reaches 30, it will make the condition associated with the while loop false (as 30 is not less than 30), and the program will skip the code in the while loop and jump to the ENDWHILE and continue the program from that point.
+
+_text
+You can also use a REPEAT UNTIL loop which places the condition at the end of the loop instead of the beginning. This is useful if you do not know the value required for the condition until the loop code has been executed. Take this example:
+
+_tier1
+REPEAT
+ PRINT ( "click/touch to exit" )
+ SYNC()
+UNTIL GETPOINTERPRESSED()=1
+_tier1
+
+_text
+Whether you are using DO, WHILE, FOR or REPEAT loops, you can exit them at any time by using the EXIT command. This command will immediately end code execution within the loop and skip instantly to the end of the loop and resume the program from there. A modified version of the above code might look like this:
+
+_tier1
+DO
+ PRINT ( "click/touch to exit" )
+ SYNC()
+ IF GETPOINTERPRESSED()=1 THEN EXIT
+LOOP
+PRINT ( "This line will run after the EXIT command" )
+_tier1

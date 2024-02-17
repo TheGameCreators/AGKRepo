@@ -1,0 +1,475 @@
+_header
+Moving a player
+
+_text
+This example takes advantage of several features within AppGameKit Studio to demonstrate how to move a player in a game, it contains the following:
+
+_listbegin
+a football pitch
+a player that can switch between standing and running animation frames
+a virtual joystick that is used to move the player around
+scrolling based on the movement of the player
+_listend
+
+_text
+Here's what the program looks like when running:
+
+_image
+3_moving.jpg
+
+_sheader
+Set up
+
+_text
+The initial set up code will deal with these tasks:
+
+_listbegin
+set a display aspect
+load and create the pitch
+load and create the player
+add a virtual joystick
+_listend
+
+_sheader
+Display aspect
+
+_text
+When using the default percentage based system it will be necessary to select a display aspect, which is responsible for controlling the ratio of the screen. An aspect of 4 / 3 is chosen, which is effectively the same as the iPad resolution of 1024 x 768. You can test this by checking the results of 4 / 3 and 1024 / 768 (both of these give a result of 1.333). Setting the display aspect to 4 / 3 will mean that our example will cover the whole screen on the iPad, as it has the same aspect ratio. Other platforms may have different aspect ratios, for example, the landscape iPhone resolution is 480 x 320 and when divided this gives us a result of 1.5, therefore when running this example on the iPhone there would be small black borders on screen to ensure the aspect ratio of 4 / 3 is enforced.
+
+_tier1
+SetDisplayAspect ( 4.0 / 3.0 )
+_tier1
+
+_tier2
+agk::SetDisplayAspect ( 4.0f / 3.0f );
+_tier2
+
+_sheader
+Creating the pitch
+
+_text
+The pitch graphics are split into two with pitch_top.jpg containing the top half of the pitch:
+
+_image
+pitch_top.jpg
+
+_text
+<br>And pitch_bottom.jpg contains the bottom half of the pitch:
+
+_image
+pitch_bottom.jpg
+
+_text
+<br>The top half of the pitch is loaded and has its ID specified as 1. This sprite needs to cover the whole of the screen on the X axis so <i>SetSpriteSize</i> has 100% passed in for the X parameter. A value of -1 is used on the Y axis so that the correct height is automatically calculated based on the width.
+
+_tier1
+LoadImage     ( 1, "pitch_top.jpg" )
+CreateSprite  ( 1, 1 )
+SetSpriteSize ( 1, 100, -1 )
+_tier1
+
+_tier2
+agk::LoadImage     ( 1, "pitch_top.jpg" );
+agk::CreateSprite  ( 1, 1 );
+agk::SetSpriteSize ( 1, 100, -1 );	
+_tier2
+
+_text
+A similar process is repeated for the bottom half of the pitch, except this time ID 2 is used for the pitch image and the sprite. The Y position is calculated based on the height of the top half of the pitch, which will result in the bottom half being placed directly under the top half.
+
+_tier1
+LoadImage     ( 2, "pitch_bottom.jpg" )
+CreateSprite  ( 2, 2 )
+SetSpriteSize ( 2, 100, -1 )
+SetSpriteY    ( 2, GetSpriteHeight ( 1 ) )
+_tier1
+
+_tier2
+agk::LoadImage     ( 2, "pitch_bottom.jpg" );
+agk::CreateSprite  ( 2, 2 );
+agk::SetSpriteSize ( 2, 100, -1 );	
+agk::SetSpriteY    ( 2, agk::GetSpriteHeight ( 1 ) );
+_tier2
+
+_sheader
+The player
+
+_text
+The player sprite will utilise several images. The default standing image is named blue-standing.png and is shown here:
+
+_image
+blue-standing.png
+
+_text
+<br>To create the player sprite the following code is used:
+
+_tier1
+LoadImage         ( 3, "blue-standing.png" )
+CreateSprite      ( 3, 3 )
+SetSpriteSize     ( 3, 2.5, -1 )
+SetSpritePosition ( 3, 50, 50 )
+_tier1
+
+_tier2
+agk::LoadImage         ( 3, "blue-standing.png" );
+agk::CreateSprite      ( 3, 3 );
+agk::SetSpriteSize     ( 3, 2.5, -1 );	
+agk::SetSpritePosition ( 3, 50, 50 );
+_tier2
+
+_text
+The standing image is loaded into ID 3, then the sprite is created using an ID of 3, and its size set to 2.5% of the screen on the X axis with the size on Y axis being calculated automatically, finally the position is set to 50% on the X axis and 50% on the Y axis, which will place our player at the center of the screen.
+
+_text
+Several animation frames are available that can be used when the player starts running across the pitch:
+
+_image
+blue-running-1.png
+_image
+blue-running-2.png
+_image
+blue-running-3.png
+_image
+blue-running-4.png
+_image
+blue-running-5.png
+_image
+blue-running-6.png
+
+_text
+<br>These frames of animation are added by calling <i>AddSpriteAnimationFrame</i>:
+
+_tier1
+AddSpriteAnimationFrame ( 3, LoadImage ( "blue-running-1.png" ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( "blue-running-2.png" ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( "blue-running-3.png" ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( "blue-running-4.png" ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( "blue-running-5.png" ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( "blue-running-6.png" ) )
+_tier1
+
+_tier2
+agk::AddSpriteAnimationFrame ( 3, agk::LoadImage ( "blue-running-1.png" ) );
+agk::AddSpriteAnimationFrame ( 3, agk::LoadImage ( "blue-running-2.png" ) );
+agk::AddSpriteAnimationFrame ( 3, agk::LoadImage ( "blue-running-3.png" ) );
+agk::AddSpriteAnimationFrame ( 3, agk::LoadImage ( "blue-running-4.png" ) );
+agk::AddSpriteAnimationFrame ( 3, agk::LoadImage ( "blue-running-5.png" ) );
+agk::AddSpriteAnimationFrame ( 3, agk::LoadImage ( "blue-running-6.png" ) );
+_tier2
+
+_sheader
+Adding a virtual joystick
+
+_text
+The player will be controlled by a virtual joystick, that will be placed on screen using the command <i>AddVirtualJoystick</i>:
+
+_tier1
+AddVirtualJoystick ( 1, 8, 90, 10 )
+_tier1
+
+_tier2
+agk::AddVirtualJoystick ( 1, 8, 90, 10 );
+_tier2
+
+_text
+An ID of 1 is specified for the virtual joystick, it is positioned at 8% on the X axis and 90% on the Y axis, finally it is set to have dimensions of 10% by 10%.
+
+_sheader
+Main loop
+
+_text
+At this point all of our graphics are in place - the football pitch and the player with animations, there is also a virtual joystick that will be displayed on screen. The next step is to consider what needs to happen within our main loop:
+
+_listbegin
+we need to respond to input from the virtual joystick and move and animate our player
+the view must also be scrolled as the player runs up and down the screen.
+_listend
+
+_text
+To retrieve input from the virtual joystick the commands <i>GetVirtualJoystickX</i> and <i>GetVirtualJoystickY</i> are called. These commands return a value between -1 and 1 that indicate any movement that has been applied to the joystick. Once we know this input the player's rotation, position and animation can be updated. Here's the process:
+
+_listbegin
+obtain input from the virtual joystick
+find the position of our player
+subtract joystick input from our player's position to work out the direction of movement
+calculate the angle which the player should be facing
+update the position of the player based on the input
+scroll the screen based on the input
+when there is no joystick input show the standing animation frame
+when there is joystick input play the running animation
+_listend
+
+_sheader
+Obtaining input from the joystick
+
+_text
+The commands <i>GetVirtualJoystickX</i> and <i>GetVirtualJoystickY</i> return any input from the virtual joystick:
+
+_tier1
+joystickX# = GetVirtualJoystickX ( 1 )
+joystickY# = GetVirtualJoystickY ( 1 )
+_tier1
+
+_tier2
+float joystickX = agk::GetVirtualJoystickX ( 1 );
+float joystickY = agk::GetVirtualJoystickY ( 1 );
+_tier2
+
+_sheader
+Finding the position of our player
+
+_text
+The position of our player is obtained as follows:
+
+_tier1
+x# = GetSpriteX ( 3 )
+y# = GetSpriteY ( 3 )
+_tier1
+
+_tier2
+float x = agk::GetSpriteX ( 3 );
+float y = agk::GetSpriteY ( 3 );
+_tier2
+
+_sheader
+Direction
+
+_text
+Input from the joystick is subtracted from the player's position and stored:
+
+_tier1
+x1# = x# - joystickX#
+y1# = y# - joystickY#
+_tier1
+
+_tier2
+float x1 = x - joystickX;
+float y1 = y - joystickY;
+_tier2
+
+_sheader
+Calculating the angle
+
+_text
+At this point enough information is known so that the player's rotation can be updated, so that he is facing the correct direction. To achieve this a rotation angle is calculated based on the original location of the player and the direction it is moving in:
+
+_tier1
+angle# = ATanFull ( x1# - x#, y1# - y# )
+<br>	
+SetSpriteAngle ( 3, angle# )
+_tier1
+
+_tier2
+float angle = agk::ATanFull ( x1 - x, y1 - y );
+<br>	
+agk::SetSpriteAngle ( 3, angle );
+_tier2
+
+_text
+The command <i>ATanFull</i> returns the angle in degrees for the direction passed in. This is followed with a call to update the angle of the player sprite.
+
+_sheader
+Updating the player's position
+
+_text
+The next step is to update the position of our player by adding to its original position input data from the joystick:
+
+_tier1
+SetSpritePosition ( 3, GetSpriteX ( 3 ) + ( joystickX / 5.0 ), GetSpriteY ( 3 ) + ( joystickY / 5.0 ) )
+_tier1
+
+_tier2
+agk::SetSpritePosition ( 3, agk::GetSpriteX ( 3 ) + ( joystickX / 5.0f ), agk::GetSpriteY ( 3 ) + ( joystickY / 5.0f ) );
+_tier2
+
+_text
+The joystick input is divided by 5 before being applied to the player's position. This is done as a way of dampening the input and ensuring the player doesn't move around too fast. If no division occurred the player would race around the screen incredibly fast and if the division was higher e.g. 10 then the player would be very slow.
+
+_sheader
+Scrolling the screen
+
+_text
+The screen is scrolled by taking the position of the player and subtracting 50%, therefore the view will always be centered on the player. There is no scrolling required on the X axis as we only need to control movement on the Y axis. There is also no check so the player can run off the pitch:
+
+_tier1
+SetViewOffset ( 0.0, y# - 50 )
+_tier1
+
+_tier2
+agk::SetViewOffset ( 0.0f, y - 50 );
+_tier2
+
+_sheader
+Animation
+
+_text
+The only task remaining is to deal with animation. When there is no input from the virtual joystick any animation is stopped and the player's image is set to the standing image (ID 3). Whenever input is received if the run animation is not already playing then it is triggered:
+
+_tier1
+if ( joystickX# = 0.0 and joystickY# = 0.0 )
+    StopSprite ( 3 )
+    SetSpriteFrame ( 3, 3 )
+else
+    if ( GetSpritePlaying ( 3 ) = 0 )
+        PlaySprite ( 3, 10, 1, 2, 7 )
+    endif
+endif
+_tier1
+
+_tier2
+if ( joystickX == 0.0f && joystickY == 0.0f )
+{
+    agk::StopSprite ( 3 );
+    agk::SetSpriteFrame ( 3, 3 );
+}
+else
+{
+    if ( agk::GetSpritePlaying ( 3 ) == 0 )
+        agk::PlaySprite ( 3, 10, 1, 2, 7 );
+}
+_tier2
+
+_sheader
+Full code listing
+_text
+Everything is now in place to run our program. All that's needed now is to lay out the final code and ensure <i>Sync</i> is called:
+
+_tier1
+SetDisplayAspect ( 4.0 / 3.0 )
+<br>
+LoadImage     ( 1, "pitch_top.jpg" )
+CreateSprite  ( 1, 1 )
+SetSpriteSize ( 1, 100, -1 )
+<br>
+LoadImage     ( 2, "pitch_bottom.jpg" )
+CreateSprite  ( 2, 2 )
+SetSpriteSize ( 2, 100, -1 )
+SetSpriteY    ( 2, GetSpriteHeight ( 1 ) )
+<br>
+LoadImage         ( 3, "blue-standing.png" )
+CreateSprite      ( 3, 3 )
+SetSpriteSize     ( 3, 2.5, -1 )
+SetSpritePosition ( 3, 50, 50 )
+<br>
+AddSpriteAnimationFrame ( 3, LoadImage ( "blue-running-1.png" ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( "blue-running-2.png" ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( "blue-running-3.png" ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( "blue-running-4.png" ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( "blue-running-5.png" ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( "blue-running-6.png" ) )
+<br>
+AddVirtualJoystick ( 1, 8, 90, 10 )
+<br>
+do
+    joystickX# = GetVirtualJoystickX ( 1 )
+    joystickY# = GetVirtualJoystickY ( 1 )
+<br>
+    x# = GetSpriteX ( 3 )
+    y# = GetSpriteY ( 3 )
+<br>
+    x1# = x# - joystickX#
+    y1# = y# - joystickY#
+<br>
+    angle# = ATanFull ( x1# - x#, y1# - y# )
+    SetSpriteAngle ( 3, angle# )
+<br>
+    SetSpritePosition ( 3, GetSpriteX ( 3 ) + ( joystickX# / 5.0 ), GetSpriteY ( 3 ) + ( joystickY# / 5.0 ) )
+<br>
+    SetViewOffset ( 0.0, y# - 50 )
+<br>
+    if ( joystickX# = 0.0 and joystickY# = 0.0 )
+        StopSprite ( 3 )
+        SetSpriteFrame ( 3, 3 )
+    else
+        if ( GetSpritePlaying ( 3 ) = 0 )
+            PlaySprite ( 3, 10, 1, 2, 7 )
+        endif
+    endif
+<br>
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+agk::SetDisplayAspect ( 4.0 / 3.0 );
+<br>
+agk::LoadImage     ( 1, "pitch_top.jpg" );
+agk::CreateSprite  ( 1, 1 );
+agk::SetSpriteSize ( 1, 100, -1 );
+<br>
+agk::LoadImage     ( 2, "pitch_bottom.jpg" );
+agk::CreateSprite  ( 2, 2 );
+agk::SetSpriteSize ( 2, 100, -1 );
+agk::SetSpriteY    ( 2, agk::GetSpriteHeight ( 1 ) );
+<br>
+agk::LoadImage         ( 3, "blue-standing.png" );
+agk::CreateSprite      ( 3, 3 );
+agk::SetSpriteSize     ( 3, 2.5, -1 );
+agk::SetSpritePosition ( 3, 50, 50 );
+<br>
+agk::AddSpriteAnimationFrame ( 3, agk::LoadImage ( "blue-running-1.png" ) );
+agk::AddSpriteAnimationFrame ( 3, agk::LoadImage ( "blue-running-2.png" ) );
+agk::AddSpriteAnimationFrame ( 3, agk::LoadImage ( "blue-running-3.png" ) );
+agk::AddSpriteAnimationFrame ( 3, agk::LoadImage ( "blue-running-4.png" ) );
+agk::AddSpriteAnimationFrame ( 3, agk::LoadImage ( "blue-running-5.png" ) );
+agk::AddSpriteAnimationFrame ( 3, agk::LoadImage ( "blue-running-6.png" ) );
+<br>
+agk::AddVirtualJoystick ( 1, 8, 90, 10 );
+}
+<br>
+void app::Loop ( void )
+{
+    float joystickX = agk::GetVirtualJoystickX ( 1 );
+    float joystickY = agk::GetVirtualJoystickY ( 1 );
+<br>
+    float x = agk::GetSpriteX ( 3 );
+    float y = agk::GetSpriteY ( 3 );
+<br>
+    float x1 = x - joystickX;
+    float y1 = y - joystickY;
+<br>
+    float angle = agk::ATanFull ( x1 - x, y1 - y );
+    agk::SetSpriteAngle ( 3, angle );
+<br>
+    agk::SetSpritePosition ( 3, agk::GetSpriteX ( 3 ) + ( joystickX / 5.0 ), agk::GetSpriteY ( 3 ) + ( joystickY / 5.0 ) );
+<br>
+    agk::SetViewOffset ( 0.0, y - 50 );
+<br>
+    if ( joystickX == 0.0 && joystickY == 0.0 )
+    {
+        agk::StopSprite ( 3 );
+        agk::SetSpriteFrame ( 3, 3 );
+    }
+    else
+    {    
+        if ( agk::GetSpritePlaying ( 3 ) == 0 )
+            agk::PlaySprite ( 3, 10, 1, 2, 7 );
+    }
+<br>
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+The input systems provided within AppGameKit Studio can be used to handle most forms of input and allow you to concentrate on writing your game. As seen from this example only a few lines of code are needed to get a virtual joystick on screen and move a player around the game.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

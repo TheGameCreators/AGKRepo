@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Collision between two sprites - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Collision between two sprites</div><div class="page"><h1>Collision between two sprites</h1><h2>Description</h2><p>This example creates two sprites, places them on screen and moves one sprite towards the other. When they collide both sprites change colour.</p><div align="center"><img src="5_collision.jpg"/></div><h2>Overview</h2><p>The process involved is as follows:</p><ul><li>load images and create sprites</li><li>assign collision shapes</li></ul><p>Within our main loop:</p><ul><li>move one sprite across the screen</li><li>find out whether a collision takes place - when this happens turn the colour of both sprites to green</li></ul><h2>Load images and create sprites</h2><p>Two images are going to be loaded and attached to two sprites which will then be positioned on screen:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">imageA = LoadImage ( "blue.png" )
+imageB = LoadImage ( "purple.png" )
+<br>
+spriteA = CreateSprite ( imageA )
+spriteB = CreateSprite ( imageB )
+<br>
+SetSpritePosition ( spriteA, 0, 200 )
+SetSpritePosition ( spriteB, 200, 200 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="imageA = LoadImage ( &quot;blue.png&quot; )
+imageB = LoadImage ( &quot;purple.png&quot; )
+
+spriteA = CreateSprite ( imageA )
+spriteB = CreateSprite ( imageB )
+
+SetSpritePosition ( spriteA, 0, 200 )
+SetSpritePosition ( spriteB, 200, 200 )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">imageA = agk::LoadImage ( "blue.png" );
+imageB = agk::LoadImage ( "purple.png" );
+<br>
+spriteA = agk::CreateSprite ( imageA );
+spriteB = agk::CreateSprite ( imageB );
+<br>
+agk::SetSpritePosition ( spriteA, 0.0f, 200.0f );
+agk::SetSpritePosition ( spriteB, 200.0f, 200.0f );
+</pre></div><p>Here’s a breakdown of the code:</p><ul><li>The image “blue.png” is loaded and its ID number stored in “imageA”.</li><li>The image “purple.png” is loaded and its ID number stored in “imageB”.</li><li>A sprite is created that uses “imageA” and its ID number is stored in “spriteA”.</li><li>A sprite is created that uses “imageB” and its ID number is stored in “spriteB”.</li><li>“spriteA” is positioned at 0, 200</li><li>“spriteB” is positioned at 200, 200</li></ul><h2>Assign collision shapes</h2><p>Prior to performing collision between sprites it is necessary to specify how those sprites are to be represented by the collision system. The options available are boxes, circles and polygons. Which is the best shape or most appropriate fit is dependent on the sprite. In many cases having your sprites represented by bounding boxes or circles might be perfectly acceptable. In cases where much finer collision detection is required then having your sprite represented by a polygon shape may be more suitable, at the expense of speed.</p><p>Setting the collision shape of a sprite is handled by the command <i>SetSpriteShape</i>. This command takes two parameters with the first being the ID number of the sprite and the second the shape type. Possible values for this are:</p><ul><li>0 - no shape</li><li>1 - circle</li><li>2 - box</li><li>3 - polygon</li></ul><p>Given that our sprites are boxes it makes sense to select the box shape so our code is:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetSpriteShape ( spriteA, 2 )
+SetSpriteShape ( spriteB, 2 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetSpriteShape ( spriteA, 2 )
+SetSpriteShape ( spriteB, 2 )
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetSpriteShape ( spriteA, 2 );
+agk::SetSpriteShape ( spriteB, 2 );
+</pre></div><p>If we used circles then the collision will still work, but perhaps not be entirely accurate. In another example we’ll look at this in more detail and understand the relationship between a sprite and its collision shape.</p><h2>Moving a sprite</h2><p>Within our main loop we’re going to move “spriteA” across the screen towards the right. At some point it’s going to collide with “spriteB”. Once it does then we can change the colour of both sprites to get a visual clue that the collision has been registered within our code.</p><p>To move “spriteA” towards the right of the screen we call <i>SetSpritePosition</i>:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetSpritePosition ( spriteA, GetSpriteX ( spriteA ) + 1, 200 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetSpritePosition ( spriteA, GetSpriteX ( spriteA ) + 1, 200 )
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetSpritePosition ( spriteA, agk::GetSpriteX ( spriteA ) + 1.0f, 200.0f );
+</pre></div><p>The first parameter is the ID number of our sprite (that was initially placed at 0, 200). The second parameter is the X coordinate. In this instance we retrieve the current X position of our sprite and then add 1 to it, thereby moving it over to the right. As we’re not altering the final parameter (the Y position) we simply pass in 200 so it remains at 200 on the Y axis.</p><h2>Checking for a collision</h2><p>To find out whether two sprites have collided requires a call to <i>GetSpriteCollision</i>. This command takes two parameters - the ID numbers of the two sprites you are checking. It then returns a value of 1 if a collision has occurred and value of 0 if no collision has taken place.</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">if GetSpriteCollision ( spriteA, spriteB ) = 1
+<br>
+endif
+</pre></div><div align="right"><button class="btn" data-clipboard-text="if GetSpriteCollision ( spriteA, spriteB ) = 1
+
+endif
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">if ( agk::GetspriteCollision ( spriteA, spriteB ) == true )
+{
+<br>
+}
+</pre></div><h2>Registering a collision</h2><p>The final part of our code is to provide a visual notification that the collision has taken place. A simple way of doing this is to turn the colour of both sprites to green. This is achieved by calling the command <i>SetSpriteColor</i>. This command takes four parameters:</p><ul><li>ID number of the sprite</li><li>red component going from 0 - 255</li><li>green component going from 0 - 255</li><li>blue component going from 0 - 255</li><li>alpha component going from 0 - 255</li></ul><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">if GetSpriteCollision ( spriteA, spriteB ) = 1
+    SetSpriteColor ( spriteA, 0, 255, 0, 255 )
+    SetSpriteColor ( spriteB, 0, 255, 0, 255 )
+endif
+</pre></div><div align="right"><button class="btn" data-clipboard-text="if GetSpriteCollision ( spriteA, spriteB ) = 1
+    SetSpriteColor ( spriteA, 0, 255, 0, 255 )
+    SetSpriteColor ( spriteB, 0, 255, 0, 255 )
+endif
+">Copy Code</button></div><div id="cppCodeBlock10" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">if ( agk::GetspriteCollision ( spriteA, spriteB ) == true )
+{
+    agk::SetSpriteColor ( spriteA, 0, 255, 0, 255 );
+    agk::SetSpriteColor ( spriteB, 0, 255, 0, 255 );
+}
+</pre></div><p>The code above sets the red channel to 0, full on green with a value of 255, blue set to 0 and alpha set to 255.</p><h2>Main loop</h2><p>The final main loop is as follows:</p><div id="basicCodeBlock11" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+    SetSpritePosition ( spriteA, GetSpriteX ( spriteA ) + 1, 200 )
+<br>
+    if GetSpriteCollision ( spriteA, spriteB ) = 1
+        SetSpriteColor ( spriteA, 0, 255, 0, 255 )
+        SetSpriteColor ( spriteB, 0, 255, 0, 255 )
+    endif
+<br>
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+    SetSpritePosition ( spriteA, GetSpriteX ( spriteA ) + 1, 200 )
+
+    if GetSpriteCollision ( spriteA, spriteB ) = 1
+        SetSpriteColor ( spriteA, 0, 255, 0, 255 )
+        SetSpriteColor ( spriteB, 0, 255, 0, 255 )
+    endif
+
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock12" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Loop ( void )
+{
+    agk::SetSpritePosition ( spriteA, agk::GetSpriteX ( spriteA ) + 1.0f, 200.0f );
+<br> 
+    if ( agk::GetspriteCollision ( spriteA, spriteB ) == true )
+    {
+        agk::SetSpriteColor ( spriteA, 0, 255, 0, 255 );
+        agk::SetSpriteColor ( spriteB, 0, 255, 0, 255 );
+    }
+<br>
+    agk::Sync ( );
+}
+</pre></div><h2>Full code listing</h2><p>Everything is now in place. Here's the final code for our program:</p><div id="basicCodeBlock13" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background2.jpg" ) )
+<br>
+imageA = LoadImage ( "blue.png" )
+imageB = LoadImage ( "purple.png" )
+<br>
+spriteA = CreateSprite ( imageA )
+spriteB = CreateSprite ( imageB )
+<br>
+SetSpritePosition ( spriteA, 0, 200 )
+SetSpritePosition ( spriteB, 200, 200 )
+<br>
+SetSpriteShape ( spriteA, 2 )
+SetSpriteShape ( spriteB, 2 )
+<br>
+do
+    SetSpritePosition ( spriteA, GetSpriteX ( spriteA ) + 1, 200 )
+<br>
+    if GetSpriteCollision ( spriteA, spriteB ) = 1
+        SetSpriteColor ( spriteA, 0, 255, 0, 255 )
+        SetSpriteColor ( spriteB, 0, 255, 0, 255 )
+    endif
+<br>
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+CreateSprite ( LoadImage ( &quot;background2.jpg&quot; ) )
+
+imageA = LoadImage ( &quot;blue.png&quot; )
+imageB = LoadImage ( &quot;purple.png&quot; )
+
+spriteA = CreateSprite ( imageA )
+spriteB = CreateSprite ( imageB )
+
+SetSpritePosition ( spriteA, 0, 200 )
+SetSpritePosition ( spriteB, 200, 200 )
+
+SetSpriteShape ( spriteA, 2 )
+SetSpriteShape ( spriteB, 2 )
+
+do
+    SetSpritePosition ( spriteA, GetSpriteX ( spriteA ) + 1, 200 )
+
+    if GetSpriteCollision ( spriteA, spriteB ) = 1
+        SetSpriteColor ( spriteA, 0, 255, 0, 255 )
+        SetSpriteColor ( spriteB, 0, 255, 0, 255 )
+    endif
+
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock14" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<Br>
+    agk::CreateSprite ( agk::LoadImage ( "background2.jpg" ) );
+<br>
+    imageA = agk::LoadImage ( "blue.png" );
+    imageB = agk::LoadImage ( "purple.png" );
+<br>
+    spriteA = agk::CreateSprite ( imageA );
+    spriteB = agk::CreateSprite ( imageB );
+<br>
+    agk::SetSpritePosition ( spriteA, 0.0f, 200.0f );
+    agk::SetSpritePosition ( spriteB, 200.0f, 200.0f );
+<br>
+    agk::SetSpriteShape ( spriteA, 2 );
+    agk::SetSpriteShape ( spriteB, 2 );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::SetSpritePosition ( spriteA, agk::GetSpriteX ( spriteA ) + 1.0f, 200.0f );
+<br> 
+    if ( agk::GetspriteCollision ( spriteA, spriteB ) == true )
+    {
+        agk::SetSpriteColor ( spriteA, 0, 255, 0, 255 );
+        agk::SetSpriteColor ( spriteB, 0, 255, 0, 255 );
+    }
+<br>
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>This concludes the example of checking for collision between sprites. It’s a very simple process and by utilising these command it’s possible to let AppGameKit Studio take care of all collision problems.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

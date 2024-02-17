@@ -1,0 +1,31 @@
+
+_header
+Understanding Variables
+
+_sheader
+Beginner Level Tutorial
+
+_sheader
+What you will learn
+
+_text
+This guide provides an overview of what variables are and how they are used.
+
+
+_listbegin
+<a href="variables_001.htm">What is a variable?</a>
+<a href="variables_002.htm">Variable data types</a>
+<a href="variables_003.htm">Integers</a>
+<a href="variables_004.htm">Floats</a>
+<a href="variables_005.htm">Strings</a>
+<a href="variables_006.htm">Declaring variables</a>
+<a href="variables_007.htm">Variables in action</a>
+<a href="variables_008.htm">Alternative variable declarations</a>
+<a href="variables_009.htm">Variable names</a>
+<a href="variables_010.htm">Conclusion</a>
+_listend
+
+_navigation
+variables_001.htm
+
+

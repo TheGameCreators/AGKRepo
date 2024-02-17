@@ -1,0 +1,34 @@
+_header
+for
+
+_sheader
+Syntax
+
+_tier1
+for variable = startValue to endValue step stepValue
+_tier1
+
+_sheader
+Description
+
+_text
+This command will define a program loop that will loop a finite number of times.
+
+_text
+The <i>for</i> command requires a variable and two values to begin the loop. The variable stores the start value, and is incremented each loop until it reaches the end value. The size of the increment is determined by the <i>step</i> value. The <i>next</i> command is placed to mark the end of the loop. As the variable increments during the loop, you can use its value in many ways. Optionally, you can count in descending order by specifying a high first number, a low second number and a negative step value. The <i>exit</i> command can be used to exit a <i>for</i> loop.
+
+
+_sheader
+Example
+
+_tier1
+rem example 1
+for t = 1 to 10
+    print ( t )
+next t
+<br>
+rem example 2
+for t = 1 to 10 step 2
+    print ( t )
+next t
+_tier1

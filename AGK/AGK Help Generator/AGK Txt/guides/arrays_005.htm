@@ -1,0 +1,229 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Inserting and removing items into an array - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Inserting and removing items into an array</div><div class="page"><h1>Inserting and removing items into an array</h1><p>Elements can be inserted and removed from arrays which will increase or decrease their size accordingly. Take a look at this example.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">speed as integer [ ]
+<br>
+speed.insert ( 0 )
+speed.insert ( 10 )
+speed.insert ( 20 )
+<br>
+do
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="speed as integer [ ]
+
+speed.insert ( 0 )
+speed.insert ( 10 )
+speed.insert ( 20 )
+
+do
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+
+	sync ( )
+loop
+">Copy Code</button></div><p>When the <i>speed</i> array is declared no value has been provided, meaning this array has no size to begin with. It is considered to have 0 elements.</p><p>The <i>insert</i> command is used to insert new values onto the end of the array. Therefore the next three lines add three elements 0, 10 and 20 to the array. This command uses 0 as the default index, so the first value we add into the array is at index 0, the second value is at index 1 and so on. Therefore when we come to the <i>for</i> loop that prints out the contents of the array we see the values 10 and 20 on screen. If the first insert passing in 0 was not used we would just see 20 displayed on screen.</p><p>An alternative way of writing this program would be to treat index 0 as the beginning point in our <i>for</i> loop.</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">speed as integer [ ]
+<br>
+speed.insert ( 10 )
+speed.insert ( 20 )
+<br>
+do
+	print ( speed.length )
+	<br>
+	for i = 0 to speed.length
+		print ( speed [ i ] )
+	next i
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="speed as integer [ ]
+
+speed.insert ( 10 )
+speed.insert ( 20 )
+
+do
+	print ( speed.length )
+
+	for i = 0 to speed.length
+		print ( speed [ i ] )
+	next i
+
+	sync ( )
+loop
+">Copy Code</button></div><p>Whether you consider 0 or 1 to be the start point doesn't really matter so much, although it's helpful for consistency if you choose one or the other.</p><p>If the <i>insert</i> command was used on an array that already had data, then the data will be added onto the end of the array, as shown in this program.</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">speed as integer [ 5 ]
+<br>
+speed [ 1 ] = 100
+speed [ 2 ] = 200
+speed [ 3 ] = 300
+speed [ 4 ] = 400
+speed [ 5 ] = 500
+<br>
+speed.insert ( 10 )
+speed.insert ( 20 )
+<br>
+do
+	print ( speed.length )
+	<br>
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="speed as integer [ 5 ]
+
+speed [ 1 ] = 100
+speed [ 2 ] = 200
+speed [ 3 ] = 300
+speed [ 4 ] = 400
+speed [ 5 ] = 500
+
+speed.insert ( 10 )
+speed.insert ( 20 )
+
+do
+	print ( speed.length )
+
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+
+	sync ( )
+loop
+">Copy Code</button></div><p>When you run this program a value of 7 would be displayed to represent the size of the array along with the values 100, 200, 300, 400, 500, 10 and 20.</p><p>Given that it's possible to assign default values to arrays then the same program could be rewritten like this.</p><div id="basicCodeBlock4" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">speed as integer [ 5 ] = [ 0, 100, 200, 300, 400, 500 ]
+<br>
+speed.insert ( 10 )
+speed.insert ( 20 )
+<br>
+do
+	print ( speed.length )
+	<br>
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="speed as integer [ 5 ] = [ 0, 100, 200, 300, 400, 500 ]
+
+speed.insert ( 10 )
+speed.insert ( 20 )
+
+do
+	print ( speed.length )
+
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+
+	sync ( )
+loop
+">Copy Code</button></div><p>An alternative method is to use the <i>insert</i> command and pass in two parameters, allowing you to insert a value at a specific index for an array.</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">speed as integer [ 5 ] = [ 0, 100, 200, 300, 400, 500 ]
+<br>
+speed.insert ( 250, 3 )
+<br>
+do
+	print ( speed.length )
+	<br>
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="speed as integer [ 5 ] = [ 0, 100, 200, 300, 400, 500 ]
+
+speed.insert ( 250, 3 )
+
+do
+	print ( speed.length )
+
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+
+	sync ( )
+loop
+">Copy Code</button></div><p>The <i>insert</i> command being used here will insert the value 250 at index 3. This has the effect of increasing the size of the array to 6. When the program runs the size of the array will be 6 and you will see the array contains 100, 200, 250, 300, 400 and 500.</p><p>The <i>remove</i> command is used to take an element out of an array. Here's an example.</p><div id="basicCodeBlock6" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">speed as integer [ 5 ] = [ 0, 100, 200, 300, 400, 500 ]
+<br>
+speed.remove ( )
+<br>
+do
+	print ( speed.length )
+	<br>
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="speed as integer [ 5 ] = [ 0, 100, 200, 300, 400, 500 ]
+
+speed.remove ( )
+
+do
+	print ( speed.length )
+
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+
+	sync ( )
+loop
+">Copy Code</button></div><p>When this program runs the final index is removed from <i>speed</i> changing its contents from 100, 200, 300, 400, 500 to 100, 200, 300 and 400. This also affects the size of the array taking it from 5 down to 4.</p><p>The <i>remove</i> keyword also allows you to remove a specific index in the array. This program removes index 3 from the array.</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">speed as integer [ 5 ] = [ 0, 100, 200, 300, 400, 500 ]
+<br>
+speed.remove ( 3 )
+<br>
+do
+	print ( speed.length )
+	<br>
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="speed as integer [ 5 ] = [ 0, 100, 200, 300, 400, 500 ]
+
+speed.remove ( 3 )
+
+do
+	print ( speed.length )
+
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+
+	sync ( )
+loop
+">Copy Code</button></div><p>Index 3 contains the value 300. When this is removed the array will change from a size of 5 to 4 and will contain the values 100, 200, 400 and 500.</p><div align="center"><a href="arrays_004.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="arrays_006.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

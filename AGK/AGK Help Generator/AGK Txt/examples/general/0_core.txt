@@ -1,0 +1,187 @@
+﻿_header
+Core commands and general program layout
+
+_sheader
+Description
+_text
+AppGameKit Studio has a set of core commands that deal with aspects such as finding out the width and height of a device, updating the screen, checking the orientation of a screen and finding out what device your application is running on. In this example we'll explore the usage of these commands and also look at a typical layout for an AppGameKit Studio program.
+
+_sheader
+General layout
+_text
+A typical AppGameKit Studio program will follow this process:
+
+_listbegin
+load resources such as images and sound
+set up sprites to be displayed on screen
+move to the main loop
+within the main loop handle logic for the program and update the screen
+after the main loop save any program settings and clear resources
+_listend
+
+_text
+Here's the process laid out in code:
+
+_tier1
+` load resources
+<br>
+` create sprites
+<br>
+` set up a simple loop
+do
+    ` handle logic  
+<br>
+    ` update the screen
+loop
+<br>
+` save any settings such as state of the game
+<br>
+` clear resources
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    // load resources
+<br>
+    // create sprites
+}
+<br>
+void app::Loop ( void )
+{
+    // handle logic
+<br>
+    // update the screen
+}
+<br>
+void app:End ( void )
+{
+    // save any settings such as state of the game
+<br>
+    // clear resources
+}
+_tier2
+
+_sheader
+Core commands
+_text
+As mentioned previously the core commands within AppGameKit Studio allow you to retrieve information about the device and handle things such as updating the screen. In the code that follows we'll explore a few of these commands in practice.
+
+_text
+Our program will do the following:
+
+_listbegin
+find out the width of the device
+find out the height of the device
+retrieve the orientation of the device
+get the name of the device
+update the screen
+_listend
+
+_sheader
+Width and height of a device
+_text
+To retrieve the width and height of the device our program runs on we call the commands <i>GetDeviceWidth</i> and <i>GetDeviceHeight</i>. These commands return these values to us and have no parameters:
+
+_tier1
+width = GetDeviceWidth ( )
+height = GetDeviceHeight ( )
+_tier1
+
+_tier2
+width = agk::GetDeviceWidth ( );
+height = agk::GetDeviceHeight ( );
+_tier2
+
+_sheader
+Orientation
+_text
+On some platforms the orientation of the screen will be of no particular interest, such as with Microsoft Windows and Mac OS X. The reason for this is that we can expect the orientation to always be the same. On mobile devices this is not necessarily the case. Users may be holding the device in any one of 4 possible orientations e.g. portrait, portrait flipped, landscape and landscape flipped. Retrieving this is useful as it allows you to customise your game dependent on the current orientation. Finding the orientiation is achieved with a simple call to the command <i>GetOrientation</i>. This commands returns 1 for portrait, 2 for portrat flipped, 3 for landscape and 4 for landscape flipped. It has no parameters:
+
+_tier1
+orientation = GetOrientation ( )
+_tier1
+
+_tier2
+agk::orientation = GetOrientation ( );
+_tier2
+
+_sheader
+Device name
+_text
+There may be instances when it's necessary to determine what platform or device your program is running on. This is useful for cases when you may require some platform specific behaviour. To find out the platform your program is running on call the command <i>GetDeviceName</i>. This command returns a string that will contain one of the following:
+
+_listbegin
+Windows
+iOS
+Mac
+Bada
+_listend
+
+_text
+The command can be called like this:
+
+_tier1
+platform = GetDeviceName ( )
+_tier1
+
+_tier2
+platform = agk::GetDeviceName ( );
+_tier2
+
+_sheader
+Updating the screen
+
+_text
+AppGameKit Studio will not display anything on screen until the command <i>Sync</i> is called. To ensure the screen is updated call this command within your main loop.
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program:
+
+_tier1
+width = GetDeviceWidth ( )
+height = GetDeviceHeight ( )
+<br>
+orientation = GetOrientation ( )
+<br>
+platform$ = GetDeviceName ( )
+<br>
+do
+    print ( width )
+    print ( height )
+    print ( orientation )
+    print ( platform$ )
+<br>
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    width = agk::GetDeviceWidth ( );
+    height = agk::GetDeviceHeight ( );
+<br>
+    orientation = agk::GetOrientation ( );
+<br>
+    platform = agk::GetDeviceName ( );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Print ( width );
+    agk::Print ( height );
+    agk::Print ( orientation );
+    agk::Print ( platform );
+<br>
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+Several other commands are included with the core section. Please refer to the reference guide for more details.
+

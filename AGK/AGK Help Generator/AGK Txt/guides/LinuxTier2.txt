@@ -1,0 +1,45 @@
+_header
+Linux
+_text
+This guide explains the process involved in creating projects when using Tier 2 when using the Linux platform. In order to compile projects on the Linux it is advisable that you obtain a recent, up to date distribution.
+
+_sheader
+Libraries and include files
+_text
+The template projects and any of your own custom projects are dependent on several library and include files. Their install locations are -
+
+_text
+Include Files
+_listbegin
+\The Game Creators\AGKStudio\Tier 2\common\include\
+\The Game Creators\AGKStudio\Tier 2\common\Collision\
+\The Game Creators\AGKStudio\Tier 2\bullet
+\The Game Creators\AGKStudio\Tier 2\bullet\BulletCollision\CollisionShapes
+_listend
+_text
+Libraries
+_listbegin
+\The Game Creators\AGKStudio\Tier 2\platform\Linux\Lib\Release64\
+\The Game Creators\AGKStudio\Tier 2\platform\Linux\Lib\Release32
+_listend
+_sheader
+Templates
+_text
+Several templates are included that provide a starting point for your applications. These can be found within -
+_listbegin
+\The Game Creators\AGK2\Tier 2\apps
+_listend
+_text
+The key templates are -
+_listbegin
+template_linux - standard template
+template_linux_console - console (non visual) template
+_listend
+_text
+All of these projects are set up with relative links to the AGK libraries and include files and are ready to compile. Making new projects outside this location or moving the existing projects to another location will result in you needing to update library and include links within the project settings to ensure the app compiles.
+_text
+Make a copy of the appropriate project and place it within the apps folder, then open terminal and navigate to the location. Execute the provided makefile using "make -f Makefile".
+_text
+The terminal will display an output log and create an executable that you can run.
+_text
+The project will consist of three main files - core.cpp, template.cpp and template.h. Core.cpp is the starting point for your application as a whole, which in most cases can be ignored and is only relevant for more advanced users. Template.h contains a class declaration for your app and template.cpp contains the definition, with three functions already defined - Begin, Loop and End. Begin is the entry point for your application and is used for initial setup. Loop will be called every cycle and should be the location of your logic etc. Finally End is called when the app closes down and can be used to free up resources etc.

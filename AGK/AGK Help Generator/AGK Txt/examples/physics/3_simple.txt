@@ -1,0 +1,250 @@
+﻿_header
+Simple Physics Example
+
+_sheader
+Description
+_text
+By utilising the physics commands within AppGameKit Studio it's possible to greatly simplify complex tasks such as collision and physics based movement. Transforming sprites into physics based entities is covered in this example. It's a simple demonstration program that creates physics sprites every so often, sets some properties and leaves it to the physics engine to deal with movement and collision response.
+
+_image
+3_simple.jpg
+
+
+_sheader
+Overview
+
+_text
+A few steps are carried out in this program:
+
+_listbegin
+add a background sprite
+load an image to be used by our sprites
+set some basic physics properties
+within our main loop, every so often create a sprite and set some physics properties
+_listend
+
+_sheader
+Background sprite
+
+_text
+First we'll load in a backdrop image and display it as a sprite with an alpha value of 40 so it's no so bright:
+
+_tier1
+backdrop = CreateSprite ( LoadImage ( "background1.jpg" ) )
+SetSpriteColorAlpha ( backdrop, 40 )
+_tier1
+
+_tier2
+int backdrop = agk::CreateSprite ( agk::LoadImage ( "background1.jpg" ) );
+agk::SetSpriteColorAlpha ( backdrop, 40 );
+_tier2
+
+_sheader
+Sprite image
+_text
+Before moving onto the main loop an image is loaded:
+
+_tier1
+LoadImage ( 2, "silver.png" )
+_tier1
+
+_tier2
+agk::LoadImage ( 2, "silver.png" );
+_tier2
+
+_text
+This image is going to be used by all the sprites that get created within the main loop.
+
+_sheader
+Physics properties
+_text
+The final part before the main loop is to set the gravity vector for all physics based sprites. For this example, gravity is only required on the Y axis at a rate of 0.1 meters per second squared. This is handled with a call to <i>SetPhysicsGravity</i>:
+
+_tier1
+SetPhysicsGravity ( 0, 0.5 )
+_tier1
+
+_tier2
+agk::SetPhysicsGravity ( 0.0f, 0.5f );
+_tier2
+
+_text
+When our sprites enter the scene they will constantly be affected by the gravity. Increasing the Y value will have the effect of pushing the sprites to the ground much faster.
+
+_sheader
+Main loop
+_text
+After every 75 cycles of the main loop the following will take place:
+_listbegin
+a sprite will be created and use the image that was loaded earlier
+the sprite will be positioned near the top of the screen
+physics will be turned on for the sprite with a call to <i>SetSpritePhysicsOn</i>, this function takes two parameters, the first is the ID number of the sprite, while the second parameter controls how the sprite responds within the simulator, whether it is a static entity, dynamic or kinematic
+the sprite will be randomly sized
+a box shape is then assigned to the sprite so it is represented within the simulation correctly
+finally some properties are set such as an angular impulse, velocity, random colour for the sprite and its restitution
+_listend
+
+_sheader
+Adjusting physics properties
+
+_text
+Our sprites will have an angular impulse applied along with a velocity and the setting of resitution upon creation. When an angular impulse gets applied to a sprite it will affect the rotation of the sprite. The reaction to an angular impulse is dependent on the size of our sprites. Larger sprites will rotate slower than smaller sprites given the same impulse.
+
+_text
+Velocity being applied to a sprite will have the effect of pushing a sprite towards a particular direction. Directly after our sprites have been created they will have a random velocity applied to them. This will have the effect of shooting our sprites out in random directions on the X and Y axis.
+
+_text
+Resitution controls how our sprites react upon collision. If two sprites collided and they had a low restitution they might come together and upon impact stop and lose all of their momentum, after that they might fall to the ground as they are affected by gravity. If these two sprites had a high restitution, upon impact they might go flying off in opposite directions.
+
+_tier1
+time = 0
+index = 10
+<br>
+do
+    time = time + 1
+<br>
+    if ( time >= 75 )
+        CreateSprite ( index, 2 )
+        SetSpritePosition ( index, 50, 0 )
+        SetSpritePhysicsOn ( index, 2 )
+<br>   
+        size = 20 + Random ( 0, 30 )
+        SetSpriteSize ( index, size, size )
+        SetSpriteShape ( index, 2 )
+        SetSpritePhysicsAngularImpulse ( index, 10000 + Random ( 0, 350 ) )
+        SetSpritePhysicsVelocity ( index, 100 + Random ( 0, 100 ), 100 + Random ( 0, 100 ) )
+        SetSpriteColor ( index, Random ( 0, 255 ), Random ( 0, 255 ), Random ( 0, 255 ) )
+        SetSpritePhysicsRestitution ( index, 0.5 )
+<br>
+        index = index + 1
+        time = 0
+    endif
+<br>
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Loop ( void )
+{
+    time = time + 1;
+<br>
+    if ( time >= 75 )
+    {
+        agk::CreateSprite ( index, 2 );
+        agk::SetSpritePosition ( index, 50, 0 );
+        agk::SetSpritePhysicsOn ( index, 2 );
+<br>   
+        size = 20 + agk::Random ( 0, 30 );
+        agk::SetSpriteSize ( index, size, size );
+        agk::SetSpriteShape ( index, 2 );
+        agk::SetSpritePhysicsAngularImpulse ( index, 10000 + agk::Random ( 0, 350 ) );
+        agk::SetSpritePhysicsVelocity ( index, 100 + agk::Random ( 0, 100 ), 100 + agk::Random ( 0, 100 ) );
+        agk::SetSpriteColor ( index, agk::Random ( 0, 255 ), agk::Random ( 0, 255 ), agk::Random ( 0, 255 ), 255 );
+        agk::SetSpritePhysicsRestitution ( index, 0.5 );
+<br>
+        index = index + 1;
+        time = 0;
+    }
+<br>
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+backdrop = CreateSprite ( LoadImage ( "background1.jpg" ) )
+SetSpriteColorAlpha ( backdrop, 40 )
+<br>
+LoadImage ( 2, "silver.png" )
+<br>
+SetPhysicsGravity ( 0, 0.5 )
+<br>
+time = 0
+index = 10
+<br>
+do
+    time = time + 1
+<br>
+    if ( time >= 75 )
+        CreateSprite ( index, 2 )
+        SetSpritePosition ( index, 50, 0 )
+        SetSpritePhysicsOn ( index, 2 )
+<br>   
+        size = 20 + Random ( 0, 30 )
+        SetSpriteSize ( index, size, size )
+        SetSpriteShape ( index, 2 )
+        SetSpritePhysicsAngularImpulse ( index, 10000 + Random ( 0, 350 ) )
+        SetSpritePhysicsVelocity ( index, 100 + Random ( 0, 100 ), 100 + Random ( 0, 100 ) )
+        SetSpriteColor ( index, Random ( 0, 255 ), Random ( 0, 255 ), Random ( 0, 255 ), 255 )
+        SetSpritePhysicsRestitution ( index, 0.5 )
+<br>
+        index = index + 1
+        time = 0
+    endif
+<br>
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    int backdrop = agk::CreateSprite ( agk::LoadImage ( "background1.jpg" ) );
+    agk::SetSpriteColorAlpha ( backdrop, 40 );
+<br>
+    agk::LoadImage ( 2, “silver.png” );
+<br>
+    agk::SetPhysicsGravity ( 0.0f, 0.5f );
+}
+
+void app::Loop ( void )
+{
+    time = time + 1;
+<br>
+    if ( time >= 75 )
+    {
+        agk::CreateSprite ( index, 2 );
+        agk::SetSpritePosition ( index, 50, 0 );
+        agk::SetSpritePhysicsOn ( index, 2 );
+<br>   
+        size = 20 + agk::Random ( 0, 30 );
+        agk::SetSpriteSize ( index, size, size );
+        agk::SetSpriteShape ( index, 2 );
+        agk::SetSpritePhysicsAngularImpulse ( index, 10000 + agk::Random ( 0, 350 ) );
+        agk::SetSpritePhysicsVelocity ( index, 100 + agk::Random ( 0, 100 ), 100 + agk::Random ( 0, 100 ) );
+        agk::SetSpriteColor ( index, agk::Random ( 0, 255 ), agk::Random ( 0, 255 ), agk::Random ( 0, 255 ) );
+        agk::SetSpritePhysicsRestitution ( index, 0.5 );
+<br>
+        index = index + 1;
+        time = 0;
+    }
+<br>
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+This example demonstrates how it’s possible to get a fairly complex situation being played out on screen with a minimal amount of effort.
+
+
+
+
+
+
+
+
+
+
+
+

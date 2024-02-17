@@ -1,0 +1,24 @@
+_header
+while
+
+_sheader
+Syntax
+
+_tier1
+while condition
+_tier1
+
+_sheader
+Description
+
+_text
+These commands will define a loop that will repeat while the condition is true. Unlike the <i>repeat</i> command, the while command ensures the condition is true before entering the loop. You are able to break from the loop at any time by using the <i>exit</i> command. 
+
+_sheader
+Example
+
+_tier1
+while GetPointerPressed ( ) = 0
+    Print ( "touch or click the screen to continue" )
+endwhile
+_tier1

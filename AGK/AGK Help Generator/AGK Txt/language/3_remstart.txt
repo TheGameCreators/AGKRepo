@@ -1,0 +1,32 @@
+_header
+remstart
+
+_sheader
+Syntax
+
+_tier1
+remstart
+_tier1
+
+_sheader
+Description
+
+_text
+The <i>remstart</i> and <i>remend</i> commands define an area of your program that will be ignored by the compiler. You can use remarks to provide a better description of what your program is doing.
+
+_text
+Another use of <i>remstart</i> and <i>remend</i> is to temporarily remove command sequences from your program without having to delete them. By placing these commands around blocks of code, the compiler will ignore them and will be skipped when the program is run.
+
+
+_sheader
+Example
+
+_tier1
+print ( "this text will be on screen" )
+<br>
+remstart
+print ( "this text will not get displayed" )
+remend
+<br>
+print ( "this text will be on screen" )
+_tier1

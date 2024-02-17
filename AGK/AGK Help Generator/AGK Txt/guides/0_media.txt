@@ -1,0 +1,63 @@
+_header
+Media and File Paths
+
+_text
+By default all file commands will attempt to load from the MEDIA folder included with the app. However, the root of the AppGameKit Studio file system starts at the app's executable location which you can access using
+
+_tier1
+SetFolder( "/" )
+_tier1
+
+_tier2
+agk::SetFolder( "/" );
+_tier2
+
+_text
+and you can reset this path back to the media folder by using
+
+_tier1
+SetFolder( "/media" )
+_tier1
+
+_tier2
+agk::SetFolder( "/media" );
+_tier2
+
+_text
+Using a forward slash at the beginning of any file path will start from AppGameKit Studio's root folder path, otherwise the path will be in addition to the current folder. For example:
+
+_tier1
+LoadImage( 1, "MyImage.png" ) // will attempt to load "/media/MyImage.png"
+_tier1
+
+_tier2
+LoadImage( 1, "MyImage.png" ) // will attempt to load "/media/MyImage.png"
+_tier2
+
+_tier1
+SetFolder( "/" )
+SetFolder( "media" )
+SetFolder( "images" )
+LoadImage( 1, "MyImage.png" ) // will attempt to load "/media/images/MyImage.png"
+_tier1
+
+_tier2
+agk::SetFolder( "/" );
+agk::SetFolder( "media" );
+agk::SetFolder( "images" );
+agk::LoadImage( 1, "MyImage.png" ); // will attempt to load "/media/images/MyImage.png"
+_tier2
+
+_tier1
+SetFolder( "/" )
+SetFolder( "media" )
+SetFolder( "images" )
+LoadImage( 1, "/media/MyImage.png" ) // will attempt to load "/media/MyImage.png"
+_tier1
+
+_tier2
+agk::SetFolder( "/" );
+agk::SetFolder( "media" );
+agk::SetFolder( "images" );
+agk::LoadImage( 1, "/media/MyImage.png" ); // will attempt to load "/media/MyImage.png"
+_tier2

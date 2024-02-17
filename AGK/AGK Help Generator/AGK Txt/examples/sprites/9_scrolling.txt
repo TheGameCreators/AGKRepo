@@ -1,0 +1,256 @@
+﻿_header
+Scrolling sprites
+
+_sheader
+Description
+_text
+Many games may require the ability to scroll the screen. AppGameKit Studio assists with this process by providing a few simple commands to easily and efficiently scroll the screen. This example will show the following:
+
+_listbegin
+a football pitch displayed on screen
+the view being scrolled in different directions
+a sprite displayed on screen that is not affected by scrolling
+_listend
+
+_image
+9_scrolling.jpg
+
+_sheader
+External media
+_text
+This example program relies on several images:
+
+_text
+<div align="center"><b>pitch_top.jpg</b></div>
+_image
+pitch_top.jpg
+
+_text
+<div align="center"><b>goals_logo.png</b></div>
+_image
+goals_logo.png
+
+_text
+<div align="center"><b>pitch_bottom.jpg</b></div>
+_image
+pitch_bottom.jpg
+
+
+
+_sheader
+Overview
+_text
+The process involved is as follows:
+
+_listbegin
+load images for the pitch and create sprites
+load an image and create a sprite that is fixed to the screen
+_listend
+
+_text
+Within the main loop:
+
+_listbegin
+adjust the view offset to perform scrolling
+_listend
+
+_sheader
+Creating our pitch
+_text
+This example has two external images - pitch_top.jpg and pitch_bottom.jpg. As the names suggests one image contains the top of the pitch, while the other image contains the bottom half of the pitch. Both of these images are loaded, sprites are created and finally they are positioned to align correctly:
+
+_tier1
+LoadImage ( 1, "pitch_top.jpg" )
+LoadImage ( 2, "pitch_bottom.jpg" )
+<br>
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 2 )
+<br>
+SetSpritePosition ( 1, 0, 0 )
+SetSpritePosition ( 2, 0, 593 )
+_tier1
+
+_tier2
+agk::LoadImage ( 1, "pitch_top.jpg" );
+agk::LoadImage ( 2, "pitch_bottom.jpg" );
+<br>
+agk::CreateSprite ( 1, 1 );
+agk::CreateSprite ( 2, 2 );
+<br>
+agk::SetSpritePosition ( 1, 0, 0 );
+agk::SetSpritePosition ( 2, 0, 593 );
+_tier2
+
+_sheader
+Create a fixed sprite
+_text
+Within the main loop, when we adjust the view offset (that controls scrolling) our pitch sprites will be moved about. There may be cases where this behaviour isn’t required for certain sprites, for example, interface elements might be fixed to the screen. When this behaviour is required, all it takes to stop a sprite from scrolling is to call the command <i>FixSpriteToScreen</i>. This command has two parameters - the ID number of the sprite and then a value controlling whether the sprite is fixed to the screen (a value of 1), or if the sprite is fixed to the world (a value of 0). In our example this new sprite will remain at the top left corner of the screen:
+
+_tier1
+LoadImage ( 3, "goals_logo.png" )
+CreateSprite ( 3, 3 )
+FixSpriteToScreen ( 3, 1 )
+_tier1
+
+_tier2
+agk::LoadImage ( 3, "goals_logo.png" );
+agk::CreateSprite ( 3, 3 );
+agk::FixSpriteToScreen ( 3, 1 );
+_tier2
+
+_sheader
+Main Loop
+_text
+To scroll our sprites we need to make a call to the command <i>SetViewOffset</i>. This command has two parameters - an offset on the X axis and an offset on the Y axis. By default these values will be 0 and 0. As the X value is increased our sprites will be shifted to the left, while a decrease in the X value will shift sprites to the right. Increasing the Y value will shift sprites up, decreasing it will shift them down.
+
+_text
+The code being used in this example will scroll in one direction for a short while, before returning to the original position and then repeating the process. Here’s the code:
+
+_tier1
+do
+    SetViewOffset ( x, y )
+<br>    
+    if ( direction = 0 )
+        x = x + 1
+        y = y + 2
+<br>    
+        if  ( y > 740 )
+            direction = 1
+        endif
+    endif
+<br>    
+    if ( direction = 1 )
+        x = x - 1
+        y = y - 2
+<br>    
+        if  ( y < 0 )
+            direction = 0
+        endif
+    endif
+<br>    
+    sync ( )
+loop
+_tier1
+
+_tier2
+void app::Loop ( void )
+{
+    SetViewOffset ( x, y );
+<br>
+    if ( direction == 0 )
+    {
+        x = x + 1;
+        y = y + 2;
+<br>
+        if  ( y > 740 )
+            direction = 1;
+    }
+<br>
+    if ( direction == 1 )  
+    {
+        x = x - 1;
+        y = y - 2;
+<br>
+        if  ( y < 0 )
+            direction = 0;
+    }
+<br> 
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+LoadImage ( 1, "pitch_top.jpg" )
+LoadImage ( 2, "pitch_bottom.jpg" )
+<br>
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 2 )
+<br>
+SetSpritePosition ( 1, 0, 0 )
+SetSpritePosition ( 2, 0, 593 )
+<br>
+LoadImage ( 3, "goals_logo.png" )
+CreateSprite ( 3, 3 )
+FixSpriteToScreen ( 3, 1 )
+<br>
+do
+    SetViewOffset ( x, y )
+<br>    
+    if ( direction = 0 )
+        x = x + 1
+        y = y + 2
+<br>    
+        if  ( y > 740 )
+            direction = 1
+        endif
+    endif
+<br>    
+    if ( direction = 1 )
+        x = x - 1
+        y = y - 2
+<br>    
+        if  ( y < 0 )
+            direction = 0
+        endif
+    endif
+<br>    
+    sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::LoadImage ( 1, "pitch_top.jpg" );
+    agk::LoadImage ( 2, "pitch_bottom.jpg" );
+<br>
+    agk::CreateSprite ( 1, 1 );
+    agk::CreateSprite ( 2, 2 );
+<br>
+    agk::SetSpritePosition ( 1, 0, 0 );
+    agk::SetSpritePosition ( 2, 0, 593 );
+<br>
+    agk::LoadImage ( 3, "goals_logo.png" );
+    agk::CreateSprite ( 3, 3 );
+    agk::FixSpriteToScreen ( 3, 1 );
+}
+<br>
+void app::Loop ( void )
+{
+    SetViewOffset ( x, y );
+<br>
+    if ( direction == 0 )
+    {
+        x = x + 1;
+        y = y + 2;
+<br>
+        if  ( y > 740 )
+            direction = 1;
+    }
+<br>
+    if ( direction == 1 )  
+    {
+        x = x - 1;
+        y = y - 2;
+<br>
+        if  ( y < 0 )
+            direction = 0;
+    }
+<br> 
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+As you can see from this example AppGameKit Studio makes the task of scrolling your screen very simple.

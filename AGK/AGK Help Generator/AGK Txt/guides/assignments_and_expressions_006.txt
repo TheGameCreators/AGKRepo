@@ -1,0 +1,81 @@
+
+_header
+Experimenting with expressions
+
+_text
+This example program demonstrates how expressions can be used to control properties of 4 rectangles that get displayed on screen.
+
+_tier1
+
+x as float = 30.0
+y as float = 40.0
+z as float = 0.01
+angle as float = 0.0
+red as integer = 0
+green as integer = 0
+blue as integer = 0
+<br>
+CreateImageColor ( 1, 255, 255, 255, 255 )
+CreateSprite ( 1, 1 )
+SetSpriteSize ( 1, 10, 10 )
+<br>
+CreateSprite ( 2, 1 )
+SetSpriteSize ( 2, 5, 5 )
+<br>
+CreateSprite ( 3, 1 )
+SetSpriteSize ( 3, 6, 6 )
+<br>
+CreateSprite ( 4, 1 )
+SetSpriteSize ( 4, 7, 7 )
+<br>
+do
+	x = x + cos ( angle ) / 2.0
+	y = y + sin ( angle ) / 2.0
+	z = z * 1.005
+	angle = angle + 1.5
+	red = 400 * x / 100 
+	green = 200 * y / 100
+	blue = 100 * x + 50 / 100
+	<br>
+	SetSpriteColor ( 1, red, green, blue, 255 )
+	SetSpriteColor ( 2, green, red, blue, 255 )
+	SetSpriteColor ( 3, blue, green, red, 255 )
+	SetSpriteColor ( 4, blue, red, green, 255 )
+	<br>
+	SetSpritePosition ( 1, x, y )
+	SetSpriteAngle ( 1, angle )
+	<br>
+	SetSpritePosition ( 2, 2 / ( x / 100 ), 50 * ( y / 100 ) )
+	SetSpriteAngle ( 2, angle )
+	<br>
+	SetSpritePosition ( 3, x + 10, 25 * ( y / 100 ) )
+	SetSpriteAngle ( 3, angle * 3 )
+	<br>
+	SetSpritePosition ( 4, x * 1.25, y * z )
+	SetSpriteAngle ( 4, angle * z )
+	<br>
+	sync ( )
+loop
+_tier1
+
+_text
+What we end up with our 4 rectangles moving around the screen.
+
+_imageclick
+expressions004.jpg
+
+_text
+It's not vital that you understand every aspect of what's happening here. The key point is to get an understanding of how calculations can be made by using expressions to control the outcome of our program. Here's a very broad overview of what is happening.
+
+_listbegin
+A group of variables are declared at the start of the program. These will later be used to control properties of our on screen rectangles.
+A white image is constructed that will be used by our rectangles. This is achieved by calling the command <i>CreateImageColor</i>.
+4 sprites to represent the rectangles are created using the white image and are then given a specified size. Each sprite is created by calling the command <i>CreateSprite</i>. The size of the sprite is controlled by <i>SetSpriteSize</i>.
+Inside the <i>do</i> loop is where all the action takes place. Expressions are used to assign values to our variables. These variables are then used to control the properties of our rectangles on screen by calling the commands <i>SetSpriteColor</i>, <i>SetSpritePosition</i> and <i>SetSpriteAngle</i>. Notice how expressions are being used when assigning values to our variables, they are also being used when building up information to be passed into the commands, such as in the calls to <i>SetSpritePosition</i>.
+_listend
+
+_text
+The aim at this point is to demonstrate what kind of results can be achieved when using simple expressions within your code, so don't be too concerned about not understanding everything that is taking place. As you progress through learning about AppGameKit Studio you will gain a far better understanding of all the components that come together to form a program.
+
+_navigation
+assignments_and_expressions_005.htm assignments_and_expressions_007.htm 

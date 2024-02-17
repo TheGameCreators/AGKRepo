@@ -1,0 +1,295 @@
+﻿_header
+Moving sprites
+
+_sheader
+Description
+_text
+In this example we explore a very simple technique that allows us to gradually move a sprite from its initial location to the point where a user taps / clicks the screen.
+
+_image
+8_move.jpg
+
+_sheader
+Overview
+_text
+The process involved is as follows:
+
+_listbegin
+load an image and create a sprite
+_listend
+
+_text
+Within our main loop:
+
+_listbegin
+respond to user input
+calculate the destination point of our sprite
+turn on a flag to move our sprite
+move the sprite to its destination point
+_listend
+
+_sheader
+Load an image and create a sprite
+_text
+One image is going to be loaded and used for a sprite:
+
+_tier1
+image = LoadImage ( "lime.png" )
+sprite = CreateSprite ( image )
+_tier1
+
+_tier2
+image = agk::LoadImage ( "lime.png" );
+sprite = agk::CreateSprite ( image );
+_tier2
+
+_sheader
+Respond to input
+_text
+When the user touches or clicks on the screen we will do the following:
+
+_listbegin
+only respond if the sprite is not already moving to a location
+save the position of our sprite
+store the destination as the point where the user touched or clicked on the screen
+work out the distance between the original position and the destination
+set a flag that notifies our sprite it needs to move to the new location
+_listend
+
+_text
+Basic touch or click input is handled through the use of three commands:
+
+_listbegin
+<i>GetPointerPressed</i>
+<i>GetPointerX</i>
+<i>GetPointerY</i>
+_listend
+
+_text
+The command <i>GetPointerPressed</i> returns a value of 1 whenever the user has touched or clicked the screen. When this happens you can use <i>GetPointerX</i> and <i>GetPointerY</i> to determine the location of the input.
+
+_text
+Here’s the code for handling input and setting up a new location for the sprite:
+
+_tier1
+if GetPointerPressed ( ) = 1
+    x = GetPointerX ( )
+    y = GetPointerY ( )
+<br>
+    if ( move = 0 )
+        originalX# = GetSpriteX ( sprite )
+        originalY# = GetSpriteY ( sprite )
+<br>   
+        destinationX# = x
+        destinationY# = y
+        distanceX# = destinationX# - originalX#
+        distanceY# = destinationY# - originalY#
+        distanceFromAtoB# = sqrt ( ( distanceX# * distanceX# ) + ( distanceY# * distanceY# ) )
+<br>
+        if ( distanceFromAtoB# <> 0.0 )
+            directionX# = distanceX# / distanceFromAtoB#
+            directionY# = distanceY# / distanceFromAtoB#
+        endif
+    endif
+endif
+_tier1
+
+_tier2
+if ( agk::GetPointerPressed ( ) == 1 )
+{
+    x = agk::GetPointerX ( );
+    y = agk::GetPointerY ( );
+<br>
+    if ( move = 0 )
+    {
+        originalX = agk::GetSpriteX ( sprite );
+        originalY = agk::GetSpriteY ( sprite );
+<br>   
+        destinationX = x;
+        destinationY = y;
+        distanceX = destinationX - originalX;
+        distanceY = destinationY - originalY;
+        distanceFromAtoB = sqrt ( ( distanceX * distanceX ) + ( distanceY * distanceY ) );
+<br>
+        if ( distanceFromAtoB != 0.0f )
+        {
+            directionX = distanceX / distanceFromAtoB;
+            directionY = distanceY / distanceFromAtoB;
+        }
+    }
+}
+_tier2
+
+
+_sheader
+Move the sprite to its destination point
+_text
+With the previous block of code we worked out a location for the sprite to move to and a flag was set to notify us of this change. Within the remainder of the main loop we need to check whether this flag is true, and if so update the position of our sprite, using the following process:
+
+_listbegin
+see whether the move value is greater than 0
+determine where we need to move to based on the original location and the direction
+update the position of our sprite
+reset the move value once the sprite reaches its destination
+_listend
+
+_tier1
+if ( move > 0 )
+    newX# = originalX# + directionX# * move
+    newY# = originalY# + directionY# * move
+<br>
+    if ( move < distanceFromAtoB# )
+        move = move + 2
+    else
+        move = 0
+    endif
+<br>   
+    SetSpritePosition ( sprite, newX#, newY# )
+endif
+_tier1
+
+_tier2
+if ( move > 0 )
+{
+    newX = originalX + directionX * move;
+    newY = originalY + directionY * move;
+<br>
+    if ( move < distanceFromAtoB )
+    {
+        move = move + 2;
+    }
+    else
+    {
+        move = 0;
+    }
+<br>   
+    agk::SetSpritePosition ( sprite, newX, newY );
+}
+_tier2
+
+_text
+The <i>move</i> variable is used as a way of saying how far we are along the line to our new destination. Initially it is 0, and after a user has touched / clicked the screen and the sprite starts moving, it gets incremented by 2 pixels each frame. Once it is greater than or equal to the distance value we know our sprite has reached its location.
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background4.jpg" ) )
+<br>
+image = LoadImage ( "lime.png" )
+sprite = CreateSprite ( image )
+<br>
+do
+    Print ( "Touch or click the screen to move the" )
+    Print ( "sprite to that location" )
+<br>
+    if GetPointerPressed ( ) = 1
+<br>
+        x = GetPointerX ( )
+        y = GetPointerY ( )
+
+        if ( move = 0 )
+            move = 1
+<br>
+            originalX# = GetSpriteX ( sprite )
+            originalY# = GetSpriteY ( sprite )
+<br>   
+            destinationX# = x
+            destinationY# = y
+            distanceX# = destinationX# - originalX#
+            distanceY# = destinationY# - originalY#
+            distanceFromAtoB# = sqrt ( ( distanceX# * distanceX# ) + ( distanceY# * distanceY# ) )
+<br>
+            if ( distanceFromAtoB# <> 0.0 )
+                directionX# = distanceX# / distanceFromAtoB#
+                directionY# = distanceY# / distanceFromAtoB#
+            endif
+        endif
+    endif
+<br>
+    if ( move > 0 )
+        newX# = originalX# + directionX# * move
+        newY# = originalY# + directionY# * move
+<br>
+        if ( move < distanceFromAtoB# )
+            move = move + 2
+        else
+            move = 0
+        endif
+<br>   
+        SetSpritePosition ( sprite, newX#, newY# )
+    endif
+<br>
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background4.jpg" ) );
+<br>
+    image = agk::LoadImage ( “lime.png” );
+    sprite = agk::CreateSprite ( image );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Print ( "Touch or click the screen to move the" );
+    agk::Print ( "sprite to that location" );
+<br>
+    if ( agk::GetPointerPressed ( ) == 1 )
+    {
+        x = agk::GetPointerX ( );
+        y = agk::GetPointerY ( );
+<br>
+        if ( move == 0 )
+        {
+            move = 1;
+<br> 
+            originalX = agk::GetSpriteX ( sprite );
+            originalY = agk::GetSpriteY ( sprite );
+<br>   
+            destinationX = x;
+            destinationY = y;
+            distanceX = destinationX - originalX;
+            distanceY = destinationY - originalY;
+            distanceFromAtoB = sqrt ( ( distanceX * distanceX ) + ( distanceY * distanceY ) );
+<br>
+            if ( distanceFromAtoB != 0.0f )
+            {
+                directionX = distanceX / distanceFromAtoB;
+                directionY = distanceY / distanceFromAtoB;
+            }
+        }
+    }
+<br>
+    if ( move > 0 )
+    {
+        newX = originalX + directionX * move;
+        newY = originalY + directionY * move;
+<br>
+        if ( move < distanceFromAtoB )
+        {
+            move = move + 2;
+        }
+        else
+        {
+            move = 0;
+        }
+<br>   
+        agk::SetSpritePosition ( sprite, newX, newY );
+    }
+}
+_tier2
+
+_sheader 
+Conclusion
+_text
+This concludes the example of moving a sprite from one point to another. It’s a very simple technique that can be used for sprites in your games.

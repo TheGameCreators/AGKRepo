@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Responding to input - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Responding to input</div><div class="page"><h1>Responding to input</h1><h2>Description</h2><p>In this example we're going to find out how to deal with input. There are numerous ways of handling input, for our example we will focus on the most basic aspect and deal with a simple touch or tap or click on the screen.</p><div align="center"><img src="0_basics.jpg"/></div><h2>External media</h2><p>This example program relies on an image named "chip5.png". Here's what it looks like:</p><div align="center"><img src="chip5.png"/></div><h2>Process</h2><p>The process involved is as follows:</p><ul><li>load an image</li><li>create a sprite</li><li>main loop</li><li>deal with input in the main loop</li></ul><h2>Load an image</h2><p>Before creating our sprite we will load in an image, that will later get attached to the sprite:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">image = LoadImage ( "chip5.png" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="image = LoadImage ( &quot;chip5.png&quot; )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">image = agk::LoadImage ( "chip5.png" );
+</pre></div><p>With our image loaded and its ID number stored in the variable image it's ready to be used.</p><h2>Creating a sprite</h2><p>Now that we have an image loaded into memory we're ready to create a sprite and attach this image to it.</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">sprite = CreateSprite ( image )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="sprite = CreateSprite ( image )
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">sprite = agk::CreateSprite ( image );
+</pre></div><p>CreateSprite gets called passed in the ID number of our previously loaded image, and returning an ID number that gets saved in the variable sprite.</p><h2>Main loop</h2><p>The basics of our main loop remain the same throughout all apps. We either create a simple loop in Tier 1 using, for example, a do loop or in Tier 2 we implement our code within the app::Loop function.</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+    sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+    sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+</pre></div><h2>Dealing with input</h2><p>The objective of this example is to reposition our sprite whenever the users touches / taps / clicks the screen. To achieve this our code needs to do the following:</p><ul><li>find out whether any touch events exist</li><li>determine the location of any touch events</li><li>loop round while more touch events are available</li></ul><p>Our code begins with a call to the function GetFirstTouchEvent. This function returns a value and if this value is greater than 0 it means we have some kind of touch event that we need to deal with. A value of 1 / true is also passed into the function to signal that we intend to deal with all touch events:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">touchID = GetFirstTouchEvent ( 1 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="touchID = GetFirstTouchEvent ( 1 )
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">touchID = agk::GetFirstTouchEvent ( 1 );
+</pre></div><p>The next step is to perform a simple loop and process any touch events. Within our loop we can extract information about the touch, set our sprites position based on this and then determine if there are any other touch events.</p><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">repeat
+    x = GetTouchStartX ( touchID )
+    y = GetTouchStartY ( touchID )
+<br>
+    SetSpritePosition ( sprite, x, y )
+<br>
+    touchID = GetNextTouchEvent ( )
+until touchID <> 0
+</pre></div><div align="right"><button class="btn" data-clipboard-text="repeat
+    x = GetTouchStartX ( touchID )
+    y = GetTouchStartY ( touchID )
+
+    SetSpritePosition ( sprite, x, y )
+
+    touchID = GetNextTouchEvent ( )
+until touchID <> 0
+">Copy Code</button></div><div id="cppCodeBlock10" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">while ( touchID > 0 )
+{
+    float x = agk::GetTouchStartX ( touchID );
+    float y = agk::GetTouchStartY ( touchID );
+<br>    
+    agk::SetSpritePosition ( sprite, x, y );
+<br>    
+    touchID = agk::GetNextTouchEvent ( );
+}
+</pre></div><p>After calling GetFirstTouchEvent, if there is any touch input available then the touch ID variable will be greater than 0, therefore when we enter the loop and call GetTouchStartX / Y and pass in our touch ID we're retrieving the X and Y coordinates for the very first touch event. This is followed by a call to SetSpritePosition that simply updates our previously created sprite's position to the location of the touch. The next step is to find out whether any more touch events exist with a call to GetNextTouchEvent. If more input events are available we continue looping round.</p><h2>Full code listing</h2><p>Everything is now in place. Here's the final code for our program:</p><div id="basicCodeBlock11" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+image = LoadImage ( "chip5.png" )
+sprite = CreateSprite ( image )
+<br>
+do
+    touchID = GetFirstTouchEvent ( 1 )
+<br>
+    repeat
+        x = GetTouchStartX ( touchID )
+        y = GetTouchStartY ( touchID )
+<br>
+        SetSpritePosition ( sprite, x, y )
+<br>
+        touchID = GetNextTouchEvent ( )
+    until touchID <> 0
+<br>
+  sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+image = LoadImage ( &quot;chip5.png&quot; )
+sprite = CreateSprite ( image )
+
+do
+    touchID = GetFirstTouchEvent ( 1 )
+
+    repeat
+        x = GetTouchStartX ( touchID )
+        y = GetTouchStartY ( touchID )
+
+        SetSpritePosition ( sprite, x, y )
+
+        touchID = GetNextTouchEvent ( )
+    until touchID <> 0
+
+  sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock12" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::image = LoadImage ( "chip5.png" );
+    agk::sprite = CreateSprite ( image );
+}
+<br>
+void app::Loop ( void )
+{
+    touchID = agk::GetFirstTouchEvent ( 1 );
+<br>
+    while ( touchID > 0 )
+    {
+        float x = agk::GetTouchStartX ( touchID );
+        float y = agk::GetTouchStartY ( touchID );
+<br>    
+        agk::SetSpritePosition ( sprite, x, y );
+<br>    
+        touchID = agk::GetNextTouchEvent ( );
+    }
+<br>
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>We're now all set to run our application and see the results on screen. Once the application has launched try touching the screen or clicking on it and see how the sprite moves to this location.</p><p>All of these function calls to check for a simple touch / tap on the screen may seem convoluted, however, when you consider that using this approach it's possible to deal with advanced input such as swiping and dragging it makes sense, as everything can be dealt with in this loop format.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

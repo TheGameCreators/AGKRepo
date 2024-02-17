@@ -1,0 +1,58 @@
+_header
+Facebook Setup
+
+_text
+To use the Facebook commands provided by AppGameKit Studio you must setup and app with Facebook which will give you an AppID you can use in AppGameKit Studio. To create a Facebook app you must first become a Facebook Developer, to do this log in to your Facebook account then visit https://developers.facebook.com and choose "Register Now". Once you have varified your account return to the main Facebook site and on the left menu you should now see a develoepr section like this
+
+_image
+facebook1.png
+
+_text
+From here you can create and manage your Facebook apps. Once you have created an app, find the "edit settings" button and you should see a page that looks like this
+
+_image
+facebook2.png
+
+_text
+The App ID at the top is the one you need to use in AppGameKit Studio, you do not need the App Secret.
+
+_text
+When you first open this page all of the sections will be unchecked, to be compatible with AppGameKit Studio on iOS and Android the sections above must be filled in.
+
+_text
+The section "Website with Facebook Login" allows you to post URLs with the AppGameKit Studio command FacebookPostToFriendsWall, all such URLs must start with the domain you provide in this box.
+
+_text 
+You will also need to enter a contact email
+
+_text 
+Note that the AppGameKit Studio Facebook commands using your App ID will not work properly in the AppGameKit Studio Player as the bundle ID and package name will not match those help by Facebook. You should compile your own app in XCode or Eclipse (or use our http://developer.thegamecreators.com/android/create_apk.php online APK service) to get an app that can properly communicate with Facebook.
+
+_sheader
+Android
+
+_text 
+For Android there are a couple of fields that are not obvious, the Class Name field should just be your package name followed by NativeActivity as shown. The Key Hashes field requires you to generate a hash from the keystore file used to sign the app. You will usually have two keystores, one is the debug keystore used by Eclipse when you are testing your app, its key hash will be the same for everyone and is shown above. The other will be your release keystore that you use to submit the app to the Google Play store. To generate a key hash for it you can follow these steps:
+
+_listbegin
+Download openssl from http://code.google.com/p/openssl-for-windows/downloads/detail?name=openssl-0.9.8k_WIN32.zip (If you have a 64 bit machine you must download openssl-0.9.8e X64 not the latest version)
+Extract it. create a folder- OpenSSL in C:/ and copy the extracted code here
+Install the JDK 1.6 or above if you haven't done so already (it is also required for Eclipse)
+Place your release keystore file in an easily typed path
+Locate the keytool.exe program in the JDK, i.e. Java\jdk1.6.0_21\bin\keytool.exe
+Use the command line to browse to this location an run the following command, replacing MyAliasName with the alias used to create it (this is "mykeystore" if generated via our website) <div style="border: 1px solid #a0a0a0;background-color: #e8e8e8;padding: 5px 10px;">keytool -exportcert -alias MyAliasName -keystore "C:\PathToKeystore\release.keystore" | "C:\OpenSSL\bin\openssl" sha1 -binary |"C:\OpenSSL\bin\openssl" base64</div>
+It will ask for your keystore password
+That's all, you will get a key-hash that you can copy into the Facebook app settings page.
+_listend
+
+_sheader 
+Icons
+
+_text
+Next you should add some icons so that when people log in to your Facebook app it has a familiar icon on it, to do this find the "App Details" tab on the left side of the app settings page. IT should look something like this
+
+_image
+facebook3.png
+
+_text
+The only fields you need to fill in on this page are the 16x16 icon and the 75x75 icon. The rest can be left blank, and there is no need to submit the page for approval.

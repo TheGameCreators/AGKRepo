@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Core commands and general program layout - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Core commands and general program layout</div><div class="page"><h1>Core commands and general program layout</h1><h2>Description</h2><p>AppGameKit Studio has a set of core commands that deal with aspects such as finding out the width and height of a device, updating the screen, checking the orientation of a screen and finding out what device your application is running on. In this example we'll explore the usage of these commands and also look at a typical layout for an AppGameKit Studio program.</p><h2>General layout</h2><p>A typical AppGameKit Studio program will follow this process:</p><ul><li>load resources such as images and sound</li><li>set up sprites to be displayed on screen</li><li>move to the main loop</li><li>within the main loop handle logic for the program and update the screen</li><li>after the main loop save any program settings and clear resources</li></ul><p>Here's the process laid out in code:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">` load resources
+<br>
+` create sprites
+<br>
+` set up a simple loop
+do
+    ` handle logic  
+<br>
+    ` update the screen
+loop
+<br>
+` save any settings such as state of the game
+<br>
+` clear resources
+</pre></div><div align="right"><button class="btn" data-clipboard-text="` load resources
+
+` create sprites
+
+` set up a simple loop
+do
+    ` handle logic  
+
+    ` update the screen
+loop
+
+` save any settings such as state of the game
+
+` clear resources
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    // load resources
+<br>
+    // create sprites
+}
+<br>
+void app::Loop ( void )
+{
+    // handle logic
+<br>
+    // update the screen
+}
+<br>
+void app:End ( void )
+{
+    // save any settings such as state of the game
+<br>
+    // clear resources
+}
+</pre></div><h2>Core commands</h2><p>As mentioned previously the core commands within AppGameKit Studio allow you to retrieve information about the device and handle things such as updating the screen. In the code that follows we'll explore a few of these commands in practice.</p><p>Our program will do the following:</p><ul><li>find out the width of the device</li><li>find out the height of the device</li><li>retrieve the orientation of the device</li><li>get the name of the device</li><li>update the screen</li></ul><h2>Width and height of a device</h2><p>To retrieve the width and height of the device our program runs on we call the commands <i>GetDeviceWidth</i> and <i>GetDeviceHeight</i>. These commands return these values to us and have no parameters:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">width = GetDeviceWidth ( )
+height = GetDeviceHeight ( )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="width = GetDeviceWidth ( )
+height = GetDeviceHeight ( )
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">width = agk::GetDeviceWidth ( );
+height = agk::GetDeviceHeight ( );
+</pre></div><h2>Orientation</h2><p>On some platforms the orientation of the screen will be of no particular interest, such as with Microsoft Windows and Mac OS X. The reason for this is that we can expect the orientation to always be the same. On mobile devices this is not necessarily the case. Users may be holding the device in any one of 4 possible orientations e.g. portrait, portrait flipped, landscape and landscape flipped. Retrieving this is useful as it allows you to customise your game dependent on the current orientation. Finding the orientiation is achieved with a simple call to the command <i>GetOrientation</i>. This commands returns 1 for portrait, 2 for portrat flipped, 3 for landscape and 4 for landscape flipped. It has no parameters:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">orientation = GetOrientation ( )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="orientation = GetOrientation ( )
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::orientation = GetOrientation ( );
+</pre></div><h2>Device name</h2><p>There may be instances when it's necessary to determine what platform or device your program is running on. This is useful for cases when you may require some platform specific behaviour. To find out the platform your program is running on call the command <i>GetDeviceName</i>. This command returns a string that will contain one of the following:</p><ul><li>Windows</li><li>iOS</li><li>Mac</li><li>Bada</li></ul><p>The command can be called like this:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">platform = GetDeviceName ( )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="platform = GetDeviceName ( )
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">platform = agk::GetDeviceName ( );
+</pre></div><h2>Updating the screen</h2><p>AppGameKit Studio will not display anything on screen until the command <i>Sync</i> is called. To ensure the screen is updated call this command within your main loop.</p><h2>Full code listing</h2><p>Everything is now in place. Here's the final code for our program:</p><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">width = GetDeviceWidth ( )
+height = GetDeviceHeight ( )
+<br>
+orientation = GetOrientation ( )
+<br>
+platform$ = GetDeviceName ( )
+<br>
+do
+    print ( width )
+    print ( height )
+    print ( orientation )
+    print ( platform$ )
+<br>
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="width = GetDeviceWidth ( )
+height = GetDeviceHeight ( )
+
+orientation = GetOrientation ( )
+
+platform$ = GetDeviceName ( )
+
+do
+    print ( width )
+    print ( height )
+    print ( orientation )
+    print ( platform$ )
+
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock10" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    width = agk::GetDeviceWidth ( );
+    height = agk::GetDeviceHeight ( );
+<br>
+    orientation = agk::GetOrientation ( );
+<br>
+    platform = agk::GetDeviceName ( );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Print ( width );
+    agk::Print ( height );
+    agk::Print ( orientation );
+    agk::Print ( platform );
+<br>
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>Several other commands are included with the core section. Please refer to the reference guide for more details.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

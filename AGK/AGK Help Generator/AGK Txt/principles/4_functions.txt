@@ -1,0 +1,87 @@
+_header
+Common and User Functions
+
+_sheader
+Common functions
+
+_text
+Functions can be described as commands that return a value. AppGameKit Studio uses arithmetic functions, string functions, command specific functions and user-defined functions. They all share commonalties that will help you recognize what they look like and how they are used.
+
+_text
+A simple arithmetic function is the ABS command, which takes a negative value and converts it to positive:
+
+_tier1
+PRINT ( ABS(-100) )
+_tier1
+
+_text
+Will print 100 as the result of the function
+
+_text
+The same function can be used in a calculation:
+
+_tier1
+A = B + ABS(-100)
+_tier1
+
+_text
+Or used with a variable:
+
+_tier1
+A = ABS( B )
+_tier1
+
+_text
+Or used as part of a conditional expression:
+
+_tier1
+IF ABS( A ) > 180 THEN PRINT ( "ok" )
+_tier1
+
+_text
+Just as you have become accustomed to using variables in place of standard numbers and strings, you can use functions in the same way. As shown, functions can take data but they don"t have to. Some functions merely return a value, such as:
+
+_tier1
+DO
+ PRINT ( TIMER() )
+LOOP
+_tier1
+
+_text
+You will notice that even though no parameter data is required, you still need to add the brackets. The brackets instruct AppGameKit Studio it is a function and is a handy way of quickly determining whether it"s a variable or function.
+
+_sheader
+User defined functions
+
+_text
+There will come a time when the ability to create your own functions will be priceless. Experienced programmers would not be able to write effective code without them. Although GOSUB commands and subroutines have been provided for compatibility and learning, it is expected that you will progress to use functions as soon as possible.
+
+_text
+Functions are blocks of commands that usually perform a recursive or isolated task that is frequently used by your program. Variables used within the function are isolated from the rest of the program. If you use a variable name of FRED in your function, it will not affect another variable called FRED in your main program, nor any other function that happens to use a similar variable name. This may seem to be a restriction, but forces you to think about cutting up your program into exclusive tasks which is a very important lesson.
+
+_text
+You can pass up to nine parameters into your function, and have the option of returning a value when the function returns. Functions that do not return a value can also be used as normal commands in your main program.
+
+_text
+Declaring a function couldn"t be simpler. To use the FUNCTION command, simply provide it with a name and a list of parameters in brackets and your declaration is half-complete. Enter the commands you want on the following lines and then end the function declaration with the command ENDFUNCTION. The following example declares a function that returns half of a value passed in:
+
+_tier1
+FUNCTION halfvalue(value)
+ value=value/2
+ENDFUNCTION value
+_tier1
+
+_text
+This declaration creates a function that can be used as a fancier print command:
+
+_tier1
+REM Start of program
+BetterPrint("Hello world")
+END
+
+FUNCTION BetterPrint(t$)
+ PRINTC ( "***" )
+ PRINTC ( t$ )
+ PRINT ( "***" )
+ENDFUNCTION
+_tier1

@@ -1,0 +1,64 @@
+_header
+Function parameters
+
+_text
+Functions, just like commands can have parameters associated with them. Here's an example of a function that takes two parameters.
+
+_tier1
+do
+	myFunction ( 10, 20 )
+	<br>	
+	sync ( )
+loop
+<br>
+function myFunction ( a as integer, b as integer )
+	print ( a * b )
+endfunction
+_tier1
+
+_text
+The function has been declared using the <i>function</i> keyword and given a name, then within the brackets parameters can be declared. The declarations are the same as when declaring a variable (except no default value is assigned to them - they will get their values from actual function calls). With this particular function we have <i>a</i> and <i>b</i> declared as integers. This means that when this function is called it must be passed two integer parameters. The first parameter's value will be assigned to variable <i>a</i>, while the second parameter's value will be assigned to variable <i>b</i>. These parameters can be used within the function and treated as regular variables, as shown with the call to the <i>print</i> command that multiplies the variables <i>a</i> and <i>b</i>, displaying the result on screen.
+
+_text
+The call to <i>myFunction</i> is made within the <i>do</i> loop, passing in 10 and 20. The value 10 is the first parameter and therefore inside the function <i>a</i> will have a value of 10. The value 20 is the second parameter and therefore inside the function <i>b</i> will have a value of 20.
+
+_text
+By default variables declared within AppGameKit Studio are defined as integers, so the function declaration would still be valid if it was written like this.
+
+_tier1
+function myFunction ( a, b )
+	print ( a * b )
+endfunction
+_tier1
+
+_text
+The next program shows the same function, but this time taking four parameters, with two being integers, one being a floating point value and one a string.
+
+_tier1
+do
+	myFunction ( 10, 20, 3.671, "hello function" )
+	<br>
+	sync ( )
+loop
+<br>
+function myFunction ( a as integer, b as integer, c as float, d as string )
+	print ( a * b / c )
+	print ( d )
+endfunction
+_tier1
+
+_text
+The same function could be rewritten using shortcuts to be displayed as.
+
+_tier1
+function myFunction ( a, b, c#, d$ )
+	print ( a * b / c# )
+	print ( d$ )
+endfunction
+_tier1
+
+_text
+Both functions are exactly the same aside from the way in which they declare the variables. Whichever approach you use is down to personal preference. Some people prefer to be very explicit and use the <i>as</i> keyword to define their data types, while others like to use symbols such as # and $ to highlight the contents of their data.
+
+_navigation
+functions_and_branching_001.htm functions_and_branching_003.htm

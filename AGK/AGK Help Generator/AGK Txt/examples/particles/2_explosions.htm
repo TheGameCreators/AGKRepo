@@ -1,0 +1,232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Creating an explosion - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Creating an explosion</div><div class="page"><h1>Creating an explosion</h1><h2>Description</h2><p>Creating explosions is a really simple process with the particle command set. In this example an explosion will be generated at a random location on screen, once it has finished and died off the process will be repeated.</p><div align="center"><img src="2_explosion.jpg"/></div><p><br>This example program relies on an external image named "shrapnel3.png":</p><div align="center"><img src="shrapnel3.png"/></div><h2>Set up</h2><p>Prior to entering the main loop a virtual resolution will be set, along with an image being loaded (that is later used for the particles) and a particle emitter created (that is positioned off screen initially). The reason for creating the particle emitter at this point is that it will be used on a continual basis. There are occasions when it's useful to do this as it may be more efficient to recycle one emitter. The alternative would be to create an emitter every time an explosion is required, but that has the possiblity of slowing the program down and using more resources.</p><p>Here's the initial set up code:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+LoadImage ( 1, "shrapnel3.png" )
+CreateParticles ( 1, -100, -100 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+LoadImage ( 1, &quot;shrapnel3.png&quot; )
+CreateParticles ( 1, -100, -100 )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetVirtualResolution ( 320, 480 );
+agk::LoadImage ( 1, "shrapnel3.png" );
+agk::CreateParticles ( 1, -100, -100 );
+</pre></div><h2>The main loop</h2><p>Within the main loop a variable is checked to see whether it's possible to create the explosion, this value is true initially and is set to false once the explosion has been created, it only gets reset once the explosion has finished. This has the effect of allowing us to continually repeat the process of creating an explosion on screen.</p><p>Once it's possible to create an explosion certain properties of the emitter are set such as the position, life span, color key frames and more.</p><p>After the explosion has been created and displayed on screen a check is made to determine whether the particles have reached the end of their life, if this happens the emitter is reset and the variable to create explosions is set to true, thus allowing the next cycle of the main loop to create an explosion.</p><h2>Creating an explosion</h2><p>The code that creates this emitter is as follows:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">if ( fire = 1 )
+    SetParticlesPosition ( 1, Random ( 100, 200 ), Random ( 100, 300 ) )
+<br>
+    ResetParticleCount ( 1 )
+    SetParticlesFrequency ( 1, 250 )
+    SetParticlesLife ( 1, 3.0 )
+    SetParticlesSize ( 1, 64 )
+    SetParticlesStartZone ( 1, -10, 0, 10, 0 )
+    SetParticlesImage ( 1, 1 )
+    SetParticlesDirection ( 1, 10, 10 )
+    SetParticlesAngle ( 1, 360 )
+    SetParticlesVelocityRange ( 1, 0.8, 2.5 )
+    SetParticlesMax ( 1, 500 )
+<br>    
+    AddParticlesColorKeyFrame ( 1, 0.0, 0, 0, 0, 0 )
+    AddParticlesColorKeyFrame ( 1, 0.5, 255, 255, 0, 255 )
+    AddParticlesColorKeyFrame ( 1, 2.8, 255, 0, 0, 0 )
+<br>
+    AddParticlesForce ( 1, 2.0, 2.8, 25, -25 )
+<br>
+    fire = 0
+endif
+</pre></div><div align="right"><button class="btn" data-clipboard-text="if ( fire = 1 )
+    SetParticlesPosition ( 1, Random ( 100, 200 ), Random ( 100, 300 ) )
+
+    ResetParticleCount ( 1 )
+    SetParticlesFrequency ( 1, 250 )
+    SetParticlesLife ( 1, 3.0 )
+    SetParticlesSize ( 1, 64 )
+    SetParticlesStartZone ( 1, -10, 0, 10, 0 )
+    SetParticlesImage ( 1, 1 )
+    SetParticlesDirection ( 1, 10, 10 )
+    SetParticlesAngle ( 1, 360 )
+    SetParticlesVelocityRange ( 1, 0.8, 2.5 )
+    SetParticlesMax ( 1, 500 )
+
+    AddParticlesColorKeyFrame ( 1, 0.0, 0, 0, 0, 0 )
+    AddParticlesColorKeyFrame ( 1, 0.5, 255, 255, 0, 255 )
+    AddParticlesColorKeyFrame ( 1, 2.8, 255, 0, 0, 0 )
+
+    AddParticlesForce ( 1, 2.0, 2.8, 25, -25 )
+
+    fire = 0
+endif
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">if ( fire == 1 )
+{
+    agk::SetParticlesPosition ( 1, agk::Random ( 100, 200 ), agk::Random ( 100, 300 ) );
+<br>
+    agk::ResetParticleCount ( 1 );
+    agk::SetParticlesFrequency ( 1, 250 );
+    agk::SetParticlesLife ( 1, 3.0 );
+    agk::SetParticlesSize ( 1, 64 );
+    agk::SetParticlesStartZone ( 1, -10, 0, 10, 0 );
+    agk::SetParticlesImage ( 1, 1 );
+    agk::SetParticlesDirection ( 1, 10, 10 );
+    agk::SetParticlesAngle ( 1, 360 );
+    agk::SetParticlesVelocityRange ( 1, 0.8, 2.5 );
+    agk::SetParticlesMax ( 1, 500 );
+<br>    
+    agk::AddParticlesColorKeyFrame ( 1, 0.0, 0, 0, 0, 0 );
+    agk::AddParticlesColorKeyFrame ( 1, 0.5, 255, 255, 0, 255 );
+    agk::AddParticlesColorKeyFrame ( 1, 2.8, 255, 0, 0, 0 );
+<br>
+    agk::AddParticlesForce ( 1, 2.0, 2.8, 25, -25 );
+<br>
+    fire = 0;
+}
+</pre></div><p>The code performs the following actions:</p><ul><li>sets the position of the particle emitter to a random location on screen</li><li>resets the particle count meaning all particles can be emitted</li><li>sets the frequency to 250, resulting in a maximum of 250 particles being emitted per second</li><li>the life span of particles is set to 3 seconds</li><li>size of particles is set to 64</li><li>a start zone is specified that allows for particles to be emitted within a range of -10 to 10 on the X axis</li><li>the previously loaded image gets applied</li><li>a direction is applied to the particles of 10, 10 meaning particles will shoot out fairly slowly, ramping these values up will increase the speed of particles</li><li>the angle is set to 360 resulting in particles emitting in a complete circle</li><li>a velocity range is set to 0.8, 2.5, this has the effect of allowing particles to be emitted within a range of velocity * 0.8 to velocity * 2.5</li><li>the maximum amount of particles is configured to 500</li><li>three color key frames are added with the color being black with no alpha at the beginning of a particles life span, yellow with full alpha shortly after emission and red with no alpha at the end of its life</li><li>a force is applied to the particles as they reach 2 seconds of their lifespan and will continue until the end, this force will shift the particles to the right and up</li><li>finally the fire value is set to 0 meaning no more explosions can take place</li></ul><h2>Resetting the explosion</h2><p>When the particle properties are set a call is made to the command <i>SetParticlesMax</i>. This command limits the maximum number of particles that can be emitted, in our case 500 particles. This command is necessary when you require particles to be emitted and then destroyed, such as in the case of an explosion. If this command was not called then particles would continually emit. We would get the same behaviour, with the difference being that the explosion would start, reach a certain point and then stay there - it would never disappear, this is why we need to set the maximum number of particles allowing our explosion to play through once and then vanish.</p><p>To determine whether all emitted particles have reached the end of their life call the command <i>GetParticlesMaxReached</i> and pass in the ID number of the particles. This command returns a value of 1 when the condition is true.</p><p>Our example will check when all emitted particles are dead and then reset the variable that controls whether an explosion can take place:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">if ( GetParticlesMaxReached ( 1 ) )
+    fire = 1
+endif
+</pre></div><div align="right"><button class="btn" data-clipboard-text="if ( GetParticlesMaxReached ( 1 ) )
+    fire = 1
+endif
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">if ( agk::GetParticlesMaxReached ( 1 ) )
+{
+    fire = 1;
+}
+</pre></div><p>The result is that as soon as an explosion has finished another one will be set up and emitted while using the same emitter.</p><h2>Full code listing</h2><p>Everything is now in place. Here's the final code for our program:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "alien_backdrop.jpg" ) )
+<br>
+LoadImage ( 1, "shrapnel3.png" )
+CreateParticles ( 1, -100, -100 )
+<br>
+fire = 1
+<br>
+do
+    if ( fire = 1 )
+        SetParticlesPosition ( 1, Random ( 100, 200 ), Random ( 100, 300 ) )
+<br>
+        ResetParticleCount ( 1 )
+        SetParticlesFrequency ( 1, 250 )
+        SetParticlesLife ( 1, 3.0 )
+        SetParticlesSize ( 1, 64 )
+        SetParticlesStartZone ( 1, -10, 0, 10, 0 )
+        SetParticlesImage ( 1, 1 )
+        SetParticlesDirection ( 1, 10, 10 )
+        SetParticlesAngle ( 1, 360 )
+        SetParticlesVelocityRange ( 1, 0.8, 2.5 )
+        SetParticlesMax ( 1, 500 )
+<br>    
+        AddParticlesColorKeyFrame ( 1, 0.0, 0, 0, 0, 0 )
+        AddParticlesColorKeyFrame ( 1, 0.5, 255, 255, 0, 255 )
+        AddParticlesColorKeyFrame ( 1, 2.8, 255, 0, 0, 0 )
+<br>
+        AddParticlesForce ( 1, 2.0, 2.8, 25, -25 )
+<br>
+        fire = 0
+    endif
+    if ( GetParticlesMaxReached ( 1 ) )
+        fire = 1
+    endif
+    sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+CreateSprite ( LoadImage ( &quot;alien_backdrop.jpg&quot; ) )
+
+LoadImage ( 1, &quot;shrapnel3.png&quot; )
+CreateParticles ( 1, -100, -100 )
+
+fire = 1
+
+do
+    if ( fire = 1 )
+        SetParticlesPosition ( 1, Random ( 100, 200 ), Random ( 100, 300 ) )
+
+        ResetParticleCount ( 1 )
+        SetParticlesFrequency ( 1, 250 )
+        SetParticlesLife ( 1, 3.0 )
+        SetParticlesSize ( 1, 64 )
+        SetParticlesStartZone ( 1, -10, 0, 10, 0 )
+        SetParticlesImage ( 1, 1 )
+        SetParticlesDirection ( 1, 10, 10 )
+        SetParticlesAngle ( 1, 360 )
+        SetParticlesVelocityRange ( 1, 0.8, 2.5 )
+        SetParticlesMax ( 1, 500 )
+
+        AddParticlesColorKeyFrame ( 1, 0.0, 0, 0, 0, 0 )
+        AddParticlesColorKeyFrame ( 1, 0.5, 255, 255, 0, 255 )
+        AddParticlesColorKeyFrame ( 1, 2.8, 255, 0, 0, 0 )
+
+        AddParticlesForce ( 1, 2.0, 2.8, 25, -25 )
+
+        fire = 0
+    endif
+    if ( GetParticlesMaxReached ( 1 ) )
+        fire = 1
+    endif
+    sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "alien_backdrop.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "shrapnel3.png" );
+    agk::CreateParticles ( 1, -100, -100 );
+}
+<br>
+void app::Loop ( void )
+{
+    if ( fire == 1 )
+    {
+        agk::SetParticlesPosition ( 1, agk::Random ( 100, 200 ), agk::Random ( 100, 300 ) );
+<br>
+        agk::ResetParticleCount ( 1 );
+        agk::SetParticlesFrequency ( 1, 250 );
+        agk::SetParticlesLife ( 1, 3.0 );
+        agk::SetParticlesSize ( 1, 64 );
+        agk::SetParticlesStartZone ( 1, -10, 0, 10, 0 );
+        agk::SetParticlesImage ( 1, 1 );
+        agk::SetParticlesDirection ( 1, 10, 10 );
+        agk::SetParticlesAngle ( 1, 360 );
+        agk::SetParticlesVelocityRange ( 1, 0.8, 2.5 );
+        agk::SetParticlesMax ( 1, 500 );
+<br>    
+        agk::AddParticlesColorKeyFrame ( 1, 0.0, 0, 0, 0, 0 );
+        agk::AddParticlesColorKeyFrame ( 1, 0.5, 255, 255, 0, 255 );
+        agk::AddParticlesColorKeyFrame ( 1, 2.8, 255, 0, 0, 0 );
+<br>
+        agk::AddParticlesForce ( 1, 2.0, 2.8, 25, -25 );
+<br>
+        fire = 0;
+    }
+<br>
+    if ( agk::GetParticlesMaxReached ( 1 ) )
+    {
+        fire = 1;
+    }
+<br>
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>With a few simple lines of code it has been possible to create an explosion effect that could be used in a variety of scenarios for your games. Another interesting point of this example is the way in which the same emitter is continually used. Using emitters in this way is much more efficient over the approach of creating numerous emitters. It's something to consider when writing your own games.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

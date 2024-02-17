@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Text - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Text</div><div class="page"><h1>Text</h1><h2>Overview</h2><p>This guide provides an overview of text entities and some of their associated commands. Text entities are used to display strings on screen.</p><h2>How do I create text?</h2><p>The command <i>CreateText</i> allows you to set up a text entity. Here are the available options:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">CreateText ( id, string )
+id = CreateText ( string )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="CreateText ( id, string )
+id = CreateText ( string )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void CreateText ( UINT id, uString string );
+UINT CreateText ( uString string );
+</pre></div><p>A text entity can be created by either assigning an ID number manually or having it provided to you automatically. The next step is to provide the initial string for your text entity. This could be a blank string or something like "hello". Please note that ID numbers are unique for a command set. Therefore it's feasible to have a text entity with an ID number of 1 and a sprite with an ID of 1.</p><p>Here's one approach to creating a text entity. The command <i>CreateText</i> is called, an ID number of 1 is specified and the initial text is set to "hello agk":</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">CreateText ( 1, "hello agk" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="CreateText ( 1, &quot;hello agk&quot; )
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::CreateText ( 1, "hello agk" );
+</pre></div><p>This alternative method demonstrates how a text entity can be created with automatically assigned ID numbers:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">text = CreateText ( "hello agk" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="text = CreateText ( &quot;hello agk&quot; )
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">text = agk::CreateText ( "hello agk" );
+</pre></div><h2>How can I position text on screen?</h2><p>The main command for setting a sprite is called <i>SetTextPosition</i>. This command takes 3 parameters:</p><ul><li>ID</li><li>X position</li><li>Y position</li></ul><p>The ID number refers to the ID of the text entity you want to position, while the X and Y positions will either refer to percentages or screen coordinates. If you have specified a virtual resolution then these parameters refer to screen coordinates. If no virtual resolution has been set these parameters are percentages.</p><p>This line of code positions the text entity at either 50 pixels on the X axis and 75 pixels on the Y axis, or 50% along the X axis and 75% along the Y axis:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">CreateText ( 1, "hello agk" )
+SetTextPosition ( 1, 50, 75 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="CreateText ( 1, &quot;hello agk&quot; )
+SetTextPosition ( 1, 50, 75 )
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::CreateText ( 1, "hello agk" );
+agk::SetTextPosition ( 1, 50, 75 );
+</pre></div><h2>How do I set the string of a text entity?</h2><p>Call the command <i>SetTextString</i>. This command takes 2 parameters:</p><ul><li>ID</li><li>string</li></ul><p>The ID number refers to the ID of the text entity. The string parameter allows you to specify a new string for the text entity. This example shows the creation of a text entity, followed by an update to its string:</p><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">CreateText ( 1, "hello agk" )
+SetTextString ( 1, "a brand new string" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="CreateText ( 1, &quot;hello agk&quot; )
+SetTextString ( 1, &quot;a brand new string&quot; )
+">Copy Code</button></div><div id="cppCodeBlock10" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::CreateText ( 1, "hello agk" );
+agk::SetTextString ( 1, "a brand new string" );
+</pre></div><h2>How do I set the size of text?</h2><p>Use the command <i>SetTextSize</i> to alter the size of text. This command takes 2 parameters:</p><ul><li>ID</li><li>size</li></ul><p>The ID number refers to the ID of the text entity. The size parameter controls the final size of your text. By default this is set to 4. A smaller value will decrease the size of your text, while a larger value will increase it. In this example a text entity is created and then its size is set to a value of 10:</p><div id="basicCodeBlock11" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">CreateText ( 1, "hello agk" )
+SetTextSize ( 1, 10 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="CreateText ( 1, &quot;hello agk&quot; )
+SetTextSize ( 1, 10 )
+">Copy Code</button></div><div id="cppCodeBlock12" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::CreateText ( 1, "hello agk" );
+agk::SetTextSize ( 1, 10 );
+</pre></div><h2>How do I set the color of text?</h2><p>The command <i>SetTextColor</i> is used to control the color of text entities. Variations on this function also exist, they allow you to set the individual color, which may be useful in cases where it's only necessary to alter one component e.g. the alpha channel. Here's the available options:</p><ul><li>SetTextColor ( id, red, green, blue, alpha )</li><li>SetTextColorRed ( id, red )</li><li>SetTextColorGreen ( id, green )</li><li>SetTextColorBlue ( id, blue )</li><li>SetTextColorAlpha ( id, alpha )</li></ul><p>The ID number refers to the ID of the text entity. The remaining parameters control the level of each color. Acceptable values are between 0 to 255. A value of 0 means no color in that channel, while 255 is full color. This example shows the creation of a text entity followed by its color being set to pure red:</p><div id="basicCodeBlock13" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">CreateText ( 1, "hello agk" )
+SetTextColor ( 1, 255, 0, 0, 255 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="CreateText ( 1, &quot;hello agk&quot; )
+SetTextColor ( 1, 255, 0, 0, 255 )
+">Copy Code</button></div><div id="cppCodeBlock14" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::CreateText ( 1, "hello agk" );
+agk::SetTextColor ( 1, 255, 0, 0, 255 );
+</pre></div><h2>How do I delete a text entity?</h2><p>It may be necessary to delete previously loaded text entities and free up available memory. To delete a text entity call the command <i>DeleteText</i>:</p><div id="basicCodeBlock15" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">DeleteText ( id )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="DeleteText ( id )
+">Copy Code</button></div><div id="cppCodeBlock16" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void DeleteText ( UINT id );
+</pre></div><p>This function only requires the ID number of the text you want to delete.</p><p>Here's an example of creating a text entity and then deleting it:</p><div id="basicCodeBlock17" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">CreateText ( 1, "hello agk" )
+DeleteText ( 1 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="CreateText ( 1, &quot;hello agk&quot; )
+DeleteText ( 1 )
+">Copy Code</button></div><div id="cppCodeBlock18" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::CreateText ( 1, "hello agk" );
+agk::DeleteText ( 1 );
+</pre></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

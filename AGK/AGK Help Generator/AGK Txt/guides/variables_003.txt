@@ -1,0 +1,67 @@
+
+_header
+Integers
+
+_text
+This is the default variable type in AppGameKit Studio and as mentioned earlier can be used to store positive or negative whole numbers. Here's the kind of data an integer variable may hold.
+
+_listbegin
+Current score in the game
+Which level the player is on
+How many lives the player has left
+The number of enemies in a game
+A countdown timer controlling how much time is left to complete the level
+_listend
+
+_text
+Variables to store this data could be declared as follows -
+
+_tier1
+currentScore = 0
+currentLevel = 0
+lives = 0
+enemiesRemaining = 0
+timeLeft = 0
+_tier1
+
+_text
+The name of the variables is entirely your choice. You can use whatever name you want, as long as it doesn't clash with existing commands. You can't have a variable named <i>print</i> as this will conflict with the command called <i>print</i>. The names don't have to be descriptive as shown in the above list. They could be renamed like this.
+
+_tier1
+s = 0
+cl = 0
+l = 0
+e = 0
+t = 0
+_tier1
+
+_text
+Although that is perfectly valid it's certainly not so clear as in the first attempt at declaring them. When dealing with variables it's a good idea to name them in a descriptive way where possible. Having a variable named <i>enemiesRemaining</i> should make it pretty obvious what kind of data it holds, whereas a variable called <i>e</i> could be just about anything.
+
+_text
+You can be more explicit when it comes to declaring variables by specifying the type in the declaration. All of the integer variables can also be declared like this.
+
+_tier1
+currentScore as integer = 0
+currentLevel as integer = 0
+lives as integer = 0
+enemiesRemaining as integer = 0
+timeLeft as integer = 0
+_tier1
+
+_text
+It is not necessary to give the variable a value when declaring it when using the keywords <i>as integer</i>, in which case it will automatically default to 0. All of these declarations are acceptable.
+
+_tier1
+currentScore as integer = 0
+currentLevel as integer = 50
+lives as integer
+enemiesRemaining as integer
+timeLeft = 123
+_tier1
+
+_text
+Bear in mind when you declare a variable without specifying its type then you must give it a default value, as shown in the above listing where <i>timeLeft</i> is declared and given a value of 123.
+
+_navigation
+variables_002.htm variables_004.htm

@@ -1,0 +1,27 @@
+_header
+#constant
+
+_sheader
+Syntax
+
+_tier1
+#constant name value
+_tier1
+
+_sheader
+Description
+
+_text
+Constants are special tokens that can be defined to hold a fixed value or string. You can use the constants anywhere in your program to specify items of data that are not going to change throughout your programs execution.
+
+_text
+Constants can be used to increase performance of your programs and make your code easier to read. Beware that using constant names that match reserved words like <i>print</i> will cause your program to change radically and should be avoided. 
+
+_sheader
+Example
+
+_tier1
+#constant myValue 99
+
+print ( myValue )
+_tier1

@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Joints - Part 2 - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Joints - Part 2</div><div class="page"><h1>Joints - Part 2</h1><h2>Description</h2><p>In the previous example (Joints - Part 1) we examined the usage of weld joints, where sprites can be attached to each other in a rigid manner. In this example we look at the revolute joint, which is a more complex joint that allows sprites to rotate around an anchor.</p><div align="center"><img src="7_joints2.jpg"/></div><h2>Overview</h2><p>The process to create this example is as follows:</p><ul><li>load images to be used by the sprites</li><li>create a static physics sprite (the crate)</li><li>create a dynamic physics sprite (the chip)</li><li>connect both together using a revolute joint</li><li>apply an impulse to move the dynamic sprite</li></ul><h2>Loading images</h2><p>Two images are loaded, that can later be attached to the sprites:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadImage ( 1, "green.png" )
+LoadImage ( 2, "small_ball.png" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadImage ( 1, &quot;green.png&quot; )
+LoadImage ( 2, &quot;small_ball.png&quot; )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::LoadImage ( 1, "green.png" );
+agk::LoadImage ( 2, "small_ball.png" );
+</pre></div><h2>Static sprite</h2><p>Sprite 1 gets created, it uses the crate image (ID 1), it gets placed near the top of the screen and is set to be a static physics object:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 150, 50 )
+SetSpritePhysicsOn ( 1, 1 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 150, 50 )
+SetSpritePhysicsOn ( 1, 1 )
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::CreateSprite ( 1, 1 );
+agk::SetSpritePosition ( 1, 150.0f, 50.0f );
+agk::SetSpritePhysicsOn ( 1, 1 );
+</pre></div><h2>Dynamic sprite</h2><p>Sprite 2 gets created, it uses the ball image (ID 2), it gets placed directly below sprite 1 and is set to be a dynamic physics object, it also has its physics shape set to be a circle:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">CreateSprite ( 2, 2 )
+SetSpritePosition ( 2, 150, 150 )
+SetSpritePhysicsOn ( 2, 2 )
+SetSpriteShape ( 2, 1 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="CreateSprite ( 2, 2 )
+SetSpritePosition ( 2, 150, 150 )
+SetSpritePhysicsOn ( 2, 2 )
+SetSpriteShape ( 2, 1 )
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::CreateSprite ( 2, 2 );
+agk::SetSpritePosition ( 2, 150.0f, 150.0f );
+agk::SetSpritePhysicsOn ( 2, 2 );
+agk::SetSpriteShape ( 2, 1 );
+</pre></div><h2>Using a revolute joint</h2><p>A revolute joint connects two sprites and allows for rotation. Within our example the dynamic sprite will be connected to the static sprite using a revolute joint. This has the effect of allowing the dynamic sprite to rotate around the static sprite.</p><p>To create a revolute joint call the <i>CreateRevoluteJoint</i> command. This command takes several parameters:</p><ul><li>sprite A</li><li>sprite B</li><li>x</li><li>y</li><li>colConnected</li></ul><p>The first two parameters of this command refer to the sprites that are being joined together. The <i>X</i> and <i>Y</i> parameters control the anchor point of the joint. The anchor point is responsible for controlling at which point the sprites can rotate around. The final parameter <i>ColConnected</i> sets if the two sprites will collide, 0=not, 1=they will.</p><p>When our sprites are connected with the revolute joint the anchor is set to 182, 82:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">CreateRevoluteJoint ( 1, 2, 182, 82, 0 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="CreateRevoluteJoint ( 1, 2, 182, 82, 0 )
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::CreateRevoluteJoint ( 1, 2, 182.0f, 82.0f, 0 );
+</pre></div><p>This means the anchor point, or point of rotation for these sprites is the centre of the static sprite. The end result is that our dynamic sprite could rotate all around the static sprite if it had enough force applied to it.</p><h2>Applying an impulse</h2><p>If at this point the example was launched, then the result would be two sprites on screen that are connected, but not moving. In order to bring our scene to life we'll need to apply an impulse to our dynamic sprite. This has the effect of pushing our dynamic sprite in a certain direction. By doing this we'll provide our sprite with some force and it will start moving within the limits of the revolute joint.</p><p>The command <i>SetSpritePhysicsImpulse</i> takes several parameters:</p><ul><li>sprite ID</li><li>x</li><li>y</li><li>x impulse</li><li>y impulse</li></ul><p>The <i>ID</i> refers to the ID of the sprite that you want to apply an impulse to. The <i>x</i> and <i>y</i> parameters refer to the location at which point the impulse will be applied. Finally the last two parameters <i>x impulse</i> and <i>y impulse</i> are responsible for the amount of impulse on each axis.</p><p>For our example we're effectively wanting to give our dynamic sprite a push and help it on its way. Therefore an impulse is applied at the sprites position on the X axis:</p><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetSpritePhysicsImpulse ( 2, 150, 150, 10000, 0 );
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetSpritePhysicsImpulse ( 2, 150, 150, 10000, 0 );
+">Copy Code</button></div><div id="cppCodeBlock10" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetSpritePhysicsImpulse ( 2, 150.0f, 150.0f, 10000.0f, 0.0f );
+</pre></div><h2>Physics debug mode</h2><p>The final part before moving onto the main loop is a call to the command <i>SetPhysicsDebugOn</i>. After calling this command overlays will be placed on our sprites, which will help us to understand how the physics simulation represents our sprites:</p><div id="basicCodeBlock11" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetPhysicsDebugOn ( )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetPhysicsDebugOn ( )
+">Copy Code</button></div><div id="cppCodeBlock12" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetPhysicsDebugOn ( );
+</pre></div><h2>Main loop</h2><p>The only code required within our main loop is a call to <i>Sync</i> that will ensure the screen is updated. Nothing else needs to happen. We'll let the simulation play itself out and view the results on screen:</p><div id="basicCodeBlock13" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock14" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+</pre></div><h2>Full code listing</h2><p>Everything is now in place. Here's the final code for our program:</p><div id="basicCodeBlock15" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background1.jpg" ) )
+<br>
+LoadImage ( 1, "green.png" )
+LoadImage ( 2, "small_ball.png" )
+<br>
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 150, 50 )
+SetSpritePhysicsOn ( 1, 1 )
+<br>
+CreateSprite ( 2, 2 )
+SetSpritePosition ( 2, 150, 150 )
+SetSpritePhysicsOn ( 2, 2 )
+SetSpriteShape ( 2, 1 )
+<br>
+CreateRevoluteJoint ( 1, 2, 182, 82, 0 )
+<br>
+SetSpritePhysicsImpulse ( 2, 150, 150, 10000, 0 )
+<br>
+SetPhysicsDebugOn ( )
+<br>
+do
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+CreateSprite ( LoadImage ( &quot;background1.jpg&quot; ) )
+
+LoadImage ( 1, &quot;green.png&quot; )
+LoadImage ( 2, &quot;small_ball.png&quot; )
+
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 150, 50 )
+SetSpritePhysicsOn ( 1, 1 )
+
+CreateSprite ( 2, 2 )
+SetSpritePosition ( 2, 150, 150 )
+SetSpritePhysicsOn ( 2, 2 )
+SetSpriteShape ( 2, 1 )
+
+CreateRevoluteJoint ( 1, 2, 182, 82, 0 )
+
+SetSpritePhysicsImpulse ( 2, 150, 150, 10000, 0 )
+
+SetPhysicsDebugOn ( )
+
+do
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock16" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::CreateSprite ( agk::LoadImage ( "background1.jpg" ) );
+    <br>
+    agk::LoadImage ( 1, "green.png" );
+    agk::LoadImage ( 2, "small_ball.png" );
+    <br>
+    agk::CreateSprite ( 1, 1 );
+    agk::SetSpritePosition ( 1, 150.0f, 50.0f );
+    agk::SetSpritePhysicsOn ( 1, 1 );
+    <br>
+    agk::CreateSprite ( 2, 2 );
+    agk::SetSpritePosition ( 2, 150.0f, 150.0f );
+    agk::SetSpritePhysicsOn ( 2, 2 );
+    agk::SetSpriteShape ( 2, 1 );
+    <br>
+    agk::CreateRevoluteJoint ( 1, 2, 182.0f, 82.0f, 0 );
+    <br>
+    agk::SetSpritePhysicsImpulse ( 2, 150.0f, 150.0f, 10000.0f, 0.0f );
+    <br>
+    agk::SetPhysicsDebugOn ( );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>With a few simple lines of code it's been possible to create a relationship between two sprites, where one is able to rotate around another. Whilst this example is relatively simple, it should help in understanding how joints can be used to attach sprites together.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

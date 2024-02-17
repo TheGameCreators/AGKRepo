@@ -1,0 +1,20 @@
+
+_sheader
+Variable names
+
+_text
+Variable names are your choice, although as mentioned they cannot match the name of an existing command. The name needs to be unique and beware that they are not case sensitive. All of these variable names are treated exactly the same.
+
+_tier1
+currentScore = 100
+CurrentScore = 100
+currentscore = 100
+CURRENTSCORE = 100
+cUrReNtScOrE = 100
+_tier1
+
+_text
+Whether you choose to have your variables named all lowercase, or uppercase or a mixture is entirely your choice.
+
+_navigation
+variables_008.htm variables_010.htm

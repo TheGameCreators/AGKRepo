@@ -1,0 +1,51 @@
+
+_sheader
+Declaring variables
+
+_text
+Now that you have seen how to declare variables, it's time to create a small program that demonstrates all the variable types in action.
+
+_tier1
+currentScore as integer = 0
+timeLeft as integer = 123
+shipSpeed as float = 0.47
+playerName as string = "player 1"
+<br>
+do
+	print ( currentScore )
+	print ( timeLeft )
+	print ( shipSpeed )
+	print ( playerName )
+	sync ( )
+loop
+_tier1
+
+_text
+This program simply prints out the contents of the variables on screen.
+
+_imageclick
+variables002.jpg
+
+_text
+Given that it's not necessary to explicitly declare integer variables our program could be modified to look like this.
+
+_tier1
+currentScore = 0
+timeLeft = 123
+shipSpeed as float = 0.47
+playerName as string = "player 1"
+<br>
+do
+	print ( currentScore )
+	print ( timeLeft )
+	print ( shipSpeed )
+	print ( playerName )
+	sync ( )
+loop
+_tier1
+
+_text
+Either approach is perfectly acceptable.
+
+_navigation
+variables_005.htm variables_007.htm

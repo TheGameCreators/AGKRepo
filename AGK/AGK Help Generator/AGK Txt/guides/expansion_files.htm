@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Expansion Files - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="http://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Expansion Files</div><div class="page"><h1>Expansion Files</h1><h2>Intermediate Level Tutorial</h2><h2>What you will learn</h2><p>Expansion files are used on the Play Store when targeting Android devices. This guide provides an explanation of what expansion files are and how they can be used.</p><h2>What are expansion files?</h2><p>The Play Store for Google has a maximum file size limit of 100 mb for your application. If your application exceeds this limit then you will need to split your application into two parts - the main application, which must be 100 mb or under and an expansion file that has no size limit.</p><p>As an example consider a program that has been created to play a collection of videos. The media for the program is as follows -</p><ul><li>Graphics totalling 20 mb</li><li>Sound files around 15 mb</li><li>Videos coming in at 200 mb</li></ul><p>If you were to generate an APK for this program it would come in at over 235 mb. This APK could not be uploaded to the Play Store, therefore it would require the use of an expansion file. In this example you would remove the video files from the main project, resulting in the APK begin around 35 mb, and then create an expansion file for the videos, which would be 200 mb. Taking these actions means you ensure your main application APK is well under the 100 mb limit, so you'll have no problems uploading it to the Play Store alongside your expansion file.</p><h2>Creating an expansion file</h2><p>An expansion file is essentially a ZIP file that has been created without using any form of compression. To create an expansion file you can use software such was WinZip or WinRar, then select the files you want to add into the expansion file and create a ZIP file from them, ensuring you turn off compression. When the ZIP file has been generated simply rename its extension from .zip to .obb.</p><p>Once created the expansion file will need to be named correctly. It must have a version number in it and also the package name for the application e.g.</p><ul><li>main.1.uk.co.mycompany.mygame.obb</li></ul><h2>Downloading an expansion file</h2><p>An application downloaded from the Play Store may have its expansion file automatically downloaded, although in some cases this may not happen. Your program will need to take into account these options and cater for them accordingly. The typical logic for dealing with an expansion file will be something like this -</p><p>Call <i>SetExpansionFileKey</i> at the start of your program. This is a command that takes in a parameter defining the public key to use for the expansion file. The public key can be found in the Google Play Developer Console and is different for each app. Click on the app and then click on the Services and APIs section, it is the long string that starts MIIB</p><p>Call <i>SetExpansionFileVersion</i> passing in the version number for the expansion file.</p><p>Make a call to <i>GetExpansionFileState</i> to check the status of the expansion file. This command will return -1 if some kind of error has occurred. A value of 0 will be returned if the expansion file is not used on this platform e.g. on iOS. It will return 1 if the app requires an expansion file that has not been downloaded. A value of 2 will be returned if the expansion file is currently being downloaded. Finally a value of 3 is returned if the expansion file has been downloaded and is available for use.</p><p>In the event that <i>GetExpansionFileState</i> returns 1 then it is your responsibility to download the expansion file. To initiate the download of an expansion file call <i>DownloadExpansionFile</i>. After this command has been called you should continually check the return value of <i>GetExpansionFileState</i>. It will return a value of 2 while the expansion file is being downloaded. If this is the case you should let the user know that the file is being downloaded. The progress of the download can be monitored by calling <i>GetExpansionFileProgress</i>, which returns a value between 0 and 100 indicating the current download progress. When <i>GetExpansionFileState</i> returns 3 you can break out of this process and continue your normal logic for the application.</p><p>The following code shows how this process might work -</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetExpansionFileKey("MIIB...") // base 64 encoded public key from your Google Play app settings
+SetExpansionFileVersion(version)
+if ( GetExpansionFileState() = 1 )
+    DownloadExpansionFile()
+    if ( GetExpansionFileState() = 2 )
+        fontimage=LoadImage("/Arial.png")
+        downloadtxt = CreateText("Downloading Additional Files")
+        progresstxt = CreateText("0%")
+        othertxt = CreateText("The download will continue in the background if you close the app")
+        SetTextAlignment(downloadtxt,1)
+        SetTextAlignment(progresstxt,1)
+        SetTextAlignment(othertxt,1)
+        SetTextPosition(downloadtxt,50,30)
+        SetTextPosition(progresstxt,50,40)
+        SetTextPosition(othertxt,50,50)
+        SetTextFontImage(downloadtxt,fontimage)
+        SetTextFontImage(progresstxt,fontimage)
+        SetTextFontImage(othertxt,fontimage)
+        while ( GetExpansionFileState() = 2 )
+            progress# = GetExpansionFileProgress()
+            SetTextString(progresstxt,Str(progress#,2)+"%")
+            Sync()
+        endwhile
+        DeleteText(downloadtxt)
+        DeleteText(progresstxt)
+        DeleteText(othertxt)
+        DeleteImage( fontImage )
+    endif
+endif    
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetExpansionFileKey(&quot;MIIB...&quot;) // base 64 encoded public key from your Google Play app settings
+SetExpansionFileVersion(version)
+if ( GetExpansionFileState() = 1 )
+    DownloadExpansionFile()
+    if ( GetExpansionFileState() = 2 )
+        fontimage=LoadImage(&quot;/Arial.png&quot;)
+        downloadtxt = CreateText(&quot;Downloading Additional Files&quot;)
+        progresstxt = CreateText(&quot;0%&quot;)
+        othertxt = CreateText(&quot;The download will continue in the background if you close the app&quot;)
+        SetTextAlignment(downloadtxt,1)
+        SetTextAlignment(progresstxt,1)
+        SetTextAlignment(othertxt,1)
+        SetTextPosition(downloadtxt,50,30)
+        SetTextPosition(progresstxt,50,40)
+        SetTextPosition(othertxt,50,50)
+        SetTextFontImage(downloadtxt,fontimage)
+        SetTextFontImage(progresstxt,fontimage)
+        SetTextFontImage(othertxt,fontimage)
+        while ( GetExpansionFileState() = 2 )
+            progress# = GetExpansionFileProgress()
+            SetTextString(progresstxt,Str(progress#,2)+&quot;%&quot;)
+            Sync()
+        endwhile
+        DeleteText(downloadtxt)
+        DeleteText(progresstxt)
+        DeleteText(othertxt)
+        DeleteImage( fontImage )
+    endif
+endif    
+">Copy Code</button></div><h2>Loading media from an expansion file</h2><p>Media contained within an expansion file can still be loaded using the regular commands e.g. <i>LoadImage</i> and <i>LoadVideo</i>. There is one important difference to be aware of - you must precede the filename with "expansion:" and not uses paths.</p><p>Take the example of a file called video.mp4 that is placed in a video folder. If no expansion file was being used it would be loaded like this -</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadVideo ( "video\video.mp4" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadVideo ( &quot;video\video.mp4&quot; )
+">Copy Code</button></div><p>When loading media from an expansion file the load call would need to be changed to this -</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadVideo ( "expansion:video.mp4" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadVideo ( &quot;expansion:video.mp4&quot; )
+">Copy Code</button></div><p>The same principle applies when dealing with loading media using other commands.</p><h2>Testing expansion files</h2><p>Expansion files can be tested locally or through the Google Play Beta Testing. To test your expansion files locally -</p><ul><li>On your Android device navigate to the Android/OBB folder</li><li>Create a folder with the same name as the package e.g. uk.co.mycompany.mygame</li><li>Place your OBB file within this folder</li><li>Install your main APK</li><li>When your application runs <i>GetExpansionFileState</i> will return 3 as the expansion file is in place</li><li>Now you can check if your files are being correctly loaded from the expansion file</li></ul><p>To test through the Play Store upload your APK to the Beta Testing section using the advanced mode. At this point you will be able to upload your main APK and the expansion file.</p><h2>Conclusion</h2><p>Expansion files are vital when targeting the Play Store if your application file size exceeds 100 mb. Bear in mind that on other platforms this restriction does not exist, so your application will need to be coded to handle the different scenarios.</p><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="http://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

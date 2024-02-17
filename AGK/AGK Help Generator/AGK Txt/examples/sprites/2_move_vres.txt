@@ -1,0 +1,156 @@
+﻿_header
+Moving sprites using the virtual resolution
+
+_sheader
+Description
+_text
+In this example we're going to place a sprite on screen and move it using the approach of a virtual resolution.
+
+_image
+2_move_vres.jpg
+
+_sheader
+Overview
+_text
+The process involved is as follows:
+_listbegin
+set the virtual resolution
+load an image
+create a sprite
+main loop
+move our sprite in the main loop
+_listend
+
+_sheader
+Virtual Resolution
+_text
+We begin by setting our virtual resolution to dimensions of 320 x 480:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+_tier1
+
+_tier2
+agk::SetVirtualResolution ( 320, 480 );
+_tier2
+
+_sheader
+Load an image
+_text
+Now we can load an image for our sprite:
+
+_tier1
+image = LoadImage ( "blue.png" )
+_tier1
+
+_tier2
+image = agk::LoadImage ( "blue.png" );
+_tier2
+
+_text
+This line calls <i>LoadImage</i> passing in the filename "blue.png", it then returns an ID number which gets saved in the variable <i>image</i>. This ID number is now treated as a handle to our image and can be used later on when referring to it.
+
+_sheader
+Creating a sprite
+_text
+Now that we have an image loaded into memory we're ready to create a sprite and attach this image to it. This is achieved by calling the command <i>CreateSprite</i>.
+
+_tier1
+sprite = CreateSprite ( image )
+_tier1
+
+_tier2
+sprite = agk::CreateSprite ( image );
+_tier2
+
+_text
+Here we call <i>CreateSprite</i> passing in an ID number for our image and returning an ID number for the sprite. We're effectively saying create a sprite, attach this image to it and give us back an ID number for this sprite. This ID number for the sprite can be stored for use later on when dealing with sprite properties, for example.
+
+_sheader
+Main Loop
+_text
+Up to this point we have set a virtual resolution, loaded an image and created a sprite that uses this image. We're nearly ready to run our application and see the results. Prior to this we need to ensure one more thing - in our main loop we must call <i>Sync</i> to ensure the screen gets updated and its contents drawn. The command <i>Sync</i> takes no parameters and can be called in your main loop like this:
+
+_tier1
+do
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Move our sprite in the main loop
+_text
+To move our sprite around the screen we call the function <i>SetSpritePosition</i>. This function takes three parameters - the ID number of the sprite, new X position on screen and the new Y position on screen. As we're using a virtual resolution the X and Y positions refer to screen coordinates. If we were using the percentage based system these coordinates would be percentages. For our purposes we want to move our sprite from its initial position (which will be 0, 0 by default) and over towards the right hand side of the screen. This is achieved by setting a variable to 0, incrementing it slowly each frame and then passing it into SetSpritePosition, as shown in this code:
+
+_tier1
+SetSpritePosition ( sprite, x#, 0 )
+<br>
+x# = x# + 0.5
+_tier1
+
+_tier2
+SetSpritePosition ( iSprite, x, 0.0f );
+<br>
+x = x + 0.5f;
+_tier2
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background1.jpg" ) )
+<Br>
+image = LoadImage ( "blue.png" )
+<br>
+sprite = CreateSprite ( image )
+<br>
+do
+    SetSpritePosition ( sprite, x#, 0 )
+<br>
+    x# = x# + 0.5
+<br>
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background1.jpg" ) );
+<br>
+    image = LoadImage ( "blue.png" );
+<br>
+    sprite = CreateSprite ( image );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::SetSpritePosition ( sprite, x, 0.0f );
+<br>
+    x = x + 0.5;
+<br>
+    agk::sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+We're now all set to run our application and see the results on screen.
+
+
+
+

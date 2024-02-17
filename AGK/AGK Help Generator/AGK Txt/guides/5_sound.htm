@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Sound - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Sound</div><div class="page"><h1>Sound</h1><h2>Overview</h2><p>This guide provides an overview of loading and playing sound in AppGameKit Studio.</p><h2>What formats are supported?</h2><p>AppGameKit Studio supports the Wave file format. No other formats are currently supported.</p><h2>How do I load a sound?</h2><p>The command <i>LoadSound</i> allows you to load a sound. A sound can be loaded using the LoadSound command:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadSound ( id, file )
+id = LoadSound ( file )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadSound ( id, file )
+id = LoadSound ( file )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void LoadSound ( UINT id, uString file );
+UINT LoadSound ( uString file );
+</pre></div><p>A sound file can be loaded by either assigning an ID number manually or having it provided to you automatically. The next step is to let AppGameKit Studio know which file you want to load e.g. "mySound.wav". Please note that ID numbers are unique for a command set. Therefore it's feasible to have a sound loaded with an ID number of 1 and a sprite with an ID of 1.</p><p>Here's one approach to loading a sound. The command <i>LoadSound</i> is called, an ID number of 1 is specified and the file to load is "mySound.wav":</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadSound ( 1, "mySound.wav" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadSound ( 1, &quot;mySound.wav&quot; )
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::LoadSound ( 1, "mySound.wav" );
+</pre></div><p>This alternative method demonstrates how a sound can be loaded with an automatically assigned ID number:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">sound = LoadSound ( "mySound.wav" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="sound = LoadSound ( &quot;mySound.wav&quot; )
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">sound = agk::LoadSound ( "mySound.wav" )
+</pre></div><h2>How can I play a sound?</h2><p>Once a sound has been loaded it can be played with the <i>PlaySound</i> command. Several variants of this command exist:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">PlaySound ( id )
+playSound ( id, volume )
+PlaySound ( id, volume, loop )
+PlaySound ( id, volume, loop, priority )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="PlaySound ( id )
+playSound ( id, volume )
+PlaySound ( id, volume, loop )
+PlaySound ( id, volume, loop, priority )
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::PlaySound ( UINT id, int vol = 100, int loop = 0, int priority = 0 );
+</pre></div><p>The parameters for this command are as follows:</p><ul><li>ID</li><li>volume</li><li>loop</li><li>priority</li></ul><p>The ID number refers to the ID of the sound you want to play. The volume is a value between 0 and 100. By default the volume is set at 100, which will result in the sound being played at the maximum volume. Reducing this to a lower value will result in a quieter sound. The loop parameter controls whether the sound will be looped. A value of 0 will only play the sound once, while a value of 1 will loop playback. The final parameter is used to control whether the sound has priority for playback over other sounds, by default this is 0, changing this to 1 will give this sound priority. The priority value is used in instances where multiple sounds are playing at once.</p><p>The following lines of code demonstrate a sound being loaded with an ID of 1, and then the sound is played with a volume of 50 and set to loop:</p><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadSound ( 1, "mySound.wav" )
+PlaySound ( 1, 50, 1 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadSound ( 1, &quot;mySound.wav&quot; )
+PlaySound ( 1, 50, 1 )
+">Copy Code</button></div><div id="cppCodeBlock10" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::LoadSound ( 1, "mySound.wav" );
+agk::PlaySound ( 1, 50, 1 );
+</pre></div><h2>How do I stop a sound from playing?</h2><p>To stop a particular sound from playing call the <i>StopSound</i> command. This command only requires one parameter, and that is the ID number of the sound. This example shows a sound being loaded, played and then immediately stopped:</p><div id="basicCodeBlock11" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadSound ( 1, "mySound.wav" )
+PlaySound ( 1, 50, 1 )
+StopSound ( 1 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadSound ( 1, &quot;mySound.wav&quot; )
+PlaySound ( 1, 50, 1 )
+StopSound ( 1 )
+">Copy Code</button></div><div id="cppCodeBlock12" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::LoadSound ( 1, "mySound.wav" );
+agk::PlaySound ( 1, 50, 1 );
+agk::StopSound ( 1 );
+</pre></div><h2>How do I delete a sound?</h2><p>It may be necessary to delete previously loaded sound and free up available memory. To delete a sound entity call the command <i>DeleteSound</i>:</p><div id="basicCodeBlock13" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">DeleteSound ( id )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="DeleteSound ( id )
+">Copy Code</button></div><div id="cppCodeBlock14" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void DeleteSound ( UINT id );
+</pre></div><p>This command only requires the ID number of the sound you want to delete.</p><p>Here's an example of loading a sound and then deleting it:</p><div id="basicCodeBlock15" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadSound ( 1, "mySound.wav" )
+DeleteSound ( 1 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadSound ( 1, &quot;mySound.wav&quot; )
+DeleteSound ( 1 )
+">Copy Code</button></div><div id="cppCodeBlock16" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::LoadSound ( 1, "mySound.wav" );
+agk::DeleteSound ( 1 );
+</pre></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

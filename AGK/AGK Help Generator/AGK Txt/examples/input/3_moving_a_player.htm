@@ -1,0 +1,310 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Moving a player - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Moving a player</div><div class="page"><h1>Moving a player</h1><p>This example takes advantage of several features within AppGameKit Studio to demonstrate how to move a player in a game, it contains the following:</p><ul><li>a football pitch</li><li>a player that can switch between standing and running animation frames</li><li>a virtual joystick that is used to move the player around</li><li>scrolling based on the movement of the player</li></ul><p>Here's what the program looks like when running:</p><div align="center"><img src="3_moving.jpg"/></div><h2>Set up</h2><p>The initial set up code will deal with these tasks:</p><ul><li>set a display aspect</li><li>load and create the pitch</li><li>load and create the player</li><li>add a virtual joystick</li></ul><h2>Display aspect</h2><p>When using the default percentage based system it will be necessary to select a display aspect, which is responsible for controlling the ratio of the screen. An aspect of 4 / 3 is chosen, which is effectively the same as the iPad resolution of 1024 x 768. You can test this by checking the results of 4 / 3 and 1024 / 768 (both of these give a result of 1.333). Setting the display aspect to 4 / 3 will mean that our example will cover the whole screen on the iPad, as it has the same aspect ratio. Other platforms may have different aspect ratios, for example, the landscape iPhone resolution is 480 x 320 and when divided this gives us a result of 1.5, therefore when running this example on the iPhone there would be small black borders on screen to ensure the aspect ratio of 4 / 3 is enforced.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetDisplayAspect ( 4.0 / 3.0 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetDisplayAspect ( 4.0 / 3.0 )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetDisplayAspect ( 4.0f / 3.0f );
+</pre></div><h2>Creating the pitch</h2><p>The pitch graphics are split into two with pitch_top.jpg containing the top half of the pitch:</p><div align="center"><img src="pitch_top.jpg"/></div><p><br>And pitch_bottom.jpg contains the bottom half of the pitch:</p><div align="center"><img src="pitch_bottom.jpg"/></div><p><br>The top half of the pitch is loaded and has its ID specified as 1. This sprite needs to cover the whole of the screen on the X axis so <i>SetSpriteSize</i> has 100% passed in for the X parameter. A value of -1 is used on the Y axis so that the correct height is automatically calculated based on the width.</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadImage     ( 1, "pitch_top.jpg" )
+CreateSprite  ( 1, 1 )
+SetSpriteSize ( 1, 100, -1 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadImage     ( 1, &quot;pitch_top.jpg&quot; )
+CreateSprite  ( 1, 1 )
+SetSpriteSize ( 1, 100, -1 )
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::LoadImage     ( 1, "pitch_top.jpg" );
+agk::CreateSprite  ( 1, 1 );
+agk::SetSpriteSize ( 1, 100, -1 );	
+</pre></div><p>A similar process is repeated for the bottom half of the pitch, except this time ID 2 is used for the pitch image and the sprite. The Y position is calculated based on the height of the top half of the pitch, which will result in the bottom half being placed directly under the top half.</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadImage     ( 2, "pitch_bottom.jpg" )
+CreateSprite  ( 2, 2 )
+SetSpriteSize ( 2, 100, -1 )
+SetSpriteY    ( 2, GetSpriteHeight ( 1 ) )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadImage     ( 2, &quot;pitch_bottom.jpg&quot; )
+CreateSprite  ( 2, 2 )
+SetSpriteSize ( 2, 100, -1 )
+SetSpriteY    ( 2, GetSpriteHeight ( 1 ) )
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::LoadImage     ( 2, "pitch_bottom.jpg" );
+agk::CreateSprite  ( 2, 2 );
+agk::SetSpriteSize ( 2, 100, -1 );	
+agk::SetSpriteY    ( 2, agk::GetSpriteHeight ( 1 ) );
+</pre></div><h2>The player</h2><p>The player sprite will utilise several images. The default standing image is named blue-standing.png and is shown here:</p><div align="center"><img src="blue-standing.png"/></div><p><br>To create the player sprite the following code is used:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadImage         ( 3, "blue-standing.png" )
+CreateSprite      ( 3, 3 )
+SetSpriteSize     ( 3, 2.5, -1 )
+SetSpritePosition ( 3, 50, 50 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadImage         ( 3, &quot;blue-standing.png&quot; )
+CreateSprite      ( 3, 3 )
+SetSpriteSize     ( 3, 2.5, -1 )
+SetSpritePosition ( 3, 50, 50 )
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::LoadImage         ( 3, "blue-standing.png" );
+agk::CreateSprite      ( 3, 3 );
+agk::SetSpriteSize     ( 3, 2.5, -1 );	
+agk::SetSpritePosition ( 3, 50, 50 );
+</pre></div><p>The standing image is loaded into ID 3, then the sprite is created using an ID of 3, and its size set to 2.5% of the screen on the X axis with the size on Y axis being calculated automatically, finally the position is set to 50% on the X axis and 50% on the Y axis, which will place our player at the center of the screen.</p><p>Several animation frames are available that can be used when the player starts running across the pitch:</p><div align="center"><img src="blue-running-1.png"/></div><div align="center"><img src="blue-running-2.png"/></div><div align="center"><img src="blue-running-3.png"/></div><div align="center"><img src="blue-running-4.png"/></div><div align="center"><img src="blue-running-5.png"/></div><div align="center"><img src="blue-running-6.png"/></div><p><br>These frames of animation are added by calling <i>AddSpriteAnimationFrame</i>:</p><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">AddSpriteAnimationFrame ( 3, LoadImage ( "blue-running-1.png" ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( "blue-running-2.png" ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( "blue-running-3.png" ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( "blue-running-4.png" ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( "blue-running-5.png" ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( "blue-running-6.png" ) )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="AddSpriteAnimationFrame ( 3, LoadImage ( &quot;blue-running-1.png&quot; ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( &quot;blue-running-2.png&quot; ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( &quot;blue-running-3.png&quot; ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( &quot;blue-running-4.png&quot; ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( &quot;blue-running-5.png&quot; ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( &quot;blue-running-6.png&quot; ) )
+">Copy Code</button></div><div id="cppCodeBlock10" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::AddSpriteAnimationFrame ( 3, agk::LoadImage ( "blue-running-1.png" ) );
+agk::AddSpriteAnimationFrame ( 3, agk::LoadImage ( "blue-running-2.png" ) );
+agk::AddSpriteAnimationFrame ( 3, agk::LoadImage ( "blue-running-3.png" ) );
+agk::AddSpriteAnimationFrame ( 3, agk::LoadImage ( "blue-running-4.png" ) );
+agk::AddSpriteAnimationFrame ( 3, agk::LoadImage ( "blue-running-5.png" ) );
+agk::AddSpriteAnimationFrame ( 3, agk::LoadImage ( "blue-running-6.png" ) );
+</pre></div><h2>Adding a virtual joystick</h2><p>The player will be controlled by a virtual joystick, that will be placed on screen using the command <i>AddVirtualJoystick</i>:</p><div id="basicCodeBlock11" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">AddVirtualJoystick ( 1, 8, 90, 10 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="AddVirtualJoystick ( 1, 8, 90, 10 )
+">Copy Code</button></div><div id="cppCodeBlock12" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::AddVirtualJoystick ( 1, 8, 90, 10 );
+</pre></div><p>An ID of 1 is specified for the virtual joystick, it is positioned at 8% on the X axis and 90% on the Y axis, finally it is set to have dimensions of 10% by 10%.</p><h2>Main loop</h2><p>At this point all of our graphics are in place - the football pitch and the player with animations, there is also a virtual joystick that will be displayed on screen. The next step is to consider what needs to happen within our main loop:</p><ul><li>we need to respond to input from the virtual joystick and move and animate our player</li><li>the view must also be scrolled as the player runs up and down the screen.</li></ul><p>To retrieve input from the virtual joystick the commands <i>GetVirtualJoystickX</i> and <i>GetVirtualJoystickY</i> are called. These commands return a value between -1 and 1 that indicate any movement that has been applied to the joystick. Once we know this input the player's rotation, position and animation can be updated. Here's the process:</p><ul><li>obtain input from the virtual joystick</li><li>find the position of our player</li><li>subtract joystick input from our player's position to work out the direction of movement</li><li>calculate the angle which the player should be facing</li><li>update the position of the player based on the input</li><li>scroll the screen based on the input</li><li>when there is no joystick input show the standing animation frame</li><li>when there is joystick input play the running animation</li></ul><h2>Obtaining input from the joystick</h2><p>The commands <i>GetVirtualJoystickX</i> and <i>GetVirtualJoystickY</i> return any input from the virtual joystick:</p><div id="basicCodeBlock13" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">joystickX# = GetVirtualJoystickX ( 1 )
+joystickY# = GetVirtualJoystickY ( 1 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="joystickX# = GetVirtualJoystickX ( 1 )
+joystickY# = GetVirtualJoystickY ( 1 )
+">Copy Code</button></div><div id="cppCodeBlock14" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">float joystickX = agk::GetVirtualJoystickX ( 1 );
+float joystickY = agk::GetVirtualJoystickY ( 1 );
+</pre></div><h2>Finding the position of our player</h2><p>The position of our player is obtained as follows:</p><div id="basicCodeBlock15" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">x# = GetSpriteX ( 3 )
+y# = GetSpriteY ( 3 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="x# = GetSpriteX ( 3 )
+y# = GetSpriteY ( 3 )
+">Copy Code</button></div><div id="cppCodeBlock16" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">float x = agk::GetSpriteX ( 3 );
+float y = agk::GetSpriteY ( 3 );
+</pre></div><h2>Direction</h2><p>Input from the joystick is subtracted from the player's position and stored:</p><div id="basicCodeBlock17" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">x1# = x# - joystickX#
+y1# = y# - joystickY#
+</pre></div><div align="right"><button class="btn" data-clipboard-text="x1# = x# - joystickX#
+y1# = y# - joystickY#
+">Copy Code</button></div><div id="cppCodeBlock18" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">float x1 = x - joystickX;
+float y1 = y - joystickY;
+</pre></div><h2>Calculating the angle</h2><p>At this point enough information is known so that the player's rotation can be updated, so that he is facing the correct direction. To achieve this a rotation angle is calculated based on the original location of the player and the direction it is moving in:</p><div id="basicCodeBlock19" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">angle# = ATanFull ( x1# - x#, y1# - y# )
+<br>	
+SetSpriteAngle ( 3, angle# )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="angle# = ATanFull ( x1# - x#, y1# - y# )
+
+SetSpriteAngle ( 3, angle# )
+">Copy Code</button></div><div id="cppCodeBlock20" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">float angle = agk::ATanFull ( x1 - x, y1 - y );
+<br>	
+agk::SetSpriteAngle ( 3, angle );
+</pre></div><p>The command <i>ATanFull</i> returns the angle in degrees for the direction passed in. This is followed with a call to update the angle of the player sprite.</p><h2>Updating the player's position</h2><p>The next step is to update the position of our player by adding to its original position input data from the joystick:</p><div id="basicCodeBlock21" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetSpritePosition ( 3, GetSpriteX ( 3 ) + ( joystickX / 5.0 ), GetSpriteY ( 3 ) + ( joystickY / 5.0 ) )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetSpritePosition ( 3, GetSpriteX ( 3 ) + ( joystickX / 5.0 ), GetSpriteY ( 3 ) + ( joystickY / 5.0 ) )
+">Copy Code</button></div><div id="cppCodeBlock22" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetSpritePosition ( 3, agk::GetSpriteX ( 3 ) + ( joystickX / 5.0f ), agk::GetSpriteY ( 3 ) + ( joystickY / 5.0f ) );
+</pre></div><p>The joystick input is divided by 5 before being applied to the player's position. This is done as a way of dampening the input and ensuring the player doesn't move around too fast. If no division occurred the player would race around the screen incredibly fast and if the division was higher e.g. 10 then the player would be very slow.</p><h2>Scrolling the screen</h2><p>The screen is scrolled by taking the position of the player and subtracting 50%, therefore the view will always be centered on the player. There is no scrolling required on the X axis as we only need to control movement on the Y axis. There is also no check so the player can run off the pitch:</p><div id="basicCodeBlock23" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetViewOffset ( 0.0, y# - 50 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetViewOffset ( 0.0, y# - 50 )
+">Copy Code</button></div><div id="cppCodeBlock24" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetViewOffset ( 0.0f, y - 50 );
+</pre></div><h2>Animation</h2><p>The only task remaining is to deal with animation. When there is no input from the virtual joystick any animation is stopped and the player's image is set to the standing image (ID 3). Whenever input is received if the run animation is not already playing then it is triggered:</p><div id="basicCodeBlock25" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">if ( joystickX# = 0.0 and joystickY# = 0.0 )
+    StopSprite ( 3 )
+    SetSpriteFrame ( 3, 3 )
+else
+    if ( GetSpritePlaying ( 3 ) = 0 )
+        PlaySprite ( 3, 10, 1, 2, 7 )
+    endif
+endif
+</pre></div><div align="right"><button class="btn" data-clipboard-text="if ( joystickX# = 0.0 and joystickY# = 0.0 )
+    StopSprite ( 3 )
+    SetSpriteFrame ( 3, 3 )
+else
+    if ( GetSpritePlaying ( 3 ) = 0 )
+        PlaySprite ( 3, 10, 1, 2, 7 )
+    endif
+endif
+">Copy Code</button></div><div id="cppCodeBlock26" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">if ( joystickX == 0.0f && joystickY == 0.0f )
+{
+    agk::StopSprite ( 3 );
+    agk::SetSpriteFrame ( 3, 3 );
+}
+else
+{
+    if ( agk::GetSpritePlaying ( 3 ) == 0 )
+        agk::PlaySprite ( 3, 10, 1, 2, 7 );
+}
+</pre></div><h2>Full code listing</h2><p>Everything is now in place to run our program. All that's needed now is to lay out the final code and ensure <i>Sync</i> is called:</p><div id="basicCodeBlock27" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetDisplayAspect ( 4.0 / 3.0 )
+<br>
+LoadImage     ( 1, "pitch_top.jpg" )
+CreateSprite  ( 1, 1 )
+SetSpriteSize ( 1, 100, -1 )
+<br>
+LoadImage     ( 2, "pitch_bottom.jpg" )
+CreateSprite  ( 2, 2 )
+SetSpriteSize ( 2, 100, -1 )
+SetSpriteY    ( 2, GetSpriteHeight ( 1 ) )
+<br>
+LoadImage         ( 3, "blue-standing.png" )
+CreateSprite      ( 3, 3 )
+SetSpriteSize     ( 3, 2.5, -1 )
+SetSpritePosition ( 3, 50, 50 )
+<br>
+AddSpriteAnimationFrame ( 3, LoadImage ( "blue-running-1.png" ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( "blue-running-2.png" ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( "blue-running-3.png" ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( "blue-running-4.png" ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( "blue-running-5.png" ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( "blue-running-6.png" ) )
+<br>
+AddVirtualJoystick ( 1, 8, 90, 10 )
+<br>
+do
+    joystickX# = GetVirtualJoystickX ( 1 )
+    joystickY# = GetVirtualJoystickY ( 1 )
+<br>
+    x# = GetSpriteX ( 3 )
+    y# = GetSpriteY ( 3 )
+<br>
+    x1# = x# - joystickX#
+    y1# = y# - joystickY#
+<br>
+    angle# = ATanFull ( x1# - x#, y1# - y# )
+    SetSpriteAngle ( 3, angle# )
+<br>
+    SetSpritePosition ( 3, GetSpriteX ( 3 ) + ( joystickX# / 5.0 ), GetSpriteY ( 3 ) + ( joystickY# / 5.0 ) )
+<br>
+    SetViewOffset ( 0.0, y# - 50 )
+<br>
+    if ( joystickX# = 0.0 and joystickY# = 0.0 )
+        StopSprite ( 3 )
+        SetSpriteFrame ( 3, 3 )
+    else
+        if ( GetSpritePlaying ( 3 ) = 0 )
+            PlaySprite ( 3, 10, 1, 2, 7 )
+        endif
+    endif
+<br>
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetDisplayAspect ( 4.0 / 3.0 )
+
+LoadImage     ( 1, &quot;pitch_top.jpg&quot; )
+CreateSprite  ( 1, 1 )
+SetSpriteSize ( 1, 100, -1 )
+
+LoadImage     ( 2, &quot;pitch_bottom.jpg&quot; )
+CreateSprite  ( 2, 2 )
+SetSpriteSize ( 2, 100, -1 )
+SetSpriteY    ( 2, GetSpriteHeight ( 1 ) )
+
+LoadImage         ( 3, &quot;blue-standing.png&quot; )
+CreateSprite      ( 3, 3 )
+SetSpriteSize     ( 3, 2.5, -1 )
+SetSpritePosition ( 3, 50, 50 )
+
+AddSpriteAnimationFrame ( 3, LoadImage ( &quot;blue-running-1.png&quot; ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( &quot;blue-running-2.png&quot; ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( &quot;blue-running-3.png&quot; ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( &quot;blue-running-4.png&quot; ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( &quot;blue-running-5.png&quot; ) )
+AddSpriteAnimationFrame ( 3, LoadImage ( &quot;blue-running-6.png&quot; ) )
+
+AddVirtualJoystick ( 1, 8, 90, 10 )
+
+do
+    joystickX# = GetVirtualJoystickX ( 1 )
+    joystickY# = GetVirtualJoystickY ( 1 )
+
+    x# = GetSpriteX ( 3 )
+    y# = GetSpriteY ( 3 )
+
+    x1# = x# - joystickX#
+    y1# = y# - joystickY#
+
+    angle# = ATanFull ( x1# - x#, y1# - y# )
+    SetSpriteAngle ( 3, angle# )
+
+    SetSpritePosition ( 3, GetSpriteX ( 3 ) + ( joystickX# / 5.0 ), GetSpriteY ( 3 ) + ( joystickY# / 5.0 ) )
+
+    SetViewOffset ( 0.0, y# - 50 )
+
+    if ( joystickX# = 0.0 and joystickY# = 0.0 )
+        StopSprite ( 3 )
+        SetSpriteFrame ( 3, 3 )
+    else
+        if ( GetSpritePlaying ( 3 ) = 0 )
+            PlaySprite ( 3, 10, 1, 2, 7 )
+        endif
+    endif
+
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock28" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+agk::SetDisplayAspect ( 4.0 / 3.0 );
+<br>
+agk::LoadImage     ( 1, "pitch_top.jpg" );
+agk::CreateSprite  ( 1, 1 );
+agk::SetSpriteSize ( 1, 100, -1 );
+<br>
+agk::LoadImage     ( 2, "pitch_bottom.jpg" );
+agk::CreateSprite  ( 2, 2 );
+agk::SetSpriteSize ( 2, 100, -1 );
+agk::SetSpriteY    ( 2, agk::GetSpriteHeight ( 1 ) );
+<br>
+agk::LoadImage         ( 3, "blue-standing.png" );
+agk::CreateSprite      ( 3, 3 );
+agk::SetSpriteSize     ( 3, 2.5, -1 );
+agk::SetSpritePosition ( 3, 50, 50 );
+<br>
+agk::AddSpriteAnimationFrame ( 3, agk::LoadImage ( "blue-running-1.png" ) );
+agk::AddSpriteAnimationFrame ( 3, agk::LoadImage ( "blue-running-2.png" ) );
+agk::AddSpriteAnimationFrame ( 3, agk::LoadImage ( "blue-running-3.png" ) );
+agk::AddSpriteAnimationFrame ( 3, agk::LoadImage ( "blue-running-4.png" ) );
+agk::AddSpriteAnimationFrame ( 3, agk::LoadImage ( "blue-running-5.png" ) );
+agk::AddSpriteAnimationFrame ( 3, agk::LoadImage ( "blue-running-6.png" ) );
+<br>
+agk::AddVirtualJoystick ( 1, 8, 90, 10 );
+}
+<br>
+void app::Loop ( void )
+{
+    float joystickX = agk::GetVirtualJoystickX ( 1 );
+    float joystickY = agk::GetVirtualJoystickY ( 1 );
+<br>
+    float x = agk::GetSpriteX ( 3 );
+    float y = agk::GetSpriteY ( 3 );
+<br>
+    float x1 = x - joystickX;
+    float y1 = y - joystickY;
+<br>
+    float angle = agk::ATanFull ( x1 - x, y1 - y );
+    agk::SetSpriteAngle ( 3, angle );
+<br>
+    agk::SetSpritePosition ( 3, agk::GetSpriteX ( 3 ) + ( joystickX / 5.0 ), agk::GetSpriteY ( 3 ) + ( joystickY / 5.0 ) );
+<br>
+    agk::SetViewOffset ( 0.0, y - 50 );
+<br>
+    if ( joystickX == 0.0 && joystickY == 0.0 )
+    {
+        agk::StopSprite ( 3 );
+        agk::SetSpriteFrame ( 3, 3 );
+    }
+    else
+    {    
+        if ( agk::GetSpritePlaying ( 3 ) == 0 )
+            agk::PlaySprite ( 3, 10, 1, 2, 7 );
+    }
+<br>
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>The input systems provided within AppGameKit Studio can be used to handle most forms of input and allow you to concentrate on writing your game. As seen from this example only a few lines of code are needed to get a virtual joystick on screen and move a player around the game.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

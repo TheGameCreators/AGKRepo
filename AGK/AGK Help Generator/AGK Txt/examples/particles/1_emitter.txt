@@ -1,0 +1,148 @@
+﻿_header
+A simple emitter
+
+_sheader
+Description
+_text
+Emitters can be created to deal with effects such as engine trails, weapons, smoke and much more. In this program a simple emitter is created that fires particles up into the air.
+
+_image
+1_emitter.jpg
+
+_text
+<br>This example program relies on an external image named "test2.png":
+_image
+test2.png
+
+_sheader
+Set up
+_text
+The code that creates this emitter is as follows:
+
+_tier1
+LoadImage ( 1, "test2.png" )
+<br>
+CreateParticles ( 1, 150, 250 )
+SetParticlesImage ( 1, 1 )
+SetParticlesStartZone ( 1, -5, 0, 5, 0 )
+SetParticlesDirection ( 1, 0, -145 )
+SetParticlesAngle ( 1, 15 )
+SetParticlesFrequency ( 1, 60 )
+SetParticlesLife ( 1, 1.5 )
+SetParticlesSize ( 1, 16 )
+AddParticlesColorKeyFrame ( 1, 0, 255, 255, 255, 255 )
+AddParticlesColorKeyFrame ( 1, 1.5, 255, 255, 255, 0 )
+_tier1
+
+_tier2
+agk::LoadImage ( 1, "test2.png" );
+<br>
+agk::CreateParticles ( 1, 150, 250 );
+agk::SetParticlesImage ( 1, 1 );
+agk::SetParticlesStartZone ( 1, -5, 0, 5, 0 );
+agk::SetParticlesDirection ( 1, 0, -145.0f );
+agk::SetParticlesAngle ( 1, 15 );
+agk::SetParticlesFrequency ( 1, 60 );
+agk::SetParticlesLife ( 1, 1.5 );
+agk::SetParticlesSize ( 1, 16 );
+agk::AddParticlesColorKeyFrame ( 1, 0, 255, 255, 255, 255 );
+agk::AddParticlesColorKeyFrame ( 1, 1.5, 255, 255, 255, 0 );
+_tier2
+
+_sheader
+Understanding the code
+_text
+The code performs the following actions:
+
+_listbegin
+loads the image "test2.png" into slot 1
+creates particles with an ID of 1 positioned at 150, 250
+applies image 1 ("test2.png") to the particles
+alters the start zone for particles on the X axis by -5 and +5
+applies a negative value on the Y direction forcing all particles to be emitted so they move up the screen
+sets the angle of emission between 0 and 15 allowing a little variation on the Y axis
+sets the frequency to 60 particles per second
+reduces the life span of particles to 1.5 seconds
+changes the size of particles to be 16 pixels
+adds one color key frame that is used at the beginning of the particle's life - with full alpha
+adds one color key frame that is used at the end of the particle's life - with no alpha thus forcing the particle to fade out
+_listend
+
+_sheader
+Main Loop
+_text
+Our main loop simply needs to make a call to <i>Sync</i> to update the screen:
+
+_tier1
+do
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "alien_backdrop.jpg" ) )
+<br>
+LoadImage ( 1, "test2.png" )
+<br>
+CreateParticles ( 1, 150, 250 )
+SetParticlesImage ( 1, 1 )
+SetParticlesStartZone ( 1, -5, 0, 5, 0 )
+SetParticlesDirection ( 1, 0, -145 )
+SetParticlesAngle ( 1, 15 )
+SetParticlesFrequency ( 1, 60 )
+SetParticlesLife ( 1, 1.5 )
+SetParticlesSize ( 1, 16 )
+AddParticlesColorKeyFrame ( 1, 0, 255, 255, 255, 255 )
+AddParticlesColorKeyFrame ( 1, 1.5, 255, 255, 255, 0 )
+<br>
+do
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+agk::SetVirtualResolution ( 320, 480 );
+<br>
+agk::CreateSprite ( agk::LoadImage ( "alien_backdrop.jpg" ) );
+<br>
+agk::LoadImage ( 1, "test2.png" );
+<br>
+agk::CreateParticles ( 1, 150, 250 );
+agk::SetParticlesImage ( 1, 1 );
+agk::SetParticlesStartZone ( 1, -5, 0, 5, 0 );
+agk::SetParticlesDirection ( 1, 0, -145.0f );
+agk::SetParticlesAngle ( 1, 15 );
+agk::SetParticlesFrequency ( 1, 60 );
+agk::SetParticlesLife ( 1, 1.5 );
+agk::SetParticlesSize ( 1, 16 );
+agk::AddParticlesColorKeyFrame ( 1, 0, 255, 255, 255, 255 );
+agk::AddParticlesColorKeyFrame ( 1, 1.5, 255, 255, 255, 0 );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+With a few lines of code a fairly complex emitter has been generated. This could be used for all kinds of effects such as the exhaust from an engine, poisonous gas escaping from a pipe, smoke and much more.

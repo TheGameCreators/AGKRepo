@@ -1,0 +1,39 @@
+_header
+endfunction
+
+_sheader
+Syntax
+
+_tier1
+endfunction variable
+_tier1
+
+_sheader
+Description
+
+_text
+These commands will declare a user defined function within your program. User functions work in the same way normal commands work. They can accept multiple parameters and return values in the same manner, allowing you to create customized commands within your program. It is vital that if exit function command is used within a function declaration, that the return types are identical not only in data type, but whether they are arrays, variables or literals. You also cannot have expressions as part of the return data.
+
+_sheader
+Example
+
+_tier1
+rem example 1
+do
+    myFunction ( )
+loop
+<br>
+function myFunction ( )
+    print ( "inside myFunction" )
+endfunction
+<br>
+rem example 2
+do
+    a = myFunction ( )
+    print ( a )
+loop
+<br>
+function myFunction ( )
+    returnValue = 123
+endfunction returnValue
+_tier1

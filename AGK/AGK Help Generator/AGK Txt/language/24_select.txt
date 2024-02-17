@@ -1,0 +1,31 @@
+_header
+select
+
+_sheader
+Syntax
+
+_tier1
+select variable
+_tier1
+
+_sheader
+Description
+
+_text
+A select statement allows you to branch to different actions based on the value of the provided variable. The variable can be an integer, real or string value. Use this command in combination with <i>case</i>, <i>endcase</i> and <i>endselect</i> to create a select statement. 
+
+_sheader
+Example
+
+_tier1
+state = 1
+<br>
+select state
+    case 1
+        print ( "state is 1" )
+    endcase
+    case 2
+        print ( "state is 2" )
+    endcase
+endselect
+_tier1

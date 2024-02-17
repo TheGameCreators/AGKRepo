@@ -1,0 +1,165 @@
+_header
+Hitting a sprite
+
+_text
+When checking whether a user has hit or clicked on a sprite there are two options:
+
+_listbegin
+Call <i>GetSpriteHitTest</i>, which allows you to check whether a given point lies within the boundaries of a specific sprite.
+Use <i>GetSpriteHit</i>, which returns the ID number of a sprite that is under the specified point.
+_listend
+
+_text
+This example takes a closer look at the second option: <i>GetSpriteHit</i>. This command is particularly useful for a situation where you quickly want to find what sprite a user has touched or clicked on. Internally this command will check all sprites within the area and return the appropriate ID number. It's a great time saver and means you don't need to be cycling through and checking specific sprites.
+
+_text
+Two sprites will be placed side by side and when the user clicks or hits them the ID number of that sprite will appear on screen.
+
+_image
+5_hitting_a_sprite.jpg
+
+_sheader
+Getting started
+
+_text
+The initial set up code sets a virtual resolution of 320 x 480, this is followed by loading the images "chip5.png" and "chip25.png".
+
+
+_text
+<br>A sprite on the left uses "chip5.png", while a sprite on the right uses "chip25.png":
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+LoadImage ( 1, "chip5.png" )
+LoadImage ( 2, "chip25.png" )
+<br>	
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 2 )
+<br>	
+SetSpritePosition ( 1, 100, 50 )
+SetSpritePosition ( 2, 200, 50 )
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::LoadImage ( 1, "chip5.png" );
+    agk::LoadImage ( 2, "chip25.png" );
+<br>	
+    agk::CreateSprite ( 1, 1 );
+    agk::CreateSprite ( 2, 2 );
+<br>	
+    agk::SetSpritePosition ( 1, 100, 50 );
+    agk::SetSpritePosition ( 2, 200, 50 );
+}
+_tier2
+
+_sheader
+Hitting a sprite
+
+_text
+Within our main loop an if statement is used to determine when the user hits or touches the screen, at this point <i>GetSpriteHit</i> is called. The command takes two parameters - an X and Y location, which for our purposes will be the location of the input. The return value is an ID number for whatever sprite was hit, this gets stored in a variable that is printed out on screen:
+
+_tier1
+do
+    Print ( "Clicked on sprite" )
+    Print ( sprite )
+<br>
+    if ( GetPointerPressed ( ) = 1 )
+        sprite = GetSpriteHit ( GetPointerX ( ), GetPointerY ( ) )
+    endif
+<br>	
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Loop ( void )
+{
+    agk::Print ( "Clicked on sprite" );
+    agk::Print ( iSprite );
+<br>
+    if ( agk::GetPointerPressed ( ) )
+        iSprite = agk::GetSpriteHit ( agk::GetPointerX ( ), agk::GetPointerY ( ) );
+<br>
+    agk::Sync ( );
+}
+_tier2
+
+_text
+Whenever a user clicks or touches the screen the ID number of whatever sprite they were hitting will be displayed on screen. If no collision occurred then a value of 0 is returned from the command <i>GetSpriteHit</i>.
+
+_sheader
+Full code listing
+_text
+The final code listing is:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+backdrop = CreateSprite ( LoadImage ( "background4.jpg" ) )
+SetSpriteColorAlpha ( backdrop, 200 )
+<br>
+LoadImage ( 1, "chip5.png" )
+LoadImage ( 2, "chip25.png" )
+<br>	
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 2 )
+<br>	
+SetSpritePosition ( 1, 100, 50 )
+SetSpritePosition ( 2, 200, 50 )
+<br>
+do
+    Print ( "Clicked on sprite" )
+    Print ( sprite )
+<br>
+    if ( GetPointerPressed ( ) = 1 )
+        sprite = GetSpriteHit ( GetPointerX ( ), GetPointerY ( ) )
+    endif
+<br>	
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    int backdrop = agk::CreateSprite ( agk::LoadImage ( "background4.jpg" ) );
+    agk::SetSpriteColorAlpha ( backdrop, 200 );
+<br>
+    agk::LoadImage ( 1, "chip5.png" );
+    agk::LoadImage ( 2, "chip25.png" );
+<br>	
+    agk::CreateSprite ( 1, 1 );
+    agk::CreateSprite ( 2, 2 );
+<br>	
+    agk::SetSpritePosition ( 1, 100, 50 );
+    agk::SetSpritePosition ( 2, 200, 50 );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Print ( "Clicked on sprite" );
+    agk::Print ( iSprite );
+<br>
+    if ( agk::GetPointerPressed ( ) )
+        iSprite = agk::GetSpriteHit ( agk::GetPointerX ( ), agk::GetPointerY ( ) );
+<br>
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+
+_text
+The command <i>GetSpriteHit</i> is particularly useful for scenarios when numerous sprites are on screen. If you had a screen with 20 buttons on and wanted to know which one had been clicked, then all it will take is one call to <i>GetSpriteHit</i>. This is much more efficient than running through a loop and checking sprites individually.
+
+
+
+

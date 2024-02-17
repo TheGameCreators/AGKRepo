@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Gas Cloud - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Gas Cloud</div><div class="page"><h1>Gas Cloud</h1><h2>Description</h2><p>Particles can be used in a wide variety of situations and it's possible to create all kinds of interesting effects. In this example we look at how the commands can be used to create an effect that makes it look as if the particles form some kind of gas cloud.</p><div align="center"><img src="3_gas_cloud.jpg"/></div><p><br>This example program relies on an external image named "particle.png":</p><div align="center"><img src="particle.png"/></div><h2>Set up</h2><p>Only a few lines of code are required for this program, beginning with a call to set the virtual resolution and loading an image that will be used by the particles:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+LoadImage ( 1, "particle.png" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+LoadImage ( 1, &quot;particle.png&quot; )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetVirtualResolution ( 320, 480 );
+agk::LoadImage ( 1, "particle.png" );
+</pre></div><h2>Creating the gas cloud</h2><p>A particle emitter is created and positioned at coordinates 150, 250, followed by properties being set such as the frequency, life and forces. All of these combine together to create the effect demonstrated by this program.</p><p>Here's the code used:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">CreateParticles ( 1, 150, 250 )
+SetParticlesFrequency ( 1, 500 )
+SetParticlesLife ( 1, 3 )
+SetParticlesSize ( 1, 64 )
+SetParticlesStartZone ( 1, -2, 0, 2, 0 )
+SetParticlesImage ( 1, 1 )
+SetParticlesDirection ( 1, 25, 50 )
+SetParticlesAngle ( 1, 360 )
+AddParticlesForce ( 1, 2.5, 3.0, 0, 200 )
+AddParticlesColorKeyFrame ( 1, 0.0, 0, 0, 0, 0 )
+AddParticlesColorKeyFrame ( 1, 0.5, 0, 0, 0, 0 )
+AddParticlesColorKeyFrame ( 1, 1.5, Random ( 0, 255 ), Random ( 0, 255 ), Random ( 0, 255 ), 255 )
+AddParticlesColorKeyFrame ( 1, 3.0, Random ( 0, 255 ), Random ( 0, 255 ), Random ( 0, 255 ), 0 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="CreateParticles ( 1, 150, 250 )
+SetParticlesFrequency ( 1, 500 )
+SetParticlesLife ( 1, 3 )
+SetParticlesSize ( 1, 64 )
+SetParticlesStartZone ( 1, -2, 0, 2, 0 )
+SetParticlesImage ( 1, 1 )
+SetParticlesDirection ( 1, 25, 50 )
+SetParticlesAngle ( 1, 360 )
+AddParticlesForce ( 1, 2.5, 3.0, 0, 200 )
+AddParticlesColorKeyFrame ( 1, 0.0, 0, 0, 0, 0 )
+AddParticlesColorKeyFrame ( 1, 0.5, 0, 0, 0, 0 )
+AddParticlesColorKeyFrame ( 1, 1.5, Random ( 0, 255 ), Random ( 0, 255 ), Random ( 0, 255 ), 255 )
+AddParticlesColorKeyFrame ( 1, 3.0, Random ( 0, 255 ), Random ( 0, 255 ), Random ( 0, 255 ), 0 )
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::CreateParticles ( 1, 150, 250 );
+agk::SetParticlesFrequency ( 1, 500 );
+agk::SetParticlesLife ( 1, 3.0f );
+agk::SetParticlesSize ( 1, 64 );
+agk::SetParticlesStartZone ( 1, -2, 0, 2, 0 );
+agk::SetParticlesImage ( 1, 1 );
+agk::SetParticlesDirection ( 1, 25, 50.0f );
+agk::SetParticlesAngle ( 1, 360.0f );
+agk::AddParticlesForce ( 1, 2.5, 3.0, 0, 200 );
+agk::AddParticlesColorKeyFrame ( 1, 0.0, 0, 0, 0, 0 );
+agk::AddParticlesColorKeyFrame ( 1, 0.5, 0, 0, 0, 0 );
+agk::AddParticlesColorKeyFrame ( 1, 1.5, agk::Random ( 0, 255 ), agk::Random ( 0, 255 ), agk::Random ( 0, 255 ), 255 );
+agk::AddParticlesColorKeyFrame ( 1, 3.0, agk::Random ( 0, 255 ), agk::Random ( 0, 255 ), agk::Random ( 0, 255 ), 0 );
+</pre></div><p>Try experimenting with the properties in order to see the impact that they make on the program. Here's a few suggestions:</p><ul><li>alter the frequency and see either more or less particles emitted</li><li>adjust the life span to make the particles last longer</li><li>try changing the size of the particles</li><li>alter the offsets used in the start zone to widen the area from which particles are emitted</li><li>see the effect of increasing the initial velocity of particles</li><li>notice how the angle can be used to limit the way in which particles are emitted</li><li>try controlling the key frames, the first two ensure that all particles are black, resulting in the black hole effect, experiment with the timing to make the black hole larger or smaller</li></ul><h2>The main loop</h2><p>When the particles were created no maximum amount was set, therefore particles will continue to emit until such time that the emitter is destroyed, so it's not necessary to do anything other than update the contents of the screen within the main loop:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+    sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+    sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+</pre></div><h2>Full code listing</h2><p>Everything is now in place. Here's the final code for our program:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<Br>
+CreateSprite ( LoadImage ( "alien_backdrop.jpg" ) )
+LoadImage ( 1, "particle.png" )
+<br>
+CreateParticles ( 1, 150, 250 )
+SetParticlesFrequency ( 1, 500 )
+SetParticlesLife ( 1, 3 )
+SetParticlesSize ( 1, 64 )
+SetParticlesStartZone ( 1, -2, 0, 2, 0 )
+SetParticlesImage ( 1, 1 )
+SetParticlesDirection ( 1, 25, 50 )
+SetParticlesAngle ( 1, 360 )
+AddParticlesForce ( 1, 2.5, 3.0, 0, 200 )
+AddParticlesColorKeyFrame ( 1, 0.0, 0, 0, 0, 0 )
+AddParticlesColorKeyFrame ( 1, 0.5, 0, 0, 0, 0 )
+AddParticlesColorKeyFrame ( 1, 1.5, Random ( 0, 255 ), Random ( 0, 255 ), Random ( 0, 255 ), 255 )
+AddParticlesColorKeyFrame ( 1, 3.0, Random ( 0, 255 ), Random ( 0, 255 ), Random ( 0, 255 ), 0 )
+<br>
+do
+    sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+<Br>
+CreateSprite ( LoadImage ( &quot;alien_backdrop.jpg&quot; ) )
+LoadImage ( 1, &quot;particle.png&quot; )
+
+CreateParticles ( 1, 150, 250 )
+SetParticlesFrequency ( 1, 500 )
+SetParticlesLife ( 1, 3 )
+SetParticlesSize ( 1, 64 )
+SetParticlesStartZone ( 1, -2, 0, 2, 0 )
+SetParticlesImage ( 1, 1 )
+SetParticlesDirection ( 1, 25, 50 )
+SetParticlesAngle ( 1, 360 )
+AddParticlesForce ( 1, 2.5, 3.0, 0, 200 )
+AddParticlesColorKeyFrame ( 1, 0.0, 0, 0, 0, 0 )
+AddParticlesColorKeyFrame ( 1, 0.5, 0, 0, 0, 0 )
+AddParticlesColorKeyFrame ( 1, 1.5, Random ( 0, 255 ), Random ( 0, 255 ), Random ( 0, 255 ), 255 )
+AddParticlesColorKeyFrame ( 1, 3.0, Random ( 0, 255 ), Random ( 0, 255 ), Random ( 0, 255 ), 0 )
+
+do
+    sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br
+    agk::CreateSprite ( agk::LoadImage ( "alien_backdrop.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "particle.png" );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::CreateParticles ( 1, 150, 250 );
+    agk::SetParticlesFrequency ( 1, 500 );
+    agk::SetParticlesLife ( 1, 3.0f );
+    agk::SetParticlesSize ( 1, 64 );
+    agk::SetParticlesStartZone ( 1, -2, 0, 2, 0 );
+    agk::SetParticlesImage ( 1, 1 );
+    agk::SetParticlesDirection ( 1, 25, 50.0f );
+    agk::SetParticlesAngle ( 1, 360.0f );
+    agk::AddParticlesForce ( 1, 2.5, 3.0, 0, 200 );
+    agk::AddParticlesColorKeyFrame ( 1, 0.0, 0, 0, 0, 0 );
+    agk::AddParticlesColorKeyFrame ( 1, 0.5, 0, 0, 0, 0 );
+    agk::AddParticlesColorKeyFrame ( 1, 1.5, agk::Random ( 0, 255 ), agk::Random ( 0, 255 ), agk::Random ( 0, 255 ), 255 );
+    agk::AddParticlesColorKeyFrame ( 1, 3.0, agk::Random ( 0, 255 ), agk::Random ( 0, 255 ), agk::Random ( 0, 255 ), 0 );
+<br>
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>The effect that has been created in this example is another good demonstration of what is achievable when using the particle commands.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

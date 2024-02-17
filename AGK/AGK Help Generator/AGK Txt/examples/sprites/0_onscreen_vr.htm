@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Sprites using the virtual resolution - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Sprites using the virtual resolution</div><div class="page"><h1>Sprites using the virtual resolution</h1><h2>Description</h2><p>Placing a sprite on screen using the approach of a virtual resolution is demonstrated in this example program.</p><div align="center"><img src="0_onscreen_vr.jpg"/></div><h2>Overview</h2><p>The process involved is as follows:</p><ul><li>set the virtual resolution</li><li>load an image</li><li>create a sprite</li><li>main loop</li></ul><h2>Virtual Resolution</h2><p>Let's begin by setting our virtual resolution when our program starts:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetVirtualResolution ( 320, 480 );
+</pre></div><p>Two parameters are passed into the function <i>SetVirtualResolution</i> - width and height. In this instance we're setting our screen size to be a width of 320 and height of 480.</p><h2>Load an image</h2><p>In this next step we're going to load an image. This is achieved by calling the command <i>LoadImage</i>. This command either accepts or returns an ID number, followed by a filename. Let’s see this in practice:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">image = LoadImage ( "blue.png" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="image = LoadImage ( &quot;blue.png&quot; )
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">image = agk::LoadImage ( "blue.png" );
+</pre></div><p>This line calls <i>LoadImage</i> passing in the filename "blue.png", it then returns an ID number which gets saved in the variable image. This ID number is now treated as a handle to our image and can be used later on when referring to it.</p><p>An alternative option is to specify the ID number manually e.g.</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadImage ( 1, "blue.png" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadImage ( 1, &quot;blue.png&quot; )
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::LoadImage ( 1, "blue.png" );
+</pre></div><h2>Creating a sprite</h2><p>Now that we have an image loaded into memory we're ready to create a sprite and attach this image to it. This is achieved by calling the command <i>CreateSprite</i>. This command either accepts or returns an ID number followed by an ID number of the image you wish to attach to the sprite:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">sprite = CreateSprite ( image )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="sprite = CreateSprite ( image )
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">sprite = agk::CreateSprite ( image );
+</pre></div><p>Here we call <i>CreateSprite</i> passing in an ID number for our image and returning an ID number for the sprite. We’re effectively saying create a sprite, attach this image to it and give us back an ID number for this sprite. This ID number for the sprite can be stored for use later on when dealing with sprite properties, for example.</p><h2>Main loop</h2><p>Up to this point we have set a virtual resolution, loaded an image and created a sprite that uses this image. We're nearly ready to run our application and see the results. Prior to this we need to ensure one more thing - in our main loop we must call <i>Sync</i> to ensure the screen gets updated and its contents drawn. The command <i>Sync</i> takes no parameters and can be called in your main loop like this:</p><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+    sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+    sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock10" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+</pre></div><h2>Full code listing</h2><p>Everything is now in place. Here's the final code for our program:</p><div id="basicCodeBlock11" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+image = LoadImage ( "blue.png" )
+sprite = CreateSprite ( image )
+<br>
+do
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+image = LoadImage ( &quot;blue.png&quot; )
+sprite = CreateSprite ( image )
+
+do
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock12" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    image = agk::LoadImage ( "blue.png" );
+    sprite = agk::CreateSprite ( image );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>We're now all set to run our application and see the results on screen. Once you're ready to finish the application you can close it by either pressing the escape key on the Windows and Macintosh platforms, or the home button on mobile devices.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

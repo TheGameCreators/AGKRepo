@@ -1,0 +1,24 @@
+_header
+next
+
+_sheader
+Syntax
+
+_tier1
+next variable
+_tier1
+
+_sheader
+Description
+
+_text
+This command will define a program loop that will loop a finite number of times. The <i>for</i> command requires a variable and two values to begin the loop. The variable stores the start value, and is incremented by 1 each loop until it reaches the end value. The <i>next</i> command is placed to mark the end of the loop. As the variable increments during the loop, you can use its value in many ways. You can increase the size of this increment by using the <i>step</i> command. The <i>exit</i> command can be used to exit a <i>for</i> loop.
+
+_sheader
+Example
+
+_tier1
+for i = 1 to 5
+    print ( i )
+next i
+_tier1

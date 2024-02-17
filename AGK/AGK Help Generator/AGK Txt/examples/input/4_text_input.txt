@@ -1,0 +1,144 @@
+_header
+Text input
+
+_text
+There may be occasions within your game where it might be necessary to find out information about the player, such as their name or location. For situations like this you can rely on the text input commands within AppGameKit Studio. These commands allow the player to input text, whether this be through a physical or virtual keyboard.
+
+_text
+This example program begins by allowing the user to type in some text and once they have finished displays the contents on screen.
+
+_image
+4_text_input.jpg
+
+_sheader
+Getting started
+
+_text
+To initiate text input call the command <i>StartTextInput</i>. This command does not take any parameters nor does it return any values. When this command is called a text entry prompt will be displayed on screen. At this point, when running on platforms that have physical keyboards such as Windows and Mac then the user can type into the text entry box directly. When running on mobile devices a virtual keyboard will be displayed on screen.
+
+_text
+The example program will allow the user to type as soon as the program begins:
+
+_tier1
+SetClearColor ( 0, 255, 0 )
+<br>
+StartTextInput ( )
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetClearColor ( 0, 255, 0 );
+<br>
+    agk::StartTextInput ( );
+}
+_tier2
+
+_text
+The <i>SetClearColor</i> command is used to change the background of the example program to green, this is followed with a call to <i>StartTextInput</i>
+
+_sheader
+Checking the input state
+
+_text
+With the text prompt on screen and the user able to type, the next step is to check whether the user has finished or cancelled any input. This is handled with three commands:
+
+_listbegin
+GetTextInputState
+GetTextInputCompleted
+GetTextInputCancelled
+_listend
+
+_text
+The command <i>GetTextInputState</i> returns a value of 0 if the user is currently inputting text, while a value of 1 is returned if there is no input.
+
+_text
+The command <i>GetTextInputCompleted</i> returns a value of 1 when the user has finished inputting text. After this point it will return a value of 0.
+
+_text
+The command <i>GetTextInputCancelled</i> returns a value of 1 if the user cancelled text input and 0 if not.
+
+_text
+Once the user has finished typing you can obtain the input through the command <i>GetTextInput</i>, which returns a string containing the input.
+
+_text
+The example program checks when the input has finished, then saves the result and displays it on screen, all of which is handled within the main loop:
+
+_tier1
+text$ = ""
+<br>
+do
+    if GetTextInputCompleted ( ) = 1
+        text$ = GetTextInput ( )
+    endif
+<br>
+    Print ( text$ )
+<br>
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Loop ( void )
+{
+    if ( agk::GetTextInputCompleted ( ) )
+        szText = agk::GetTextInput ( );
+<br>
+    if ( szText )
+        agk::Print ( szText );
+<br>
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program:
+
+_tier1
+SetClearColor ( 0, 255, 0 )
+<br>
+StartTextInput ( )
+text$ = ""
+<br>
+do
+    if GetTextInputCompleted ( ) = 1
+        text$ = GetTextInput ( )
+    endif
+<br>
+    Print ( text$ )
+<br>
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetClearColor ( 0, 255, 0 );
+<br>
+    agk::StartTextInput ( );
+}
+<br>
+void app::Loop ( void )
+{
+    if ( agk::GetTextInputCompleted ( ) )
+        szText = agk::GetTextInput ( );
+<br>
+    if ( szText )
+        agk::Print ( szText );
+<br>
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+
+_text
+This concludes the example for demonstrating how to accept user input.
+
+
+
+

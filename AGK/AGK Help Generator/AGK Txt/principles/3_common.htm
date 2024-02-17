@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Common Statements - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../principles.html">Principles</a> &gt; Common Statements</div><div class="page"><h1>Common Statements</h1><h2>Assignment statements</h2><p>You have already used an assignment statement, and it is probably the most commonly used part of any programming language. The Equal Symbol (=) is used to assign a value to a variable or array. Take the following examples:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">a=42
+a#=99.9
+a$="HELLO"
+lottery[1,1]=49
+</pre></div><div align="right"><button class="btn" data-clipboard-text="a=42
+a#=99.9
+a$=&quot;HELLO&quot;
+lottery[1,1]=49
+">Copy Code</button></div><h2>Branch statements</h2><p>Normally, a program executes statements in sequence starting at the top. A branch statement allows you to jump to another part of the program to continue execution. A GOSUB command will jump to a label and continue from its new location. When the program encounters a RETURN command, the program will jump back to the GOSUB from where it originally came. Take the following example:</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">PRINT ( "Hello" )
+GOSUB MySubroutine
+END
+ 
+MySubroutine:
+  PRINT ( "World" )
+RETURN
+</pre></div><div align="right"><button class="btn" data-clipboard-text="PRINT ( &quot;Hello&quot; )
+GOSUB MySubroutine
+END
+ 
+MySubroutine:
+  PRINT ( &quot;World&quot; )
+RETURN
+">Copy Code</button></div><p>The program will print the "Hello" text to the screen, then jump to the MySubroutine line of the program and continue execution. The next command it finds will print "World" to the screen. The RETURN command then returns the program to the point it left, where it then proceeds onto the next command after the GOSUB command which in this case is the END command.</p><p>A GOTO command however, does not remember from where it jumped and will continue running from its new location permanently. It is not recommended you use GOTO commands often, as there are better ways to control the flow of your programs. Here is an example, however, of a simple GOTO command:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">MyLabel:
+  PRINT ( "Hello World " )
+  SYNC()
+GOTO MyLabel
+</pre></div><div align="right"><button class="btn" data-clipboard-text="MyLabel:
+  PRINT ( &quot;Hello World &quot; )
+  SYNC()
+GOTO MyLabel
+">Copy Code</button></div><p>Or alternatively, a better way would be:</p><div id="basicCodeBlock4" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">DO
+  PRINT ( "Hello World " )
+  SYNC()
+LOOP
+</pre></div><div align="right"><button class="btn" data-clipboard-text="DO
+  PRINT ( &quot;Hello World &quot; )
+  SYNC()
+LOOP
+">Copy Code</button></div><p>You will agree the last example is a much better, cleaner and friendly way of doing the above and demonstrates how the use of GOTO can be eliminated. GOTO is retained in the AppGameKit Studio language for compatibility with older BASIC languages.</p><h2>For next statements</h2><p>You may recall the use of the FOR NEXT statement in earlier examples. The FOR NEXT commands are used to create a finite loop in which a variable is incremented or decremented from a value to a value. A simple example would be:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">FOR T=1 TO 5
+  PRINTC ( T )
+  PRINTC ( " " )
+NEXT T
+PRINT ( "Done" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="FOR T=1 TO 5
+  PRINTC ( T )
+  PRINTC ( &quot; &quot; )
+NEXT T
+PRINT ( &quot;Done&quot; )
+">Copy Code</button></div><p>The output to the screen would read:</p><div id="basicCodeBlock6" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">1 2 3 4 5 Done
+</pre></div><div align="right"><button class="btn" data-clipboard-text="1 2 3 4 5 Done
+">Copy Code</button></div><p>The program would set T to a value of 1 and then go to the next two lines to print the value of T followed by a space. After printing, the NEXT command would return the program to the FOR command and increment the value of T to make it 2. When the PRINT commands are encountered again, the value of T has changed and a new value is printed. This continues until T has gone from 1 through to 5, then the loop ends and the program is permitted to continue. The next command after the NEXT statement prints "Done" to the screen showing the program has left the loop.</p><p>You can also nest loops to create a loop within a loop, as the following example shows:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">FOR A=1 TO 5
+  PRINTC ( "MAIN A=" )
+  PRINT ( A )
+  FOR B=1 TO 10
+    PRINTC ( "LITTLE B=" )
+    PRINT ( B )
+  NEXT B
+NEXT A
+</pre></div><div align="right"><button class="btn" data-clipboard-text="FOR A=1 TO 5
+  PRINTC ( &quot;MAIN A=&quot; )
+  PRINT ( A )
+  FOR B=1 TO 10
+    PRINTC ( &quot;LITTLE B=&quot; )
+    PRINT ( B )
+  NEXT B
+NEXT A
+">Copy Code</button></div><p>The FOR NEXT statement loops the main A variable from 1 to 5, but for every loop of A the FOR NEXT statement inside the first loop must also loop its variable B from 1 to 10. This is known as a nested loop as the loop in the middle is nested inside an outer loop. </p><p>Such loops are especially useful for working on array data by using the variables that increment as position indexes for the arrays. As an example, we could list all our lottery numbers using the following example:</p><div id="basicCodeBlock8" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">FOR week=1 TO 52 STEP 4
+  PRINTC ( "LOTTERY NUMBER FOR WEEK " )
+  PRINTC ( week )
+  PRINTC ( " ARE " )
+  FOR index=1 to 6
+    PRINTC ( lottery[week,index] )
+    PRINT ( " " )
+  NEXT index
+NEXT week
+</pre></div><div align="right"><button class="btn" data-clipboard-text="FOR week=1 TO 52 STEP 4
+  PRINTC ( &quot;LOTTERY NUMBER FOR WEEK &quot; )
+  PRINTC ( week )
+  PRINTC ( &quot; ARE &quot; )
+  FOR index=1 to 6
+    PRINTC ( lottery[week,index] )
+    PRINT ( &quot; &quot; )
+  NEXT index
+NEXT week
+">Copy Code</button></div><p>Notice the new STEP command added to the end of the FOR NEXT statement. The STEP command is used to change the default increment value from 1 to another value. In this case, the program will only print the lottery numbers for every fourth week.</p><h2>If then statements</h2><p>The IF statement allows your program to make decisions that controls the flow of your program. The IF statement requires an expression to evaluate results as either true or false. If the expression is true, the commands following the THEN command will be executed. If the expression is false, the program will move onto the next statement and ignore the rest of the IF THEN statement. Take the following example:</p><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">age=20
+IF age>=16 THEN PRINT ( "You can buy a lottery ticket" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="age=20
+IF age>=16 THEN PRINT ( &quot;You can buy a lottery ticket&quot; )
+">Copy Code</button></div><p>This program demonstrates a simple IF THEN Statement. To understand how this works we must look at the IF command in a little more detail. First, we must take the expression and evaluate it:</p><div id="basicCodeBlock10" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">age>=16
+</pre></div><div align="right"><button class="btn" data-clipboard-text="age>=16
+">Copy Code</button></div><p>We can determine from our earlier coverage of operators, that this relational operator will result in either a zero or a one depending on whether age is greater or equal to 16. The IF command considers a value of zero to be false and all other values as true. So we can determine that if age is indeed greater or equal to 16 then the result will be 1, and the expression according to the IF command will be true.</p><p>The expression can be any combination of values, variables, arrays and operators providing the expression makes sense. These expressions will make sense:</p><div id="basicCodeBlock11" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">IF A THEN PRINT ( "ok" )
+IF A = B THEN PRINT ( "ok" )
+IF A > (B - 5) THEN PRINT ( "ok" )
+IF A = (B + (A * 2)) THEN PRINT ( "ok" )
+IF A=1 AND B=2 THEN PRINT ( "ok" )
+IF A#=1.5 OR LOTTERY[10,2]=20 THEN PRINT ( "ok" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="IF A THEN PRINT ( &quot;ok&quot; )
+IF A = B THEN PRINT ( &quot;ok&quot; )
+IF A > (B - 5) THEN PRINT ( &quot;ok&quot; )
+IF A = (B + (A * 2)) THEN PRINT ( &quot;ok&quot; )
+IF A=1 AND B=2 THEN PRINT ( &quot;ok&quot; )
+IF A#=1.5 OR LOTTERY[10,2]=20 THEN PRINT ( &quot;ok&quot; )
+">Copy Code</button></div><p>These expressions will not make sense:</p><div id="basicCodeBlock12" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">IF A = B = THEN PRINT ( "not ok" )
+IF > A = B THEN PRINT ( "not ok" )
+IF A B THEN PRINT ( "not ok" )
+IF AND A THEN PRINT ( "not ok" )
+IF B OR THEN PRINT ( "not ok" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="IF A = B = THEN PRINT ( &quot;not ok&quot; )
+IF > A = B THEN PRINT ( &quot;not ok&quot; )
+IF A B THEN PRINT ( &quot;not ok&quot; )
+IF AND A THEN PRINT ( &quot;not ok&quot; )
+IF B OR THEN PRINT ( &quot;not ok&quot; )
+">Copy Code</button></div><p>On occasions where one line is not enough after the THEN command, you can use the IF ENDIF statement. Using the same IF logic as above, instead of a THEN Command, simply provide your commands to be executed on the lines following the IF command. You must then mark the end of the commands to be executed with an ENDIF command, as the following example shows:</p><div id="basicCodeBlock13" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">IF A = B
+  PRINT ( "Hello A and B!" )
+ENDIF
+</pre></div><div align="right"><button class="btn" data-clipboard-text="IF A = B
+  PRINT ( &quot;Hello A and B!&quot; )
+ENDIF
+">Copy Code</button></div><p>This is the same as:</p><div id="basicCodeBlock14" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">IF A = B THEN PRINT ( "Hello A and B!" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="IF A = B THEN PRINT ( &quot;Hello A and B!&quot; )
+">Copy Code</button></div><p>But the main advantage is that the first piece of code can be adapted to do this:</p><div id="basicCodeBlock15" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">IF A = B
+  PRINT ( "Hello A!" )
+  PRINT ( "Hello B!" )
+  PRINT ( "Hello A and B!" )
+  PRINT ( "Hello B and A!" )
+  PRINT ( "Hello Everything!" )
+ENDIF
+</pre></div><div align="right"><button class="btn" data-clipboard-text="IF A = B
+  PRINT ( &quot;Hello A!&quot; )
+  PRINT ( &quot;Hello B!&quot; )
+  PRINT ( &quot;Hello A and B!&quot; )
+  PRINT ( &quot;Hello B and A!&quot; )
+  PRINT ( &quot;Hello Everything!&quot; )
+ENDIF
+">Copy Code</button></div><p>You can also respond to an IF command if the expression turns out to be false. In cases where you wish to execute a different piece of code if the condition is false, the ELSE command should be used as follows:</p><div id="basicCodeBlock16" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">IF A = B
+  PRINT ( "The values are the same!" )
+ELSE
+  PRINT ( "The values are different!" )
+ENDIF
+</pre></div><div align="right"><button class="btn" data-clipboard-text="IF A = B
+  PRINT ( &quot;The values are the same!&quot; )
+ELSE
+  PRINT ( &quot;The values are different!&quot; )
+ENDIF
+">Copy Code</button></div><p>It is important to make sure that you always use an ENDIF when THEN is not in use. You will note ENDIF is used whether or not the ELSE command is utilized.</p><p>You can also make use of the ELSEIF statement, which only executes further statements based on a condition being true, such as:</p><div id="basicCodeBlock17" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">IF A = 1
+  PRINT ( "The value of A is 1!" )
+ELSEIF A=2
+  PRINT ( "The value of A is 2!"  )
+ENDIF
+</pre></div><div align="right"><button class="btn" data-clipboard-text="IF A = 1
+  PRINT ( &quot;The value of A is 1!&quot; )
+ELSEIF A=2
+  PRINT ( &quot;The value of A is 2!&quot;  )
+ENDIF
+">Copy Code</button></div><h2>Print Statements</h2><p>The PRINT command is capable of printing out more than a single value. The command allows you to specify a list of data items that can be printed one after the other on the same line. The data items can be of any type. Although the use of PRINT has been frequent in the above examples, there are some unique features you may not be aware of. To print out more than one value on a line you can do this:</p><div id="basicCodeBlock18" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">a = 1
+b = 2
+name$ = "richard"
+PRINT ( name$ + STR ( a ) + STR ( b ) )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="a = 1
+b = 2
+name$ = &quot;richard&quot;
+PRINT ( name$ + STR ( a ) + STR ( b ) )
+">Copy Code</button></div><p>Note that the STR command is used to convert numbers into a string that is compatible with the PRINT command.</p><p>When the PRINT command is used to print data to the screen, the print cursor that is used to paste the individual letters to the screen resets to the left of the screen and one line down when the print is complete. A string of PRINT commands will print to the screen one line at a time. You can change this by leaving the cursor at the end of the printed line after a PRINT command. You achieve this by using the alternative command PRINTC, for example:</p><div id="basicCodeBlock19" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">PRINTC ( "Hello " )
+PRINT ( "World" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="PRINTC ( &quot;Hello &quot; )
+PRINT ( &quot;World&quot; )
+">Copy Code</button></div><p>There are much more sophisticated text commands in AppGameKit Studio that handle bitmap fonts, colors, sizes and styles but you will discover these as you explore the rest of the help system.</p><h2>End and Exit statements</h2><p>The END command will terminate the execution of a program and end the application immediately.</p><p>The EXIT command can be used to escape a conditional loop early, often as the result of a particular objective being achieved. For example:</p><div id="basicCodeBlock20" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">FOR T=1 TO 100 STEP 10
+  PRINT ( T )
+  IF T=51
+    PRINT ( "got to 51!" )
+    EXIT
+  ENDIF
+NEXT T
+</pre></div><div align="right"><button class="btn" data-clipboard-text="FOR T=1 TO 100 STEP 10
+  PRINT ( T )
+  IF T=51
+    PRINT ( &quot;got to 51!&quot; )
+    EXIT
+  ENDIF
+NEXT T
+">Copy Code</button></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

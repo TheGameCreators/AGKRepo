@@ -1,0 +1,172 @@
+_header
+Reading from a file
+
+_sheader
+Description
+
+_text
+Games often need to store data on a file, for example, high scores or level progress. The file access commands in AppGameKit Studio provide the ability to deal with tasks such as this. In this particular example commands are used that show the opening and reading of data from a file.
+
+_sheader
+Overview
+
+_text
+The process involved is as follows:
+
+_listbegin
+open a file for reading
+read data such as an integer, float and string
+close the file
+_listend
+
+_sheader
+Open a file for reading
+
+_text
+The command to open a file for writing is called <i>OpenToWrite</i>. It either takes one or two parameters dependant on usage. The first option is to have the command return an ID number for later usage, when taking this option the command only requires one parameter - the filename. If you want to specify an ID number then the command takes two parameters - the ID and the filename.
+
+_text
+This line of code shows the first option:
+
+_tier1
+fileID = OpenToRead ( "myfile.txt" )
+_tier1
+
+_tier2
+fileID = agk::OpenToRead ( "myfile.txt" );
+_tier2
+
+_text
+An ID for the file is returned to the variable <i>fileID</i>, the first parameter "myFile.txt" tells AppGameKit Studio that we want to open this particular file.
+
+_text
+The alternative approach is to specify an ID number manually, instead of it being assigned in the return value:
+
+_tier1
+OpenToRead ( 1, "myfile.txt" )
+_tier1
+
+_tier2
+agk::OpenToRead ( 1, "myfile.txt" );
+_tier2
+
+_text
+For the purpose of our example an ID number will be specified manually.
+
+_sheader
+Reading data from a file
+
+_text
+There are three possible data types that can be read from a file:
+
+_listbegin
+integers
+strings
+floats
+_listend
+
+_sheader
+Test file
+_text
+Our test file will contain the following data:
+
+_listbegin
+10
+1.23
+hello
+_listend
+
+_sheader
+Read an integer from a file
+
+_text
+To read an integer from file call the <i>ReadInteger</i> command. This command takes one parameter - the ID of the file. This line of code reads an integer from the file, in this case 10:
+
+_tier1
+value = ReadInteger ( 1 )
+_tier1
+
+_tier2
+value = agk::ReadInteger ( 1 );
+_tier2
+
+_sheader
+Reading a string from file
+
+_text
+To read a string from a file call the <i>ReadString</i> command. This command takes one parameter - the ID of the file. This line of code read the string "hello" from file 1:
+
+_tier1
+string$ = ReadString ( 1 )
+_tier1
+
+_tier2
+string = agk::ReadString ( 1 );
+_tier2
+
+_sheader
+Reading a float from file
+
+_text
+To read a float from a file call the <i>ReadFloat</i> command. This command takes one parameter - the ID of the file. This line of code reads the value 1.23 from file 1:
+
+_tier1
+value# = ReadFloat ( 1 )
+_tier1
+
+_tier2
+value = agk::ReadFloat ( 1 );
+_tier2
+
+
+_sheader
+Closing a file
+_text
+Once all data has been read from a file that file must be closed using the command <i>CloseFile</i>. This commands only parameter is the ID of the file. To close file 1:
+
+_tier1
+CloseFile ( 1 )
+_tier1
+
+_tier2
+agk::CloseFile ( 1 );
+_tier2
+
+_sheader
+Full code listing
+_text
+Our final program will read from a file containing this data:
+
+_listbegin
+10
+1.23
+hello
+_listend
+
+_text
+Here's the code:
+
+_tier1
+OpenToRead ( 1, "myfile.txt" )
+<br>
+a = ReadInteger ( 1 )
+b# = ReadFloat ( 1 )
+c$ = ReadString ( 1 )
+<br>
+CloseFile ( 1 )
+_tier1
+
+_tier2
+agk::OpenToRead ( 1, "myfile.txt" );
+<br>
+a = agk::ReadInteger ( 1 );
+b = agk::ReadFloat ( 1 );
+c = agk::ReadString ( 1 );
+<br>
+agk::CloseFile ( 1 );
+_tier2
+
+_sheader
+Conclusion
+_text
+As you can see from the above code, opening a file and reading data from it is a simple process. The important point to note is that you must read data in the correct order. Our file had an integer, a float and then a string, so we had to read it in that order.

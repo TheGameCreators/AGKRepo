@@ -1,0 +1,293 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Properties of sprites - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Properties of sprites</div><div class="page"><h1>Properties of sprites</h1><h2>Description</h2><p>Sprites have numerous properties that can be controlled, such as their colour, angle and size. This example demonstrates how to control these properties, by placing 5 sprites alongside each other on screen and then continually updating them in the main loop.</p><div align="center"><img src="4_properties.jpg"/></div><h2>Overview</h2><p>The process involved is as follows:</p><ul><li>create 5 sprites and position them in a row</li></ul><p>Within the main loop:</p><ul><li>leave sprite 1 unaffected</li><li>update the color of sprite 2</li><li>change the alpha of sprite 3</li><li>alter the angle of sprite 4</li><li>adjust the size of sprite 5</li></ul><h2>Understanding the color of a sprite</h2><p>When changing the color of a sprite it's possible to control the red, green, blue and alpha channels. Each of these channels supports values from 0 - 255. Imagine loading an image that is completely white and applied to a sprite. Once loaded the color channels are set to:</p><ul><li>red = 255</li><li>green = 0</li><li>blue = 0</li><li>alpha = 255</li></ul><p>This has the effect of changing our image to be totally red. This is due to the red channel being set to its maximum value (255), while the green and blue channels are set to their lowest values of 0. Finally we come to the alpha channel. This alpha channel is responsible for controlling how translucent the color is. Given a value of 255 our image will be displayed on screen and show as completely solid. As this value is lowered our sprite will start to become translucent and in doing so reveal any sprites behind it. By controlling alpha values it's possible to fade sprites in and out, amongst other effects.</p><p>Continuing with our white image and sprite - what would happen if all color channels are set to 255:</p><ul><li>red = 255</li><li>green = 255</li><li>blue = 255</li><li>alpha = 255</li></ul><p>In this instance our sprite is being drawn with all color channels at their full level, therefore it will appear on screen as a completely white image.</p><h2>Creating 5 sprites</h2><p>One image is loaded, which is then used by 5 sprites and these sprites are all laid out alongside each other:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadImage ( 1, "blue.png" )
+<br>
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 1 )
+CreateSprite ( 3, 1 )
+CreateSprite ( 4, 1 )
+CreateSprite ( 5, 1 )
+<br>
+SetSpritePosition ( 1, 0, 0 )
+SetSpritePosition ( 2, 70, 0 )
+SetSpritePosition ( 3, 140, 0 )
+SetSpritePosition ( 4, 210, 0 )
+SetSpritePosition ( 5, 280, 0 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadImage ( 1, &quot;blue.png&quot; )
+
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 1 )
+CreateSprite ( 3, 1 )
+CreateSprite ( 4, 1 )
+CreateSprite ( 5, 1 )
+
+SetSpritePosition ( 1, 0, 0 )
+SetSpritePosition ( 2, 70, 0 )
+SetSpritePosition ( 3, 140, 0 )
+SetSpritePosition ( 4, 210, 0 )
+SetSpritePosition ( 5, 280, 0 )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::LoadImage ( 1, "blue.png" );
+<br>
+agk::CreateSprite ( 1, 1 );
+agk::CreateSprite ( 2, 1 );
+agk::CreateSprite ( 3, 1 );
+agk::CreateSprite ( 4, 1 );
+agk::CreateSprite ( 5, 1 );
+<br>
+agk::SetSpritePosition ( 1, 0, 0 );
+agk::SetSpritePosition ( 2, 70, 0 );
+agk::SetSpritePosition ( 3, 140, 0 );
+agk::SetSpritePosition ( 4, 210, 0 );
+agk::SetSpritePosition ( 5, 280, 0 );
+</pre></div><h2>Main loop</h2><p>The main loop updates properties of the sprites, as mentioned earlier. It begins by setting the color of sprite 2 to a random value, followed by adjusting the alpha of sprite 3 to fade in and out, sprite 4 has its angle updated to rotate and finally sprite 5 has its size adjusted:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+    SetSpriteColor ( 2, Random ( 1, 255 ), Random ( 1, 255 ), Random ( 1, 255 ), 255 )
+    SetSpriteColor ( 3, 255, 255, 255, alpha )
+<br>
+    if ( direction = 0 )
+        alpha = alpha - 1
+<br>
+        if ( alpha < 0 )
+            direction = 1
+        endif
+    endif
+<br>
+    if ( direction = 0 )
+        alpha = alpha + 1
+        if ( alpha > 255 )
+            direction = 0
+        endif
+    endif
+<br>
+    SetSpriteAngle ( 4, angle )
+    angle = angle + 1
+    SetSpriteSize ( 5, GetSpriteWidth ( 5 ) - 1, GetSpriteHeight ( 5 ) - 1 )
+<br>
+    sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+    SetSpriteColor ( 2, Random ( 1, 255 ), Random ( 1, 255 ), Random ( 1, 255 ), 255 )
+    SetSpriteColor ( 3, 255, 255, 255, alpha )
+
+    if ( direction = 0 )
+        alpha = alpha - 1
+
+        if ( alpha < 0 )
+            direction = 1
+        endif
+    endif
+
+    if ( direction = 0 )
+        alpha = alpha + 1
+        if ( alpha > 255 )
+            direction = 0
+        endif
+    endif
+
+    SetSpriteAngle ( 4, angle )
+    angle = angle + 1
+    SetSpriteSize ( 5, GetSpriteWidth ( 5 ) - 1, GetSpriteHeight ( 5 ) - 1 )
+
+    sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Loop ( void )
+{
+    agk::SetSpriteColor ( 2, agk::Random ( 1, 255 ),
+ agk::Random ( 1, 255 ), agk::Random ( 1, 255 ), 255 );
+<br>
+    agk::SetSpriteColor ( 3, 255, 255, 255, alpha );
+<br>
+    if ( direction == 0 )
+    {
+        alpha = alpha - 1;
+<br>
+        if ( alpha < 0 )
+        {
+            direction = 1;
+        }
+    }
+<br>
+    if ( direction == 0 )
+    {
+        alpha = alpha + 1;
+<br>        
+        if ( alpha > 255 )
+        {
+            direction = 0;
+        }
+    }
+<br>
+    agk::SetSpriteAngle ( 4, angle );
+    angle = angle + 1;
+    agk::SetSpriteSize ( 5, agk::GetSpriteWidth ( 5 ) - 1, agk::GetSpriteHeight ( 5 ) - 1 );
+<br>
+    agk::Sync ( );
+}
+</pre></div><h2>Full code listing</h2><p>Everything is now in place. Here's the final code for our program:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background5.jpg" ) )
+<br>
+LoadImage ( 1, "blue.png" )
+<br>
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 1 )
+CreateSprite ( 3, 1 )
+CreateSprite ( 4, 1 )
+CreateSprite ( 5, 1 )
+<br>
+SetSpritePosition ( 1, 0, 0 )
+SetSpritePosition ( 2, 70, 0 )
+SetSpritePosition ( 3, 140, 0 )
+SetSpritePosition ( 4, 210, 0 )
+SetSpritePosition ( 5, 280, 0 )
+<br>
+do
+    SetSpriteColor ( 2, Random ( 1, 255 ), Random ( 1, 255 ), Random ( 1, 255 ), 255 )
+    SetSpriteColor ( 3, 255, 255, 255, alpha )
+<br>
+    if ( direction = 0 )
+        alpha = alpha - 4
+<br>
+        if ( alpha < 0 )
+            direction = 1
+        endif
+    endif
+<br>
+    if ( direction = 1 )
+        alpha = alpha + 4
+<br>
+        if ( alpha > 255 )
+            direction = 0
+        endif
+    endif
+<br>
+    SetSpriteAngle ( 4, angle )
+    angle = angle + 1
+    SetSpriteSize ( 5, GetSpriteWidth ( 5 ) - 1, GetSpriteHeight ( 5 ) - 1 )
+<br>
+    sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+CreateSprite ( LoadImage ( &quot;background5.jpg&quot; ) )
+
+LoadImage ( 1, &quot;blue.png&quot; )
+
+CreateSprite ( 1, 1 )
+CreateSprite ( 2, 1 )
+CreateSprite ( 3, 1 )
+CreateSprite ( 4, 1 )
+CreateSprite ( 5, 1 )
+
+SetSpritePosition ( 1, 0, 0 )
+SetSpritePosition ( 2, 70, 0 )
+SetSpritePosition ( 3, 140, 0 )
+SetSpritePosition ( 4, 210, 0 )
+SetSpritePosition ( 5, 280, 0 )
+
+do
+    SetSpriteColor ( 2, Random ( 1, 255 ), Random ( 1, 255 ), Random ( 1, 255 ), 255 )
+    SetSpriteColor ( 3, 255, 255, 255, alpha )
+
+    if ( direction = 0 )
+        alpha = alpha - 4
+
+        if ( alpha < 0 )
+            direction = 1
+        endif
+    endif
+
+    if ( direction = 1 )
+        alpha = alpha + 4
+
+        if ( alpha > 255 )
+            direction = 0
+        endif
+    endif
+
+    SetSpriteAngle ( 4, angle )
+    angle = angle + 1
+    SetSpriteSize ( 5, GetSpriteWidth ( 5 ) - 1, GetSpriteHeight ( 5 ) - 1 )
+
+    sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background5.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "blue.png" );
+<br>
+    agk::CreateSprite ( 1, 1 );
+    agk::CreateSprite ( 2, 1 );
+    agk::CreateSprite ( 3, 1 );
+    agk::CreateSprite ( 4, 1 );
+    agk::CreateSprite ( 5, 1 );
+<br>
+    agk::SetSpritePosition ( 1, 0, 0 );
+    agk::SetSpritePosition ( 2, 70, 0 );
+    agk::SetSpritePosition ( 3, 140, 0 );
+    agk::SetSpritePosition ( 4, 210, 0 );
+    agk::SetSpritePosition ( 5, 280, 0 );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::SetSpriteColor ( 2, agk::Random ( 1, 255 ),
+ agk::Random ( 1, 255 ), agk::Random ( 1, 255 ), 255 );
+<br>
+    agk::SetSpriteColor ( 3, 255, 255, 255, alpha );
+<br>
+    if ( direction == 0 )
+    {
+        alpha = alpha - 4;
+<br>
+        if ( alpha < 0 )
+        {
+            direction = 1;
+        }
+    }
+<br>
+    if ( direction == 1 )
+    {
+        alpha = alpha + 4;
+<br>        
+        if ( alpha > 255 )
+        {
+            direction = 0;
+        }
+    }
+<br>
+    agk::SetSpriteAngle ( 4, angle );
+    angle = angle + 1;
+    agk::SetSpriteSize ( 5, agk::GetSpriteWidth ( 5 ) - 1, agk::GetSpriteHeight ( 5 ) - 1 );
+<br>
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>Sprites have numerous other properties including - flipping, offsets, hit tests, scaling, UV properties and much more. For more details please view the reference guide.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

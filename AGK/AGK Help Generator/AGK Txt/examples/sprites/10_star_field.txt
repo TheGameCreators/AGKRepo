@@ -1,0 +1,225 @@
+﻿_header
+Star Field
+
+_sheader
+Description
+_text
+This examples demonstrates how it's possible to utilise a large amount of sprites to create a simple star field effect. Even though there are a lot of sprites the program will still run fast as behind the scenes AppGameKit Studio is taking measures to ensure optimal performance.
+
+_image
+10_star_field.jpg
+
+_sheader
+External media
+_text
+This example program relies on several images:
+
+_text
+<div align="center"><b>star.png (has been inverted so it's easier to see in the documentation)</b></div>
+_image
+star.png
+
+_text
+<div align="center"><b>space.jpg</b></div>
+_image
+space.jpg
+
+_sheader
+Overview
+_text
+The process involved is as follows:
+
+_listbegin
+load a background image
+load an image for the stars
+create a large group of sprites and position them at random locations
+within the main loop update the position of all sprites
+_listend
+
+_sheader
+Background image
+_text
+The code begins with two simple calls to load an image that will cover the whole screen and then creating a sprite from it:
+
+_tier1
+LoadImage ( 1, "space.jpg" )
+CreateSprite ( 1, 1 )
+_tier1
+
+_tier2
+agk::LoadImage ( 1, "space.jpg" );
+agk::CreateSprite ( 1, 1 );
+_tier2
+
+_sheader
+Making stars
+_text
+To represent a collection of stars several hundred sprites will be created and positioned at random locations on screen. This will be handled with a simple loop. Here's what happens for each sprite:
+
+_listbegin
+create a sprite and position it at a random location on screen
+create a random size value and apply this as the scale of the sprite
+provide a random colour for the sprite
+store a random speed value that will be used in the main loop
+_listend
+
+_text
+The code for this is as follows:
+
+_tier1
+LoadImage ( 2, "star.png" )
+<br>
+for i = 2 to 1000
+    CreateSprite ( i, 2 )
+    SetSpritePosition ( i,  Random ( 0, 320 ), Random ( 0, 480 ) )
+<br>
+    size = Random ( 3, 10 ) / 10.0
+    SetSpriteScale ( i, size, size )
+<br>
+    SetSpriteColor ( i, Random ( 100, 255 ), Random ( 100, 255 ), Random ( 100, 255 ), Random ( 100, 255 ) )
+<br>
+    speed [ i ] = Random ( 1, 30 ) / 10.0
+next i
+_tier1
+
+_tier2
+agk::LoadImage ( 2, "star.png" );
+<br>
+for ( int i = 2; i < 1000; i++
+{
+    agk::CreateSprite ( i, 2 );
+    agk::SetSpritePosition ( i, agk::Random ( 0, 320 ), agk::Random ( 0, 480 ) );
+<br>
+    size = agk::Random ( 3, 10 ) / 10.0f;
+    agk::SetSpriteScale ( i, size, size );
+<br>
+    agk::SetSpriteColor ( i, agk::Random ( 100, 255 ), agk::Random ( 100, 255 ), agk::Random ( 100, 255 ), agk::Random ( 100, 255 ) );
+<br>
+    speed [ i ] = agk::Random ( 1, 30 ) / 10.0f;
+}
+_tier2
+
+_sheader
+Main Loop
+_text
+At this point our stars have been created and positioned on screen, it's now time to bring them to life by moving them from right to left, and once they have gone off the left side of the screen reposition them on the right side. This has the effect of our stars continually scrolling from right to left:
+
+_tier1
+do
+    for i = 2 to 1000
+        SetSpriteX ( i, GetSpriteX ( i ) - speed [ i ] );
+<br>
+        if ( GetSpriteX ( i ) < -20 )
+            SetSpritePosition ( i, Random ( 330, 400 ), Random ( 0, 480 ) )
+            speed [ i ] = Random ( 1, 30 ) / 10.0
+        endif
+    next i        
+<br>
+    sync ( )
+loop
+_tier1
+
+_tier2
+void app::Loop ( void )
+{
+    for ( int i = 2; i < 1000; i++ )
+    {
+        agk::SetSpritePositionX ( i, agk::GetSpriteX ( i ) - speeds [ i ] );
+<br>
+        if ( agk::GetSpriteX ( i ) < -20 )
+	{
+	    agk::SetSpritePosition ( i, agk::Random ( 330, 400 ), agk::Random ( 0, 480 ) );
+	    speed [ i ] = agk::Random ( 1, 30 ) / 10.0f;
+	}
+    }
+ <br>
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program:
+
+_tier1
+dim speed [ 1000 ] as float
+<br>
+SetVirtualResolution ( 320, 480 )
+<br>
+LoadImage ( 1, "space.jpg" )
+CreateSprite ( 1, 1 )
+<br>
+LoadImage ( 2, "star.png" )
+<br>
+for i = 2 to 1000
+    CreateSprite ( i, 2 )
+    SetSpritePosition ( i, Random ( 0, 320 ), Random ( 0, 480 ) )
+<br>
+    size = Random ( 3, 10 ) / 10.0
+    SetSpriteScale ( i, size, size )
+<br>
+    SetSpriteColor ( i, Random ( 100, 255 ), Random ( 100, 255 ), Random ( 100, 255 ), Random ( 100, 255 ) )
+<br>
+    speed [ i ] = Random ( 1, 30 ) / 10.0
+next i
+<br>
+do
+    for i = 2 to 1000
+        SetSpriteX ( i, GetSpriteX ( i ) - speed [ i ] )
+<br>
+        if ( GetSpriteX ( i ) < -20 )
+            SetSpritePosition ( i, Random ( 330, 400 ), Random ( 0, 480 ) )
+            speed [ i ] = Random ( 1, 30 ) / 10.0
+        endif
+    next i        
+<br>
+    sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::LoadImage ( 1, "space.jpg" );
+    agk::CreateSprite ( 1, 1 );
+<br>
+    agk::LoadImage ( 2, "star.png" );
+<br>
+    for ( int i = 2; i < 1000; i++
+    {
+        agk::CreateSprite ( i, 2 );
+        agk::SetspritePosition ( i, agk::Random ( 0, 320 ), agk::Random ( 0, 480 ) );
+<br>
+        size = agk::Random ( 3, 10 ) / 10.0f;
+        agk::SetSpriteScale ( i, size, size );
+<br>
+        agk::SetSpriteColor ( i, agk::Random ( 100, 255 ), agk::Random ( 100, 255 ), agk::Random ( 100, 255 ), agk::Random ( 100, 255 ) );
+<br>
+        speed [ i ] = agk::Random ( 1, 30 ) / 10.0f;
+    }
+}
+<br>
+void app::Loop ( void )
+{
+    for ( int i = 2; i < 1000; i++ )
+    {
+        agk::SetSpritePositionX ( i, agk::GetSpriteX ( i ) - speeds [ i ] );
+<br>
+        if ( agk::GetSpriteX ( i ) < -20 )
+	{
+	    agk::SetSpritePosition ( i, agk::Random ( 330, 400 ), agk::Random ( 0, 480 ) );
+	    speed [ i ] = agk::Random ( 1, 30 ) / 10.0f;
+	}
+    }
+<br>
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+This concludes the example for creating a simple star field effect using AppGameKit Studio.

@@ -1,0 +1,29 @@
+_header
+#include
+
+_sheader
+Syntax
+
+_tier1
+#include filename$
+_tier1
+
+_sheader
+Description
+
+_text
+You can use this command to simplify your main program by writing sub-programs that hold re-usable independent functions. The #include will associate all the functions within the sub-program with the main program during compilation. The filename string must specify an AGC source file in the current project directory.
+
+_text
+Sub-programs can also use the #include command to further nest sub-programs, but all sub-programs compile into the main program so duplicated function names are not allowed.
+
+_text
+Be aware that included source code is appended to the end of the program, so if you include any code that isn't part of a function it will be run if your main program reaches the end of its source code. There is no guarantee in what order the include files will be appended to the main program. As of AGK version 2, global variables with default values, types, and arrays can be defined in sub programs and used in the main program, or in any other sub program.
+
+_sheader
+Example
+
+_tier1
+#include "myUtilityFunctions.agc"
+#include "player.agc"
+_tier1

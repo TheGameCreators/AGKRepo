@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Physics shapes - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Physics shapes</div><div class="page"><h1>Physics shapes</h1><h2>Description</h2><p>When using physics related commands within AppGameKit Studio, one of the key decisions is to consider how your sprite will be represented. For example, take this penguin sprite:</p><div align="center"><img src="penguin.png"/></div><p>From the perspective of collision handling it will be seen in a different manner, as AppGameKit Studio will take this sprite and create a bounding box, circle or convex hull around it. Which shape is used is dependent on the command <i>SetSpriteShape</i>. A value of 0 defines no shape, a value of 1 defines a circle, a value of 2 means a box and finally a value of 3 means polygons (as a convex hull).</p><p>The command <i>SetPhysicsDebugOn</i> allows us to see the impact of using <i>SetSpriteShape</i>, as it will draw the collision shape on screen. When this command is used we can see the differences between shapes.</p><p>Here's how the sprite looks when a box is being used:</p><div align="center"><img src="box.jpg"/></div><p><br>This time when a circle is used:</p><div align="center"><img src="circle.jpg"/></div><p><br>Finally when polygons are selected:</p><div align="center"><img src="convex.jpg"/></div><p>A typical game will end up relying on a mixture of shapes being used to represent sprites, with possibly the majority using circles and boxes (as this is very efficient) and a smaller amount using polygons (as this is more of a drain on the system). The overall goal is to find a balance that is suitable for your game. The use of circles and boxes will provide better performance, while the usage of polygon shapes will give you more accuracy. The aim is to find a balance between the shapes and find out what works best for your game while maintaining high performance levels.</p><div align="center"><img src="9_shapes.jpg"/></div><h2>Overview</h2><p>This example will take the penguin image, create three sprites from it and position them alongside each other, with one sprite having a box shape, another a circle shape and the last one using polygons for collision. When the game runs these sprites will fall down to the bottom of the screen and collide with the boundary. This is a useful test, as it allows us to visually see the differences between the available shapes and how this affects the behavior of sprites.</p><h2>Getting started</h2><p>The initial code sets a virtual resolution of 320 x 480 and then loads the penguin image for use later:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+LoadImage ( 1, "penguin.png" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+LoadImage ( 1, &quot;penguin.png&quot; )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetVirtualResolution ( 320, 480 );
+<br>
+agk::LoadImage ( 1, "penguin.png" );
+</pre></div><h2>Using polygons for collision</h2><p>The first sprite created (using an ID of 1) will be positioned on the left and use polygons to represent it within the simulation. The sprites are scaled down slightly and have their restitution value set so that they will bounce some. Here's the code for creating our first sprite:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">CreateSprite                ( 1, 1 )
+SetSpritePosition           ( 1, 0, 0 )
+SetSpriteShape              ( 1, 3 )
+SetSpritePhysicsOn          ( 1, 2 )
+SetSpriteScale              ( 1, 0.6, 0.6 )
+SetSpritePhysicsRestitution ( 1, 0.5 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="CreateSprite                ( 1, 1 )
+SetSpritePosition           ( 1, 0, 0 )
+SetSpriteShape              ( 1, 3 )
+SetSpritePhysicsOn          ( 1, 2 )
+SetSpriteScale              ( 1, 0.6, 0.6 )
+SetSpritePhysicsRestitution ( 1, 0.5 )
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::CreateSprite                ( 1, 1 );
+agk::SetSpritePosition           ( 1, 0, 0 );
+agk::SetSpriteShape              ( 1, 3 );
+agk::SetSpritePhysicsOn          ( 1, 2 );
+agk::SetSpriteScale              ( 1, 0.6, 0.6 );
+agk::SetSpritePhysicsRestitution ( 1, 0.5 );
+</pre></div><h2>Using a circle for collision</h2><p>The second sprite created (using an ID of 2) will be positioned to the right of sprite 1 and have a circle shape assigned for its collision:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">CreateSprite                ( 2, 1 )
+SetSpritePosition           ( 2, 100, 0 )
+SetSpriteShape              ( 2, 1 )
+SetSpritePhysicsOn          ( 2, 2 )
+SetSpriteScale              ( 2, 0.6, 0.6 )
+SetSpritePhysicsRestitution ( 2, 0.5 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="CreateSprite                ( 2, 1 )
+SetSpritePosition           ( 2, 100, 0 )
+SetSpriteShape              ( 2, 1 )
+SetSpritePhysicsOn          ( 2, 2 )
+SetSpriteScale              ( 2, 0.6, 0.6 )
+SetSpritePhysicsRestitution ( 2, 0.5 )
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::CreateSprite                ( 2, 1 );
+agk::SetSpritePosition           ( 2, 100, 0 );
+agk::SetSpriteShape              ( 2, 1 );
+agk::SetSpritePhysicsOn          ( 2, 2 );
+agk::SetSpriteScale              ( 2, 0.6, 0.6 );
+agk::SetSpritePhysicsRestitution ( 2, 0.5 );
+</pre></div><h2>Using a box for collision</h2><p>The third sprite created (using an ID of 3 ) will be positioned to the right of sprite 2 and have a box shape assigned for its collision:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">CreateSprite                ( 3, 1 )
+SetSpritePosition           ( 3, 200, 0 )
+SetSpriteShape              ( 3, 2 )
+SetSpritePhysicsOn          ( 3, 2 )
+SetSpriteScale              ( 3, 0.6, 0.6 )
+SetSpritePhysicsRestitution ( 3, 0.5 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="CreateSprite                ( 3, 1 )
+SetSpritePosition           ( 3, 200, 0 )
+SetSpriteShape              ( 3, 2 )
+SetSpritePhysicsOn          ( 3, 2 )
+SetSpriteScale              ( 3, 0.6, 0.6 )
+SetSpritePhysicsRestitution ( 3, 0.5 )
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::CreateSprite                ( 3, 1 );
+agk::SetSpritePosition           ( 3, 200, 0 );
+agk::SetSpriteShape              ( 3, 2 );
+agk::SetSpritePhysicsOn          ( 3, 2 );
+agk::SetSpriteScale              ( 3, 0.6, 0.6 );
+agk::SetSpritePhysicsRestitution ( 3, 0.5 );
+</pre></div><h2>Turning physics debug on</h2><p>Turning the physics debug on, before entering the main loop, is beneficial as the shapes being used for collision get drawn on screen. This is handled with a simple call:</p><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetPhysicsDebugOn ( )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetPhysicsDebugOn ( )
+">Copy Code</button></div><div id="cppCodeBlock10" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetPhysicsDebugOn ( );
+</pre></div><h2>Full code listing</h2><p>Everything is now in place. Nothing needs to happen in the main loop, all that's left to do is to run the application and see how each shape being used affects the collision. Here's the final code for our program:</p><div id="basicCodeBlock11" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background3.jpg" ) )
+<br>
+LoadImage ( 1, "penguin.png" )
+<br>
+CreateSprite                ( 1, 1 )
+SetSpritePosition           ( 1, 0, 0 )
+SetSpriteShape              ( 1, 3 )
+SetSpritePhysicsOn          ( 1, 2 )
+SetSpriteScale              ( 1, 0.6, 0.6 )
+SetSpritePhysicsRestitution ( 1, 0.5 )
+<br>
+CreateSprite                ( 2, 1 )
+SetSpritePosition           ( 2, 100, 0 )
+SetSpriteShape              ( 2, 1 )
+SetSpritePhysicsOn          ( 2, 2 )
+SetSpriteScale              ( 2, 0.6, 0.6 )
+SetSpritePhysicsRestitution ( 2, 0.5 )
+<br>
+CreateSprite                ( 3, 1 )
+SetSpritePosition           ( 3, 200, 0 )
+SetSpriteShape              ( 3, 2 )
+SetSpritePhysicsOn          ( 3, 2 )
+SetSpriteScale              ( 3, 0.6, 0.6 )
+SetSpritePhysicsRestitution ( 3, 0.5 )
+<br>
+SetPhysicsDebugOn ( )
+<br>
+do
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+CreateSprite ( LoadImage ( &quot;background3.jpg&quot; ) )
+
+LoadImage ( 1, &quot;penguin.png&quot; )
+
+CreateSprite                ( 1, 1 )
+SetSpritePosition           ( 1, 0, 0 )
+SetSpriteShape              ( 1, 3 )
+SetSpritePhysicsOn          ( 1, 2 )
+SetSpriteScale              ( 1, 0.6, 0.6 )
+SetSpritePhysicsRestitution ( 1, 0.5 )
+
+CreateSprite                ( 2, 1 )
+SetSpritePosition           ( 2, 100, 0 )
+SetSpriteShape              ( 2, 1 )
+SetSpritePhysicsOn          ( 2, 2 )
+SetSpriteScale              ( 2, 0.6, 0.6 )
+SetSpritePhysicsRestitution ( 2, 0.5 )
+
+CreateSprite                ( 3, 1 )
+SetSpritePosition           ( 3, 200, 0 )
+SetSpriteShape              ( 3, 2 )
+SetSpritePhysicsOn          ( 3, 2 )
+SetSpriteScale              ( 3, 0.6, 0.6 )
+SetSpritePhysicsRestitution ( 3, 0.5 )
+
+SetPhysicsDebugOn ( )
+
+do
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock12" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background3.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "penguin.png" );
+<br>
+    agk::CreateSprite                ( 1, 1 );
+    agk::SetSpritePosition           ( 1, 0, 0 );
+    agk::SetSpriteShape              ( 1, 3 );
+    agk::SetSpritePhysicsOn          ( 1, 2 );
+    agk::SetSpriteScale              ( 1, 0.6, 0.6 );
+    agk::SetSpritePhysicsRestitution ( 1, 0.5 );
+<br>
+    agk::CreateSprite                ( 2, 1 );
+    agk::SetSpritePosition           ( 2, 100, 0 );
+    agk::SetSpriteShape              ( 2, 1 );
+    agk::SetSpritePhysicsOn          ( 2, 2 );
+    agk::SetSpriteScale              ( 2, 0.6, 0.6 );
+    agk::SetSpritePhysicsRestitution ( 2, 0.5 );
+<br>
+    agk::CreateSprite                ( 3, 1 );
+    agk::SetSpritePosition           ( 3, 200, 0 );
+    agk::SetSpriteShape              ( 3, 2 );
+    agk::SetSpritePhysicsOn          ( 3, 2 );
+    agk::SetSpriteScale              ( 3, 0.6, 0.6 );
+    agk::SetSpritePhysicsRestitution ( 3, 0.5 );
+<br>
+    agk::SetPhysicsDebugOn ( );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>This example program is very useful in helping to understand the impact of using different collision shapes for your sprites. Where possible it's advisable to use circles, then boxes and if necessary polygons. When weighing up the options for your sprites consider whether a particular sprite really needs the most accurate collision (polygons) or whether it's possible to use a simpler shape like a circle.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

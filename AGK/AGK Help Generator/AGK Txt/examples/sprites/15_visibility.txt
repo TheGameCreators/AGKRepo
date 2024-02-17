@@ -1,0 +1,137 @@
+_header
+Sprite visibility
+
+_sheader
+Description
+
+_text
+After a sprite has been created, by default it is visible. To control the visible state of a sprite use the command <i>SetSpriteVisible</i> as demonstrated in this example.
+
+_image
+15_visibility.jpg
+
+_sheader
+Creating a sprite
+
+_text
+This block of code creates a sprite using a penguin image:
+
+_tier1
+LoadImage ( 1, "penguin.png" )
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 100, 300 )
+_tier1
+
+_tier2
+agk::LoadImage ( 1, "penguin.png" );
+agk::CreateSprite ( 1, 1 );
+agk::SetSpritePosition ( 1, 100, 300 );
+_tier2
+
+_sheader
+Controlling visibility
+
+_text
+The command <i>SetSpriteVisible</i> is used to control whether a sprite is visible or invisible, it takes two parameters:
+
+_listbegin
+ID - an ID number for a sprite
+visible - a value of 0 makes a sprite invisible, while a value of 1 will make the sprite visible
+_listend
+
+_text
+Therefore, to hide our penguin sprite it's a case of calling <i>SetSpriteVisible</i>, setting the first parameter to 1 (ID of the sprite) and its visible state to 0:
+
+_tier1
+SetSpriteVisible ( 1, 0 )
+_tier1
+
+_tier2
+agk::SetSpriteVisible ( 1, 0 );
+_tier2
+
+_text
+To retrieve the current visible state of a sprite call the command <i>GetSpriteVisible</i> and pass in the ID of the sprite to check:
+
+_tier1
+visible = GetSpriteVisible ( 1 )
+_tier1
+
+_tier2
+visible = agk::GetSpriteVisible ( 1 );
+_tier2
+
+_text
+If the return value is 1 then the sprite is visible. When the return value is 0 the sprite is invisible.
+
+_sheader
+Full code listing
+
+_text
+Within the main loop, whenever the user clicks or touches the screen the visibility of the sprite is swapped:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background3.jpg" ) )
+<br>
+LoadImage ( 1, "penguin.png" )
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 100, 300 )
+<br>
+do
+    Print ( "Click or touch the screen to" )
+    Print ( "hide or show the penguin" )
+<br>
+    if ( GetPointerPressed ( ) = 1 )
+	if ( state = 0 )
+	    SetSpriteVisible ( 1, 0 )
+	    state = 1
+	else
+	    SetSpriteVisible ( 1, 1 )
+            state = 0
+	endif
+    endif
+<br>
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background3.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "penguin.png" );
+    agk::CreateSprite ( 1, 1 );
+    agk::SetSpritePosition ( 1, 100, 300 );
+}
+<br>
+void app::Loop ( void )
+{
+    if ( agk::GetPointerPressed ( ) == 1 )
+    {
+        if ( state == 0 )
+	{
+	    agk::SetSpriteVisible ( 1, 0 );
+	    state = 1;
+	}
+	else
+	{
+	    agk::SetSpriteVisible ( 1, 1 );
+	    state = 0;
+	}
+    }
+<br>
+    agk::Sync ( );
+}
+_tier2
+
+
+_sheader
+Conclusion
+
+_text
+Being able to set the visibility of sprites is useful for many in game situations and hiding sprites will also boost performance.

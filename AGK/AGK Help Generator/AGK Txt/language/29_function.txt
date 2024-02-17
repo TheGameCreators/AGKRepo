@@ -1,0 +1,42 @@
+_header
+function
+
+_sheader
+Syntax
+
+_tier1
+function functionName ( optionalParameters )
+_tier1
+
+_sheader
+Description
+
+_text
+These commands will declare a user defined function within your program. User functions work in the same way normal commands work. They can accept multiple parameters and return values in the same manner, allowing you to create customized commands within your program. 
+
+
+_sheader
+Example
+
+_tier1
+rem example 1
+do
+    myFunction ( )
+loop
+<br>
+function myFunction ( )
+    print ( "inside myFunction" )
+endfunction
+<br>
+rem example 2
+do
+    myFunction ( 1, 2, 3 )
+loop
+<br>
+function myFunction ( a, b, c )
+    print ( a )
+    print ( b )
+    print ( c )
+endfunction
+<br>
+_tier1

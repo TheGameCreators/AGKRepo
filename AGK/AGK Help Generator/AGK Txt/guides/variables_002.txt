@@ -1,0 +1,28 @@
+
+_header
+Variable data type
+
+_text
+By default AppGameKit Studio will treat the variable <i>score</i> as an integer. This means that the variable can only be used to store positive or negative whole numbers. The variable <i>score</i> could be assigned values such as 100, 0, -50 or 123.
+
+_tier1
+score = 100
+score = 0
+score = -50
+score = 123
+_tier1
+
+_text
+There will come a time when your game requires different kinds of data, for example, you can't store the name of a player using an integer and it may be you want to control the speed of a ship with more precision, using a fractional number rather than an integer.
+
+_text
+The way that AppGameKit Studio handles this is to provide you with the option of declaring a variable and specifying its type. The three basic types of data storage available are.
+
+_listbegin
+integers
+floats
+strings
+_listend
+
+_navigation
+variables_001.htm variables_003.htm

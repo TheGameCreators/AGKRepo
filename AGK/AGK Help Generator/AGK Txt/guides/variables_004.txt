@@ -1,0 +1,24 @@
+
+_sheader
+Floats
+
+_text
+Floating point values can be used when you need more precision for your data. If you had a ship flying across the screen and stored that data in an integer variable you are limited to whole numbers, so the ship might have a speed of 10. With a floating point variable you can use fractional numbers, meaning a speed of 10.5 would work. Floating point variables can also hold whole numbers. Here's some examples of values that could be used.
+
+_listbegin
+20.56
+99.9125
+250
+-455.244
+_listend
+
+_text
+Unlike integer values when you want to use floating point data you must explicitly declare the variable, but like with an integer it's not essential to provide a default value. If you don't give your variable a value it will default to 0.0.
+
+_tier1
+shipSpeed as float
+shipBoost as float = 50.47
+_tier1
+
+_navigation
+variables_003.htm variables_005.htm

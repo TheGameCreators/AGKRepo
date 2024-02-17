@@ -1,0 +1,100 @@
+﻿_header
+General control commands
+
+_sheader
+Description
+_text
+There are a collection of commands within AppGameKit Studio that provide you with extra fine control over some specific elements. These commands include the ability to sort sprites, disable screen clearing, alter the border color, set filtering options and return the frame rate at which the program is running.
+
+_text
+Some of the commands demonstrated in this document are:
+
+_listbegin
+setting supported orientations
+finding the frame rate
+setting the clear color
+_listend
+
+_sheader
+Setting supported orientations
+_text
+When an AppGameKit Studio program launches it is initially set to support all screen orientations. On the Microsoft Windows and Mac OS X platforms this may not be an issue. However, on mobile devices this may be a concern. It's possible your game may only support landscape or portrait and not both. By using the command <i>SetOrientationAllowed</i> you can control the supported orientations for your program. This command takes 4 parameters with the first being portrait mode, the second flipped portrait, the third landscape and the fourth flipped landscape. Values of 1 indicate the mode is supported while a value 0 indicates the mode is not supported. This example shows that our program only supports both portrait modes:
+
+_tier1
+SetOrientationAllowed ( 1, 1, 0, 0 )
+_tier1
+
+_tier2
+agk::SetOrientationAllowed ( 1, 1, 0, 0 );
+_tier2
+
+_sheader
+Finding the frame rate
+_text
+You may find it useful to find out how quick your program is running. This is handled with the command <i>ScreenFPS</i>. This command returns a value letting you know how fast it's performing. The best place to put this is within your main loop e.g.
+
+_tier1
+do
+    fps = ScreenFPS ( )
+loop
+_tier1
+
+_tier2
+void app::Loop ( void )
+{
+    fps = agk::ScreenFPS ( );
+}
+_tier2
+
+_sheader
+Setting the clear color
+_text
+When your program runs, by default the screen will be colored black. This is because the screen is cleared each frame to a specific color, which is black by default. It's possible to change this color by calling the command <i>SetClearColor</i>. This command takes 3 parameters for the red, green and blue components. If we wanted our clear color to be red we could call:
+
+_tier1
+SetClearColor ( 255, 0, 0 )
+_tier1
+
+_tier2
+agk::SetClearColor ( 255, 0, 0 );
+_tier2
+
+_sheader
+Full code listing
+_text
+Here's the final code for our program. It sets the allowed orientations (portrait only), the clear color to red and retrieves the frame rate of our program in the main loop:
+
+_tier1
+SetOrientationAllowed ( 1, 1, 0, 0 )
+<br>
+SetClearColor ( 255, 0, 0 )
+<br>
+do
+    fps = ScreenFPS ( )
+    Print ( fps )
+<br>
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetOrientationAllowed ( 1, 1, 0, 0 );
+<br>
+    agk::SetClearColor ( 255, 0, 0 );
+}
+<br>
+void app::Loop ( void )
+{
+    fps = agk::ScreenFPS ( );
+    agk::Print ( fps );
+<br>
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+These are some of the key commands to be aware of, there are many other general commands that are very useful for controlling certain apsects of your program. Please refer to the reference guide for more details.

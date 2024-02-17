@@ -1,0 +1,151 @@
+
+
+_header
+Multidimensional arrays
+
+_text
+In order to figure out what multidimensional arrays and why they should be used let's first examine a program with a simple scenario, that declares a single dimensional array with a size of 5, to hold scores for a game.
+
+_tier1
+score as integer [ 5 ]
+<br>
+score [ 1 ] = 10
+score [ 2 ] = 20
+score [ 3 ] = 30
+score [ 4 ] = 40
+score [ 5 ] = 50
+<br>
+do
+	for i = 1 to 5
+		print ( score [ i ] )
+	next i
+	<br>
+	sync ( )
+loop
+_tier1
+
+_text
+The first element in the array gets set to 10, the second to 20, the third to 30, the fourth to 40 and the fifth to 50. All of this information gets printed out using the <i>for</i> loop.
+
+_text
+Now imagine a situation where you wanted to keep track of scores for separate groups of players. Say you had 2 groups of 5 players. You could simply increase the size of the array to 10 and store the second groups players in elements 6 to 10. This would work but it not's particularly clear as it may not be so obvious that elements 6 to 10 of the array are for another group of players. Some problems might also be caused if the group suddenly found itself with a few extra players. In this instance another solution is required and this is where multidimensional arrays come into use. The <i>score</i> array could be declared like this.
+
+_tier1
+score as integer [ 2, 5 ]
+_tier1
+
+_text
+This means it has 2 groups of 5 values. To add an extra dimension to an array a comma is used, followed by the size of the new dimension, up to a maximum of 6 dimensions. By using a multidimensional array it becomes much easier to deal with player's scores. Here's a modified version of the program that handles the scores for 2 groups of 5 players.
+
+_tier1
+score as integer [ 2, 5 ]
+<br>
+score [ 1, 1 ] = 10
+score [ 1, 2 ] = 20
+score [ 1, 3 ] = 30
+score [ 1, 4 ] = 40
+score [ 1, 5 ] = 50
+<br>
+score [ 2, 1 ] = 100
+score [ 2, 2 ] = 200
+score [ 2, 3 ] = 300
+score [ 2, 4 ] = 400
+score [ 2, 5 ] = 500
+<br>
+do
+	for i = 1 to 2
+		for j = 1 to 5
+			print ( score [ i, j ] )
+		next j
+		<br>
+		print ( "" )
+	next i
+	<br>
+	sync ( )
+loop
+_tier1
+
+_text
+The first block of code deals with assigning scores to group 1 of the array, whilst the second group assigns scores to group 2. This results in us having two nicely managed compartments of data. We know that group 1 contains 5 lots of scores for the first set of players. Group 2 contains 5 lots of scores for the second set of players.
+
+_text
+Notice that when referring to the array the parameters that control which element you are accessing must match the size of the array. If you have 2 dimensional array then you must specify 2 parameters to access the parts of the array.
+
+_text
+In the event that another set of players joined the game then the first dimension could be increased to 3, giving us 3 lots of 5 scores (15 in total). The new array could be declared like this.
+
+_tier1
+score as integer [ 3, 5 ]
+_tier1
+
+_text
+Alternatively if more players joined each group the second dimension could be increased e.g.
+
+_tier1
+score as integer [ 2, 10 ]
+_tier1
+
+_text
+In which case the array would contain 2 lots of 10 scores (20 in total).
+
+_text
+To add a third dimension to the array it could be declared like this.
+
+_tier1
+score as integer [ 2, 3, 4 ]
+_tier1
+
+_text
+This array would have 2 groups, that in turn contain 3 groups, each containing 4 values, resulting in the array being able to store a total of 24 values. Here's a program showing how this array can be used.
+
+_tier1
+score as integer [ 2, 3, 4 ]
+<br>
+score [ 1, 1, 1 ] = 10
+score [ 1, 1, 2 ] = 20
+score [ 1, 1, 3 ] = 30
+score [ 1, 1, 4 ] = 40
+<br>
+score [ 1, 2, 1 ] = 50
+score [ 1, 2, 2 ] = 60
+score [ 1, 2, 3 ] = 70
+score [ 1, 2, 4 ] = 80
+<br>
+score [ 1, 3, 1 ] = 90
+score [ 1, 3, 2 ] = 100
+score [ 1, 3, 3 ] = 110
+score [ 1, 3, 4 ] = 120
+<br>
+score [ 2, 1, 1 ] = 100
+score [ 2, 1, 2 ] = 200
+score [ 2, 1, 3 ] = 300
+score [ 2, 1, 4 ] = 400
+<br>
+score [ 2, 2, 1 ] = 500
+score [ 2, 2, 2 ] = 600
+score [ 2, 2, 3 ] = 700
+score [ 2, 2, 4 ] = 800
+<br>
+score [ 2, 3, 1 ] = 900
+score [ 2, 3, 2 ] = 1000
+score [ 2, 3, 3 ] = 1100
+score [ 2, 3, 4 ] = 1200
+<br>
+do
+	for i = 1 to 2
+		for j = 1 to 3
+			for k = 1 to 4
+				print ( score [ i, j, k ] )
+			next k
+		next j
+	next i
+	<br>
+	sync ( )
+loop
+_tier1
+
+_text
+What's so useful about being able to use multidimensional arrays is that you can quite easily group some data together. While the example shown here is quite simple it should at least you give some kind of idea as to what might be possible.
+
+_navigation
+arrays_006.htm arrays_0062.htm

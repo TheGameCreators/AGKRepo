@@ -1,0 +1,38 @@
+
+_header
+Formatting the code
+
+_text
+The program that we have created can be written in any number of ways. All of these programs listed below perform exactly the same function as our own program.
+
+_tier1
+do
+print ( "hello world" )
+sync ( )
+loop
+_tier1
+
+_tier1
+do
+print("hello world")
+sync()
+loop
+_tier1
+
+_tier1
+         DO
+		PRINT    (  "hello world")
+		
+		
+  SYNC()
+ LOOP
+_tier1
+
+_text
+The syntax of AppGameKit and its commands are not case sensitive, therefore you can call the command <i>print</i> as PRINT, prINT or Print. Spacing is also not important, which is why you can have spaces before and after brackets. However, you can't have spaces inbetween commands e.g. print cannot be called pri nt. Adding multiple blank lines between commands is also perfectly fine.
+
+_text
+You are offered a lot of flexibility when it comes to formatting your code and you can lay things out as you see fit. Although it's not so critical when you're starting out, imagine what it might be like if you have a large program containing thousands of lines of code. Think about how you would want to manage that. Being consistent with spacing and making the code easy to read will help you in the long term.
+
+_navigation
+creating_first_project_004.htm creating_first_project_006.htm

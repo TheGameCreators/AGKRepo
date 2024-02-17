@@ -1,0 +1,43 @@
+_header
+Local variables
+
+_text
+Local variables are variable that are isolated or unique to the function where they have been declared. The following program creates three variables named <i>value</i>, all of which are completely indepedent of each other.
+
+_tier1
+value as integer = 1
+<br>
+do
+	print ( value )
+	<br>
+	myFunctionA ( )
+	myFunctionB ( )
+	<br>
+	sync ( )
+loop
+<br>
+function myFunctionA ( )
+	value as integer = 2
+	print ( value )
+endfunction
+<br>
+function myFunctionB ( )
+	value as integer = 3
+	print ( value )
+endfunction
+_tier1
+
+_text
+The scope of the first variable (that is assigned 1) is related to the block of code after it has been declared. It can be referred to by other code before, within or after the <i>do</i> loop.
+
+_text
+The second variable (assigned 2) is declared within the function named <i>myFunctionA</i>. It is only accessible within this function. It is not known to the code outside of this function.
+
+_text
+The third variable (assigned 3) is also declared within a function, so just like the second variable it's only accessible within the function it has been declared in.
+
+_text
+As shown in this example when a variable is local it can share the same name as another local variable.
+
+_navigation
+functions_and_branching_006.htm functions_and_branching_008.htm

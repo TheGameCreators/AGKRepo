@@ -1,0 +1,132 @@
+_header 
+Using timers
+
+_sheader 
+Description
+
+_text 
+Timers are likely to play a key part in your games, for example, triggering events, countdowns and much more. In this example a sprite has its colour changed after a certain amount of time has passed.
+
+_image
+0_timers.jpg
+
+_sheader
+Overview
+
+_text
+The process involved is as follows:
+
+_listbegin
+set a virtual resolution
+load an image and create a sprite
+store the current time
+within our main loop, once four seconds have passed, change the colour of our sprite
+_listend
+
+_sheader
+Store the current time
+
+_text
+AppGameKit Studio provides a function that tells you how many seconds have passed since the application was started. This command is called <i>GetSeconds</i> and it returns an integer. When more accuracy is required it's recommended to use the command <i>Timer ( )</i> that returns a floating point number. This number contains the seconds and fractions of a second that have passed since the application was started (accurate to milliseconds). For the purposes of our example we only require the number of seconds passed:
+
+_tier1
+initialTime = GetSeconds ( )
+_tier1
+
+_tier2
+initialTime = agk::GetSeconds ( );
+_tier2
+
+_text
+With the seconds stored within the variable <i>initialTime</i> we can proceed to the next step.
+
+_sheader
+Main loop
+
+_text
+Once four seconds have passed our intention is to change the colour of our previously created sprite. This is easily handled by calling <i>GetSeconds</i> again and comparing it to the "initialTime" variable that was stored at the beginning of the application. If <i>GetSeconds</i> is 4 seconds greater than <i>initialTime</i> we can proceed to change the colour of our sprite. Here's the code for dealing with this:
+
+_tier1
+do
+    if ( GetSeconds ( ) > initialTime + 4 )
+        SetSpriteColor ( sprite, 0, 255, 0, 255 )
+    endif
+<br>
+    sync ( )
+loop
+_tier1
+
+_tier2
+void app::Loop ( void )
+{
+    if ( agk::GetSeconds ( ) > initialTime + 4 )
+    {
+        agk::SetSpriteColor ( sprite, 0, 255, 0, 255 );
+    }
+}
+_tier2
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background6.jpg" ) )
+<br>
+image = LoadImage ( "button.png" )
+sprite = CreateSprite ( image )
+SetSpritePosition ( sprite, 100, 170 )
+<br>
+initialTime = GetSeconds ( )
+<br>
+SetPrintColor ( 0, 255, 0 )
+<br>
+do
+    Print ( "After 4 seconds the button" )
+    Print ( "will turn green" )
+<br>
+    if ( GetSeconds ( ) > initialTime + 4 )
+        SetSpriteColor ( sprite, 0, 255, 0, 255 )
+    endif
+<br>
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background6.jpg" ) );
+<br>
+    image = agk::LoadImage ( "button.png" );
+    sprite = agk::CreateSprite ( image );
+    agk::SetSpritePosition ( sprite, 100, 170 );
+<br>
+    initialTime = agk::GetSeconds ( );
+<br>
+    agk::SetPrintColor ( 0, 255, 0 );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Print ( "After 4 seconds the button" );
+    agk::Print ( "will turn green" );
+<br>
+    if ( agk::GetSeconds ( ) > initialTime + 4 )
+    {
+        agk::SetSpriteColor ( sprite, 0, 255, 0, 255 );
+    }
+
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+For more details on timers please view the Reference Guide.

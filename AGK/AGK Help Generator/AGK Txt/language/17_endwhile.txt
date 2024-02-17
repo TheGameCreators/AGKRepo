@@ -1,0 +1,24 @@
+_header
+endwhile
+
+_sheader
+Syntax
+
+_tier1
+endwhile
+_tier1
+
+_sheader
+Description
+
+_text
+Unlike the <i>repeat</i> command, the while command ensures the condition is true before entering the loop. You are able to break from the loop at any time by using the <i>exit</i> command. 
+
+_sheader
+Example
+
+_tier1
+while GetPointerPressed ( ) = 0
+    Print ( "touch or click the screen to continue" )
+endwhile
+_tier1

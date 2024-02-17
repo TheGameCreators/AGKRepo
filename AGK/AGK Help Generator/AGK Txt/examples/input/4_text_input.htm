@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Text input - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Text input</div><div class="page"><h1>Text input</h1><p>There may be occasions within your game where it might be necessary to find out information about the player, such as their name or location. For situations like this you can rely on the text input commands within AppGameKit Studio. These commands allow the player to input text, whether this be through a physical or virtual keyboard.</p><p>This example program begins by allowing the user to type in some text and once they have finished displays the contents on screen.</p><div align="center"><img src="4_text_input.jpg"/></div><h2>Getting started</h2><p>To initiate text input call the command <i>StartTextInput</i>. This command does not take any parameters nor does it return any values. When this command is called a text entry prompt will be displayed on screen. At this point, when running on platforms that have physical keyboards such as Windows and Mac then the user can type into the text entry box directly. When running on mobile devices a virtual keyboard will be displayed on screen.</p><p>The example program will allow the user to type as soon as the program begins:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetClearColor ( 0, 255, 0 )
+<br>
+StartTextInput ( )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetClearColor ( 0, 255, 0 )
+
+StartTextInput ( )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetClearColor ( 0, 255, 0 );
+<br>
+    agk::StartTextInput ( );
+}
+</pre></div><p>The <i>SetClearColor</i> command is used to change the background of the example program to green, this is followed with a call to <i>StartTextInput</i></p><h2>Checking the input state</h2><p>With the text prompt on screen and the user able to type, the next step is to check whether the user has finished or cancelled any input. This is handled with three commands:</p><ul><li>GetTextInputState</li><li>GetTextInputCompleted</li><li>GetTextInputCancelled</li></ul><p>The command <i>GetTextInputState</i> returns a value of 0 if the user is currently inputting text, while a value of 1 is returned if there is no input.</p><p>The command <i>GetTextInputCompleted</i> returns a value of 1 when the user has finished inputting text. After this point it will return a value of 0.</p><p>The command <i>GetTextInputCancelled</i> returns a value of 1 if the user cancelled text input and 0 if not.</p><p>Once the user has finished typing you can obtain the input through the command <i>GetTextInput</i>, which returns a string containing the input.</p><p>The example program checks when the input has finished, then saves the result and displays it on screen, all of which is handled within the main loop:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">text$ = ""
+<br>
+do
+    if GetTextInputCompleted ( ) = 1
+        text$ = GetTextInput ( )
+    endif
+<br>
+    Print ( text$ )
+<br>
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="text$ = &quot;&quot;
+
+do
+    if GetTextInputCompleted ( ) = 1
+        text$ = GetTextInput ( )
+    endif
+
+    Print ( text$ )
+
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Loop ( void )
+{
+    if ( agk::GetTextInputCompleted ( ) )
+        szText = agk::GetTextInput ( );
+<br>
+    if ( szText )
+        agk::Print ( szText );
+<br>
+    agk::Sync ( );
+}
+</pre></div><h2>Full code listing</h2><p>Everything is now in place. Here's the final code for our program:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetClearColor ( 0, 255, 0 )
+<br>
+StartTextInput ( )
+text$ = ""
+<br>
+do
+    if GetTextInputCompleted ( ) = 1
+        text$ = GetTextInput ( )
+    endif
+<br>
+    Print ( text$ )
+<br>
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetClearColor ( 0, 255, 0 )
+
+StartTextInput ( )
+text$ = &quot;&quot;
+
+do
+    if GetTextInputCompleted ( ) = 1
+        text$ = GetTextInput ( )
+    endif
+
+    Print ( text$ )
+
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetClearColor ( 0, 255, 0 );
+<br>
+    agk::StartTextInput ( );
+}
+<br>
+void app::Loop ( void )
+{
+    if ( agk::GetTextInputCompleted ( ) )
+        szText = agk::GetTextInput ( );
+<br>
+    if ( szText )
+        agk::Print ( szText );
+<br>
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>This concludes the example for demonstrating how to accept user input.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

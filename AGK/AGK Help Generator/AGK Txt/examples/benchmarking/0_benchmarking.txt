@@ -1,0 +1,391 @@
+_header
+Benchmarking
+
+_sheader
+Description
+
+_text
+The benchmarking commands within AppGameKit Studio can be used to determine information about what's happening at runtime, such as the number of sprites being drawn or the amount of time that the physics simulation is using. This information is particularly useful if you are attempting to improve the performance of a game that may be running slowly on certain platforms, for example, these commands could be used to discover that the physics simulation is taking up a great deal of time, therefore you can act on this by doing something like reducing the number of active physics entities.
+
+_sheader
+The benchmarking commands
+
+_text
+Here's a quick overview of the benchmarking commands. All of these commands return values and have no parameters:
+
+_listbegin
+<i>GetDrawingSetupTime</i> - Find out how long was taken getting the scene ready for drawing, includes calculating what is visible and transforming sprites.
+<i>GetDrawingTime</i> - Returns the time spent drawing the scene.
+<i>GetManagedSpriteCount</i> - Returns the number of sprites that are being managed by AppGameKit Studio.
+<i>GetManagedSpriteDrawnCount</i> - Tells you how many sprites are being drawn. The higher this is the more of an impact it will have on performance.
+<i>GetManagedSpriteSortedCount</i> - Determines how many sprites are being sorted. Sprites are sorted when their depth or texture changes.
+<i>GetParticleDrawnPointCount</i> - Returns the number of individual particles that were drawn using point sprites.
+<i>GetParticleDrawnQuadCount</i> - Returns the number of individual particles that were drawn using quads.
+<i>GetPhysicsTime</i> - Returns the time spent updating the physics simulation.
+<i>GetUpdateTime</i> - The time spent updating everything except physics e.g. sprite animation.
+_listend
+
+_sheader
+Getting started
+
+_text
+This example examines the usage of several commands within the benchmarking section. It will create 500 sprites and scroll them across the screen and have a particle explosion being fired off on a continual basis. Within the main loop statistics about the drawing time etc. will get displayed on screen.
+
+_image
+0_benchmarking.jpg
+
+_text
+The code prior to the main loop takes the following steps:
+
+_listbegin
+Sets a virtual resolution of 320 x 480.
+Creates a background sprite.
+Loads an image for the particles.
+Loads an image for the sprites.
+Creates a particle entity and places it off screen.
+Has a for loop that will create 500 sprites, set their position off screen, apply a random color and set two values in an array that are later used for movement.
+_listend
+
+_text
+Here's the code:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background1.jpg" ) )
+<br>
+LoadImage ( 1, "shrapnel3.png" )
+LoadImage ( 2, "ball1.png" )
+<br>
+CreateParticles ( 1, -100, -100 )
+<br>
+for i = 1 to 500
+    CreateSprite ( i, 2 )
+    SetSpritePosition ( i, Random ( 320, 2000 ), Random ( 60, 480 ) )
+    SetSpriteColor ( i, Random ( 0, 255 ), Random ( 0, 255 ), Random ( 0, 255 ), Random ( 50, 255 ) )
+    speed# [ i ] = Random ( 10, 40 ) / 10.0
+    move# [ i ] = 0.0
+next i
+<br>
+fire = 1
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background1.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "shrapnel3.png" );
+    agk::LoadImage ( 2, "ball1.png" );
+<br>
+    agk::CreateParticles ( 1, -100, -100 );
+<br>
+    for ( i = 0; i < 500; i++ )
+    {
+        agk::CreateSprite ( i, 2 );
+        agk::SetSpritePosition ( i, agk::Random ( 320, 2000 ), agk::Random ( 60, 480 ) );
+        agk::SetSpriteColor ( i, agk::Random ( 0, 255 ), agk::Random ( 0, 255 ), agk::Random ( 0, 255 ), agk::Random ( 50, 255 ) );
+        speed [ i ] = agk::Random ( 10, 40 ) / 10.0;
+        move [ i ] = 0.0;
+    }
+<br>
+    fire = 1;
+}
+_tier2
+
+_sheader
+Main loop
+
+_text
+The first block of code within the main loop displays the drawing set up time, the amount of time it took to draw the scene, the number of sprites being drawn, the number of particles being displayed and the current frame rate:
+
+_tier1
+Print ( "Drawing set up time = " + str ( GetDrawingSetupTime ( ) ) )
+Print ( "Drawing time        = " + str ( GetDrawingTime ( ) ) )
+Print ( "Sprites drawn       = " + str ( GetManagedSpriteDrawnCount ( ) ) )
+Print ( "Particles drawn     = " + str ( GetParticleDrawnQuadCount ( ) ) )
+Print ( "Frame rate          = " + str ( screenFPS ( ) ) )
+_tier1
+
+_tier2
+agk::Print ( "Drawing set up time = " + agk::str ( agk::GetDrawingSetupTime ( ) ) );
+agk::Print ( "Drawing time        = " + agk::str ( agk::GetDrawingTime ( ) ) );
+agk::Print ( "Sprites drawn       = " + agk::str ( agk::GetManagedSpriteDrawnCount ( ) ) );
+agk::Print ( "Particles drawn     = " + agk::str ( agk::GetParticleDrawnQuadCount ( ) ) );
+agk::Print ( "Frame rate          = " + agk::str ( agk::screenFPS ( ) ) );
+_tier2
+
+_text
+The next section deals with the 500 sprites. They are all moved from left to right and a wavy effect is applied to their Y position, rotation is also applied. The final part checks whether the sprite has gone off screen and then repositions it over to the right.
+
+_tier1
+for i = 1 to 500
+    x# = GetSpriteX ( i )
+    y# = GetSpriteY ( i )
+<br>
+    y# = y# + cos ( move# [ i ] )
+    move# [ i ] = move# [ i ] + speed# [ i ]
+<br>
+    SetSpritePosition ( i, x# - speed# [ i ], y# )
+    SetSpriteAngle ( i, GetSpriteAngle ( i ) + speed# [ i ] )
+<br>
+    if x# < -100
+        SetSpritePosition ( i, Random ( 320, 2000 ), Random ( 60, 480 ) )
+    endif
+next i
+_tier1
+
+_tier2
+for ( i = 0; i < 500; i++ )
+{
+    x = agk::GetSpriteX ( i );
+    y = agk::GetSpriteY ( i );
+<br>
+    y = y + agk::cos ( move [ i ] );
+    move [ i ] = move [ i ] + speed [ i ];
+<br>
+    agk::SetSpritePosition ( i, x - speed [ i ], y );
+    agk::SetSpriteAngle ( i, agk::GetSpriteAngle ( i ) + speed [ i ] );
+<br>
+    if ( x < -100 )
+    {
+        agk::SetSpritePosition ( i, agk::Random ( 320, 2000 ), agk::Random ( 60, 480 ) );
+    }
+}
+_tier2
+
+_text
+The final block of code within the main loop is responsible for the particles. It begins by creating an explosion and when this explosions ends the particles are reset and restarted.
+
+_tier1
+if ( fire = 1 )
+    SetParticlesPosition ( 1, Random ( 100, 200 ), Random ( 100, 300 ) )
+<br>
+    ResetParticleCount ( 1 )
+    SetParticlesFrequency ( 1, 250 )
+    SetParticlesLife ( 1, 3.0 )
+    SetParticlesSize ( 1, 64 )
+    SetParticlesStartZone ( 1, -10, 0, 10, 0 )
+    SetParticlesImage ( 1, 1 )
+    SetParticlesDirection ( 1, 30, 30 )
+    SetParticlesAngle ( 1, 360 )
+    SetParticlesVelocityRange ( 1, 0.8, 2.5 )
+    SetParticlesMax ( 1, 500 )
+<br>
+    AddParticlesColorKeyFrame ( 1, 0.0, 0, 0, 0, 0 )
+    AddParticlesColorKeyFrame ( 1, 0.5, 255, 255, 0, 255 )
+    AddParticlesColorKeyFrame ( 1, 2.8, 255, 0, 0, 0 )
+<br>
+    AddParticlesForce ( 1, 2.0, 2.8, 25, -25 )
+<br>
+    fire = 0
+endif
+<br>
+if ( GetParticlesMaxReached ( 1 ) = 1 )
+    fire = 1
+endif
+_tier1
+
+_tier2
+if ( fire == 1 )
+{
+    agk::SetParticlesPosition ( 1, agk::Random ( 100, 200 ), agk::Random ( 100, 300 ) );
+<br>
+    agk::ResetParticleCount ( 1 );
+    agk::SetParticlesFrequency ( 1, 250 );
+    agk::SetParticlesLife ( 1, 3.0 );
+    agk::SetParticlesSize ( 1, 64 );
+    agk::SetParticlesStartZone ( 1, -10, 0, 10, 0 );
+    agk::SetParticlesImage ( 1, 1 );
+    agk::SetParticlesDirection ( 1, 30, 30 );
+    agk::SetParticlesAngle ( 1, 360 );
+    agk::SetParticlesVelocityRange ( 1, 0.8, 2.5 );
+    agk::SetParticlesMax ( 1, 500 );
+<br>
+    agk::AddParticlesColorKeyFrame ( 1, 0.0, 0, 0, 0, 0 );
+    agk::AddParticlesColorKeyFrame ( 1, 0.5, 255, 255, 0, 255 );
+    agk::AddParticlesColorKeyFrame ( 1, 2.8, 255, 0, 0, 0 );
+<br>
+    agk::AddParticlesForce ( 1, 2.0, 2.8, 25, -25 );
+<br>
+    fire = 0;
+}
+<br>
+if ( agk::GetParticlesMaxReached ( 1 ) == 1 )
+{
+    fire = 1;
+}
+_tier2
+
+_sheader
+Full code listing
+
+_text
+Everything is now ready to be presented as the final program:
+
+_tier1
+dim speed# [ 500 ]
+dim move#  [ 500 ]
+<br>
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background1.jpg" ) )
+<br>
+LoadImage ( 1, "shrapnel3.png" )
+LoadImage ( 2, "ball1.png" )
+<br>
+CreateParticles ( 1, -100, -100 )
+<br>
+for i = 1 to 500
+    CreateSprite ( i, 2 )
+    SetSpritePosition ( i, Random ( 320, 2000 ), Random ( 60, 480 ) )
+    SetSpriteColor ( i, Random ( 0, 255 ), Random ( 0, 255 ), Random ( 0, 255 ), Random ( 50, 255 ) )
+    speed# [ i ] = Random ( 10, 40 ) / 10.0
+    move# [ i ] = 0.0
+next i
+<br>
+fire = 1
+<br>
+do
+    Print ( "Drawing set up time = " + str ( GetDrawingSetupTime ( ) ) )
+    Print ( "Drawing time        = " + str ( GetDrawingTime ( ) ) )
+    Print ( "Sprites drawn       = " + str ( GetManagedSpriteDrawnCount ( ) ) )
+    Print ( "Particles drawn     = " + str ( GetParticleDrawnQuadCount ( ) ) )
+    Print ( "Frame rate          = " + str ( screenFPS ( ) ) )
+<br>
+    for i = 1 to 500
+        x# = GetSpriteX ( i )
+        y# = GetSpriteY ( i )
+<br>
+        y# = y# + cos ( move# [ i ] )
+        move# [ i ] = move# [ i ] + speed# [ i ]
+<br>
+        SetSpritePosition ( i, x# - speed# [ i ], y# )
+        SetSpriteAngle ( i, GetSpriteAngle ( i ) + speed# [ i ] )
+<br>
+        if x# < -100
+            SetSpritePosition ( i, Random ( 320, 2000 ), Random ( 60, 480 ) )
+        endif
+    next i
+<br>
+    if ( fire = 1 )
+        SetParticlesPosition ( 1, Random ( 100, 200 ), Random ( 100, 300 ) )
+<br>
+        ResetParticleCount ( 1 )
+        SetParticlesFrequency ( 1, 250 )
+        SetParticlesLife ( 1, 3.0 )
+        SetParticlesSize ( 1, 64 )
+        SetParticlesStartZone ( 1, -10, 0, 10, 0 )
+        SetParticlesImage ( 1, 1 )
+        SetParticlesDirection ( 1, 30, 30 )
+        SetParticlesAngle ( 1, 360 )
+        SetParticlesVelocityRange ( 1, 0.8, 2.5 )
+        SetParticlesMax ( 1, 500 )
+<br>
+        AddParticlesColorKeyFrame ( 1, 0.0, 0, 0, 0, 0 )
+        AddParticlesColorKeyFrame ( 1, 0.5, 255, 255, 0, 255 )
+        AddParticlesColorKeyFrame ( 1, 2.8, 255, 0, 0, 0 )
+<br>
+        AddParticlesForce ( 1, 2.0, 2.8, 25, -25 )
+<br>
+        fire = 0
+    endif
+<br>
+    if ( GetParticlesMaxReached ( 1 ) = 1 )
+        fire = 1
+    endif
+<Br>
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background1.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "shrapnel3.png" );
+    agk::LoadImage ( 2, "ball1.png" );
+<br>
+    agk::CreateParticles ( 1, -100, -100 );
+<br>
+    for ( i = 0; i < 500; i++ )
+    {
+        agk::CreateSprite ( i, 2 );
+        agk::SetSpritePosition ( i, agk::Random ( 320, 2000 ), agk::Random ( 60, 480 ) );
+        agk::SetSpriteColor ( i, agk::Random ( 0, 255 ), agk::Random ( 0, 255 ), agk::Random ( 0, 255 ), agk::Random ( 50, 255 ) );
+        speed [ i ] = agk::Random ( 10, 40 ) / 10.0;
+        move [ i ] = 0.0;
+    }
+<br>
+    fire = 1;
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Print ( "Drawing set up time = " + agk::str ( agk::GetDrawingSetupTime ( ) ) );
+    agk::Print ( "Drawing time        = " + agk::str ( agk::GetDrawingTime ( ) ) );
+    agk::Print ( "Sprites drawn       = " + agk::str ( agk::GetManagedSpriteDrawnCount ( ) ) );
+    agk::Print ( "Particles drawn     = " + agk::str ( agk::GetParticleDrawnQuadCount ( ) ) );
+    agk::Print ( "Frame rate          = " + agk::str ( agk::screenFPS ( ) ) );
+<br>
+    for ( i = 0; i < 500; i++ )
+    {    
+        x = agk::GetSpriteX ( i );
+        y = agk::GetSpriteY ( i );
+<br>
+        y = y + agk::cos ( move [ i ] );
+        move [ i ] = move [ i ] + speed [ i ];
+<br>
+        agk::SetSpritePosition ( i, x - speed [ i ], y );
+        agk::SetSpriteAngle ( i, agk::GetSpriteAngle ( i ) + speed [ i ] );
+<br>
+        if ( x < -100 )
+        {
+            agk::SetSpritePosition ( i, agk::Random ( 320, 2000 ), agk::Random ( 60, 480 ) );
+        }
+    }
+<br>
+    if ( fire == 1 )
+    {
+        agk::SetParticlesPosition ( 1, agk::Random ( 100, 200 ), agk::Random ( 100, 300 ) );
+<br>
+        agk::ResetParticleCount ( 1 );
+        agk::SetParticlesFrequency ( 1, 250 );
+        agk::SetParticlesLife ( 1, 3.0 );
+        agk::SetParticlesSize ( 1, 64 );
+        agk::SetParticlesStartZone ( 1, -10, 0, 10, 0 );
+        agk::SetParticlesImage ( 1, 1 );
+        agk::SetParticlesDirection ( 1, 30, 30 );
+        agk::SetParticlesAngle ( 1, 360 );
+        agk::SetParticlesVelocityRange ( 1, 0.8, 2.5 );
+        agk::SetParticlesMax ( 1, 500 );
+<br>
+        agk::AddParticlesColorKeyFrame ( 1, 0.0, 0, 0, 0, 0 );
+        agk::AddParticlesColorKeyFrame ( 1, 0.5, 255, 255, 0, 255 );
+        agk::AddParticlesColorKeyFrame ( 1, 2.8, 255, 0, 0, 0 );
+<br>
+        agk::AddParticlesForce ( 1, 2.0, 2.8, 25, -25 );
+<br>
+        fire = 0;
+    }
+<br>
+    if ( agk::GetParticlesMaxReached ( 1 ) == 1 )
+    {
+        fire = 1;
+    }
+<br>
+    agk::Sync ( );
+}
+_tier2
+
+
+_sheader
+Conclusion
+
+_text
+While only a small section within AppGameKit Studio, the benchmarking commands are incredibly helpful in attempting to understand performance issues within games and can play an important part in developing a game.

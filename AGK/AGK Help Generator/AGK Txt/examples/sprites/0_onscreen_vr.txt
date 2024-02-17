@@ -1,0 +1,140 @@
+﻿_header
+Sprites using the virtual resolution
+
+_sheader
+Description
+_text
+Placing a sprite on screen using the approach of a virtual resolution is demonstrated in this example program.
+
+_image
+0_onscreen_vr.jpg
+
+
+_sheader
+Overview
+_text
+The process involved is as follows:
+
+_listbegin
+set the virtual resolution
+load an image
+create a sprite
+main loop
+_listend
+
+_sheader
+Virtual Resolution
+_text
+Let's begin by setting our virtual resolution when our program starts:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+_tier1
+
+_tier2
+agk::SetVirtualResolution ( 320, 480 );
+_tier2
+
+_text
+Two parameters are passed into the function <i>SetVirtualResolution</i> - width and height. In this instance we're setting our screen size to be a width of 320 and height of 480.
+
+_sheader
+Load an image
+_text
+In this next step we're going to load an image. This is achieved by calling the command <i>LoadImage</i>. This command either accepts or returns an ID number, followed by a filename. Let’s see this in practice:
+
+_tier1
+image = LoadImage ( "blue.png" )
+_tier1
+
+_tier2
+image = agk::LoadImage ( "blue.png" );
+_tier2
+
+_text
+This line calls <i>LoadImage</i> passing in the filename "blue.png", it then returns an ID number which gets saved in the variable image. This ID number is now treated as a handle to our image and can be used later on when referring to it.
+
+_text
+An alternative option is to specify the ID number manually e.g.
+
+_tier1
+LoadImage ( 1, "blue.png" )
+_tier1
+
+_tier2
+agk::LoadImage ( 1, "blue.png" );
+_tier2
+
+_sheader
+Creating a sprite
+_text
+Now that we have an image loaded into memory we're ready to create a sprite and attach this image to it. This is achieved by calling the command <i>CreateSprite</i>. This command either accepts or returns an ID number followed by an ID number of the image you wish to attach to the sprite:
+
+_tier1
+sprite = CreateSprite ( image )
+_tier1
+
+_tier2
+sprite = agk::CreateSprite ( image );
+_tier2
+
+_text
+Here we call <i>CreateSprite</i> passing in an ID number for our image and returning an ID number for the sprite. We’re effectively saying create a sprite, attach this image to it and give us back an ID number for this sprite. This ID number for the sprite can be stored for use later on when dealing with sprite properties, for example.
+
+_sheader
+Main loop
+_text
+Up to this point we have set a virtual resolution, loaded an image and created a sprite that uses this image. We're nearly ready to run our application and see the results. Prior to this we need to ensure one more thing - in our main loop we must call <i>Sync</i> to ensure the screen gets updated and its contents drawn. The command <i>Sync</i> takes no parameters and can be called in your main loop like this:
+
+_tier1
+do
+    sync ( )
+loop
+_tier1
+
+_tier2
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+image = LoadImage ( "blue.png" )
+sprite = CreateSprite ( image )
+<br>
+do
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    image = agk::LoadImage ( "blue.png" );
+    sprite = agk::CreateSprite ( image );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+We're now all set to run our application and see the results on screen. Once you're ready to finish the application you can close it by either pressing the escape key on the Windows and Macintosh platforms, or the home button on mobile devices.
+
+
+
+

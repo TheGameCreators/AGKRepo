@@ -1,0 +1,61 @@
+_header
+Getting started with Tier 2
+
+_sheader
+Overview
+
+_text
+Tier 2 provides you with the ability to use the AppGameKit Studio command set within a C++ application. This is an ideal option in many cases, for example:
+
+_listbegin
+For situations where you want to get the best possible speed on a device. Games written in C++ will run faster than those using Tier 1, as the games will be running natively, unlike Tier 1, which will run games using an interpreter.
+In cases where you have an existing codebase that is already in C++ and you want to reuse this with AppGameKit Studio.
+If you're already familiar with C++ then you may prefer to continue developing a game in this language instead of having to learn the Tier 1 language.
+_listend
+
+_text
+The downside is that compared to Tier 1 there is an extra level of difficulty in terms of setting up projects and compiler settings etc. However, if you are already familiar with C++ then it's highly likely that you'll be up and running in Tier 2 within a short space of time.
+
+_text
+A collection of template projects and C++ libraries are provided for Tier 2 applications. You can choose where to install these by choosing the menu option Tools/Install Additional Files. You will be prompted for a location to install these files. Once installed you will see four folders inside ...\AGKStudio\Tier 2 
+
+_listbegin
+<b>\AGKStudio\Tier2\Apps</b> - contains the templates for creating native projects on various platforms, plus the interpreter project for recompiling the AppGameKit Studio Player
+<b>\AGKStudio\Tier2\Common</b> - contains the include files you will need to point to when compiling, the <b>apps</b> projects already reference this folder with a relative path.
+<b>\AGKStudio\Tier2\Platform</b> - contains the native libraries for various platforms that you will need to link to when compiling, the <b>apps</b> projects already reference this folder with a relative path (except Android whose libraries are in the project's <b>jni</b> folder).
+<b>\AGKStudio\Tier2\Showcase</b> - contains example games that come for free with AppGameKit Studio, in binary form only.
+<b>\AGKStudio\Tier2\Tutorials</b> - Several tutorials to get started.
+_listend
+
+_sheader
+Templates
+
+_text
+The apps folder contains projects suitable for the current platform, for example the Windows version contains projects for Windows, Android, and Blackberry, whilst the Mac version contains projects for Mac, iOS, Android, and Blackberry. Additionally there are some special projects listed below
+
+_listbegin
+<b>facebook</b> - for Android Facebook integration, import this project into Eclipse along side your own projects.
+<b>google-play-services</b> - for Android Google Play Services integration, import this project into Eclipse along side your own projects.
+projects ending <b>_lite</b> - stripped down projects that have no Facebook integration, no push notifications, and no Chartboost integration.
+_listend
+
+_text
+All of these projects use relative paths to link to libraries and include files, so if you create a copy of a project and move it elsewhere please bear in mind you will need to alter these paths. 
+
+_sheader
+Library files
+
+_text
+Most platforms contain a single library compiled in release mode that can be compiled into both Debug and Release projects. The exception is Windows which has both a Debug and Release library which must match your project's current build configuration. For example, if you enter the Windows folder, you will see a folder named Lib, go into here and there will be two folders; Debug and Release that contain the library files. Your debug configuration should link to the one in the Debug folder and your release configuration should link to the one in the Release folder.
+
+_sheader
+Conclusion
+
+_text
+For more details on each platform please return to the Guides section of the documentation and select the appropriate Tier 2 platform link.
+
+
+
+
+
+

@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>For loops - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="http://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; For loops</div><div class="page"><h1>For loops</h1><p>When using a <i>for</i> loop you can define how many times the loop will be repeated. This is very useful for all kinds of scenarios, for example, if a level has 10 enemies you can use a <i>for</i> loop to cycle through those 10 enemies to control their behaviour.</p><p>This example shows how a <i>for</i> loop can be used. Try running the program. You will see the numbers 1, 2, 3, 4, 5, 6, 7, 8, 9 and 10 displayed on screen.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+	for i = 1 to 10
+		print ( i )
+	next i
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+	for i = 1 to 10
+		print ( i )
+	next i
+
+	sync ( )
+loop
+">Copy Code</button></div><p>A <i>for</i> loop works by requiring a variable to be used to control how many times the loop will run. In our example program this is handled by declaring a variable <i>i</i>, assigning it a value of 1 and then setting the end point to 10. All of this takes place on the same line. The code immediately following the <i>for</i> loop will be executed every time the loop runs. The final part of the loop uses the <i>next</i> keyword to tell the program to iterate the variable <i>i</i>. When the program reaches this stage it will look at the variable <i>i</i>, add 1 to it, then return to the start of the <i>for</i>. If the variable <i>i</i> is less than the end condition (10), then the loop can continue, otherwise the loop is finished and the code within it is not executed, meaning program control moves onto the next line, which in our case is a call to the <i>sync</i> command.</p><p>Literal numbers have been used in the example. These can be replaced by any kind of expression. The point to remember here is that a start and end point need to be specified for the loop and bear in mind that by default the variable is incremented by 1 each cycle of the loop.</p><p>The <i>step</i> keyword can be used to control the increment for the variable. This is useful in cases where you don't want the variable controlling the start and end point to automatically increment by 1 each loop. Here's how the <i>step</i> keyword can be used.</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+	for i = 1 to 10 step 2
+		print ( i )
+	next i
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+	for i = 1 to 10 step 2
+		print ( i )
+	next i
+
+	sync ( )
+loop
+">Copy Code</button></div><p>Instead of <i>i</i> incrementing by 1 each loop, it is now set to increment by 2. As a result of this the end point of the loop is going to be reached quicker. It will only run through the loop 5 times, displaying the numbers 1, 3, 5, 7 and 9 on screen.</p><p>The <i>step</i> keyword also accepts negative numbers, so a loop could be set up to count backwards, as shown in this example.</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+	for i = 10 to 1 step -1
+		print ( i )
+	next i
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+	for i = 10 to 1 step -1
+		print ( i )
+	next i
+
+	sync ( )
+loop
+">Copy Code</button></div><p>These numbers will be displayed on screen 10, 9, 8, 7, 6, 5, 4, 3, 2 and 1. Notice how the start point of the loop is a higher number than the end point. This needs to be the case as we're now moving backwards.</p><div align="center"><a href="loops_003.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="loops_005.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="http://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

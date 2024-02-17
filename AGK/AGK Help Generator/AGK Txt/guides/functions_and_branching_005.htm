@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Experimenting with functions - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Experimenting with functions</div><div class="page"><h1>Experimenting with functions</h1><p>This example highlights how functions can be useful, by taking code to draw a circle and incorporating it into a function, meaning we can pass in whatever we want to the function to draw multiple circles on the screen. Here's the program.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 1024, 768 )
+<br>
+CreateImageColor ( 1, 255, 255, 255, 255 )
+CreateSprite ( 1, 1 )
+SetSpriteSize ( 1, 1, 1 )
+<br>
+x as integer = 0
+<br>
+do
+	for y = 1 to 10
+		DrawCircle ( 5 * ( y / 1.5 ), x + ( y * 10 ), y * 70, random ( 0, 255 ), random ( 0, 255 ), random ( 0, 255 ) )
+	next y
+<br>	
+	x = x + 5
+<br>
+	if x >= 1024
+		x = 0
+	endif
+<br>	
+	sync ( )
+loop
+<br>
+function DrawCircle ( radius as integer, positionX as integer, positionY as integer, red as integer, green as integer, blue as integer )
+	for y = -radius to radius
+		for x = -radius to radius
+			if x * x + y * y <= radius * radius
+				SetSpritePosition ( 1, positionX + x, positionY + y )
+				SetSpriteColor ( 1, red, green, blue, 255 )
+				DrawSprite ( 1 )
+			endif
+		next x
+	next y
+endfunction
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 1024, 768 )
+
+CreateImageColor ( 1, 255, 255, 255, 255 )
+CreateSprite ( 1, 1 )
+SetSpriteSize ( 1, 1, 1 )
+
+x as integer = 0
+
+do
+	for y = 1 to 10
+		DrawCircle ( 5 * ( y / 1.5 ), x + ( y * 10 ), y * 70, random ( 0, 255 ), random ( 0, 255 ), random ( 0, 255 ) )
+	next y
+
+	x = x + 5
+
+	if x >= 1024
+		x = 0
+	endif
+
+	sync ( )
+loop
+
+function DrawCircle ( radius as integer, positionX as integer, positionY as integer, red as integer, green as integer, blue as integer )
+	for y = -radius to radius
+		for x = -radius to radius
+			if x * x + y * y <= radius * radius
+				SetSpritePosition ( 1, positionX + x, positionY + y )
+				SetSpriteColor ( 1, red, green, blue, 255 )
+				DrawSprite ( 1 )
+			endif
+		next x
+	next y
+endfunction
+">Copy Code</button></div><p>The program creates 10 circles and displays them on screen. It achieves this by creating the function <i>DrawCircle</i>. This contains some simple code that will position and draw a sprite numerous times to display a filled circle. The useful part about this function is that the parameters being passed in are used to control the properties of the circle that gets drawn on screen. This makes the code very useful as it can be called with different values passed in, allowing us to create different sizes of circles, place them in different positions and have them coloured however we like.</p><p>It wouldn't be so difficult to adjust the program so that the code within the function <i>DrawCircle</i> was placed inside the <i>do</i> loop. However, take a moment to think about the implications of that. What might happen if you needed that code to be used elsewhere in your program? You could always copy and paste the code, adjust the values and reuse it, but this will likely lead to complications. What would happen if you suddenly decided the functionality need to change? You would need to change it in all of the locations where it was used. Had this code been included in a function you would only need to deal altering the code within the actual function.</p><p>Getting into the habit of using functions is very important. Try and consider whether code can be reused and if so think about how it could be contained within a function. By using functions you can also organise your code in a neat way. One function may be responsible for creating enemies in a level, another might handle updating their logic while the game is playing, while another might destroy them when the level is over.</p><div align="center"><a href="functions_and_branching_004.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="functions_and_branching_006.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

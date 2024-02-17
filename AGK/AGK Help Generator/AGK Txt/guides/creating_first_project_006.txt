@@ -1,0 +1,6 @@
+
+_sheader
+Conclusion
+
+_text
+Congratulations on making your first program within AppGameKit. Admittedly it's simple, but it's a start and gives you a glimpse into AppGameKit and a better understanding of the basics. As you learn more about AppGameKit you will discover it's essentially a lot of building blocks, adding in more instructions to create more complex and large projects.

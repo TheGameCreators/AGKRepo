@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Mathematical commands - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Mathematical commands</div><div class="page"><h1>Mathematical commands</h1><h2>Description</h2><p>A series of commands that deal with mathematical related functionality is included within AppGameKit Studio. These commands handle operations such as obtaining random numbers, square root, sine, cosine, tangent, rounding values and more. In this example several such commands are demonstrated.</p><p>In this example we'll check out commands to do the following:</p><ul><li>get a random number</li><li>round numbers</li><li>get the square root of a number</li></ul><h2>Getting a random number</h2><p>There are three commands related to random numbers. These commands allow you to set a random seed (from which a random number is generated), obtain a random number and obtain a random number within a range. This example shows the process:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetRandomSeed ( 100 )
+a = Random ( )
+b = Random ( 1, 10 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetRandomSeed ( 100 )
+a = Random ( )
+b = Random ( 1, 10 )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetRandomSeed ( 100 );
+a = agk::Random ( );
+b = agk::Random ( 1, 10 );
+</pre></div><p>The first call to <i>SetRandomSeed</i> passes in the value <i>100</i>. This is a seed that controls how our random numbers are generated.</p><p>The second call stores a random value within the variable <i>a</i>. If we continued to call the <i>Random</i> command and stored all the values we might get a sequence like this: 56, 98, 44, 43, 75, 2. If we repeated the process the sequence would be the same. The reason behind this is related to our random seed being 100. When the seed value does not change, the same sequence of random numbers will be generated each time. By default AppGameKit Studio will set this seed to the current time on startup, resulting in the generation of a different sequence of numbers each time the <i>Random</i> function is called. So unless you require the same sequence each time there is no need to call the command <i>SetRandomSeed</i>.</p><p>The third call to the command <i>Random</i> passes in two variables. This allows us to inform the <i>Random</i> command that we require a number within a range. In our example the minimum value is 1 and the maximum value is 10. Calling this command numerous times might result in a sequence like this: 5, 2, 9, 1, 6, 3, 7.</p><h2>Round numbers</h2><p>Another useful feature is the ability to take a floating point number and round it to the nearest number. For example, if you had the value 1.8 and called the <i>Round</i> command a value of 2 would be returned e.g.</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">value = Round ( 1.8 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="value = Round ( 1.8 )
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">value = agk::Round ( 1.8f );
+</pre></div><p>Other options include the ability to round a number down or up. This is handled with the commands <i>Floor</i> and <i>Ceil</i>:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">a = Floor ( 1.8 )
+b = Ceil ( 1.2 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="a = Floor ( 1.8 )
+b = Ceil ( 1.2 )
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">a = agk::Floor ( 1.8f );
+b = agk::Ceil ( 1.2f );
+</pre></div><p>In this example the variable <i>a</i> gets set to 1 as we're using the <i>Floor</i> command to round down. The variable <i>b</i> gets set to 2 as we're using the <i>Ceil</i> command to round up.</p><h2>Square root</h2><p>AppGameKit Studio also includes a command to determine the square root of a number. The square root is a value multiplied by itself that equals the number. Here's an example:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">value = sqrt ( 25 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="value = sqrt ( 25 )
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">value = agk::Sqrt ( 25 );
+</pre></div><p>The variable <i>value</i> would be set to 5 as this is the square root of 25 because 5 x 5 = 25.</p><h2>Full code listing</h2><p>The final code listing for this example is:</p><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetRandomSeed ( 100 )
+a = Random ( )
+b = Random ( 1, 10 )<br/>
+value = Round ( 1.8 )
+a1 = Floor ( 1.8 )
+b1 = Ceil ( 1.2 )
+value1 = sqrt ( 25 )<br/>
+do
+    Print ( a )
+    Print ( b )
+    Print ( value )
+    Print ( a1 )
+    Print ( b1 )
+    Print ( value1 )
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetRandomSeed ( 100 )
+a = Random ( )
+b = Random ( 1, 10 )<br/>
+value = Round ( 1.8 )
+a1 = Floor ( 1.8 )
+b1 = Ceil ( 1.2 )
+value1 = sqrt ( 25 )<br/>
+do
+    Print ( a )
+    Print ( b )
+    Print ( value )
+    Print ( a1 )
+    Print ( b1 )
+    Print ( value1 )
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock10" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetRandomSeed ( 100 );
+    a = agk::Random ( );
+    b = agk::Random ( 1, 10 );
+    value = agk::Round ( 1.8f );<br/>
+    a1 = agk::Floor ( 1.8f );
+    b1 = agk::Ceil ( 1.2f );
+    value1 = agk::sqrt ( 25f );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Print ( a );
+    agk::Print ( b );
+    agk::Print ( value );
+    agk::Print ( a1 );
+    agk::Print ( b1 );
+    agk::Print ( value1 );
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>This example only demonstrates a small portion of the mathematical related commands. For more details please view the reference guide.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

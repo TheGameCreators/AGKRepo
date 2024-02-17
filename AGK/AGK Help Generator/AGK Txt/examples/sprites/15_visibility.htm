@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Sprite visibility - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Sprite visibility</div><div class="page"><h1>Sprite visibility</h1><h2>Description</h2><p>After a sprite has been created, by default it is visible. To control the visible state of a sprite use the command <i>SetSpriteVisible</i> as demonstrated in this example.</p><div align="center"><img src="15_visibility.jpg"/></div><h2>Creating a sprite</h2><p>This block of code creates a sprite using a penguin image:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadImage ( 1, "penguin.png" )
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 100, 300 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadImage ( 1, &quot;penguin.png&quot; )
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 100, 300 )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::LoadImage ( 1, "penguin.png" );
+agk::CreateSprite ( 1, 1 );
+agk::SetSpritePosition ( 1, 100, 300 );
+</pre></div><h2>Controlling visibility</h2><p>The command <i>SetSpriteVisible</i> is used to control whether a sprite is visible or invisible, it takes two parameters:</p><ul><li>ID - an ID number for a sprite</li><li>visible - a value of 0 makes a sprite invisible, while a value of 1 will make the sprite visible</li></ul><p>Therefore, to hide our penguin sprite it's a case of calling <i>SetSpriteVisible</i>, setting the first parameter to 1 (ID of the sprite) and its visible state to 0:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetSpriteVisible ( 1, 0 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetSpriteVisible ( 1, 0 )
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetSpriteVisible ( 1, 0 );
+</pre></div><p>To retrieve the current visible state of a sprite call the command <i>GetSpriteVisible</i> and pass in the ID of the sprite to check:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">visible = GetSpriteVisible ( 1 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="visible = GetSpriteVisible ( 1 )
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">visible = agk::GetSpriteVisible ( 1 );
+</pre></div><p>If the return value is 1 then the sprite is visible. When the return value is 0 the sprite is invisible.</p><h2>Full code listing</h2><p>Within the main loop, whenever the user clicks or touches the screen the visibility of the sprite is swapped:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background3.jpg" ) )
+<br>
+LoadImage ( 1, "penguin.png" )
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 100, 300 )
+<br>
+do
+    Print ( "Click or touch the screen to" )
+    Print ( "hide or show the penguin" )
+<br>
+    if ( GetPointerPressed ( ) = 1 )
+	if ( state = 0 )
+	    SetSpriteVisible ( 1, 0 )
+	    state = 1
+	else
+	    SetSpriteVisible ( 1, 1 )
+            state = 0
+	endif
+    endif
+<br>
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+CreateSprite ( LoadImage ( &quot;background3.jpg&quot; ) )
+
+LoadImage ( 1, &quot;penguin.png&quot; )
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 100, 300 )
+
+do
+    Print ( &quot;Click or touch the screen to&quot; )
+    Print ( &quot;hide or show the penguin&quot; )
+
+    if ( GetPointerPressed ( ) = 1 )
+	if ( state = 0 )
+	    SetSpriteVisible ( 1, 0 )
+	    state = 1
+	else
+	    SetSpriteVisible ( 1, 1 )
+            state = 0
+	endif
+    endif
+
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background3.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "penguin.png" );
+    agk::CreateSprite ( 1, 1 );
+    agk::SetSpritePosition ( 1, 100, 300 );
+}
+<br>
+void app::Loop ( void )
+{
+    if ( agk::GetPointerPressed ( ) == 1 )
+    {
+        if ( state == 0 )
+	{
+	    agk::SetSpriteVisible ( 1, 0 );
+	    state = 1;
+	}
+	else
+	{
+	    agk::SetSpriteVisible ( 1, 1 );
+	    state = 0;
+	}
+    }
+<br>
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>Being able to set the visibility of sprites is useful for many in game situations and hiding sprites will also boost performance.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

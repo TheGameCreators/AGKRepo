@@ -1,0 +1,53 @@
+_header
+Experimenting with functions
+
+_text
+This example highlights how functions can be useful, by taking code to draw a circle and incorporating it into a function, meaning we can pass in whatever we want to the function to draw multiple circles on the screen. Here's the program.
+
+_tier1
+SetVirtualResolution ( 1024, 768 )
+<br>
+CreateImageColor ( 1, 255, 255, 255, 255 )
+CreateSprite ( 1, 1 )
+SetSpriteSize ( 1, 1, 1 )
+<br>
+x as integer = 0
+<br>
+do
+	for y = 1 to 10
+		DrawCircle ( 5 * ( y / 1.5 ), x + ( y * 10 ), y * 70, random ( 0, 255 ), random ( 0, 255 ), random ( 0, 255 ) )
+	next y
+<br>	
+	x = x + 5
+<br>
+	if x >= 1024
+		x = 0
+	endif
+<br>	
+	sync ( )
+loop
+<br>
+function DrawCircle ( radius as integer, positionX as integer, positionY as integer, red as integer, green as integer, blue as integer )
+	for y = -radius to radius
+		for x = -radius to radius
+			if x * x + y * y <= radius * radius
+				SetSpritePosition ( 1, positionX + x, positionY + y )
+				SetSpriteColor ( 1, red, green, blue, 255 )
+				DrawSprite ( 1 )
+			endif
+		next x
+	next y
+endfunction
+_tier1
+
+_text
+The program creates 10 circles and displays them on screen. It achieves this by creating the function <i>DrawCircle</i>. This contains some simple code that will position and draw a sprite numerous times to display a filled circle. The useful part about this function is that the parameters being passed in are used to control the properties of the circle that gets drawn on screen. This makes the code very useful as it can be called with different values passed in, allowing us to create different sizes of circles, place them in different positions and have them coloured however we like.
+
+_text
+It wouldn't be so difficult to adjust the program so that the code within the function <i>DrawCircle</i> was placed inside the <i>do</i> loop. However, take a moment to think about the implications of that. What might happen if you needed that code to be used elsewhere in your program? You could always copy and paste the code, adjust the values and reuse it, but this will likely lead to complications. What would happen if you suddenly decided the functionality need to change? You would need to change it in all of the locations where it was used. Had this code been included in a function you would only need to deal altering the code within the actual function.
+
+_text
+Getting into the habit of using functions is very important. Try and consider whether code can be reused and if so think about how it could be contained within a function. By using functions you can also organise your code in a neat way. One function may be responsible for creating enemies in a level, another might handle updating their logic while the game is playing, while another might destroy them when the level is over.
+
+_navigation
+functions_and_branching_004.htm functions_and_branching_006.htm

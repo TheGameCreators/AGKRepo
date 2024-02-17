@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Arrays in action - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Arrays in action</div><div class="page"><h1>Arrays in action</h1><p>This example demonstrates how the use of arrays can make a program's data far easier to work with. It creates nine sprites and moves them up and down the screen. Information about the sprite, its speed and direction are all stored within arrays. This allows us to store a lot of data within a few variables, which is much better than having lots of unique variables and needing to replicate code to deal with the same data.</p><p>This program relies on some external media. The easiest way of running this program is to click <a href="https://www.appgamekit.com/documentation/guides/arrays.zip">here</a> and download the project. Once the file has been downloaded, extract the files and open MyFirstAGKProject.agk within AppGameKit Studio. Now run the program to see what it does.</p><div align="center"><a class="example-image-link" href="arrays_001_large.jpg" data-lightbox="example-1"><img class="example-image" src="arrays_001.jpg" alt="image-1" /></a></div><p>The purpose of this program is to give you some kind of idea about how using arrays can be more beneficial in certain circumstances, so don't worry too much about anything you don't totally understand.</p><p>Take a look at the code.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 1024, 768 )
+<br>
+image as integer
+sprites as integer [ 9 ]
+speed as integer [ 9 ]
+direction as integer [ 9 ]
+<br>
+image = LoadImage ( "penguin.png" )
+<br>
+for i = 1 to 9
+	sprites [ i ] = CreateSprite ( image )
+	SetSpritePosition ( sprites [ i ], GetImageWidth ( image ) * ( i - 1 ), 768 - GetImageHeight ( image ) )
+	<br>
+	direction [ i ] = 0
+	speed [ i ] = -i
+next i
+<br>
+do
+	for i = 1 to 9
+		x = GetSpriteX ( sprites [ i ] )
+		y = GetSpriteY ( sprites [ i ] )
+		<br>
+		if ( direction [ i ] = 0 and y < 0 ) or ( direction [ i ] = 1 and y > 768 - GetImageHeight ( image ) )
+			speed [ i ] = -speed [ i ]
+			direction [ i ] = not direction [ i ]
+		endif
+		<br>
+		y = y + speed [ i ]
+		<br>
+		SetSpritePosition ( sprites [ i ], x, y )
+	next i
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 1024, 768 )
+
+image as integer
+sprites as integer [ 9 ]
+speed as integer [ 9 ]
+direction as integer [ 9 ]
+
+image = LoadImage ( &quot;penguin.png&quot; )
+
+for i = 1 to 9
+	sprites [ i ] = CreateSprite ( image )
+	SetSpritePosition ( sprites [ i ], GetImageWidth ( image ) * ( i - 1 ), 768 - GetImageHeight ( image ) )
+
+	direction [ i ] = 0
+	speed [ i ] = -i
+next i
+
+do
+	for i = 1 to 9
+		x = GetSpriteX ( sprites [ i ] )
+		y = GetSpriteY ( sprites [ i ] )
+
+		if ( direction [ i ] = 0 and y < 0 ) or ( direction [ i ] = 1 and y > 768 - GetImageHeight ( image ) )
+			speed [ i ] = -speed [ i ]
+			direction [ i ] = not direction [ i ]
+		endif
+
+		y = y + speed [ i ]
+
+		SetSpritePosition ( sprites [ i ], x, y )
+	next i
+
+	sync ( )
+loop
+">Copy Code</button></div><p>We are able to control nine sprites on screen without using a load of variables, instead just three arrays contain all the data we need.</p><p>Let's take a brief overview of what the code is doing.</p><ul><li>A few variables are declared at the start of the program <i>image</i>, <i>sprites</i>, <i>speed</i> and <i>direction</i>.</li><li><i>image</i> will be used to store an ID number for an image that will get loaded and used with the sprites moving up and down the screen.</li><li><i>sprites</i> is an array containing 9 integers. It will store ID numbers for the sprites that we create.</li><li><i>speed</i> is also an array containing 9 integers. This array will store values that control how fast the sprites move up and down the screen.</li><li>Finally <i>direction</i> is declared and is also an array storing 9 integers. This array stores a value that determines which direction the sprites move in.</li><li>After the variable declarations an image named "penguin.png" is loaded. This will be used by all of the sprites.</li><li>The next part is a <i>for</i> loop that creates 9 sprites.</li><li>Next we're onto the main loop of the program that controls how our sprites are moved.</li></ul><p>The two main parts that need explaining in more detail are the <i>for</i> loop that creates the sprites and the <i>for</i> loop inside the <i>do</i> loop. Let's begin with the first <i>for</i> loop.</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">for i = 1 to 9
+	sprites [ i ] = CreateSprite ( image )
+	SetSpritePosition ( sprites [ i ], GetImageWidth ( image ) * ( i - 1 ), 768 - GetImageHeight ( image ) )
+	<br>
+	direction [ i ] = 0
+	speed [ i ] = -i
+next i
+</pre></div><div align="right"><button class="btn" data-clipboard-text="for i = 1 to 9
+	sprites [ i ] = CreateSprite ( image )
+	SetSpritePosition ( sprites [ i ], GetImageWidth ( image ) * ( i - 1 ), 768 - GetImageHeight ( image ) )
+
+	direction [ i ] = 0
+	speed [ i ] = -i
+next i
+">Copy Code</button></div><p>This loop will cycle through nine times, performing the following tasks.</p><ul><li>A sprite gets created. Its identifier or ID number is stored within the array <i>sprites</i>. This number is required by many other commands. The sprite is told to use the image loaded earlier (penguin.png).</li><li>The position of the sprite is set by calling the command <i>SetSpritePosition</i>. The ID number of the sprite we're working with is passed in, followed by the X and Y positions. This will initially position all of the sprites in a row.</li><li>All the values inside <i>direction</i> are set to 0. Later on inside the main loop if this value is 0 the sprites move up the screen. When it is set to 1 the sprites move down the screen.</li><li><i>speed</i> is set to the negative value of <i>i</i>. When this <i>for</i> loop has finished the values this array contains will be -1, -2, -3, -4, -5, -6, -7, -8 and -9.</li></ul><p>The main loop of the program controls the movement of the sprites.</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">for i = 1 to 9
+	x = GetSpriteX ( sprites [ i ] )
+	y = GetSpriteY ( sprites [ i ] )
+	<br>
+	if ( direction [ i ] = 0 and y < 0 ) or ( direction [ i ] = 1 and y > 768 - GetImageHeight ( image ) )
+		speed [ i ] = -speed [ i ]
+		direction [ i ] = not direction [ i ]
+	endif
+	<br>
+	y = y + speed [ i ]
+	<br>
+	SetSpritePosition ( sprites [ i ], x, y )
+next i
+</pre></div><div align="right"><button class="btn" data-clipboard-text="for i = 1 to 9
+	x = GetSpriteX ( sprites [ i ] )
+	y = GetSpriteY ( sprites [ i ] )
+
+	if ( direction [ i ] = 0 and y < 0 ) or ( direction [ i ] = 1 and y > 768 - GetImageHeight ( image ) )
+		speed [ i ] = -speed [ i ]
+		direction [ i ] = not direction [ i ]
+	endif
+
+	y = y + speed [ i ]
+
+	SetSpritePosition ( sprites [ i ], x, y )
+next i
+">Copy Code</button></div><p>The <i>for</i> loop cycles through all of our nine sprites. It does the following.</p><ul><li>Initially the X and Y positions of our sprites are stored in the variables <i>x</i> and <i>y</i>. This data is needed multiple times throughout the loop, so instead of repeatedly calling the functions to extract the data, it is simply assigned to these variables, resulting in our program having less work to do.</li><li>The <i>if</i> statement checks whether either of the conditions are valid. If the direction is set to 0 and the Y position is less than 0 or whether the direction is set to 1 and the Y position is greater than 768 minus the size of the image. In order words this is checking whether the sprite is at the top or bottom of the screen.</li><li>If either of the conditions are true then the speed for the sprite is set to the negative value of its speed. If the speed was set to 5, then it would switch to -5. The direction is set using the <i>not</i> operator, allowing us to alternate between 0 and 1. If the direction is 0 it becomes 1. If it's 1 it gets set to 0. All this has the effect of letting us continually tick tock our values letting us move the sprites up and down.</li><li>Next there's a line that takes the current Y position and add the current speed to it. The speed is either negative or positive, allowing us to move the sprite up or down.</li><li>The final line updates the position of the sprite based on our alterations to its position. Nothing actually happens with the X position, but we are moving the Y position.</li></ul><p>Imagine if this program wasn't using arrays. We would need 27 separate variables to store all this information, which would be very messy and unpleasant to work with. Instead we have a much more elegant solution by using arrays.</p><div align="center"><a href="arrays_001.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="arrays_003.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

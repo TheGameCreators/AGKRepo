@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Exiting functions - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Exiting functions</div><div class="page"><h1>Exiting functions</h1><p>There may be occasions where you want to exit out of a function dependent on certain conditions. The keyword <i>exitfunction</i> lets you do this. When used it immediately exits the function resulting in no further instructions beyond being executed. The following program shows it being used.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+	myFunction ( 10, 20 )
+	<br>
+	sync ( )
+loop
+<br>
+function myFunction ( a as integer, b as integer )
+	print ( a )
+	exitfunction
+	print ( b )
+endfunction 
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+	myFunction ( 10, 20 )
+
+	sync ( )
+loop
+
+function myFunction ( a as integer, b as integer )
+	print ( a )
+	exitfunction
+	print ( b )
+endfunction 
+">Copy Code</button></div><p>The function <i>myFunction</i> takes in two integer parameters (<i>a</i> and <i>b</i>). The code within the function makes a call to the <i>print</i> command passing in the value of <i>a</i>. This is followed by a call to the <i>exitfunction</i> command. The effect of this is such that the next call to <i>print</i> using the parameter <i>b</i> is ignored, as the function immediately exits out upon coming to <i>exitfunction</i>. When this program runs the only thing you will see on screen is the number 10. The call to display the value of <i>b</i> on screen is never executed.</p><p>This kind of functionality to exit out of a function can be useful. Let's look at the program again, but this time with a condition added in.</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+	myFunction ( 10, 20 )
+	<br>
+	sync ( )
+loop
+<br>
+function myFunction ( a as integer, b as integer )
+	if a <= 10
+		exitfunction
+	endif
+	<br>
+	print ( a )
+	print ( b )
+endfunction
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+	myFunction ( 10, 20 )
+
+	sync ( )
+loop
+
+function myFunction ( a as integer, b as integer )
+	if a <= 10
+		exitfunction
+	endif
+
+	print ( a )
+	print ( b )
+endfunction
+">Copy Code</button></div><p>The function <i>myFunction</i> has an if statement that determines whether the parameter <i>a</i> is less than or equal to 10. If this condition is met <i>exitfunction</i> is used to immediately return out of the function and continue execution from where the function was called. If this condition is not met then the values of <i>a</i> and <i>b</i> are displayed on screen. Given that <i>myFunction</i> is called and supplied with values of 10 and 20 this function will immediately exit. If the first parameter is changed to 11 then the function will display 11 and 20 on screen.</p><p>When you need to exit out of a function that returns a value simply add the return value directly after the call to <i>exitfunction</i>, as shown in this example.</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+	print ( myFunction ( 10, 20 ) )
+	<br>
+	sync ( )
+loop
+<br>
+function myFunction ( a as integer, b as integer )
+	if a <= 10
+		exitfunction 1
+	endif
+endfunction a + b
+<br>
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+	print ( myFunction ( 10, 20 ) )
+
+	sync ( )
+loop
+
+function myFunction ( a as integer, b as integer )
+	if a <= 10
+		exitfunction 1
+	endif
+endfunction a + b
+
+">Copy Code</button></div><p>If the value of <i>a</i> within <i>myFunction</i> is less than or equal to 10 the function will immediately exit, returning a value of 1, otherwise the function will return the sum of <i>a</i> and <i>b</i>.</p><div align="center"><a href="functions_and_branching_003.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="functions_and_branching_005.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

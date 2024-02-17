@@ -1,0 +1,24 @@
+_header
+end
+
+_sheader
+Syntax
+
+_tier1
+end
+_tier1
+
+_sheader
+Description
+
+_text
+This command will stop the program running. 
+
+_sheader
+Example
+
+_tier1
+print ( "end the program" )
+
+end
+_tier1

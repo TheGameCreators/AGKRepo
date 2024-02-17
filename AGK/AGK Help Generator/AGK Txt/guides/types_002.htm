@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Declaring types - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Declaring types</div><div class="page"><h1>Declaring types</h1><p>Types can contain regular variables such as floating point values, integers and strings. They can also contain arrays and other types. This section of the documentation provides several examples showing the different ways in which types can be declared.</p><p>The program that follows defines and uses a type named <i>myType</i>.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">type myType
+	a as integer
+	b as float
+	c as string
+endtype
+<br>
+data as myType
+<br>
+data.a = 1
+data.b = 1.23
+data.c = "hello"
+<br>
+do
+	print ( data.a )
+	print ( data.b )
+	print ( data.c )
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="type myType
+	a as integer
+	b as float
+	c as string
+endtype
+
+data as myType
+
+data.a = 1
+data.b = 1.23
+data.c = &quot;hello&quot;
+
+do
+	print ( data.a )
+	print ( data.b )
+	print ( data.c )
+
+	sync ( )
+loop
+">Copy Code</button></div><p>The type declaration for <i>myType</i> contains three variables named <i>a</i>, <i>b</i> and <i>c</i>. <i>a</i> is declared as an integer, <i>b</i> is declared as a floating point value and finally <i>c</i> is declared as a string. A variable named <i>data</i> is declared that is of type <i>myType</i>. This is followed by three lines that assign values to the contents of <i>data</i>. Then there's the loop that continually prints out the values within <i>data</i></p><p>The next program shows how a type can contain an array.</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">type myType
+	a as string [ 4 ]
+	b as integer [ 4 ]
+endtype
+<br>
+data as myType
+<br>
+data.a [ 1 ] = "a"
+data.a [ 2 ] = "b"
+data.a [ 3 ] = "c"
+data.a [ 4 ] = "d"
+<br>
+for i = 1 to 4
+	data.b [ i ] = i * 5
+next i
+<br>
+do
+	for i = 1 to 4
+		print ( data.a [ i ] + " " + str ( data.b [ i ] ) )
+	next i
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="type myType
+	a as string [ 4 ]
+	b as integer [ 4 ]
+endtype
+
+data as myType
+
+data.a [ 1 ] = &quot;a&quot;
+data.a [ 2 ] = &quot;b&quot;
+data.a [ 3 ] = &quot;c&quot;
+data.a [ 4 ] = &quot;d&quot;
+
+for i = 1 to 4
+	data.b [ i ] = i * 5
+next i
+
+do
+	for i = 1 to 4
+		print ( data.a [ i ] + &quot; &quot; + str ( data.b [ i ] ) )
+	next i
+
+	sync ( )
+loop
+">Copy Code</button></div><p>A string array named <i>a</i> is declared within the type declaration along with an integer array named <i>b</i>. The way they are declared is just the same as when dealing with regular arrays, except these arrays are contained within <i>myType</i>. This is followed by a few lines that assign values to the arrays within <i>data</i>. Then the loop simply prints out the contents of <i>data.a</i> and <i>data.b</i></p><p>Types can also contain other types, as displayed in this program.</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">type myTypeA
+	score as integer
+	names as string [ 4 ]
+endtype
+<br>
+type myTypeB
+	sub as myTypeA
+	value as float
+endtype
+<br>
+data as myTypeB
+<br>
+data.sub.score = 1
+data.sub.names [ 1 ] = "a"
+data.sub.names [ 2 ] = "b"
+data.sub.names [ 3 ] = "c"
+data.sub.names [ 4 ] = "d"
+data.value = 1.45
+<br>
+do
+	print ( data.sub.score )
+	<br>
+	for i = 1 to 4
+		print ( data.sub.names [ i ] )
+	next i
+	<br>
+	print ( data.value )
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="type myTypeA
+	score as integer
+	names as string [ 4 ]
+endtype
+
+type myTypeB
+	sub as myTypeA
+	value as float
+endtype
+
+data as myTypeB
+
+data.sub.score = 1
+data.sub.names [ 1 ] = &quot;a&quot;
+data.sub.names [ 2 ] = &quot;b&quot;
+data.sub.names [ 3 ] = &quot;c&quot;
+data.sub.names [ 4 ] = &quot;d&quot;
+data.value = 1.45
+
+do
+	print ( data.sub.score )
+
+	for i = 1 to 4
+		print ( data.sub.names [ i ] )
+	next i
+
+	print ( data.value )
+
+	sync ( )
+loop
+">Copy Code</button></div><p>The type <i>myTypeA</i> is declared, which is then followed by the declaration for <i>myTypeB</i>. This type declares a variable <i>sub</i> that uses the type <i>myTypeA</i>. The next few lines beneath this show how to access a type within a type.</p><p>The final program shows how you can have an array of a type.</p><div id="basicCodeBlock4" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">type playerType
+	score as integer
+	name as string
+endtype
+<br>
+players as playerType [ 3 ]
+<br>
+players [ 1 ].score = -1000
+players [ 1 ].name = "lee"
+players [ 2 ].score = 100
+players [ 2 ].name = "paul"
+players [ 3 ].score = 500
+players [ 3 ].name = "rick"
+<br>
+do
+	for i = 1 to players.length
+		print ( players [ i ].name + " = " + str ( players [ i ].score ) )
+	next i
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="type playerType
+	score as integer
+	name as string
+endtype
+
+players as playerType [ 3 ]
+
+players [ 1 ].score = -1000
+players [ 1 ].name = &quot;lee&quot;
+players [ 2 ].score = 100
+players [ 2 ].name = &quot;paul&quot;
+players [ 3 ].score = 500
+players [ 3 ].name = &quot;rick&quot;
+
+do
+	for i = 1 to players.length
+		print ( players [ i ].name + &quot; = &quot; + str ( players [ i ].score ) )
+	next i
+
+	sync ( )
+loop
+">Copy Code</button></div><p>To specify that a variable using a type is going to be an array just add on the opening bracket, the size of the array and lastly the closing bracket, just like you would do with a regular floating point, string or integer array.</p><p>The variable <i>players</i> is treated like a regular array, so it's possible to use the likes of <i>length</i> and <i>sort</i> with it, as shown in the <i>for</i> loop that iterates from 1 to the size or length of the array.</p><div align="center"><a href="types_001.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="types_003.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

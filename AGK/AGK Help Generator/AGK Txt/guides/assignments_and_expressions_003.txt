@@ -1,0 +1,39 @@
+
+_header
+Expressions
+
+_text
+If a game has a score and that value was stored in the variable <i>playerScore</i>, at some point we'll need to update that score. It could be that if we're playing a space shooter game and the player fires a missile and blows up an asteroid we want to give them 10 points. If they destroy an alien we might award them 20 points. We might also need to be keeping track of how much time remains for the current level, whether the player is running out of fuel or perhaps they are using the boost packs and need to speed up. This is where expressions come in. They allow us to take our data and perform a calculation with it.
+
+_text
+An expression is built up using operators and operands. The most basic operators allow you to perform addition, subtraction, multiplication and division. The operands refer to the data we're acting on.
+
+_text
+Let's take the example of a score. If you wanted to take the current value of the score and add 10 to it then here's what you would do.
+
+_tier1
+playerScore = playerScore + 10
+_tier1
+
+_text
+To reduce the score by 10 it's simply a matter of using the subtraction operator.
+
+_tier1
+playerScore = playerScore - 10
+_tier1
+
+_text
+When this is broken down what it is effectively doing is saying to take the result of the expression on the right side of the equals operator and assign this to the variable on the left.
+
+_text
+The mathematical operators can be combined together to create more complex expressions as shown here.
+
+_tier1
+playerScore = 50 - playerScore + 10 / 2 * 4 + playerLives
+_tier1
+
+_text
+Whilst this particular line doesn't really make much sense in the context of the player's score it should at least give you an idea of how expressions can be constructed.
+
+_navigation
+assignments_and_expressions_002.htm assignments_and_expressions_004.htm 

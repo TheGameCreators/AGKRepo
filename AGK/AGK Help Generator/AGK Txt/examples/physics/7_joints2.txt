@@ -1,0 +1,236 @@
+﻿_header
+Joints - Part 2
+
+_sheader
+Description
+_text
+In the previous example (Joints - Part 1) we examined the usage of weld joints, where sprites can be attached to each other in a rigid manner. In this example we look at the revolute joint, which is a more complex joint that allows sprites to rotate around an anchor.
+
+_image
+7_joints2.jpg
+
+_sheader
+Overview
+_text
+The process to create this example is as follows:
+
+_listbegin
+load images to be used by the sprites
+create a static physics sprite (the crate)
+create a dynamic physics sprite (the chip)
+connect both together using a revolute joint
+apply an impulse to move the dynamic sprite
+_listend
+
+_sheader
+Loading images
+_text
+Two images are loaded, that can later be attached to the sprites:
+
+_tier1
+LoadImage ( 1, "green.png" )
+LoadImage ( 2, "small_ball.png" )
+_tier1
+
+_tier2
+agk::LoadImage ( 1, "green.png" );
+agk::LoadImage ( 2, "small_ball.png" );
+_tier2
+
+_sheader
+Static sprite
+_text
+Sprite 1 gets created, it uses the crate image (ID 1), it gets placed near the top of the screen and is set to be a static physics object:
+
+_tier1
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 150, 50 )
+SetSpritePhysicsOn ( 1, 1 )
+_tier1
+
+_tier2
+agk::CreateSprite ( 1, 1 );
+agk::SetSpritePosition ( 1, 150.0f, 50.0f );
+agk::SetSpritePhysicsOn ( 1, 1 );
+_tier2
+
+_sheader
+Dynamic sprite
+_text
+Sprite 2 gets created, it uses the ball image (ID 2), it gets placed directly below sprite 1 and is set to be a dynamic physics object, it also has its physics shape set to be a circle:
+
+_tier1
+CreateSprite ( 2, 2 )
+SetSpritePosition ( 2, 150, 150 )
+SetSpritePhysicsOn ( 2, 2 )
+SetSpriteShape ( 2, 1 )
+_tier1
+
+_tier2
+agk::CreateSprite ( 2, 2 );
+agk::SetSpritePosition ( 2, 150.0f, 150.0f );
+agk::SetSpritePhysicsOn ( 2, 2 );
+agk::SetSpriteShape ( 2, 1 );
+_tier2
+
+_sheader
+Using a revolute joint
+_text
+A revolute joint connects two sprites and allows for rotation. Within our example the dynamic sprite will be connected to the static sprite using a revolute joint. This has the effect of allowing the dynamic sprite to rotate around the static sprite.
+
+_text
+To create a revolute joint call the <i>CreateRevoluteJoint</i> command. This command takes several parameters:
+
+_listbegin
+sprite A
+sprite B
+x
+y
+colConnected
+_listend
+
+_text
+The first two parameters of this command refer to the sprites that are being joined together. The <i>X</i> and <i>Y</i> parameters control the anchor point of the joint. The anchor point is responsible for controlling at which point the sprites can rotate around. The final parameter <i>ColConnected</i> sets if the two sprites will collide, 0=not, 1=they will.
+
+_text
+When our sprites are connected with the revolute joint the anchor is set to 182, 82:
+
+_tier1
+CreateRevoluteJoint ( 1, 2, 182, 82, 0 )
+_tier1
+
+_tier2
+agk::CreateRevoluteJoint ( 1, 2, 182.0f, 82.0f, 0 );
+_tier2
+
+_text
+This means the anchor point, or point of rotation for these sprites is the centre of the static sprite. The end result is that our dynamic sprite could rotate all around the static sprite if it had enough force applied to it.
+
+_sheader
+Applying an impulse
+_text
+If at this point the example was launched, then the result would be two sprites on screen that are connected, but not moving. In order to bring our scene to life we'll need to apply an impulse to our dynamic sprite. This has the effect of pushing our dynamic sprite in a certain direction. By doing this we'll provide our sprite with some force and it will start moving within the limits of the revolute joint.
+
+_text
+The command <i>SetSpritePhysicsImpulse</i> takes several parameters:
+
+_listbegin
+sprite ID
+x
+y
+x impulse
+y impulse
+_listend
+
+_text
+The <i>ID</i> refers to the ID of the sprite that you want to apply an impulse to. The <i>x</i> and <i>y</i> parameters refer to the location at which point the impulse will be applied. Finally the last two parameters <i>x impulse</i> and <i>y impulse</i> are responsible for the amount of impulse on each axis.
+
+_text
+For our example we're effectively wanting to give our dynamic sprite a push and help it on its way. Therefore an impulse is applied at the sprites position on the X axis:
+
+_tier1
+SetSpritePhysicsImpulse ( 2, 150, 150, 10000, 0 );
+_tier1
+
+_tier2
+agk::SetSpritePhysicsImpulse ( 2, 150.0f, 150.0f, 10000.0f, 0.0f );
+_tier2
+
+_sheader
+Physics debug mode
+_text
+The final part before moving onto the main loop is a call to the command <i>SetPhysicsDebugOn</i>. After calling this command overlays will be placed on our sprites, which will help us to understand how the physics simulation represents our sprites:
+
+_tier1
+SetPhysicsDebugOn ( )
+_tier1
+
+_tier2
+agk::SetPhysicsDebugOn ( );
+_tier2
+
+_sheader
+Main loop
+_text
+The only code required within our main loop is a call to <i>Sync</i> that will ensure the screen is updated. Nothing else needs to happen. We'll let the simulation play itself out and view the results on screen:
+
+_tier1
+do
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background1.jpg" ) )
+<br>
+LoadImage ( 1, "green.png" )
+LoadImage ( 2, "small_ball.png" )
+<br>
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 150, 50 )
+SetSpritePhysicsOn ( 1, 1 )
+<br>
+CreateSprite ( 2, 2 )
+SetSpritePosition ( 2, 150, 150 )
+SetSpritePhysicsOn ( 2, 2 )
+SetSpriteShape ( 2, 1 )
+<br>
+CreateRevoluteJoint ( 1, 2, 182, 82, 0 )
+<br>
+SetSpritePhysicsImpulse ( 2, 150, 150, 10000, 0 )
+<br>
+SetPhysicsDebugOn ( )
+<br>
+do
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::CreateSprite ( agk::LoadImage ( "background1.jpg" ) );
+    <br>
+    agk::LoadImage ( 1, "green.png" );
+    agk::LoadImage ( 2, "small_ball.png" );
+    <br>
+    agk::CreateSprite ( 1, 1 );
+    agk::SetSpritePosition ( 1, 150.0f, 50.0f );
+    agk::SetSpritePhysicsOn ( 1, 1 );
+    <br>
+    agk::CreateSprite ( 2, 2 );
+    agk::SetSpritePosition ( 2, 150.0f, 150.0f );
+    agk::SetSpritePhysicsOn ( 2, 2 );
+    agk::SetSpriteShape ( 2, 1 );
+    <br>
+    agk::CreateRevoluteJoint ( 1, 2, 182.0f, 82.0f, 0 );
+    <br>
+    agk::SetSpritePhysicsImpulse ( 2, 150.0f, 150.0f, 10000.0f, 0.0f );
+    <br>
+    agk::SetPhysicsDebugOn ( );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+With a few simple lines of code it's been possible to create a relationship between two sprites, where one is able to rotate around another. Whilst this example is relatively simple, it should help in understanding how joints can be used to attach sprites together.

@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Star Field - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Star Field</div><div class="page"><h1>Star Field</h1><h2>Description</h2><p>This examples demonstrates how it's possible to utilise a large amount of sprites to create a simple star field effect. Even though there are a lot of sprites the program will still run fast as behind the scenes AppGameKit Studio is taking measures to ensure optimal performance.</p><div align="center"><img src="10_star_field.jpg"/></div><h2>External media</h2><p>This example program relies on several images:</p><p><div align="center"><b>star.png (has been inverted so it's easier to see in the documentation)</b></div></p><div align="center"><img src="star.png"/></div><p><div align="center"><b>space.jpg</b></div></p><div align="center"><img src="space.jpg"/></div><h2>Overview</h2><p>The process involved is as follows:</p><ul><li>load a background image</li><li>load an image for the stars</li><li>create a large group of sprites and position them at random locations</li><li>within the main loop update the position of all sprites</li></ul><h2>Background image</h2><p>The code begins with two simple calls to load an image that will cover the whole screen and then creating a sprite from it:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadImage ( 1, "space.jpg" )
+CreateSprite ( 1, 1 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadImage ( 1, &quot;space.jpg&quot; )
+CreateSprite ( 1, 1 )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::LoadImage ( 1, "space.jpg" );
+agk::CreateSprite ( 1, 1 );
+</pre></div><h2>Making stars</h2><p>To represent a collection of stars several hundred sprites will be created and positioned at random locations on screen. This will be handled with a simple loop. Here's what happens for each sprite:</p><ul><li>create a sprite and position it at a random location on screen</li><li>create a random size value and apply this as the scale of the sprite</li><li>provide a random colour for the sprite</li><li>store a random speed value that will be used in the main loop</li></ul><p>The code for this is as follows:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadImage ( 2, "star.png" )
+<br>
+for i = 2 to 1000
+    CreateSprite ( i, 2 )
+    SetSpritePosition ( i,  Random ( 0, 320 ), Random ( 0, 480 ) )
+<br>
+    size = Random ( 3, 10 ) / 10.0
+    SetSpriteScale ( i, size, size )
+<br>
+    SetSpriteColor ( i, Random ( 100, 255 ), Random ( 100, 255 ), Random ( 100, 255 ), Random ( 100, 255 ) )
+<br>
+    speed [ i ] = Random ( 1, 30 ) / 10.0
+next i
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadImage ( 2, &quot;star.png&quot; )
+
+for i = 2 to 1000
+    CreateSprite ( i, 2 )
+    SetSpritePosition ( i,  Random ( 0, 320 ), Random ( 0, 480 ) )
+
+    size = Random ( 3, 10 ) / 10.0
+    SetSpriteScale ( i, size, size )
+
+    SetSpriteColor ( i, Random ( 100, 255 ), Random ( 100, 255 ), Random ( 100, 255 ), Random ( 100, 255 ) )
+
+    speed [ i ] = Random ( 1, 30 ) / 10.0
+next i
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::LoadImage ( 2, "star.png" );
+<br>
+for ( int i = 2; i < 1000; i++
+{
+    agk::CreateSprite ( i, 2 );
+    agk::SetSpritePosition ( i, agk::Random ( 0, 320 ), agk::Random ( 0, 480 ) );
+<br>
+    size = agk::Random ( 3, 10 ) / 10.0f;
+    agk::SetSpriteScale ( i, size, size );
+<br>
+    agk::SetSpriteColor ( i, agk::Random ( 100, 255 ), agk::Random ( 100, 255 ), agk::Random ( 100, 255 ), agk::Random ( 100, 255 ) );
+<br>
+    speed [ i ] = agk::Random ( 1, 30 ) / 10.0f;
+}
+</pre></div><h2>Main Loop</h2><p>At this point our stars have been created and positioned on screen, it's now time to bring them to life by moving them from right to left, and once they have gone off the left side of the screen reposition them on the right side. This has the effect of our stars continually scrolling from right to left:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+    for i = 2 to 1000
+        SetSpriteX ( i, GetSpriteX ( i ) - speed [ i ] );
+<br>
+        if ( GetSpriteX ( i ) < -20 )
+            SetSpritePosition ( i, Random ( 330, 400 ), Random ( 0, 480 ) )
+            speed [ i ] = Random ( 1, 30 ) / 10.0
+        endif
+    next i        
+<br>
+    sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+    for i = 2 to 1000
+        SetSpriteX ( i, GetSpriteX ( i ) - speed [ i ] );
+
+        if ( GetSpriteX ( i ) < -20 )
+            SetSpritePosition ( i, Random ( 330, 400 ), Random ( 0, 480 ) )
+            speed [ i ] = Random ( 1, 30 ) / 10.0
+        endif
+    next i        
+
+    sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Loop ( void )
+{
+    for ( int i = 2; i < 1000; i++ )
+    {
+        agk::SetSpritePositionX ( i, agk::GetSpriteX ( i ) - speeds [ i ] );
+<br>
+        if ( agk::GetSpriteX ( i ) < -20 )
+	{
+	    agk::SetSpritePosition ( i, agk::Random ( 330, 400 ), agk::Random ( 0, 480 ) );
+	    speed [ i ] = agk::Random ( 1, 30 ) / 10.0f;
+	}
+    }
+ <br>
+    agk::Sync ( );
+}
+</pre></div><h2>Full code listing</h2><p>Everything is now in place. Here's the final code for our program:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">dim speed [ 1000 ] as float
+<br>
+SetVirtualResolution ( 320, 480 )
+<br>
+LoadImage ( 1, "space.jpg" )
+CreateSprite ( 1, 1 )
+<br>
+LoadImage ( 2, "star.png" )
+<br>
+for i = 2 to 1000
+    CreateSprite ( i, 2 )
+    SetSpritePosition ( i, Random ( 0, 320 ), Random ( 0, 480 ) )
+<br>
+    size = Random ( 3, 10 ) / 10.0
+    SetSpriteScale ( i, size, size )
+<br>
+    SetSpriteColor ( i, Random ( 100, 255 ), Random ( 100, 255 ), Random ( 100, 255 ), Random ( 100, 255 ) )
+<br>
+    speed [ i ] = Random ( 1, 30 ) / 10.0
+next i
+<br>
+do
+    for i = 2 to 1000
+        SetSpriteX ( i, GetSpriteX ( i ) - speed [ i ] )
+<br>
+        if ( GetSpriteX ( i ) < -20 )
+            SetSpritePosition ( i, Random ( 330, 400 ), Random ( 0, 480 ) )
+            speed [ i ] = Random ( 1, 30 ) / 10.0
+        endif
+    next i        
+<br>
+    sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="dim speed [ 1000 ] as float
+
+SetVirtualResolution ( 320, 480 )
+
+LoadImage ( 1, &quot;space.jpg&quot; )
+CreateSprite ( 1, 1 )
+
+LoadImage ( 2, &quot;star.png&quot; )
+
+for i = 2 to 1000
+    CreateSprite ( i, 2 )
+    SetSpritePosition ( i, Random ( 0, 320 ), Random ( 0, 480 ) )
+
+    size = Random ( 3, 10 ) / 10.0
+    SetSpriteScale ( i, size, size )
+
+    SetSpriteColor ( i, Random ( 100, 255 ), Random ( 100, 255 ), Random ( 100, 255 ), Random ( 100, 255 ) )
+
+    speed [ i ] = Random ( 1, 30 ) / 10.0
+next i
+
+do
+    for i = 2 to 1000
+        SetSpriteX ( i, GetSpriteX ( i ) - speed [ i ] )
+
+        if ( GetSpriteX ( i ) < -20 )
+            SetSpritePosition ( i, Random ( 330, 400 ), Random ( 0, 480 ) )
+            speed [ i ] = Random ( 1, 30 ) / 10.0
+        endif
+    next i        
+
+    sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::LoadImage ( 1, "space.jpg" );
+    agk::CreateSprite ( 1, 1 );
+<br>
+    agk::LoadImage ( 2, "star.png" );
+<br>
+    for ( int i = 2; i < 1000; i++
+    {
+        agk::CreateSprite ( i, 2 );
+        agk::SetspritePosition ( i, agk::Random ( 0, 320 ), agk::Random ( 0, 480 ) );
+<br>
+        size = agk::Random ( 3, 10 ) / 10.0f;
+        agk::SetSpriteScale ( i, size, size );
+<br>
+        agk::SetSpriteColor ( i, agk::Random ( 100, 255 ), agk::Random ( 100, 255 ), agk::Random ( 100, 255 ), agk::Random ( 100, 255 ) );
+<br>
+        speed [ i ] = agk::Random ( 1, 30 ) / 10.0f;
+    }
+}
+<br>
+void app::Loop ( void )
+{
+    for ( int i = 2; i < 1000; i++ )
+    {
+        agk::SetSpritePositionX ( i, agk::GetSpriteX ( i ) - speeds [ i ] );
+<br>
+        if ( agk::GetSpriteX ( i ) < -20 )
+	{
+	    agk::SetSpritePosition ( i, agk::Random ( 330, 400 ), agk::Random ( 0, 480 ) );
+	    speed [ i ] = agk::Random ( 1, 30 ) / 10.0f;
+	}
+    }
+<br>
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>This concludes the example for creating a simple star field effect using AppGameKit Studio.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

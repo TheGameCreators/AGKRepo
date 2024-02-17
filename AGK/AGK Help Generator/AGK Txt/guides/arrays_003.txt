@@ -1,0 +1,74 @@
+
+_header
+Size of an array
+
+_text
+When an array is declared a fixed value is usually defined, such as this line of code that declares an array named <i>speed</i>, giving it a size of 5.
+
+_tier1
+speed as integer [ 5 ]
+_tier1
+
+_text
+The <i>speed</i> array might contain data storing how fast 5 cars should be moving, each of which might be moving at a different rate. Later on in your game you might decide to have more or fewer cars in a particular level. You could just declare <i>speed</i> as having many elements e.g. 500 but this would be a waste of resources. Ideally you only want to have memory reserved for the actual data your program needs. If one level needs to store the speed for 5 cars then the array should have a size of 5. If the next level uses 10 cars then the array should have a size of 10. By working like this your program will be more efficient, as are you only using resources that your program requires.
+
+_text
+Controlling the size of an array is handled by using the keyword <i>length</i> as demonstrated in this program.
+
+_tier1
+speed as integer [ 5 ]
+<br>
+for i = 1 to 5
+	speed [ i ] = i
+next i
+<br>
+speed.length = 10
+<br>
+do
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+	<br>
+	sync ( )
+loop
+_tier1
+
+_text
+This program begins by having an array with 5 elements. The <i>for</i> loop gives each element a value from 1 to 5. The next line resizes the array.
+
+_tier1
+speed.length = 10
+_tier1
+
+_text
+After this line has been called our array will have a size of 10 instead of 5, although it will still retain the data that was previously set.
+
+_text
+The <i>for</i> loop within the program also makes use of the <i>length</i> keyword, allowing us to cycle through all elements of the array to print its contents. The first 5 parts of the array will show 1, 2, 3, 4 and 5, whilst the remainder will display 0 as no other value has been set for it.
+
+_text
+The next program shows how an array can be made smaller.
+
+_tier1
+speed as integer [ 10 ]
+<br>
+for i = 1 to 10
+	speed [ i ] = i
+next i
+<br>
+speed.length = 5
+<br>
+do
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+	<br>
+	sync ( )
+loop
+_tier1
+
+_text
+An array can be resized at any point within your program, giving you the flexibility to ensure only the data you need is used.
+
+_navigation
+arrays_002.htm arrays_004.htm

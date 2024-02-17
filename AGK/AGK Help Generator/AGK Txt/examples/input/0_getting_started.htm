@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Getting started - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Getting started</div><div class="page"><h1>Getting started</h1><p>Dependent on the platform, input could be provided by the keyboard, a mouse, touch events, an accelerometer, a joystick or a combination thereof. This example looks at the most basic input available and demonstrates how to respond to a simple touch / click event.</p><div align="center"><img src="0_basics.jpg"/></div><h2>Types of input</h2><p>The type of input available is dependent on the platform, for example, on Windows you can expect mouse and keyboard input and possibly a joystick, whereas on an iPhone we're limited to touch events and an accelerometer. </p><p>Input supported by AppGameKit Studio includes:</p><ul><li>keyboard</li><li>mouse</li><li>touch</li><li>accelerometer</li><li>joystick</li></ul><h2>Platform dependent input</h2><p>The choice when dealing with input is to decide whether your game is expected to work on mutiple platforms or if it's targeting a specific platform. For example, if your game is only targeting Windows then you could call commands such as <i>GetRawMouseX</i> and <i>GetRawMouseY</i> to retrieve information about the position of the mouse pointer. Commands such as these are platform dependent. Another example would be a game that is using the accelerometer. This game could call <i>GetAccelX</i> to obtain acceleration data on the X axis, and again this is platform dependent and is only currently supported on iOS and Bada - it would not return any values on Windows or Mac.</p><p>When using platform dependent input commands it's important to realise that this restricts the portability of your game. While it wouldn't necessarily stop your game from working, it would mean that you introduce code that only works on certain platforms, and this would result in needing to implement different input routines on each platform. In some cases this could be the desired result, as it may be that your game's input is tailored to each platform. The key point is to consider input early and make a choice as to whether your input will be platform dependent or platform agnostic.</p><h2>Platform agnostic input</h2><p>The platform agnostic commands will function on all platforms, for example, the command <i>GetPointerPressed</i> can be used to determine whether there has been a touch event on mobile devices, or if the mouse has been pressed on the likes of Windows and Mac. The objective behind these commands is to ensure that you can write your input routines once and have them behave the same on all platforms.</p><p>The usage of any platform agnostic commands may slightly limit the functionality of input handling, but brings the benefit of working on all platforms, thus ensuring your games will run on all platforms supported by AppGameKit Studio without needing to make any changes.</p><h2>Responding to input</h2><p>This example will focus on platform agnostic commands, in particular commands that allow us to check whether the user has touched or clicked on the screen. The example will perform the following actions:</p><ul><li>set a virtual resolution</li><li>create a sprite and place it on screen</li><li>whenever the user touches / clicks on the screen the sprite will move to that location</li></ul><h2>Setup</h2><p>A virtual resolution is set of 320 x 480, followed by a call to the command <i>CreateSprite</i> where an ID of 1 is specified for the first parameter, while the second parameter involves making a call to <i>LoadImage</i> to load the image "lime.png", which in turn returns an ID number for the image to the <i>CreateSprite</i> command. </p><p>The initial set up code is as follows:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( 1, LoadImage ( "lime.png" ) )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+CreateSprite ( 1, LoadImage ( &quot;lime.png&quot; ) )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( 1, agk::LoadImage ( "lime.png" ) );
+}
+</pre></div><h2>Checking for input</h2><p>The command <i>GetPointerPressed</i> can be used to determine whether the user has touched or clicked on the screen. It takes no parameters and returns a value of 1 when input has occurred. Once input has taken place other information is available such as the location of that input. This is accessible through the commands <i>GetPointerX</i> and <i>GetPointerY</i>. These commands take no parameters and return the location of input on the X and Y axis.</p><p>The code to deal with simple input is relatively straightforward, with a call to <i>GetPointerPressed</i> being made, and if it returns 1 then we have some input to deal with:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">if ( GetPointerPressed ( ) = 1 )
+<br>
+endif
+</pre></div><div align="right"><button class="btn" data-clipboard-text="if ( GetPointerPressed ( ) = 1 )
+
+endif
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">if ( agk::GetPointerPressed ( ) == 1 )
+{
+<br>
+}
+</pre></div><p>The next step is to call <i>GetPointerX</i> and <i>GetPointerY</i> within the if statement:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">if ( GetPointerPressed ( ) = 1 )
+    x# = GetPointerX ( )
+    y# = GetPointerY ( )
+endif
+</pre></div><div align="right"><button class="btn" data-clipboard-text="if ( GetPointerPressed ( ) = 1 )
+    x# = GetPointerX ( )
+    y# = GetPointerY ( )
+endif
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">if ( agk::GetPointerPressed ( ) == 1 )
+{
+    float x = agk::GetPointerX ( );
+    float y = agk::GetPointerY ( );
+}
+</pre></div><p>We now know that an input event has occurred and we also know the location. The remaining code simply positions our sprite at the location of the input event:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">if ( GetPointerPressed ( ) = 1 )
+    x# = GetPointerX ( )
+    y# = GetPointerY ( )
+<br>
+    SetSpritePosition ( 1, x#, y# )
+endif
+</pre></div><div align="right"><button class="btn" data-clipboard-text="if ( GetPointerPressed ( ) = 1 )
+    x# = GetPointerX ( )
+    y# = GetPointerY ( )
+
+    SetSpritePosition ( 1, x#, y# )
+endif
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">if ( agk::GetPointerPressed ( ) == 1 )
+{
+    float x = agk::GetPointerX ( );
+    float y = agk::GetPointerY ( );
+<br>
+    agk::SetSpritePosition ( 1, x, y );
+}
+</pre></div><h2>Full code listing</h2><p>The final code for our program includes the addition of a background sprite along with some instructions being printed out within the main loop:</p><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background5.jpg" ) )
+<br>
+CreateSprite ( 1, LoadImage ( "lime.png" ) )
+<br>
+do
+    Print ( "Touch or click the screen" )
+    Print ( "to move the sprite" )
+<br>
+    if ( GetPointerPressed ( ) = 1 )
+        x# = GetPointerX ( )
+        y# = GetPointerY ( )
+<br>
+        SetSpritePosition ( 1, x#, y# )
+    endif
+<br>
+    sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+CreateSprite ( LoadImage ( &quot;background5.jpg&quot; ) )
+
+CreateSprite ( 1, LoadImage ( &quot;lime.png&quot; ) )
+
+do
+    Print ( &quot;Touch or click the screen&quot; )
+    Print ( &quot;to move the sprite&quot; )
+
+    if ( GetPointerPressed ( ) = 1 )
+        x# = GetPointerX ( )
+        y# = GetPointerY ( )
+
+        SetSpritePosition ( 1, x#, y# )
+    endif
+
+    sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock10" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background5.jpg" ) );
+<Br>
+    agk::CreateSprite ( 1, agk::LoadImage ( "lime.png" ) );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Print ( "Touch or click the screen" );
+    agk::Print ( "to move the sprite" );
+<br>
+    if ( agk::GetPointerPressed ( ) == 1 )
+    {
+        float x = agk::GetPointerX ( );
+        float y = agk::GetPointerY ( );
+<br>
+        agk::SetSpritePosition ( 1, x, y );
+    }
+<br>
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>This document has explored some of the important concepts when dealing with input, it has also provided a brief example showing how to handle basic input that will function on all platforms.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Using the then keyword - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="http://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Using the then keyword</div><div class="page"><h1>Using the then keyword</h1><p>The examples so far have shown how to use the <i>if</i> keyword to test a condition and then execute code, followed by the <i>endif</i> keyword. This approach is necessary when you need to add multiple statements within an <i>if</i> statement. However, there will be occasions when only one statement is required for an <i>if</i> statement. When this is the case the <i>then</i> keyword can be used to follow the expression, allowing you to add a statement immediately after the <i>then</i> keyword, eliminating the need for the <i>endif</i> keyword, as shown in this example.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">score as integer = 100
+<br>
+do
+	if score = 100 then print ( "the score is 100" )
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="score as integer = 100
+
+do
+	if score = 100 then print ( &quot;the score is 100&quot; )
+
+	sync ( )
+loop
+">Copy Code</button></div><p>The above code is effectively the same as this.</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">score as integer = 100
+<br>
+do
+	if score = 100 
+		print ( "the score is 100" )
+	endif
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="score as integer = 100
+
+do
+	if score = 100 
+		print ( &quot;the score is 100&quot; )
+	endif
+
+	sync ( )
+loop
+">Copy Code</button></div><p>The key difference is that when using the first method the only code associated with the <i>if</i> statement is that which follows the <i>then</i> keyword and it must be on the same line. Whereas the second method lets you add multiple statements between it and the <i>endif</i> keyword.</p><p>Using the <i>then</i> keyword is a good option when you only require one statement to be executed if the condition for the <i>if</i> statement is true.</p><p>To demonstrate both approaches a simple example has been created.</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">score as integer = 0
+<br>
+do
+	if score >= 100 then print ( "the score is 100" )
+	<br>
+	if score < 100
+		score = score + 1
+		print ( "the score is less than 100" )
+	endif
+	<br>
+	print ( score )
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="score as integer = 0
+
+do
+	if score >= 100 then print ( &quot;the score is 100&quot; )
+
+	if score < 100
+		score = score + 1
+		print ( &quot;the score is less than 100&quot; )
+	endif
+
+	print ( score )
+
+	sync ( )
+loop
+">Copy Code</button></div><p>The first <i>if</i> statement checks if the <i>score</i> is greater than or equal to 100. If this is true then a call to <i>print</i> is made to display "the score is 100" on screen. As the <i>then</i> keyword has been used any statement after the expression and on the same line will be executed when the condition is true. When the program first runs the <i>score</i> is initially set to 0, so this condition will be false, at least to begin with.</p><p>The second <i>if</i> statement checks if the <i>score</i> is less than 100 and because we're not using the <i>then</i> keyword we can perform multiple actions on new lines beneath it, which in this case is to increment the <i>score</i> variable by 1 and then to call <i>print</i> in order to display "the score is less than 100" on screen. The final part is to add an <i>endif</i> to finish this block of code. Only the lines between the <i>if</i> and <i>endif</i> will be executed if the condition is true.</p><p>Finally a call is made to display the score on screen (<i>print</i>) along with another call to update the screen (<i>sync</i>).</p><p>Run the program and watch what happens as the <i>score</i> variable gets larger. Initially only the second <i>if</i> statement's condition is true, so the <i>score</i> gets 1 added to it each time, however, after a short period the <i>score</i> ends up being greater than or equal to 100, so the first <i>if</i> statement's condition becomes true, while the second <i>if</i> statement's condition becomes false.</p><div align="center"><a href="if_statements_003.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="if_statements_005.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="http://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

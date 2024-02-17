@@ -1,0 +1,142 @@
+_header
+Mathematical commands
+
+_sheader
+Description
+_text
+A series of commands that deal with mathematical related functionality is included within AppGameKit Studio. These commands handle operations such as obtaining random numbers, square root, sine, cosine, tangent, rounding values and more. In this example several such commands are demonstrated.
+
+_text
+In this example we'll check out commands to do the following:
+
+_listbegin
+get a random number
+round numbers
+get the square root of a number
+_listend
+
+_sheader
+Getting a random number
+_text
+There are three commands related to random numbers. These commands allow you to set a random seed (from which a random number is generated), obtain a random number and obtain a random number within a range. This example shows the process:
+
+_tier1
+SetRandomSeed ( 100 )
+a = Random ( )
+b = Random ( 1, 10 )
+_tier1
+
+_tier2
+agk::SetRandomSeed ( 100 );
+a = agk::Random ( );
+b = agk::Random ( 1, 10 );
+_tier2
+
+_text
+The first call to <i>SetRandomSeed</i> passes in the value <i>100</i>. This is a seed that controls how our random numbers are generated.
+
+_text
+The second call stores a random value within the variable <i>a</i>. If we continued to call the <i>Random</i> command and stored all the values we might get a sequence like this: 56, 98, 44, 43, 75, 2. If we repeated the process the sequence would be the same. The reason behind this is related to our random seed being 100. When the seed value does not change, the same sequence of random numbers will be generated each time. By default AppGameKit Studio will set this seed to the current time on startup, resulting in the generation of a different sequence of numbers each time the <i>Random</i> function is called. So unless you require the same sequence each time there is no need to call the command <i>SetRandomSeed</i>.
+
+_text
+The third call to the command <i>Random</i> passes in two variables. This allows us to inform the <i>Random</i> command that we require a number within a range. In our example the minimum value is 1 and the maximum value is 10. Calling this command numerous times might result in a sequence like this: 5, 2, 9, 1, 6, 3, 7.
+
+_sheader
+Round numbers
+
+_text
+Another useful feature is the ability to take a floating point number and round it to the nearest number. For example, if you had the value 1.8 and called the <i>Round</i> command a value of 2 would be returned e.g.
+
+_tier1
+value = Round ( 1.8 )
+_tier1
+
+_tier2
+value = agk::Round ( 1.8f );
+_tier2
+
+_text
+Other options include the ability to round a number down or up. This is handled with the commands <i>Floor</i> and <i>Ceil</i>:
+
+_tier1
+a = Floor ( 1.8 )
+b = Ceil ( 1.2 )
+_tier1
+
+_tier2
+a = agk::Floor ( 1.8f );
+b = agk::Ceil ( 1.2f );
+_tier2
+
+_text
+In this example the variable <i>a</i> gets set to 1 as we're using the <i>Floor</i> command to round down. The variable <i>b</i> gets set to 2 as we're using the <i>Ceil</i> command to round up.
+
+_sheader
+Square root
+_text
+AppGameKit Studio also includes a command to determine the square root of a number. The square root is a value multiplied by itself that equals the number. Here's an example:
+
+_tier1
+value = sqrt ( 25 )
+_tier1
+
+_tier2
+value = agk::Sqrt ( 25 );
+_tier2
+
+_text
+The variable <i>value</i> would be set to 5 as this is the square root of 25 because 5 x 5 = 25.
+
+_sheader
+Full code listing
+_text
+The final code listing for this example is:
+
+_tier1
+SetRandomSeed ( 100 )
+a = Random ( )
+b = Random ( 1, 10 )<br/>
+value = Round ( 1.8 )
+a1 = Floor ( 1.8 )
+b1 = Ceil ( 1.2 )
+value1 = sqrt ( 25 )<br/>
+do
+    Print ( a )
+    Print ( b )
+    Print ( value )
+    Print ( a1 )
+    Print ( b1 )
+    Print ( value1 )
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetRandomSeed ( 100 );
+    a = agk::Random ( );
+    b = agk::Random ( 1, 10 );
+    value = agk::Round ( 1.8f );<br/>
+    a1 = agk::Floor ( 1.8f );
+    b1 = agk::Ceil ( 1.2f );
+    value1 = agk::sqrt ( 25f );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Print ( a );
+    agk::Print ( b );
+    agk::Print ( value );
+    agk::Print ( a1 );
+    agk::Print ( b1 );
+    agk::Print ( value1 );
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+This example only demonstrates a small portion of the mathematical related commands. For more details please view the reference guide.
+

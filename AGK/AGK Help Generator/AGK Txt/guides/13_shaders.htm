@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Shaders in AppGameKit Studio - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Shaders in AppGameKit Studio</div><div class="page"><h1>Shaders in AppGameKit Studio</h1><p>AppGameKit Studio uses shaders written in the OpenGL 2.0 Shading Language (GLSL version 110) on desktop platforms, and OpenGL ES 2.0 shaders on mobile platforms. Any shaders that you write yourself must be compatible with both desktop and mobile versions, thankfully OpenGL 2.0 and OpenGL ES 2.0 are almost identical in this regard. However you cannot use the "#version" definition sometimes used on desktop platforms, or the "precision highp float" definition sometimes used on mobile platforms, these will be added automatically by AppGameKit Studio.</p><h2>Vulkan Shaders</h2><p>AppGameKit Studio automatically converts your GLSL shaders to SPIRV format. This means you only need to create one set of shaders for your app and it will work fine when rendering in either OpenGL and Vulkan.</p><h2>Types of Shader</h2><p>Everything in AppGameKit Studio requires a shader to appear on the screen, this includes sprites, text, and 3D objects. For 2D items it uses the same shader for everything to improve performance, but for 3D objects AppGameKit Studio will look at the object properties, such as the number of textures it uses, and create a shader for it. These are refered to as Default Shaders and are the most common way of displaying things in AppGameKit Studio, if you want to see the code that AppGameKit Studio created for an object you can use <i>GetObjectMeshVSSource</i> and <i>GetObjectMeshPSSource</i>, and use this as the basis for a Custom Shader.</p><p><b>Custom shaders</b> are shaders that you write yourself and load into AppGameKit Studio, this is to cover use cases that AppGameKit Studio can't handle with its Default Shaders. These are loaded with <i>LoadShader</i>. Note that AppGameKit Studio will not check the suitablility of the shader for the objects it is applied to, so if your shader uses 2 textures, but the object only has 1 texture, then AppGameKit Studio won't warn you and the object may not render correctly.</p><p><b>Sprite shaders</b> are loaded with <i>LoadSpriteShader</i>, which is a convenience function that loads a custom pixel shader but uses a standard vertex shader that is suitable for most sprites. If you wanted to modify the vertex shader you can use <i>LoadShader</i> and apply it to a sprite, but be aware that vertex shaders used for 3D objects will not work on sprites. The default sprite vertex shader looks like this</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">attribute highp vec4 position;
+attribute mediump vec4 color;
+attribute mediump vec2 uv;
+varying mediump vec2 uvVarying;
+varying mediump vec4 colorVarying;
+uniform highp mat4 agk_Ortho;
+ 
+void main() 
+{
+    gl_Position = agk_Ortho * position;
+    uvVarying = uv;
+    colorVarying = color;
+}
+</pre></div><div align="right"><button class="btn" data-clipboard-text="attribute highp vec4 position;
+attribute mediump vec4 color;
+attribute mediump vec2 uv;
+varying mediump vec2 uvVarying;
+varying mediump vec4 colorVarying;
+uniform highp mat4 agk_Ortho;
+ 
+void main() 
+{
+    gl_Position = agk_Ortho * position;
+    uvVarying = uv;
+    colorVarying = color;
+}
+">Copy Code</button></div><p>The default pixel shader for sprites is</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">uniform sampler2D texture0;
+varying mediump vec2 uvVarying;
+varying mediump vec4 colorVarying;
+ 
+void main()
+{
+    gl_FragColor = texture2D(texture0, uvVarying) * colorVarying;
+}
+</pre></div><div align="right"><button class="btn" data-clipboard-text="uniform sampler2D texture0;
+varying mediump vec2 uvVarying;
+varying mediump vec4 colorVarying;
+ 
+void main()
+{
+    gl_FragColor = texture2D(texture0, uvVarying) * colorVarying;
+}
+">Copy Code</button></div><p><b>Fullscreen shaders</b> are loaded with <i>LoadFullScreenShader</i>, which is another convenience function that loads a custom pixel shader but uses a standard vertex shader that is suitable for full screen quads. Again you could modify the vertex shader by using <i>LoadShader</i> and applying it to a quad. The default quad vertex shader looks like this</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">attribute highp vec3 position;
+varying mediump vec2 uvVarying;
+uniform mediump vec4 uvBounds0;
+uniform mediump float agk_invert; // used to correct for render images being inverted
+ 
+void main() 
+{
+    gl_Position = vec4(position.xy*vec2(1.0,agk_invert),0.5,1.0);
+    uvVarying = (position.xy*vec2(0.5,-0.5) + 0.5) * uvBounds0.xy + uvBounds0.zw;
+}
+</pre></div><div align="right"><button class="btn" data-clipboard-text="attribute highp vec3 position;
+varying mediump vec2 uvVarying;
+uniform mediump vec4 uvBounds0;
+uniform mediump float agk_invert; // used to correct for render images being inverted
+ 
+void main() 
+{
+    gl_Position = vec4(position.xy*vec2(1.0,agk_invert),0.5,1.0);
+    uvVarying = (position.xy*vec2(0.5,-0.5) + 0.5) * uvBounds0.xy + uvBounds0.zw;
+}
+">Copy Code</button></div><p>The default pixel shader for fullscreen quads does nothing to the image and looks like this </p><div id="basicCodeBlock4" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">uniform sampler2D texture0;
+varying mediump vec2 uvVarying;
+ 
+void main()
+{
+    gl_FragColor = texture2D(texture0, uvVarying);
+}
+</pre></div><div align="right"><button class="btn" data-clipboard-text="uniform sampler2D texture0;
+varying mediump vec2 uvVarying;
+ 
+void main()
+{
+    gl_FragColor = texture2D(texture0, uvVarying);
+}
+">Copy Code</button></div><p>All the shaders so far form what is called a <b>Base Shader</b>, telling AppGameKit Studio about the known attributes, such as number of textures. However there are unknown factors like the number of lights affecting the object that need to be in the shader, but which you don't always know in advance. As such AppGameKit Studio takes the given Base Shader and creates what we call a <b>Generated Shader</b>, which fills in any missing details before using it to draw. Typically this only applies to 3D objects which have a variable numbers of lights shining on them at any one time. Generated Shaders are temporary and may be thrown away if the scene changes, always using the given Base Shader to create a suitable Generated Shader for the current scene. This does mean that if the Base Shader is a Default Shader, then AppGameKit Studio is actually doing two rounds of shader creation, firstly to create the Default Shader and then using that as a base to create the Generated Shader. Using <i>GetObjectMeshVSSource</i> and <i>GetObjectMeshPSSource</i> will only ever return the Base Shader, never the Generated Shader, as these can change frequently and are scene dependent.</p><p>When writing a Custom Shader it is useful to know how the shader creation process works so you can tell AppGameKit Studio what you want, or don't want, to be in the final Generated Shader. You can also exclude everything, in which case AppGameKit Studio will recognise there is nothing to add and will use your Custom Shader directly to draw the object, skipping the whole Generated Shader path. This is done by using none of the functions from the next section.</p><h2>Generated Shaders</h2><p>There are currently three additional elements that AppGameKit Studio adds dynamically to shaders, these are Vertex Lighting, Pixel Lighting, and Fog. These are added if a particular function is declared in the shader, if the function is not declared then that element is not added. For example the function for vertex lighting is</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">mediump vec3 GetVSLighting( mediump vec3 normal, highp vec3 pos );
+</pre></div><div align="right"><button class="btn" data-clipboard-text="mediump vec3 GetVSLighting( mediump vec3 normal, highp vec3 pos );
+">Copy Code</button></div><p>If this function is declared anywhere in the vertex shader then AppGameKit Studio will add a definition for the function before using it to draw an object. Its contents will vary depending on how many vertex lights affect that object. The function declaration must appear exactly as above, with the same spacing and case, for it to be detected. A custom vertex shader that uses this function might look like this</p><div id="basicCodeBlock6" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">attribute highp vec3 position;
+attribute mediump vec3 normal;
+attribute mediump vec2 uv;
+ 
+varying highp vec3 posVarying;
+varying mediump vec3 normalVarying;
+varying mediump vec2 uvVarying;
+varying mediump vec3 lightVarying;
+ 
+uniform highp mat3 agk_WorldNormal;
+uniform highp mat4 agk_World;
+uniform highp mat4 agk_ViewProj;
+uniform mediump vec4 uvBounds0;
+ 
+mediump vec3 GetVSLighting( mediump vec3 normal, highp vec3 pos );
+ 
+void main()
+{ 
+    uvVarying = uv * uvBounds0.xy + uvBounds0.zw;
+    highp vec4 pos = agk_World * vec4(position,1.0);
+    gl_Position = agk_ViewProj * pos;
+    mediump vec3 norm = normalize(agk_WorldNormal * normal);
+    posVarying = pos.xyz;
+    normalVarying = norm;
+    lightVarying = GetVSLighting( norm, posVarying );
+}
+</pre></div><div align="right"><button class="btn" data-clipboard-text="attribute highp vec3 position;
+attribute mediump vec3 normal;
+attribute mediump vec2 uv;
+ 
+varying highp vec3 posVarying;
+varying mediump vec3 normalVarying;
+varying mediump vec2 uvVarying;
+varying mediump vec3 lightVarying;
+ 
+uniform highp mat3 agk_WorldNormal;
+uniform highp mat4 agk_World;
+uniform highp mat4 agk_ViewProj;
+uniform mediump vec4 uvBounds0;
+ 
+mediump vec3 GetVSLighting( mediump vec3 normal, highp vec3 pos );
+ 
+void main()
+{ 
+    uvVarying = uv * uvBounds0.xy + uvBounds0.zw;
+    highp vec4 pos = agk_World * vec4(position,1.0);
+    gl_Position = agk_ViewProj * pos;
+    mediump vec3 norm = normalize(agk_WorldNormal * normal);
+    posVarying = pos.xyz;
+    normalVarying = norm;
+    lightVarying = GetVSLighting( norm, posVarying );
+}
+">Copy Code</button></div><p>Note the GetVSLighting function is declared but not defined, AppGameKit Studio will define it at runtime. In this case the lighting information is passed directly to the pixel shader, but you can do anything you like to the value. The GetVSLighting function makes no changes to any global values, it only returns a value. Also note that <b>the call to GetVSLighting must occur after setting the gl_Position value</b>, the lighting function makes use of this value.</p><p>The function for pixel lighting looks like this</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">mediump vec3 GetPSLighting( mediump vec3 normal, highp vec3 pos );
+</pre></div><div align="right"><button class="btn" data-clipboard-text="mediump vec3 GetPSLighting( mediump vec3 normal, highp vec3 pos );
+">Copy Code</button></div><p>and the function for fog is</p><div id="basicCodeBlock8" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">mediump vec3 ApplyFog( mediump vec3 color, highp vec3 pointPos );
+</pre></div><div align="right"><button class="btn" data-clipboard-text="mediump vec3 ApplyFog( mediump vec3 color, highp vec3 pointPos );
+">Copy Code</button></div><p>Again they must appear exactly as above, with the same spacing and case. A pixel shader that uses both pixel lighting and fog might look like this</p><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">uniform sampler2D texture0;
+ 
+varying highp vec3 posVarying;
+varying mediump vec3 normalVarying;
+varying mediump vec2 uvVarying;
+varying mediump vec3 lightVarying;
+ 
+mediump vec3 GetPSLighting( mediump vec3 normal, highp vec3 pos );
+mediump vec3 ApplyFog( mediump vec3 color, highp vec3 pointPos );
+ 
+void main()
+{ 
+    mediump vec3 norm = normalize(normalVarying);
+    mediump vec3 light = lightVarying + GetPSLighting( norm, posVarying ); 
+    
+    mediump vec3 color = texture2D(texture0, uvVarying).rgb * light;
+    color = ApplyFog( color, posVarying );
+    
+    gl_FragColor = vec4(color,1.0);
+}
+</pre></div><div align="right"><button class="btn" data-clipboard-text="uniform sampler2D texture0;
+ 
+varying highp vec3 posVarying;
+varying mediump vec3 normalVarying;
+varying mediump vec2 uvVarying;
+varying mediump vec3 lightVarying;
+ 
+mediump vec3 GetPSLighting( mediump vec3 normal, highp vec3 pos );
+mediump vec3 ApplyFog( mediump vec3 color, highp vec3 pointPos );
+ 
+void main()
+{ 
+    mediump vec3 norm = normalize(normalVarying);
+    mediump vec3 light = lightVarying + GetPSLighting( norm, posVarying ); 
+    
+    mediump vec3 color = texture2D(texture0, uvVarying).rgb * light;
+    color = ApplyFog( color, posVarying );
+    
+    gl_FragColor = vec4(color,1.0);
+}
+">Copy Code</button></div><p>In this case we receive the lighting from the vertex shader in the lightVarying variable then add the pixel shader lighting to make up the final light value. You can use these values for any purpose, as mentioned earlier the lighting functions do not modify any global state, they only return a value. The same applies to fog.</p><p>If you wish your object to use lighting then it is recommended that you use both the vertex and pixel lighting functions unless you can be sure that all the lights will be of a particular type (vertex or pixel). Note that the global directional light (sun) is handled in the vertex shader function.</p><p>The fog function takes the desired pixel color and the pixel position in the world and returns a new color for this pixel based on the amount of fog it received. The fog function is only valid in the pixel shader, and will be ignored if placed in the vertex shader. If you turn off fog in AppGameKit Studio then the fog function will be removed from the shader to improve performance. It will be re-added if you turn fog back on.</p><h2>AppGameKit Studio Shader Variables</h2><p>AppGameKit Studio will recognise certain variable names in shaders and fill them with useful values that you can use in your shaders. Here is a list of the variables and a description of what they represent</p><ul><li><b>vec3 agk_CameraPos</b> = The world position of the current 3D camera</li><li><b>float agk_invert</b> = -1 if drawing to an image, 1 if drawing to the screen, only needed by quads</li><li><b>float agk_time</b> = The time in seconds, taken from the AppGameKit Studio Timer() command</li><li><b>float agk_sintime</b> = The sine of the time value, equivalent to Sin(Timer()) in AppGameKit Studio</li><li><b>vec2 agk_resolution</b> = The resolution of the current render target, image or window</li><li><b>vec2 agk_spritepos</b> = If the shader is being used to draw a sprite then this is its current position in world coordinates</li><li><b>vec2 agk_spritesize</b> = If the shader is being used to draw a sprite then this is its current size in world coordinates</li><li><b>mat4 agk_Ortho</b> = A matrix to transform sprites from 2D world space into window space </li><li><b>mat4 agk_World</b> = A matrix to transform 3D object verticies from object space to 3D world space</li><li><b>mat3 agk_WorldNormal</b> = A matrix to transform 3D object normals from object space to 3D world space</li><li><b>mat4 agk_View</b> = A matrix to transform from 3D world space to camera space</li><li><b>mat4 agk_Proj</b> = A matrix to transform from camera space to window space</li><li><b>mat4 agk_ViewProj</b> = A combination of the View and Proj matrices, transforms from 3D world space to window space</li><li><b>mat4 agk_WorldViewProj</b> = A combination of the World, View, and Proj matrices, transforms from object space to window space</li><li><b>vec4 agk_MeshDiffuse</b> = The color of the mesh being drawn, set with SetObjectColor</li><li><b>vec4 agk_MeshEmmisive</b> = The emissive color of the mesh being drawn, set with SetObjectColorEmissive</li></ul><p>Variables must be declared with the same case as shown above, and can be used in either the vertex or pixel shader, or both. They must be preceeded by the <b>uniform</b> keyword. These will be updated every time the shader is used to drawn an item.</p><h2>Shader Constants</h2><p>You can declare your own shader variables using the <b>uniform</b> keyword and set them using the AppGameKit Studio commands <i>SetShaderConstantByName</i> and <i>SetShaderConstantArrayByName</i>, see the documentation for these commands to see the parameters they use. Setting a shader value using these commands will change it permanently for all draw calls until you change it to something else. </p><p>You can also set a shader value on a per object basis by using <i>SetObjectShaderConstantByName</i> and <i>SetObjectShaderConstantArrayByName</i>. In which case the shader will use this value when drawing the specified object, but return to the default value when drawing other objects. To return an object to using the the default use <i>SetObjectShaderConstantDefault</i>.</p><h2>Shader Precision</h2><p>You can set the precision of each variable in a shader using the keywords <b>highp</b>, <b>mediump</b>, <b>lowp</b>, and it is recommended you use them to get the right trade off between performance and accuracy. In general position values should use highp, whilst normals and UVs (or anything that will always use small float values) should use mediump. Color values can use lowp if they will always be in the range 0 to 1, if there is a chance they will go beyond this range then they should use mediump. By default AppGameKit Studio sets all vertex shader values to use highp and all pixel shader values to use mediump.</p><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

@@ -1,0 +1,253 @@
+﻿_header
+Creating an explosion
+
+_sheader
+Description
+_text
+Creating explosions is a really simple process with the particle command set. In this example an explosion will be generated at a random location on screen, once it has finished and died off the process will be repeated.
+
+_image
+2_explosion.jpg
+
+_text
+<br>This example program relies on an external image named "shrapnel3.png":
+_image
+shrapnel3.png
+
+
+_sheader
+Set up
+_text
+Prior to entering the main loop a virtual resolution will be set, along with an image being loaded (that is later used for the particles) and a particle emitter created (that is positioned off screen initially). The reason for creating the particle emitter at this point is that it will be used on a continual basis. There are occasions when it's useful to do this as it may be more efficient to recycle one emitter. The alternative would be to create an emitter every time an explosion is required, but that has the possiblity of slowing the program down and using more resources.
+
+_text
+Here's the initial set up code:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+LoadImage ( 1, "shrapnel3.png" )
+CreateParticles ( 1, -100, -100 )
+_tier1
+
+_tier2
+agk::SetVirtualResolution ( 320, 480 );
+agk::LoadImage ( 1, "shrapnel3.png" );
+agk::CreateParticles ( 1, -100, -100 );
+_tier2
+
+_sheader
+The main loop
+_text
+Within the main loop a variable is checked to see whether it's possible to create the explosion, this value is true initially and is set to false once the explosion has been created, it only gets reset once the explosion has finished. This has the effect of allowing us to continually repeat the process of creating an explosion on screen.
+
+_text
+Once it's possible to create an explosion certain properties of the emitter are set such as the position, life span, color key frames and more.
+
+_text
+After the explosion has been created and displayed on screen a check is made to determine whether the particles have reached the end of their life, if this happens the emitter is reset and the variable to create explosions is set to true, thus allowing the next cycle of the main loop to create an explosion.
+
+_sheader
+Creating an explosion
+
+_text
+The code that creates this emitter is as follows:
+
+_tier1
+if ( fire = 1 )
+    SetParticlesPosition ( 1, Random ( 100, 200 ), Random ( 100, 300 ) )
+<br>
+    ResetParticleCount ( 1 )
+    SetParticlesFrequency ( 1, 250 )
+    SetParticlesLife ( 1, 3.0 )
+    SetParticlesSize ( 1, 64 )
+    SetParticlesStartZone ( 1, -10, 0, 10, 0 )
+    SetParticlesImage ( 1, 1 )
+    SetParticlesDirection ( 1, 10, 10 )
+    SetParticlesAngle ( 1, 360 )
+    SetParticlesVelocityRange ( 1, 0.8, 2.5 )
+    SetParticlesMax ( 1, 500 )
+<br>    
+    AddParticlesColorKeyFrame ( 1, 0.0, 0, 0, 0, 0 )
+    AddParticlesColorKeyFrame ( 1, 0.5, 255, 255, 0, 255 )
+    AddParticlesColorKeyFrame ( 1, 2.8, 255, 0, 0, 0 )
+<br>
+    AddParticlesForce ( 1, 2.0, 2.8, 25, -25 )
+<br>
+    fire = 0
+endif
+_tier1
+
+_tier2
+if ( fire == 1 )
+{
+    agk::SetParticlesPosition ( 1, agk::Random ( 100, 200 ), agk::Random ( 100, 300 ) );
+<br>
+    agk::ResetParticleCount ( 1 );
+    agk::SetParticlesFrequency ( 1, 250 );
+    agk::SetParticlesLife ( 1, 3.0 );
+    agk::SetParticlesSize ( 1, 64 );
+    agk::SetParticlesStartZone ( 1, -10, 0, 10, 0 );
+    agk::SetParticlesImage ( 1, 1 );
+    agk::SetParticlesDirection ( 1, 10, 10 );
+    agk::SetParticlesAngle ( 1, 360 );
+    agk::SetParticlesVelocityRange ( 1, 0.8, 2.5 );
+    agk::SetParticlesMax ( 1, 500 );
+<br>    
+    agk::AddParticlesColorKeyFrame ( 1, 0.0, 0, 0, 0, 0 );
+    agk::AddParticlesColorKeyFrame ( 1, 0.5, 255, 255, 0, 255 );
+    agk::AddParticlesColorKeyFrame ( 1, 2.8, 255, 0, 0, 0 );
+<br>
+    agk::AddParticlesForce ( 1, 2.0, 2.8, 25, -25 );
+<br>
+    fire = 0;
+}
+_tier2
+
+_text
+The code performs the following actions:
+
+_listbegin
+sets the position of the particle emitter to a random location on screen
+resets the particle count meaning all particles can be emitted
+sets the frequency to 250, resulting in a maximum of 250 particles being emitted per second
+the life span of particles is set to 3 seconds
+size of particles is set to 64
+a start zone is specified that allows for particles to be emitted within a range of -10 to 10 on the X axis
+the previously loaded image gets applied
+a direction is applied to the particles of 10, 10 meaning particles will shoot out fairly slowly, ramping these values up will increase the speed of particles
+the angle is set to 360 resulting in particles emitting in a complete circle
+a velocity range is set to 0.8, 2.5, this has the effect of allowing particles to be emitted within a range of velocity * 0.8 to velocity * 2.5
+the maximum amount of particles is configured to 500
+three color key frames are added with the color being black with no alpha at the beginning of a particles life span, yellow with full alpha shortly after emission and red with no alpha at the end of its life
+a force is applied to the particles as they reach 2 seconds of their lifespan and will continue until the end, this force will shift the particles to the right and up
+finally the fire value is set to 0 meaning no more explosions can take place
+_listend
+
+_sheader
+Resetting the explosion
+_text
+When the particle properties are set a call is made to the command <i>SetParticlesMax</i>. This command limits the maximum number of particles that can be emitted, in our case 500 particles. This command is necessary when you require particles to be emitted and then destroyed, such as in the case of an explosion. If this command was not called then particles would continually emit. We would get the same behaviour, with the difference being that the explosion would start, reach a certain point and then stay there - it would never disappear, this is why we need to set the maximum number of particles allowing our explosion to play through once and then vanish.
+
+_text
+To determine whether all emitted particles have reached the end of their life call the command <i>GetParticlesMaxReached</i> and pass in the ID number of the particles. This command returns a value of 1 when the condition is true.
+
+_text
+Our example will check when all emitted particles are dead and then reset the variable that controls whether an explosion can take place:
+
+_tier1
+if ( GetParticlesMaxReached ( 1 ) )
+    fire = 1
+endif
+_tier1
+
+_tier2
+if ( agk::GetParticlesMaxReached ( 1 ) )
+{
+    fire = 1;
+}
+_tier2
+
+_text
+The result is that as soon as an explosion has finished another one will be set up and emitted while using the same emitter.
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "alien_backdrop.jpg" ) )
+<br>
+LoadImage ( 1, "shrapnel3.png" )
+CreateParticles ( 1, -100, -100 )
+<br>
+fire = 1
+<br>
+do
+    if ( fire = 1 )
+        SetParticlesPosition ( 1, Random ( 100, 200 ), Random ( 100, 300 ) )
+<br>
+        ResetParticleCount ( 1 )
+        SetParticlesFrequency ( 1, 250 )
+        SetParticlesLife ( 1, 3.0 )
+        SetParticlesSize ( 1, 64 )
+        SetParticlesStartZone ( 1, -10, 0, 10, 0 )
+        SetParticlesImage ( 1, 1 )
+        SetParticlesDirection ( 1, 10, 10 )
+        SetParticlesAngle ( 1, 360 )
+        SetParticlesVelocityRange ( 1, 0.8, 2.5 )
+        SetParticlesMax ( 1, 500 )
+<br>    
+        AddParticlesColorKeyFrame ( 1, 0.0, 0, 0, 0, 0 )
+        AddParticlesColorKeyFrame ( 1, 0.5, 255, 255, 0, 255 )
+        AddParticlesColorKeyFrame ( 1, 2.8, 255, 0, 0, 0 )
+<br>
+        AddParticlesForce ( 1, 2.0, 2.8, 25, -25 )
+<br>
+        fire = 0
+    endif
+
+    if ( GetParticlesMaxReached ( 1 ) )
+        fire = 1
+    endif
+
+    sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "alien_backdrop.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "shrapnel3.png" );
+    agk::CreateParticles ( 1, -100, -100 );
+}
+<br>
+void app::Loop ( void )
+{
+    if ( fire == 1 )
+    {
+        agk::SetParticlesPosition ( 1, agk::Random ( 100, 200 ), agk::Random ( 100, 300 ) );
+<br>
+        agk::ResetParticleCount ( 1 );
+        agk::SetParticlesFrequency ( 1, 250 );
+        agk::SetParticlesLife ( 1, 3.0 );
+        agk::SetParticlesSize ( 1, 64 );
+        agk::SetParticlesStartZone ( 1, -10, 0, 10, 0 );
+        agk::SetParticlesImage ( 1, 1 );
+        agk::SetParticlesDirection ( 1, 10, 10 );
+        agk::SetParticlesAngle ( 1, 360 );
+        agk::SetParticlesVelocityRange ( 1, 0.8, 2.5 );
+        agk::SetParticlesMax ( 1, 500 );
+<br>    
+        agk::AddParticlesColorKeyFrame ( 1, 0.0, 0, 0, 0, 0 );
+        agk::AddParticlesColorKeyFrame ( 1, 0.5, 255, 255, 0, 255 );
+        agk::AddParticlesColorKeyFrame ( 1, 2.8, 255, 0, 0, 0 );
+<br>
+        agk::AddParticlesForce ( 1, 2.0, 2.8, 25, -25 );
+<br>
+        fire = 0;
+    }
+<br>
+    if ( agk::GetParticlesMaxReached ( 1 ) )
+    {
+        fire = 1;
+    }
+<br>
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+With a few simple lines of code it has been possible to create an explosion effect that could be used in a variety of scenarios for your games. Another interesting point of this example is the way in which the same emitter is continually used. Using emitters in this way is much more efficient over the approach of creating numerous emitters. It's something to consider when writing your own games.
+
+
+
+

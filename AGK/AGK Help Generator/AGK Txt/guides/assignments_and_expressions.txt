@@ -1,0 +1,26 @@
+
+_header
+Assignments and Expressions
+
+_sheader
+Beginner Level Tutorial
+
+_sheader
+What you will learn
+
+_text
+This guide explains about assigning data to variables and what kind of expressions can be used.
+
+_listbegin
+<a href="assignments_and_expressions_001.htm">Assigning default values to variables</a>
+<a href="assignments_and_expressions_002.htm">Assigning values to variables</a>
+<a href="assignments_and_expressions_003.htm">Expressions</a>
+<a href="assignments_and_expressions_004.htm">Expression order</a>
+<a href="assignments_and_expressions_005.htm">Expressions with commands</a>
+<a href="assignments_and_expressions_006.htm">Experimenting with expressions</a>
+<a href="assignments_and_expressions_007.htm">Conclusion</a>
+_listend
+
+_navigation
+assignments_and_expressions_001.htm
+

@@ -1,0 +1,214 @@
+_header
+Basic Networking with AppGameKit Studio by Kevin Summers
+
+_text
+Using a Top 10 High Score list as an example, this tutorial will attempt to demonstrate the following.
+
+_listbegin
+How to set up a server app to listen for network connections
+Use the first data item in a network packet to determine what action to take
+Assembling and sending a network packet to a specific client
+How to connect a client app to a server
+Use the first data item in a network packet to tell the server what you want
+Receive a network packet
+_listend
+
+_sheader
+The Server App
+
+_text
+To set up a server listening on a network requires only one command. This command sets up a network called myNetwork using the client name Server and listens for TCP connections on port 4100. For connections coming in to the server from the Internet, you will have to set up your router to forward that port to the machine running your server app.
+
+_tier1
+INetID = HostNetwork("myNetwork", "Server", 4100)
+_tier1
+
+_text
+Now that we are listening on the network, we need to add a little maintenance routine to clean up after clients that have disconnected. This routines checks to see if a client that was previously connected has disconnected, and it deletes the associated client ID making room for the next client connection.
+
+_tier1
+for x = 1 to 50
+    if x = 1
+        id = GetNetworkFirstClient(iNetID)
+    else
+        id = GetNetworkNextClient(iNetID)
+    endif
+    if id = 0 then exit
+    if GetNetworkClientDisconnected(iNetID, id) = 1
+        DeleteNetworkClient(iNetID, id)
+    endif
+next x
+_tier1
+
+_text
+Now we are ready to check for incoming messages. We'll ask the network if there are any in the queue and grab it if there are. Then check the client ID to make sure it's coming from a client and not the server. (the server uses client ID 1)
+
+_text
+When we have received a packet, we check the first data item, which in this case happens to be a float. We are using that float to determine what action to take. For this app, if the float equals 1.0, then we are sending the high score list to the client. If it equals 1.1, then the client has sent a high score to the server to be considered for placement in the top 10.
+
+_tier1
+msg = GetNetworkMessage(iNetID)
+if msg > 0
+    ClientID = GetNetworkMessageFromClient(msg)
+        if ClientID > 1
+            f# = GetNetworkMessageFloat(msg)
+            if f# = 1.0 // Send High Score List
+                newMsg = CreateNetworkMessage()
+                AddNetworkMessageFloat(newMsg, 1.0)
+                for x = 1 to 10
+                    AddNetworkMessageString(newMsg, HiScores[x].init$)
+                    AddNetworkMessageInteger(newMsg, HiScores[x].score)
+                next x
+                SendNetworkMessage(iNetID, ClientID, newMsg)
+                DeleteNetworkMessage(newMsg)
+            endif
+            if f# = 1.1
+                // Receive Score from Client
+                temp$ = GetNetworkMessageString(msg)
+                score = GetNetworkMessageInteger(msg)
+
+                // See if the submitted score is high enough for the top 10
+                // If it is, place it where it belongs and shuffle the rest
+                // of the scores down one position.
+                for x = 1 to 10
+                    if score > HiScores[x].score then exit
+                next x
+            if x < 11
+                for y = 10 to x+1 step -1
+                    HiScores[y].init$ = HiScores[y-1].init$
+                    HiScores[y].score = HiScores[y-1].score
+                next y
+                HiScores[x].init$ = init$
+                HiScores[x].score = score
+            endif
+        endif
+    endif
+    DeleteNetworkMessage(msg)
+endif
+_tier1
+
+_sheader
+The Client App
+
+_text
+For the sake of simplicity I'll only be showing the subroutines that handle network communications. It will be up to you to create the game that ultimately feeds this the player's initials and score.
+
+_sheader
+The SendHighScore subroutine.
+
+_text
+For the client to connect to the server requires just one command. It specifies the IP address of the server, the port, and a client name. The client name when connecting to a server must be different than any other client name currently connected to the server, so we're using a Random number to keep it unique.
+
+_tier1
+InetID = JoinNetwork("192.168.100.5", 4100, "Client"+str(Random()))
+_tier1
+
+_text
+Then we enter a loop that checks to see if we have connected, and times out in 4 seconds if we don't. Remember to give enough time for a connection to happen. On devices such as cell phones, congestion and poor signal, are very common and can produce long delays.
+
+_tier1
+// If we don't connect within 4 seconds, print an error and exit
+t# = timer()
+do
+    c = GetNetworkNumClients(iNetID)
+    if c > 1 then exit
+    if timer() - t# > 4.0
+        print("Server could not be reached.")
+        exit
+    endif
+    sync()
+loop
+_tier1
+
+_text
+Once the connection is established, we assemble the network packet, and send it off to the server.
+
+_tier1
+If c > 1
+    ServerID = GetNetworkServerID(iNetID)
+    newMsg = CreateNetworkMessage()
+    AddNetworkMessageFloat(newMsg, 1.1)
+    // Add the packet identifier
+    AddNetworkMessageString(newMsg, init$)
+    // Add the player's initials
+    AddNetworkMessageInteger(newMsg, score) // Add the player's score
+    SendNetworkMessage(iNetID, ServerID, newMsg)
+    // Send it to the server
+    DeleteNetworkMessage(newMsg)
+    CloseNetwork(iNetID)
+endif
+_tier1
+
+_sheader
+The GetHighScores subroutine
+
+_text
+The first part of this routine is identical to the SendHighScore subroutine.
+
+_tier1
+InetID = JoinNetwork("192.168.100.5", 4100, "Client"+str(Random()))
+// If we don't connect within 4 seconds, print an error and exit
+t# = timer()
+do
+    c = GetNetworkNumClients(iNetID)
+    if c > 1 then exit
+    if timer() - t# > 4.0
+        print("Server could not be reached.")
+        exit
+    endif
+    sync()
+loop
+_tier1
+
+_text
+Once the connection is established, we send off just the float in a packet by itself. This tells the server we want it to send the full high score list. Then we enter a loop waiting for the packet to arrive from the server.
+
+_tier1
+If c > 1
+    ServerID = GetNetworkServerID(iNetID) // get server's ID
+    newMsg = CreateNetworkMessage() // add the packet identifier
+    AddNetworkMessageFloat(newMsg, 1.0) // send it to the server
+    SendNetworkMessage(iNetID, ServerID, newMsg)
+    DeleteNetworkMessage(newMsg)
+
+    msg = 0
+    t# = timer()
+    while msg = 0
+        msg = GetNetworkMessage(iNetID)
+        if timer() - t# > 2.0 then exit
+        sync()
+    endwhile
+    if msg > 0
+        f# = GetNetworkMessageFloat(msg)
+        if f# = 1.0
+        for x = 1 to 10
+            HiScores[x].init$ = GetNetworkMessageString(msg)
+            HiScores[x].score = GetNetworkMessageInteger(msg)
+        next x
+    endif
+    endif
+    DeleteNetworkMessage(msg)
+    CloseNetwork(iNetID)
+endif
+_tier1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

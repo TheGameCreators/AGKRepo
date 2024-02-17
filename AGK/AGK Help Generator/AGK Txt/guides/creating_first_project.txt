@@ -1,0 +1,33 @@
+_header
+Creating your first project
+
+_sheader
+Beginner Level Tutorial
+
+_sheader
+What you will learn
+
+_text
+This guide will take you through the process of creating your first project within AppGameKit.
+
+_listbegin
+Creating a new AppGameKit project
+Using Instructions and Commands
+Displaying text on screen
+_listend
+
+_sheader
+Contents
+
+_listbegin
+<a href="creating_first_project_001.htm">Launching the IDE</a>
+<a href="creating_first_project_002.htm">Creating a project</a>
+<a href="creating_first_project_003.htm">Default code</a>
+<a href="creating_first_project_004.htm">Adding your own code</a>
+<a href="creating_first_project_005.htm">Formatting the code</a>
+<a href="creating_first_project_006.htm">Conclusion</a>
+_listend
+
+_navigation
+creating_first_project_001.htm
+

@@ -1,0 +1,34 @@
+
+_header
+Expressions with commands
+
+_text
+Expressions can also be used to construct parameters for commands, as shown in this example.
+
+_tier1
+valueA as integer = 0
+valueB as integer = 0
+<br>
+valueA = 2 * 20
+valueB = 3 + 5 * 8
+<br>
+do
+	print ( valueA )
+	print ( valueB )
+	print ( valueA + valueB )
+	<br>
+	sync ( )
+loop
+_tier1
+
+_text
+The variables <i>valueA</i> and <i>valueB</i> get declared and given initial values of 0. Following on from this <i>valueA</i> has been assigned the result of the expression 2 * 20, which is 40. The variable <i>valueB</i> is assigned the result of the expression 3 + 5 * 8. Remember that the operator order takes precedence here, with the multiplication operator taking higher precedence than the addition operator, therefore the multiplication part of the expression takes place first, leaving the expression 3 + 40, therefore the variable <i>valueB</i> gets assigned the value of 43.
+
+_imageclick
+expressions003.jpg
+
+_text
+The code within the <i>do</i> loop of the program makes three calls to the <i>print</i> command. The first call displays the contents of <i>valueA</i>. The second call shows the value of <i>valueB</i>. The third and final call to the <i>print</i> command demonstrates how you can use an expression to construct the parameter that this command requires. The expression adds the values of <i>valueA</i> and <i>valueB</i> together, which ends up being 83.
+
+_navigation
+assignments_and_expressions_004.htm assignments_and_expressions_006.htm 

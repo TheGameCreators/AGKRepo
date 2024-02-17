@@ -1,0 +1,145 @@
+_header
+Playing music
+
+_sheader
+Description
+_text
+In this example we're going to find out how to load and play a music file.
+
+_image
+1_music.jpg
+
+_text
+AppGameKit Studio supports the OGG format for music. This example will load and play a file named "music.ogg".
+
+_sheader
+Process
+_text
+The process involved is as follows:
+_listbegin
+load music
+play it
+_listend
+
+_sheader
+Loading music
+_text
+As with other resources music use ID numbers. These ID numbers are specifically for music files, so it's possible to have music loaded with an ID number of 1 and a sprite with an ID of 1. Just like with other resources it's possible to have an ID number assigned automatically or provide one yourself. Either approach works just as well.
+
+_text
+In order to load a music file we simply need to call the function LoadMusicOGG and pass in a string that refers to the OGG music file, and save the returned ID number:
+
+_tier1
+music = LoadMusicOGG ( "music.ogg" )
+_tier1
+
+_tier2
+music = agk::LoadMusicOGG ( "music.ogg" );
+_tier2
+
+_text
+After calling this our file "music.ogg" has been loaded into memory and is ready to be used. We can later refer to it through the ID number we have saved in the variable <i>music</i>.
+
+_text
+For the sake of comparison here's the alternative approach. In this example instead of being assigned an ID number we specify it with the first parameter:
+
+_tier1
+LoadMusicOGG ( 1, "music.ogg" )
+_tier1
+
+_tier2
+agk::LoadMusicOGG ( 1, "music.ogg" );
+_tier2
+
+_sheader
+Playing music
+_text
+Once music has been loaded it can be played with the <i>PlayMusic</i> command. Several variants of this command exist:
+
+_tier1
+PlayMusic ( id )
+playMusic ( id, loop )
+_tier1
+
+_tier2
+agk::PlayMusic ( UINT id, int loop = 1 );
+_tier2
+
+_text
+The parameters for this command are as follows:
+
+_listbegin
+ID
+loop
+
+_listend
+
+_text
+The ID number refers to the ID of the music you want to play. The loop parameter controls whether the music will be looped. When this value is set to 0 the music track will play through once and then stop. When this value is set to 1 the playback will continually loop.
+
+_text
+To play and loop our previously loaded music this line is called:
+
+_tier1
+PlayMusicOGG ( 1, 1 )
+_tier1
+
+_tier2
+agk::PlayMusicOGG ( 1, 1 );
+_tier2
+
+_sheader
+Main loop
+_text
+Our main loop doesn't need to take any action other than updating the screen with a call to <i>Sync</i>:
+
+_tier1
+do
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program:
+
+_tier1
+backdrop = CreateSprite ( LoadImage ( "background1b.jpg" ) )
+SetSpriteSize ( backdrop, 100, 100 )
+<br>
+LoadMusicOGG ( 1, "music.ogg" )
+PlayMusicOGG ( 1, 1 )
+<br>
+do
+    Sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    backdrop = agk::CreateSprite ( agk::LoadImage ( "background1b.jpg" ) );
+    agk::SetSpriteSize ( backdrop, 100, 100 );
+<br>
+    agk::LoadMusicOGG ( 1, "music.ogg" );
+    agk::PlayMusicOGG ( 1, 1 );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+Loading and playing music is a process that can be handled with a minimal amount of code. Other functionality includes the ability to pause, resume, stop and delete music. It's also possible to set the volume of music using the command <i>SetMusicSystemVolumeOGG</i>. For more details on these commands please view the reference guide.

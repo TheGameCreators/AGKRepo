@@ -1,0 +1,136 @@
+_header
+Sprites
+
+_sheader
+Overview
+_text
+This guide provides an overview of sprites and some of their associated commands.
+
+_sheader
+What is a sprite?
+_text
+Sprites sit at the core of AppGameKit Studio and are used as a way of representing images on screen.
+
+_sheader
+How do I create a sprite?
+_text
+A sprite can be created by calling the <i>CreateSprite</i> command:
+
+_tier1
+CreateSprite ( id, image )
+id = CreateSprite ( image )
+_tier1
+
+_tier2
+void CreateSprite ( UINT id, UINT image );
+UINT CreateSprite ( UINT image );
+_tier2
+
+_text
+A sprite can be created by either assigning an ID number manually or having it provided to you automatically. The next step is to provide an ID number of an image. The image gets attached to the sprite and will later be drawn on screen. Please note that ID numbers are unique for a command set. Therefore it's feasible to have a sprite ID of 1 along with an image ID of 1.
+
+_text
+Here's one approach to creating a sprite. This example loads an image into ID slot 1. This is followed by a call to <i>CreateSprite</i>, passing in an ID number of 1 for the sprite and also letting the command know that we'll be attaching image 1 to this sprite. 
+
+_tier1
+LoadImage ( 1, "myImage.png" )
+CreateSprite ( 1, 1 )
+_tier1
+
+_tier2
+agk::LoadImage ( 1, "myImage.png" );
+agk::CreateSprite ( 1, 1 );
+_tier2
+
+_text 
+This alternative method demonstrates how an image can be loaded and a sprite created with automatically assigned ID numbers:
+
+_tier1
+image = LoadImage ( "myImage.png" )
+sprite = CreateSprite ( image )
+_tier1
+
+_tier2
+image = agk::LoadImage ( "myImage.png" );
+sprite = agk::CreateSprite ( image );
+_tier2
+
+_sheader
+How can I position a sprite?
+_text
+The main command for setting a sprite's position is called <i>SetSpritePosition</i>. This command takes 3 parameters:
+
+_listbegin
+ID
+X position
+Y position
+_listend
+
+_text
+The ID number refers to the ID of the sprite you want to position, while the X and Y positions will refer to percentages or screen coordinates.
+
+_text
+When using the percentage based system, to position a sprite at 25% along the X axis and 75% along the Y axis:
+
+_tier1
+LoadImage ( 1, "myImage.png" )
+CreateSprite ( 1, 1 )
+
+SetSpritePosition ( 1, 25, 75 )
+_tier1
+
+_tier2
+agk::LoadImage ( 1, "myImage.png" );
+agk::CreateSprite ( 1, 1 );
+
+agk::SetSpritePosition ( 1, 25, 75 );
+_tier2
+
+_text
+If a virtual resolution was being used, the above code would be setting the sprites position to 25 pixels along the X axis and 75 pixels down the Y axis.
+
+_sheader
+How can I set the visibility of a sprite?
+_text
+A sprite will be visible as soon as it has been created. For times when you need to alter the visibility use the command <i>SetSpriteVisible</i>. This command takes 2 parameters:
+
+_listbegin
+ID
+visible state
+_listend
+
+_text
+The ID number refers to the ID of the sprite you want to alter, while a visible state of 0 will hide the sprite and a state of 1 will show it.
+
+_sheader
+How can I delete a sprite?
+_text
+Call the <i>DeleteSprite</i> command to remove a sprite:
+
+_tier1
+DeleteSprite ( id )
+_tier1
+
+_tier2
+void DeleteSprite ( UINT id );
+_tier2
+
+_text
+This command only requires the ID number of the sprite you want to delete. Here's an example of creating a sprite and deleting it:
+
+_tier1
+LoadImage ( 1, "myImage.png" )
+CreateSprite ( 1, 1 )
+DeleteSprite ( 1 )
+_tier1
+
+_tier2
+agk::LoadImage ( 1, "myImage.png" );
+agk::CreateSprite ( 1, 1 );
+agk::DeleteSprite ( 1 );
+_tier2
+
+
+
+
+

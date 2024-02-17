@@ -1,0 +1,88 @@
+
+_header
+Indexing and assignment
+
+_text
+An array declared with 5 elements will actually end up having 6 elements. The reason for this is that the language allows the starting point of the array to be 0, therefore this program is valid.
+
+_tier1
+speed as integer [ 5 ]
+<br>
+speed [ 0 ] = 1
+speed [ 1 ] = 2
+speed [ 2 ] = 3
+speed [ 3 ] = 4
+speed [ 4 ] = 5
+speed [ 5 ] = 6
+<br>
+do
+	print ( speed.length )
+	print ( "" )
+	<br>
+	for i = 0 to speed.length
+		print ( speed [ i ] )
+	next i
+	<br>
+	sync ( )
+loop
+_tier1
+
+_text
+<i>speed.length</i> will have a value of 5 and the numbers 1, 2, 3, 4, 5 and 6 will be displayed on screen.
+
+_text
+Whether you choose to start at index 0 or 1 is down to personal preference.
+
+_text
+When an array is declared it can be provided with default values as shown in this program.
+
+_tier1
+speed as integer [ 5 ] = [ 1, 2, 3, 4, 5 ]
+<br>
+do
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+	<br>
+	sync ( )
+loop
+_tier1
+
+_text
+After the declaration the equals sign is used along with an open bracket, followed by literal values and commas to separate each value, finally finished off with a closing bracket. This fills our array with the values 1, 2, 3, 4 and 5. Inside the <i>do</i> loop the contents of the array are displayed on screen with the <i>print</i> command.
+
+_text
+When you run the program the values 2, 3, 4, 5 and 0 get displayed on screen. This is because when assigning values to arrays in this manner AppGameKit Studio treats the start point as 0 and not 1. To get the correct values displayed the program would need to be altered so that the declaration of <i>speed</i> is changed to.
+
+_tier1
+speed as integer [ 5 ] = [ 0, 1, 2, 3, 4, 5 ]
+_tier1
+
+_text
+Only literal values are accepted when assigning arrays values. It is not possible to use expressions or variables.
+
+_text
+Arrays can be assigned values in the same manner after they have been declared.
+
+_tier1
+speed as integer [ 4 ] = [ 0, 1, 2, 3, 4 ]
+<br>
+speed = [ 0, 1, 2 ]
+<br>
+do
+	print ( speed.length )
+	print ( "" )
+	<br>
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+	<br>
+	sync ( )
+loop
+_tier1
+
+_text
+When using this approach if the number of elements being assigned is greater than the current array length then the array will be expanded to accommodate the new elements. If the number of elements is less than the current array length then the array length will remain the same and new elements will overwrite the beginning of the array, whilst the rest of the array remains unchanged. In this example the array goes from a size of 4 to 2.
+
+_navigation
+arrays_003.htm arrays_005.htm

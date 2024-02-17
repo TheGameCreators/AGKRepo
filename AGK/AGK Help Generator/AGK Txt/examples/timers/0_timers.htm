@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Using timers - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Using timers</div><div class="page"><h1>Using timers</h1><h2>Description</h2><p>Timers are likely to play a key part in your games, for example, triggering events, countdowns and much more. In this example a sprite has its colour changed after a certain amount of time has passed.</p><div align="center"><img src="0_timers.jpg"/></div><h2>Overview</h2><p>The process involved is as follows:</p><ul><li>set a virtual resolution</li><li>load an image and create a sprite</li><li>store the current time</li><li>within our main loop, once four seconds have passed, change the colour of our sprite</li></ul><h2>Store the current time</h2><p>AppGameKit Studio provides a function that tells you how many seconds have passed since the application was started. This command is called <i>GetSeconds</i> and it returns an integer. When more accuracy is required it's recommended to use the command <i>Timer ( )</i> that returns a floating point number. This number contains the seconds and fractions of a second that have passed since the application was started (accurate to milliseconds). For the purposes of our example we only require the number of seconds passed:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">initialTime = GetSeconds ( )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="initialTime = GetSeconds ( )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">initialTime = agk::GetSeconds ( );
+</pre></div><p>With the seconds stored within the variable <i>initialTime</i> we can proceed to the next step.</p><h2>Main loop</h2><p>Once four seconds have passed our intention is to change the colour of our previously created sprite. This is easily handled by calling <i>GetSeconds</i> again and comparing it to the "initialTime" variable that was stored at the beginning of the application. If <i>GetSeconds</i> is 4 seconds greater than <i>initialTime</i> we can proceed to change the colour of our sprite. Here's the code for dealing with this:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+    if ( GetSeconds ( ) > initialTime + 4 )
+        SetSpriteColor ( sprite, 0, 255, 0, 255 )
+    endif
+<br>
+    sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+    if ( GetSeconds ( ) > initialTime + 4 )
+        SetSpriteColor ( sprite, 0, 255, 0, 255 )
+    endif
+
+    sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Loop ( void )
+{
+    if ( agk::GetSeconds ( ) > initialTime + 4 )
+    {
+        agk::SetSpriteColor ( sprite, 0, 255, 0, 255 );
+    }
+}
+</pre></div><h2>Full code listing</h2><p>Everything is now in place. Here's the final code for our program:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background6.jpg" ) )
+<br>
+image = LoadImage ( "button.png" )
+sprite = CreateSprite ( image )
+SetSpritePosition ( sprite, 100, 170 )
+<br>
+initialTime = GetSeconds ( )
+<br>
+SetPrintColor ( 0, 255, 0 )
+<br>
+do
+    Print ( "After 4 seconds the button" )
+    Print ( "will turn green" )
+<br>
+    if ( GetSeconds ( ) > initialTime + 4 )
+        SetSpriteColor ( sprite, 0, 255, 0, 255 )
+    endif
+<br>
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+CreateSprite ( LoadImage ( &quot;background6.jpg&quot; ) )
+
+image = LoadImage ( &quot;button.png&quot; )
+sprite = CreateSprite ( image )
+SetSpritePosition ( sprite, 100, 170 )
+
+initialTime = GetSeconds ( )
+
+SetPrintColor ( 0, 255, 0 )
+
+do
+    Print ( &quot;After 4 seconds the button&quot; )
+    Print ( &quot;will turn green&quot; )
+
+    if ( GetSeconds ( ) > initialTime + 4 )
+        SetSpriteColor ( sprite, 0, 255, 0, 255 )
+    endif
+
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background6.jpg" ) );
+<br>
+    image = agk::LoadImage ( "button.png" );
+    sprite = agk::CreateSprite ( image );
+    agk::SetSpritePosition ( sprite, 100, 170 );
+<br>
+    initialTime = agk::GetSeconds ( );
+<br>
+    agk::SetPrintColor ( 0, 255, 0 );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Print ( "After 4 seconds the button" );
+    agk::Print ( "will turn green" );
+<br>
+    if ( agk::GetSeconds ( ) > initialTime + 4 )
+    {
+        agk::SetSpriteColor ( sprite, 0, 255, 0, 255 );
+    }
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>For more details on timers please view the Reference Guide.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

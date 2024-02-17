@@ -1,0 +1,26 @@
+_header
+else
+
+_sheader
+Syntax
+
+_tier1
+else
+_tier1
+
+_sheader
+Description
+
+_text
+This command will allow your program to perform two different sequences of commands based on the result of a condition. If the condition is true, the commands immediately following the <i>if</i> command are performed. If the condition is false, the commands immediately following the <i>else</i> command are performed. You must always use an <i>endif</i> to mark the end of the <else> command sequence. 
+
+_sheader
+Example
+
+_tier1
+if a = 0
+    print ( "a is 0" )
+else
+    print ( "a is not 0" )
+endif
+_tier1

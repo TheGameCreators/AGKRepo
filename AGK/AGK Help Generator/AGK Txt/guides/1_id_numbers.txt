@@ -1,0 +1,75 @@
+_header
+ID Numbers
+_text
+Resources in AppGameKit Studio are referred to using ID numbers. These ID numbers are provided as a convenient way of handling sprites, images, sound and other resources. As an example the ID number can be 1, 10, 100, 527 or 32,000,000 or any number in between. Unless otherwise stated the maximum supported ID is 2,147,483,647. There are two approaches to dealing with ID numbers and these can be used separately or mixed together. This ID number is used as a way of identifying your image and can either be assigned manually or automatically. Please note that ID numbers are unique for a command set. Therefore it's feasible to have a sprite ID of 1 along with an image ID of 1.
+
+_sheader
+Manual ID numbers
+_text
+The manual approach allows you to specify an ID number e.g. you may want to load an image into ID slot 1, therefore you can call the LoadImage function like this:
+
+_tier1
+LoadImage ( 1, "myImage.png" )
+_tier1
+
+_tier2
+agk::LoadImage ( 1, "myImage.png" );
+_tier2
+
+_text
+Later on, when dealing with this image you simply call a command that acts on it e.g. determining the width of an image and pass in the ID number 1 e.g.
+
+_tier1
+width = GetImageWidth ( 1 )
+_tier1
+
+_tier2
+int width = agk::GetImageWidth ( 1 );
+_tier2
+
+_text
+Alternatively you could deal with it like this:
+
+_tier1
+image = 1
+LoadImage ( image, "myImage.png" )
+width = GetImageWidth ( image )
+_tier1
+
+_tier2
+int image = 1;
+LoadImage ( image, "myImage.png" );
+int width = GetImageWidth ( image );
+_tier2
+
+_sheader
+Automatic ID numbers
+_text
+The alternative approach works by returning an ID number instead of you specifying one. The previous example could be reworked like this:
+
+_tier1
+image = LoadImage ( "myImage.png" )
+_tier1
+
+_tier2
+int image = agk::LoadImage ( "myImage.png" );
+_tier2
+
+_text
+Later on, when dealing with this image you pass in the ID number that has been stored in the variable image e.g.
+
+_tier1
+width = GetImageWidth ( image )
+_tier1
+
+_tier2
+int width = agk::GetImageWidth ( image );
+_tier2
+
+_text
+By taking this approach you don't need to keep track of ID numbers, and instead simply save an ID number that is assigned to you by the system. Automatically assigned IDs share the same space as manually assigned numbers so trying to create an ID manually that has already been assigned by an automated command will result in an error. To combat this, automatically assigned IDs always start at 100,001 and increase from there leaving the first 100,000 IDs for you to use manually without worrying if they have already been assigned.
+
+_sheader
+Which route should I take?
+_text
+Specifying ID numbers manually can be useful for small games, but perhaps having an ID number assigned is more suitable for larger games as it saves extra work in presetting ID numbers initially. This is all down to personal preference, but the option is there to allow you to work in whatever way you choose.

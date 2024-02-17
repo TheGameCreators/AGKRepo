@@ -1,0 +1,192 @@
+_header
+Responding to input
+
+_sheader
+Description
+_text
+In this example we're going to find out how to deal with input. There are numerous ways of handling input, for our example we will focus on the most basic aspect and deal with a simple touch or tap or click on the screen.
+
+_image
+0_basics.jpg
+
+_sheader
+External media
+_text
+This example program relies on an image named "chip5.png". Here's what it looks like:
+_image
+chip5.png
+
+_sheader
+Process
+_text
+The process involved is as follows:
+
+_listbegin
+load an image
+create a sprite
+main loop
+deal with input in the main loop
+_listend
+
+_sheader
+Load an image
+_text
+Before creating our sprite we will load in an image, that will later get attached to the sprite:
+
+_tier1
+image = LoadImage ( "chip5.png" )
+_tier1
+
+_tier2
+image = agk::LoadImage ( "chip5.png" );
+_tier2
+
+_text
+With our image loaded and its ID number stored in the variable image it's ready to be used.
+
+_sheader
+Creating a sprite
+_text
+Now that we have an image loaded into memory we're ready to create a sprite and attach this image to it.
+
+_tier1
+sprite = CreateSprite ( image )
+_tier1
+
+_tier2
+sprite = agk::CreateSprite ( image );
+_tier2
+
+_text
+CreateSprite gets called passed in the ID number of our previously loaded image, and returning an ID number that gets saved in the variable sprite.
+
+_sheader
+Main loop
+_text
+The basics of our main loop remain the same throughout all apps. We either create a simple loop in Tier 1 using, for example, a do loop or in Tier 2 we implement our code within the app::Loop function.
+
+_tier1
+do
+    sync ( )
+loop
+_tier1
+
+_tier2
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Dealing with input
+_text
+The objective of this example is to reposition our sprite whenever the users touches / taps / clicks the screen. To achieve this our code needs to do the following:
+
+_listbegin
+find out whether any touch events exist
+determine the location of any touch events
+loop round while more touch events are available
+_listend
+
+_text
+Our code begins with a call to the function GetFirstTouchEvent. This function returns a value and if this value is greater than 0 it means we have some kind of touch event that we need to deal with. A value of 1 / true is also passed into the function to signal that we intend to deal with all touch events:
+
+_tier1
+touchID = GetFirstTouchEvent ( 1 )
+_tier1
+
+_tier2
+touchID = agk::GetFirstTouchEvent ( 1 );
+_tier2
+
+_text
+The next step is to perform a simple loop and process any touch events. Within our loop we can extract information about the touch, set our sprites position based on this and then determine if there are any other touch events.
+
+_tier1
+repeat
+    x = GetTouchStartX ( touchID )
+    y = GetTouchStartY ( touchID )
+<br>
+    SetSpritePosition ( sprite, x, y )
+<br>
+    touchID = GetNextTouchEvent ( )
+until touchID <> 0
+_tier1
+
+_tier2
+while ( touchID > 0 )
+{
+    float x = agk::GetTouchStartX ( touchID );
+    float y = agk::GetTouchStartY ( touchID );
+<br>    
+    agk::SetSpritePosition ( sprite, x, y );
+<br>    
+    touchID = agk::GetNextTouchEvent ( );
+}
+_tier2
+
+_text
+After calling GetFirstTouchEvent, if there is any touch input available then the touch ID variable will be greater than 0, therefore when we enter the loop and call GetTouchStartX / Y and pass in our touch ID we're retrieving the X and Y coordinates for the very first touch event. This is followed by a call to SetSpritePosition that simply updates our previously created sprite's position to the location of the touch. The next step is to find out whether any more touch events exist with a call to GetNextTouchEvent. If more input events are available we continue looping round.
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+image = LoadImage ( "chip5.png" )
+sprite = CreateSprite ( image )
+<br>
+do
+    touchID = GetFirstTouchEvent ( 1 )
+<br>
+    repeat
+        x = GetTouchStartX ( touchID )
+        y = GetTouchStartY ( touchID )
+<br>
+        SetSpritePosition ( sprite, x, y )
+<br>
+        touchID = GetNextTouchEvent ( )
+    until touchID <> 0
+<br>
+  sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::image = LoadImage ( "chip5.png" );
+    agk::sprite = CreateSprite ( image );
+}
+<br>
+void app::Loop ( void )
+{
+    touchID = agk::GetFirstTouchEvent ( 1 );
+<br>
+    while ( touchID > 0 )
+    {
+        float x = agk::GetTouchStartX ( touchID );
+        float y = agk::GetTouchStartY ( touchID );
+<br>    
+        agk::SetSpritePosition ( sprite, x, y );
+<br>    
+        touchID = agk::GetNextTouchEvent ( );
+    }
+<br>
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+We're now all set to run our application and see the results on screen. Once the application has launched try touching the screen or clicking on it and see how the sprite moves to this location.
+
+_text
+All of these function calls to check for a simple touch / tap on the screen may seem convoluted, however, when you consider that using this approach it's possible to deal with advanced input such as swiping and dragging it makes sense, as everything can be dealt with in this loop format.

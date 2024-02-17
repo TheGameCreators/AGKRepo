@@ -1,0 +1,348 @@
+_header
+Data Types, Variables and Arrays
+
+_sheader
+Data Types
+
+_text
+We have established that statements are used to write a program. A statement can be broken up into a command and its data. The command is the operation, or task you wish to perform. The data is that which must be used by the command to complete the operation. The data is also referred to as the parameter(s).
+
+_text
+There are many types of data you can use, including integer numbers, real numbers and string. Each type of data holds a slightly different type of value.
+
+_sheader
+Integer Numbers
+
+_text
+An integer number can hold a whole number, but no fraction. For the value to be negative, you must place a hyphen symbol (-) before the value. You must not use commas as part of the number as this would generate a Syntax Error. Examples of integer numbers:
+
+_tier1
+42
+10000
+-233000
+-100
+_tier1
+
+_sheader
+Real Numbers
+
+_text
+A real number (also known as a float) can hold a whole number or a fractional number that uses a decimal point. For the value to be negative, you must place a hyphen symbol (-) before the value. Examples of real numbers:
+
+_tier1
+20.0005
+99.9
+-5000.12
+-9999.9991
+_tier1
+
+_sheader
+Strings
+
+_text
+String data is non-numerical, and is used to store characters and words. All strings consist of characters enclosed within double quotation marks. The string data can include numbers and other numerical symbols but will be treated as text. Examples of strings are:
+
+_tier1
+"A"
+"Hello World"
+"Telephone"
+"I am 99 years old"
+"1.2.3.4.5.6.7.8.9"
+_tier1
+
+_text
+Each string can consist of as many characters as the memory allows. You can also have a string with no data whatsoever, represented by an empty pair of double quotation marks.
+
+_sheader
+Data Type Ranges
+
+_text
+Each type of data has a maximum and minimum value known as the range. It is important to know these ranges, especially when dealing with smaller datatypes. Below is a list of datatypes and their ranges:
+
+_tier1
+INTEGER Range : -2,147,483,648 to 2,147,483,647
+REAL Range : 3.4E +/- 38 (7 significant figures)
+_tier1
+
+_text
+Note that whilst the range for Real numbers is very large its accuracy is limited to 7 significant figures. So you could represent 143670000.0 or 0.000053712, each has 5 significant figures, but not both in the same value 143670000.000053712 as the combined value has 18 significant figures. If you tried to store such a value it would be rounded to 143670000.0
+
+_sheader
+Variables
+
+_text
+The best way to demonstrate what a variable does is by way of an example. Take the calculation:
+
+_tier1
+A = 3 + 4
+_tier1
+
+_text
+A variable is used to store a value. It's that simple. You can have a variable that stores any type of data, and you can have as many as you want. The following program shows you how the contents of the variable can be output to the screen:
+
+_tier1
+A = 3 + 4
+PRINT ( A )
+_tier1
+
+_text
+Now take the next example to show you how variables can be used as freely as standard number types:
+
+_tier1
+A = 2
+B = 8
+C = A + B
+PRINT ( C )
+_tier1
+
+_text
+In the preceding example, 2 is stored in the A variable, 8 is stored in the B variable and C is given the result of the calculation between A and B. The calculation is based on the values stored within the variables and so the calculation is actually C = 2 + 8. The result, which in this case is 10, is stored as the new value of C and this is the value that eventually gets printed to the screen.
+
+_text
+So far, we have seen variables used to store and recall integer values. Variables can also store real numbers and strings. In order to allow a variable to store these other types of data, you must make sure the variable is recognized as a real or string variable. To name a real number variable, you must add a hash character (#) as the last character of the variable name. If you want your variable to store a string, you must add a dollar character ($) as the last character of the variable name. Let us see these new variables used to store and recall real values and strings:
+
+_tier1
+mydata#=42.5
+PRINT ( mydata# )
+_tier1
+
+_text
+By adding the (#) symbol, we are instructing the program to treat the variable as a real number variable. Exactly the same rule applies to a string variable:
+
+_tier1
+myname$="Lee"
+PRINT ( myname$ )
+_tier1
+
+_text
+All variable names can use either upper or lower case characters, which means a variable called NAME$ is the same variable as name$ or Name$. String variables even support the use of limited maths. The following example adds two strings together and the result is a concatenation of the two strings:
+
+_tier1
+a$="Hello"
+b$="World"
+c$=a$+b$
+PRINT ( c$ )
+_tier1
+
+_text
+To run this example, the text "HelloWorld" will be printed to the screen. Would you be able to alter this example to place a space between "Hello" and "World"?
+
+_text
+If you prefer not to use (#) and ($) symbols in your code, you can also declare your variables as your chosen data type using the AS statement. Here is an example of this:
+
+_tier1
+a as string
+b as float
+c as integer
+_tier1
+
+_sheader
+Arrays
+
+_text
+Arrays are going to be a very important part of your future programs. They allow you to store large amounts of data under a single name. You can then access the data by index rather than by name alone.
+
+_text
+If you had to write a program that stored each weeks lottery numbers, typing out 52 unique variable names is a lot of work, hard to maintain and quite unnecessary. Arrays allow you to create a special kind of variable that can store more than one item of data. You might start your program like this:
+
+_tier1
+lottery1$="43,76,12,34,12,11"
+lottery2$="76,12,34,12,11,44"
+lottery3$="12,34,12,02,05,07"
+etc..
+_tier1
+
+_text
+Two hours later, you realize you could have written it like this:
+
+_tier1
+DIM lottery$[52]
+lottery$[1]="43,76,12,34,12,11"
+lottery$[2]="76,12,34,12,11,44"
+lottery$[3]="12,34,12,02,05,07"
+etc..
+_tier1
+
+_text
+We declare a string array using the DIM command followed by a name for our array. Like variables, when we use a dollar symbol after the name we instruct the program to use the array to store only strings. We then enclose in square brackets how many items of data we wish the array to store. The array can be filled almost like a variable, but you must also provide the position within the array you wish to store your data.
+
+_text
+But you then ask yourself what benefits I would have gained using the second approach. If you were also required to print out all 52 lottery numbers to the screen with your first approach you would have to add another 52 statements that printed each variable:
+
+_tier1
+PRINT ( lottery1$ )
+PRINT ( lottery2$ )
+PRINT ( lottery3$ )
+etc..
+_tier1
+
+_text
+But if you had used an array, the same example would look like this:
+
+_tier1
+PRINT ( lottery$[1] )
+PRINT ( lottery$[2] )
+PRINT ( lottery$[3] )
+etc..
+_tier1
+
+_text
+You will have noticed that by using an array, you no longer have to refer to your data using a unique variable name. You can now point to the data you want using a position number. Accessing data this way has a thousand advantages over trying to access data by variable name alone, as you will discover. One example would be to improve the above like this:
+
+_tier1
+FOR T=1 TO 52
+PRINT ( lottery$[T] )
+NEXT T
+_tier1
+
+_text
+Incredibly the above code replaced 52 PRINT statements with just 3 statements. With the above example, T is incremented from 1 to 52 within a loop that prints out the contents of the array at that position.
+
+_text
+Arrays can also store multiple levels of data. At the moment our lottery entries are stored as strings and the numbers are hard to get at. Let us say we wanted to store all six numbers for every lottery week, we would create an array like this:
+
+_tier1
+DIM lottery[52,6]
+_tier1
+
+_text
+Without the dollar symbol($), we are declaring the array to store integer numbers instead of strings. You will also notice we have a second number separated by a comma. This means for every array position from 1 to 52, there is a sub-set numbered 1 to 6 in which multiple data can be stored. You can visualize this array as a filing cabinet with large draws numbered 1 to 52. Within each of the 52 draws is a tray with 6 boxes inside. You can store a value in each box. In all you can store 312 (52 x 6) values in this array. You can have up to five dimensions in your array, which means you can create an array as big as (1,2,3,4,5). Be careful when declaring dimensions, as large arrays consume large amounts of memory and may reduce overall performance and stability of your program.
+
+_text
+Entering data into our new array is elementary:
+
+_tier1
+lottery[1,1]=43
+lottery[1,2]=76
+lottery[1,3]=12
+lottery[1,4]=34
+lottery[1,5]=12
+lottery[1,6]=11
+lottery[2,1]=43
+lottery[2,2]=76
+lottery[2,3]=12
+lottery[2,4]=34
+lottery[2,5]=12
+lottery[2,6]=11
+_tier1
+
+_text
+You are now able to give your program access to much more useful data. Unlike the string approach, you could make your program count how many times a certain number has appeared.
+
+_text
+As you have determined, arrays need to be declared as a particular type. You can have an array of integer numbers, real numbers or strings. You cannot have multiple types in the same array, but you can declare new arrays dedicated to holding such data. See user defined types below.
+
+_text
+All arrays are created as global arrays, which means you can access their data from anywhere in your program. It is important to note that a global array must be declared at the top of the main source code of the program as arrays are dynamically created only when the DIM command is executed. Placing DIM commands at the top of included source code will not dynamically create the array unless it lies within a subroutine called from the main program. Essentially, your program has to DIM the array before it can access the array for reading and writing.
+
+_text
+An array can also be declared and initialised as follows:
+
+_tier1
+dim a [ 5 ] as integer = [ 10, 20, 30, 40, 50 ]
+dim b [ 3 ] as float = [ 1.2, 1.3, 1.4 ]
+_tier1
+
+_sheader
+User Defined Types
+
+_text
+If the current set of datatypes is inadequate for your needs, you can create your own data types using user-defined-type. User defined types are useful for storing data using logical fields rather than the unfriendly list of subscripts used by arrays.
+
+_text
+To create a user defined type, you must first declare it at the top of your program. To do so, you would give your type a name and a list of fields it contains:
+
+_tier1
+TYPE MyType
+ Fieldname1
+ Fieldname2
+ Fieldname3
+ENDTYPE
+_tier1
+
+_text
+The above code creates a type called MyType with three fields contained within it. As the fields have no declaration, they are assumed to be integers. The same code could also be truncated to a single line like so:
+
+_tier1
+TYPE MyType Fieldname1 Fieldname2 Fieldname3 ENDTYPE
+_tier1
+
+_text
+You can also declare different data types for each field, using either the type symbols or using the AS statement, like so:
+
+_tier1
+TYPE MyType
+ Fieldname1
+ Fieldname2
+ Fieldname3
+ Fieldname4 AS integer
+ Fieldname5 AS float
+ Fieldname6 AS string
+ENDTYPE
+_tier1
+
+_text
+To use your type, you simply create a variable and declare it with your new type. To declare a variable as a specific type, you would use the AS statement:
+
+_tier1
+MyVariable AS MyType
+_tier1
+
+_text
+You can then assign data to your variable as normal, with the added bonus of the fields you have given your variable like so:
+
+_tier1
+MyVariable.Fieldname1 = 41
+MyVariable.Fieldname2 = 42
+MyVariable.Fieldname3 = 43
+_tier1
+
+_text
+At the moment, the type is assuming our fields are integers. We may wish to declare our fields as a real number, string or other datatype. We can do so using the same AS statement within the type definition, so the following code makes more sense we shall give our type and fields sensible names:
+
+_tier1
+TYPE AccountEntryType
+ Number AS INTEGER
+ Name AS STRING
+ Amount AS FLOAT
+ENDTYPE
+_tier1
+
+_text
+You can use a type like any other, so creating and using an array of the above is simply a case of declaring the array with your new type:
+
+_tier1
+DIM Accounts[100] AS AccountEntryType
+Accounts[1].Number=12345
+Accounts[1].Name="Lee"
+Accounts[1].Amount=0.42
+_tier1
+
+_text
+As you will eventually discover you can have types within types for more complex data structures so we can imagine one of the fields contains more than one value. We would define two user defined types, and then use one of them in the declaration of one of the fields, as follows:
+
+_tier1
+TYPE AmountsType
+ CurrentBalance AS FLOAT
+ SavingsBalance AS FLOAT
+ CreditCardBalance AS FLOAT
+ENDTYPE
+
+TYPE AccountEntryType
+ Number AS INTEGER
+ Name AS STRING
+ Amount AS AmountsType
+ENDTYPE
+
+DIM Accounts[100] AS AccountEntryType
+Accounts[1].Number=12345
+Accounts[1].Name="Lee"
+Accounts[1].Amount.CurrentBalance=0.42
+Accounts[1].Amount.SavingsBalance=100.0
+Accounts[1].Amount.CreditCardBalance=-5000.0
+_tier1
+
+_text
+As you can see, user defined types are not only powerful, they make the readability of your programs far easier. Using named fields instead of a subscript value within an array, you can save yourself many hours all for the sake of an incorrect subscript value throwing out your program results.
+
+

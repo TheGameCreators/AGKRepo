@@ -289,8 +289,6 @@ int main( int argc, char* argv[] )
 	char szSharedFolder[1024]; sprintf(szSharedFolder, "%s\\AGK_Build\\Shared\\WindowsReceive", szRepoRoot);
 	char szKeyStore[1024]; sprintf(szKeyStore, "%s\\AGK_Build\\Signing\\keystore.keystore", szRepoRoot);
 	char szTemp[1024]; sprintf(szTemp, "%s\\AGK_Build\\Temp", szRepoRoot);
-	//const char* szGradleRes = "C:\\Users\\Mike\\.gradle";
-	char szGradleRes[1024]; sprintf(szGradleRes, "%s\\AGK_Build\\GradleRes\\.gradle", szRepoRoot);
 
 	// Installed tools
 	char szJarSigner[1024]; sprintf(szJarSigner, "C:\\Program Files\\Android\\Android Studio\\jre\\bin\\jarsigner.exe");
@@ -300,11 +298,13 @@ int main( int argc, char* argv[] )
 	// Android Studio files in AppData
 	char szAPKSigner[1024]; strcpy(szAPKSigner, "");
 	char szZipAlign[1024]; strcpy(szZipAlign, "");
+	char szGradleRes[1024];  strcpy(szGradleRes, "");
 	LPSTR pUserName = getenv("USERNAMEFORAGK");
 	if (pUserName)
 	{
-		sprintf(szAPKSigner, "C:\\Users\\%s\\AppData\\Local\\Android\\Sdk\\build-tools\\31.0.0\\lib\\apksigner.jar", pUserName);
-		sprintf(szZipAlign, "C:\\Users\\%s\\AppData\\Local\\Android\\Sdk\\build-tools\\31.0.0\\zipalign.exe", pUserName);
+		sprintf(szAPKSigner, "C:\\Users\\%s\\AppData\\Local\\Android\\Sdk\\build-tools\\33.0.3\\lib\\apksigner.jar", pUserName);
+		sprintf(szZipAlign, "C:\\Users\\%s\\AppData\\Local\\Android\\Sdk\\build-tools\\33.0.3\\zipalign.exe", pUserName);
+		sprintf(szGradleRes, "C:\\Users\\%s\\.gradle", pUserName);
 	}
 
 	/* old method using absolute paths per developer

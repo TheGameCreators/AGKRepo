@@ -1,0 +1,26 @@
+_header
+undim
+
+_sheader
+Syntax
+
+_tier1
+undim array [ ]
+_tier1
+
+_sheader
+Description
+
+_text
+This command will delete the specified array from memory. You must have previously created the array using the <i>dim</i> command in order for <i>undim</i> to succeed. Deleting unused arrays increases system performance. 
+
+_sheader
+Example
+
+_tier1
+dim myArray [ 10 ]
+
+myArray [ 5 ] = 123
+
+undim myArray [ ]
+_tier1

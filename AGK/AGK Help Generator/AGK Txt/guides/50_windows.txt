@@ -1,0 +1,11 @@
+_header
+Tier 1 (BASIC) Publishing for Windows
+
+_text
+You will find that when using the Windows AppGameKit Studio IDE, applications are automatically created in the project folder that holds the project files, so there is no need for a separate build process here. Simply zip or pack the media folder and EXE to easily transport your application. Make sure you don't include any .agc or .agk files unless you also want to distribute the source code.
+
+_sheader
+Requirements
+
+_text
+Users that run your app on Windows will need the <b>DirectX End-User Runtime</b> installed for your apps to work. This is frequently used by many DirectX 9 games so may already be widely installed, but if not it can be found <a href="http://www.microsoft.com/en-gb/download/details.aspx?id=35" target="_blank">here</a>

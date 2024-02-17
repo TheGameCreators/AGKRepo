@@ -1,0 +1,30 @@
+_header
+endif
+
+_sheader
+Syntax
+
+_tier1
+endif
+_tier1
+
+_sheader
+Description
+
+_text
+This command will allow your program to perform a sequences of commands based on the result of a condition. If the condition is true, the commands immediately following the <i>if</i> command are performed. If the condition is false, all commands before the <i>endif</i> command are skipped. 
+
+_sheader
+Example
+
+_tier1
+a = 1
+<br>
+if a = 0
+    print ( "a is 0" )
+endif
+<br>
+if a = 1
+    print ( "a is 1" )
+endif
+_tier1

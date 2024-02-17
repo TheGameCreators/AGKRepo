@@ -1,0 +1,133 @@
+
+_header
+Passing types to functions
+
+_text
+Types are just like any other variables in that they can be passed into functions as parameters. Here's a small example program that shows how it is done.
+
+_tier1
+type point
+	x as integer
+	y as integer
+endtype
+<br>
+p as point
+<br>
+UpdatePoint ( p )
+<br>
+do
+	print ( p.x )
+	print ( p.y )
+	<br>
+	sync ( )
+loop
+<br>
+function UpdatePoint ( a as point )
+    a.x = 5
+    a.y = 10
+endfunction 
+_tier1
+
+_text
+Here's how it works.
+
+_listbegin
+A type is declared with the name <i>point</i>. It contains two integer variables named <i>x</i> and <i>y</i>.
+A variable using the type <i>point</i> is declared and named <i>p</i>.
+A function named <i>UpdatePoint</i> is called passing in the variable <i>p</i>.
+The <i>do</i> loop prints out the contents of the variable <i>p</i>.
+The function <i>UpdatePoint</i> has declared the type of parameter as being <i>point</i>, so it expects this kind of data to be passed in.
+_listend
+
+_text
+If you run this program you will see 0 and 0 displayed on screen and not 5 and 10 as you might expect. The reason for this is that by default AppGameKit Studio takes parameters being passed into functions and copies their data, resulting in the parameter being a complete copy of the data passed in. The original data remains untouched by the function.
+
+_text
+If you want to modify the data being passed into the function then the parameter needs to be declared slightly differently - use the <i>ref</i> keyword after the name of the variable and before the <i>as</i> keyword. Here's the same program, but this time the type is passed in as reference, resulting in its data being modified directly by the function.
+
+_tier1
+type point
+	x as integer
+	y as integer
+endtype
+<br>
+p as point
+<br>
+UpdatePoint ( p )
+<br>
+do
+	print ( p.x )
+	print ( p.y )
+	<br>
+	sync ( )
+loop
+<br>
+function UpdatePoint ( a ref as point )
+    a.x = 5
+    a.y = 10
+endfunction 
+_tier1
+
+_text
+When you run this program the values 5 and 10 will be displayed on screen because the parameter has been declared using <i>ref</i>, therefore a copy is not made and the data being passed into the function will be directly modified by the function.
+
+_text
+To pass in an array of types to a function the parameter must have opening and closing brackets used after it, with no number specified inbetween. Here's a program that shows how it works.
+
+_tier1
+type point
+	x as integer
+	y as integer
+endtype
+<br>
+p as point [ 10 ]
+<br>
+UpdatePoint ( p )
+<br>
+do
+	sync ( )
+loop
+<br>
+function UpdatePoint ( a as point [ ] )
+    for i = 1 to a.length
+		a [ i ].x = 1
+		a [ i ].y = 2
+    next i
+endfunction 
+_tier1
+
+_text
+Remember that by default the parameter being passed in is a copy of the parameter's data, so modifying it within the function has no affect to the original data. If you want the function to be able to directly modify the data being passed in then the <i>ref</i> keyword must be used, as shown earlier. Here's the same program with some modifications to pass the array into the function using reference, therefore its data will be modified within the function.
+
+_tier1
+type point
+	x as integer
+	y as integer
+endtype
+<br>
+p as point [ 10 ]
+<br>
+UpdatePoint ( p )
+<br>
+do
+	for i = 1 to p.length
+		print ( p [ i ].x )
+		print ( p [ i ].y )
+	next i
+	<br>	
+	sync ( )
+loop
+<br>
+function UpdatePoint ( a ref as point [ ] )
+    for i = 1 to a.length
+		a [ i ].x = 1
+		a [ i ].y = 2
+    next i
+endfunction 
+_tier1
+
+_text
+When you run this program it will simply print out a bunch of 1s and 2s.
+
+_navigation
+types_003.htm types_005.htm

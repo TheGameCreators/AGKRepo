@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Convex shapes - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Convex shapes</div><div class="page"><h1>Convex shapes</h1><h2>Description</h2><p>When a convex shape is generated for a sprite, a maximum of 8 points will be used to construct the shape. A command named <i>SetPhysicsMaxPolygonPoints</i> can be used to reduce or increase this value, from a minimum of 2 to a maximum of 12 points, which can be used to ensure that a sprite is being represented by the most optimal convex shape. Using a lower value will result in better performance at the expense of accuracy, so it's a case of deciding whether certain sprites that require convex shapes can get away with lower points or if they require more. As is often the case, when writing games it tends to come down to a balancing act between a number of different factors.</p><p>This example will take a sprite that is ideally suited to using a convex shape for collision:</p><div align="center"><img src="penguin.png"/></div><p>Three sprites will be created in a line that all use a convex hull for their collision. The first sprite will be allowed a maximum of 5 points, the second sprite a maximum of 8 points and the final sprite will be given a maximum of 12 points.</p><div align="center"><img src="10_convex_shapes.jpg"/></div><h2>Creating the sprites</h2><p>A virtual resolution is set of 320 x 480, then the penguin image is loaded into ID slot 1:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+LoadImage ( 1, "penguin.png" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+LoadImage ( 1, &quot;penguin.png&quot; )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::SetVirtualResolution ( 320, 480 );
+<br>
+agk::LoadImage ( 1, "penguin.png" );
+</pre></div><p>The next block of code creates three sprites that sit alongside each other. When each sprite is created the maximum number of points is set, along with the position, turning the convex shape on, turning physics on, scaling the sprite down to 60% of its original size and then adding some restitution:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">x# = 0
+<br>
+for i = 1 to 3
+    if i = 1 then SetPhysicsMaxPolygonPoints ( 5 )
+    if i = 2 then SetPhysicsMaxPolygonPoints ( 8 )
+    if i = 3 then SetPhysicsMaxPolygonPoints ( 12 )
+<br>
+    sprite = CreateSprite ( 1 )
+<br>
+    SetSpritePosition           ( sprite, x#, 0 )
+    SetSpriteShape              ( sprite, 3 )
+    SetSpritePhysicsOn          ( sprite, 2 )
+<br>
+    SetSpriteScale              ( sprite, 0.6, 0.6 )
+    SetSpritePhysicsRestitution ( sprite, 0.5 )
+<br>
+    x# = x# + 100
+next i
+</pre></div><div align="right"><button class="btn" data-clipboard-text="x# = 0
+
+for i = 1 to 3
+    if i = 1 then SetPhysicsMaxPolygonPoints ( 5 )
+    if i = 2 then SetPhysicsMaxPolygonPoints ( 8 )
+    if i = 3 then SetPhysicsMaxPolygonPoints ( 12 )
+
+    sprite = CreateSprite ( 1 )
+
+    SetSpritePosition           ( sprite, x#, 0 )
+    SetSpriteShape              ( sprite, 3 )
+    SetSpritePhysicsOn          ( sprite, 2 )
+
+    SetSpriteScale              ( sprite, 0.6, 0.6 )
+    SetSpritePhysicsRestitution ( sprite, 0.5 )
+
+    x# = x# + 100
+next i
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">float x = 0.0f;
+<br>
+for ( int i = 0; i < 3; i++ )
+{
+    if ( i == 0 ) agk::SetPhysicsMaxPolygonPoints ( 5 );
+    if ( i == 1 ) agk::SetPhysicsMaxPolygonPoints ( 8 );
+    if ( i == 2 ) agk::SetPhysicsMaxPolygonPoints ( 12 );
+<br>
+    int sprite = agk::CreateSprite ( 1 );
+<br>
+    agk::SetSpritePosition           ( sprite, x, 0 );
+    agk::SetSpriteShape              ( sprite, 3 );
+    agk::SetSpritePhysicsOn          ( sprite, 2 );
+<br>
+    agk::SetSpriteScale              ( sprite, 0.6, 0.6 );
+    agk::SetSpritePhysicsRestitution ( sprite, 0.5f );
+<br>
+    x += 100;
+}
+</pre></div><h2>How the maximum number of points affects each sprite</h2><p>The first sprite is limited to a maxmimum of 5 points being used for its convex hull. When <i>SetPhysicsDebugOn</i> is called we can see how this affects the sprite:</p><div align="center"><img src="s1.jpg"/></div><p><br>The bottom of the sprite is generally well represented, however, notice the shape at the top cuts out portions of the head on the left and right. There's also a section of penguin's left arm not included in the physics shape. The conclusion for this is that 5 points is too low and not going to be acceptable for accurate collision.</p><p>The second sprite is limited to a maximum of 8 points being used for its convex hull:</p><div align="center"><img src="s2.jpg"/></div><p><br>The result is much better this time and generally provides a pretty tight fit around the sprite. While it's not perfect it would be much more acceptable than the result when using 5 points.</p><p><br>The third and final sprite has its maximum number of points set to 12 (which is the limit for AppGameKit Studio). This provides us with the most accurate result:</p><div align="center"><img src="s3.jpg"/></div><p><br>While using 12 points for sprite three undoubtedly gives the best result, one must consider whether it's actually worth it. Would a player notice the difference when collisions take place between sprite 2 and 3 in a fast paced game? It's unlikely, but of course it's all down to personal preference, but beware that using the maximum number of points for convex shapes may have a negative effect on performance. Where possible try and use a lower value or stick to the default 8 points for optimal performance.</p><h2>Full code listing</h2><p>This is the final listing for the example:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background6.jpg" ) )
+<br>
+LoadImage ( 1, "penguin.png" )
+<br>
+x# = 0
+<br>
+for i = 1 to 3
+    if i = 1 then SetPhysicsMaxPolygonPoints ( 5 )
+    if i = 2 then SetPhysicsMaxPolygonPoints ( 8 )
+    if i = 3 then SetPhysicsMaxPolygonPoints ( 12 )
+<br>
+    sprite = CreateSprite ( 1 )
+<br>
+    SetSpritePosition           ( sprite, x#, 0 )
+    SetSpriteShape              ( sprite, 3 )
+    SetSpritePhysicsOn          ( sprite, 2 )
+<br>
+    SetSpriteScale              ( sprite, 0.6, 0.6 )
+    SetSpritePhysicsRestitution ( sprite, 0.5 )
+<br>
+    x# = x# + 100
+next i
+<br>
+SetPhysicsDebugOn ( )
+<br>
+do
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+CreateSprite ( LoadImage ( &quot;background6.jpg&quot; ) )
+
+LoadImage ( 1, &quot;penguin.png&quot; )
+
+x# = 0
+
+for i = 1 to 3
+    if i = 1 then SetPhysicsMaxPolygonPoints ( 5 )
+    if i = 2 then SetPhysicsMaxPolygonPoints ( 8 )
+    if i = 3 then SetPhysicsMaxPolygonPoints ( 12 )
+
+    sprite = CreateSprite ( 1 )
+
+    SetSpritePosition           ( sprite, x#, 0 )
+    SetSpriteShape              ( sprite, 3 )
+    SetSpritePhysicsOn          ( sprite, 2 )
+
+    SetSpriteScale              ( sprite, 0.6, 0.6 )
+    SetSpritePhysicsRestitution ( sprite, 0.5 )
+
+    x# = x# + 100
+next i
+
+SetPhysicsDebugOn ( )
+
+do
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::CreateSprite ( agk::LoadImage ( "background6.jpg" ) );
+<br>
+    agk::LoadImage ( 1, "penguin.png" );
+<br>
+    float x = 0.0f;
+<br>
+    for ( int i = 0; i < 3; i++ )
+    {
+        if ( i == 0 ) agk::SetPhysicsMaxPolygonPoints ( 5 );
+        if ( i == 1 ) agk::SetPhysicsMaxPolygonPoints ( 8 );
+        if ( i == 2 ) agk::SetPhysicsMaxPolygonPoints ( 12 );
+<br>
+        int sprite = agk::CreateSprite ( 1 );
+<br>
+        agk::SetSpritePosition           ( sprite, x, 0 );
+        agk::SetSpriteShape              ( sprite, 3 );
+        agk::SetSpritePhysicsOn          ( sprite, 2 );
+<br>
+        agk::SetSpriteScale              ( sprite, 0.6, 0.6 );
+        agk::SetSpritePhysicsRestitution ( sprite, 0.5f );
+<br>
+        x += 100;
+    }
+<br>
+    agk::SetPhysicsDebugOn ( );
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>The main command covered in this example is likely to come into use for many games. It's important to understand how it works and the impact it has on sprites.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

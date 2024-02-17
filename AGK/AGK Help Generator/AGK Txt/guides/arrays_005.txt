@@ -1,0 +1,169 @@
+
+_header
+Inserting and removing items into an array
+
+_text
+Elements can be inserted and removed from arrays which will increase or decrease their size accordingly. Take a look at this example.
+
+_tier1
+speed as integer [ ]
+<br>
+speed.insert ( 0 )
+speed.insert ( 10 )
+speed.insert ( 20 )
+<br>
+do
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+	<br>
+	sync ( )
+loop
+_tier1
+
+_text
+When the <i>speed</i> array is declared no value has been provided, meaning this array has no size to begin with. It is considered to have 0 elements.
+
+_text
+The <i>insert</i> command is used to insert new values onto the end of the array. Therefore the next three lines add three elements 0, 10 and 20 to the array. This command uses 0 as the default index, so the first value we add into the array is at index 0, the second value is at index 1 and so on. Therefore when we come to the <i>for</i> loop that prints out the contents of the array we see the values 10 and 20 on screen. If the first insert passing in 0 was not used we would just see 20 displayed on screen.
+
+_text
+An alternative way of writing this program would be to treat index 0 as the beginning point in our <i>for</i> loop.
+
+_tier1
+speed as integer [ ]
+<br>
+speed.insert ( 10 )
+speed.insert ( 20 )
+<br>
+do
+	print ( speed.length )
+	<br>
+	for i = 0 to speed.length
+		print ( speed [ i ] )
+	next i
+	<br>
+	sync ( )
+loop
+_tier1
+
+_text
+Whether you consider 0 or 1 to be the start point doesn't really matter so much, although it's helpful for consistency if you choose one or the other.
+
+_text
+If the <i>insert</i> command was used on an array that already had data, then the data will be added onto the end of the array, as shown in this program.
+
+_tier1
+speed as integer [ 5 ]
+<br>
+speed [ 1 ] = 100
+speed [ 2 ] = 200
+speed [ 3 ] = 300
+speed [ 4 ] = 400
+speed [ 5 ] = 500
+<br>
+speed.insert ( 10 )
+speed.insert ( 20 )
+<br>
+do
+	print ( speed.length )
+	<br>
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+	<br>
+	sync ( )
+loop
+_tier1
+
+_text
+When you run this program a value of 7 would be displayed to represent the size of the array along with the values 100, 200, 300, 400, 500, 10 and 20.
+
+_text
+Given that it's possible to assign default values to arrays then the same program could be rewritten like this.
+
+_tier1
+speed as integer [ 5 ] = [ 0, 100, 200, 300, 400, 500 ]
+<br>
+speed.insert ( 10 )
+speed.insert ( 20 )
+<br>
+do
+	print ( speed.length )
+	<br>
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+	<br>
+	sync ( )
+loop
+_tier1
+
+_text
+An alternative method is to use the <i>insert</i> command and pass in two parameters, allowing you to insert a value at a specific index for an array.
+
+_tier1
+speed as integer [ 5 ] = [ 0, 100, 200, 300, 400, 500 ]
+<br>
+speed.insert ( 250, 3 )
+<br>
+do
+	print ( speed.length )
+	<br>
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+	<br>
+	sync ( )
+loop
+_tier1
+
+_text
+The <i>insert</i> command being used here will insert the value 250 at index 3. This has the effect of increasing the size of the array to 6. When the program runs the size of the array will be 6 and you will see the array contains 100, 200, 250, 300, 400 and 500.
+
+_text
+The <i>remove</i> command is used to take an element out of an array. Here's an example.
+
+_tier1
+speed as integer [ 5 ] = [ 0, 100, 200, 300, 400, 500 ]
+<br>
+speed.remove ( )
+<br>
+do
+	print ( speed.length )
+	<br>
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+	<br>
+	sync ( )
+loop
+_tier1
+
+_text
+When this program runs the final index is removed from <i>speed</i> changing its contents from 100, 200, 300, 400, 500 to 100, 200, 300 and 400. This also affects the size of the array taking it from 5 down to 4.
+
+_text
+The <i>remove</i> keyword also allows you to remove a specific index in the array. This program removes index 3 from the array.
+
+_tier1
+speed as integer [ 5 ] = [ 0, 100, 200, 300, 400, 500 ]
+<br>
+speed.remove ( 3 )
+<br>
+do
+	print ( speed.length )
+	<br>
+	for i = 1 to speed.length
+		print ( speed [ i ] )
+	next i
+	<br>
+	sync ( )
+loop
+_tier1
+
+_text
+Index 3 contains the value 300. When this is removed the array will change from a size of 5 to 4 and will contain the values 100, 200, 400 and 500.
+
+_navigation
+arrays_004.htm arrays_006.htm

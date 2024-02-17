@@ -1,0 +1,292 @@
+_header
+Ray casting
+
+_sheader
+Description
+
+_text
+The ray casting commands provided in AppGameKit Studio offer the ability to check whether a collision has occurred between two points. This can be useful for a wide variety of situations, such as testing whether a race car crosses a checkpoint, finding out how close a player is to an enemy and much more.
+
+_text
+This example places three sprites on screen with two of them being static and the remaining one moving up and down the screen. A ray cast is performed to check when the dynamic sprite moves between the static sprites. When this happens both static sprites have their color changed to red and when no collision occurs their color is reset.
+
+_image
+12_ray_casting.jpg
+
+_sheader
+Getting started
+
+_text
+As mentioned previously three sprites will be used in this example. The dynamic sprite will use an image named "gold.png", while the static sprites will use an image named "silver.png".
+
+_text
+<br>The set up code defines a virtual resolution of 320 x 480, loads the images gold.png and silver.png, followed by the creation of sprite 1 (our dynamic sprite) and sprites 2 and 3 that are the static sprites. Note that a call is made to the command <i>SetSpriteShape</i> for sprite 1, to ensure a circle is used for collision checks. This line plays an important part, as without it no collision checks can be performed.
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background7.jpg" ) )
+<br>
+LoadImage ( 1, "gold.png" )
+LoadImage ( 2, "silver.png" )
+<br>
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 150, 0 )
+SetSpriteShape ( 1, 1 )
+<br>
+CreateSprite ( 2, 2 )
+SetSpritePosition ( 2, 30, 200 )
+<br>
+CreateSprite ( 3, 2 )
+SetSpritePosition ( 3, 260, 200 )
+_tier1
+
+_tier2
+agk::SetVirtualResolution ( 320, 480 );
+<br>
+agk::CreateSprite ( agk::LoadImage ( "background7.jpg" ) );
+<br>
+agk::LoadImage ( 1, "gold.png" );
+agk::LoadImage ( 2, "silver.png" );
+<br>
+agk::CreateSprite ( 1, 1 );
+agk::SetSpritePosition ( 1, 150, 0 );
+agk::SetSpriteShape ( 1, 1 );
+<br>
+agk::CreateSprite ( 2, 2 );
+agk::SetSpritePosition ( 2, 30, 200 );
+<br>
+agk::CreateSprite ( 3, 2 );
+agk::SetSpritePosition ( 3, 260, 200 );
+_tier2
+
+_sheader
+Moving the dynamic sprite
+
+_text
+Sprite 1 will move up and down the screen continually. These lines of code deal with the movement and are to be used within the main loop:
+
+_tier1
+if ( direction = 0 )
+    SetSpriteY ( 1, GetSpriteY ( 1 ) + 1 )
+<br>
+    if ( GetSpriteY ( 1 ) > 400 )
+        direction = 1
+    endif
+endif
+<br>
+if ( direction = 1 )
+    SetSpriteY ( 1, GetSpriteY ( 1 ) - 1 )
+<br>
+    if ( GetSpriteY ( 1 ) < 30 )
+        direction = 0
+    endif
+endif
+_tier1
+
+_tier2
+if ( direction == 0 )
+{
+    agk::SetSpriteY ( 1, agk::GetSpriteY ( 1 ) + 1 );
+<br>
+    if ( agk::GetSpriteY ( 1 ) > 400 )
+        direction = 1;
+}
+<br>
+if ( direction == 1 )
+{
+    agk::SetSpriteY ( 1, agk::GetSpriteY ( 1 ) - 1 );
+<br>
+    if ( agk::GetSpriteY ( 1 ) < 30 )
+        direction = 0;
+}
+_tier2
+
+_text
+Initially the variable <i>direction</i> is set to 0. When <i>direction</i> is 0 the sprite is moved down the screen by adding 1 to its Y position, a check is then made to see if the sprites Y value is greater than 400 pixels and when this is true the <i>direction</i> variable gets set to 1. When <i>direction</i> is 1 the sprite is moved up the screen by deducting 1 from its Y position, a check is then made to see if the sprites Y value is less than 30 pixels and when this is true the <i>direction</i> variable gets set to 0 and in doing so kicking off the process of moving down. The end result is that this block of code will continually move sprite 1 up and down the screen.
+
+_sheader
+Performing a ray cast
+
+_text
+There are two stages to performing a ray cast, the first being the actual ray cast and the second retrieving information from any collisions. The first step is either carried out with the command <i>SpriteRayCast</i> or <i>PhysicsRayCast</i>. The first command is used for ray casting on non physics sprites, while the second command is used to deal with sprites that have physics enabled. Physics enabled sprites are not being used in this example therefore <i>SpriteRayCast</i> will be used. This command takes four parameters: x, y, x2, y2. The first two parameters control the starting location of the ray cast and the second two determine the end location. In this example a ray cast will be performed between the location of the first static sprite (ID 2) on the left and the location of the second static sprite (ID 3) on the right:
+
+_tier1
+if ( SpriteRayCast ( 30, 200, 260, 200 ) = 1 )
+<br>
+endif
+_tier1
+
+_tier2
+if ( agk::SpriteRayCast ( 30, 200, 260, 200 ) == 1 )
+{
+<br>
+}
+_tier2
+
+_text
+The positions for the start and end location of the ray cast are hard coded to match sprites 2 and 3. If this command returns a value of 1 then we know that a collision has occurred between these points and can then act on it. Please note that sprites 2 and 3 are only present to give a visual marker for the ray that is being cast, their presence on screen has no bearing on the collision tests.
+
+_text
+When a collision takes place sprites 2 and 3 will have their color set to red, and when there is no collision their colors will be set to white. The above code is amended to:
+
+_tier1
+if ( SpriteRayCast ( 30, 200, 260, 200 ) = 1 )
+    SetSpriteColor ( 2, 255, 0, 0, 255 )
+    SetSpriteColor ( 3, 255, 0, 0, 255 )
+else
+    SetSpriteColor ( 2, 255, 255, 255, 255 )
+    SetSpriteColor ( 3, 255, 255, 255, 255 )
+endif
+_tier1
+
+_tier2
+if ( agk::SpriteRayCast ( 30, 200, 260, 200 ) == 1 )
+{
+    agk::SetSpriteColor ( 2, 255, 0, 0, 255 );
+    agk::SetSpriteColor ( 3, 255, 0, 0, 255 );
+}
+else
+{
+    agk::SetSpriteColor ( 2, 255, 255, 255, 255 );
+    agk::SetSpriteColor ( 3, 255, 255, 255, 255 );
+}
+_tier2
+
+_text
+When the program runs and sprite 1 intersects this line sprites 2 and 3 will change color to red.
+
+_text
+More information is available to us after a ray cast has occurred, for example, it's possible to determine the ID of the sprite involved in the ray cast by calling <i>GetRayCastSpriteID</i> and you can find out the position of the collision by calling <i>GetRayCastX</i> and <i>GetRayCastY</i>. These commands only return valid information if <i>SpriteRayCast</i> or <i>PhysicsRayCast</i> return 1 indicating a collision took place.
+
+_sheader
+Full code listing
+_text
+Everything is now in place. Here's the final code for our program:
+
+_tier1
+SetVirtualResolution ( 320, 480 )
+<br>
+CreateSprite ( LoadImage ( "background7.jpg" ) )
+<br>
+LoadImage ( 1, "gold.png" )
+LoadImage ( 2, "silver.png" )
+<br>
+CreateSprite ( 1, 1 )
+SetSpritePosition ( 1, 150, 0 )
+SetSpriteShape ( 1, 1 )
+<br>
+CreateSprite ( 2, 2 )
+SetSpritePosition ( 2, 30, 200 )
+<br>
+CreateSprite ( 3, 2 )
+SetSpritePosition ( 3, 260, 200 )
+<br>
+direction = 0
+<br>
+do
+    if ( SpriteRayCast ( 30, 200, 260, 200 ) = 1 )
+        SetSpriteColor ( 2, 255, 0, 0, 255 )
+        SetSpriteColor ( 3, 255, 0, 0, 255 )
+    else
+        SetSpriteColor ( 2, 255, 255, 255, 255 )
+        SetSpriteColor ( 3, 255, 255, 255, 255 )
+    endif
+<br>
+    if ( direction = 0 )
+        SetSpriteY ( 1, GetSpriteY ( 1 ) + 1 )
+<br>
+        if ( GetSpriteY ( 1 ) > 400 )
+            direction = 1
+        endif
+    endif
+<br>
+    if ( direction = 1 )
+        SetSpriteY ( 1, GetSpriteY ( 1 ) - 1 )
+<br>
+        if ( GetSpriteY ( 1 ) < 30 )
+            direction = 0
+        endif
+    endif
+<br>
+    sync ( )
+loop
+_tier1
+
+_tier2
+void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::LoadImage ( 1, "gold.png" );
+    agk::LoadImage ( 2, "silver.png" );
+<br>
+    agk::CreateSprite ( 1, 1 );
+    agk::SetSpritePosition ( 1, 150, 0 );
+    agk::SetSpriteShape ( 1, 1 );
+<br>
+    agk::CreateSprite ( 2, 2 );
+    agk::SetSpritePosition ( 2, 30, 200 );
+<br>
+    agk::CreateSprite ( 3, 2 );
+    agk::SetSpritePosition ( 3, 260, 200 );
+}
+<br>
+void app::Loop ( void )
+{
+    if ( agk::SpriteRayCast ( 30, 200, 260, 200 ) == 1 )
+    {
+        agk::SetSpriteColor ( 2, 255, 0, 0, 255 );
+        agk::SetSpriteColor ( 3, 255, 0, 0, 255 );
+    }
+    else
+    {
+        agk::SetSpriteColor ( 2, 255, 255, 255, 255 );
+        agk::SetSpriteColor ( 3, 255, 255, 255, 255 );
+    }
+<br>
+    if ( direction == 0 )
+    {
+        agk::SetSpriteY ( 1, agk::GetSpriteY ( 1 ) + 1 );
+<br>
+        if ( agk::GetSpriteY ( 1 ) > 400 )
+            direction = 1;
+    }
+<br>
+    if ( direction == 1 )
+    {
+        agk::SetSpriteY ( 1, agk::GetSpriteY ( 1 ) - 1 );
+<br>
+        if ( agk::GetSpriteY ( 1 ) < 30 )
+            direction = 0;
+    }
+<br>
+    agk::Sync ( );
+}
+_tier2
+
+_sheader
+Conclusion
+_text
+There are a few key points to remember when needing to perform a ray cast in your games:
+
+_listbegin
+ensure your sprite has a shape by using <i>SetSpriteShape</i>
+use <i>SpriteRayCast</i> for sprites that do not use physics
+use <i>PhysicsRayCast</i> for sprites that do use physics
+_listend
+
+_text
+It's also worth noting that alternative commands are available for ray casting, such as the ability to perform a ray cast against a group of sprites. It is also possible to perform a ray cast on a single sprite. The commands to deal with this functionality are:
+
+_listbegin
+PhysicsRayCastGroup
+SpriteRayCastGroup
+SpriteRayCastSingle
+_listend
+
+_text
+The commands <i>PhysicsRayCastGroup</i> and <i>SpriteRayCastGroup</i> are used in conjunction with the <i>SetSpriteGroup</i> command. This is useful for a situation where you only want to perform collision checks against a certain set of sprites. 
+
+_text
+When you want to perform a ray cast with a specific sprite use the command <i>SpriteRayCastSingle</i>.

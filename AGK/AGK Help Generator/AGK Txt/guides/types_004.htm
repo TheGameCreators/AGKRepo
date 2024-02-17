@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Passing types to functions - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Passing types to functions</div><div class="page"><h1>Passing types to functions</h1><p>Types are just like any other variables in that they can be passed into functions as parameters. Here's a small example program that shows how it is done.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">type point
+	x as integer
+	y as integer
+endtype
+<br>
+p as point
+<br>
+UpdatePoint ( p )
+<br>
+do
+	print ( p.x )
+	print ( p.y )
+	<br>
+	sync ( )
+loop
+<br>
+function UpdatePoint ( a as point )
+    a.x = 5
+    a.y = 10
+endfunction 
+</pre></div><div align="right"><button class="btn" data-clipboard-text="type point
+	x as integer
+	y as integer
+endtype
+
+p as point
+
+UpdatePoint ( p )
+
+do
+	print ( p.x )
+	print ( p.y )
+
+	sync ( )
+loop
+
+function UpdatePoint ( a as point )
+    a.x = 5
+    a.y = 10
+endfunction 
+">Copy Code</button></div><p>Here's how it works.</p><ul><li>A type is declared with the name <i>point</i>. It contains two integer variables named <i>x</i> and <i>y</i>.</li><li>A variable using the type <i>point</i> is declared and named <i>p</i>.</li><li>A function named <i>UpdatePoint</i> is called passing in the variable <i>p</i>.</li><li>The <i>do</i> loop prints out the contents of the variable <i>p</i>.</li><li>The function <i>UpdatePoint</i> has declared the type of parameter as being <i>point</i>, so it expects this kind of data to be passed in.</li></ul><p>If you run this program you will see 0 and 0 displayed on screen and not 5 and 10 as you might expect. The reason for this is that by default AppGameKit Studio takes parameters being passed into functions and copies their data, resulting in the parameter being a complete copy of the data passed in. The original data remains untouched by the function.</p><p>If you want to modify the data being passed into the function then the parameter needs to be declared slightly differently - use the <i>ref</i> keyword after the name of the variable and before the <i>as</i> keyword. Here's the same program, but this time the type is passed in as reference, resulting in its data being modified directly by the function.</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">type point
+	x as integer
+	y as integer
+endtype
+<br>
+p as point
+<br>
+UpdatePoint ( p )
+<br>
+do
+	print ( p.x )
+	print ( p.y )
+	<br>
+	sync ( )
+loop
+<br>
+function UpdatePoint ( a ref as point )
+    a.x = 5
+    a.y = 10
+endfunction 
+</pre></div><div align="right"><button class="btn" data-clipboard-text="type point
+	x as integer
+	y as integer
+endtype
+
+p as point
+
+UpdatePoint ( p )
+
+do
+	print ( p.x )
+	print ( p.y )
+
+	sync ( )
+loop
+
+function UpdatePoint ( a ref as point )
+    a.x = 5
+    a.y = 10
+endfunction 
+">Copy Code</button></div><p>When you run this program the values 5 and 10 will be displayed on screen because the parameter has been declared using <i>ref</i>, therefore a copy is not made and the data being passed into the function will be directly modified by the function.</p><p>To pass in an array of types to a function the parameter must have opening and closing brackets used after it, with no number specified inbetween. Here's a program that shows how it works.</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">type point
+	x as integer
+	y as integer
+endtype
+<br>
+p as point [ 10 ]
+<br>
+UpdatePoint ( p )
+<br>
+do
+	sync ( )
+loop
+<br>
+function UpdatePoint ( a as point [ ] )
+    for i = 1 to a.length
+		a [ i ].x = 1
+		a [ i ].y = 2
+    next i
+endfunction 
+</pre></div><div align="right"><button class="btn" data-clipboard-text="type point
+	x as integer
+	y as integer
+endtype
+
+p as point [ 10 ]
+
+UpdatePoint ( p )
+
+do
+	sync ( )
+loop
+
+function UpdatePoint ( a as point [ ] )
+    for i = 1 to a.length
+		a [ i ].x = 1
+		a [ i ].y = 2
+    next i
+endfunction 
+">Copy Code</button></div><p>Remember that by default the parameter being passed in is a copy of the parameter's data, so modifying it within the function has no affect to the original data. If you want the function to be able to directly modify the data being passed in then the <i>ref</i> keyword must be used, as shown earlier. Here's the same program with some modifications to pass the array into the function using reference, therefore its data will be modified within the function.</p><div id="basicCodeBlock4" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">type point
+	x as integer
+	y as integer
+endtype
+<br>
+p as point [ 10 ]
+<br>
+UpdatePoint ( p )
+<br>
+do
+	for i = 1 to p.length
+		print ( p [ i ].x )
+		print ( p [ i ].y )
+	next i
+	<br>	
+	sync ( )
+loop
+<br>
+function UpdatePoint ( a ref as point [ ] )
+    for i = 1 to a.length
+		a [ i ].x = 1
+		a [ i ].y = 2
+    next i
+endfunction 
+</pre></div><div align="right"><button class="btn" data-clipboard-text="type point
+	x as integer
+	y as integer
+endtype
+
+p as point [ 10 ]
+
+UpdatePoint ( p )
+
+do
+	for i = 1 to p.length
+		print ( p [ i ].x )
+		print ( p [ i ].y )
+	next i
+
+	sync ( )
+loop
+
+function UpdatePoint ( a ref as point [ ] )
+    for i = 1 to a.length
+		a [ i ].x = 1
+		a [ i ].y = 2
+    next i
+endfunction 
+">Copy Code</button></div><p>When you run this program it will simply print out a bunch of 1s and 2s.</p><div align="center"><a href="types_003.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="types_005.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

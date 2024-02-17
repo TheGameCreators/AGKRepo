@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Music - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Music</div><div class="page"><h1>Music</h1><h2>Overview</h2><p>This guide provides an overview of loading and playing music in AppGameKit Studio.</p><h2>What formats are supported?</h2><p>AppGameKit Studio uses the OGG compressed music format as its main standard for loading and playing music files. The format is compressed, has a high quality and the decoding of the music is done on a separate thread to avoid any performance issues. It's easy to convert your music tracks to OGG format with the many different sound file converters.</p><h2>How do I load music?</h2><p>The command <i>LoadMusicOGG</i> allows you to load a music track. Here are the available options:</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadMusicOGG ( id, file )
+id = LoadMusicOGG ( file )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadMusicOGG ( id, file )
+id = LoadMusicOGG ( file )
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void LoadMusicOGG ( UINT id, uString file );
+UINT LoadMusicOGG ( uString file );
+</pre></div><p>A music file can be loaded by either assigning an ID number manually or having it provided to you automatically. The next step is to let AppGameKit Studio know which file you want to load e.g. "myMusic.ogg". Please note that ID numbers are unique for a command set. Therefore it's feasible to have a music track loaded with an ID number of 1 and a sprite with an ID of 1. Music resources are limited, so only ID numbers betwen 0 - 50 are valid.</p><p>Here's one approach to loading a music track. The command <i>LoadMusicOGG</i> is called, an ID number of 1 is specified and the file to load is "myMusic.ogg":</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadMusicOGG ( 1, "myMusic.ogg" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadMusicOGG ( 1, &quot;myMusic.ogg&quot; )
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::LoadMusicOGG ( 1, "myMusic.ogg" );
+</pre></div><p>This alternative method demonstrates how a music track can be loaded with an automatically assigned ID number:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">sound = LoadMusicOGG ( "myMusic.ogg" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="sound = LoadMusicOGG ( &quot;myMusic.ogg&quot; )
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">sound = agk::LoadMusicOGG ( "myMusic.ogg" );
+</pre></div><h2>How can I play music?</h2><p>Once music has been loaded it can be played with the <i>PlayMusic</i> command. Several variants of this command exist:</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">PlayMusicOGG ( id )
+PlayMusicOGG ( id, loop )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="PlayMusicOGG ( id )
+PlayMusicOGG ( id, loop )
+">Copy Code</button></div><div id="cppCodeBlock8" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::PlayMusicOGG ( UINT id, int loop = 1 );
+</pre></div><p>The parameters for this command are as follows:</p><ul><li>ID</li><li>loop</li></ul><p>The ID number refers to the ID of the music you want to play. The loop parameter controls whether the music will be looped. When this value is set to 0 the music track will play through once and then stop. When this value is set to 1 the playback will continually loop.</p><p>This example shows how to load and play music that will loop:</p><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadMusicOGG ( 1, "myMusic.ogg" )
+PlayMusicOGG ( 1, 1 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadMusicOGG ( 1, &quot;myMusic.ogg&quot; )
+PlayMusicOGG ( 1, 1 )
+">Copy Code</button></div><div id="cppCodeBlock10" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::LoadMusicOGG ( 1, "myMusic.ogg" );
+agk::PlayMusicOGG ( 1, 1 );
+</pre></div><h2>How do I stop music from playing?</h2><p>To stop all music from playing call the <i>StopMusic</i> command. This command has no parameters. The following code loads music into ID 1, plays it with looping turned on and then stops the playback:</p><div id="basicCodeBlock11" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadMusicOGG ( 1, "myMusic.ogg" )
+PlayMusicOGG ( 1, 1 )
+StopMusicOGG ( )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadMusicOGG ( 1, &quot;myMusic.ogg&quot; )
+PlayMusicOGG ( 1, 1 )
+StopMusicOGG ( )
+">Copy Code</button></div><div id="cppCodeBlock12" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::LoadMusicOGG ( 1, "myMusic.ogg" );
+agk::PlayMusicOGG ( 1, 1 );
+agk::StopMusicOGG ( );
+</pre></div><h2>How do I delete music?</h2><p>It may be necessary to delete previously loaded music and free up available memory. To delete music call the command <i>DeleteMusic</i>:</p><div id="basicCodeBlock13" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">DeleteMusicOGG ( id )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="DeleteMusicOGG ( id )
+">Copy Code</button></div><div id="cppCodeBlock14" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void DeleteMusicOGG ( UINT id );
+</pre></div><p>This command only requires the ID number of the music you want to delete.</p><p>Here's an example of loading music and then deleting it:</p><div id="basicCodeBlock15" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">LoadMusicOGG ( 1, "myMusic.ogg" )
+DeleteMusicOGG ( 1 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="LoadMusicOGG ( 1, &quot;myMusic.ogg&quot; )
+DeleteMusicOGG ( 1 )
+">Copy Code</button></div><div id="cppCodeBlock16" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">agk::LoadMusicOGG ( 1, "myMusic.ogg" );
+agk::DeleteMusicOGG ( 1 );
+</pre></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

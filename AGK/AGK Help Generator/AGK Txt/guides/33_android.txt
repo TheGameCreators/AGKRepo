@@ -1,0 +1,73 @@
+﻿_header
+Tier 1 (BASIC) Publishing for Android 2.3.3 or above
+
+_text
+Exporting an application that will run on Android devices and for publishing to the Google Play and Amazon stores requires you to have a computer running Windows, Mac or Linux.
+
+_text
+A Google Play developer account for a one-off fee of $25 is required for distribution on the Google Play Store. To enroll for a Google Play developer account, visit the Android Developer website - https://developer.android.com/distribute. Developers can register an Amazon account for free at this site https://developer.amazon.com/ 
+
+_sheader
+Local distribution
+_text
+This method of distribution allows you to deploy apps yourself either through a website or email, without needing any signing certificates. This is a convenient option for testing your app, however, anyone wanting to install your app will need to go to their device security settings and select the option that allows apps from unknown or untrusted sources to be installed. To export an app using local distribution go directly to the section on exporting an app below.
+
+_sheader
+Store distribution
+_text
+Apps that you want to distribute on stores such as Google Play and Amazon will require your exported app to be signed with a security certificate, that can be generated directly from within AppGameKit Studio.
+
+_text
+To generate this certificate open AppGameKit Studio, go to the Tools menu and select the option to Generate Keystore File. You will be presented with a dialog containing an explanation of the keystore file and several fields, (some of which are optional) that need to be filled in. Only the password and output file location fields are mandatory.
+_text
+An app listing will need to be generated prior to uploading any files.
+
+_listbegin
+Full Name - your name
+Company Name - your company name (if you have one)
+City - city where you are based
+Two Letter Country Code - country code e.g. UK
+Create a Password - enter a password
+Re-enter Password - confirm your password
+Output file location - the output location for the keystore file
+_listend
+
+_text
+When the form has been filled in select the Generate option to create your keystore file. The recommended approach is to create one keystore file that is used to sign all of your exported apps. Bear in mind this keystore is an essential part of the export process and any apps submitted with this keystore can only receive updates when signed with the same file.
+
+_sheader
+Exporting an app
+
+_text
+The executable file type for Android is called an APK (Android PacKage). When it’s time for you to export a projects to this format you will need to fill out a number of fields. If you plan to publish your app to the Google or Amazon app stores then you need to register with those stores first (see above). 
+
+_sheader
+Installing an app manually without signing
+
+_text
+As mentioned earlier if your app is not signed anyone wanting to install it must alter the security settings on their device to allow unsigned or unknown apps to be installed. Once this is done your app can be installed through a variety of methods:
+_text
+An app listing will need to be generated prior to uploading any files.
+
+_listbegin
+Connect the test device to your computer using a USB cable and copy the exported APK across to it. From the device use a file explorer (either built in or one from the stores), navigate to the location of the APK, select and install it.
+Upload the APK from your computer to Google Drive and either share a link or access it directly from Google Drive on your device and install.
+_listend
+
+_sheader
+Installing an app with signing
+
+_text
+Prior to installing a signed app a store listing will need to be generated on the Google Play Store (https://play.google.com/apps/publish) or the Amazon App Store (https://developer.amazon.com/).</a>
+
+_text
+For Google click on the create application button and follow the instructions. At least for the testing phase it’s not necessary to fill in every single detail. You can just deal with the basic information along with pricing & distribution and the content rating.
+
+_text
+With the basic information filled out you can now proceed to uploading your APK. To do this go to Release management and then App releases, where you will be presented with a screen offering you options for production track, beta, alpha and internal test track. For testing purposes it’s a good option to select the internal test track, click on manage then select create release. From here you are asked to select your APK to be uploaded. You can also create a testing list of up to 100 testers who can install your app using the provided link. When your app is ready for release you can return to this section and select the release to alpha option and promote it to the next stage of release, from there you can switch it to the production track and make it live on the store.
+
+_text
+For Amazon once signed in go to the developer console, click on Apps & Services, select My Apps and then the Add New App button, then follow the prompts to fill in the required information.
+
+_text
+With the basic information filled out you can now proceed to uploading your APK. To do this select your app listing and then click on Live App Testing. Click on the New Test option and follow the prompts. Once your app has completed the processing stage it will be available to any testers you list in the Live App Testing section via email invite. When your testing has completed you can promote the Live App Testing version to upcoming and at this point can submit to Amazon to be deployed onto the app store.

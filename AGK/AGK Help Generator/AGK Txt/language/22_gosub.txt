@@ -1,0 +1,29 @@
+_header
+gosub
+
+_sheader
+Syntax
+
+_tier1
+gosub subroutineLabel
+_tier1
+
+_sheader
+Description
+
+_text
+This command will jump to the specified label in the program. Unlike the <i>goto</i> command, you can use the <i>return</i> command to return to the program location of the last jump performed. In order to use the <i>gosub</i> command you must create a subroutine in your program that terminates with the <i>return</i> command. To create a subroutine you must write a label in your program followed by a sequence of commands. The label can be made up from any combination of alphabetic characters, but you must end the declaration of the label using a colon(:). You only need to use a colon when you are declaring the label, and should not be used when calling the label from a <i>gosub</i> command. 
+
+_sheader
+Example
+
+_tier1
+print ( "start" )
+gosub _subroutine
+print ( "end" )
+end
+<br>
+_subroutine:
+print ( "inside subroutine" )
+return
+_tier1

@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>iOS Push Notifications - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; iOS Push Notifications</div><div class="page"><h1>iOS Push Notifications</h1><p>Push Notifications on iOS are handled by the Apple Push Notification Service (APNS), a comprehensive set of instructions can be found here <a href="http://www.raywenderlich.com/32960/apple-push-notification-services-in-ios-6-tutorial-part-1">http://www.raywenderlich.com/32960/apple-push-notification-services-in-ios-6-tutorial-part-1</a> but we will summarise them here.</p><h2>Before you begin</h2><p>You will need a server capable of running PHP scripts for this example to work</p><p>You will need an iOS device, the simulator won't work, and an Apple developer membership.</p><p>You must know how to create a certificate signing request to request a certificate from Apple, this is the same process used to generate Distribution and Development certificates.</p><p>To simplify the process we will only cover Distribution (including AdHoc) builds, not Development builds.</p><h2>Server Setup</h2><p>Apple push notifications involve an SSL certificate that is used to sign all notifications, this certificate is part of the App ID setup and must be generated per app. When generating the App ID the "Push Notification" tick box must be ticked, you can also edit an existing App ID to turn it on. </p><p>Once enabled select the App ID and choose Edit (if you are not already there) and scroll down to the push notification section. Click Create Certificate in the Production SSL Certificate box and generate a certificate for it. Download the certificate and place it in a folder that is easy to access via the command line (there is no need to add the certificate to your keychain). In your keychain find the private key that was generated for this certificate, export it, and place it in the same folder.</p><p>For the purposes of this example we will convert the certificate and private key into a PEM file so that our server running PHP can use it to sign notifications. These steps may vary if you are using another language.</p><p>Open a terminal window and browse to the folder containing the certificate and private key. Run the following command to convert the certificate into a PEM file.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">openssl x509 -in downloaded_certificate.cer -inform der -out PushCert.pem
+</pre></div><div align="right"><button class="btn" data-clipboard-text="openssl x509 -in downloaded_certificate.cer -inform der -out PushCert.pem
+">Copy Code</button></div><p>Now run the following command to convert the private key to PEM. Note that if you type your p12 password incorrectly OpenSSL may still generate a PEM file but it will not contain the private key.</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">openssl pkcs12 -nocerts -out PushKey.pem -in exported_private_key.p12
+</pre></div><div align="right"><button class="btn" data-clipboard-text="openssl pkcs12 -nocerts -out PushKey.pem -in exported_private_key.p12
+">Copy Code</button></div><p>It will ask you to generate a password for this PEM, you will need to use this in the server code later. Now to combine the two into a single PEM file</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">cat PushCert.pem PushKey.pem > ck.pem
+</pre></div><div align="right"><button class="btn" data-clipboard-text="cat PushCert.pem PushKey.pem > ck.pem
+">Copy Code</button></div><p>You will need to upload this ck.pem file to your server, for this example we will store it in a folder anemd "certs" next to the PHP script. You can use the following PHP code on the server to send requests</p><div id="basicCodeBlock4" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">function SendPushNotificationiOS( $deviceToken, $message, $badgecount )
+{
+    $cert = "certs/ck.pem";
+    
+    $ctx = stream_context_create();
+    stream_context_set_option($ctx, 'ssl', 'local_cert', $cert);
+    stream_context_set_option($ctx, 'ssl', 'passphrase', 'myPEMpassword');
+ 
+    // Open a connection to the APNS server
+    $fp = stream_socket_client( 'ssl://gateway.push.apple.com:2195', $err, $errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
+    if (!$fp) 
+    {
+        echo "Failed to connect: $err $errstr";
+        return;
+    }
+ 
+    // Create the payload body, you can add a path to a custom sound in the app media folder, or remove the sound line completely, the badgecount is the number that will appear on the app icon
+    $body['aps'] = array(
+         'alert' => $message,
+         'sound' => 'media/sfx/YouveWon.wav',
+         'badge' => $badgecount
+         );
+ 
+    // Encode the payload as JSON
+    $payload = json_encode($body);
+ 
+    // Build the binary notification
+    $msg = chr(0) . pack('n', 32) . pack('H*', $deviceToken) . pack('n', strlen($payload)) . $payload;
+ 
+    // Send it to the server
+    $result = fwrite($fp, $msg, strlen($msg));
+    fclose($fp);
+}
+</pre></div><div align="right"><button class="btn" data-clipboard-text="function SendPushNotificationiOS( $deviceToken, $message, $badgecount )
+{
+    $cert = &quot;certs/ck.pem&quot;;
+    
+    $ctx = stream_context_create();
+    stream_context_set_option($ctx, 'ssl', 'local_cert', $cert);
+    stream_context_set_option($ctx, 'ssl', 'passphrase', 'myPEMpassword');
+ 
+    // Open a connection to the APNS server
+    $fp = stream_socket_client( 'ssl://gateway.push.apple.com:2195', $err, $errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
+    if (!$fp) 
+    {
+        echo &quot;Failed to connect: $err $errstr&quot;;
+        return;
+    }
+ 
+    // Create the payload body, you can add a path to a custom sound in the app media folder, or remove the sound line completely, the badgecount is the number that will appear on the app icon
+    $body['aps'] = array(
+         'alert' => $message,
+         'sound' => 'media/sfx/YouveWon.wav',
+         'badge' => $badgecount
+         );
+ 
+    // Encode the payload as JSON
+    $payload = json_encode($body);
+ 
+    // Build the binary notification
+    $msg = chr(0) . pack('n', 32) . pack('H*', $deviceToken) . pack('n', strlen($payload)) . $payload;
+ 
+    // Send it to the server
+    $result = fwrite($fp, $msg, strlen($msg));
+    fclose($fp);
+}
+">Copy Code</button></div><h2>Tier 1 Setup</h2><p>On iOS there is no need to call SetPushNotificationKeys, start by calling PushNotificationSetup(). If this returns 0 then this platform does not support push notifications. Otherwise wait for GetPushNotificationToken() to return something other than an empty string, if it returns "Error" then something went wrong. Once you have the token you need to send it to your server, you might also want to send some identifying information like a userID so you know who this token belongs to. The code we use looks something like this</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">g_Net_UserID = 01234 // some user ID that your server can use to recognise whos key this is
+result = PushNotificationSetup()
+if ( result = 1 )
+    token = GetPushNotificationToken()
+    while ( token = "" )
+        token = GetPushNotificationToken()
+    endwhile
+ 
+    params$ = "token="+token+"&platform="+getdevicebasename() + "&id=" + str(g_Net_UserID)
+    SendHTTPRequestASync( conn, "sendToken.php", params$ ) // we do not need the server to return anything so we can ignore getting the response
+endif
+</pre></div><div align="right"><button class="btn" data-clipboard-text="g_Net_UserID = 01234 // some user ID that your server can use to recognise whos key this is
+result = PushNotificationSetup()
+if ( result = 1 )
+    token = GetPushNotificationToken()
+    while ( token = &quot;&quot; )
+        token = GetPushNotificationToken()
+    endwhile
+ 
+    params$ = &quot;token=&quot;+token+&quot;&platform=&quot;+getdevicebasename() + &quot;&id=&quot; + str(g_Net_UserID)
+    SendHTTPRequestASync( conn, &quot;sendToken.php&quot;, params$ ) // we do not need the server to return anything so we can ignore getting the response
+endif
+">Copy Code</button></div><p>In this example we also send the output of GetDeviceBaseName so we know which platform this token belongs to, iOS and Android use different methods. The server will need to remember the token and who it belongs to so you can send them push notifications later, be aware that the tokens can be 183 characters or more in the case of Android. The device takes no further action after this, it simply sends off its token and the server decides when to send a notification.</p><p>When you want to send a notification use the device token to send a message to a particular device. For example when two users are playing a turn based game and one device notifies your server it has finished its turn, the server can use the user ID to find the token that belongs to the opponent and send them a notification.</p><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

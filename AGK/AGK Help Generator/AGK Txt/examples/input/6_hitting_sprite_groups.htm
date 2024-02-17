@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Hitting sprite groups - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../../main.js"></script>
+<link href="../../main.css" rel="styleSheet" type="text/css" />
+<link href="../../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../../prettify.js"></script>
+<script type="text/javascript" src="../../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../../home.html"><img src="../../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../../home.html">Home</a> &gt; <a href="../../examples.html">Examples</a> &gt; Hitting sprite groups</div><div class="page"><h1>Hitting sprite groups</h1><p>All sprites have a group property that can be used for filtering collisions, which by default is set to be 0. Altering this might be useful in some situations, for example, your game may have blue and red robots running round a level, with the objective being to click or touch the blue robots and avoid the red robots. In this example the blue robots could be assigned a group of 1, with the red robots being assigned to group 2. All that's left is to make a call to the command <i>GetSpriteHitGroup</i> and pass in the ID of the group and the location on screen and then you can easily determine whether the user has hit the blue or red robots.</p><p>This example program creates 4 sprites, positions them at random locations on the screen and then assigns them to group 1. Another 4 sprites are created, positioned at random locations and then get assigned to group 2. Within the main loop <i>GetSpriteHitGroup</i> is used to determine when a user touches or clicks a sprite in group 2.</p><div align="center"><img src="6_hitting_sprite_groups.jpg"/></div><h2>Getting started</h2><p>The code performs the following tasks:</p><ul><li>set a virtual resolution of 320 x 480</li><li>load an image named chip5.png</li><li>load an image named chip25.png</li><li>run a for loop that creates 4 sprites using chip5.png, positions them on screen, turns physics on and assigns them to group 1</li><li>run a for loop that creates 4 sprites using chip25.png, positions them on screen, turns physics on and assigns them to group 2</li></ul><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+LoadImage ( 1, "chip5.png" )
+LoadImage ( 2, "chip25.png" )
+<br>
+for i = 1 to 4
+    sprite = CreateSprite ( 1 )
+<br>
+    SetSpritePosition  ( sprite, Random ( 10, 280 ), Random ( 50, 400 ) )
+    SetSpritePhysicsOn ( sprite, 1 )
+    SetSpriteGroup     ( sprite, 1 )
+next i
+<br>
+for i = 1 to 4
+    sprite = CreateSprite ( 2 )
+<br>
+    SetSpritePosition  ( sprite, Random ( 10, 280 ), Random ( 50, 400 ) )
+    SetSpritePhysicsOn ( sprite, 1 )
+    SetSpriteGroup     ( sprite, 2 )
+next i
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+LoadImage ( 1, &quot;chip5.png&quot; )
+LoadImage ( 2, &quot;chip25.png&quot; )
+
+for i = 1 to 4
+    sprite = CreateSprite ( 1 )
+
+    SetSpritePosition  ( sprite, Random ( 10, 280 ), Random ( 50, 400 ) )
+    SetSpritePhysicsOn ( sprite, 1 )
+    SetSpriteGroup     ( sprite, 1 )
+next i
+
+for i = 1 to 4
+    sprite = CreateSprite ( 2 )
+
+    SetSpritePosition  ( sprite, Random ( 10, 280 ), Random ( 50, 400 ) )
+    SetSpritePhysicsOn ( sprite, 1 )
+    SetSpriteGroup     ( sprite, 2 )
+next i
+">Copy Code</button></div><div id="cppCodeBlock2" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    agk::LoadImage ( 1, "chip5.png" );
+    agk::LoadImage ( 2, "chip25.png" );
+<br>
+    for ( int i = 0; i < 4; i++ )
+    {
+        int sprite = agk::CreateSprite ( 1 );
+<br>
+        agk::SetSpritePosition  ( sprite, agk::Random ( 10, 280 ), agk::Random ( 50, 400 ) );
+        agk::SetSpritePhysicsOn ( sprite, 1 );
+        agk::SetSpriteGroup     ( sprite, 1 );
+    }
+<br>
+    for ( int i = 0; i < 4; i++ )
+    {
+        int sprite = agk::CreateSprite ( 2 );
+<br>
+        agk::SetSpritePosition  ( sprite, agk::Random ( 10, 280 ), agk::Random ( 50, 400 ) );
+        agk::SetSpritePhysicsOn ( sprite, 1 );
+        agk::SetSpriteGroup     ( sprite, 2 );
+    }
+}
+</pre></div><p><br>Notice how physics is turned on for the sprites prior to setting a group. The reason for this is that in order to use groups a sprite must have physics enabled, so in our example the sprites have physics turned on and are set to be static objects.</p><h2>Hitting a sprite</h2><p>Within our main loop an if statement is used to determine when the user hits or touches the screen, at this point <i>GetSpriteHitGroup</i> is called. The command takes three parameters - a group ID and an X and Y location, which for our purposes will be the group 2 and the location of the input. The return value is an ID number for whatever sprite was hit, this gets stored in a variable that is printed out on screen:</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">do
+    Print ( "Group 2 sprite ID:" )
+    Print ( sprite )
+<br>
+    if ( GetPointerPressed ( ) = 1 )
+        sprite = GetSpriteHitGroup ( 2, GetPointerX ( ), GetPointerY ( ) )
+    endif
+<br>	
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="do
+    Print ( &quot;Group 2 sprite ID:&quot; )
+    Print ( sprite )
+
+    if ( GetPointerPressed ( ) = 1 )
+        sprite = GetSpriteHitGroup ( 2, GetPointerX ( ), GetPointerY ( ) )
+    endif
+
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock4" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Loop ( void )
+{
+    agk::Print ( "Group 2 sprite ID:" );
+    agk::Print ( iSprite );
+<br>
+    if ( agk::GetPointerPressed ( ) )
+        iSprite = agk::GetSpriteHitGroup ( 2, agk::GetPointerX ( ), agk::GetPointerY ( ) );
+<br>
+    agk::Sync ( );
+}
+</pre></div><p>Whenever the user touches or clicks the screen only sprites from group 2 register input, the sprites in group 1 are ignored. When the user hits empty space the command <i>GetSpriteHitGroup</i> returns a value of 0.</p><h2>Full code listing</h2><p>Everything is now in place. Here's the final code for our program:</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">SetVirtualResolution ( 320, 480 )
+<br>
+backdrop = CreateSprite ( LoadImage ( "background2.jpg" ) )
+SetSpriteColorAlpha ( backdrop, 100 )
+<br>
+LoadImage ( 1, "chip5.png" )
+LoadImage ( 2, "chip25.png" )
+<br>
+for i = 1 to 4
+    sprite = CreateSprite ( 1 )
+<br>
+    SetSpritePosition  ( sprite, Random ( 10, 280 ), Random ( 50, 400 ) )
+    SetSpritePhysicsOn ( sprite, 1 )
+    SetSpriteGroup     ( sprite, 1 )
+next i
+<br>
+for i = 1 to 4
+    sprite = CreateSprite ( 2 )
+<br>
+    SetSpritePosition  ( sprite, Random ( 10, 280 ), Random ( 50, 400 ) )
+    SetSpritePhysicsOn ( sprite, 1 )
+    SetSpriteGroup     ( sprite, 2 )
+next i
+<br>
+do
+    Print ( "Group 2 sprite ID:" )
+    Print ( sprite )
+<br>
+    if ( GetPointerPressed ( ) = 1 )
+        sprite = GetSpriteHitGroup ( 2, GetPointerX ( ), GetPointerY ( ) )
+    endif
+<br>	
+    Sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="SetVirtualResolution ( 320, 480 )
+
+backdrop = CreateSprite ( LoadImage ( &quot;background2.jpg&quot; ) )
+SetSpriteColorAlpha ( backdrop, 100 )
+
+LoadImage ( 1, &quot;chip5.png&quot; )
+LoadImage ( 2, &quot;chip25.png&quot; )
+
+for i = 1 to 4
+    sprite = CreateSprite ( 1 )
+
+    SetSpritePosition  ( sprite, Random ( 10, 280 ), Random ( 50, 400 ) )
+    SetSpritePhysicsOn ( sprite, 1 )
+    SetSpriteGroup     ( sprite, 1 )
+next i
+
+for i = 1 to 4
+    sprite = CreateSprite ( 2 )
+
+    SetSpritePosition  ( sprite, Random ( 10, 280 ), Random ( 50, 400 ) )
+    SetSpritePhysicsOn ( sprite, 1 )
+    SetSpriteGroup     ( sprite, 2 )
+next i
+
+do
+    Print ( &quot;Group 2 sprite ID:&quot; )
+    Print ( sprite )
+
+    if ( GetPointerPressed ( ) = 1 )
+        sprite = GetSpriteHitGroup ( 2, GetPointerX ( ), GetPointerY ( ) )
+    endif
+
+    Sync ( )
+loop
+">Copy Code</button></div><div id="cppCodeBlock6" style="display:none; border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre style="margin:14px; font-size: 14px; white-space:pre-wrap;" class="prettyprint lang-cpp">void app::Begin ( void )
+{
+    agk::SetVirtualResolution ( 320, 480 );
+<br>
+    int backdrop = agk::CreateSprite ( agk::LoadImage ( "background2.jpg" ) );
+    agk::SetSpriteColorAlpha ( backdrop, 100 );
+<br>
+    agk::LoadImage ( 1, "chip5.png" );
+    agk::LoadImage ( 2, "chip25.png" );
+<br>
+    for ( int i = 0; i < 4; i++ )
+    {
+        int sprite = agk::CreateSprite ( 1 );
+<br>
+        agk::SetSpritePosition  ( sprite, agk::Random ( 10, 280 ), agk::Random ( 50, 400 ) );
+        agk::SetSpritePhysicsOn ( sprite, 1 );
+        agk::SetSpriteGroup     ( sprite, 1 );
+    }
+<br>
+    for ( int i = 0; i < 4; i++ )
+    {
+        int sprite = agk::CreateSprite ( 2 );
+<br>
+        agk::SetSpritePosition  ( sprite, agk::Random ( 10, 280 ), agk::Random ( 50, 400 ) );
+        agk::SetSpritePhysicsOn ( sprite, 1 );
+        agk::SetSpriteGroup     ( sprite, 2 );
+    }
+}
+<br>
+void app::Loop ( void )
+{
+    agk::Print ( "Group 2 sprite ID:" );
+    agk::Print ( iSprite );
+<br>
+    if ( agk::GetPointerPressed ( ) )
+        iSprite = agk::GetSpriteHitGroup ( 2, agk::GetPointerX ( ), agk::GetPointerY ( ) );
+<br>
+    agk::Sync ( );
+}
+</pre></div><h2>Conclusion</h2><p>By assigning sprites to groups it is possible to have extra control when interacting with them. As you can see from this example it's a very useful feature, and being able to quickly determine whether a user has touched a sprite with one command call can save a lot of time and allows you to focus on the more important elements of your game.</p><br><br></div><div class="footer" style="background: #000 url('../../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

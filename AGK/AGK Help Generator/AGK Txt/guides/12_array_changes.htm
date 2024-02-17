@@ -1,0 +1,409 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Arrays Enhanced - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-jquery.min.js"></script>
+<script type="text/javascript" src="https://www.appgamekit.com/assets/js/docs-translate.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="https://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Arrays Enhanced</div><div class="page"><h1>Arrays Enhanced</h1><p>The Arrays have some enhanced features, in particular the ability to sort, insert, and pass by reference into functions.</p><h2>Array Declaration and Resizing</h2><p>To maintain backwards compatibility arrays can still be defined with DIM, but version 2 introduces a new method of defining arrays that will become particularly important when defining them in types. Note that both DIM arrays and new style arrays perform exactly the same after they are declared so any functions mentioned here will also work on DIM arrays. The new method is mainly for consistency. The new method is as follows</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">myArray as integer[5]
+</pre></div><div align="right"><button class="btn" data-clipboard-text="myArray as integer[5]
+">Copy Code</button></div><p>The keyword DIM is not used and the size is moved to the end of the declaration. Arrays declared like this can only be declared once, unlike DIM arrays which can be declared multiple times to resize the array. The prefered method of resizing an array is now:</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">myArray.length = newSize
+</pre></div><div align="right"><button class="btn" data-clipboard-text="myArray.length = newSize
+">Copy Code</button></div><p>Where newSize can be any expression that could be assigned to a variable. An array length can also be discovered by using it as an expression like so</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">print( myArray.length )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="print( myArray.length )
+">Copy Code</button></div><p>Note that because arrays start at index 0 and allow the size parameter as a valid index, an array defined as "DIM myArray[2]" or "myArray as integer[2]" would have 3 elements (0,1, and 2) but array.length will return "2" to reflect the size parameter that was used to declare it. Therefore an array of length 0 has one element and an empty array will return the length "-1".</p><p>For simplicity it may be beneficial to ignore index 0 at first, and assume that arrays start at index 1. This way the length parameter matches the number of assumed elements in the array and index 0 can be introduced as an additional element later. Some people used to use index 0 to store the length of the array for convenience, but with the new changes this is no longer necessary.</p><h2>Inserting and Removing</h2><p>Elements can now be inserted and removed from arrays which will increase or decrease their size accordingly. For example</p><div id="basicCodeBlock4" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">myArray as integer[] // creates an empty array
+myArray.insert(5) // insert 5 at the end of the array
+myArray.insert(7) // array now has the elements 5,7
+print( myArray.length ) // will display "1" meaning it has two elements
+myArray.remove() // removes the 7
+myArray.remove() // removes the 5
+print( myArray.length ) // will display "-1" meaning the array is empty
+</pre></div><div align="right"><button class="btn" data-clipboard-text="myArray as integer[] // creates an empty array
+myArray.insert(5) // insert 5 at the end of the array
+myArray.insert(7) // array now has the elements 5,7
+print( myArray.length ) // will display &quot;1&quot; meaning it has two elements
+myArray.remove() // removes the 7
+myArray.remove() // removes the 5
+print( myArray.length ) // will display &quot;-1&quot; meaning the array is empty
+">Copy Code</button></div><p>If an array is declared with a size parameter then elements will be inserted after the last existing element, for example</p><div id="basicCodeBlock5" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">myArray as integer[5] 
+myArray.insert(15) // array now has the elements 0,0,0,0,0,0,15
+print( myArray.length ) // will display "6" meaning it has seven elements
+myArray.remove() // removes the 15
+myArray.remove() // removes the last zero
+print( myArray.length ) // will display "4"
+</pre></div><div align="right"><button class="btn" data-clipboard-text="myArray as integer[5] 
+myArray.insert(15) // array now has the elements 0,0,0,0,0,0,15
+print( myArray.length ) // will display &quot;6&quot; meaning it has seven elements
+myArray.remove() // removes the 15
+myArray.remove() // removes the last zero
+print( myArray.length ) // will display &quot;4&quot;
+">Copy Code</button></div><p>Elements can also be inserted at specific points in the array by adding an index parameter to the insert or remove command like so</p><div id="basicCodeBlock6" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">myArray as integer[4] 
+myArray[0] = 10
+myArray[1] = 11
+myArray[2] = 12
+myArray[3] = 13
+myArray[4] = 14
+myArray.insert(15,2) // insert 15 at the second index of the array
+print ( myArray[2] ) // will print "15"
+// the array curently looks like this [10,11,15,12,13,14]
+myArray.remove(0) // removes the element at index 0
+// the array now looks like this [11,15,12,13,14]
+myArray.remove(3) // removes the element at index 3
+// the array now looks like this [11,15,12,14]
+</pre></div><div align="right"><button class="btn" data-clipboard-text="myArray as integer[4] 
+myArray[0] = 10
+myArray[1] = 11
+myArray[2] = 12
+myArray[3] = 13
+myArray[4] = 14
+myArray.insert(15,2) // insert 15 at the second index of the array
+print ( myArray[2] ) // will print &quot;15&quot;
+// the array curently looks like this [10,11,15,12,13,14]
+myArray.remove(0) // removes the element at index 0
+// the array now looks like this [11,15,12,13,14]
+myArray.remove(3) // removes the element at index 3
+// the array now looks like this [11,15,12,14]
+">Copy Code</button></div><h2>Sorting and Searching</h2><p>Arrays can now be sorted using the .sort() command and searched using the .find(item) command. For example</p><div id="basicCodeBlock7" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">myArray as integer[5] = [3,4,1,5,2,6]
+myArray.sort() // array is now [1,2,3,4,5,6]
+index = myArray.find(4) // will return "3" as array indexes start at 0
+</pre></div><div align="right"><button class="btn" data-clipboard-text="myArray as integer[5] = [3,4,1,5,2,6]
+myArray.sort() // array is now [1,2,3,4,5,6]
+index = myArray.find(4) // will return &quot;3&quot; as array indexes start at 0
+">Copy Code</button></div><p>.sort() will always sort in ascending order and .find(item) will only work on arrays that are in  ascending order. If .find(item) cannot find the item you are looking for it will return "-1". You can sort arrays of Integers, Float, Strings, and Types. When sorting types the first variable of the type will be used to compare elements.</p><div id="basicCodeBlock8" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">type myType
+    ID as integer
+    name as string
+endtype
+myArray as myType[3]
+myArray[0].ID = 5 : myArray[0].name = "Bob"
+myArray[1].ID = 4 : myArray[1].name = "Alice"
+myArray[2].ID = 1 : myArray[2].name = "Carol"
+myArray[3].ID = 2 : myArray[3].name = "David"
+myArray.sort()
+remstart
+    the array now looks like this
+    [0]: ID=1, name="Carol"
+    [1]: ID=2, name="David"
+    [2]: ID=4, name="Alice"
+    [3]: ID=5, name="Bob"
+remend
+</pre></div><div align="right"><button class="btn" data-clipboard-text="type myType
+    ID as integer
+    name as string
+endtype
+myArray as myType[3]
+myArray[0].ID = 5 : myArray[0].name = &quot;Bob&quot;
+myArray[1].ID = 4 : myArray[1].name = &quot;Alice&quot;
+myArray[2].ID = 1 : myArray[2].name = &quot;Carol&quot;
+myArray[3].ID = 2 : myArray[3].name = &quot;David&quot;
+myArray.sort()
+remstart
+    the array now looks like this
+    [0]: ID=1, name=&quot;Carol&quot;
+    [1]: ID=2, name=&quot;David&quot;
+    [2]: ID=4, name=&quot;Alice&quot;
+    [3]: ID=5, name=&quot;Bob&quot;
+remend
+">Copy Code</button></div><p>There is also a special insert command named .insertsorted(item) that will insert into a sorted array and maintain the array's ascending order so it can still be searched. For example, taking the array above</p><div id="basicCodeBlock9" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">myItem as MyType
+myItem.ID = 3
+myItem.name = "Eve"
+myArray.insertsorted(myItem)
+remstart
+    the array now looks like this
+    [0]: ID=1, name="Carol"
+    [1]: ID=2, name="David"
+    [2]: ID=3, name="Eve"
+    [3]: ID=4, name="Alice"
+    [4]: ID=5, name="Bob"
+remend
+</pre></div><div align="right"><button class="btn" data-clipboard-text="myItem as MyType
+myItem.ID = 3
+myItem.name = &quot;Eve&quot;
+myArray.insertsorted(myItem)
+remstart
+    the array now looks like this
+    [0]: ID=1, name=&quot;Carol&quot;
+    [1]: ID=2, name=&quot;David&quot;
+    [2]: ID=3, name=&quot;Eve&quot;
+    [3]: ID=4, name=&quot;Alice&quot;
+    [4]: ID=5, name=&quot;Bob&quot;
+remend
+">Copy Code</button></div><h2>Misc</h2><p>There are some additional array commands that don't fit in the above categories, they are .swap(index1,index2) to swap two elements in an array (including types and multidimenional arrays) and .reverse() to reverse the elements in an array.</p><h2>Arrays in Types</h2><p>Arrays can now be defined in types like so</p><div id="basicCodeBlock10" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">type myType
+    ID as integer
+    mySubArray as integer[5]
+endtype
+myVar as myType
+myVar.mySubArray[0] = 6
+</pre></div><div align="right"><button class="btn" data-clipboard-text="type myType
+    ID as integer
+    mySubArray as integer[5]
+endtype
+myVar as myType
+myVar.mySubArray[0] = 6
+">Copy Code</button></div><p>The array could also be defined as an array of another type if desired so you can do things like this</p><div id="basicCodeBlock11" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">type myType1
+    ID as integer
+    mySubArray1 as integer[5]
+endtype
+type myType2
+    name as string
+    mySubArray2 as myType1[8]
+endtype
+myVar as myType2
+myVar.mySubArray2[0].mySubArray1[4] = 6
+// or 
+myVar.mySubArray2[3].mySubArray1.sort()
+</pre></div><div align="right"><button class="btn" data-clipboard-text="type myType1
+    ID as integer
+    mySubArray1 as integer[5]
+endtype
+type myType2
+    name as string
+    mySubArray2 as myType1[8]
+endtype
+myVar as myType2
+myVar.mySubArray2[0].mySubArray1[4] = 6
+// or 
+myVar.mySubArray2[3].mySubArray1.sort()
+">Copy Code</button></div><h2>Passing by Reference</h2><p>Previously only types could be passed into functions and they were passed by value, meaning the type would be copied into a new variable which was then deleted at the end of the function. Now types can be passed by reference meaning that the variable being passed in will be modified by any changes in the function. For example</p><div id="basicCodeBlock12" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">function func1( a as point ) // pass by value, variable is copied
+    a.x = 5 // this change is local and lost at the end of the function
+endfunction 
+function func2( a ref as point ) // pass by reference, variable is the original
+    a.x = 7 // this change modifies the original variable
+endfunction 
+type point 
+    x as float
+    y as float
+endtype
+myVar as point
+myVar.x = 1
+myVar.y = 2
+func1( myVar ) // doesn't change the variable
+print( myVar.x ) // will print "1"
+func2( myVar ) // does change the variable
+print( myVar.x ) // will print "7"
+</pre></div><div align="right"><button class="btn" data-clipboard-text="function func1( a as point ) // pass by value, variable is copied
+    a.x = 5 // this change is local and lost at the end of the function
+endfunction 
+function func2( a ref as point ) // pass by reference, variable is the original
+    a.x = 7 // this change modifies the original variable
+endfunction 
+type point 
+    x as float
+    y as float
+endtype
+myVar as point
+myVar.x = 1
+myVar.y = 2
+func1( myVar ) // doesn't change the variable
+print( myVar.x ) // will print &quot;1&quot;
+func2( myVar ) // does change the variable
+print( myVar.x ) // will print &quot;7&quot;
+">Copy Code</button></div><p>The same can also now be done with arrays</p><div id="basicCodeBlock13" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">function func1( a as integer[] ) // pass by value, variable is copied
+    a[0] = 5 // this change is local and lost at the end of the function
+endfunction 
+function func2( a ref as integer[] ) // pass by reference, variable is the original
+    a[0] = 7 // this change modifies the original variable
+endfunction 
+myArray as integer[3]
+myArray[0] = 1
+myArray[1] = 2
+myArray[2] = 3
+myArray[3] = 4
+func1( myArray ) // doesn't change the variable
+print( myArray[0] ) // will print "1"
+func2( myArray ) // does change the variable
+print( myArray[0] ) // will print "7"
+</pre></div><div align="right"><button class="btn" data-clipboard-text="function func1( a as integer[] ) // pass by value, variable is copied
+    a[0] = 5 // this change is local and lost at the end of the function
+endfunction 
+function func2( a ref as integer[] ) // pass by reference, variable is the original
+    a[0] = 7 // this change modifies the original variable
+endfunction 
+myArray as integer[3]
+myArray[0] = 1
+myArray[1] = 2
+myArray[2] = 3
+myArray[3] = 4
+func1( myArray ) // doesn't change the variable
+print( myArray[0] ) // will print &quot;1&quot;
+func2( myArray ) // does change the variable
+print( myArray[0] ) // will print &quot;7&quot;
+">Copy Code</button></div><p>The new compiler is also very flexible about what you can pass into a function that takes a type or array, for example</p><div id="basicCodeBlock14" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">function func( a ref as integer[] ) // pass by reference
+    a[0] = 7
+endfunction 
+type myType
+    ID as integer
+    subArray as integer[5]
+endtype
+myVar as myType
+func( myVar.subArray ) // passes the array from the type into the function
+print( myVar.subArray[0] ) // will print "7"
+</pre></div><div align="right"><button class="btn" data-clipboard-text="function func( a ref as integer[] ) // pass by reference
+    a[0] = 7
+endfunction 
+type myType
+    ID as integer
+    subArray as integer[5]
+endtype
+myVar as myType
+func( myVar.subArray ) // passes the array from the type into the function
+print( myVar.subArray[0] ) // will print &quot;7&quot;
+">Copy Code</button></div><p>To pass multidimensional arrays to functions use additional square brackets in the function declaration</p><div id="basicCodeBlock15" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">function func1( a ref as integer[] ) // accepts a single dimensional array
+    a[0] = 6
+endfunction
+function func2( a ref as integer[][] ) // accepts a two dimensional array
+    a[0,0] = 7
+endfunction
+function func3( a ref as integer[][][] ) // accepts a three dimensional array
+    a[0,0,0] = 8
+endfunction
+</pre></div><div align="right"><button class="btn" data-clipboard-text="function func1( a ref as integer[] ) // accepts a single dimensional array
+    a[0] = 6
+endfunction
+function func2( a ref as integer[][] ) // accepts a two dimensional array
+    a[0,0] = 7
+endfunction
+function func3( a ref as integer[][][] ) // accepts a three dimensional array
+    a[0,0,0] = 8
+endfunction
+">Copy Code</button></div><p>and so on up to six dimensions. You can also pass sub arrays of multidimensional arrays into functions like so (using the functions above)</p><div id="basicCodeBlock16" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">myArray as integer[5,10,15]
+func1( myArray[0,0] ) // passes the array at [0,0] to the function as a single dimensional array
+print( myArray[0,0,0] ) // will display "6"
+</pre></div><div align="right"><button class="btn" data-clipboard-text="myArray as integer[5,10,15]
+func1( myArray[0,0] ) // passes the array at [0,0] to the function as a single dimensional array
+print( myArray[0,0,0] ) // will display &quot;6&quot;
+">Copy Code</button></div><p>Also note that in these cases "myArray.length" would return 5, "myArray[0].length" would return 10 and myArray[0,0].length" would return 15, and each dimension can be resized individually</p><div id="basicCodeBlock17" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">myArray[0,0].length = 20
+myArray[0,1].length = 30
+</pre></div><div align="right"><button class="btn" data-clipboard-text="myArray[0,0].length = 20
+myArray[0,1].length = 30
+">Copy Code</button></div><h2>Assignment</h2><p>Arrays can be assigned values using the square bracket notation like so</p><div id="basicCodeBlock18" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">myArray as integer[3]
+myArray = [1,2,3,4]
+myArray2 as integer[2,5]
+myArray2[0] = [1,2,3,4]
+myArray2[1] = [5,6,7,8]
+myArray2[2] = [9,10,11,12]
+</pre></div><div align="right"><button class="btn" data-clipboard-text="myArray as integer[3]
+myArray = [1,2,3,4]
+myArray2 as integer[2,5]
+myArray2[0] = [1,2,3,4]
+myArray2[1] = [5,6,7,8]
+myArray2[2] = [9,10,11,12]
+">Copy Code</button></div><p>If the number of elements being assigned is greater than the current array length then the array will be expanded to accommodate the new elements. If the number of elements is less than the current array length then the array length will remain the same and new elements will overwrite the beginning of the array, whilst the rest of the array remains unchanged</p><p>Arrays and types can also now be assigned directly to each other, doing so will copy the contents of the array or type to the other variable</p><div id="basicCodeBlock19" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">myArray as integer[3]
+myArray2 as integer[5]
+myArray = [1,2,3,4]
+myArray2 = [11,12,13,14,15,16]
+myArray = myArray2 // myArray is now length 5 with copies of the values in myArray2
+print( myArray[4] ) // will display 15
+</pre></div><div align="right"><button class="btn" data-clipboard-text="myArray as integer[3]
+myArray2 as integer[5]
+myArray = [1,2,3,4]
+myArray2 = [11,12,13,14,15,16]
+myArray = myArray2 // myArray is now length 5 with copies of the values in myArray2
+print( myArray[4] ) // will display 15
+">Copy Code</button></div><p>Any sub arrays or sub types are also copied in their entirety, nothing will be shared with the new variable</p><div id="basicCodeBlock20" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">type myType
+    ID as integer
+    subArray as integer[5]
+endtype
+var1 as myType
+var2 as myType
+var1.subArray[1] = 5
+var2.subArray[1] = 10
+var1 = var2 // the type is copied along with the array it contains
+print( var1.subArray[1] ) // will print 10
+print( var2.subArray[1] ) // will print 10
+var2.subArray[1] = 15 // the array was copied so changes to one do not affect the other
+print( var1.subArray[1] ) // will print 10
+print( var2.subArray[1] ) // will print 15
+</pre></div><div align="right"><button class="btn" data-clipboard-text="type myType
+    ID as integer
+    subArray as integer[5]
+endtype
+var1 as myType
+var2 as myType
+var1.subArray[1] = 5
+var2.subArray[1] = 10
+var1 = var2 // the type is copied along with the array it contains
+print( var1.subArray[1] ) // will print 10
+print( var2.subArray[1] ) // will print 10
+var2.subArray[1] = 15 // the array was copied so changes to one do not affect the other
+print( var1.subArray[1] ) // will print 10
+print( var2.subArray[1] ) // will print 15
+">Copy Code</button></div><h2>JSON</h2><p>Arrays can be converted to and from JSON strings by using the .toJSON() and .fromJSON(string) commands like so</p><div id="basicCodeBlock21" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">MyArray as integer[5]
+MyArray = [10, 53, 2, 678, 3, 2]
+var1 as string
+var1 = MyArray.toJSON()
+var2 as string
+var2 = "[1,2,3,4,5]"
+MyArray.fromJSON( var2 )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="MyArray as integer[5]
+MyArray = [10, 53, 2, 678, 3, 2]
+var1 as string
+var1 = MyArray.toJSON()
+var2 as string
+var2 = &quot;[1,2,3,4,5]&quot;
+MyArray.fromJSON( var2 )
+">Copy Code</button></div><p>When populating an array from a JSON string the array length will be adjusted to match the length of the array in the JSON string. You can also save and load the array to a JSON file by using the .save(filename) and .load(filename) commands like so</p><div id="basicCodeBlock22" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">MyArray.save( "MyArray.json" )
+MyArray.load( "MyArray.json" )
+</pre></div><div align="right"><button class="btn" data-clipboard-text="MyArray.save( &quot;MyArray.json&quot; )
+MyArray.load( &quot;MyArray.json&quot; )
+">Copy Code</button></div><p>Types can also be converted to and from JSON strings like so</p><div id="basicCodeBlock23" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">type spritetype
+	ID as integer
+	x as float
+	y as float
+	width as float
+	height as float
+endtype
+MyType as spritetype
+MyType.fromJSON( '{"ID": 4, "x": 10.5, "y": 20, "width": 50.1, "height": 20.45}' )
+var1 as string
+var1 = MyType.toJSON()
+</pre></div><div align="right"><button class="btn" data-clipboard-text="type spritetype
+	ID as integer
+	x as float
+	y as float
+	width as float
+	height as float
+endtype
+MyType as spritetype
+MyType.fromJSON( '{&quot;ID&quot;: 4, &quot;x&quot;: 10.5, &quot;y&quot;: 20, &quot;width&quot;: 50.1, &quot;height&quot;: 20.45}' )
+var1 as string
+var1 = MyType.toJSON()
+">Copy Code</button></div><p>Types can contain other types or arrays, and will produce correctly nested JSON objects and arrays to match. There is no limitation on the contents of a type or array when converting it to JSON. When converting a JSON array to an AppGameKit Studio array then the array must only contain one type of variable, for example all integers, all floats, or all strings. There is no limit on a JSON object when converting it to an AppGameKit Studio type.</p><p>If a JSON object contains fields that are not in the AppGameKit Studio type being used to load it, then those fields will be ignored. If the AppGameKit Studio type contains fields that are not specified in the JSON object then those fields will be set to zero.</p><p>If a JSON object contains field names that are keywords in AppGameKit Studio then they cannot be directly loaded into an AppGameKit Studio type, since it won't be able to use those keywords as variable names. To overcome this you can use an underscore in front of the variable name in the AppGameKit Studio type and it will match JSON fields that don't have the underscore. For example</p><div id="basicCodeBlock24" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">type spritetype
+	ID as integer
+	x as float
+	y as float
+	_type as integer
+endtype
+MyType as spritetype
+MyType.fromJSON( '{"ID": 4, "x": 10.5, "y": 20, "type": 5}' )
+Print( MyType._type ) // will print the number 5
+</pre></div><div align="right"><button class="btn" data-clipboard-text="type spritetype
+	ID as integer
+	x as float
+	y as float
+	_type as integer
+endtype
+MyType as spritetype
+MyType.fromJSON( '{&quot;ID&quot;: 4, &quot;x&quot;: 10.5, &quot;y&quot;: 20, &quot;type&quot;: 5}' )
+Print( MyType._type ) // will print the number 5
+">Copy Code</button></div><p>When using .toJSON() on a type, any variables that start with an underscore will have that underscore removed in the JSON string, so in the example above the JSON string produced by .toJSON() will contain the field "type" rather than the field "_type". Only the first underscore is removed, so if you actually wanted the JSON field name to begin with an underscore then add two underscores to the AppGameKit Studio type variable instead, i.e "__type" in AppGameKit Studio would be converted to "_type" in JSON.</p><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="https://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

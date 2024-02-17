@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Introducing if statements - AGK Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="../main.js"></script>
+<link href="../main.css" rel="styleSheet" type="text/css" />
+<link href="../prettify.css" rel="styleSheet" type="text/css" />
+<script type="text/javascript" src="../prettify.js"></script>
+<script type="text/javascript" src="../lang-agk.js"></script>
+<link rel="stylesheet" href="../lightbox/css/lightbox.min.css">
+<script src="../lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script src="../clipboard/clipboard.min.js"></script>
+</head>
+<body>
+<script>var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e)
+{
+console.log(e);
+});
+clipboard.on('error', function(e)
+{
+console.log(e);
+});
+</script>
+<div class="header" style="background: #000 url('../gfx/header-back.png') top center no-repeat;"><div><div class="navigation"><a href="../home.html"><img src="../gfx/b-home.png" width="76" height="44" alt=""></a><a href="javascript:history.go(-1)"><img src="../gfx/b-back.png" width="71" height="44" alt=""></a><a href="javascript:window.print()"><img src="../gfx/b-print.png" width="75" height="44" alt=""></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-c.png" width="253" height="44" alt=""  id="basicCodeBlock0" border="0"></a><a style="cursor:pointer;" onclick="ToggleCPP()"><img src="../gfx/lang-basic.png" width="253" height="44" alt=""  id="cppCodeBlock0" style="display:none" border="0"></a></div><a href="http://www.appgamekit.com" target="_blank"><img class="logo" src="../gfx/agk-logo.png" height="44" style="margin:15px 0" alt="App Game Kit" border="0"></a></div><img src="../gfx/drop-shadow.png" width="1158" height="40" alt=""></div><div class="breadcrumbs">
+<a href="../home.html">Home</a> &gt; <a href="../guides.html">Guides</a> &gt; Introducing if statements</div><div class="page"><h1>Introducing if statements</h1><p>If statements provide a mechanism to determine the result of a condition, which can then be acted upon. They are used in all kinds of scenarios. Here's an example that demonstrates using an <i>if</i> statement.</p><div id="basicCodeBlock1" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">score as integer = 100
+<br>
+do
+	if score = 100
+		print ( "the score is 100" )
+	endif
+	<br>	
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="score as integer = 100
+
+do
+	if score = 100
+		print ( &quot;the score is 100&quot; )
+	endif
+
+	sync ( )
+loop
+">Copy Code</button></div><p>The variable <i>score</i> is declared and assigned a value of 100. This is followed by a <i>do</i> loop where we'll encounter our <i>if</i> statement.</p><div id="basicCodeBlock2" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">if score = 100
+	print ( "the score is 100" )
+endif
+</pre></div><div align="right"><button class="btn" data-clipboard-text="if score = 100
+	print ( &quot;the score is 100&quot; )
+endif
+">Copy Code</button></div><p>The <i>if</i> statement uses an expression to check whether the score is equal to 100. If this expression is true then any code following it, at least up to the <i>endif</i> line, will be acted upon. When you run the program the string "the score is 100" will be displayed on screen. If the score is any value other than 100 then this string will not get displayed on screen as the condition that the if statements requires will be false.</p><p>An <i>if</i> statement can be used to evaulate any kind of expression. Checking whether the score is 100 can be written in any number of ways.</p><div id="basicCodeBlock3" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">score as integer = 100
+target as integer = 100
+<br>
+do
+	if score = 50 + 50
+		print ( "1. The score is 100" )
+	endif
+	<br>
+	if score = 10 * 10
+		print ( "2. The score is 100" )
+	endif
+	<br>
+	if score = 70 + 10 * 5 - 20
+		print ( "3. The score is 100" )
+	endif
+	<br>
+	if score = target
+		print ( "4. The score is 100" )
+	endif
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="score as integer = 100
+target as integer = 100
+
+do
+	if score = 50 + 50
+		print ( &quot;1. The score is 100&quot; )
+	endif
+
+	if score = 10 * 10
+		print ( &quot;2. The score is 100&quot; )
+	endif
+
+	if score = 70 + 10 * 5 - 20
+		print ( &quot;3. The score is 100&quot; )
+	endif
+
+	if score = target
+		print ( &quot;4. The score is 100&quot; )
+	endif
+
+	sync ( )
+loop
+">Copy Code</button></div><p>Each <i>if</i> statement checks whether the expression is true and then runs the code within its block.</p><p>The next example declares a variable <i>score</i> and assigns it a value of 50. It then performs a <i>do</i> loop. Within this loop a call to the <i>print</i> command is made, displaying the string "a" on screen. Next an <i>if</i> statement is used to determine whether the score is equal to 100. If this is the case two strings will be displayed on screen. The <i>if</i> statement block ends by using the keyword <i>endif</i>. This is followed by a call to the <i>print</i> command, which will display the string "b" on screen. What do you expect to see on screen when this program runs?</p><div id="basicCodeBlock4" style="border: 1px solid #ccd; background: #f3f3fc; margin: 10px 0;"><pre class="prettyprint lang-agk" style="margin:14px; font-size: 14px; white-space:pre-wrap;">score as integer = 50
+<br>
+do
+	print ( "a" )
+	<br>
+	if score = 100
+		print ( "the score is 100" )
+		print ( "the if statement is true" )
+	endif
+	<br>
+	print ( "b" )
+	<br>
+	sync ( )
+loop
+</pre></div><div align="right"><button class="btn" data-clipboard-text="score as integer = 50
+
+do
+	print ( &quot;a&quot; )
+
+	if score = 100
+		print ( &quot;the score is 100&quot; )
+		print ( &quot;the if statement is true&quot; )
+	endif
+
+	print ( &quot;b&quot; )
+
+	sync ( )
+loop
+">Copy Code</button></div><p>When you run the program notice how the two lines saying "the score is 100" and "the if statement is true" are not displayed on screen. This is because the <i>score</i> variable has been set to 50, therefore the condition for the <i>if</i> statement is false and the code associated with it is not executed. Try changing the value of  <i>score</i> to 100 and run the program again. This time the condition is true, so you'll see the extra strings displayed on screen.</p><div align="center"><a href="if_statements.htm"><img src="../gfx/prev.png"  alt=""></a> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<a href="if_statements_002.htm"><img src="../gfx/next.png"  alt=""></a></div><br><br></div><div class="footer" style="background: #000 url('../gfx/footer-back.png') top center no-repeat;"><div><p><a href="http://www.thegamecreators.com" target="_blank" style="float:none"><img style="float:right;margin-top:2px" src="../gfx/tgc-logo.png" width="188" height="27" alt="" border="0"></a><br><strong>App Game Kit</strong> &nbsp;&copy; The Game Creators Ltd. All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:agkreports@thegamecreators.com" style="float:none"><font color="FFFFFF">Report an issue</font></a></p></p></div></div><script type="text/javascript">prettyPrint(true);</script></body></html>

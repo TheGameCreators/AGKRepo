@@ -1,0 +1,32 @@
+_header
+exitfunction
+
+_sheader
+Syntax
+
+_tier1
+exitfunction variable
+_tier1
+
+_sheader
+Description
+
+_text
+This command will immediately exit the current function, optionally returning a value. The remaining code between the <i>exitfunction</i> and the <i>endfunction</i> commands will be ignored. It is vital that if the <i>exitfunction</i> command is used within a function declaration, that the return types are identical not only in data type, but whether they are arrays, variables or literals. You also cannot have expressions as part of the return data. 
+
+_sheader
+Example
+
+_tier1
+do
+    myFunction ( 1 )
+loop
+<br>
+function myFunction ( a )
+    if a = 1
+        exitfunction
+    endif
+<br>
+    print ( "end of function" )
+endfunction
+_tier1

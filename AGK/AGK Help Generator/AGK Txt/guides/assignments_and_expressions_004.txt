@@ -1,0 +1,45 @@
+
+_header
+Expression order
+
+_text
+The order in which the expression is calculated is determined by the operator precedence. 
+
+_listbegin
+Brackets e.g. ( and )
+Exponents e.g. 2 ^ 2
+Division e.g. 4 / 2
+Multiplication e.g. 4 * 2
+Addition e.g. 4 + 2
+Subtraction e.g. 4 - 2
+_listend
+
+_text
+This example demonstrates the operator precedence taking affect in two expressions.
+
+_tier1
+valueA as integer = 0
+valueB as integer = 0
+<br>
+valueA = 2 + 10 / 2
+valueB = ( 2 + 10 ) / 2
+<br>
+do
+	print ( valueA )
+	print ( valueB )
+	<br>
+	sync ( )
+loop
+_tier1
+
+_text
+In the case of <i>valueA</i> the expression being assigned to it has the division calculated first, so 10 / 2 = 5, which is then added to 2 and assigned to <i>valueA</i>. Therefore this variable has a value of 7.
+
+_imageclick
+expressions002.jpg
+
+_text
+<i>valueB</i> has used brackets to force the addition to be calculated first. In this instance the result of 2 + 10 = 12 is divided by 2 giving the variable a value of 6.
+
+_navigation
+assignments_and_expressions_003.htm assignments_and_expressions_005.htm 

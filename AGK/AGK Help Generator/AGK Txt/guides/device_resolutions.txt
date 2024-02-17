@@ -1,0 +1,45 @@
+_header
+Device Resolutions
+
+_text
+When developing an app it is important to understand the devices you are targeting, as this will impact the way your app is developed. Consideration must be given to supporting portrait, landscape or both orientations and how your app will look on different devices.
+
+_text
+First of all you need to determine whether you are more comfortable dealing with virtual resolutions or the percentage system. Using a virtual resolution can complicate matters and for users getting started it's probably easier to deal with the percentage system. To enable this call the command SetDisplayAspect at the start of your program, passing in the aspect ratio of the device -
+
+_tier1
+width#  = GetDeviceWidth ( )
+height# = GetDeviceHeight ( )
+aspect# = width# / height#
+
+SetDisplayAspect ( aspect# )
+_tier1
+
+_text
+An alternative approach that achieves the same objective is -
+
+_tier1
+SetDisplayAspect ( ( GetDeviceWidth ( ) + 0.0 ) / ( GetDeviceHeight ( ) + 0.0 ) )
+_tier1
+
+_text
+Adding 0.0 to the values returned by GetDevideWidth and GetDeviceHeight results in the division dealing with floating point values, meaning you don't need to declare extra variables and convert integers to floats.
+
+_text
+Calling SetDisplayAspect as shown above will ensure you app covers the full screen of the device. Try some tests by displaying sprites or text at different areas of the screen to see how this works.
+
+_text
+Ideally test your app on your development device and use SetWindowSize to see how it looks and if necessary make any alterations for particular aspect ratios. In some cases your monitor may not support the resolution of the target device, in which case you can simply lower the resolution while maintaining the aspect ratio to determine how your app will look. For example the iPhone X has a portrait resolution of 1125 x 2436. You could divide both values by 2 to give a test resolution of 562 x 1218, thus allowing you to see how your app might look on this particular device.
+
+_text
+The resolution of devices can vary greatly. Here's a few examples of iOS devices -
+
+_listbegin
+iPhone XS Max		1242 x 2688
+iPhone X			1125 x 2436
+iPhone 8 Plus		1080 x 1920
+iPhone 8			750 x 1334
+iPad Pro 12.9-inch 	2048 x 2732
+iPad Pro 10.5-inch	2224 x 1668
+iPad Air 2			1536 x 2048
+_listend

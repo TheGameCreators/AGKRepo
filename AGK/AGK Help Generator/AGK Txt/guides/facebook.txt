@@ -1,0 +1,401 @@
+_header
+Facebook
+_sheader
+Intermediate Level Tutorial
+_sheader
+What you will learn
+_text
+The Facebook commands provided within AppGameKit provide functionality allowing users of an app to login to Facebook, post information about the app and find friends who are using the app. It's a great way of raising awareness of an app. Please note that this functionality is aimed at iOS and Android users.
+_sheader
+Creating an app on Facebook
+_text
+There's a few prerequisites for dealing with Facebook.
+_listbegin
+Application listing on relevant app stores
+Facebook account
+Facebook application
+_listend
+_text
+If your app is being deployed on iOS then you must register your app on iTunes Connect. If you app is being deployed on Android then your app must be registered on the Play Store. The reason for this is that Facebook needs to know information about the application it's connecting to, for example, the package name of your app when deploying to Android. This guide assumes you are familiar with the process of setting up an app for these platforms.
+_text
+If you don't already have a Facebook account then you will need to register here; https://facebook.com/
+_text
+The final stage before getting into any programming, is to create an application listing on Facebook, which will be used as a way of connecting your AppGameKit Studio app to Facebook. To get started with this visit the Facebook for developers page (https://developers.facebook.com/). Once logged in look at the top right of the screen where you will see a drop down menu showing "My Apps". Select this and click on "Add New App". After doing this you will be asked to provide some information, such as the name of the app, a contact email address and what category the app comes under. When you have filled in the form click the "Create App ID" button, which will take you to another page. There's a great deal of settings that can be configured at this stage, for now the most important part is to to handle the Facebook login. To set this up click on "Add Products" on the left panel and then select "Facebook Login", then select "Quickstart" and choose the first platform you want to deal with e.g. Android. You can add other platforms later. Once you add a platform you will be asked to go through these steps.
+_listbegin
+Download the Facebook SDK for Android - continue past this step
+Import the Facebook SDK - continue past this step
+Tell us about Your Android Project - add the required information
+Add Your Development and Release Key Hashes - follow the instructions to generate key hashes from your signing certificates
+Enable Single Sign On for Your App - if you're already logged into Facebook on your device, then enabling this will allow you to login automatically
+Add Your Facebook App ID - ignore this step
+Include FacebookActivity in your AndroidManifest.xml - ignore this step
+Enable Chrome Custom Tabs - not necessary
+Log App Events - continue past this step
+Add the Facebook Login Button - continue past this step
+Register a Callback - ignore
+Check Login Status - not necessary
+Next Steps - finished
+_listend
+_text
+Much of the steps are not required as AppGameKit takes care of it. The key points are the information about your app and the key hashes from your certificates.
+_text
+When an application listing has been made make a note of your App ID from the Dashboard, as AppGameKit will require this so that it can connect to the application.
+_sheader
+Logging into Facebook
+_text
+For an app to login to Facebook it needs to perform the following.
+_listbegin
+Call FacebookSetup, passing in the app ID.
+Check the user's device has an internet connection by calling GetInternetState.
+Call FacebookLogin.
+Confirm that the user is logged in by checking the return value of GetFacebookLoggedIn.
+_listend
+_text
+Prior to attempting to login to Facebook it's a good idea to first of all determine if the user has a viable internet connection. This can be handled by calling the command GetInternetState. If this returns a value of 1 then you can attempt to login to Facebook.
+_text
+When FacebookLogin is called the user will be presented with a Facebook login dialog, that provides the user with the name of the Facebook app they are logging into. At this point the user enters their details and continues.
+_text
+The login process isn't going to happen instantaneously, it may take several seconds before knowing whether the login has failed or succeeded, so the login code needs to handle this. Here's an example of how it might work.
+_tier1
+FacebookSetup ( "358083327620324" )
+
+
+loggedIn = Login ( )
+
+
+do
+        print ( loggedIn )
+        
+
+        sync ( )
+loop
+
+
+function Login ( )
+        if GetInternetState ( ) = 0
+                exitfunction 0
+        endif
+        
+
+        FacebookLogin ( )
+        
+
+        do
+                loggedIn = GetFacebookLoggedIn ( )
+                
+
+                select loggedIn
+                        case 0:
+                                print ( "waiting to login..." )
+                        endcase
+                        
+
+                        case 1:
+                                print ( "logged in" )
+                                exitfunction 1
+                        endcase
+                        
+
+                        case -1:
+                                print ( "an error has occurred" )
+                                exitfunction -1
+                        endcase
+                endselect
+                
+
+                sync ( )
+        loop
+endfunction 0
+_tier1
+_text
+The program begins by calling FacebookSetup and passing in the App ID from the application listing on Facebook. This is followed by a call to the function Login.
+_listbegin
+A check is made to see if an internet connection is available by calling GetInternetState. If a connection is available a value of 1 will be returned, otherwise the command returns 0, in which case exitfunction is used to immediately return out of the function with a value of 0.
+The next step is a call to FacebookLogin.
+Given that GetFacebookLoggedIn may take a few seconds to determine whether the user is logged in a do loop is used that continually checks the return value of this command.
+A select is used to look at the return value for GetFacebookLoggedIn. A value of 0 means the the user is still waiting to login, whereas a value of 1 indicates the login was successful and -1 means there's some kind of problem resulting in the user being unable to login.
+When the function is complete its return value is passed to the caller, with the result stored inside the loggedIn variable, that gets displayed on screen letting us know the result of the login.
+Given that this function may take several seconds to complete it would be a good idea to provide some information on screen for the user letting them know that the program is waiting to login to Facebook. As an extra precaution the function could be modified so that the Facebook login was given a set amount of time to complete, for example, 60 seconds. If the return value from GetFacebookLoggedIn was still 0 at this point then you could exit out of the function assuming the login had failed.
+_listend
+_sheader
+Posting information to the user's wall
+_text
+Once a user has been logged into Facebook you can post information to their wall / page. The command to do this is called FacebookPostOnMyWall. When it is called in your program the command will display a dialog on screen, prompting the user to post the message to their Facebook page. It takes the following parameters.
+_listbegin
+link - link to a webpage
+picture - a picture that can be displayed on the post
+name - a name given to the post
+caption - a caption if required
+description - a description of the post
+_listend
+_text
+This command is a great way to help promote your app. It could be used, for example, when a player reaches a certain score in a game, or perhaps when a player meets certain targets. Here's an example of how it can be used in the previous program, after a login attempt.
+_tier1
+if loggedIn = 1
+        link$ = "www.game-guru.com"
+        image$ = "https://www.thegamecreators.com/images/banners/gameguru-tgc-banner.jpg"
+        name$ = "Game Guru"
+        caption$ = "Check out Game Guru"
+        description$ = "Create, play and share fun games on your PC with absolutely no technical knowledge needed!"
+        
+
+        FacebookPostOnMyWall ( link$, image$, name$, caption$, description$ )
+endif
+_tier1
+_sheader
+Finding friends
+_text
+A few commands are provided that allow you to obtain a list of friends who are also playing your app. Through the use of these commands it would be possible to create something like a high score table, showing a list of your friends and how successful they are at the game. It's also possible to post a message on a friends wall instead of your own.
+_text
+Once logged into Facebook the command FacebookGetFriends can be called to retrieve a list of your friends who have your app. Like the login command this will not necessarily complete immediately, so it may be that your app has to wait several seconds before the information is available. After calling FacebookGetFriends the command FacebookGetFriendsState is used to determine whether the information has been obtained or if there is a problem. Once the list has downloaded you can get information such as a user's name and also download their profile picture.
+_text
+Getting a list of friends could be handled with this function.
+_tier1
+function GetFriends ( )
+        FacebookGetFriends ( )
+        
+
+        do
+                friends = FacebookGetFriendsState ( )
+                
+
+                select friends
+                        case 0:
+                                print ( "waiting to download friends list..." )
+                        endcase
+                        
+
+                        case 1:
+                                print ( "obtained information" )
+                                exitfunction 1
+                        endcase
+                        
+
+                        case -1:
+                                print ( "an error has occurred" )
+                                exitfunction -1
+                        endcase
+                endselect
+                
+
+                sync ( )
+        loop
+endfunction
+_tier1
+_text
+It's similar to the login process in that it may take several seconds before the information has been passed from Facebook to the app, so again at this stage it would be useful to display information on screen letting the user know what is happening, and also consider a timeout event to ensure the function does not remain here continually waiting to obtain a list of friends.
+_text
+Once a list of friends has been downloaded you can find out how many people are in it by calling FacebookGetFriendsCount. From there you can obtain the name of a friend in that list by calling FacebookGetFriendsName and their ID with FacebookGetFriendsID as shown in this function.
+_tier1
+function ShowFriends ( )
+        do
+                for i = 0 to FacebookGetFriendsCount ( )
+                        print ( FacebookGetFriendsName ( i ) )
+                        print ( FacebookGetFriendsID ( i ) )
+                next i
+                
+
+                sync ( )
+        loop
+endfunction
+_tier1
+_sheader
+Posting information to a friends wall
+_text
+This is similar to posting information onto the user's wall, except the command is called FacebookPostOnFriendsWall, which takes an extra parameter at the start, letting you control which friends wall you want to post to. Here's a function that shows how you could post onto a friends wall.
+_tier1
+function PostToFriendsWall ( index as integer )
+        link$ = "www.game-guru.com"
+        image$ = "https://www.thegamecreators.com/images/banners/gameguru-tgc-banner.jpg"
+        name$ = "Game Guru"
+        caption$ = "Check out Game Guru"
+        description$ = "Create, play and share fun games on your PC with absolutely no technical knowledge needed!"
+        
+
+        FacebookPostOnFriendsWall ( FacebookGetFriendsID ( index ), link$, image$, name$, caption$, description$ )
+endfunction
+_tier1
+_sheader
+Bringing it all together
+_text
+To conclude this guide a small program has been created that does the following.
+_listbegin
+Attempts to login to Facebook
+Retrieves a list of friends
+Downloads the profile picture for each friend and attaches this to a sprite
+Displays a list of names and pictures on screen
+When the user taps on a picture a message will be posted to that users wall
+_listend
+_tier1
+// a type to store information about facebook friends
+type friendType
+        ID as string
+        name as string
+        photo as string
+        image as integer
+        sprite as integer
+endtype
+
+
+// array to store friends
+friends as friendType [ 1 ]
+
+
+// current state
+state as integer = 1
+
+
+// index for current friend
+currentFriend as integer = 0
+
+
+// switch to new fonts
+UseNewDefaultFonts ( 1 )
+
+
+// set up facebook
+FacebookSetup ( "358083327620324" )
+
+
+// our main loop
+do
+        // take action dependent on the state
+        select state
+                case 1:
+                        // login to facebook
+                        if GetInternetState ( ) = 1
+                                print ( "attempting to login to facebook..." )
+                                FacebookLogin ( )
+                                state = 2
+                        else
+                                state = 8
+                        endif
+                endcase
+                
+
+                case 2:
+                        // wait for login and then get list of friends
+                        print ( "waiting to login to facebook..." )
+                        
+
+                        if GetFacebookLoggedIn ( ) = 1
+                                FacebookGetFriends ( )
+                                state = 3
+                        endif
+                endcase
+                
+
+                case 3:
+                        // get list of friends
+                        print ( "waiting to get list of friends..." )
+                        
+
+                        if FacebookGetFriendsState ( ) = 1
+                                if FacebookGetFriendsCount ( ) >= 1
+                                        state = 4
+                                else
+                                        state = 8
+                                endif
+                        endif
+                endcase
+                
+
+                case 4:
+                        // download photo for friend
+                        FacebookDownloadFriendsPhoto ( currentFriend )
+                        state = 5
+                endcase
+                
+
+                case 5:
+                        // check download state
+                        download = GetFacebookDownloadState ( )
+                        
+
+                        // still downloading, or downloading or failed
+                        if download = 1
+                                print ( "downloading photo for friend" )
+                        elseif download = 2
+                                // store information about this friend in our array
+                                friends [ currentFriend ].ID = FacebookGetFriendsID ( currentFriend )
+                                friends [ currentFriend ].name = FacebookGetFriendsName ( currentFriend )
+                                friends [ currentFriend ].photo = GetFacebookDownloadFile ( )
+                                friends [ currentFriend ].image = LoadImage ( friends [ currentFriend ].photo )
+                                friends [ currentFriend ].sprite = CreateSprite ( friends [ currentFriend ].image )
+                                
+
+                                SetSpriteSize ( friends [ currentFriend ].sprite, 20, 10 )
+                                
+
+                                // either download information about the next friend or move on
+                                if currentFriend < FacebookGetFriendsCount ( )
+                                        friends.length = friends.length + 1
+                                        currentFriend = currentFriend + 1
+                                        state = 4 
+                                else
+                                        state = 6
+                                endif
+                        else
+                                state = 8
+                        endif
+                endcase
+                
+                case 6:
+                        // position photos of friends on screen to the right
+                        y = 0
+                        
+
+                        for i = 0 to friends.length
+                                SetSpritePosition ( friends [ currentFriend ].sprite, 80, y )
+                                y = y + 10
+                        next i
+                        
+
+                        state = 7
+                endcase
+                
+
+                case 7:
+                        // post on wall
+                        
+
+                        // print out friends names
+                        for i = 0 to friends.length
+                                print ( friends [ i ].name )
+                        next i
+                        
+
+                        // deal with any input
+                        if GetPointerPressed ( ) = 1
+                                x = GetPointerX ( )
+                                y = GetPointerY ( )
+                                
+
+                                for i = 0 to friends.length
+                                        if GetSpriteHitTest ( friends [ currentFriend ].sprite, x, y ) = 1
+                                                
+
+                                                link$ = "www.game-guru.com"
+                                                image$ = "https://www.thegamecreators.com/images/banners/gameguru-tgc-banner.jpg"
+                                                name$ = "Game Guru"
+                                                caption$ = "Check out Game Guru"
+                                                description$ = "Create, play and share fun games on your PC with absolutely no technical knowledge needed!"
+                                                
+        
+                                                // to post this information on a friends wall
+                                                FacebookPostOnFriendsWall ( friends [ currentFriend ].ID, link$, image$, name$, caption$, description$ )
+                                        endif
+                                next i
+                        endif
+                endcase
+                
+
+                case 8:
+                        // no friends using the app or some kind of problem getting information
+                endcase
+        endselect
+        
+
+        sync ( )
+loop
+_tier1
