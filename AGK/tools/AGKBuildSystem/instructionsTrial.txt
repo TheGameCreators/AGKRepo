@@ -1,0 +1,32 @@
+Assumes build number has arleady been set and a full build has been done
+
+Browse to AGKTrunk/tools/AGKBuildSystem/WindowsTrial
+Run Windows Trial build system
+Edit nsi trial version number
+Run nsi Windows trial script
+Windows version complete
+
+**Turn on Linux 64 bit to receive shared files**
+
+**Switch to Linux 32 bit**
+Check shared folder ~/NetworkShare is connected to 64 bit Linux Receive folder (sometimes isn't)
+Update SVN
+Edit geany.h to enable trial define
+Browse to AGKTrunk/tools/AGKBuildSystem/LinuxTrial
+Run LinuxBuilderTrial32.sh
+Edit geany.h to disable trial define
+32 bit machine no longer needed
+
+**Switch to Linux 64 bit**
+Check shared folder ~/Shares/FilesAlphaLinux is connected to Windows
+Check shared folder ~/Shares/WindowsReceive is connected to Windows
+Browse to AGKTrunk/tools/AGKBuildSystem/LinuxTrial
+Run AGKBuildTrial
+Linux build complete
+
+**Switch to MAC**
+Activate Receive and FilesMacAlpha folders for file copying (/Volumes)
+Browse to AGKTrunk/tools/AGKBuildSystem/MacTrial
+Run AGKBuildTrial
+Test IDE
+Mac version complete

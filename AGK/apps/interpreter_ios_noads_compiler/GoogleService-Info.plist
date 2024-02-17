@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>960969182309-kssvdjj6nurpk1q7sdgr85dc0i3cfd87.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.960969182309-kssvdjj6nurpk1q7sdgr85dc0i3cfd87</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCmL4DoG4Ubg8HnQVpirqZAAJ5RuSBPc_o</string>
+	<key>GCM_SENDER_ID</key>
+	<string>960969182309</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.thegamecreators.agk2player</string>
+	<key>PROJECT_ID</key>
+	<string>agktest-427a3</string>
+	<key>STORAGE_BUCKET</key>
+	<string>agktest-427a3.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:960969182309:ios:a1c5e737958908f1</string>
+	<key>DATABASE_URL</key>
+	<string>https://agktest-427a3.firebaseio.com</string>
+</dict>
+</plist>

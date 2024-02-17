@@ -1,0 +1,9 @@
+-dontobfuscate
+-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*,!code/allocation/variable
+
+-keepattributes InnerClasses
+
+-keep public class com.thegamecreators.agk_player.** { *; }
+-keep public class com.google.firebase.** { *; }
+-keep public class androidx.core.content.** { *; }
+-keep public class com.android.installreferrer.** { *; }

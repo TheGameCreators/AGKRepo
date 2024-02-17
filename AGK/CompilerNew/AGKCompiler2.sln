@@ -1,0 +1,45 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AGKCompiler2", "AGKCompiler2.vcxproj", "{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		DebugStaticLib|x64 = DebugStaticLib|x64
+		DebugStaticLibIDE|x64 = DebugStaticLibIDE|x64
+		DebugStaticTrial|x64 = DebugStaticTrial|x64
+		Release|x64 = Release|x64
+		ReleaseFree|x64 = ReleaseFree|x64
+		ReleaseStaticLib|x64 = ReleaseStaticLib|x64
+		ReleaseStaticLibIDE|x64 = ReleaseStaticLibIDE|x64
+		ReleaseStaticTrial|x64 = ReleaseStaticTrial|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}.Debug|x64.ActiveCfg = Debug|x64
+		{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}.Debug|x64.Build.0 = Debug|x64
+		{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}.DebugStaticLib|x64.ActiveCfg = DebugStaticLib|x64
+		{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}.DebugStaticLib|x64.Build.0 = DebugStaticLib|x64
+		{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}.DebugStaticLibIDE|x64.ActiveCfg = DebugStaticLibIDE|x64
+		{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}.DebugStaticLibIDE|x64.Build.0 = DebugStaticLibIDE|x64
+		{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}.DebugStaticTrial|x64.ActiveCfg = DebugStaticTrial|x64
+		{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}.DebugStaticTrial|x64.Build.0 = DebugStaticTrial|x64
+		{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}.Release|x64.ActiveCfg = Release|x64
+		{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}.Release|x64.Build.0 = Release|x64
+		{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}.ReleaseFree|x64.ActiveCfg = ReleaseFree|x64
+		{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}.ReleaseFree|x64.Build.0 = ReleaseFree|x64
+		{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}.ReleaseStaticLib|x64.ActiveCfg = ReleaseStaticLib|x64
+		{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}.ReleaseStaticLib|x64.Build.0 = ReleaseStaticLib|x64
+		{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}.ReleaseStaticLibIDE|x64.ActiveCfg = ReleaseStaticLibIDE|x64
+		{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}.ReleaseStaticLibIDE|x64.Build.0 = ReleaseStaticLibIDE|x64
+		{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}.ReleaseStaticTrial|x64.ActiveCfg = ReleaseStaticTrial|x64
+		{F57767D5-52F9-4B55-B5BB-3DACCDC4093A}.ReleaseStaticTrial|x64.Build.0 = ReleaseStaticTrial|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {30687DBE-B54D-45DB-89BB-71773B0DD4FF}
+	EndGlobalSection
+EndGlobal

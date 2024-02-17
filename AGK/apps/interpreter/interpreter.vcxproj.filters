@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="AGK-KeepOut">
+      <UniqueIdentifier>{fab35402-76a0-4ac5-bdb4-4e5222b71d4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Core.cpp">
+      <Filter>AGK-KeepOut</Filter>
+    </ClCompile>
+    <ClCompile Include="interpreter.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="ProgramData.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AGKCommandEnums.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="AGKCommandSwitch.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="AGKCommonSwitch.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="AGKInstructions.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="AGKPluginCommandList.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="interpreter.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgramData.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>App</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="interpreter.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="interpreter.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="Win64Plugins.asm" />
+  </ItemGroup>
+</Project>

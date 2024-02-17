@@ -1,0 +1,49 @@
+uniform float agk_time;
+uniform vec2 agk_resolution;
+
+uniform sampler2D texture0;
+varying vec2 uvVarying;
+
+vec2 PixelOffsets [ 13 ];
+float BlurWeights [ 13 ];
+
+void main()
+{
+    PixelOffsets[ 0 ] = vec2( -6, 0 );
+    PixelOffsets[ 1 ] = vec2( -5, 0 );
+    PixelOffsets[ 2 ] = vec2( -4, 0 );
+    PixelOffsets[ 3 ] = vec2( -3, 0 );
+    PixelOffsets[ 4 ] = vec2( -2, 0 );
+    PixelOffsets[ 5 ] = vec2( -1, 0 );
+    PixelOffsets[ 6 ] = vec2(  0, 0 );
+    PixelOffsets[ 7 ] = vec2(  1, 0 );
+    PixelOffsets[ 8 ] = vec2(  2, 0 );
+    PixelOffsets[ 9 ] = vec2(  3, 0 );
+    PixelOffsets[ 10 ] = vec2(  4, 0 );
+    PixelOffsets[ 11 ] = vec2(  5, 0 );
+    PixelOffsets[ 12 ] = vec2(  6, 0 );
+
+    BlurWeights [ 0 ] = 0.002216;
+    BlurWeights [ 1 ] = 0.008764;
+    BlurWeights [ 2 ] = 0.026995;
+    BlurWeights [ 3 ] = 0.064759;
+    BlurWeights [ 4 ] = 0.120985;
+    BlurWeights [ 5 ] = 0.176033;
+    BlurWeights [ 6 ] = 0.200496;
+    BlurWeights [ 7 ] = 0.176033;
+    BlurWeights [ 8 ] = 0.120985;
+    BlurWeights [ 9 ] = 0.064759;
+    BlurWeights [ 10 ] = 0.026995;
+    BlurWeights [ 11 ] = 0.008764;
+    BlurWeights [ 12 ] = 0.002216;
+
+    vec2 scale = 1.0/agk_resolution.xy;
+    vec4 color = vec4(0,0,0,0);
+
+    for (int i = 0; i < 13; i++) {   
+		//convert pixel offsets into texel offsets via the inverse view values. 
+		color += texture2D( texture0, uvVarying + PixelOffsets[i].xy*scale ) * BlurWeights[i];
+    }
+
+    gl_FragColor = color;
+}

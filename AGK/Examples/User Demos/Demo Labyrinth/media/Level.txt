@@ -1,0 +1,6 @@
+level=Images/StartMaze.png
+level=Images/Maze1.png
+level=Images/Maze2.png
+level=Images/Maze3.png
+level=Images/Maze4.png
+level=Images/EndMaze.png

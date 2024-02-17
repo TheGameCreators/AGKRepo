@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{772637FC-428B-4164-BAB9-B5C9EE93ED1D}</ProjectGuid>
+    <RootNamespace>ImageJoiner</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+    <WindowsTargetPlatformVersion>7.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140_xp</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140_xp</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>15.0.26419.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>false</ValidateAllParameters>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../libJPEG;E:\C++ APIs\dxsdk (June2010)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>d3dx9.lib;d3d9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalLibraryDirectories>E:\C++ APIs\dxsdk (June2010)\Lib\x86</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>false</ValidateAllParameters>
+    </Midl>
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>../../libJPEG;E:\C++ APIs\dxsdk (June2010)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat />
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>d3dx9.lib;d3d9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalLibraryDirectories>E:\C++ APIs\dxsdk (June2010)\Lib\x86</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\libjpeg\jaricom.c" />
+    <ClCompile Include="..\..\libjpeg\jcapimin.c" />
+    <ClCompile Include="..\..\libjpeg\jcapistd.c" />
+    <ClCompile Include="..\..\libjpeg\jcarith.c" />
+    <ClCompile Include="..\..\libjpeg\jccoefct.c" />
+    <ClCompile Include="..\..\libjpeg\jccolor.c" />
+    <ClCompile Include="..\..\libjpeg\jcdctmgr.c" />
+    <ClCompile Include="..\..\libjpeg\jchuff.c" />
+    <ClCompile Include="..\..\libjpeg\jcinit.c" />
+    <ClCompile Include="..\..\libjpeg\jcmainct.c" />
+    <ClCompile Include="..\..\libjpeg\jcmarker.c" />
+    <ClCompile Include="..\..\libjpeg\jcmaster.c" />
+    <ClCompile Include="..\..\libjpeg\jcomapi.c" />
+    <ClCompile Include="..\..\libjpeg\jcparam.c" />
+    <ClCompile Include="..\..\libjpeg\jcprepct.c" />
+    <ClCompile Include="..\..\libjpeg\jcsample.c" />
+    <ClCompile Include="..\..\libjpeg\jdapimin.c" />
+    <ClCompile Include="..\..\libjpeg\jdapistd.c" />
+    <ClCompile Include="..\..\libjpeg\jdarith.c" />
+    <ClCompile Include="..\..\libjpeg\jdatadst.c" />
+    <ClCompile Include="..\..\libjpeg\jdatasrc.c" />
+    <ClCompile Include="..\..\libjpeg\jdcoefct.c" />
+    <ClCompile Include="..\..\libjpeg\jdcolor.c" />
+    <ClCompile Include="..\..\libjpeg\jddctmgr.c" />
+    <ClCompile Include="..\..\libjpeg\jdhuff.c" />
+    <ClCompile Include="..\..\libjpeg\jdinput.c" />
+    <ClCompile Include="..\..\libjpeg\jdmainct.c" />
+    <ClCompile Include="..\..\libjpeg\jdmarker.c" />
+    <ClCompile Include="..\..\libjpeg\jdmaster.c" />
+    <ClCompile Include="..\..\libjpeg\jdmerge.c" />
+    <ClCompile Include="..\..\libjpeg\jdpostct.c" />
+    <ClCompile Include="..\..\libjpeg\jdsample.c" />
+    <ClCompile Include="..\..\libjpeg\jerror.c" />
+    <ClCompile Include="..\..\libjpeg\jfdctflt.c" />
+    <ClCompile Include="..\..\libjpeg\jfdctfst.c" />
+    <ClCompile Include="..\..\libjpeg\jfdctint.c" />
+    <ClCompile Include="..\..\libjpeg\jidctflt.c" />
+    <ClCompile Include="..\..\libjpeg\jidctfst.c" />
+    <ClCompile Include="..\..\libjpeg\jidctint.c" />
+    <ClCompile Include="..\..\libjpeg\jmemansi.c" />
+    <ClCompile Include="..\..\libjpeg\jmemmgr.c" />
+    <ClCompile Include="..\..\libjpeg\jquant1.c" />
+    <ClCompile Include="..\..\libjpeg\jquant2.c" />
+    <ClCompile Include="..\..\libjpeg\jutils.c" />
+    <ClCompile Include="ImageJoiner.cpp" />
+    <ClCompile Include="ImageJoinerDlg.cpp" />
+    <ClCompile Include="LMImage.cpp" />
+    <ClCompile Include="LMTexNode.cpp" />
+    <ClCompile Include="LMTexture.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ImageJoiner.h" />
+    <ClInclude Include="ImageJoinerDlg.h" />
+    <ClInclude Include="LMImage.h" />
+    <ClInclude Include="LMTexNode.h" />
+    <ClInclude Include="LMTexture.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\..\..\Paul%27s\VC Projects\SVN Projects\AGKTrunk\tools\ImageJoiner\ReadMe.txt" />
+    <None Include="res\ImageJoiner.ico" />
+    <None Include="res\ImageJoiner.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ImageJoiner.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="ImageJoiner.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

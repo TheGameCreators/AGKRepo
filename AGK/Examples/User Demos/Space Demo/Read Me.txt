@@ -1,0 +1,10 @@
+Space Demo - Created by Matty H
+
+Demo shows how a selective bloom effect can be created. Since the bloom is 
+selective we can really crank it up without effecting the rest of the scene, this
+allows us to create a great sun effect.
+
+Android version also uses accelerometer so the user can look around the scene, the user
+should lay their device flat to look directly at the sun.
+
+Enjoy!!!

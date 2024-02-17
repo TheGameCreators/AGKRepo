@@ -1,0 +1,137 @@
+<project>
+	<settings>
+			<width>640.0</width>
+			<height>960.0</height>
+			<orientation>Portrait</orientation>
+			<grid>0</grid>
+			<gridsnap>0</gridsnap>
+			<gridwidth>64.0</gridwidth>
+			<gridheight>64.0</gridheight>
+			<gridred>64</gridred>
+			<gridgreen>255</gridgreen>
+			<gridblue>255</gridblue>
+			<gridoriginx>0.0</gridoriginx>
+			<gridoriginy>0.0</gridoriginy>
+			<scene colours>255 255 255 255 255 255 255 255 255 </scene colours>
+	</settings>
+</project>
+<entity>
+	<properties>
+			<type>sprite</type>
+			<scene>0</scene>
+			<name>sprite 0</name>
+			<x>22.0</x>
+			<y>108.0</y>
+			<size x>589.0</size x>
+			<size y>140.0</size y>
+			<scale x>1.0</scale x>
+			<scale y>1.0</scale y>
+			<offset x>294.5</offset x>
+			<offset y>70.0</offset y>
+			<angle>0.0</angle>
+			<depth>5000</depth>
+			<visible>1</visible>
+			<red>255</red>
+			<green>255</green>
+			<blue>255</blue>
+			<alpha>255</alpha>
+			<locked>0</locked>
+			<fixed>0</fixed>
+			<physics>0</physics>
+			<fliph>0</fliph>
+			<flipv>0</flipv>
+			<active>0</active>
+			<collision>0</collision>
+			<image>GameOver.png</image>
+	</properties>
+</entity>
+<entity>
+	<properties>
+			<type>sprite</type>
+			<scene>0</scene>
+			<name>sprite 1</name>
+			<x>148.0</x>
+			<y>261.0</y>
+			<size x>341.0</size x>
+			<size y>80.7</size y>
+			<scale x>1.0</scale x>
+			<scale y>1.0</scale y>
+			<offset x>170.5</offset x>
+			<offset y>40.3</offset y>
+			<angle>0.0</angle>
+			<depth>5000</depth>
+			<visible>1</visible>
+			<red>255</red>
+			<green>255</green>
+			<blue>255</blue>
+			<alpha>255</alpha>
+			<locked>0</locked>
+			<fixed>0</fixed>
+			<physics>0</physics>
+			<fliph>0</fliph>
+			<flipv>0</flipv>
+			<active>0</active>
+			<collision>0</collision>
+			<image>HighScores.png</image>
+	</properties>
+</entity>
+<entity>
+	<properties>
+			<type>sprite</type>
+			<scene>1</scene>
+			<name>sprite 2</name>
+			<x>47.0</x>
+			<y>48.0</y>
+			<size x>201.0</size x>
+			<size y>86.5</size y>
+			<scale x>1.0</scale x>
+			<scale y>1.0</scale y>
+			<offset x>100.5</offset x>
+			<offset y>43.3</offset y>
+			<angle>0.0</angle>
+			<depth>5000</depth>
+			<visible>1</visible>
+			<red>255</red>
+			<green>255</green>
+			<blue>255</blue>
+			<alpha>255</alpha>
+			<locked>0</locked>
+			<fixed>0</fixed>
+			<physics>0</physics>
+			<fliph>0</fliph>
+			<flipv>0</flipv>
+			<active>0</active>
+			<collision>0</collision>
+			<image>Score.png</image>
+	</properties>
+</entity>
+<entity>
+	<properties>
+			<type>sprite</type>
+			<scene>2</scene>
+			<name>sprite 3</name>
+			<x>29.0</x>
+			<y>353.0</y>
+			<size x>589.0</size x>
+			<size y>140.0</size y>
+			<scale x>1.0</scale x>
+			<scale y>1.0</scale y>
+			<offset x>294.5</offset x>
+			<offset y>70.0</offset y>
+			<angle>0.0</angle>
+			<depth>5000</depth>
+			<visible>1</visible>
+			<red>255</red>
+			<green>255</green>
+			<blue>255</blue>
+			<alpha>255</alpha>
+			<locked>0</locked>
+			<fixed>0</fixed>
+			<physics>0</physics>
+			<fliph>0</fliph>
+			<flipv>0</flipv>
+			<active>0</active>
+			<collision>0</collision>
+			<image>GameOver.png</image>
+	</properties>
+</entity>

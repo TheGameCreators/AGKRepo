@@ -1,0 +1,1964 @@
+In file included from jni/../../../assimp/BlenderDNA.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/3DSLoader.cpp:48:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/3DSConverter.cppIn file included from :jni/../../../assimp/ASELoader.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:44:
+206:
+In file included from jni/../../../assimp/StringComparison.h:jni/../../../assimp/AssimpPCH.h:206:
+159:2:jni/../../../assimp/StringComparison.h: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/B3DImporter.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/3DSLoader.cpp:52:
+In file included from jni/../../../assimp/3DSLoader.h:54:
+In file included from jni/../../../assimp/3DSHelper.h:48:
+In file included from jni/../../../assimp/SmoothingGroups.h:101:
+jni/../../../assimp/SmoothingGroups.inl:109:4: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                        register unsigned int idx = (*i).mIndices[c];
+                        ^~~~~~~~~
+In file included from jni/../../../assimp/Assimp.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/3DSConverter.cpp:48:
+In file included from jni/../../../assimp/3DSLoader.h:54:
+In file included from jni/../../../assimp/3DSHelper.h:48:
+In file included from jni/../../../assimp/SmoothingGroups.h:101:
+jni/../../../assimp/SmoothingGroups.inl:109:4: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                        register unsigned int idx = (*i).mIndices[c];
+                        ^~~~~~~~~
+In file included from jni/../../../assimp/BaseImporter.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/BaseProcess.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/ACLoader.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/BlenderScene.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/ASEParser.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/BVHLoader.cpp:43:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/BlenderLoader.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+jni/../../../assimp/3DSConverter.cpp:399:5: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                                register unsigned int index = aiSplit[p][q];
+                                ^~~~~~~~~
+In file included from jni/../../../assimp/AssimpCExport.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/BlenderModifier.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/AssimpPCH.cpp:4:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/ColladaParser.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/CalcTangentsProcess.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/CSMLoader.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/ColladaExporter.cpp:41:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/ColladaLoader.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/COBLoader.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+jni/../../../assimp/CalcTangentsProcess.cpp:170:5: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                                register unsigned int idx = face.mIndices[i];
+                                ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/ComputeUVMappingProcess.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/DeboneProcess.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/ConvertToLHProcess.cpp:50:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/DefaultIOSystem.cpp:43:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/DefaultIOStream.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+1 warning generated.
+1 warning generated.
+3 warnings generated.
+In file included from jni/../../../assimp/DXFLoader.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+2 warnings generated.
+1 warning generated.
+In file included from jni/../../../assimp/DefaultLogger.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/Exporter.cpp:53:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/FindDegenerates.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+jni/../../../assimp/FindDegenerates.cpp:110:8: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                for (register unsigned int i = 0; i < face.mNumIndices; ++i)
+                     ^~~~~~~~~
+jni/../../../assimp/FindDegenerates.cpp:119:9: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                        for (register unsigned int t = i+1; t < limit; ++t)
+                             ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/FindInstancesProcess.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/FixNormalsStep.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/FindInvalidDataProcess.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+jni/../../../assimp/FindInvalidDataProcess.cpp:92:4: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                        register unsigned int ref = node->mMeshes[a];
+                        ^~~~~~~~~
+In file included from jni/../../../assimp/GenFaceNormalsProcess.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+1 warning generated.
+3 warnings generated.
+1 warning generated.
+In file included from jni/../../../assimp/HMPLoader.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/GenVertexNormalsProcess.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+jni/../../../assimp/GenVertexNormalsProcess.cpp:198:5: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                                register unsigned int vidx = verticesFound[a];
+                                ^~~~~~~~~
+In file included from jni/../../../assimp/IFCCurve.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+2 warnings generated.
+2 warnings generated.
+In file included from jni/../../../assimp/IFCGeometry.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/IFCLoader.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/IFCMaterial.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/IFCUtil.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/IFCProfile.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/IFCReaderGen.cpp:43:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/Importer.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/ImproveCacheLocality.cpp:49:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/ImporterRegistry.cpp:49:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+jni/../../../assimp/ImproveCacheLocality.cpp:306:4: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                        register const unsigned int dp = *piCur;
+                        ^~~~~~~~~
+In file included from jni/../../../assimp/IRRLoader.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/ImporterRegistry.cpp:59:
+In file included from jni/../../../assimp/3DSLoader.h:54:
+In file included from jni/../../../assimp/3DSHelper.h:48:
+In file included from jni/../../../assimp/SmoothingGroups.h:101:
+jni/../../../assimp/SmoothingGroups.inl:109:4: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                        register unsigned int idx = (*i).mIndices[c];
+                        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/ImporterRegistry.cpp:95:
+In file included from jni/../../../assimp/LWOLoader.h:48:
+jni/../../../assimp/LWOFileData.h:349:3: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                register unsigned int m = num*dims;
+                ^~~~~~~~~
+2 warnings generated.
+In file included from jni/../../../assimp/IRRMeshLoader.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/IRRShared.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+2 warnings generated.
+In file included from jni/../../../assimp/LWOAnimation.cpp:49:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/LimitBoneWeightsProcess.cpp:43:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/JoinVerticesProcess.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/LWOLoader.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/LWOLoader.cpp:50:
+In file included from jni/../../../assimp/LWOLoader.h:48:
+jni/../../../assimp/LWOFileData.h:349:3: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                register unsigned int m = num*dims;
+                ^~~~~~~~~
+In file included from jni/../../../assimp/LWOBLoader.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/LWOMaterial.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/LWOBLoader.cpp:49:
+In file included from jni/../../../assimp/LWOLoader.h:48:
+jni/../../../assimp/LWOFileData.h:349:3: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                register unsigned int m = num*dims;
+                ^~~~~~~~~
+In file included from jni/../../../assimp/LWOMaterial.cpp:49:
+In file included from jni/../../../assimp/LWOLoader.h:48:
+jni/../../../assimp/LWOFileData.h:349:3: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                register unsigned int m = num*dims;
+                ^~~~~~~~~
+In file included from jni/../../../assimp/LWSLoader.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+jni/../../../assimp/LWOLoader.cpp:347:7: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                                                register unsigned int idx = face.mIndices[q];
+                                                ^~~~~~~~~
+3 warnings generated.
+jni/../../../assimp/LWOLoader.cpp:494:4: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                        register unsigned int tt = face.mIndices[i];
+                        ^~~~~~~~~
+jni/../../../assimp/LWOLoader.cpp:513:5: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                                register unsigned int idx = *beginIdx;
+                                ^~~~~~~~~
+jni/../../../assimp/LWOLoader.cpp:536:5: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                                register unsigned int idx = *beginIdx;
+                                ^~~~~~~~~
+jni/../../../assimp/LWOLoader.cpp:733:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register unsigned int regularSize = (unsigned int)mCurLayer->mTempPoints.size() + length / 12;
+        ^~~~~~~~~
+In file included from jni/../../../assimp/MakeVerboseFormat.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/MD2Loader.cpp:42:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/MaterialSystem.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/MD5Loader.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/MD3Loader.cpp:51:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/MD5Parser.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/MDCLoader.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+2 warnings generated.
+In file included from jni/../../../assimp/MDLLoader.cpp:48:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/MDLMaterialLoader.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+2 warnings generated.
+In file included from jni/../../../assimp/MS3DLoader.cpp:47:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/NFFLoader.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/NDOLoader.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/ObjFileImporter.cpp:42:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/ObjExporter.cpp:41:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/ObjFileMtlImporter.cpp:42:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/OFFLoader.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/ObjFileParser.cpp:42:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/OgreImporter.cpp:41:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/OptimizeGraph.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/OgreMaterial.cpp:41:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/OptimizeMeshes.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: In file included from jni/../../../assimp/PlyExporter.cpp:41:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+jni/../../../assimp/OptimizeMeshes.cpp:165:5: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                                register unsigned int am = pNode->mMeshes[a];
+                                ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/PlyLoader.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/PlyParser.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+2 warnings generated.
+1 warning generated.
+In file included from jni/../../../assimp/PostStepRegistry.cpp:49:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/PretransformVertices.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/ProcessHelper.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/Q3BSPFileImporter.cpp:40:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/Q3BSPFileParser.cpp:40:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/RawLoader.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/Q3BSPZipArchive.cpp:41:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/Q3DLoader.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/RemoveRedundantMaterials.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/RemoveComments.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/RemoveVCProcess.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+jni/../../../assimp/RemoveVCProcess.cpp:274:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register bool b = (0 != (configDeleteFlags & aiComponent_TEXCOORDS));
+        ^~~~~~~~~
+In file included from jni/../../../assimp/SGSpatialSort.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/SkeletonMeshBuilder.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/SceneCombiner.cpp:49:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/ScenePreprocessor.cpp:41:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+2 warnings generated.
+1 warning generated.
+In file included from jni/../../../assimp/SMDLoader.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+7 warnings generated.
+In file included from jni/../../../assimp/SortByPTypeProcess.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/SpatialSort.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+jni/../../../assimp/SortByPTypeProcess.cpp:297:6: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                                        register unsigned int idx = in.mIndices[q];
+                                        ^~~~~~~~~
+In file included from jni/../../../assimp/SplitByBoneCountProcess.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/StandardShapes.cpp:48:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/SplitLargeMeshes.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/STLExporter.cpp:41:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/STEPFileReader.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/STLLoader.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/TargetAnimation.cpp:41:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/Subdivision.cpp:41:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/TerragenLoader.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/TextureTransform.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/TriangulateProcess.cpp:61:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+2 warnings generated.
+1 warning generated.
+In file included from jni/../../../assimp/UnrealLoader.cpp:49:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/ValidateDataStructure.cpp:47:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/XFileImporter.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/VertexTriangleAdjacency.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/XFileParser.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/XGLLoader.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/include/irrXML/irrXML.cpp:8:
+In file included from jni/../../../assimp/include/irrXML/../../AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+jni/../../../assimp/include/poly2tri/sweep/sweep.cc:655:8: warning: reference cannot be bound to dereferenced null pointer in well-defined C++ code; comparison may be assumed to always evaluate to false [-Wtautological-undefined-compare]
+  if (&ot == NULL) {
+       ^~    ~~~~
+jni/../../../assimp/include/poly2tri/sweep/sweep.cc:731:10: warning: reference cannot be bound to dereferenced null pointer in well-defined C++ code; comparison may be assumed to always evaluate to false [-Wtautological-undefined-compare]
+  if (&t.NeighborAcross(p) == NULL) {
+       ~~^~~~~~~~~~~~~~~~~    ~~~~
+jni/../../../assimp/include/poly2tri/sweep/../common/shapes.h:212:11: note: 'NeighborAcross' returns a reference
+Triangle& NeighborAcross(Point& opoint);
+          ^
+jni/../../../assimp/include/poly2tri/sweep/sweep_context.cc:167:8: warning: reference cannot be bound to dereferenced null pointer in well-defined C++ code; comparison may be assumed to always evaluate to true [-Wtautological-undefined-compare]
+  if (&triangle != NULL && !triangle.IsInterior()) {
+       ^~~~~~~~    ~~~~
+1 warning generated.
+2 warnings generated.
+In file included from jni/../../../assimp/Bitmap.cpp:48:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/BlenderBMesh.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/BlenderTessellator.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/FBXAnimation.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/FBXConverter.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/FBXBinaryTokenizer.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/FBXDeformer.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/FBXDocument.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/FBXDocumentUtil.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/FBXMaterial.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/FBXImporter.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/FBXConverter.cpp:52:
+In file included from jni/../../../assimp/FBXParser.h:54:
+jni/../../../assimp/LogAux.h:73:32: warning: instantiation of variable 'Assimp::LogFunctions<Assimp::FBXImporter>::log_prefix' required here, but no definition is available [-Wundefined-var-template]
+                        DefaultLogger::get()->error(log_prefix+(std::string)message);
+                                                    ^
+jni/../../../assimp/LogAux.h:104:4: note: in instantiation of member function 'Assimp::LogFunctions<Assimp::FBXImporter>::LogError' requested here
+                        LogError(Formatter::format(message));
+                        ^
+jni/../../../assimp/FBXConverter.cpp:490:17: note: in instantiation of member function 'Assimp::LogFunctions<Assimp::FBXImporter>::LogError' requested here
+                        FBXImporter::LogError("Unsupported RotationMode: SphericXYZ");
+                                     ^
+jni/../../../assimp/LogAux.h:126:27: note: forward declaration of template entity is here
+        static const std::string log_prefix;
+                                 ^
+jni/../../../assimp/LogAux.h:73:32: note: add an explicit instantiation declaration to suppress this warning if 'Assimp::LogFunctions<Assimp::FBXImporter>::log_prefix' is explicitly instantiated in another translation unit
+                        DefaultLogger::get()->error(log_prefix+(std::string)message);
+                                                    ^
+In file included from jni/../../../assimp/FBXMeshGeometry.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/FBXModel.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/FBXNodeAttribute.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/FBXParser.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/FBXMeshGeometry.cpp:50:
+In file included from jni/../../../assimp/FBXParser.h:54:
+jni/../../../assimp/LogAux.h:73:32: warning: instantiation of variable 'Assimp::LogFunctions<Assimp::FBXImporter>::log_prefix' required here, but no definition is available [-Wundefined-var-template]
+                        DefaultLogger::get()->error(log_prefix+(std::string)message);
+                                                    ^
+jni/../../../assimp/FBXMeshGeometry.cpp:226:15: note: in instantiation of member function 'Assimp::LogFunctions<Assimp::FBXImporter>::LogError' requested here
+        FBXImporter::LogError(Formatter::format("failed to resolve vertex layer element: ") 
+                     ^
+jni/../../../assimp/LogAux.h:126:27: note: forward declaration of template entity is here
+        static const std::string log_prefix;
+                                 ^
+jni/../../../assimp/LogAux.h:73:32: note: add an explicit instantiation declaration to suppress this warning if 'Assimp::LogFunctions<Assimp::FBXImporter>::log_prefix' is explicitly instantiated in another translation unit
+                        DefaultLogger::get()->error(log_prefix+(std::string)message);
+                                                    ^
+1 warning generated.
+In file included from jni/../../../assimp/FBXProperties.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/FBXTokenizer.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/FBXUtil.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/IFCBoolean.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/OgreBinarySerializer.cpp:41:
+In file included from jni/../../../assimp/OgreBinarySerializer.h:46:
+In file included from jni/../../../assimp/OgreStructs.h:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/IFCOpenings.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/OgreStructs.cpp:43:
+In file included from jni/../../../assimp/OgreStructs.h:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/OgreXmlSerializer.cpp:41:
+In file included from jni/../../../assimp/OgreXmlSerializer.h:46:
+In file included from jni/../../../assimp/OgreStructs.h:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+1 warning generated.
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/STEPFileEncoding.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/3DSConverter.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/3DSConverter.cpp:48:
+In file included from jni/../../../assimp/3DSLoader.h:54:
+In file included from jni/../../../assimp/3DSHelper.h:48:
+In file included from jni/../../../assimp/SmoothingGroups.h:101:
+jni/../../../assimp/SmoothingGroups.inl:109:4: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                        register unsigned int idx = (*i).mIndices[c];
+                        ^~~~~~~~~
+1 warning generated.
+jni/../../../assimp/3DSConverter.cpp:399:5: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                                register unsigned int index = aiSplit[p][q];
+                                ^~~~~~~~~
+In file included from jni/../../../assimp/3DSLoader.cpp:48:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/3DSLoader.cpp:52:
+In file included from jni/../../../assimp/3DSLoader.h:54:
+In file included from jni/../../../assimp/3DSHelper.h:48:
+In file included from jni/../../../assimp/SmoothingGroups.h:101:
+jni/../../../assimp/SmoothingGroups.inl:109:4: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                        register unsigned int idx = (*i).mIndices[c];
+                        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/ACLoader.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/ASELoader.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/ASEParser.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/Assimp.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/B3DImporter.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/AssimpCExport.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/AssimpPCH.cpp:4:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+2 warnings generated.
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/BaseImporter.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/BaseProcess.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/BlenderLoader.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/BlenderDNA.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/BlenderModifier.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/BlenderScene.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/COBLoader.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+3 warnings generated.
+In file included from jni/../../../assimp/BVHLoader.cpp:43:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/CalcTangentsProcess.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+jni/../../../assimp/CalcTangentsProcess.cpp:170:5: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                                register unsigned int idx = face.mIndices[i];
+                                ^~~~~~~~~
+In file included from jni/../../../assimp/ColladaExporter.cpp:41:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/ColladaLoader.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/ColladaParser.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/CSMLoader.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/ConvertToLHProcess.cpp:50:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/ComputeUVMappingProcess.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/DeboneProcess.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+2 warnings generated.
+In file included from jni/../../../assimp/DefaultIOStream.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/DefaultIOSystem.cpp:43:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/DefaultLogger.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/DXFLoader.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/Exporter.cpp:53:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/FindDegenerates.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+jni/../../../assimp/FindDegenerates.cpp:110:8: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                for (register unsigned int i = 0; i < face.mNumIndices; ++i)
+                     ^~~~~~~~~
+jni/../../../assimp/FindDegenerates.cpp:119:9: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                        for (register unsigned int t = i+1; t < limit; ++t)
+                             ^~~~~~~~~
+In file included from jni/../../../assimp/FindInvalidDataProcess.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/FindInstancesProcess.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+jni/../../../assimp/FindInvalidDataProcess.cpp:92:4: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                        register unsigned int ref = node->mMeshes[a];
+                        ^~~~~~~~~
+1 warning generated.
+3 warnings generated.
+In file included from jni/../../../assimp/FixNormalsStep.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/GenFaceNormalsProcess.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/GenVertexNormalsProcess.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/HMPLoader.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+2 warnings generated.
+jni/../../../assimp/GenVertexNormalsProcess.cpp:198:5: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                                register unsigned int vidx = verticesFound[a];
+                                ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/IFCGeometry.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+2 warnings generated.
+In file included from jni/../../../assimp/IFCCurve.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/IFCLoader.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+2 warnings generated.
+1 warning generated.
+In file included from jni/../../../assimp/IFCMaterial.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/IFCProfile.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+2 warnings generated.
+In file included from jni/../../../assimp/IFCReaderGen.cpp:43:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/IRRLoader.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/ImproveCacheLocality.cpp:49:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/ImporterRegistry.cpp:49:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/IRRMeshLoader.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+jni/../../../assimp/ImproveCacheLocality.cpp:306:4: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                        register const unsigned int dp = *piCur;
+                        ^~~~~~~~~
+In file included from jni/../../../assimp/IRRShared.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/ImporterRegistry.cpp:59:
+In file included from jni/../../../assimp/3DSLoader.h:54:
+In file included from jni/../../../assimp/3DSHelper.h:48:
+In file included from jni/../../../assimp/SmoothingGroups.h:101:
+jni/../../../assimp/SmoothingGroups.inl:109:4: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                        register unsigned int idx = (*i).mIndices[c];
+                        ^~~~~~~~~
+In file included from jni/../../../assimp/Importer.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/IFCUtil.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/ImporterRegistry.cpp:95:
+In file included from jni/../../../assimp/LWOLoader.h:48:
+jni/../../../assimp/LWOFileData.h:349:3: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                register unsigned int m = num*dims;
+                ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/JoinVerticesProcess.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/LimitBoneWeightsProcess.cpp:43:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+2 warnings generated.
+In file included from jni/../../../assimp/LWOAnimation.cpp:49:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/LWOBLoader.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/LWOBLoader.cpp:49:
+In file included from jni/../../../assimp/LWOLoader.h:48:
+jni/../../../assimp/LWOFileData.h:349:3: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                register unsigned int m = num*dims;
+                ^~~~~~~~~
+In file included from jni/../../../assimp/LWOLoader.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/LWOLoader.cpp:50:
+In file included from jni/../../../assimp/LWOLoader.h:48:
+jni/../../../assimp/LWOFileData.h:349:3: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                register unsigned int m = num*dims;
+                ^~~~~~~~~
+In file included from jni/../../../assimp/MaterialSystem.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/MakeVerboseFormat.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+jni/../../../assimp/LWOLoader.cpp:        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+347:7: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                                                register unsigned int idx = face.mIndices[q];
+                                                ^~~~~~~~~
+In file included from jni/../../../assimp/LWOMaterial.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+jni/../../../assimp/LWOLoader.cpp:494:4: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                        register unsigned int tt = face.mIndices[i];
+                        ^~~~~~~~~
+jni/../../../assimp/LWOLoader.cpp:513:5: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                                register unsigned int idx = *beginIdx;
+                                ^~~~~~~~~
+jni/../../../assimp/LWOLoader.cpp:536:5: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                                register unsigned int idx = *beginIdx;
+                                ^~~~~~~~~
+In file included from jni/../../../assimp/LWOMaterial.cpp:49:
+In file included from jni/../../../assimp/LWOLoader.h:48:
+jni/../../../assimp/LWOFileData.h:349:3: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                register unsigned int m = num*dims;
+                ^~~~~~~~~
+3 warnings generated.
+jni/../../../assimp/LWOLoader.cpp:733:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register unsigned int regularSize = (unsigned int)mCurLayer->mTempPoints.size() + length / 12;
+        ^~~~~~~~~
+In file included from jni/../../../assimp/LWSLoader.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/MD3Loader.cpp:51:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/MD2Loader.cpp:42:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/MD5Loader.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/MD5Parser.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+2 warnings generated.
+In file included from jni/../../../assimp/MDLLoader.cpp:48:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/MDLMaterialLoader.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/MDCLoader.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/NDOLoader.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/MS3DLoader.cpp:47:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/NFFLoader.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/ObjExporter.cpp:41:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/ObjFileImporter.cpp:42:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+2 warnings generated.
+In file included from jni/../../../assimp/ObjFileMtlImporter.cpp:42:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/ObjFileParser.cpp:42:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/OFFLoader.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/OgreMaterial.cpp:41:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/OptimizeGraph.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/OgreImporter.cpp:41:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/OptimizeMeshes.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+jni/../../../assimp/OptimizeMeshes.cpp:165:5: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                                register unsigned int am = pNode->mMeshes[a];
+                                ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/PlyExporter.cpp:41:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+2 warnings generated.
+1 warning generated.
+In file included from jni/../../../assimp/PlyLoader.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/PretransformVertices.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/PostStepRegistry.cpp:49:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/PlyParser.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/ProcessHelper.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/Q3BSPFileImporter.cpp:40:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/Q3BSPFileParser.cpp:40:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/Q3BSPZipArchive.cpp:41:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/Q3DLoader.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/RawLoader.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/RemoveComments.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/RemoveRedundantMaterials.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/RemoveVCProcess.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/SceneCombiner.cpp:49:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+jni/../../../assimp/RemoveVCProcess.cpp:274:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register bool b = (0 != (configDeleteFlags & aiComponent_TEXCOORDS));
+        ^~~~~~~~~
+In file included from jni/../../../assimp/ScenePreprocessor.cpp:41:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/SGSpatialSort.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+2 warnings generated.
+1 warning generated.
+In file included from jni/../../../assimp/SMDLoader.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/SkeletonMeshBuilder.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/SortByPTypeProcess.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+jni/../../../assimp/SortByPTypeProcess.cpp:297:6: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+                                        register unsigned int idx = in.mIndices[q];
+                                        ^~~~~~~~~
+In file included from jni/../../../assimp/SplitByBoneCountProcess.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/SpatialSort.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/StandardShapes.cpp:48:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/STEPFileReader.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+7 warnings generated.
+In file included from jni/../../../assimp/SplitLargeMeshes.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/STLExporter.cpp:41:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/STLLoader.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/TargetAnimation.cpp:41:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/Subdivision.cpp:41:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/TerragenLoader.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+2 warnings generated.
+In file included from jni/../../../assimp/TriangulateProcess.cpp:61:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/TextureTransform.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/UnrealLoader.cpp:49:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/ValidateDataStructure.cpp:47:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/VertexTriangleAdjacency.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/XFileParser.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/XFileImporter.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/XGLLoader.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/include/irrXML/irrXML.cpp:8:
+In file included from jni/../../../assimp/include/irrXML/../../AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+jni/../../../assimp/include/poly2tri/sweep/sweep_context.cc:167:8: warning: reference cannot be bound to dereferenced null pointer in well-defined C++ code; comparison may be assumed to always evaluate to true [-Wtautological-undefined-compare]
+  if (&triangle != NULL && !triangle.IsInterior()) {
+       ^~~~~~~~    ~~~~
+jni/../../../assimp/include/poly2tri/sweep/sweep.cc:655:8: warning: reference cannot be bound to dereferenced null pointer in well-defined C++ code; comparison may be assumed to always evaluate to false [-Wtautological-undefined-compare]
+  if (&ot == NULL) {
+       ^~    ~~~~
+jni/../../../assimp/include/poly2tri/sweep/sweep.cc:731:10: warning: reference cannot be bound to dereferenced null pointer in well-defined C++ code; comparison may be assumed to always evaluate to false [-Wtautological-undefined-compare]
+  if (&t.NeighborAcross(p) == NULL) {
+       ~~^~~~~~~~~~~~~~~~~    ~~~~
+jni/../../../assimp/include/poly2tri/sweep/../common/shapes.h:212:11: note: 'NeighborAcross' returns a reference
+Triangle& NeighborAcross(Point& opoint);
+          ^
+1 warning generated.
+1 warning generated.
+2 warnings generated.
+In file included from jni/../../../assimp/Bitmap.cpp:48:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/BlenderBMesh.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/BlenderTessellator.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/FBXBinaryTokenizer.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/FBXAnimation.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/FBXConverter.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/FBXDeformer.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/FBXDocument.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/FBXDocumentUtil.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/FBXMeshGeometry.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/FBXImporter.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/FBXConverter.cpp:52:
+In file included from jni/../../../assimp/FBXParser.h:54:
+jni/../../../assimp/LogAux.h:73:32: warning: instantiation of variable 'Assimp::LogFunctions<Assimp::FBXImporter>::log_prefix' required here, but no definition is available [-Wundefined-var-template]
+                        DefaultLogger::get()->error(log_prefix+(std::string)message);
+                                                    ^
+jni/../../../assimp/LogAux.h:104:4: note: in instantiation of member function 'Assimp::LogFunctions<Assimp::FBXImporter>::LogError' requested here
+                        LogError(Formatter::format(message));
+                        ^
+jni/../../../assimp/FBXConverter.cpp:490:17: note: in instantiation of member function 'Assimp::LogFunctions<Assimp::FBXImporter>::LogError' requested here
+                        FBXImporter::LogError("Unsupported RotationMode: SphericXYZ");
+                                     ^
+jni/../../../assimp/LogAux.h:126:27: note: forward declaration of template entity is here
+        static const std::string log_prefix;
+                                 ^
+jni/../../../assimp/LogAux.h:73:32: note: add an explicit instantiation declaration to suppress this warning if 'Assimp::LogFunctions<Assimp::FBXImporter>::log_prefix' is explicitly instantiated in another translation unit
+                        DefaultLogger::get()->error(log_prefix+(std::string)message);
+                                                    ^
+In file included from jni/../../../assimp/FBXNodeAttribute.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/FBXParser.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/FBXMaterial.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/FBXModel.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/FBXMeshGeometry.cpp:50:
+In file included from jni/../../../assimp/FBXParser.h:54:
+jni/../../../assimp/LogAux.h:73:32: warning: instantiation of variable 'Assimp::LogFunctions<Assimp::FBXImporter>::log_prefix' required here, but no definition is available [-Wundefined-var-template]
+                        DefaultLogger::get()->error(log_prefix+(std::string)message);
+                                                    ^
+jni/../../../assimp/FBXMeshGeometry.cpp:226:15: note: in instantiation of member function 'Assimp::LogFunctions<Assimp::FBXImporter>::LogError' requested here
+        FBXImporter::LogError(Formatter::format("failed to resolve vertex layer element: ") 
+                     ^
+jni/../../../assimp/LogAux.h:126:27: note: forward declaration of template entity is here
+        static const std::string log_prefix;
+                                 ^
+jni/../../../assimp/LogAux.h:73:32: note: add an explicit instantiation declaration to suppress this warning if 'Assimp::LogFunctions<Assimp::FBXImporter>::log_prefix' is explicitly instantiated in another translation unit
+                        DefaultLogger::get()->error(log_prefix+(std::string)message);
+                                                    ^
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/FBXProperties.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/FBXTokenizer.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/FBXUtil.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/IFCOpenings.cpp:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+In file included from jni/../../../assimp/IFCBoolean.cpp:45:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/OgreBinarySerializer.cpp:41:
+In file included from jni/../../../assimp/OgreBinarySerializer.h:46:
+In file included from jni/../../../assimp/OgreStructs.h:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/OgreStructs.cpp:43:
+In file included from jni/../../../assimp/OgreStructs.h:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+1 warning generated.
+In file included from jni/../../../assimp/OgreXmlSerializer.cpp:41:
+In file included from jni/../../../assimp/OgreXmlSerializer.h:46:
+In file included from jni/../../../assimp/OgreStructs.h:46:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+In file included from jni/../../../assimp/STEPFileEncoding.cpp:44:
+In file included from jni/../../../assimp/AssimpPCH.h:206:
+jni/../../../assimp/StringComparison.h:159:2: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+        register int i = (int)b.length()-(int)a.length();
+        ^~~~~~~~~
+1 warning generated.
+1 warning generated.
+1 warning generated.
+1 warning generated.
+2 warnings generated.
+1 warning generated.
+1 warning generated.
+2 warnings generated.

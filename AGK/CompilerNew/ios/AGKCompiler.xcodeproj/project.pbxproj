@@ -1,0 +1,321 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4AEF10AA1FB3C55100BBCB21 /* AGKCompiler2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4AEF109A1FB3C55100BBCB21 /* AGKCompiler2.cpp */; };
+		4AEF10AB1FB3C55100BBCB21 /* cFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4AEF109C1FB3C55100BBCB21 /* cFile.cpp */; };
+		4AEF10AC1FB3C55100BBCB21 /* DynArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4AEF10A11FB3C55100BBCB21 /* DynArray.cpp */; };
+		4AEF10AD1FB3C55100BBCB21 /* iOSCompiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4AEF10A31FB3C55100BBCB21 /* iOSCompiler.cpp */; };
+		4AEF10AE1FB3C55100BBCB21 /* Parser1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4AEF10A41FB3C55100BBCB21 /* Parser1.cpp */; };
+		4AEF10AF1FB3C55100BBCB21 /* Parser2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4AEF10A61FB3C55100BBCB21 /* Parser2.cpp */; };
+		4AEF10B01FB3C55100BBCB21 /* ProgramData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4AEF10A81FB3C55100BBCB21 /* ProgramData.cpp */; };
+		4AEF10B21FB3D08C00BBCB21 /* uString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4AEF10B11FB3D08C00BBCB21 /* uString.cpp */; };
+		4AEF10B81FB3D4FD00BBCB21 /* libAGKCompiler.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4AEF108E1FB3C4D900BBCB21 /* libAGKCompiler.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4AEF108C1FB3C4D900BBCB21 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = ../../../../../Final;
+			dstSubfolderSpec = 16;
+			files = (
+				4AEF10B81FB3D4FD00BBCB21 /* libAGKCompiler.a in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		4AEF108E1FB3C4D900BBCB21 /* libAGKCompiler.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAGKCompiler.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AEF109A1FB3C55100BBCB21 /* AGKCompiler2.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = AGKCompiler2.cpp; path = ../AGKCompiler2.cpp; sourceTree = "<group>"; };
+		4AEF109B1FB3C55100BBCB21 /* AGKCompiler2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGKCompiler2.h; path = ../AGKCompiler2.h; sourceTree = "<group>"; };
+		4AEF109C1FB3C55100BBCB21 /* cFile.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = cFile.cpp; path = ../cFile.cpp; sourceTree = "<group>"; };
+		4AEF109D1FB3C55100BBCB21 /* cFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cFile.h; path = ../cFile.h; sourceTree = "<group>"; };
+		4AEF109E1FB3C55100BBCB21 /* cHashedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cHashedList.h; path = ../cHashedList.h; sourceTree = "<group>"; };
+		4AEF109F1FB3C55100BBCB21 /* CommandList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommandList.h; path = ../CommandList.h; sourceTree = "<group>"; };
+		4AEF10A01FB3C55100BBCB21 /* CompilerCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CompilerCommon.h; path = ../CompilerCommon.h; sourceTree = "<group>"; };
+		4AEF10A11FB3C55100BBCB21 /* DynArray.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = DynArray.cpp; path = ../DynArray.cpp; sourceTree = "<group>"; };
+		4AEF10A21FB3C55100BBCB21 /* DynArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DynArray.h; path = ../DynArray.h; sourceTree = "<group>"; };
+		4AEF10A31FB3C55100BBCB21 /* iOSCompiler.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = iOSCompiler.cpp; path = ../iOSCompiler.cpp; sourceTree = "<group>"; };
+		4AEF10A41FB3C55100BBCB21 /* Parser1.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = Parser1.cpp; path = ../Parser1.cpp; sourceTree = "<group>"; };
+		4AEF10A51FB3C55100BBCB21 /* Parser1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Parser1.h; path = ../Parser1.h; sourceTree = "<group>"; };
+		4AEF10A61FB3C55100BBCB21 /* Parser2.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = Parser2.cpp; path = ../Parser2.cpp; sourceTree = "<group>"; };
+		4AEF10A71FB3C55100BBCB21 /* Parser2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Parser2.h; path = ../Parser2.h; sourceTree = "<group>"; };
+		4AEF10A81FB3C55100BBCB21 /* ProgramData.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = ProgramData.cpp; path = ../ProgramData.cpp; sourceTree = "<group>"; };
+		4AEF10A91FB3C55100BBCB21 /* ProgramData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProgramData.h; path = ../ProgramData.h; sourceTree = "<group>"; };
+		4AEF10B11FB3D08C00BBCB21 /* uString.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = uString.cpp; path = ../../common/Source/uString.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4AEF108B1FB3C4D900BBCB21 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4AEF10851FB3C4D900BBCB21 = {
+			isa = PBXGroup;
+			children = (
+				4AEF10B11FB3D08C00BBCB21 /* uString.cpp */,
+				4AEF109A1FB3C55100BBCB21 /* AGKCompiler2.cpp */,
+				4AEF109B1FB3C55100BBCB21 /* AGKCompiler2.h */,
+				4AEF109C1FB3C55100BBCB21 /* cFile.cpp */,
+				4AEF109D1FB3C55100BBCB21 /* cFile.h */,
+				4AEF109E1FB3C55100BBCB21 /* cHashedList.h */,
+				4AEF109F1FB3C55100BBCB21 /* CommandList.h */,
+				4AEF10A01FB3C55100BBCB21 /* CompilerCommon.h */,
+				4AEF10A11FB3C55100BBCB21 /* DynArray.cpp */,
+				4AEF10A21FB3C55100BBCB21 /* DynArray.h */,
+				4AEF10A31FB3C55100BBCB21 /* iOSCompiler.cpp */,
+				4AEF10A41FB3C55100BBCB21 /* Parser1.cpp */,
+				4AEF10A51FB3C55100BBCB21 /* Parser1.h */,
+				4AEF10A61FB3C55100BBCB21 /* Parser2.cpp */,
+				4AEF10A71FB3C55100BBCB21 /* Parser2.h */,
+				4AEF10A81FB3C55100BBCB21 /* ProgramData.cpp */,
+				4AEF10A91FB3C55100BBCB21 /* ProgramData.h */,
+				4AEF108F1FB3C4D900BBCB21 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4AEF108F1FB3C4D900BBCB21 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4AEF108E1FB3C4D900BBCB21 /* libAGKCompiler.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4AEF108D1FB3C4D900BBCB21 /* AGKCompiler */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4AEF10971FB3C4D900BBCB21 /* Build configuration list for PBXNativeTarget "AGKCompiler" */;
+			buildPhases = (
+				4AEF108A1FB3C4D900BBCB21 /* Sources */,
+				4AEF108B1FB3C4D900BBCB21 /* Frameworks */,
+				4AEF108C1FB3C4D900BBCB21 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AGKCompiler;
+			productName = AGKCompiler;
+			productReference = 4AEF108E1FB3C4D900BBCB21 /* libAGKCompiler.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4AEF10861FB3C4D900BBCB21 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "The Game Creators";
+				TargetAttributes = {
+					4AEF108D1FB3C4D900BBCB21 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 4245WA8N82;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 4AEF10891FB3C4D900BBCB21 /* Build configuration list for PBXProject "AGKCompiler" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 4AEF10851FB3C4D900BBCB21;
+			productRefGroup = 4AEF108F1FB3C4D900BBCB21 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4AEF108D1FB3C4D900BBCB21 /* AGKCompiler */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4AEF108A1FB3C4D900BBCB21 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4AEF10B21FB3D08C00BBCB21 /* uString.cpp in Sources */,
+				4AEF10AC1FB3C55100BBCB21 /* DynArray.cpp in Sources */,
+				4AEF10AF1FB3C55100BBCB21 /* Parser2.cpp in Sources */,
+				4AEF10AA1FB3C55100BBCB21 /* AGKCompiler2.cpp in Sources */,
+				4AEF10AD1FB3C55100BBCB21 /* iOSCompiler.cpp in Sources */,
+				4AEF10AE1FB3C55100BBCB21 /* Parser1.cpp in Sources */,
+				4AEF10AB1FB3C55100BBCB21 /* cFile.cpp in Sources */,
+				4AEF10B01FB3C55100BBCB21 /* ProgramData.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4AEF10951FB3C4D900BBCB21 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		4AEF10961FB3C4D900BBCB21 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4AEF10981FB3C4D900BBCB21 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DEVELOPMENT_TEAM = 4245WA8N82;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					AGK_IOS,
+					AGK_COMPILER,
+					"DEBUG=1",
+					AGK_STATIC_LIB,
+				);
+				HEADER_SEARCH_PATHS = ../;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 armv7";
+			};
+			name = Debug;
+		};
+		4AEF10991FB3C4D900BBCB21 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DEVELOPMENT_TEAM = 4245WA8N82;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					AGK_COMPILER,
+					AGK_IOS,
+					AGK_STATIC_LIB,
+				);
+				HEADER_SEARCH_PATHS = ../;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 armv7";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4AEF10891FB3C4D900BBCB21 /* Build configuration list for PBXProject "AGKCompiler" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4AEF10951FB3C4D900BBCB21 /* Debug */,
+				4AEF10961FB3C4D900BBCB21 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4AEF10971FB3C4D900BBCB21 /* Build configuration list for PBXNativeTarget "AGKCompiler" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4AEF10981FB3C4D900BBCB21 /* Debug */,
+				4AEF10991FB3C4D900BBCB21 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4AEF10861FB3C4D900BBCB21 /* Project object */;
+}

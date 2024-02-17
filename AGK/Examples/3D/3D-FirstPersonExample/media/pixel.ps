@@ -1,0 +1,15 @@
+#ifdef GL_ES
+precision highp float;
+#endif
+
+uniform sampler2D texture0;
+uniform sampler2D texture1;
+	
+varying vec2 uv0Varying;
+varying vec2 uv1Varying;
+
+void main()
+{ 
+   gl_FragColor = (texture2D(texture1, uv1Varying)+vec4(0.5,0.5,0.5,1))*texture2D(texture0, uv0Varying);
+}
+

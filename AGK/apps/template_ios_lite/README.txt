@@ -1,0 +1,1 @@
+This is a lite version of the template_ios project that does not include Facebook, Twitter, or Push Notifications, this simplifies the build process somewhat if you do not need these commands. If you want to use this feature in your own tier 2 projects be sure you are linking against the platform/apple/Lib/ReleaseLite/libAGKiOS.a library

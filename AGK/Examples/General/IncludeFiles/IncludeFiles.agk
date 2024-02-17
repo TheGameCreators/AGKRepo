@@ -1,0 +1,13 @@
+
+[project]
+description=
+
+[projectfiles]
+FILE_0=functions.agc;-1
+FILE_1=main.agc;-1
+
+[files]
+FILE_NAME_0=1;main.agc;4;0
+
+[watchvariables]
+

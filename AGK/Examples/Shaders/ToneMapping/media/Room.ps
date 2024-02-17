@@ -1,0 +1,26 @@
+uniform sampler2D texture0; // tone map data
+
+varying highp vec3 posVarying;
+varying mediump vec3 normalVarying;
+varying mediump vec3 lightVarying;
+ 
+mediump vec3 GetPSLighting( mediump vec3 normal, highp vec3 pos );
+mediump vec3 ApplyFog( mediump vec3 color, highp vec3 pointPos );
+
+uniform vec4 agk_MeshDiffuse;
+uniform vec4 agk_MeshEmmisive;
+ 
+void main()
+{
+    // read tone map value and convert it to the range 0.3 to 3.0, so it can make the scene 3 times brighter or 3 times dimmer
+    mediump vec4 toneMap = texture2D(texture0, vec2(0.5,0.5));
+    mediump float tone = toneMap.r * 2.7 + 0.3;
+
+    mediump vec3 norm = normalize(normalVarying);
+    mediump vec3 light = lightVarying + GetPSLighting( norm, posVarying ); 
+    
+    mediump vec3 color = agk_MeshDiffuse.rgb * light + agk_MeshEmmisive.rgb;
+    color = ApplyFog( color, posVarying );
+    
+    gl_FragColor = vec4(color,1.0) * tone;
+}

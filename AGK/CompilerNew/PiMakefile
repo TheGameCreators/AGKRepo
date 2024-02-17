@@ -1,0 +1,40 @@
+CC = g++-4.8
+ODIR = build/obj
+INC = 
+CFLAGS = -O2 -mcpu=arm1176jzf-s -mfpu=vfp -mfloat-abi=hard -fsigned-char
+
+_OBJS = AGKCompiler2.o \
+        cFile.o \
+        DynArray.o \
+        Parser1.o \
+        Parser2.o \
+        ProgramData.o \
+        uString.o \
+        LinuxCompiler.o 
+OBJS = $(patsubst %,$(ODIR)/%,$(_OBJS))
+
+all: setup $(OBJS) Executable
+
+trial: trialflags all
+	
+trialflags:
+	$(eval CFLAGS += -DFREEVERSION)
+
+setup:
+	mkdir -p build/obj$(ARCH)
+
+$(ODIR)/%.o: %.cpp
+	$(CC) -DIDE_PI -DAGK_COMPILER -c $(INC) -o $@ $< $(CFLAGS)
+	
+$(ODIR)/%.o : ../common/Source/%.cpp
+	$(CC) -DIDE_PI -DAGK_COMPILER -c $(INC) -o $@ $< $(CFLAGS)
+	
+$(ODIR)/%.o: ../interpreter/%.cpp
+	$(CC) -DIDE_PI -DAGK_COMPILER -c $(INC) -o $@ $< $(CFLAGS)
+	
+Executable: | $(OBJS)
+	$(CC) $(OBJS) -o build/AGKCompiler
+
+clean:
+	rm -rf build/obj/*
+	rm -f build/AGKCompiler

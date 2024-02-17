@@ -1,0 +1,299 @@
+Instance Version: 1.1.0
+
+GPU: 0, Name: Radeon RX 570 Series, Type: 2, Version: 1.1.101
+Chosen GPU: Radeon RX 570 Series
+
+Instance Extensions
+VK_KHR_surface
+VK_KHR_win32_surface
+VK_KHR_get_physical_device_properties2
+VK_KHR_get_surface_capabilities2
+VK_KHR_external_memory_capabilities
+VK_KHR_device_group_creation
+VK_KHR_external_semaphore_capabilities
+VK_KHR_external_fence_capabilities
+VK_EXT_debug_report
+VK_EXT_debug_utils
+VK_EXT_swapchain_colorspace
+
+Device Extensions
+VK_KHR_sampler_mirror_clamp_to_edge
+VK_KHR_shader_draw_parameters
+VK_KHR_swapchain
+VK_KHR_maintenance1
+VK_KHR_maintenance2
+VK_KHR_maintenance3
+VK_KHR_relaxed_block_layout
+VK_KHR_dedicated_allocation
+VK_KHR_descriptor_update_template
+VK_KHR_external_memory
+VK_KHR_external_memory_win32
+VK_KHR_device_group
+VK_AMD_calibrated_timestamps
+VK_KHR_bind_memory2
+VK_KHR_external_semaphore
+VK_KHR_external_semaphore_win32
+VK_AMD_rasterization_order
+VK_AMD_shader_ballot
+VK_AMD_shader_trinary_minmax
+VK_AMD_shader_explicit_vertex_parameter
+VK_AMD_gcn_shader
+VK_AMD_draw_indirect_count
+VK_KHR_draw_indirect_count
+VK_AMD_shader_info
+VK_EXT_sampler_filter_minmax
+VK_AMD_shader_fragment_mask
+VK_EXT_hdr_metadata
+VK_AMD_wave_limits
+VK_AMD_texture_gather_bias_lod
+VK_AMD_mixed_attachment_samples
+VK_EXT_sample_locations
+VK_EXT_shader_subgroup_vote
+VK_KHR_16bit_storage
+VK_KHR_storage_buffer_storage_class
+VK_AMD_gpa_interface
+VK_KHR_depth_stencil_resolve
+VK_EXT_shader_subgroup_ballot
+VK_EXT_shader_stencil_export
+VK_EXT_shader_viewport_index_layer
+VK_KHR_get_memory_requirements2
+VK_KHR_image_format_list
+VK_KHR_swapchain_mutable_format
+VK_EXT_inline_uniform_block
+VK_KHR_shader_atomic_int64
+VK_KHR_driver_properties
+VK_KHR_create_renderpass2
+VK_KHR_8bit_storage
+VK_KHR_multiview
+VK_KHR_external_fence
+VK_KHR_external_fence_win32
+VK_KHR_win32_keyed_mutex
+VK_EXT_global_priority
+VK_AMD_buffer_marker
+VK_AMD_shader_image_load_store_lod
+VK_EXT_external_memory_host
+VK_EXT_depth_clip_enable
+VK_EXT_depth_range_unrestricted
+VK_AMD_shader_core_properties
+VK_EXT_queue_family_foreign
+VK_EXT_descriptor_indexing
+VK_KHR_variable_pointers
+VK_EXT_vertex_attribute_divisor
+VK_GOOGLE_hlsl_functionality1
+VK_GOOGLE_decorate_string
+VK_EXT_scalar_block_layout
+VK_AMD_memory_overallocation_behavior
+VK_EXT_transform_feedback
+VK_KHR_vulkan_memory_model
+VK_EXT_memory_priority
+VK_EXT_memory_budget
+
+Sparse Properties
+residencyStandard2DBlockShape: 1
+residencyStandard2DMultisampleBlockShape: 0
+residencyStandard3DBlockShape: 0
+residencyAlignedMipSize: 0
+residencyNonResidentStrict: 1
+
+Properties
+maxImageDimension1D: 16384
+maxImageDimension2D: 16384
+maxImageDimension3D: 2048
+maxImageDimensionCube: 16384
+maxImageArrayLayers: 2048
+maxTexelBufferElements: 4294967295
+maxUniformBufferRange: 4294967295
+maxStorageBufferRange: 4294967295
+maxPushConstantsSize: 128
+maxMemoryAllocationCount: 4096
+maxSamplerAllocationCount: 1048576
+bufferImageGranularity: 1
+sparseAddressSpaceSize: 1086626725888
+maxBoundDescriptorSets: 32
+maxPerStageDescriptorSamplers: 4294967295
+maxPerStageDescriptorUniformBuffers: 4294967295
+maxPerStageDescriptorStorageBuffers: 4294967295
+maxPerStageDescriptorSampledImages: 4294967295
+maxPerStageDescriptorStorageImages: 4294967295
+maxPerStageDescriptorInputAttachments: 4294967295
+maxPerStageResources: 4294967295
+maxDescriptorSetSamplers: 4294967295
+maxDescriptorSetUniformBuffers: 4294967295
+maxDescriptorSetUniformBuffersDynamic: 8
+maxDescriptorSetStorageBuffers: 4294967295
+maxDescriptorSetStorageBuffersDynamic: 8
+maxDescriptorSetSampledImages: 4294967295
+maxDescriptorSetStorageImages: 4294967295
+maxDescriptorSetInputAttachments: 4294967295
+maxVertexInputAttributes: 64
+maxVertexInputBindings: 32
+maxVertexInputAttributeOffset: 4294967295
+maxVertexInputBindingStride: 16383
+maxVertexOutputComponents: 128
+maxTessellationGenerationLevel: 64
+maxTessellationPatchSize: 32
+maxTessellationControlPerVertexInputComponents: 128
+maxTessellationControlPerVertexOutputComponents: 128
+maxTessellationControlPerPatchOutputComponents: 120
+maxTessellationControlTotalOutputComponents: 4096
+maxTessellationEvaluationInputComponents: 128
+maxTessellationEvaluationOutputComponents: 128
+maxGeometryShaderInvocations: 127
+maxGeometryInputComponents: 128
+maxGeometryOutputComponents: 128
+maxGeometryOutputVertices: 1024
+maxGeometryTotalOutputComponents: 16384
+maxFragmentInputComponents: 128
+maxFragmentOutputAttachments: 8
+maxFragmentDualSrcAttachments: 1
+maxFragmentCombinedOutputResources: 4294967295
+maxComputeSharedMemorySize: 32768
+maxComputeWorkGroupCount[0]: 65535
+maxComputeWorkGroupCount[1]: 65535
+maxComputeWorkGroupCount[2]: 65535
+maxComputeWorkGroupInvocations: 1024
+maxComputeWorkGroupSize[0]: 1024
+maxComputeWorkGroupSize[1]: 1024
+maxComputeWorkGroupSize[2]: 1024
+subPixelPrecisionBits: 8
+subTexelPrecisionBits: 8
+mipmapPrecisionBits: 8
+maxDrawIndexedIndexValue: 4294967295
+maxDrawIndirectCount: 4294967295
+maxSamplerLodBias: 15.996094
+maxSamplerAnisotropy: 16.000000
+maxViewports: 16
+maxViewportDimensions[0]: 16384
+maxViewportDimensions[1]: 16384
+viewportBoundsRange[0]: -32768.000000
+viewportBoundsRange[1]: 32767.000000
+viewportSubPixelBits: 8
+minMemoryMapAlignment: 64
+minTexelBufferOffsetAlignment: 1
+minUniformBufferOffsetAlignment: 16
+minStorageBufferOffsetAlignment: 4
+minTexelOffset: -64
+maxTexelOffset: 63
+minTexelGatherOffset: -32
+maxTexelGatherOffset: 31
+minInterpolationOffset: -2.000000
+maxInterpolationOffset: 2.000000
+subPixelInterpolationOffsetBits: 8
+maxFramebufferWidth: 16384
+maxFramebufferHeight: 16384
+maxFramebufferLayers: 2048
+framebufferColorSampleCounts: 15
+framebufferDepthSampleCounts: 15
+framebufferStencilSampleCounts: 15
+framebufferNoAttachmentsSampleCounts: 15
+maxColorAttachments: 8
+sampledImageColorSampleCounts: 15
+sampledImageIntegerSampleCounts: 15
+sampledImageDepthSampleCounts: 15
+sampledImageStencilSampleCounts: 15
+storageImageSampleCounts: 15
+maxSampleMaskWords: 1
+timestampComputeAndGraphics: 1
+timestampPeriod: 40.000000
+maxClipDistances: 8
+maxCullDistances: 8
+maxCombinedClipAndCullDistances: 8
+discreteQueuePriorities: 2
+pointSizeRange[0]: 0.000000
+pointSizeRange[1]: 8191.875000
+lineWidthRange[0]: 0.000000
+lineWidthRange[1]: 8191.875000
+pointSizeGranularity: 0.125000
+lineWidthGranularity: 0.125000
+strictLines: 0
+standardSampleLocations: 1
+optimalBufferCopyOffsetAlignment: 1
+optimalBufferCopyRowPitchAlignment: 1
+nonCoherentAtomSize: 128
+
+Conservative Rasterization
+primitiveOverestimationSize: 0.000000
+maxExtraPrimitiveOverestimationSize: 0.000000
+extraPrimitiveOverestimationSizeGranularity: 0.000000
+primitiveUnderestimation: 1
+conservativePointAndLineRasterization: 0
+degenerateTrianglesRasterized: 1
+degenerateLinesRasterized: 0
+fullyCoveredFragmentShaderInputVariable: 0
+conservativeRasterizationPostDepthCoverage: 0
+
+Push Descriptors
+maxPushDescriptors: 0
+
+Memory
+heap 0, flags: 3, size: 7936MB, budget: 6729MB, usage: 0MB
+heap 1, flags: 0, size: 7902MB, budget: 7342MB, usage: 0MB
+heap 2, flags: 3, size: 256MB, budget: 217MB, usage: 0MB
+memory type 0, heap: 0, flags: 1
+memory type 1, heap: 1, flags: 6
+memory type 2, heap: 2, flags: 7
+memory type 3, heap: 1, flags: 14
+
+Queues
+Queue family: 0, flags: 15, queues: 1
+Queue family: 1, flags: 14, queues: 2
+Queue family: 2, flags: 12, queues: 2
+Chosen Graphics Queue: 0
+Chosen Transfer Queue: 2
+
+Supported Features
+robustBufferAccess: 1
+fullDrawIndexUint32: 1
+imageCubeArray: 1
+independentBlend: 1
+geometryShader: 1
+tessellationShader: 1
+sampleRateShading: 1
+dualSrcBlend: 1
+logicOp: 1
+multiDrawIndirect: 1
+drawIndirectFirstInstance: 1
+depthClamp: 1
+depthBiasClamp: 1
+fillModeNonSolid: 1
+depthBounds: 1
+wideLines: 1
+largePoints: 1
+alphaToOne: 0
+multiViewport: 1
+samplerAnisotropy: 1
+textureCompressionETC2: 0
+textureCompressionASTC_LDR: 0
+textureCompressionBC: 1
+occlusionQueryPrecise: 1
+pipelineStatisticsQuery: 1
+vertexPipelineStoresAndAtomics: 1
+fragmentStoresAndAtomics: 1
+shaderTessellationAndGeometryPointSize: 1
+shaderImageGatherExtended: 1
+shaderStorageImageExtendedFormats: 1
+shaderStorageImageMultisample: 1
+shaderStorageImageReadWithoutFormat: 1
+shaderStorageImageWriteWithoutFormat: 1
+shaderUniformBufferArrayDynamicIndexing: 1
+shaderSampledImageArrayDynamicIndexing: 1
+shaderStorageBufferArrayDynamicIndexing: 1
+shaderStorageImageArrayDynamicIndexing: 1
+shaderClipDistance: 1
+shaderCullDistance: 1
+shaderFloat64: 1
+shaderInt64: 1
+shaderInt16: 0
+shaderResourceResidency: 1
+shaderResourceMinLod: 1
+sparseBinding: 1
+sparseResidencyBuffer: 1
+sparseResidencyImage2D: 1
+sparseResidencyImage3D: 1
+sparseResidency2Samples: 0
+sparseResidency4Samples: 0
+sparseResidency8Samples: 0
+sparseResidency16Samples: 0
+sparseResidencyAliased: 1
+variableMultisampleRate: 1
+inheritedQueries: 1

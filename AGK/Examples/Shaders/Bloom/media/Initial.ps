@@ -1,0 +1,17 @@
+uniform float agk_time;
+uniform vec2 agk_resolution;
+
+uniform sampler2D texture0;
+varying vec2 uvVarying;
+
+void main()
+{
+    vec4 color = texture2D(texture0, uvVarying);
+    //float brightness = color.r*0.30 + color.g*0.59 + color.b*0.11;
+    //float threshold = 0.5;
+    vec4 threshold = vec4(0.75,0.75,0.75,0.75);
+
+    color = clamp( (color-threshold)/(1.0-threshold), 0.0, 1.0 );
+
+    gl_FragColor = color;
+}

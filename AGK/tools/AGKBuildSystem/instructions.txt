@@ -1,0 +1,68 @@
+Finalise build version number in AGK.txt (based on date)
+Change IDE version number (both text and integer values)
+Update bytecode version in AGKInstructions.h if incompatible with previous versions
+Update debug message version in AGKInstructions.h if debug message have been added or removed
+Update AndroidManifest.xml for new version number in Google and Amazon projects
+If changed, update AndroidManifest.xml in IDE source folder, be sure to maintain the GOOGLE_PLAY_APPLICATION_ID etc constants
+Check for any added or removed files and add them to the destination build folders
+
+If doing a clean build (freshly checkout out files from SVN/Github):
+    * Populate AgkIde/media/data/android and ios folders with non-versioned files
+    * All 3 Android interpreter projects must be opened in Android Studio to auto-generate some files
+    
+Change VCScode extension package.json "main" field to "./out/main.js"
+Package VSCode extension
+Restore VSCode extension package.json
+ 
+Browse to AGKTrunk/tools/AGKBuildSystem/Windows
+Run the Windows build system (it will stop before final step "copy shared files from other platforms", will be done later)
+
+Check Whats_new.html file
+Update SQL database with new commands
+(optional) update lang-agk.js with new command list
+
+**Switch to Linux 64 bit**
+Check shared folder ~/Shares/AGKStudioLinux is connected to Windows
+Check shared folder ~/Shares/WindowsReceive is connected to Windows
+Update SVN
+Browse to AGKTrunk/tools/AGKBuildSystem/Linux
+make AGKBuild
+Run AGKBuild
+
+**Switch to MAC**
+Update SVN
+Activate Receive and AGKStudioMac folders for file copying (/Volumes)
+Change IDE build number
+Change interpreter_ios build number
+Browse to AGKTrunk/tools/AGKBuildSystem/Mac
+make AGKBuild
+Run AGKBuild
+Check Info.plist file in IDE SVN folder vs the exported version, edit and copy into build folder if changed
+Notorize IDE, see MacSigning.txt
+Zip up AndroidExport folder and rename zip with the IDE INTVERSION number
+Update AndroidExport[num].zip on website (through GitHub)
+
+(Test ios templates/apps)
+Test IDE
+Mac version complete
+
+**Switch to Linux 64 bit**
+Copy Mac Player to Linux build folder
+Linux build complete
+
+**Switch to PC**
+Run AGKBuild final step using 's' prefix
+Sign Windows Compiler
+Sign Windows VSCode Debug Adapter
+Sign Windows VSCode Language Server
+Sign Windows IDE
+
+Edit nsi version number
+Run nsi Windows script
+Sign Windows installer
+Windows version complete
+
+Upload Apple AppStore player
+Upload Google Play APK
+Upload Amazon APK
+Update online help (through GitHub)

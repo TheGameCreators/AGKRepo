@@ -1,0 +1,110 @@
+{
+    "type": "light",
+    "name": "AppGameKit Light Theme",
+    "include": "theme_light_vs.json",
+    "colors": {
+        "editorBracketHighlight.foreground1": "#ff0000",
+        "editorBracketHighlight.foreground2": "#d49100"
+    },
+    "tokenColors": [
+        {
+            "name": "AGK Comment Line",
+            "scope": "comment.line.agk",
+            "settings": {
+                "foreground": "#808080"
+            }
+        },
+        {
+            "name": "AGK Comment Block",
+            "scope": "comment.block.agk",
+            "settings": {
+                "foreground": "#808080"
+            }
+        },
+        {
+            "name": "AGK Keyword",
+            "scope": "keyword.agk",
+            "settings": {
+                "foreground": "#3a3a99",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "AGK Command",
+            "scope": "entity.name.function.agk",
+            "settings": {
+                "foreground": "#3a3a99"
+            }
+        },
+        {
+            "name": "AGK User Defined Function",
+            "scope": "support.function.agk",
+            "settings": {
+                "foreground": "#a29900"
+            }
+        },
+        {
+            "name": "AGK String Double Quotes",
+            "scope": "string.quoted.double.agk",
+            "settings": {
+                "foreground": "#a00000"
+            }
+        },
+        {
+            "name": "AGK String Single Quotes",
+            "scope": "string.quoted.single.agk",
+            "settings": {
+                "foreground": "#b60000"
+            }
+        },
+        {
+            "name": "AGK String Escaped Character",
+            "scope": "constant.character.escape.agk",
+            "settings": {
+                "foreground": "#f15454"
+            }
+        },
+        {
+            "name": "AGK String Invalid Escaped Character",
+            "scope": "constant.character.escape.invalid.agk",
+            "settings": {
+                "foreground": "#000000"
+            }
+        },
+        {
+            "name": "AGK Operator",
+            "scope": "keyword.operator.agk",
+            "settings": {
+                "foreground": "#ff0000"
+            }
+        },
+        {
+            "name": "AGK Number",
+            "scope": "constant.numeric.agk",
+            "settings": {
+                "foreground": "#008000"
+            }
+        },
+        {
+            "name": "AGK Type",
+            "scope": "entity.name.type.agk",
+            "settings": {
+                "foreground": "#3fb73f"
+            }
+        },
+        {
+            "name": "AGK Variable",
+            "scope": "variable.agk",
+            "settings": {
+                "foreground": "#000000"
+            }
+        },
+        {
+            "name": "AGK Label",
+            "scope": "entity.name.tag.agk",
+            "settings": {
+                "foreground": "#007f7f"
+            }
+        }
+    ]
+  }

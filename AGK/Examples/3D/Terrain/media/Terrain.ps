@@ -1,0 +1,26 @@
+uniform sampler2D texture0;
+
+varying highp vec3 posVarying;
+varying mediump vec3 normalVarying;
+varying mediump vec2 uvVarying;
+varying mediump vec3 lightVarying;
+varying mediump vec3 colorVarying;
+
+// these must appear exactly as they are to work, spaces and all.
+// they will be filled in by AGK
+mediump vec3 GetPSLighting( mediump vec3 normal, highp vec3 pos );
+mediump vec3 ApplyFog( mediump vec3 color, highp vec3 pointPos );
+
+void main()
+{ 
+    mediump vec3 norm = normalize(normalVarying);
+    mediump vec3 light = lightVarying + GetPSLighting( norm, posVarying ); 
+    
+    mediump vec3 color = colorVarying;
+    color = texture2D(texture0, uvVarying).rgb * color * light;
+    
+    color = ApplyFog( color, posVarying );
+    
+	gl_FragColor = vec4(color,1.0);
+}
+

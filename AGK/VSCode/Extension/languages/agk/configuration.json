@@ -1,0 +1,17 @@
+{
+	"comments": {
+		"lineComment": "//",
+		"blockComment": ["/*", "*/"]
+	},
+	"brackets": [
+		["(", ")"]
+	],
+	"autoClosingPairs": [
+		{ "open": "[", "close": "]" },
+		{ "open": "(", "close": ")" }
+	],
+	"indentationRules": {
+		"increaseIndentPattern": "^[ \t]*(?i)(if|do|while|repeat|select|case|case default|function|type|for)(?=([^a-zA-Z0-9_]|$))[^:]*$",
+		"decreaseIndentPattern": "^[ \t]*(?i)(endif|elseif|loop|endwhile|until|endselect|endcase|endfunction|endtype|next)(?=([^a-zA-Z0-9_]|$))"
+	}
+}

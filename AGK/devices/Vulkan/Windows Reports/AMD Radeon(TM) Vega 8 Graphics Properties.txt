@@ -1,0 +1,184 @@
+GPU Name: AMD Radeon(TM) Vega 8 Graphics
+maxImageDimension1D: 16384
+maxImageDimension2D: 16384
+maxImageDimension3D: 2048
+maxImageDimensionCube: 16384
+maxImageArrayLayers: 2048
+maxTexelBufferElements: 4294967295
+maxUniformBufferRange: 4294967295
+maxStorageBufferRange: 4294967295
+maxPushConstantsSize: 128
+maxMemoryAllocationCount: 4096
+maxSamplerAllocationCount: 1048576
+bufferImageGranularity: 1
+sparseAddressSpaceSize: 17579301142528
+maxBoundDescriptorSets: 32
+maxPerStageDescriptorSamplers: 4294967295
+maxPerStageDescriptorUniformBuffers: 4294967295
+maxPerStageDescriptorStorageBuffers: 4294967295
+maxPerStageDescriptorSampledImages: 4294967295
+maxPerStageDescriptorStorageImages: 4294967295
+maxPerStageDescriptorInputAttachments: 4294967295
+maxPerStageResources: 4294967295
+maxDescriptorSetSamplers: 4294967295
+maxDescriptorSetUniformBuffers: 4294967295
+maxDescriptorSetUniformBuffersDynamic: 8
+maxDescriptorSetStorageBuffers: 4294967295
+maxDescriptorSetStorageBuffersDynamic: 8
+maxDescriptorSetSampledImages: 4294967295
+maxDescriptorSetStorageImages: 4294967295
+maxDescriptorSetInputAttachments: 4294967295
+maxVertexInputAttributes: 64
+maxVertexInputBindings: 32
+maxVertexInputAttributeOffset: 4294967295
+maxVertexInputBindingStride: 16383
+maxVertexOutputComponents: 128
+maxTessellationGenerationLevel: 64
+maxTessellationPatchSize: 32
+maxTessellationControlPerVertexInputComponents: 128
+maxTessellationControlPerVertexOutputComponents: 128
+maxTessellationControlPerPatchOutputComponents: 120
+maxTessellationControlTotalOutputComponents: 4096
+maxTessellationEvaluationInputComponents: 128
+maxTessellationEvaluationOutputComponents: 128
+maxGeometryShaderInvocations: 127
+maxGeometryInputComponents: 128
+maxGeometryOutputComponents: 128
+maxGeometryOutputVertices: 1024
+maxGeometryTotalOutputComponents: 16384
+maxFragmentInputComponents: 128
+maxFragmentOutputAttachments: 8
+maxFragmentDualSrcAttachments: 1
+maxFragmentCombinedOutputResources: 4294967295
+maxComputeSharedMemorySize: 32768
+maxComputeWorkGroupCount[3]: 1024
+maxComputeWorkGroupInvocations: 1024
+maxComputeWorkGroupSize[3]: 8
+subPixelPrecisionBits: 8
+subTexelPrecisionBits: 8
+mipmapPrecisionBits: 8
+maxDrawIndexedIndexValue: 4294967295
+maxDrawIndirectCount: 4294967295
+maxSamplerLodBias: 15.996094
+maxSamplerAnisotropy: 16.000000
+maxViewports: 16
+maxViewportDimensions[0]: 16384
+maxViewportDimensions[1]: 16384
+viewportBoundsRange[0]: -32768.000000
+viewportBoundsRange[1]: 32767.000000
+viewportSubPixelBits: 8
+minMemoryMapAlignment: 64
+minTexelBufferOffsetAlignment: 1
+minUniformBufferOffsetAlignment: 16
+minStorageBufferOffsetAlignment: 4
+minTexelOffset: 4294967232
+maxTexelOffset: 63
+minTexelGatherOffset: 4294967264
+maxTexelGatherOffset: 31
+minInterpolationOffset: -2.000000
+maxInterpolationOffset: 2.000000
+subPixelInterpolationOffsetBits: 8
+maxFramebufferWidth: 16384
+maxFramebufferHeight: 16384
+maxFramebufferLayers: 2048
+framebufferColorSampleCounts: 15
+framebufferDepthSampleCounts: 15
+framebufferStencilSampleCounts: 15
+framebufferNoAttachmentsSampleCounts: 15
+maxColorAttachments: 8
+sampledImageColorSampleCounts: 15
+sampledImageIntegerSampleCounts: 15
+sampledImageDepthSampleCounts: 15
+sampledImageStencilSampleCounts: 15
+storageImageSampleCounts: 15
+maxSampleMaskWords: 1
+timestampComputeAndGraphics: 1
+timestampPeriod: 40.000000
+maxClipDistances: 8
+maxCullDistances: 8
+maxCombinedClipAndCullDistances: 8
+discreteQueuePriorities: 2
+pointSizeRange[0]: 0.000000
+pointSizeRange[1]: 8191.875000
+lineWidthRange[0]: 0.000000
+lineWidthRange[1]: 8191.875000
+pointSizeGranularity: 0.125000
+lineWidthGranularity: 0.125000
+strictLines: 0
+standardSampleLocations: 1
+optimalBufferCopyOffsetAlignment: 1
+optimalBufferCopyRowPitchAlignment: 1
+nonCoherentAtomSize: 128
+
+Memory
+heap 0, flags: 3, size: 768MB
+heap 1, flags: 0, size: 7374MB
+heap 2, flags: 3, size: 256MB
+memory type 0, heap: 0, flags: 1
+memory type 1, heap: 1, flags: 6
+memory type 2, heap: 2, flags: 7
+memory type 3, heap: 1, flags: 14
+
+Queues
+Queue family: 0, flags: 15, queues: 1
+Queue family: 1, flags: 14, queues: 3
+Queue family: 2, flags: 12, queues: 1
+Chosen Graphics Queue: 0
+Chosen Transfer Queue: 2
+
+Supported Features
+robustBufferAccess: 1
+fullDrawIndexUint32: 1
+imageCubeArray: 1
+independentBlend: 1
+geometryShader: 1
+tessellationShader: 1
+sampleRateShading: 1
+dualSrcBlend: 1
+logicOp: 1
+multiDrawIndirect: 1
+drawIndirectFirstInstance: 1
+depthClamp: 1
+depthBiasClamp: 1
+fillModeNonSolid: 1
+depthBounds: 1
+wideLines: 1
+largePoints: 1
+alphaToOne: 0
+multiViewport: 1
+samplerAnisotropy: 1
+textureCompressionETC2: 0
+textureCompressionASTC_LDR: 0
+textureCompressionBC: 1
+occlusionQueryPrecise: 1
+pipelineStatisticsQuery: 1
+vertexPipelineStoresAndAtomics: 1
+fragmentStoresAndAtomics: 1
+shaderTessellationAndGeometryPointSize: 1
+shaderImageGatherExtended: 1
+shaderStorageImageExtendedFormats: 1
+shaderStorageImageMultisample: 1
+shaderStorageImageReadWithoutFormat: 1
+shaderStorageImageWriteWithoutFormat: 1
+shaderUniformBufferArrayDynamicIndexing: 1
+shaderSampledImageArrayDynamicIndexing: 1
+shaderStorageBufferArrayDynamicIndexing: 1
+shaderStorageImageArrayDynamicIndexing: 1
+shaderClipDistance: 1
+shaderCullDistance: 1
+shaderFloat64: 1
+shaderInt64: 1
+shaderInt16: 1
+shaderResourceResidency: 1
+shaderResourceMinLod: 1
+sparseBinding: 1
+sparseResidencyBuffer: 1
+sparseResidencyImage2D: 1
+sparseResidencyImage3D: 1
+sparseResidency2Samples: 0
+sparseResidency4Samples: 0
+sparseResidency8Samples: 0
+sparseResidency16Samples: 0
+sparseResidencyAliased: 1
+variableMultisampleRate: 1
+inheritedQueries: 1

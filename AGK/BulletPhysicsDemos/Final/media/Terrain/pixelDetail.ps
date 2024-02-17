@@ -1,0 +1,33 @@
+// highp and lowp. They define the importance of the quality 
+// of calculations/data storage. The higher precision means 
+// more precise data types will be used, and the calculations 
+// will be slower.
+#ifdef GL_ES
+precision highp float;
+#endif
+
+// constant values sent through from AGK code.
+uniform sampler2D texture0; 
+uniform sampler2D texture1; 
+
+
+// Anything that the vertex shader passes as output needs to 
+// be defined here as input. The vertex shader is passing the 
+// texture coordinate, so it is defined again here.
+varying vec2 uv0Varying;
+varying vec2 uv1Varying;
+
+void main()
+{
+  // copy the textures coords
+  vec2 texCoord0 = uv0Varying;
+  vec2 texCoord1 = uv1Varying;
+
+  // temporary colorResult variable (rgba)
+  
+  vec4 colorResult;
+  colorResult = texture2D(texture0, texCoord0) * texture2D(texture1, texCoord1);
+  gl_FragColor = colorResult*2.0;
+  
+  //gl_FragColor = mix(colorResult*2.0,vec4(0.0,0.0,0.0,1.0),(gl_FragCoord.z/gl_FragCoord.w)/225.0);
+}

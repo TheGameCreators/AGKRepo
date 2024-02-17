@@ -1,0 +1,43 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 31
+    buildToolsVersion "31.0.0"
+
+    defaultConfig {
+        applicationId "com.thegamecreators.agk_player2"
+        minSdkVersion 16
+        targetSdkVersion 31
+        ndk{
+            abiFilters "armeabi-v7a", "arm64-v8a"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+    sourceSets {
+        main.java.srcDirs += '../../android_common/AGKHelper'
+        main.java.srcDirs += '../../android_common/ExternalCommands'
+        main.java.srcDirs += '../../android_common/AmazonInAppPurchase'
+        main.java.srcDirs += '../../android_common/Chartboost'
+        main.java.srcDirs += '../../android_common/PlayVideo'
+        main.java.srcDirs += '../../android_common/Camera'
+        main.java.srcDirs += '../../android_common/RecordScreen'
+        main.java.srcDirs += '../../android_common/TextEntry'
+        main.java.srcDirs += '../../android_common/GooglePermissions' // can be replaced with AlwaysPermissions
+        main.java.srcDirs += '../../android_common/ImmersiveMode'
+        main.java.srcDirs += '../../android_common/AdConsent'
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation files('libs/in-app-purchasing-2.0.76.jar')
+    implementation 'com.chartboost:chartboost-sdk:8.4.3' // Chartboost
+    implementation 'com.google.android.ump:user-messaging-platform:2.0.0' // AdConsent
+}

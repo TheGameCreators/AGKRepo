@@ -1,0 +1,32 @@
+uniform float agk_time;
+uniform vec2 agk_resolution;
+
+uniform sampler2D texture0;
+varying vec2 uvVarying;
+
+uniform sampler2D texture1;
+
+float BloomIntensity = 1.5;
+float OriginalIntensity = 1.0;
+float BloomSaturation = 1.0;
+float OriginalSaturation = 1.0;
+
+vec4 AdjustSaturation(vec4 color, float saturation)
+{
+    float grey = dot(color.rgb, vec3(0.3, 0.59, 0.11));
+    return mix(vec4(grey,grey,grey,grey), color, saturation);
+}
+
+void main()
+{
+
+    vec4 basecolor = texture2D(texture0, uvVarying);
+    vec4 bloomcolor = texture2D(texture1, uvVarying);
+
+    bloomcolor = AdjustSaturation(bloomcolor, BloomSaturation) * BloomIntensity;
+    basecolor = AdjustSaturation(basecolor, OriginalSaturation) * OriginalIntensity;
+
+    basecolor = basecolor*(1.0 - clamp(bloomcolor,0.0,1.0));
+
+    gl_FragColor = basecolor + bloomcolor;
+}

@@ -1,0 +1,21 @@
+# sign.sh now done by build process, but repeat if anything changed
+#./sign.sh
+
+# zips up the .app folder into a .zip
+ditto -c -k --keepParent AppGameKitStudio/AppGameKitStudio.app AppGameKitStudio/AppGameKitStudio.zip
+
+   # if never done before, run this to store app specific password, it will ask for a profile name to be used later
+   xcrun notarytool store-credentials --apple-id "YourAppleAccount@email.com" --team-id "xxx"
+
+# For Paul "Profile Name" is "xxx"
+# send the .zip to Apple to notarize
+xcrun notarytool submit AppGameKitStudio/AppGameKitStudio.zip --keychain-profile "Profile Name" --wait
+
+[Can now delete AppGameKitStudio/AppGameKitStudio.zip]
+
+# attaches the notarization to the .app
+xcrun stapler staple AppGameKitStudio/AppGameKitStudio.app
+
+
+# use the following to check the logs in case of rejection
+xcrun notarytool log xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx --keychain-profile "Profile Name"

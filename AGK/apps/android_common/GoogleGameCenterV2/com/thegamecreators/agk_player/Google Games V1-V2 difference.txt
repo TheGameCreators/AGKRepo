@@ -1,0 +1,1 @@
+Google Games V2 will prompt the user to sign in at app start, even if you never call any GameCenter commands. If you want to control when the login prompt happens then use V1 instead

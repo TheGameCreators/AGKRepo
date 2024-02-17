@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZXing", "ZXing.vcproj", "{13CE26DB-56E0-4101-9BD1-6520FD4A1FFF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{13CE26DB-56E0-4101-9BD1-6520FD4A1FFF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{13CE26DB-56E0-4101-9BD1-6520FD4A1FFF}.Debug|Win32.Build.0 = Debug|Win32
+		{13CE26DB-56E0-4101-9BD1-6520FD4A1FFF}.Release|Win32.ActiveCfg = Release|Win32
+		{13CE26DB-56E0-4101-9BD1-6520FD4A1FFF}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

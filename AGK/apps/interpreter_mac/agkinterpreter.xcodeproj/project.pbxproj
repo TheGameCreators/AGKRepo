@@ -1,0 +1,616 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4A11392A19D4B48500DF98CB /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A11392919D4B48500DF98CB /* IOKit.framework */; };
+		4A11392C19D4B48B00DF98CB /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A11392B19D4B48B00DF98CB /* Quartz.framework */; };
+		4A11392E19D4B49100DF98CB /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A11392D19D4B49100DF98CB /* CoreFoundation.framework */; };
+		4A11393019D4B49900DF98CB /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A11392F19D4B49900DF98CB /* OpenGL.framework */; };
+		4A11393219D4B4A000DF98CB /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A11393119D4B4A000DF98CB /* OpenAL.framework */; };
+		4A11393419D4B4A900DF98CB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A11393319D4B4A900DF98CB /* Cocoa.framework */; };
+		4A163CB72406CFC000330BB2 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A163CB62406CFC000330BB2 /* Metal.framework */; };
+		4A163CB92406CFD300330BB2 /* IOSurface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A163CB82406CFD300330BB2 /* IOSurface.framework */; };
+		4A9D507B1996B24F00473873 /* ProgramData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D507A1996B24F00473873 /* ProgramData.cpp */; };
+		4A9D507F1996BA0E00473873 /* libAGKMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9D507E1996BA0E00473873 /* libAGKMac.a */; };
+		4AF7D0511BD726FD0021ED1E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF7D0501BD726FD0021ED1E /* CoreLocation.framework */; };
+		4AF7D0531BD727050021ED1E /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF7D0521BD727050021ED1E /* CoreMedia.framework */; };
+		4AF7D0551BD7270D0021ED1E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF7D0541BD7270D0021ED1E /* AVFoundation.framework */; };
+		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		9B3D53A1132A8691003D1FE4 /* interpreter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D539E132A8691003D1FE4 /* interpreter.cpp */; };
+		9B8B6E4F1360BFC200BEF23D /* Core.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9B8B6E4E1360BFC200BEF23D /* Core.mm */; };
+		D8D8206216FD0A8400D08FAD /* icons.iconset in Resources */ = {isa = PBXBuildFile; fileRef = D8D8206116FD0A8400D08FAD /* icons.iconset */; };
+		D8D8206A16FD0DF200D08FAD /* media in Resources */ = {isa = PBXBuildFile; fileRef = D8D8206916FD0DF200D08FAD /* media */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4A11392919D4B48500DF98CB /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		4A11392B19D4B48B00DF98CB /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
+		4A11392D19D4B49100DF98CB /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		4A11392F19D4B49900DF98CB /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		4A11393119D4B4A000DF98CB /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		4A11393319D4B4A900DF98CB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		4A163CB12406CD4400330BB2 /* NetworkPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkPacket.h; path = ../../common/include/NetworkPacket.h; sourceTree = "<group>"; };
+		4A163CB62406CFC000330BB2 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+		4A163CB82406CFD300330BB2 /* IOSurface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOSurface.framework; path = System/Library/Frameworks/IOSurface.framework; sourceTree = SDKROOT; };
+		4A9D507A1996B24F00473873 /* ProgramData.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = ProgramData.cpp; path = ../interpreter/ProgramData.cpp; sourceTree = "<group>"; };
+		4A9D507E1996BA0E00473873 /* libAGKMac.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAGKMac.a; path = ../../platform/mac/Lib/Release/libAGKMac.a; sourceTree = "<group>"; };
+		4AF7D0501BD726FD0021ED1E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		4AF7D0521BD727050021ED1E /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		4AF7D0541BD7270D0021ED1E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		721285AF167A597500C0661F /* cObjectMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cObjectMgr.h; path = ../../common/include/cObjectMgr.h; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* AppGameKit Player.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AppGameKit Player.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B3D539E132A8691003D1FE4 /* interpreter.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = interpreter.cpp; path = ../interpreter/interpreter.cpp; sourceTree = SOURCE_ROOT; };
+		9B3D539F132A8691003D1FE4 /* interpreter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = interpreter.h; path = ../interpreter/interpreter.h; sourceTree = SOURCE_ROOT; };
+		9B8B6E4E1360BFC200BEF23D /* Core.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Core.mm; sourceTree = "<group>"; };
+		D86F7A921672AE15000AFB76 /* AGK Player.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "AGK Player.entitlements"; sourceTree = "<group>"; };
+		D88462A716247EFB00FFDEA4 /* 3DMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = 3DMath.h; path = ../../common/include/3DMath.h; sourceTree = "<group>"; };
+		D88462A816247EFB00FFDEA4 /* agkKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = agkKeys.h; path = ../../common/include/agkKeys.h; sourceTree = "<group>"; };
+		D88462A916247EFB00FFDEA4 /* AGKLights.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGKLights.h; path = ../../common/include/AGKLights.h; sourceTree = "<group>"; };
+		D88462AA16247EFB00FFDEA4 /* AGKShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGKShader.h; path = ../../common/include/AGKShader.h; sourceTree = "<group>"; };
+		D88462AB16247EFB00FFDEA4 /* cCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cCamera.h; path = ../../common/include/cCamera.h; sourceTree = "<group>"; };
+		D88462AC16247EFB00FFDEA4 /* cObject3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cObject3D.h; path = ../../common/include/cObject3D.h; sourceTree = "<group>"; };
+		D88462AD16247EFB00FFDEA4 /* cTextEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cTextEntry.h; path = ../../common/include/cTextEntry.h; sourceTree = "<group>"; };
+		D88462AE16247EFB00FFDEA4 /* Joystick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Joystick.h; path = ../../common/include/Joystick.h; sourceTree = "<group>"; };
+		D88462AF16247EFB00FFDEA4 /* Mouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mouse.h; path = ../../common/include/Mouse.h; sourceTree = "<group>"; };
+		D88462B016247EFB00FFDEA4 /* Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Network.h; path = ../../common/include/Network.h; sourceTree = "<group>"; };
+		D88462B116247EFB00FFDEA4 /* NetworkCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkCommon.h; path = ../../common/include/NetworkCommon.h; sourceTree = "<group>"; };
+		D88462B216247EFB00FFDEA4 /* Particles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Particles.h; path = ../../common/include/Particles.h; sourceTree = "<group>"; };
+		D88462B316247EFB00FFDEA4 /* sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sha1.h; path = ../../common/include/sha1.h; sourceTree = "<group>"; };
+		D88462B416247EFB00FFDEA4 /* ZipFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZipFile.h; path = ../../common/include/ZipFile.h; sourceTree = "<group>"; };
+		D88462B716247F2800FFDEA4 /* Box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box.h; sourceTree = "<group>"; };
+		D88462B916247F2800FFDEA4 /* CollisionBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionBox.h; sourceTree = "<group>"; };
+		D88462BA16247F2800FFDEA4 /* CollisionIncludes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionIncludes.h; sourceTree = "<group>"; };
+		D88462BB16247F2800FFDEA4 /* CollisionObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionObject.h; sourceTree = "<group>"; };
+		D88462BD16247F2800FFDEA4 /* CollisionPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionPolygon.h; sourceTree = "<group>"; };
+		D88462BF16247F2800FFDEA4 /* CollisionResults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionResults.h; sourceTree = "<group>"; };
+		D88462C116247F2800FFDEA4 /* CollisionSphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionSphere.h; sourceTree = "<group>"; };
+		D88462C316247F2800FFDEA4 /* CollisionTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionTree.h; sourceTree = "<group>"; };
+		D88462C516247F2800FFDEA4 /* Face.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Face.h; sourceTree = "<group>"; };
+		D88462C716247F2800FFDEA4 /* TreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TreeNode.h; sourceTree = "<group>"; };
+		D8984FF3132319CA00687EF5 /* agkinterpreter-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "agkinterpreter-Info.plist"; sourceTree = "<group>"; };
+		D8A5D63C131FFD05000446C9 /* agk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = agk.h; path = ../../common/Include/agk.h; sourceTree = SOURCE_ROOT; };
+		D8A5D63E131FFD05000446C9 /* cFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cFile.h; path = ../../common/Include/cFile.h; sourceTree = SOURCE_ROOT; };
+		D8A5D63F131FFD05000446C9 /* cForce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cForce.h; path = ../../common/Include/cForce.h; sourceTree = SOURCE_ROOT; };
+		D8A5D640131FFD05000446C9 /* cHashedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cHashedList.h; path = ../../common/Include/cHashedList.h; sourceTree = SOURCE_ROOT; };
+		D8A5D641131FFD05000446C9 /* cImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cImage.h; path = ../../common/Include/cImage.h; sourceTree = SOURCE_ROOT; };
+		D8A5D642131FFD05000446C9 /* cNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cNode.h; path = ../../common/Include/cNode.h; sourceTree = SOURCE_ROOT; };
+		D8A5D643131FFD05000446C9 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Common.h; path = ../../common/Include/Common.h; sourceTree = SOURCE_ROOT; };
+		D8A5D644131FFD05000446C9 /* cSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cSound.h; path = ../../common/Include/cSound.h; sourceTree = SOURCE_ROOT; };
+		D8A5D645131FFD05000446C9 /* cSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cSprite.h; path = ../../common/Include/cSprite.h; sourceTree = SOURCE_ROOT; };
+		D8A5D646131FFD05000446C9 /* cSpriteMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cSpriteMgr.h; path = ../../common/Include/cSpriteMgr.h; sourceTree = SOURCE_ROOT; };
+		D8A5D647131FFD05000446C9 /* cText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cText.h; path = ../../common/Include/cText.h; sourceTree = SOURCE_ROOT; };
+		D8A5D648131FFD05000446C9 /* cTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cTouch.h; path = ../../common/Include/cTouch.h; sourceTree = SOURCE_ROOT; };
+		D8A5D649131FFD05000446C9 /* DebugDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DebugDraw.h; path = ../../common/Include/DebugDraw.h; sourceTree = SOURCE_ROOT; };
+		D8A5D64A131FFD05000446C9 /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Globals.h; path = ../../common/Include/Globals.h; sourceTree = SOURCE_ROOT; };
+		D8A5D64C131FFD05000446C9 /* Physics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Physics.h; path = ../../common/Include/Physics.h; sourceTree = SOURCE_ROOT; };
+		D8A5D64D131FFD05000446C9 /* Thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Thread.h; path = ../../common/Include/Thread.h; sourceTree = SOURCE_ROOT; };
+		D8A5D64E131FFD05000446C9 /* uString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = uString.h; path = ../../common/Include/uString.h; sourceTree = SOURCE_ROOT; };
+		D8A5D64F131FFD05000446C9 /* Wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Wrapper.h; path = ../../common/Include/Wrapper.h; sourceTree = SOURCE_ROOT; };
+		D8D8206116FD0A8400D08FAD /* icons.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = icons.iconset; sourceTree = "<group>"; };
+		D8D8206916FD0DF200D08FAD /* media */ = {isa = PBXFileReference; lastKnownFileType = folder; path = media; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A163CB92406CFD300330BB2 /* IOSurface.framework in Frameworks */,
+				4A163CB72406CFC000330BB2 /* Metal.framework in Frameworks */,
+				4AF7D0551BD7270D0021ED1E /* AVFoundation.framework in Frameworks */,
+				4AF7D0531BD727050021ED1E /* CoreMedia.framework in Frameworks */,
+				4AF7D0511BD726FD0021ED1E /* CoreLocation.framework in Frameworks */,
+				4A11393419D4B4A900DF98CB /* Cocoa.framework in Frameworks */,
+				4A11393219D4B4A000DF98CB /* OpenAL.framework in Frameworks */,
+				4A11393019D4B49900DF98CB /* OpenGL.framework in Frameworks */,
+				4A11392E19D4B49100DF98CB /* CoreFoundation.framework in Frameworks */,
+				4A11392C19D4B48B00DF98CB /* Quartz.framework in Frameworks */,
+				4A11392A19D4B48500DF98CB /* IOKit.framework in Frameworks */,
+				4A9D507F1996BA0E00473873 /* libAGKMac.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				4A9D507A1996B24F00473873 /* ProgramData.cpp */,
+				9B3D539E132A8691003D1FE4 /* interpreter.cpp */,
+				9B3D539F132A8691003D1FE4 /* interpreter.h */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* AppGameKit Player.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* MacApp */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = MacApp;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				D8D8206116FD0A8400D08FAD /* icons.iconset */,
+				D86F7A921672AE15000AFB76 /* AGK Player.entitlements */,
+				9B8B6E4E1360BFC200BEF23D /* Core.mm */,
+				D8A5D63A131FFCF1000446C9 /* Includes */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D8D8206916FD0DF200D08FAD /* media */,
+				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+				D8984FF3132319CA00687EF5 /* agkinterpreter-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4A163CB82406CFD300330BB2 /* IOSurface.framework */,
+				4A163CB62406CFC000330BB2 /* Metal.framework */,
+				4A9D507E1996BA0E00473873 /* libAGKMac.a */,
+				4AF7D0541BD7270D0021ED1E /* AVFoundation.framework */,
+				4AF7D0521BD727050021ED1E /* CoreMedia.framework */,
+				4AF7D0501BD726FD0021ED1E /* CoreLocation.framework */,
+				4A11393319D4B4A900DF98CB /* Cocoa.framework */,
+				4A11393119D4B4A000DF98CB /* OpenAL.framework */,
+				4A11392F19D4B49900DF98CB /* OpenGL.framework */,
+				4A11392D19D4B49100DF98CB /* CoreFoundation.framework */,
+				4A11392B19D4B48B00DF98CB /* Quartz.framework */,
+				4A11392919D4B48500DF98CB /* IOKit.framework */,
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D88462B516247F2800FFDEA4 /* Collision */ = {
+			isa = PBXGroup;
+			children = (
+				D88462B716247F2800FFDEA4 /* Box.h */,
+				D88462B916247F2800FFDEA4 /* CollisionBox.h */,
+				D88462BA16247F2800FFDEA4 /* CollisionIncludes.h */,
+				D88462BB16247F2800FFDEA4 /* CollisionObject.h */,
+				D88462BD16247F2800FFDEA4 /* CollisionPolygon.h */,
+				D88462BF16247F2800FFDEA4 /* CollisionResults.h */,
+				D88462C116247F2800FFDEA4 /* CollisionSphere.h */,
+				D88462C316247F2800FFDEA4 /* CollisionTree.h */,
+				D88462C516247F2800FFDEA4 /* Face.h */,
+				D88462C716247F2800FFDEA4 /* TreeNode.h */,
+			);
+			name = Collision;
+			path = ../../common/Collision;
+			sourceTree = "<group>";
+		};
+		D8A5D63A131FFCF1000446C9 /* Includes */ = {
+			isa = PBXGroup;
+			children = (
+				4A163CB12406CD4400330BB2 /* NetworkPacket.h */,
+				721285AF167A597500C0661F /* cObjectMgr.h */,
+				D88462B516247F2800FFDEA4 /* Collision */,
+				D88462A716247EFB00FFDEA4 /* 3DMath.h */,
+				D88462A816247EFB00FFDEA4 /* agkKeys.h */,
+				D88462A916247EFB00FFDEA4 /* AGKLights.h */,
+				D88462AA16247EFB00FFDEA4 /* AGKShader.h */,
+				D88462AB16247EFB00FFDEA4 /* cCamera.h */,
+				D88462AC16247EFB00FFDEA4 /* cObject3D.h */,
+				D88462AD16247EFB00FFDEA4 /* cTextEntry.h */,
+				D88462AE16247EFB00FFDEA4 /* Joystick.h */,
+				D88462AF16247EFB00FFDEA4 /* Mouse.h */,
+				D88462B016247EFB00FFDEA4 /* Network.h */,
+				D88462B116247EFB00FFDEA4 /* NetworkCommon.h */,
+				D88462B216247EFB00FFDEA4 /* Particles.h */,
+				D88462B316247EFB00FFDEA4 /* sha1.h */,
+				D88462B416247EFB00FFDEA4 /* ZipFile.h */,
+				D8A5D63C131FFD05000446C9 /* agk.h */,
+				D8A5D63E131FFD05000446C9 /* cFile.h */,
+				D8A5D63F131FFD05000446C9 /* cForce.h */,
+				D8A5D640131FFD05000446C9 /* cHashedList.h */,
+				D8A5D641131FFD05000446C9 /* cImage.h */,
+				D8A5D642131FFD05000446C9 /* cNode.h */,
+				D8A5D643131FFD05000446C9 /* Common.h */,
+				D8A5D644131FFD05000446C9 /* cSound.h */,
+				D8A5D645131FFD05000446C9 /* cSprite.h */,
+				D8A5D646131FFD05000446C9 /* cSpriteMgr.h */,
+				D8A5D647131FFD05000446C9 /* cText.h */,
+				D8A5D648131FFD05000446C9 /* cTouch.h */,
+				D8A5D649131FFD05000446C9 /* DebugDraw.h */,
+				D8A5D64A131FFD05000446C9 /* Globals.h */,
+				D8A5D64C131FFD05000446C9 /* Physics.h */,
+				D8A5D64D131FFD05000446C9 /* Thread.h */,
+				D8A5D64E131FFD05000446C9 /* uString.h */,
+				D8A5D64F131FFD05000446C9 /* Wrapper.h */,
+			);
+			name = Includes;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* agk_interpreter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "agk_interpreter" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = agk_interpreter;
+			productInstallPath = "$(HOME)/Applications";
+			productName = MacApp;
+			productReference = 8D1107320486CEB800E47090 /* AppGameKit Player.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				TargetAttributes = {
+					8D1107260486CEB800E47090 = {
+						DevelopmentTeam = 4245WA8N82;
+						ProvisioningStyle = Manual;
+					};
+				};
+			};
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "agkinterpreter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* MacApp */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* agk_interpreter */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
+				D8D8206216FD0A8400D08FAD /* icons.iconset in Resources */,
+				D8D8206A16FD0DF200D08FAD /* media in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B3D53A1132A8691003D1FE4 /* interpreter.cpp in Sources */,
+				9B8B6E4F1360BFC200BEF23D /* Core.mm in Sources */,
+				4A9D507B1996B24F00473873 /* ProgramData.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C165DFE840E0CC02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4AFBC4AF1A1BF1DC00800029 /* ReleaseFree */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx;
+			};
+			name = ReleaseFree;
+		};
+		4AFBC4B01A1BF1DD00800029 /* ReleaseFree */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_ENTITLEMENTS = "AGK Player.entitlements";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 4245WA8N82;
+				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"../../platform/mac\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					IDE_MAC,
+					FREEVERSION,
+				);
+				HEADER_SEARCH_PATHS = (
+					../../bullet,
+					../../bullet/BulletCollision/CollisionShapes,
+					../interpreter,
+					../../renderer,
+				);
+				INFOPLIST_FILE = "agkinterpreter-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					../../platform/mac/DDHidLib,
+					../../platform/mac/GLFW,
+					../../platform/mac/Lib/ReleaseFree,
+					../../renderer/MoltenVK/Lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "-all_load";
+				"OTHER_LDFLAGS[arch=arm64]" = (
+					"-all_load",
+					"-lglfw3_arm64",
+				);
+				"OTHER_LDFLAGS[arch=x86_64]" = (
+					"-all_load",
+					"-lglfw3_x86_64",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.thegamecreators.agkplayermac;
+				PRODUCT_NAME = "AppGameKit Player";
+				PROVISIONING_PROFILE_SPECIFIER = "AGK Player Mac DevID";
+				SDKROOT = macosx;
+				VALID_ARCHS = "arm64 x86_64";
+			};
+			name = ReleaseFree;
+		};
+		C01FCF4B08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_ENTITLEMENTS = "AGK Player.entitlements";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 4245WA8N82;
+				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"../../platform/mac\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = IDE_MAC;
+				HEADER_SEARCH_PATHS = (
+					../../bullet,
+					../../bullet/BulletCollision/CollisionShapes,
+					../interpreter,
+					../../renderer,
+				);
+				INFOPLIST_FILE = "agkinterpreter-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					../../platform/mac/DDHidLib,
+					../../platform/mac/GLFW,
+					../../platform/mac/Lib/Debug,
+					../../platform/mac/Lib/Release,
+					../../renderer/MoltenVK/Lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.thegamecreators.agkplayermac;
+				PRODUCT_NAME = "AppGameKit Player";
+				PROVISIONING_PROFILE_SPECIFIER = "AGK Player Mac DevID";
+				SDKROOT = macosx;
+				VALID_ARCHS = "arm64 x86_64";
+			};
+			name = Debug;
+		};
+		C01FCF4C08A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_ENTITLEMENTS = "AGK Player.entitlements";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 4245WA8N82;
+				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"../../platform/mac\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = IDE_MAC;
+				HEADER_SEARCH_PATHS = (
+					../../bullet,
+					../../bullet/BulletCollision/CollisionShapes,
+					../interpreter,
+					../../renderer,
+				);
+				INFOPLIST_FILE = "agkinterpreter-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					../../platform/mac/DDHidLib,
+					../../platform/mac/GLFW,
+					../../platform/mac/Lib/Release,
+					../../renderer/MoltenVK/Lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "-all_load";
+				"OTHER_LDFLAGS[arch=arm64]" = (
+					"-all_load",
+					"-lglfw3_arm64",
+				);
+				"OTHER_LDFLAGS[arch=x86_64]" = (
+					"-all_load",
+					"-lglfw3_x86_64",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.thegamecreators.agkplayermac;
+				PRODUCT_NAME = "AppGameKit Player";
+				PROVISIONING_PROFILE_SPECIFIER = "AGK Player Mac DevID";
+				SDKROOT = macosx;
+				VALID_ARCHS = "arm64 x86_64";
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = IDE_MAC;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-all_load";
+				"OTHER_LDFLAGS[arch=arm64]" = (
+					"-all_load",
+					"-lglfw3_arm64",
+				);
+				"OTHER_LDFLAGS[arch=x86_64]" = (
+					"-all_load",
+					"-lglfw3_x86_64",
+				);
+				PREBINDING = NO;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "agk_interpreter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
+				4AFBC4B01A1BF1DD00800029 /* ReleaseFree */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "agkinterpreter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+				4AFBC4AF1A1BF1DC00800029 /* ReleaseFree */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

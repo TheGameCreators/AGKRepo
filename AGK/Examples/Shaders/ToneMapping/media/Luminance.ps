@@ -1,0 +1,11 @@
+uniform sampler2D texture0;
+varying vec2 uvVarying;
+
+void main()
+{
+    // convert color to luminance, not strictly necessary here, could be done later
+    // but if we wanted to lof luminance it would have to be done here
+    mediump vec3 color = texture2D(texture0, uvVarying).rgb;
+    highp float luminance = 0.27*color.r + 0.67*color.g + 0.06*color.b;
+    gl_FragColor = vec4(luminance,luminance,luminance,0.0);
+}

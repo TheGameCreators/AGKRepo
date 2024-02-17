@@ -1,0 +1,5 @@
+Change package.json "main" field to "./out/main.js"
+Run "vsce package" in the Extension folder
+Change package.json "main" field back to "./out/extension.js"
+
+Failure to change it back means that the extension may still run but it won't pick up any changes that you make

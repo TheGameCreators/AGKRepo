@@ -1,0 +1,66 @@
+#  SGPlayer.exp
+#  SGPlayer
+#
+#  Created by C.W. Betts on 3/4/20.
+#  Copyright © 2020 single. All rights reserved.
+
+_$sSo10SGCapacityV8SGPlayerE1loiySbAB_ABtFZ
+_$sSo10SGCapacityV8SGPlayerE1poiyA2B_ABtFZ
+_$sSo10SGCapacityV8SGPlayerE2eeoiySbAB_ABtFZ
+_$sSo10SGCapacityV8SGPlayerE2peoiyyABz_ABtFZ
+_$sSo10SGCapacityV8SGPlayerE7isEmptySbvg
+_$sSo10SGCapacityV8SGPlayerE7isEmptySbvpMV
+_$sSo10SGCapacityV8SGPlayerE8isEnoughSbvg
+_$sSo10SGCapacityV8SGPlayerE8isEnoughSbvpMV
+_$sSo10SGCapacityVSL8SGPlayerMc
+_$sSo10SGCapacityVSQ8SGPlayerMc
+
+_OBJC_CLASS_$_SG*
+_OBJC_METACLASS_$_SG*
+
+_SGPlayerVersion*
+
+_SGErrorDomain
+_SGErrorUserInfoKeyFFMpegErrorNumber
+_SGErrorUserInfoKeyOperation
+_SGGetFFError
+_SGCreateError
+
+_SGPlayerDidChangeInfoNotification
+_SGPlayerTimeInfoUserInfoKey
+_SGPlayerStateInfoUserInfoKey
+_SGPlayerInfoActionUserInfoKey
+
+_SGPLFViewSetBackgroundColor
+_SGPLFViewInsertSubview
+_SGPLFViewGetCurrentSnapshot
+
+_SGPLFImageWithCGImage
+_SGPLFImageWithCVPixelBuffer
+_SGPLFImageCIImageWithCVPixelBuffer
+_SGPLFImageCGImageWithCVPixelBuffer
+_SGPLFImageWithRGBData
+_SGPLFImageCGImageWithRGBData
+
+_SGPLFScreenGetScale
+
+_SGCMTimeIsValid
+_SGCMTimeValidate
+_SGCMTimeMakeWithSeconds
+_SGCMTimeMultiply
+_SGCMTimeDivide
+_SGCMTimeRangeFitting
+_SGCMTimeRangeGetIntersection
+
+# FFMpeg libraries
+_avformat_license
+_avformat_configuration
+_avformat_version
+
+_swscale_version
+_swscale_configuration
+_swscale_license
+
+_swresample_version
+_swresample_configuration
+_swresample_license

@@ -1,0 +1,95 @@
+Changes made to the Emscripten SDK for AGK support
+
+** in emsdk_portable/emscripten/master/src/library_sdl.js:1110 removed connection to webAudioPannerNode
+
+** in emsdk_portable/emscripten/master/tools/file_packer.py:662 changed xhr.onprogress, xhr.onerror, and xhr.onload to
+		xhr.onprogress = function(event) {
+			var agkStatus = document.getElementById("agkstatus");
+			if ( agkStatus )
+			{
+				var size = packageSize;
+				if (event.total) size = event.total;
+				if (event.loaded) 
+				{
+					var percent = event.loaded*100.0 / size;
+					agkStatus.textContent = "Loading Media... " + percent.toFixed(1) + "%";
+				}
+				else
+				{
+					agkStatus.textContent = "Loading Media... "
+				}
+			}
+		};
+		xhr.onerror = function(event) {
+			var agkStatus = document.getElementById("agkstatus");
+			if ( agkStatus ) agkStatus.textContent = "Network Error: " + event;
+			throw new Error("NetworkError for: " + packageName);
+		}
+		xhr.onload = function(event) {
+			if (xhr.status == 200 || xhr.status == 304 || xhr.status == 206 || (xhr.status == 0 && xhr.response)) { // file URLs can return 0
+				var agkStatus = document.getElementById("agkstatus");
+				if ( agkStatus ) agkStatus.textContent = "";
+				var packageData = xhr.response;
+				callback(packageData);
+			} else {
+				var agkStatus = document.getElementById("agkstatus");
+				if ( agkStatus ) agkStatus.textContent = xhr.statusText;
+				throw new Error(xhr.statusText + " : " + xhr.responseURL);
+			}
+		};
+		
+** in emsdk_portable/emscripten/master/src/library_glfw.js:483 removed OnFullScreenEventChanged and added onSizeChanged
+		onSizeChange: function() {
+    	if (!GLFW.active || !GLFW.active.windowSizeFunc) return;
+    	
+		#if USE_GLFW == 2
+      		Runtime.dynCall('vii', GLFW.active.windowSizeFunc, [GLFW.active.width, GLFW.active.height]);
+		#endif
+
+		#if USE_GLFW == 3
+      		Runtime.dynCall('viii', GLFW.active.windowSizeFunc, [GLFW.active.id, GLFW.active.width, GLFW.active.height]);
+		#endif
+    },
+    
+** in emsdk_portable/emscripten/master/src/library_glfw.js changed all references of OnFullScreenEventChanged to onSizeChanged
+            
+** in emsdk_portable/emscripten/master/src/library_browser.js:318 defined resizeCanvas to be true everywhere
+
+** in emsdk_portable/emscripten/master/src/library_browser.js:665 removed both calls to Browser.updateResizeListeners()
+
+** in emsdk_portable/emscripten/master/src/library_browser.js:356 added call to Browser.updateResizeListeners()
+
+** in emsdk_portable/emscripten/master/src/library_browser.js:693 removed ratio adjustment to width and height when in fullscreen, set directly to screen size instead
+
+** in emsdk_portable/emscripten/master/src/library_browser.js:640 added onOrientationChanged function
+		onOrientationChange: function() {
+			if ( Browser.isFullscreen )
+			{
+				Browser.updateCanvasDimensions(null,null);
+				Browser.updateResizeListeners();
+			}
+		}
+		
+** in emsdk_portable/emscripten/master/src/library_browser.js:268 added orientation listenener
+		window.addEventListener("orientationchange", Browser.onOrientationChanged, false);
+		
+** in emsdk_portable/emscripten/master/src/library_openal.js:55 added check for currentTime still starting up
+      if ( startTime < 1 )
+      {
+      	if ( currentTime < 1 ) return;
+      	else 
+      	{
+  		  src.bufferPosition = currentTime;
+  		  startTime = currentTime;
+      	}
+      }
+      
+** in emsdk_portable/emscripten/master/src/library_openal.js:85 removed AL_STOPPED after buffers depleted as currentTime is unreliable when starting up and may skip over all current buffers
+
+** in emsdk_portable/emscripten/master/src/library_openal.js:268 added dummy sound to start the currentTime counter
+      var buffer = ctx.createBuffer(1, 1, 22050);
+      var source = ctx.createBufferSource();
+      source.buffer = buffer;
+      source.connect(ctx.destination);
+      if (typeof(source.start) !== 'undefined') source.start(0);
+      else if (typeof(source.noteOn) !== 'undefined') source.noteOn(0);

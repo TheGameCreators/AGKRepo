@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>207E73E7-1DF3-457F-A8C3-90D5D0C95D94</string>
+	<key>IDESourceControlProjectName</key>
+	<string>agkinterpreter</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>B76C67EA-2FFA-4133-A7CB-4EA85F570993</key>
+		<string>https://95.211.190.94:8443/svn/AGK/trunk</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>apps/interpreter_ios/agkinterpreter.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>B76C67EA-2FFA-4133-A7CB-4EA85F570993</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>B76C67EA-2FFA-4133-A7CB-4EA85F570993</key>
+		<string>https://95.211.190.94:8443/svn/AGK</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://95.211.190.94:8443/svn/AGK/trunk/apps/interpreter_ios/agkinterpreter.xcodeproj</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>B76C67EA-2FFA-4133-A7CB-4EA85F570993</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryBranchesRelativeLocationKey</key>
+			<string>branches</string>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlRepositoryTagsRelativeLocationKey</key>
+			<string>tags</string>
+			<key>IDESourceControlRepositoryTrunkRelativeLocationKey</key>
+			<string>trunk</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B76C67EA-2FFA-4133-A7CB-4EA85F570993</string>
+			<key>IDESourceControlWCCName</key>
+			<string>AGKTrunk</string>
+		</dict>
+	</array>
+</dict>
+</plist>

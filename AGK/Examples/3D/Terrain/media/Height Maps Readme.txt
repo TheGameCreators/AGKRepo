@@ -1,0 +1,1 @@
+All height maps are sourced from the US Geological Survey website http://viewer.nationalmap.gov/basic/ and are free to use for any purpose

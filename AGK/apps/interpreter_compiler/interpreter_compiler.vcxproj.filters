@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="AGK-KeepOut">
+      <UniqueIdentifier>{fab35402-76a0-4ac5-bdb4-4e5222b71d4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\interpreter\Core.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="..\interpreter\interpreter.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="..\interpreter\ProgramData.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Compiler.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="AGKAdditionalSwitch.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="..\interpreter\AGKCommandEnums.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="..\interpreter\AGKCommandSwitch.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="..\interpreter\AGKCommandSwitch2D.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="..\interpreter\AGKCommonSwitch.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="..\interpreter\AGKInstructions.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="..\interpreter\AGKPluginCommandList.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="..\interpreter\FreeVersion.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="..\interpreter\interpreter.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="..\interpreter\ProgramData.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Paul%27s\VC Projects\SVN Projects\AGKTrunk\apps\interpreter\resource.h">
+      <Filter>App</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="interpreter.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="interpreter.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="..\interpreter\Win64Plugins.asm">
+      <Filter>App</Filter>
+    </MASM>
+  </ItemGroup>
+</Project>

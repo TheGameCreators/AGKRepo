@@ -1,0 +1,7 @@
+#CommandName,ReturnType,ParameterTypes,Windows,Linux,Mac,Android,iOS,Windows64
+AddFloat,F,FF,0,0,0,0,0,?AddFloat@@YAMMM@Z
+ModifyString,S,S,0,0,0,0,0,?ModifyString@@YAPADPBD@Z
+DLLPrint,0,S,0,0,0,0,0,?DLLPrint@@YAXPBD@Z
+GetI,I,0,0,0,0,0,0,?GetI@@YAHXZ
+SetI,0,I,0,0,0,0,0,?SetI@@YAXH@Z
+CreateRedSquare,0,0,0,0,0,0,0,?CreateRedSquare@@YAXXZ

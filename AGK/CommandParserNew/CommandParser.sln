@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CommandParser", "CommandParser.vcxproj", "{AF77C6A0-3EA8-42D1-92D8-646C17980BD4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF77C6A0-3EA8-42D1-92D8-646C17980BD4}.Debug|x64.ActiveCfg = Debug|x64
+		{AF77C6A0-3EA8-42D1-92D8-646C17980BD4}.Debug|x64.Build.0 = Debug|x64
+		{AF77C6A0-3EA8-42D1-92D8-646C17980BD4}.Release|x64.ActiveCfg = Release|x64
+		{AF77C6A0-3EA8-42D1-92D8-646C17980BD4}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E28092E0-13C7-473F-82E2-7612A5C6801A}
+	EndGlobalSection
+EndGlobal

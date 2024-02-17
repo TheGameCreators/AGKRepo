@@ -1,0 +1,8 @@
+#CommandName,ReturnType,ParameterTypes,Windows,Linux,Mac,Android,iOS,Windows64
+AddFloat,F,FF,?AddFloat@@YAMMM@Z,_Z8AddFloatff,_Z8AddFloatff,0,0,?AddFloat@@YAMMM@Z
+ModifyString,S,S,?ModifyString@@YAPADPBD@Z,_Z12ModifyStringPKc,_Z12ModifyStringPKc,0,0,?ModifyString@@YAPEADPEBD@Z
+DLLPrint,0,S,?DLLPrint@@YAXPBD@Z,_Z8DLLPrintPKc,_Z8DLLPrintPKc,0,0,?DLLPrint@@YAXPEBD@Z
+GetI,I,0,?GetI@@YAHXZ,_Z4GetIv,_Z4GetIv,0,0,?GetI@@YAHXZ
+SetI,0,I,?SetI@@YAXH@Z,_Z4SetIi,_Z4SetIi,0,0,?SetI@@YAXH@Z
+CreateRedSquare,0,0,?CreateRedSquare@@YAXXZ,_Z15CreateRedSquarev,_Z15CreateRedSquarev,0,0,?CreateRedSquare@@YAXXZ
+LotsOfParams,0,IIFFISF,?LotsOfParams@@YAXHHMMHPBDM@Z,0,0,0,0,?LotsOfParams@@YAXHHMMHPEBDM@Z

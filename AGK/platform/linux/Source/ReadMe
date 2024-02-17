@@ -1,0 +1,16 @@
+To compile Tier 2 (C++) apps on Linux requires the following packages
+
+ * cmake
+ * g++
+ * libopenal-dev
+ * libcurl4-openssl-dev
+ * libpng-dev
+ * libjpeg-dev
+ * xorg-dev
+ * libglu1-mesa-dev
+ * libudev-dev
+ * libavformat-dev
+
+You will also need to download the source for GLFW 3.2.1 and compile and install it on to your system. Two Linux projects have been included in the Tier2/apps folder, the first "interpreter_linux" is the Tier 1 player, and the second "template_linux" is for Tier 2 app development. Simply browse to either of these folders using the command line and type "make" to compile the projects, the binary will be placed in the build folder. The generated executable will only be compatible with your currently architecture, i.e. 32 bit or 64 bit. To compile both a 32 bit and 64 bit executable you will need to have both a 32 bit machine and a 64 bit machine setup to compile your Tier 2 app.
+
+This has been tested on Ubuntu 14.04 but may work with other versions.

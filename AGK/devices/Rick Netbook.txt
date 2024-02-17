@@ -1,0 +1,206 @@
+Renderer: Intel 945GM
+Vendor: Intel
+Memory: 256 MB
+Version: 1.4.0 - Build 8.14.10.1930
+Shading language version: N/A
+
+
+Max texture size: 2048 x 2048
+Max texture coordinates: 8
+Max vertex texture image units: 0
+Max texture image units: 16
+Max geometry texture units: 0
+Max anisotropic filtering value: 4
+Max number of light sources: 16
+Max viewport size: 2048 x 2048
+Max uniform vertex components: 0
+Max uniform fragment components: 0
+Max geometry uniform components: 0
+Max varying floats: 0
+Max samples: 0
+Max draw buffers: 0
+
+
+Extensions: 56
+
+GL_3DFX_texture_compression_FXT1
+GL_ARB_depth_texture
+GL_ARB_fragment_program
+GL_ARB_multitexture
+GL_ARB_point_parameters
+GL_ARB_shadow
+GL_ARB_texture_border_clamp
+GL_ARB_texture_compression
+GL_ARB_texture_cube_map
+GL_ARB_texture_env_add
+GL_ARB_texture_env_combine
+GL_ARB_texture_env_crossbar
+GL_ARB_texture_env_dot3
+GL_ARB_transpose_matrix
+GL_ARB_vertex_buffer_object
+GL_ARB_vertex_program
+GL_ARB_window_pos
+GL_EXT_abgr
+GL_EXT_bgra
+GL_EXT_blend_color
+GL_EXT_blend_func_separate
+GL_EXT_blend_minmax
+GL_EXT_blend_subtract
+GL_EXT_clip_volume_hint
+GL_EXT_compiled_vertex_array
+GL_EXT_cull_vertex
+GL_EXT_draw_range_elements
+GL_EXT_fog_coord
+GL_EXT_multi_draw_arrays
+GL_EXT_packed_pixels
+GL_EXT_rescale_normal
+GL_EXT_secondary_color
+GL_EXT_separate_specular_color
+GL_EXT_shadow_funcs
+GL_EXT_stencil_two_side
+GL_EXT_stencil_wrap
+GL_EXT_texture3D
+GL_EXT_texture_compression_s3tc
+GL_EXT_texture_env_add
+GL_EXT_texture_env_combine
+GL_EXT_texture_filter_anisotropic
+GL_EXT_texture_lod_bias
+GL_IBM_texture_mirrored_repeat
+GL_NV_blend_square
+GL_NV_texgen_reflection
+GL_SGIS_generate_mipmap
+GL_SGIS_texture_edge_clamp
+GL_SGIS_texture_lod
+GL_WIN_swap_hint
+WGL_ARB_buffer_region
+WGL_ARB_extensions_string
+WGL_ARB_make_current_read
+WGL_ARB_pbuffer
+WGL_ARB_pixel_format
+WGL_EXT_extensions_string
+WGL_EXT_swap_control
+
+Core features
+v1.1 (100 % - 7/7)
+v1.2 (100 % - 8/8)
+v1.3 (100 % - 9/9)
+v1.4 (100 % - 15/15)
+v1.5 (66 % - 2/3)
+v2.0 (10 % - 1/10)
+v2.1 (0 % - 0/3)
+v3.0 (0 % - 0/23)
+v3.1 (0 % - 0/8)
+v3.2 (0 % - 0/9)
+v3.3 (0 % - 0/9)
+v4.0 (0 % - 0/13)
+v4.1 (0 % - 0/8)
+
+OpenGL driver version check (Current: 1.4.0 - Build 8.14.10.1930, Latest known: 1.4.0 - Build 7.14.10.1147):
+Latest version of display drivers found
+According the database, you are running the latest display drivers for your video card.
+
+No ICD registry entry
+The current OpenGL driver doesn't expose the SOFTWARE/Microsoft/Windows (NT)/CurrentVersion/OpenGLDrivers registry entry. Unable to detect the driver version, driver revision name and filename.
+
+Compiled vertex array support
+This feature improves OpenGL performance by using video memory to cache transformed vertices.
+
+Multitexture support
+This feature accelerates complex rendering such as lightmaps or environment mapping.
+
+Secondary color support
+This feature provides an alternate method of coloring specular highlights on polygons.
+
+S3TC compression support
+This feature improves texture mapping performance in some applications by using lossy compression.
+
+Texture edge clamp support
+This feature improves texturing quality by adding clamping control to edge texel filtering.
+
+Vertex program support
+This feature enables a wide variety of effects via flexible vertex programming (equivalent to DX8 Vertex Shader.)
+
+Fragment program support
+This feature enables a wide variety of effects via per pixel programming (equivalent to DX9 Pixel Shader.)
+
+Texture anisotropic filtering support
+This feature improves the quality of texture mapping on oblique surfaces.
+
+No OpenGL Shading Language support
+This may break compatibility for applications using per pixel shading.
+
+No Frame buffer object support
+This may break compatibility for applications using render to texture functions.
+
+Extension verification:
+GL_ARB_debug_output was not found, but has the entry point glGetPointerv
+GL_ARB_draw_buffers was not found, but has the entry point glDrawBuffersARB
+GL_ARB_imaging was not found, but has the entry point glBlendEquation
+GL_ARB_occlusion_query was not found, but has the entry point glBeginQueryARB
+GL_ARB_occlusion_query was not found, but has the entry point glDeleteQueriesARB
+GL_ARB_occlusion_query was not found, but has the entry point glEndQueryARB
+GL_ARB_occlusion_query was not found, but has the entry point glGenQueriesARB
+GL_ARB_occlusion_query was not found, but has the entry point glGetQueryObjectivARB
+GL_ARB_occlusion_query was not found, but has the entry point glGetQueryObjectuivARB
+GL_ARB_occlusion_query was not found, but has the entry point glGetQueryivARB
+GL_ARB_occlusion_query was not found, but has the entry point glIsQueryARB
+GL_ARB_shader_objects was not found, but has the entry point glAttachObjectARB
+GL_ARB_shader_objects was not found, but has the entry point glCompileShaderARB
+GL_ARB_shader_objects was not found, but has the entry point glCreateProgramObjectARB
+GL_ARB_shader_objects was not found, but has the entry point glCreateShaderObjectARB
+GL_ARB_shader_objects was not found, but has the entry point glDeleteObjectARB
+GL_ARB_shader_objects was not found, but has the entry point glDetachObjectARB
+GL_ARB_shader_objects was not found, but has the entry point glGetActiveUniformARB
+GL_ARB_shader_objects was not found, but has the entry point glGetAttachedObjectsARB
+GL_ARB_shader_objects was not found, but has the entry point glGetHandleARB
+GL_ARB_shader_objects was not found, but has the entry point glGetInfoLogARB
+GL_ARB_shader_objects was not found, but has the entry point glGetObjectParameterfvARB
+GL_ARB_shader_objects was not found, but has the entry point glGetObjectParameterivARB
+GL_ARB_shader_objects was not found, but has the entry point glGetShaderSourceARB
+GL_ARB_shader_objects was not found, but has the entry point glGetUniformLocationARB
+GL_ARB_shader_objects was not found, but has the entry point glGetUniformfvARB
+GL_ARB_shader_objects was not found, but has the entry point glGetUniformivARB
+GL_ARB_shader_objects was not found, but has the entry point glLinkProgramARB
+GL_ARB_shader_objects was not found, but has the entry point glShaderSourceARB
+GL_ARB_shader_objects was not found, but has the entry point glUniform1fARB
+GL_ARB_shader_objects was not found, but has the entry point glUniform1fvARB
+GL_ARB_shader_objects was not found, but has the entry point glUniform1iARB
+GL_ARB_shader_objects was not found, but has the entry point glUniform1ivARB
+GL_ARB_shader_objects was not found, but has the entry point glUniform2fARB
+GL_ARB_shader_objects was not found, but has the entry point glUniform2fvARB
+GL_ARB_shader_objects was not found, but has the entry point glUniform2iARB
+GL_ARB_shader_objects was not found, but has the entry point glUniform2ivARB
+GL_ARB_shader_objects was not found, but has the entry point glUniform3fARB
+GL_ARB_shader_objects was not found, but has the entry point glUniform3fvARB
+GL_ARB_shader_objects was not found, but has the entry point glUniform3iARB
+GL_ARB_shader_objects was not found, but has the entry point glUniform3ivARB
+GL_ARB_shader_objects was not found, but has the entry point glUniform4fARB
+GL_ARB_shader_objects was not found, but has the entry point glUniform4fvARB
+GL_ARB_shader_objects was not found, but has the entry point glUniform4iARB
+GL_ARB_shader_objects was not found, but has the entry point glUniform4ivARB
+GL_ARB_shader_objects was not found, but has the entry point glUniformMatrix2fvARB
+GL_ARB_shader_objects was not found, but has the entry point glUniformMatrix3fvARB
+GL_ARB_shader_objects was not found, but has the entry point glUniformMatrix4fvARB
+GL_ARB_shader_objects was not found, but has the entry point glUseProgramObjectARB
+GL_ARB_shader_objects was not found, but has the entry point glValidateProgramARB
+GL_ARB_vertex_shader was not found, but has the entry point glBindAttribLocationARB
+GL_ARB_vertex_shader was not found, but has the entry point glGetActiveAttribARB
+GL_ARB_vertex_shader was not found, but has the entry point glGetAttribLocationARB
+GL_EXT_blend_equation_separate was not found, but has the entry point glBlendEquationSeparateEXT
+GL_EXT_framebuffer_object was not found, but has the entry point glBindFramebufferEXT
+GL_EXT_framebuffer_object was not found, but has the entry point glBindRenderbufferEXT
+GL_EXT_framebuffer_object was not found, but has the entry point glCheckFramebufferStatusEXT
+GL_EXT_framebuffer_object was not found, but has the entry point glDeleteFramebuffersEXT
+GL_EXT_framebuffer_object was not found, but has the entry point glDeleteRenderbuffersEXT
+GL_EXT_framebuffer_object was not found, but has the entry point glFramebufferRenderbufferEXT
+GL_EXT_framebuffer_object was not found, but has the entry point glFramebufferTexture1DEXT
+GL_EXT_framebuffer_object was not found, but has the entry point glFramebufferTexture2DEXT
+GL_EXT_framebuffer_object was not found, but has the entry point glFramebufferTexture3DEXT
+GL_EXT_framebuffer_object was not found, but has the entry point glGenFramebuffersEXT
+GL_EXT_framebuffer_object was not found, but has the entry point glGenRenderbuffersEXT
+GL_EXT_framebuffer_object was not found, but has the entry point glGenerateMipmapEXT
+GL_EXT_framebuffer_object was not found, but has the entry point glGetFramebufferAttachmentParameterivEXT
+GL_EXT_framebuffer_object was not found, but has the entry point glGetRenderbufferParameterivEXT
+GL_EXT_framebuffer_object was not found, but has the entry point glIsFramebufferEXT
+GL_EXT_framebuffer_object was not found, but has the entry point glIsRenderbufferEXT
+GL_EXT_framebuffer_object was not found, but has the entry point glRenderbufferStorageEXT

@@ -1,0 +1,111 @@
+#ifdef GL_ES
+   #ifdef GL_FRAGMENT_PRECISION_HIGH   
+      precision highp float;
+   #else
+      precision mediump float;
+   #endif
+#endif
+ 
+ 
+#define PI 3.1415926
+#define PI2 6.2831853
+ 
+uniform sampler2D texture0; // diffuse
+uniform sampler2D texture1; // normal
+uniform sampler2D texture2; // reflection
+uniform sampler2D texture3; // lightmap
+
+varying vec2 uv0Varying;
+varying vec3 normalVarying;
+varying vec3 binormalVarying;
+varying vec3 tangentVarying;
+varying vec3 posVarying;
+
+uniform vec3 agk_CameraPos;
+uniform float gamma;
+
+#define expo vec2(1.04, 82.0)
+#define LOG(a,b) (log((b)) / log((a)) )
+vec3 unpack(vec4 rgbe) {
+	float fExp = rgbe.a * 256.0 - expo.y;
+	float fScale = pow(expo.x, fExp);
+	vec3 erg = rgbe.rgb*fScale;
+	return erg;
+}
+
+vec3 fresnel(vec3 sc, float roughness, vec3 n, vec3 l) {
+	float gloss = 1.0-roughness;
+	return sc + (max(vec3(gloss,gloss,gloss), sc) - sc) * pow(1.0 - clamp(dot(l, n),0.0,1.0), 5.0);
+}
+
+vec3 ibl_specDir ( vec3 N , vec3 R , float roughness ) {
+	float gloss = 1.0-roughness;
+	float lerpFactor = clamp(gloss * (sqrt(gloss) + roughness) - 0.41, 0.0, 1.0);
+	return normalize( mix(N , R , lerpFactor ));
+}
+
+vec2 vec2lat(vec3 vc) {
+	vec2 rt = vec2(0,0);
+	float theta = acos(vc.y);
+	float phi = atan(-vc.x, -vc.z);
+	rt = vec2((PI + phi) / PI2, theta / PI);
+	rt.y = rt.y*0.99+0.01;
+	rt.x = 0.75-rt.x;
+	rt.x += step(rt.x, 0.0);
+	return rt;
+}
+
+vec3 tonemapACES( vec3 x ) {
+    float a = 2.51;
+    float b = 0.03;
+    float c = 2.43;
+    float d = 0.59;
+    float e = 0.14;
+	x *= 0.6;
+    vec3 xx = clamp((x*(a*x+b))/(x*(c*x+d)+e), 0.0, 1.0);
+	return pow(xx, vec3(0.454545));
+}
+
+void main() {
+    vec3 norm = normalize(normalVarying);
+	vec3 nb = normalize(binormalVarying);
+	vec3 nt = normalize(tangentVarying);
+	vec3 V = normalize(agk_CameraPos-posVarying);
+	
+	vec4 cl = texture2D(texture0, uv0Varying).rgba;								// albedo
+	cl.rgb = pow(cl.rgb, vec3(2.2));											// to linear space
+	
+	vec4 nr = texture2D(texture1, uv0Varying).rgba;								// normal + AO
+	float roughness = nr.a;
+	
+	float bumpiness = 1.0;														// normalmapping
+	nr.rg -= vec2(0.5);
+	vec2 bump = nr.rg*bumpiness;
+	vec3 N = normalize(norm + bump.r * nt - bump.g * nb);
+	
+	vec3 specCol = mix(vec3(0.03), cl.rgb, cl.a);  								// calculate correct f0 reflection color based on metallic channel
+	cl.rgb = mix(cl.rgb, vec3(0.0), cl.a); 										// metals have no diffuse
+	
+	cl.rgb *= unpack( texture2D(texture3, uv0Varying, -8.0).rgba ) * nr.b;	// get diffuse lighting from probe and attentuate it with the AO value.
+	
+	// fetch reflection
+	vec3 rview = reflect(-V, N);												// reflect view ray
+	rview = ibl_specDir ( N , rview , roughness );								// bend the reflection ray to account for probes being in the center of the object
+																				// instead of on the surface, also amplify the bending on rough surfaces to simulate microfaceting
+	vec2 rt2 = vec2lat(rview);													// convert vec to texture coords
+	
+	float miplev = clamp( pow(roughness, 1.4), 0.0, 1.0) * 7.0;					// calculate mip levels from roughness
+	float mipfrac = fract(miplev);
+	miplev = floor(miplev);
+	rt2.y = rt2.y * 0.125 + miplev * 0.125;
+		
+	vec3 refl = unpack( texture2D(texture2, rt2, -8.0).rgba ) * nr.b; 		// get reflections
+	rt2.y += 0.125;
+	vec3 refl2 = unpack( texture2D(texture2, rt2, -8.0).rgba ) * nr.b;
+	refl = mix(refl, refl2, mipfrac);											// mix for final value
+	
+	specCol = fresnel(specCol, roughness, N, V) * refl;							// Fresnel
+	
+    gl_FragColor = vec4(tonemapACES((cl.rgb+specCol)*gamma), 1.0);
+ 
+}

@@ -1,0 +1,13 @@
+Run CompilerNew\android\jniCompile.bat to compile Android compiler lib
+Run CompilerNew\android\copylibs.bat
+Run apps\interpreter_android_google_compiler\AGKPlayer2\src\main\jniCompile.bat 
+Upload apps\interpreter_android_google_compiler\AGKPlayer2\src\main\jnilibs for Android export
+Export APK for Android player
+
+Build Windows ReleaseStaticLib config for Windows compile lib
+Build apps\interpreter_compiler project for Windows
+Upload Final\Windows.exe
+
+Build CompilerNew\ios\AGKCompiler.xcodeproj for iOS compiler lib
+Build apps\interpreter_ios_noads_compiler for iOS interpreter_compiler
+Extract AGKPlayer executable for iOS export

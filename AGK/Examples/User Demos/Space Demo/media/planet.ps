@@ -1,0 +1,23 @@
+//-- these values come straight from agk
+uniform vec4 agk_PLightPos;
+uniform vec4 agk_PLightColor;
+uniform vec4 agk_ObjColor;
+
+//-- these values from our vertex shader
+varying vec3 normalVarying;
+varying vec3 posVarying;
+
+void main()
+{
+    //-- this ambient value is a minimum light level so 
+    //-- the object is never completely dark 
+    float ambient   = 0.075;
+    vec3 dir        = agk_PLightPos.xyz - posVarying;
+    vec3 norm       = normalize(normalVarying);
+    float atten     = dot(dir,dir);
+    atten           = clamp(agk_PLightPos.w/atten,ambient,1.0);
+    float intensity = dot(normalize(dir),norm);
+    intensity       = clamp(intensity,ambient,1.0);
+    vec3 color      = agk_PLightColor.rgb * intensity * atten;
+    gl_FragColor    = vec4(color,1) * agk_ObjColor;
+}

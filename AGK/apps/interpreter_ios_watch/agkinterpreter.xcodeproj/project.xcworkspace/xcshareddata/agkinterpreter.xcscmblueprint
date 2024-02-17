@@ -1,0 +1,25 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "83b879fb-8aa0-c74d-9177-27e7193e2161++505",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "83b879fb-8aa0-c74d-9177-27e7193e2161++505" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "83b879fb-8aa0-c74d-9177-27e7193e2161++505" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "207E73E7-1DF3-457F-A8C3-90D5D0C95D94",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "83b879fb-8aa0-c74d-9177-27e7193e2161++505" : "AGKTrunk\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "agkinterpreter",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "apps\/interpreter_ios\/agkinterpreter.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/212.48.87.85:8443\/svn\/AGK",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "83b879fb-8aa0-c74d-9177-27e7193e2161++505"
+    }
+  ]
+}

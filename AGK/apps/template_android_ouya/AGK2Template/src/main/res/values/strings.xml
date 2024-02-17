@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AGK Template</string>
+    <string name="backtext">Press back to return to the app</string>
+    <string name="waittext">Please Wait...</string>
+</resources>

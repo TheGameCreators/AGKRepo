@@ -1,0 +1,31 @@
+uniform sampler2D texture0; // existing tone image
+uniform sampler2D texture1; // current luminance
+
+uniform float targetExposure; // 0.6
+uniform float toneMapSpeed; // 0.1
+
+void main()
+{
+    // sample the 3x3 luminance image, giving a bit more weight to the center and less to the corners
+    highp float luminance= texture2D(texture1, vec2(0.5,0.5)).r * 2.0;
+    luminance += texture2D(texture1, vec2(0.5,0.25)).r;
+    luminance += texture2D(texture1, vec2(0.5,0.75)).r;
+    luminance += texture2D(texture1, vec2(0.25,0.5)).r;
+    luminance += texture2D(texture1, vec2(0.75,0.5)).r;
+    luminance += texture2D(texture1, vec2(0.25,0.25)).r * 0.5;
+    luminance += texture2D(texture1, vec2(0.25,0.75)).r * 0.5;
+    luminance += texture2D(texture1, vec2(0.75,0.25)).r * 0.5;
+    luminance += texture2D(texture1, vec2(0.75,0.75)).r * 0.5;
+    luminance *= 0.125;
+    
+    // calculate which direction the luminance needs to move
+    luminance = targetExposure - luminance;
+    luminance = luminance * toneMapSpeed;
+
+    // adjust the old tone map image and output a value for the new one
+    mediump vec4 tone = texture2D(texture0, vec2(0.5,0.5));
+    tone = tone + vec4(luminance,luminance,luminance,luminance);
+    clamp( tone, vec4(0.0,0.0,0.0,0.0), vec4(1.0,1.0,1.0,1.0) );
+
+    gl_FragColor = tone;
+}

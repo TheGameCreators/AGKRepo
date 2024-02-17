@@ -1,0 +1,12 @@
+
+[project]
+description=
+
+[projectfiles]
+FILE_0=main.agc;-1
+FILE_1=setup.agc;-1
+[files]
+FILE_NAME_0=1;main.agc;8;0
+
+[watchvariables]
+

@@ -1,0 +1,50 @@
+#ifdef GL_ES
+   #ifdef GL_FRAGMENT_PRECISION_HIGH   
+      precision highp float;
+   #else
+      precision mediump float;
+   #endif
+#endif
+ 
+ 
+#define PI 3.1415926
+#define PI2 6.2831853
+ 
+uniform sampler2D texture0; // diffuse
+uniform sampler2D texture1; // normal
+uniform sampler2D texture2; // sky
+
+varying vec2 uv0Varying;
+varying vec3 normalVarying;
+varying vec3 binormalVarying;
+varying vec3 tangentVarying;
+varying vec3 posVarying;
+
+uniform vec3 agk_CameraPos;
+uniform float gamma;
+uniform vec3 lightDir;
+
+#define expo vec2(1.04, 82.0)
+#define LOG(a,b) (log((b)) / log((a)) )
+vec3 unpack(vec4 rgbe) {
+	float fExp = rgbe.a * 256.0 - expo.y;
+	float fScale = pow(expo.x, fExp);
+	vec3 erg = rgbe.rgb*fScale;
+	return erg;
+}
+
+vec3 tonemapACES( vec3 x ) {
+    float a = 2.51;
+    float b = 0.03;
+    float c = 2.43;
+    float d = 0.59;
+    float e = 0.14;
+	x *= 0.6;
+    vec3 xx = clamp((x*(a*x+b))/(x*(c*x+d)+e), 0.0, 1.0);
+	return pow(xx, vec3(0.454545));
+}
+
+void main() {
+	vec3 cl = unpack(texture2D(texture0, uv0Varying).rgba);
+    gl_FragColor = vec4(tonemapACES(cl*gamma), 1.0);
+}
