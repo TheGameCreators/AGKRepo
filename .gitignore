@@ -1,5 +1,10 @@
+.gradle/
+.idea/
+.vs/
 AGK/apps/interpreter_android_google/AGKPlayer2/build
 AGK/apps/interpreter_android_amazon/AGKPlayer2/build
 AGK/apps/interpreter_android_ouya/AGKPlayer2/build
-.gradle/
-.idea/
+AGK_Build/External/android-ndk-r20b
+AGK/tools/AGKBuildSystem/Windows/Final/AGKBuild.exe
+AGK/tools/AGKBuildSystem/Windows/Final/AGKBuild.pdb
+AGK/tools/AGKBuildSystem/Windows/Debug64

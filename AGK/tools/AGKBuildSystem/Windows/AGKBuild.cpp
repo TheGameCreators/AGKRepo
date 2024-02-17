@@ -267,18 +267,52 @@ int ExtractFolder( mz_zip_archive* zip_archive, const char* folder, const char* 
 	return 1;
 }
 
-
 int main( int argc, char* argv[] )
 {
-	// set some path variables
-#if defined(MIKE_BUILD)
+	// prepare for relative pathing
+	char szBuildToolStartDir[1024];
+	GetCurrentDirectory( 1024, szBuildToolStartDir); // D:\DEV\AGKREPO\AGK\tools\AGKBuildSystem\Windows\Final
+	char szRepoRoot[1024];
+	strcpy(szRepoRoot, szBuildToolStartDir);
+	strcat(szRepoRoot, "\\..\\..\\..\\..\\");
+	SetCurrentDirectory(szRepoRoot);
+	GetCurrentDirectory(1024, szRepoRoot);
+	char szAGKTrunkDir[1024];
+	sprintf(szAGKTrunkDir, "%s\\AGK\\", szRepoRoot);
+	SetCurrentDirectoryWithCheck(szAGKTrunkDir);// ("D:\\AGK\\"); // AGKTrunk
 
+	// Repo folders
+	char szDstFolderWin[1024]; sprintf(szDstFolderWin, "%s\\AGK_Build\\Builds\\Studio\\AGKStudioWindows", szRepoRoot);
+	char szDstFolderMac[1024]; sprintf(szDstFolderMac, "%s\\AGK_Build\\Builds\\Studio\\AGKStudioMac\\AGK", szRepoRoot);
+	char szDstFolderLinux[1024]; sprintf(szDstFolderLinux, "%s\\AGK_Build\\Builds\\Studio\\AGKStudioLinux\\AGK", szRepoRoot);
+	char szDstFolderWinTrial[1024]; sprintf(szDstFolderWinTrial, "%s\\AGK_Build\\Builds\\Studio\\AGKStudioWindowsTrial", szRepoRoot);
+	char szSharedFolder[1024]; sprintf(szSharedFolder, "%s\\AGK_Build\\Shared\\WindowsReceive", szRepoRoot);
+	char szKeyStore[1024]; sprintf(szKeyStore, "%s\\AGK_Build\\Signing\\keystore.keystore", szRepoRoot);
+	char szTemp[1024]; sprintf(szTemp, "%s\\AGK_Build\\Temp", szRepoRoot);
+	//const char* szGradleRes = "C:\\Users\\Mike\\.gradle";
+	char szGradleRes[1024]; sprintf(szGradleRes, "%s\\AGK_Build\\GradleRes\\.gradle", szRepoRoot);
+
+	// Installed tools
+	char szJarSigner[1024]; sprintf(szJarSigner, "C:\\Program Files\\Android\\Android Studio\\jre\\bin\\jarsigner.exe");
+	char szVisualStudio[1024]; sprintf(szVisualStudio, "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe");
+	char szJava[1024]; sprintf(szJava, "C:\\Program Files\\Java\\jdk-17\\bin\\java.exe");
+
+	// Android Studio files in AppData
+	char szAPKSigner[1024]; strcpy(szAPKSigner, "");
+	char szZipAlign[1024]; strcpy(szZipAlign, "");
+	LPSTR pUserName = getenv("USERNAMEFORAGK");
+	if (pUserName)
+	{
+		sprintf(szAPKSigner, "C:\\Users\\%s\\AppData\\Local\\Android\\Sdk\\build-tools\\31.0.0\\lib\\apksigner.jar", pUserName);
+		sprintf(szZipAlign, "C:\\Users\\%s\\AppData\\Local\\Android\\Sdk\\build-tools\\31.0.0\\zipalign.exe", pUserName);
+	}
+
+	/* old method using absolute paths per developer
+	// set some path variables
+	#if defined(MIKE_BUILD)
 	// mike - 110621 - an option for the future is to modify the app so that you select a text file
 	// when it launches that contains all of the relevant paths
 	//const char* szVisualStudio = "D:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\Common7\\IDE\\devenv.exe"; // can be any version as long as it has platform tools v140 installed
-
-
-
 	const char* szVS2015 = "D:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\Common7\\IDE\\devenv.exe";
 	const char* szVS2017 = "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\Common7\\IDE\\devenv.exe";
     const char* szDstFolderWin = "D:\\AGK_Build\\Builds\\Studio\\AGKStudioWindows";
@@ -296,16 +330,14 @@ int main( int argc, char* argv[] )
 	//const char* szGradleRes = "D:\\Documents\\.gradle";
 	const char* szGradleRes = "C:\\Users\\Mike\\.gradle";
 	//const char* szJava = "d:\\Projects\\Java\\jdk-11\\bin\\java.exe";
-
 	const char* szVisualStudio = "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe"; // can be any version as long as it has platform tools v140 installed	
 	const char* szJava = "C:\\Program Files\\Java\\jdk-17.0.2\\bin\\java.exe";
 	const char* szTortoiseSVN = "C:\\Program Files\\TortoiseSVN\\bin\\TortoiseProc.exe";
 	const char* szAPKSigner = "C:\\Users\\Mike\\AppData\\Local\\Android\\Sdk\\build-tools\\31.0.0\\lib\\apksigner.jar";
 	const char* szZipAlign = "C:\\Users\\Mike\\AppData\\Local\\Android\\Sdk\\build-tools\\31.0.0\\zipalign.exe";
-
 	//SetCurrentDirectoryWithCheck ( "D:\\AGK\\Studio" ); // AGKTrunk
 	SetCurrentDirectoryWithCheck ("D:\\AGK\\"); // AGKTrunk
-#elif defined(PAUL_BUILD)
+	#elif defined(PAUL_BUILD)
 	const char* szVisualStudio = "C:\\Programs\\Visual Studio 2022\\Common7\\IDE\\devenv.exe"; // can be any version as long as it has platform tools v140 installed
 	const char* szDstFolderWin = "C:\\TGC\\AGKStudioBuild\\AGKStudioWindows";
 	const char* szDstFolderMac = "C:\\TGC\\AGKStudioBuild\\AGKStudioMac\\AGK";
@@ -320,11 +352,11 @@ int main( int argc, char* argv[] )
 	const char* szKeyStore = "C:\\Paul\\TGC\\keystore\\keystore.keystore";
 	const char* szTemp = "E:\\Temp";
 	const char* szGradleRes = "C:\\Users\\PSJoh\\.gradle";
-
 	SetCurrentDirectoryWithCheck ( "..\\..\\..\\.." ); // AGKTrunk
-#else
+	#else
 	#error No build user defined, add the Visual Studio User Macro $(BUILD_USER)
-#endif
+	#endif
+	*/
 
 	char rootFolder[ 1024 ];
 	GetCurrentDirectory( 1024, rootFolder );
@@ -389,10 +421,10 @@ startPoint:
 	// Update SVN
 	if ( !bListCommands )
 	{
-		int status = 0;
-		status = RunCmd( indexCheck, szTortoiseSVN, "/command:update /path:\".\" /closeonend:3" );
-		if ( status != 0 ) Error( "Failed" );
-		else Message( "  Success" );
+		//int status = 0;
+		//status = RunCmd( indexCheck, szTortoiseSVN, "/command:update /path:\".\" /closeonend:3" );
+		//if ( status != 0 ) Error( "Failed" );
+		//else Message( "  Success" );
 	}
 	
 	// What's new file
@@ -1425,9 +1457,9 @@ startPoint:
 	}
 
 	// Commit SVN
-	int status = 0;
-	Message( "Comitting SVN" );
-	status = RunCmd( indexCheck, szTortoiseSVN, "/command:commit /path:\".\"" );
+	//int status = 0;
+	//Message( "Comitting SVN" );
+	//status = RunCmd( indexCheck, szTortoiseSVN, "/command:commit /path:\".\"" );
 	
 endPoint:
 	system("pause");

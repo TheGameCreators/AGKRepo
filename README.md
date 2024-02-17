@@ -26,3 +26,10 @@ You need to open in Android Studio and build these projects once before attempti
 - \AGK\apps\interpreter_android_amazon
 - \AGK\apps\interpreter_android_ouya 
 
+## Compile AGK in Visual Studio 2022
+- Add Environment Variable called NDK_PATH with absolute path to "D:\DEV\AGKREPO\AGK_Build\External\android-ndk-r20b"
+- Add Environment Variable called USERNAMEFORAGK with your Username (maybe 'fred' as might appear in "C:\Users\fred\Documents\")
+- Open the AGKBuild project found here "\AGK\tools\AGKBuildSystem\Windows"
+- Stick with Debug x64 and select REBUILD on the project shown
+
+
