@@ -1,3 +1,5 @@
 AGK/apps/interpreter_android_google/AGKPlayer2/build
+AGK/apps/interpreter_android_amazon/AGKPlayer2/build
+AGK/apps/interpreter_android_ouya/AGKPlayer2/build
 .gradle/
 .idea/
