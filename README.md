@@ -33,3 +33,7 @@ You need to open in Android Studio and build these projects once before attempti
 - Stick with Debug x64 and select REBUILD on the project shown
 - When compile completes, you can run this to open a command line menu to handle the build processes
 
+## In-Construction Notes
+* Linux version of AGK Studio downloaded from Steam, Tier 2 Android contains a bat file to start compiling C++ code, instead of an sh script.
+* During compilation, it was found that there were no folders "android_common" and "android_common_native" in the composition.
+  
