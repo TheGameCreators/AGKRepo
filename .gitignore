@@ -5,8 +5,15 @@ AGK/apps/interpreter_android_google/AGKPlayer2/build
 AGK/apps/interpreter_android_amazon/AGKPlayer2/build
 AGK/apps/interpreter_android_ouya/AGKPlayer2/build
 AGK_Build/External/android-ndk-r20b
+AGK_Build/External/Vulkan
 AGK/tools/AGKBuildSystem/Windows/Final/AGKBuild.exe
 AGK/tools/AGKBuildSystem/Windows/Final/AGKBuild.pdb
 AGK/tools/AGKBuildSystem/Windows/Debug64
 AGK/CommandParserNew/Release64
 AGK/CommandParserNew/Final/CommandParser.exe
+AGK/platform/windows/Lib/VisualStudio/Debug64
+AGK/platform/windows/Lib/VisualStudio/Release64
+AGK/CompilerNew/Release64
+AGK/CompilerNew/ReleaseStaticLib64
+AGK/CompilerNew/ReleaseStaticLibIDE64
+AGK/Broadcaster/AGKBroadcaster/ReleaseStaticLib64
