@@ -8,3 +8,5 @@ AGK_Build/External/android-ndk-r20b
 AGK/tools/AGKBuildSystem/Windows/Final/AGKBuild.exe
 AGK/tools/AGKBuildSystem/Windows/Final/AGKBuild.pdb
 AGK/tools/AGKBuildSystem/Windows/Debug64
+AGK/CommandParserNew/Release64
+AGK/CommandParserNew/Final/CommandParser.exe
