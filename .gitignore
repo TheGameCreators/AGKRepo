@@ -6,6 +6,7 @@ AGK/apps/interpreter_android_amazon/AGKPlayer2/build
 AGK/apps/interpreter_android_ouya/AGKPlayer2/build
 AGK_Build/External/android-ndk-r20b
 AGK_Build/External/Vulkan
+AGK_Build/External/Steamworks
 AGK/tools/AGKBuildSystem/Windows/Final/AGKBuild.exe
 AGK/tools/AGKBuildSystem/Windows/Final/AGKBuild.pdb
 AGK/tools/AGKBuildSystem/Windows/Debug64
@@ -17,3 +18,13 @@ AGK/CompilerNew/Release64
 AGK/CompilerNew/ReleaseStaticLib64
 AGK/CompilerNew/ReleaseStaticLibIDE64
 AGK/Broadcaster/AGKBroadcaster/ReleaseStaticLib64
+AGK/Broadcaster/AGKBroadcaster/ReleaseStaticLibIDE64
+AGK/VSCode/Debug Adapter/Release64
+AGK/VSCode/Debug Adapter/Final
+AGK/VSCode/Language Server Protocol/Release64
+AGK/VSCode/Language Server Protocol/Final
+AGK/apps/interpreter/Release64
+AGK/apps/interpreter/ReleaseSteam64
+AGK/apps/interpreter/Final
+AGK/apps/template_windows/Release64
+AGK/apps/template_windows/Final
