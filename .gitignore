@@ -29,3 +29,15 @@ AGK/apps/interpreter/Final
 AGK/apps/template_windows/Release64
 AGK/apps/template_windows/Final
 AGK/Agkide/Release64
+AGK/Agkide/Final
+AGK/libprojects/android_assimp/log.txt
+AGK/libprojects/android_assimp/obj
+AGK/libprojects/android_base/obj
+AGK/libprojects/android_bullet/obj
+AGK/libprojects/android_curl/obj
+AGK_Build/Builds/Studio/AGKStudioWindows/media
+AGK/libprojects/android_base/log.txt
+AGK/libprojects/android_bullet/log.txt
+AGK/libprojects/android_curl/log.txt
+AGK_Build/Builds/Studio/AGKStudioWindows/Ide.exe
+AGK/AgkIde/Final/Ide.exe
