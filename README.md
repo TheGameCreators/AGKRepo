@@ -33,13 +33,21 @@ You need to open in Android Studio and build these projects once before attempti
 - Add Environment Variable called AGK_STUDIO_PATH with absolute path to "D:\DEV\AGKREPO\AGK"
 - Add Environment Variable called STEAMWORKS_PATH with absolute path to "D:\DEV\AGKREPO\AGK_Build\External\Steamworks"
 
-## External Zip File (SDK files not part of repository)
-- Unzip the External Zip File "AGK_Build-External.zip" into the "D:\DEV\AGKREPO\AGK_Build\External" folder
+## Prerequisite Zip Files (SDK files not part of repository, download separately from Release area)
+- Unzip "AGK_Build-External.zip" into the "D:\DEV\AGKREPO\AGK_Build\External" folder
+- Unzip "AGK_Build-Build.zip" into the "D:\DEV\AGKREPO\AGK_Build\Build" folder
+- Unzip "AGK_Build-Shared.zip" into the "D:\DEV\AGKREPO\AGK_Build\Shared" folder
+
+## Your Own Keystore file
+- Part of the build process is being able to produce APKs that require a Keystore file that you must provide yourself in "AGK_Build\Signing\keystore.keystore"
+- You will be able to enter the password of your own keystore file during the build process
 
 ## Compile AGK in Visual Studio 2022
 - Open the AGKBuild project found here "\AGK\tools\AGKBuildSystem\Windows"
 - Stick with Debug x64 and select REBUILD on the project shown
 - When compile completes, you can run this to open a command line menu to handle the build processes
+- The system allows individual steps to be executed, or for simplicity, you can run the whole process in Sequence
+- When all steps have been completed successfully and in order, the "AGK_Build\Builds" folder will contain updated files for AGK
 
 ## In-Construction Notes
 * Linux version of AGK Studio downloaded from Steam, Tier 2 Android contains a bat file to start compiling C++ code, instead of an sh script.

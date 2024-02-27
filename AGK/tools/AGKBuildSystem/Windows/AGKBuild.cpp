@@ -750,17 +750,14 @@ startPoint:
 		if ( bListCommands ) Message1( "%d: Export Android Google/Amazon/Ouya interpreter projects", indexCheck );
 		else
 		{
-			const char *szAndroidIDEFolders[] = { "sourceGoogle", "sourceAmazon", "sourceOuya", "sourceGoogleDTS" };
-			const char *szAndroidProjects[] = { "interpreter_android_google", "interpreter_android_amazon", "interpreter_android_ouya", "interpreter_android_google_dts" };
+			const char *szAndroidIDEFolders[] = { "sourceGoogle", "sourceAmazon", "sourceOuya" };
+			const char *szAndroidProjects[] = { "interpreter_android_google", "interpreter_android_amazon", "interpreter_android_ouya" };
 			
 			char szAndroidBuildPathDefault[ 1024 ];
 			strcpy( szAndroidBuildPathDefault, szDstFolderWin );
 			strcat( szAndroidBuildPathDefault, "\\media\\data\\android\\" );
-			char szAndroidBuildPathDTS[ 1024 ];
-			strcpy( szAndroidBuildPathDTS, szSharedFolder );
-			strcat( szAndroidBuildPathDTS, "\\DTSFiles\\" );
 
-			const char *szAndroidBuildPath[] = { szAndroidBuildPathDefault, szAndroidBuildPathDefault, szAndroidBuildPathDefault, szAndroidBuildPathDTS };
+			const char *szAndroidBuildPath[] = { szAndroidBuildPathDefault, szAndroidBuildPathDefault, szAndroidBuildPathDefault };
 
 			char srcFolder[ 1024 ];
 			char dstFolder[ 1024 ];
@@ -779,9 +776,9 @@ startPoint:
 				SetCurrentDirectoryWithCheck( path );
 				
 				// delete old gradle execution log
-				DeleteFile( ".gradle\\7.5\\executionHistory\\executionHistory.bin" );
-				DeleteFile( ".gradle\\7.5\\executionHistory\\executionHistory.lock" );
-				FILE* pFile = fopen( ".gradle\\7.5\\executionHistory\\executionHistory.bin", "rb" );
+				DeleteFile( ".gradle\\8.0\\executionHistory\\executionHistory.bin" );
+				DeleteFile( ".gradle\\8.0\\executionHistory\\executionHistory.lock" );
+				FILE* pFile = fopen( ".gradle\\8.0\\executionHistory\\executionHistory.bin", "rb" );
 				if ( pFile ) 
 				{
 					fclose( pFile );
@@ -822,22 +819,6 @@ startPoint:
 
 				strcpy( dstFolder, szAndroidBuildPath[i] ); 
 				strcat( dstFolder, szAndroidIDEFolders[i] ); 
-
-				//DeleteFolder( dstFolder );
-				//strcat( dstFolder, "\\" );
-				//CreatePath( dstFolder );
-
-				if ( i == 3 )
-				{
-					// copy DTS extra files
-					strcpy( srcFolder, rootFolder );
-					strcat( srcFolder, "\\AgkIde\\DTSExtra" );
-							
-					strcpy( dstFolder, szAndroidBuildPath[i] ); 
-					strcat( dstFolder, szAndroidIDEFolders[i] ); 
-			
-					CopyFolder( srcFolder, dstFolder );
-				}
 
 				// extract classes.dex
 				mz_zip_archive zip_archive;
@@ -936,7 +917,7 @@ startPoint:
 				// collect gradle resources
 				strcpy( srcFolder, "apps\\" ); 
 				strcat( srcFolder, szAndroidProjects[i] );
-				strcat( srcFolder, "\\.gradle\\7.5\\executionHistory\\executionHistory.bin" );
+				strcat( srcFolder, "\\.gradle\\8.0\\executionHistory\\executionHistory.bin" );
 				unsigned char* data = 0;
 				length = GetFileContents( srcFolder, (char**) &data );
 				if ( length == 0 ) Error( "Failed to open executionHistory.bin" );
@@ -1041,8 +1022,6 @@ startPoint:
 			CopyFile2( "apps\\interpreter_android_amazon\\AGKPlayer2\\build\\outputs\\apk\\AGKPlayer2-release-automated.apk", dstFolder );
 			strcpy( dstFolder, szTemp ); strcat( dstFolder, "\\AppGameKitStudio-Ouya.apk" );
 			CopyFile2( "apps\\interpreter_android_ouya\\AGKPlayer2\\build\\outputs\\apk\\AGKPlayer2-release-automated.apk", dstFolder );
-			strcpy( dstFolder, szTemp ); strcat( dstFolder, "\\AppGameKitStudio-GoogleDTS.apk" );
-			CopyFile2( "apps\\interpreter_android_google_dts\\AGKPlayer2\\build\\outputs\\apk\\AGKPlayer2-release-automated.apk", dstFolder );
 
 			// copy Android files to shared folder
 			strcpy( srcFolder, szDstFolderWin ); strcat( srcFolder, "\\media\\data\\android\\sourceAmazon" ); 
@@ -1349,8 +1328,6 @@ startPoint:
 				CopyFile2( "plugins\\Plugins\\ExamplePlugin\\Commands.txt", dstFolder );
 
 				Message( "  Copying Windows and Android players" );
-				//strcpy( dstFolder, szBuildFolder[b] ); strcat( dstFolder, "\\Players\\Windows\\Windows.exe" );
-				//CopyFile2( "apps\\interpreter\\Final\\Windows.exe", dstFolder );
 				strcpy( dstFolder, szBuildFolder[b] ); strcat( dstFolder, "\\Players\\Windows\\Windows64.exe" );
 				CopyFile2( "apps\\interpreter\\Final\\Windows64.exe", dstFolder );
 				strcpy( dstFolder, szBuildFolder[b] ); strcat( dstFolder, "\\Players\\Android\\AppGameKit Player.apk" );
@@ -1370,8 +1347,6 @@ startPoint:
 					CopyFolder( srcFolder, dstFolder );
 					 
 					// copy interpreter
-					//strcpy( dstFolder, szBuildFolder[b] ); strcat( dstFolder, "\\media\\interpreters\\Windows.exe" );
-					//CopyFile2( "apps\\interpreter\\Final\\Windows.exe", dstFolder );
 					strcpy( dstFolder, szBuildFolder[b] ); strcat( dstFolder, "\\media\\interpreters\\Windows64.exe" );
 					CopyFile2( "apps\\interpreter\\Final\\Windows64.exe", dstFolder );
 

@@ -4,9 +4,12 @@
 AGK/apps/interpreter_android_google/AGKPlayer2/build
 AGK/apps/interpreter_android_amazon/AGKPlayer2/build
 AGK/apps/interpreter_android_ouya/AGKPlayer2/build
+AGK_Build/Builds
 AGK_Build/External/android-ndk-r20b
 AGK_Build/External/Vulkan
 AGK_Build/External/Steamworks
+AGK_Build/Shared
+AGK_Build/Temp
 AGK/tools/AGKBuildSystem/Windows/Final/AGKBuild.exe
 AGK/tools/AGKBuildSystem/Windows/Final/AGKBuild.pdb
 AGK/tools/AGKBuildSystem/Windows/Debug64
@@ -35,12 +38,10 @@ AGK/libprojects/android_assimp/obj
 AGK/libprojects/android_base/obj
 AGK/libprojects/android_bullet/obj
 AGK/libprojects/android_curl/obj
-AGK_Build/Builds/Studio/AGKStudioWindows/media
 AGK/libprojects/android_base/log.txt
 AGK/libprojects/android_bullet/log.txt
 AGK/libprojects/android_curl/log.txt
-AGK_Build/Builds/Studio/AGKStudioWindows/Ide.exe
-AGK/AgkIde/Final/Ide.exe
+AGK/AgkIde/Final
 AGK/libprojects/android_assimp/log.txt
 AGK/apps/interpreter_android_google/AGKPlayer2/jniObjs
 AGK/apps/interpreter_android_google/AGKPlayer2/src/main/log.txt
@@ -63,3 +64,13 @@ AGK_Build/Shared/WindowsReceive/Studio/Android/lib/armeabi-v7a/libarcore_sdk.so
 AGK_Build/Shared/WindowsReceive/Studio/Android/lib/armeabi-v7a/libpruneau.so
 AGK/apps/interpreter_android_google/AGKPlayer2/src/main/log.txt
 AGK/libprojects/android_assimp/log.txt
+AGK_Build/Signing/keystore.keystore
+AGK/AGK Help Generator/Generator/Generator.exe
+AGK/AGK Help Generator/Generator/Release64
+AGK/AGK Help Generator/Reference/Reference.exe
+AGK/AGK Help Generator/Reference/Release64
+AGK/apps/interpreter_android_google/AGKPlayer2/src/main/log.txt
+AGK/AGK Help Generator/Generator/Generator.exe
+AGK/AGK Help Generator/Reference/Reference.exe
+AGK/AgkIde/Final/Ide.exe
+AGK/apps/interpreter_android_google/AGKPlayer2/src/main/log.txt

@@ -1,0 +1,9 @@
+8
+C:\TGC\BUILD2011-AGK\FilesAlphaWindowsTrial\AGK\Tier 2\platform\windows\Lib\Release\AGKWindows.lib
+C:\TGC\BUILD2011-AGK\FilesAlphaWindowsTrial\AGK\Tier 2\platform\windows\Lib\VS2010\Release\AGKWindows.lib
+C:\TGC\BUILD2011-AGK\FilesAlphaWindowsTrial\AGK\Tier 2\platform\windows\Lib\VS2013\Release\AGKWindows.lib
+C:\TGC\BUILD2011-AGK\FilesAlphaWindowsTrial\AGK\Tier 2\platform\windows\Lib\VS2015\Release\AGKWindows.lib
+C:\TGC\BUILD2011-AGK\FilesAlphaWindowsTrial\AGK\Tier 2\platform\windows\Source\glext.h
+C:\TGC\BUILD2011-AGK\FilesAlphaWindowsTrial\AGK\Tier 2\platform\windows\Source\qedit.h
+C:\TGC\BUILD2011-AGK\FilesAlphaWindowsTrial\AGK\Tier 2\platform\windows\Source\sensors.h
+C:\TGC\BUILD2011-AGK\FilesAlphaWindowsTrial\AGK\Tier 2\platform\windows\Source\WindowsNetwork.h
