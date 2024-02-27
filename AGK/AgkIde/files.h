@@ -4,6 +4,10 @@
 #include "imgui/imgui.h"
 #ifdef AGK_LINUX
 #include <string>
+#else
+// VS2022 needs these for std:string and std:binary_function
+#include <string>
+#include <functional>
 #endif
 
 #define FI_FOLDERISOPEN 1
