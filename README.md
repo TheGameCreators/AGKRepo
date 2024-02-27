@@ -26,12 +26,17 @@ You need to open in Android Studio and build these projects once before attempti
 - \AGK\apps\interpreter_android_amazon
 - \AGK\apps\interpreter_android_ouya 
 
-## Compile AGK in Visual Studio 2022
+## Setup all environment variables
 - Add Environment Variable called NDK_PATH with absolute path to "D:\DEV\AGKREPO\AGK_Build\External\android-ndk-r20b"
 - Add Environment Variable called USERNAMEFORAGK with your Username (maybe 'fred' as might appear in "C:\Users\fred\Documents\")
 - Add Environment Variable called VULKAN_SDK_PATH with absolute path to "D:\DEV\AGKREPO\AGK_Build\External\Vulkan"
 - Add Environment Variable called AGK_STUDIO_PATH with absolute path to "D:\DEV\AGKREPO\AGK"
 - Add Environment Variable called STEAMWORKS_PATH with absolute path to "D:\DEV\AGKREPO\AGK_Build\External\Steamworks"
+
+## External Zip File (SDK files not part of repository)
+- Unzip the External Zip File "AGK_Build-External.zip" into the "D:\DEV\AGKREPO\AGK_Build\External" folder
+
+## Compile AGK in Visual Studio 2022
 - Open the AGKBuild project found here "\AGK\tools\AGKBuildSystem\Windows"
 - Stick with Debug x64 and select REBUILD on the project shown
 - When compile completes, you can run this to open a command line menu to handle the build processes
