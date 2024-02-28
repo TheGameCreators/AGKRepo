@@ -278,7 +278,8 @@ int main( int argc, char* argv[] )
 	SetCurrentDirectory(szRepoRoot);
 	GetCurrentDirectory(1024, szRepoRoot);
 	char szAGKTrunkDir[1024];
-	sprintf(szAGKTrunkDir, "%s\\AGK\\", szRepoRoot);
+	sprintf(szAGKTrunkDir, "%s\\", szRepoRoot); 
+	//MessageBoxA(NULL, szAGKTrunkDir, szAGKTrunkDir, MB_OK);
 	SetCurrentDirectoryWithCheck(szAGKTrunkDir);// ("D:\\AGK\\"); // AGKTrunk
 
 	// Repo folders
