@@ -46,16 +46,6 @@ AGK/libprojects/android_assimp/log.txt
 AGK/apps/interpreter_android_google/AGKPlayer2/jniObjs
 AGK/apps/interpreter_android_google/AGKPlayer2/src/main/log.txt
 AGK/libprojects/android_assimp/log.txt
-AGK/apps/interpreter_android_amazon/AGKPlayer2/src/main/jniLibs/arm64-v8a/libandroid_player.so
-AGK/apps/interpreter_android_amazon/AGKPlayer2/src/main/jniLibs/armeabi-v7a/libandroid_player.so
-AGK/apps/interpreter_android_google/AGKPlayer2/src/main/jniLibs/arm64-v8a/libandroid_player.so
-AGK/apps/interpreter_android_google/AGKPlayer2/src/main/jniLibs/armeabi-v7a/libandroid_player.so
-AGK/apps/interpreter_android_google_native/AGKPlayer2/src/main/jniLibs/arm64-v8a/libandroid_player.so
-AGK/apps/interpreter_android_google_native/AGKPlayer2/src/main/jniLibs/armeabi-v7a/libandroid_player.so
-AGK/apps/interpreter_android_google_noads/AGKPlayer2/src/main/jniLibs/arm64-v8a/libandroid_player.so
-AGK/apps/interpreter_android_google_noads/AGKPlayer2/src/main/jniLibs/armeabi-v7a/libandroid_player.so
-AGK/apps/interpreter_android_ouya/AGKPlayer2/src/main/jniLibs/arm64-v8a/libandroid_player.so
-AGK/apps/interpreter_android_ouya/AGKPlayer2/src/main/jniLibs/armeabi-v7a/libandroid_player.so
 AGK_Build/Shared/WindowsReceive/Studio/Android/lib/arm64-v8a/libandroid_player.so
 AGK_Build/Shared/WindowsReceive/Studio/Android/lib/arm64-v8a/libarcore_sdk.so
 AGK_Build/Shared/WindowsReceive/Studio/Android/lib/arm64-v8a/libpruneau.so
