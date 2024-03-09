@@ -274,11 +274,11 @@ int main( int argc, char* argv[] )
 	GetCurrentDirectory( 1024, szBuildToolStartDir); // D:\DEV\AGKREPO\AGK\tools\AGKBuildSystem\Windows\Final
 	char szRepoRoot[1024];
 	strcpy(szRepoRoot, szBuildToolStartDir);
-	strcat(szRepoRoot, "\\..\\..\\..\\..\\");
+	strcat(szRepoRoot, "\\..\\..\\..\\..\\..\\");
 	SetCurrentDirectory(szRepoRoot);
 	GetCurrentDirectory(1024, szRepoRoot);
 	char szAGKTrunkDir[1024];
-	sprintf(szAGKTrunkDir, "%s\\", szRepoRoot); 
+	sprintf(szAGKTrunkDir, "%s\\AGK\\", szRepoRoot); 
 	//MessageBoxA(NULL, szAGKTrunkDir, szAGKTrunkDir, MB_OK);
 	SetCurrentDirectoryWithCheck(szAGKTrunkDir);// ("D:\\AGK\\"); // AGKTrunk
 
