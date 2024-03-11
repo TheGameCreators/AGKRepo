@@ -8,6 +8,8 @@ Ensure the following are installed with particular attention to the versions:
 - Android SDK 33.0.3
 - Android 12.0 platform
 - Install Java JDK 17
+- Install GitHub Desktop
+- Install Git Large File Storage (https://docs.github.com/en/repositories/working-with-files/managing-large-files/configuring-git-large-file-storage)
 
 ## Notes on project settings
 New APKs submitted to the Google Store require API 33 (Android 13) since August 2023 : https://developer.android.com/google/play/requirements/target-sdk
@@ -28,7 +30,7 @@ You need to open in Android Studio and build these projects once before attempti
 
 ## Setup all environment variables
 - Add Environment Variable called NDK_PATH with absolute path to "D:\DEV\AGKREPO\AGK_Build\External\android-ndk-r20b"
-- Add Environment Variable called USERNAMEFORAGK with your Username (maybe 'fred' as might appear in "C:\Users\fred\Documents\")
+- Add Environment Variable called USERNAMEFORAGK with the folder truncation of your Username (so would be 'fred' as might appear in "C:\Users\fred\Documents\"). Do not use your full username or include any path text, just the folder name that appears in the example given.
 - Add Environment Variable called VULKAN_SDK_PATH with absolute path to "D:\DEV\AGKREPO\AGK_Build\External"
 - Add Environment Variable called AGK_STUDIO_PATH with absolute path to "D:\DEV\AGKREPO\AGK"
 - Add Environment Variable called STEAMWORKS_PATH with absolute path to "D:\DEV\AGKREPO\AGK_Build\External\Steamworks"
