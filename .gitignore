@@ -87,3 +87,6 @@ AGK/tools/.DS_Store
 AGK/VSCode/.DS_Store
 AGK/zxing/.DS_Store
 AGK_Build/.DS_Store
+AGK/build
+AGK/platform/Mac/Lib
+
