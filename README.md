@@ -34,6 +34,7 @@ You need to open in Android Studio and build these projects once before attempti
 - Add Environment Variable called VULKAN_SDK_PATH with absolute path to "D:\DEV\AGKREPO\AGK_Build\External"
 - Add Environment Variable called AGK_STUDIO_PATH with absolute path to "D:\DEV\AGKREPO\AGK"
 - Add Environment Variable called STEAMWORKS_PATH with absolute path to "D:\DEV\AGKREPO\AGK_Build\External\Steamworks"
+- Add Environment Variable called ANDROID_HOME with absolute path to "C:\Users\YOURS\AppData\Local\Android\Sdk" where YOURS is the folder assigned you from your username
 
 ## Prerequisite Zip Files (SDK files not part of repository, download separately from Release area)
 - Unzip "AGK_Build-External.zip" into the "D:\DEV\AGKREPO\AGK_Build\External" folder
