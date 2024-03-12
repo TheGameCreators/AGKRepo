@@ -89,4 +89,6 @@ AGK/zxing/.DS_Store
 AGK_Build/.DS_Store
 AGK/build
 AGK/platform/Mac/Lib
+AGK/platform/apple/Lib
+
 
