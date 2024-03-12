@@ -70,6 +70,7 @@ Ensure the following are installed:
 - Open Paths.h and confirm the paths specified here match existing folders in the repo folder structure
 - Open the Terminal via the Utilities on your Mac and navigate to the folder (e.g. cd  /Users/YourName/DEV/AGKREPO/AGK/tools/AGKBuildSystem/Mac)
 - Now type MAKE to compile and create the AGK Build Program
+- Can ignore terminal warnings, there should be no errors reported
 - You can now call "./AGKBuild" to run the build program
 - Follow the steps in a similar way to the Windows steps sequence until all steps completed
 - Any errors you get along the way should be output in the terminal for you to report to TGC (if any)
