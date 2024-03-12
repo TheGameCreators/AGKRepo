@@ -1,6 +1,9 @@
 # AGK Repository
 New Home of AGK Source Code for 2024 and Beyond. THIS GITHUB REPO IS CURRENTLY IN CONSTRUCTION AND TESTING. FEEL FREE TO CHECK OUT THE CODE. WE WILL ANNOUNCE WHEN IT IS READY FOR CONTRIBUTIONS.
 
+## WINDOWS PC INSTRUCTIONS
+The following instructions requires Windows 10 or above:
+
 ## Pre-requisites to compile AGK Studio
 Ensure the following are installed with particular attention to the versions:
 - Install Visual Studio 2022
@@ -52,7 +55,29 @@ You need to open in Android Studio and build these projects once before attempti
 - The system allows individual steps to be executed, or for simplicity, you can run the whole process in Sequence
 - When all steps have been completed successfully and in order, the "AGK_Build\Builds" folder will contain updated files for AGK
 
+## MAC INSTRUCTIONS
+The following instructions requires a modern Mac or Mac-Mini:
+
+## Pre-requisites to compile the Apple binaries
+Ensure the following are installed:
+- XCODE xx or above
+- Install GitHub Desktop for Mac-Mini
+- Select YES to any prompt asking to initialize Git Large File Storage
+
+## Sequence to build Apple binaries
+- Use GitHub Desktop to clone AGKREPO into a local folder (could be "Users/YourName/DEV/AGKREPO")
+- Open Finder and navigate to the tools folder (e.g. /Users/YourName/DEV/AGKREPO/AGK/tools/AGKBuildSystem/Mac
+- Open Paths.h and confirm the paths specified here match existing folders in the repo folder structure
+- Open the Terminal via the Utilities on your Mac and navigate to the folder (e.g. cd  /Users/YourName/DEV/AGKREPO/AGK/tools/AGKBuildSystem/Mac)
+- Now type MAKE to compile and create the AGK Build Program
+- You can now call "./AGKBuild" to run the build program
+- Follow the steps in a similar way to the Windows steps sequence until all steps completed
+- Any errors you get along the way should be output in the terminal for you to report to TGC (if any)
+
+## LINUX INSTRUCTIONS
+The Linux source code is not supported in the AGKREPO at this time.
+
 ## In-Construction Notes
 * Linux version of AGK Studio downloaded from Steam, Tier 2 Android contains a bat file to start compiling C++ code, instead of an sh script.
 * During compilation, it was found that there were no folders "android_common" and "android_common_native" in the composition.
-  
+
