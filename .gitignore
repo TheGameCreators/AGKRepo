@@ -65,3 +65,25 @@ AGK/AGK Help Generator/Reference/Reference.exe
 AGK/apps/interpreter_android_google/AGKPlayer2/src/main/log.txt
 AGK/apps/interpreter_android_ouya/AGKPlayer2/release/AGKPlayer2-release.apk
 AGK_Build/Signing/password.txt
+.DS_Store
+AGK/.DS_Store
+AGK/AGK Help Generator/.DS_Store
+AGK/AgkIde/.DS_Store
+AGK/apps/.DS_Store
+AGK/assimp/.DS_Store
+AGK/bullet/.DS_Store
+AGK/common/.DS_Store
+AGK/CompilerNew/.DS_Store
+AGK/curl/.DS_Store
+AGK/Examples/.DS_Store
+AGK/freetype/.DS_Store
+AGK/icons/.DS_Store
+AGK/libogg/.DS_Store
+AGK/libprojects/.DS_Store
+AGK/platform/.DS_Store
+AGK/plugins/.DS_Store
+AGK/renderer/.DS_Store
+AGK/tools/.DS_Store
+AGK/VSCode/.DS_Store
+AGK/zxing/.DS_Store
+AGK_Build/.DS_Store
