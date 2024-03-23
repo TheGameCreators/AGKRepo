@@ -81,4 +81,5 @@ The Linux source code is not supported in the AGKREPO at this time.
 ## In-Construction Notes
 * Linux version of AGK Studio downloaded from Steam, Tier 2 Android contains a bat file to start compiling C++ code, instead of an sh script.
 * During compilation, it was found that there were no folders "android_common" and "android_common_native" in the composition.
-
+* Need to ASK permission before the GDPR dialogue. This is due to Apple's new(ish) App Tracking Transparency App Tracking Transparency | Apple Developer Documentation.
+* Include Apple App Tracking, and a Google certified CMP for asking the GDPR question.
