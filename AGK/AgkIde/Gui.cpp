@@ -348,7 +348,7 @@ void ProcessPreferences(void) {
 			bTmp = pref.iRememberTabOrder;
 			ImGui::Checkbox("Remember Editor Tab Order", &bTmp);
 			pref.iRememberTabOrder = bTmp;
-			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Will remmeber the order of Visible tabs.\nNon-visible tabs will be in a-z order.");
+			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Will remember the order of Visible tabs.\nNon-visible tabs will be in a-z order.");
 
 			ImGui::Separator();
 
@@ -6677,7 +6677,7 @@ void ProcessAndroidExport(void)
 
 	ImGui::Text("Minimum Android Version:");
 	const char* apk_version_array[] = { "4.1 (API 16)", "4.2 (API 17)", "4.3 (API 18)", "4.4 (API 19)", "5.0 (API 21)", "5.1 (API 22)", "6.0 (API 23)"
-		, "7.0 (API 24)", "7.1 (API 25)", "8.0 (API 26)", "8.1 (API 27)", "9.0 (API 28)", "10.0 (API 29)", "11.0 (API 30)", "12.0 (API 31)" };
+		, "7.0 (API 24)", "7.1 (API 25)", "8.0 (API 26)", "8.1 (API 27)", "9.0 (API 28)", "10.0 (API 29)", "11.0 (API 30)", "12.0 (API 31)", "13.0 (API 33)", "14.0 (API 34)" };
 	ImGui::SameLine();
 	ImGui::SetCursorPos(ImVec2(input_indent, ImGui::GetCursorPos().y));
 	ImGui::Combo("##comboapk_sdk_version", &pCurrentSelectedProject->apk_sdk_version, apk_version_array, IM_ARRAYSIZE(apk_version_array));
@@ -7347,7 +7347,7 @@ void ProcessAndroidExport(void)
 			char curDir[MAX_PATH];
 			extern char startupFolder[MAX_PATH];
 			//const char* androidJar = "android31.jar";
-			const char* androidJar = "android33.jar";
+			const char* androidJar = "android34.jar";
 
 #if defined(AGK_WINDOWS)
 			_getcwd(&curDir[0], MAX_PATH);
@@ -7359,7 +7359,7 @@ void ProcessAndroidExport(void)
 			uString path_to_apksigner = startupFolder;
 			uString path_to_zipalign = startupFolder;
 			
-			// everything now uses 30.0.3
+			// everything now uses 34.0.0
 			path_to_aapt2.Append("/media/data/android/aapt2-bundle.exe");
 			path_to_bundletool.Append("/media/data/android/bundletool.jar");
 			path_to_android_jar.Append("/media/data/android/");
@@ -7732,7 +7732,7 @@ void ProcessAndroidExport(void)
 					strcat(newcontents, "\" android:targetSdkVersion=\"");
 					if ( bIsOuya ) strcat(newcontents, "16");
 					//else strcat(newcontents, "31");
-					else strcat ( newcontents, "33" );
+					else strcat ( newcontents, "34" );
 					strcat(newcontents, "\" />\n\n");
 
 

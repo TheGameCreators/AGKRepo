@@ -1,6 +1,11 @@
 AGK Change Log
 ==============
 
+Build Studio 2024.03.24
+------------------------
+
+- Exported AABs now target API 34 on Android.
+
 Build Studio 2024.02.17
 -----------------------
 

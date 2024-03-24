@@ -2,8 +2,8 @@ apply plugin: 'com.android.application'
 
 android {
 	namespace 'com.thegamecreators.agk_player2'
-    compileSdkVersion 33
-    buildToolsVersion "33.0.3"
+    compileSdk 34
+    buildToolsVersion '34.0.0'
 
     defaultConfig {
         applicationId "com.thegamecreators.agk_player2"

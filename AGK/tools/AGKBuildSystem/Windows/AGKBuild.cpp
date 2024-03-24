@@ -292,7 +292,7 @@ int main( int argc, char* argv[] )
 	char szTemp[1024]; sprintf(szTemp, "%s\\AGK_Build\\Temp", szRepoRoot);
 
 	// Installed tools
-	char szJarSigner[1024]; sprintf(szJarSigner, "C:\\Program Files\\Android\\Android Studio\\jre\\bin\\jarsigner.exe");
+	char szJarSigner[1024]; sprintf(szJarSigner, "C:\\Program Files\\Java\\jdk-17\\bin\\jarsigner.exe");
 	char szVisualStudio[1024]; sprintf(szVisualStudio, "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe");
 	char szJava[1024]; sprintf(szJava, "C:\\Program Files\\Java\\jdk-17\\bin\\java.exe");
 
@@ -303,8 +303,8 @@ int main( int argc, char* argv[] )
 	LPSTR pUserName = getenv("USERNAMEFORAGK");
 	if (pUserName)
 	{
-		sprintf(szAPKSigner, "C:\\Users\\%s\\AppData\\Local\\Android\\Sdk\\build-tools\\33.0.3\\lib\\apksigner.jar", pUserName);
-		sprintf(szZipAlign, "C:\\Users\\%s\\AppData\\Local\\Android\\Sdk\\build-tools\\33.0.3\\zipalign.exe", pUserName);
+		sprintf(szAPKSigner, "C:\\Users\\%s\\AppData\\Local\\Android\\Sdk\\build-tools\\34.0.0\\lib\\apksigner.jar", pUserName);
+		sprintf(szZipAlign, "C:\\Users\\%s\\AppData\\Local\\Android\\Sdk\\build-tools\\34.0.0\\zipalign.exe", pUserName);
 		sprintf(szGradleRes, "C:\\Users\\%s\\.gradle", pUserName);
 	}
 
@@ -777,9 +777,9 @@ startPoint:
 				SetCurrentDirectoryWithCheck( path );
 				
 				// delete old gradle execution log
-				DeleteFile( ".gradle\\8.0\\executionHistory\\executionHistory.bin" );
-				DeleteFile( ".gradle\\8.0\\executionHistory\\executionHistory.lock" );
-				FILE* pFile = fopen( ".gradle\\8.0\\executionHistory\\executionHistory.bin", "rb" );
+				DeleteFile( ".gradle\\8.1.1\\executionHistory\\executionHistory.bin" );
+				DeleteFile( ".gradle\\8.1.1\\executionHistory\\executionHistory.lock" );
+				FILE* pFile = fopen( ".gradle\\8.1.1\\executionHistory\\executionHistory.bin", "rb" );
 				if ( pFile ) 
 				{
 					fclose( pFile );
@@ -918,7 +918,7 @@ startPoint:
 				// collect gradle resources
 				strcpy( srcFolder, "apps\\" ); 
 				strcat( srcFolder, szAndroidProjects[i] );
-				strcat( srcFolder, "\\.gradle\\8.0\\executionHistory\\executionHistory.bin" );
+				strcat( srcFolder, "\\.gradle\\8.1.1\\executionHistory\\executionHistory.bin" );
 				unsigned char* data = 0;
 				length = GetFileContents( srcFolder, (char**) &data );
 				if ( length == 0 ) Error( "Failed to open executionHistory.bin" );

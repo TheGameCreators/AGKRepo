@@ -4,8 +4,8 @@ android {
     namespace 'com.thegamecreators.agk_player2'
     signingConfigs {
     }
-    compileSdkVersion 33
-    buildToolsVersion "33.0.3"
+    compileSdk 34
+    buildToolsVersion '34.0.0'
     sourceSets.main.jni.srcDirs = []
     defaultConfig {
         applicationId "com.thegamecreators.agk_player2"
