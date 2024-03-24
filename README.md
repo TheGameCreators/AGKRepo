@@ -49,6 +49,7 @@ You need to open in Android Studio and build these projects once before attempti
 ## Your Own Keystore file
 - Part of the build process is being able to produce APKs that require a Keystore file that you must provide yourself in "AGK_Build\Signing\keystore.keystore"
 - You will be able to enter the password of your own keystore file during the build process
+- the default alias is set to tgc in the AGKBuild.sln (edit AGKBuild.sln to change to your own alias)
 
 ## Compile AGK in Visual Studio 2022
 - Open the AGKBuild project found here "\AGK\tools\AGKBuildSystem\Windows"
@@ -56,6 +57,8 @@ You need to open in Android Studio and build these projects once before attempti
 - When compile completes, you can run this to open a command line menu to handle the build processes
 - The system allows individual steps to be executed, or for simplicity, you can run the whole process in Sequence
 - When all steps have been completed successfully and in order, the "AGK_Build\Builds" folder will contain updated files for AGK
+
+Note: Step 19 'Copy shared files from other platforms' must be run after completing steps 1 to 18 by typing S19.
 
 ## MAC INSTRUCTIONS
 The following instructions requires a modern Mac or Mac-Mini:
