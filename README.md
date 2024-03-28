@@ -78,6 +78,18 @@ Ensure the following are installed:
 ## LINUX INSTRUCTIONS
 The Linux source code is not supported in the AGKREPO at this time.
 
+## How to Implement Tracking Transparency 
+App tracking transparency was implemented a few years ago using the external command functionality. Here's how to use it:
+
+supportsIDFA = ExternalSDKSupported ( "idfatracking" )
+if ( supportsIDFA )
+    ExternalCommand ( "idfatracking", "requestconsent", "", "" )
+
+    while ( ExternalCommandInt ( "idfatracking", "trackingallowed", "", "" ) < 0 )
+        sync ( )
+    endwhile
+endif
+
 ## In-Construction Notes
 * Linux version of AGK Studio downloaded from Steam, Tier 2 Android contains a bat file to start compiling C++ code, instead of an sh script.
 * During compilation, it was found that there were no folders "android_common" and "android_common_native" in the composition.
