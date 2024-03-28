@@ -7240,9 +7240,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					IDE_XCODE,
 					DEBUG,
@@ -7254,7 +7257,15 @@
 				HEADER_SEARCH_PATHS = platform/apple/Source;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "-fvisibility=hidden";
+				OTHER_CFLAGS = (
+					"-fvisibility=hidden",
+					"-fcxx-modules",
+					"-fmodules",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-Wno-module-import-in-extern-c",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -7267,9 +7278,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					IDE_XCODE,
 					NOCRYPT,
@@ -7280,7 +7294,15 @@
 				HEADER_SEARCH_PATHS = platform/apple/Source;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "-fvisibility=hidden";
+				OTHER_CFLAGS = (
+					"-fvisibility=hidden",
+					"-fmodules",
+					"-fcxx-modules",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-Wno-module-import-in-extern-c",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -7292,9 +7314,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					IDE_XCODE,
 					NOCRYPT,
@@ -7305,7 +7330,15 @@
 				HEADER_SEARCH_PATHS = platform/apple/Source;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "-fvisibility=hidden";
+				OTHER_CFLAGS = (
+					"-fvisibility=hidden",
+					"-fcxx-modules",
+					"-fmodules",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-Wno-module-import-in-extern-c",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
