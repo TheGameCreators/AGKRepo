@@ -66,14 +66,19 @@ Ensure the following are installed:
 
 ## Sequence to build Apple binaries
 - Use GitHub Desktop to clone AGKREPO into a local folder (could be "Users/YourName/DEV/AGKREPO")
-- Open Finder and navigate to the tools folder (e.g. /Users/YourName/DEV/AGKREPO/AGK/tools/AGKBuildSystem/Mac
+- Create a folder at "Users/YourName/AGKStudioBuild" and "Users/YourName/AGKStudioBuild/AppGameKitStudio"
+- Copy the SIGN.SH script file into "Users/YourName/AGKStudioBuild" and configure to your own paths (for step 15 in build tool)
+- Open Finder and navigate to the tools folder (e.g. /Users/YourName/DEV/AGKREPO/AGK/tools/AGKBuildSystem/Mac)
 - Open Paths.h and confirm the paths specified here match existing folders in the repo folder structure
 - Open the Terminal via the Utilities on your Mac and navigate to the folder (e.g. cd  /Users/YourName/DEV/AGKREPO/AGK/tools/AGKBuildSystem/Mac)
 - Now type MAKE to compile and create the AGK Build Program
 - Can ignore terminal warnings, there should be no errors reported
 - You can now call "./AGKBuild" to run the build program
-- Follow the steps in a similar way to the Windows steps sequence until all steps completed
+- Follow the steps in a similar way to the Windows steps sequence until all 15 steps completed (i.e. type 1 and press RETURN)
 - Any errors you get along the way should be output in the terminal for you to report to TGC (if any)
+- Issues are likely to arise from missing folders. When the error reports this, create the empty folder with the exact path and name required
+- You will need an Apple Developer Account to create your certificates and provisions to replace those used by TGC (Apple website has instructions)
+- The AGK IDE for the Mac uses an older AGK Lib file that has been provided and hard copied to the repo for predictable compiling
 
 ## LINUX INSTRUCTIONS
 The Linux source code is not supported in the AGKREPO at this time.
