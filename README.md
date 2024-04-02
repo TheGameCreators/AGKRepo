@@ -81,7 +81,7 @@ Ensure the following are installed:
 - The AGK IDE for the Mac uses an older AGK Lib file that has been provided and hard copied to the repo for predictable compiling
 
 ## LINUX INSTRUCTIONS
-The Linux source code is not supported in the AGKREPO at this time.
+The Linux source code is not supported in the AGKREPO at this time. * Linux version of AGK Studio downloaded from Steam, Tier 2 Android contains a bat file to start compiling C++ code, instead of an sh script.
 
 ## How to Implement Tracking Transparency 
 App tracking transparency was implemented a few years ago using the external command functionality. Here's how to use it:
@@ -94,9 +94,3 @@ if ( supportsIDFA )
         sync ( )
     endwhile
 endif
-
-## In-Construction Notes
-* Linux version of AGK Studio downloaded from Steam, Tier 2 Android contains a bat file to start compiling C++ code, instead of an sh script.
-* During compilation, it was found that there were no folders "android_common" and "android_common_native" in the composition.
-* Need to ASK permission before the GDPR dialogue. This is due to Apple's new(ish) App Tracking Transparency App Tracking Transparency | Apple Developer Documentation.
-* Include Apple App Tracking, and a Google certified CMP for asking the GDPR question.
