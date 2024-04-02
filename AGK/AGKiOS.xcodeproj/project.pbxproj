@@ -1151,6 +1151,7 @@
 		4AF8FC071BCEB85100850A31 /* XGLLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AF8FAAE1BCEB85100850A31 /* XGLLoader.h */; };
 		67098D84266FF47F00F8BD74 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67098D83266FF47F00F8BD74 /* FirebaseCore.framework */; };
 		67098D87266FF53500F8BD74 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67098D86266FF53500F8BD74 /* GoogleMobileAds.framework */; };
+		725BECBA2BBC396000FDBFB5 /* Chartboost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 725BECB92BBC396000FDBFB5 /* Chartboost.framework */; };
 		9B4BD438134A399F00D36159 /* NetworkCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B4BD436134A399F00D36159 /* NetworkCommon.h */; };
 		9B99755712D3136800F8A432 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B99755612D3136800F8A432 /* QuartzCore.framework */; };
 		9B99759312D313B400F8A432 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B99759212D313B400F8A432 /* AudioToolbox.framework */; };
@@ -2724,6 +2725,7 @@
 		67098D83266FF47F00F8BD74 /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCore.framework; path = "platform/apple/Source/Social Plugins/Firebase/FirebaseCore.framework"; sourceTree = "<group>"; };
 		67098D86266FF53500F8BD74 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = "platform/apple/Source/Social Plugins/GoogleMobileAds.framework"; sourceTree = "<group>"; };
 		67112FB2266EEA290048F3D7 /* UserMessagingPlatform.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserMessagingPlatform.framework; path = "platform/apple/Source/Social Plugins/UserMessagingPlatform.framework"; sourceTree = "<group>"; };
+		725BECB92BBC396000FDBFB5 /* Chartboost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Chartboost.framework; path = "platform/apple/Source/Social Plugins/Chartboost.framework"; sourceTree = "<group>"; };
 		9B4BD436134A399F00D36159 /* NetworkCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkCommon.h; sourceTree = "<group>"; };
 		9B99755612D3136800F8A432 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
 		9B99759212D313B400F8A432 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
@@ -3146,6 +3148,7 @@
 				4A367B8C1D6F164F00CF46E6 /* CoreVideo.framework in Frameworks */,
 				4A1DB88E19C1D7C80048316C /* CoreLocation.framework in Frameworks */,
 				4A1DB88C19C10DCA0048316C /* CoreMotion.framework in Frameworks */,
+				725BECBA2BBC396000FDBFB5 /* Chartboost.framework in Frameworks */,
 				D893E52B1616883D000304BA /* MediaPlayer.framework in Frameworks */,
 				D893E52916168835000304BA /* CoreMedia.framework in Frameworks */,
 				D806E9FB124B95CF0067F527 /* Foundation.framework in Frameworks */,
@@ -3191,6 +3194,7 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				725BECB92BBC396000FDBFB5 /* Chartboost.framework */,
 				67098D86266FF53500F8BD74 /* GoogleMobileAds.framework */,
 				67098D83266FF47F00F8BD74 /* FirebaseCore.framework */,
 				67112FB2266EEA290048F3D7 /* UserMessagingPlatform.framework */,
@@ -7118,6 +7122,7 @@
 					"\"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/System/Library/Frameworks\"",
 					"$(PROJECT_DIR)/platform/apple/Source/Social\\ Plugins",
 					"$(PROJECT_DIR)/platform/apple/Source/Social\\ Plugins/Firebase",
+					"$(PROJECT_DIR)/platform/apple/Source/Social\\ Plugins",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -7152,7 +7157,10 @@
 					"-fcxx-modules",
 					"-fmodules",
 				);
-				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-Wno-module-import-in-extern-c",
+				);
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
@@ -7188,6 +7196,7 @@
 					"\"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/System/Library/Frameworks\"",
 					"$(PROJECT_DIR)/platform/apple/Source/Social\\ Plugins",
 					"$(PROJECT_DIR)/platform/apple/Source/Social\\ Plugins/Firebase",
+					"$(PROJECT_DIR)/platform/apple/Source/Social\\ Plugins",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -7220,7 +7229,10 @@
 					"-fcxx-modules",
 					"-fmodules",
 				);
-				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-Wno-module-import-in-extern-c",
+				);
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
@@ -7243,6 +7255,16 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				FRAMEWORK_SEARCH_PATHS = (
+					../../platform/apple/Source/Social,
+					Plugins,
+					../../platform/apple/Source/Social,
+					Plugins/Firebase,
+					"$(SRCROOT)/../../Social",
+					Plugins,
+					"$(SRCROOT)/../../Social",
+					Plugins/Firebase,
+				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -7281,6 +7303,16 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				FRAMEWORK_SEARCH_PATHS = (
+					../../platform/apple/Source/Social,
+					Plugins,
+					../../platform/apple/Source/Social,
+					Plugins/Firebase,
+					"$(SRCROOT)/../../Social",
+					Plugins,
+					"$(SRCROOT)/../../Social",
+					Plugins/Firebase,
+				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -7296,8 +7328,8 @@
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = (
 					"-fvisibility=hidden",
-					"-fmodules",
 					"-fcxx-modules",
+					"-fmodules",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
@@ -7317,6 +7349,16 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				FRAMEWORK_SEARCH_PATHS = (
+					../../platform/apple/Source/Social,
+					Plugins,
+					../../platform/apple/Source/Social,
+					Plugins/Firebase,
+					"$(SRCROOT)/../../Social",
+					Plugins,
+					"$(SRCROOT)/../../Social",
+					Plugins/Firebase,
+				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -7369,6 +7411,7 @@
 					"\"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/System/Library/Frameworks\"",
 					"$(PROJECT_DIR)/platform/apple/Source/Social\\ Plugins",
 					"$(PROJECT_DIR)/platform/apple/Source/Social\\ Plugins/Firebase",
+					"$(PROJECT_DIR)/platform/apple/Source/Social\\ Plugins",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -7402,7 +7445,10 @@
 					"-fcxx-modules",
 					"-fmodules",
 				);
-				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-Wno-module-import-in-extern-c",
+				);
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",

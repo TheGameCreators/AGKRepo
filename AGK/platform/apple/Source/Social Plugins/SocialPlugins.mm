@@ -9,7 +9,8 @@
 
 #import <GoogleMobileAds/GoogleMobileAds.h>
 
-#import <Chartboost/Chartboost.h>
+//#import <Chartboost/Chartboost.h>
+//#import "Chartboost.framework/Versions/A/Headers/Chartboost.h"
 
 #import <AdSupport/ASIdentifierManager.h>
 #include <CommonCrypto/CommonDigest.h>
@@ -262,6 +263,7 @@ didFailToPresentFullScreenContentWithError:(nonnull NSError *)error
 AdMobRewardListener* g_pAdMobRewardListener = nil;
 
 // chartboost listener
+#ifdef CHARTBOOST
 #ifndef LITEVERSION
 @interface ChartboostListener : NSObject <ChartboostDelegate>
 {
@@ -426,6 +428,7 @@ AdMobRewardListener* g_pAdMobRewardListener = nil;
 @end
 
 ChartboostListener *g_pChartboostListener = nil;
+#endif
 #endif
 
 @implementation SocialPlugins
@@ -786,6 +789,7 @@ char* agk::PlatformGetInAppPurchaseSubPlanToken( int iID, int planIndex )
 
 void UpdateChartboostConsent()
 {
+#ifdef CHARTBOOST
 #ifndef LITEVERSION
     [Chartboost clearDataUseConsentForPrivacyStandard:CHBPrivacyStandardGDPR];
     [Chartboost clearDataUseConsentForPrivacyStandard:CHBPrivacyStandardCCPA];
@@ -805,6 +809,7 @@ void UpdateChartboostConsent()
         g_pChartboostListener->loaded = 0;
         g_pChartboostListener->loadedReward = 0;
     }
+#endif
 #endif
 }
 
@@ -1291,6 +1296,7 @@ void agk::PlatformAdMobSetChildRating(int rating)
 
 void  agk::PlatformChartboostSetup ()
 {
+#ifdef CHARTBOOST
 #ifndef LITEVERSION
 	if ( !g_pChartboostListener ) g_pChartboostListener = [[ChartboostListener alloc] init];
     
@@ -1303,21 +1309,27 @@ void  agk::PlatformChartboostSetup ()
     [g_pChartboostListener reset];
     [g_pChartboostListener load];
 #else
-    agk::Message("Chartboost commands are not available in the lite build of AGK, please use the full version");
+    agk::Message("Chartboost commands are not available");
+#endif
+#else
+    agk::Message("Chartboost commands are not available");
 #endif
 }
 
 void  agk::PlatformChartboostFullscreen ()
 {
+#ifdef CHARTBOOST
 #ifndef LITEVERSION
     if ( !g_pChartboostListener ) return;
     
     [g_pChartboostListener show];
 #endif
+#endif
 }
 
 int  agk::PlatformChartboostGetFullscreenLoaded ()
 {
+#ifdef CHARTBOOST
 #ifndef LITEVERSION
 	if ( !g_pChartboostListener ) return 0;
 	
@@ -1325,28 +1337,34 @@ int  agk::PlatformChartboostGetFullscreenLoaded ()
 #else
     return 0;
 #endif
+#endif
 }
 
 void agk::PlatformChartboostRewardAd()
 {
+#ifdef CHARTBOOST
 #ifndef LITEVERSION
     if ( !g_pChartboostListener ) return;
     
     [g_pChartboostListener showReward];
 #endif
+#endif
 }
 
 void agk::PlatformChartboostCacheRewardAd()
 {
+#ifdef CHARTBOOST
 #ifndef LITEVERSION
     if ( !g_pChartboostListener ) return;
     
     [g_pChartboostListener loadReward];
 #endif
+#endif
 }
 
 int agk::PlatformChartboostGetRewardAdLoaded()
 {
+#ifdef CHARTBOOST
 #ifndef LITEVERSION
     if ( !g_pChartboostListener ) return 0;
     
@@ -1354,10 +1372,12 @@ int agk::PlatformChartboostGetRewardAdLoaded()
 #else
     return 0;
 #endif
+#endif
 }
 
 int agk::PlatformChartboostGetRewardAdRewarded()
 {
+#ifdef CHARTBOOST
 #ifndef LITEVERSION
     if ( !g_pChartboostListener ) return 0;
     
@@ -1365,13 +1385,16 @@ int agk::PlatformChartboostGetRewardAdRewarded()
 #else
     return 0;
 #endif
+#endif
 }
 
 void agk::PlatformChartboostResetRewardAd()
 {
+#ifdef CHARTBOOST
 #ifndef LITEVERSION
     if ( !g_pChartboostListener ) return;
     g_pChartboostListener->rewarded = 0;
+#endif
 #endif
 }
 

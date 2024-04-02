@@ -3,12 +3,12 @@
 #include <stdio.h>
 #include <string.h>
 
-#import <React/RCTRootView.h>
-#import <React/RCTBundleURLProvider.h>
+//#import <React/RCTRootView.h>
+//#import <React/RCTBundleURLProvider.h>
 
 #import <UIKit/UIKit.h>
 
-#import "NativeViewController.h"
+//#import "NativeViewController.h"
 
 // All SDKs should be defined here, even if they are not used
 ExternalSDK* g_pAppsFlyerSDK __attribute__((weak)) = 0;
@@ -47,6 +47,7 @@ extern "C" void ExternExternalCommand( const char* sdk, const char* command, con
     
     if ( strcmp( command, "switchapp" ) == 0 )
     {
+        /*
         NSLog( @"AGKRN: Get URL to React Native Bundle" );
         NSURL *jsCodeLocation;
         //#if DEBUG
@@ -66,6 +67,7 @@ extern "C" void ExternExternalCommand( const char* sdk, const char* command, con
         rootViewController.view = rootView;
         [rootViewController dismissViewControllerAnimated:YES completion:nil];
         [[UIApplication sharedApplication].keyWindow.rootViewController showViewController:(UIViewController*)rootViewController sender:nil];
+         */
     }
     else if ( strcmp( command, "returntoprev" ) == 0 )
     {

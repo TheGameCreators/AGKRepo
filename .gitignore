@@ -90,5 +90,9 @@ AGK_Build/.DS_Store
 AGK/build
 AGK/platform/Mac/Lib
 AGK/platform/apple/Lib
-
-
+AGK/AgkIde/build
+AGK/apps/interpreter_ios/build
+AGK/apps/interpreter_ios_noads/Build
+AGK/apps/interpreter_mac/build
+AGK/Broadcaster/AGKBroadcaster/build
+AGK/CompilerNew/build

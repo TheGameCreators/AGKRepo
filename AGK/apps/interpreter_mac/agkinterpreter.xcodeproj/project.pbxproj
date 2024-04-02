@@ -501,6 +501,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 4245WA8N82;
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = 4245WA8N82;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -545,6 +546,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.thegamecreators.agkplayermac;
 				PRODUCT_NAME = "AppGameKit Player";
 				PROVISIONING_PROFILE_SPECIFIER = "AGK Player Mac DevID";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "AGK Player Mac DevID";
 				SDKROOT = macosx;
 				VALID_ARCHS = "arm64 x86_64";
 			};

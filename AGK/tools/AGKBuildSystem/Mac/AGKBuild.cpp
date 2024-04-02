@@ -380,6 +380,7 @@ startPoint:
             strcpy( dstFolder, szBuildFolder ); strcat( dstFolder, "/AppGameKitStudio/AppGameKitStudio.app/Contents/Resources/media/Help" );
             CopyFolder( srcFolder, dstFolder );
 
+            /* snapchat not inside AGK Player
 			// copy SnapChat SDK to IDE (must copy from the exported cut down versions that don't have x86_64 architecture)
             Message( "Copying SnapChat Core SDK to IDE" );
             getcwd( srcFolder, 1024 ); strcat( srcFolder, "/apps/interpreter_ios/build/Release/AppGameKit Player.xcarchive/Products/Applications/AppGameKit Player.app/Frameworks/SCSDKCoreKit.framework" );
@@ -394,7 +395,8 @@ startPoint:
             DeleteFolder( dstFolder );
             mkdir( dstFolder, 0755 );
             CopyFolder( srcFolder, dstFolder );
-
+            */
+            
 			// copy interpreter
             Message( "Copying interpreter" );
             getcwd( srcFolder, 1024 ); strcat( srcFolder, "/apps/interpreter_mac/Build/Release/AppGameKit Player.xcarchive/Products/Users/" USERNAME "/Applications/AppGameKit Player.app" );
