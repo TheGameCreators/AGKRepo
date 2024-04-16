@@ -4,13 +4,12 @@ android {
     namespace 'com.thegamecreators.agk_player2'
     signingConfigs {
     }
-    compileSdkVersion 33
-    buildToolsVersion "33.0.3"
+    compileSdkVersion 34
     sourceSets.main.jni.srcDirs = []
     defaultConfig {
         applicationId "com.thegamecreators.agk_player2"
         minSdkVersion 21
-        targetSdkVersion 33
+        targetSdkVersion 34
         ndk{
             abiFilters "armeabi-v7a", "arm64-v8a"
         }
