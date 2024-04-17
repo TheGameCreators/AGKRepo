@@ -348,7 +348,7 @@ void ProcessPreferences(void) {
 			bTmp = pref.iRememberTabOrder;
 			ImGui::Checkbox("Remember Editor Tab Order", &bTmp);
 			pref.iRememberTabOrder = bTmp;
-			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Will remmeber the order of Visible tabs.\nNon-visible tabs will be in a-z order.");
+			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Will remember the order of Visible tabs.\nNon-visible tabs will be in a-z order.");
 
 			ImGui::Separator();
 
@@ -6677,7 +6677,7 @@ void ProcessAndroidExport(void)
 
 	ImGui::Text("Minimum Android Version:");
 	const char* apk_version_array[] = { "4.1 (API 16)", "4.2 (API 17)", "4.3 (API 18)", "4.4 (API 19)", "5.0 (API 21)", "5.1 (API 22)", "6.0 (API 23)"
-		, "7.0 (API 24)", "7.1 (API 25)", "8.0 (API 26)", "8.1 (API 27)", "9.0 (API 28)", "10.0 (API 29)", "11.0 (API 30)", "12.0 (API 31)" };
+		, "7.0 (API 24)", "7.1 (API 25)", "8.0 (API 26)", "8.1 (API 27)", "9.0 (API 28)", "10.0 (API 29)", "11.0 (API 30)", "12.0 (API 31)", "13.0 (API 33)", "14.0 (API 34)" };
 	ImGui::SameLine();
 	ImGui::SetCursorPos(ImVec2(input_indent, ImGui::GetCursorPos().y));
 	ImGui::Combo("##comboapk_sdk_version", &pCurrentSelectedProject->apk_sdk_version, apk_version_array, IM_ARRAYSIZE(apk_version_array));
@@ -7121,6 +7121,10 @@ void ProcessAndroidExport(void)
 		if (pCurrentSelectedProject->apk_sdk_version == 10) sdk = 27;
 		if (pCurrentSelectedProject->apk_sdk_version == 11) sdk = 28;
 		if (pCurrentSelectedProject->apk_sdk_version == 12) sdk = 29;
+		if (pCurrentSelectedProject->apk_sdk_version == 13) sdk = 30;
+		if (pCurrentSelectedProject->apk_sdk_version == 14) sdk = 31;
+		if (pCurrentSelectedProject->apk_sdk_version == 15) sdk = 33; // 32 deliberately missing
+		if (pCurrentSelectedProject->apk_sdk_version == 16) sdk = 34;
 		char szSDK[20];
 		sprintf(szSDK, "%d", sdk);
 
@@ -7346,8 +7350,8 @@ void ProcessAndroidExport(void)
 		if (Valid) {
 			char curDir[MAX_PATH];
 			extern char startupFolder[MAX_PATH];
-			//const char* androidJar = "android31.jar";
-			const char* androidJar = "android33.jar";
+			//const char* androidJar = "android33.jar";
+			const char* androidJar = "android34.jar";
 
 #if defined(AGK_WINDOWS)
 			_getcwd(&curDir[0], MAX_PATH);
@@ -7731,8 +7735,8 @@ void ProcessAndroidExport(void)
 					
 					strcat(newcontents, "\" android:targetSdkVersion=\"");
 					if ( bIsOuya ) strcat(newcontents, "16");
-					//else strcat(newcontents, "31");
-					else strcat ( newcontents, "33" );
+					//else strcat ( newcontents, "33" );
+					else strcat(newcontents, "34");
 					strcat(newcontents, "\" />\n\n");
 
 

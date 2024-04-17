@@ -3827,6 +3827,10 @@ int app::Loop (void)
 #endif
 				}
 
+				if (ImGui::MenuItem("AppGameKit Documentation")) {
+					agk::OpenBrowser("https://www.appgamekit.com/documentation-studio/home.html");
+				}
+
 				if (ImGui::MenuItem("Command Help")) {
 					pref.bDisplayHelpWindow = true;
 					processhelp((char*)"media/Help/commands.html", true);

@@ -7,7 +7,7 @@ The following instructions require Windows 10 or above:
 ## Pre-requisites to compile AGK Studio
 Ensure the following are installed with particular attention to the versions:
 - Install Visual Studio 2022
-- Android Studio (android-studio-2023.2.1.24-windows.exe)
+- Android Studio (android-studio-2023.2.1.25-windows.exe) 
 - Android SDK 34
 - Android 14.0 platform
 - Install Java JDK 17
