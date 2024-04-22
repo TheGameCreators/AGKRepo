@@ -131,20 +131,6 @@ struct SymbolsValues
 
 struct Preferences
 {
-	//hue style colors
-	int gui_main_hue = 140;
-	int gui_area_hue = 140;
-	int gui_back_hue = 140;
-	int gui_text_hue = 133;
-	float gui_col_main_sat = 196.f / 255.f;
-	float gui_col_main_val = 142.f / 255.f;
-	float gui_col_area_sat = 42.f / 255.f; //124
-	float gui_col_area_val = 81.f / 255.f; //100
-	float gui_col_back_sat = 22.f / 255.f; //59
-	float gui_col_back_val = 57.f / 255.f; //40
-	float gui_col_text_sat = 0.f / 255.f; //80
-	float gui_col_text_val = 255.f / 255.f; //220
-
 	char szCheckFile[10] = "IDE-PREFS";
 	bool show_preferences_window = false;
 	bool editor_display_linenumbers = true;
@@ -398,6 +384,20 @@ struct Preferences
 	int iRememberTabOrder = 0;
 
 	char cJDKPath[MAX_PATH] = "\0";
+
+	//hue style colors
+	int gui_main_hue = 140;
+	int gui_area_hue = 140;
+	int gui_back_hue = 140;
+	int gui_text_hue = 133;
+	float gui_col_main_sat = 196.f / 255.f;
+	float gui_col_main_val = 142.f / 255.f;
+	float gui_col_area_sat = 42.f / 255.f; //124
+	float gui_col_area_val = 81.f / 255.f; //100
+	float gui_col_back_sat = 22.f / 255.f; //59
+	float gui_col_back_val = 57.f / 255.f; //40
+	float gui_col_text_sat = 0.f / 255.f; //80
+	float gui_col_text_val = 255.f / 255.f; //220
 
 };
 

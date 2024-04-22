@@ -54,8 +54,6 @@ You need to open in Android Studio and build these projects once before attempti
 - The system allows individual steps to be executed, or for simplicity, you can run the whole process in Sequence
 - When all steps have been completed successfully and in order, the "AGK_Build\Builds" folder will contain updated files for AGK
 
-Note: For this version to work correctly the agkide.pref file has to be renamed to agkide.bak so that a new pref file will be created. File is located in C:\Users\YOURUSER\AppData\Local\AGKApps\TheGameCreators\Ide
-
 ## MAC INSTRUCTIONS
 The following instructions require a modern Mac or Mac-Mini:
 
