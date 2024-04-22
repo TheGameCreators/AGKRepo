@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:versionCode="110"
-    android:versionName="2023.08.23"
+    android:versionName="2024.04.22"
     package="com.thegamecreators.agk_player2"
     android:installLocation="preferExternal">
 
