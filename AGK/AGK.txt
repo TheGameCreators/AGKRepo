@@ -1,11 +1,12 @@
 AGK Change Log
 ==============
 
-Build Studio 2024.04.22
+Build Studio 2024.04.28
 -----------------------
 
 - Target API 34
 - Add hue style option to IDE preferences
+- Add F1 browser help option to editor preferences
 - Fix minimum API level in Android export 
 - Add link to AppGAmeKit Documentation in the Help Menu
 - Fix missing AGK icon on title bar
