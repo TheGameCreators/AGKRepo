@@ -59,7 +59,7 @@ The following instructions require a modern Mac or Mac-Mini:
 
 ## Pre-requisites to compile the Apple binaries
 Ensure the following are installed:
-- XCODE 14.2 or above
+- XCODE 15.2 or above
 - Install GitHub Desktop for Mac-Mini
 - Select YES to any prompt asking to initialize Git Large File Storage
 
