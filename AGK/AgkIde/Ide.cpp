@@ -564,10 +564,10 @@ media/icons/32-pixels/regular/stop.png
 	ImGui_ImplAGK_Init();
 #endif
 	myDarkStyle(NULL); //for bordersize,padding ...
-	myStyle2(NULL); //additional settings before change.
+	myDefaultStyle(NULL); //additional settings before change.
 
 	if (pref.idePalette == 4) {
-		myStyle3(NULL);
+		myDarkGreyStyle(NULL);
 	}
 	else if (pref.idePalette == 3) {
 		myLightStyle(NULL);
@@ -579,7 +579,12 @@ media/icons/32-pixels/regular/stop.png
 		myDarkStyle(NULL);
 	}
 	else {
-		myStyle2(NULL);
+		if (pref.bEnableSeedStyle) {
+			myDefaultStyle(NULL);
+		}
+		else if (pref.bEnableCustomStyle) {
+			HueStyle(NULL); //set Hue style
+		}
 	}
 	if(pref.bEnableSeedStyle)
 		SetSeedStyleColors();
@@ -3273,7 +3278,7 @@ int app::Loop (void)
 					if (ImGui::MenuItem("Default Style")) {
 						pref.bEnableSeedStyle = false;
 						bEnableSeedStyleChanged = true;
-						myStyle2(NULL);
+						myDefaultStyle(NULL);
 						ide_force_rendering_delayed = true;
 						pref.idePalette = 0;
 					}
@@ -3299,10 +3304,10 @@ int app::Loop (void)
 						ide_force_rendering_delayed = true;
 						pref.idePalette = 3;
 					}
-					if (ImGui::MenuItem("My First Style")) {
+					if (ImGui::MenuItem("Dark Grey Style")) {
 						pref.bEnableSeedStyle = false;
 						bEnableSeedStyleChanged = true;
-						myStyle3(NULL);
+						myDarkGreyStyle(NULL);
 						ide_force_rendering_delayed = true;
 						pref.idePalette = 4;
 					}
@@ -3825,6 +3830,10 @@ int app::Loop (void)
 #else
 					agk::OpenBrowser("http://publicdata.thegamecreators.com/Docs/AppGameKit%20Studio%20Command%20References.pdf");
 #endif
+				}
+
+				if (ImGui::MenuItem("AppGameKit Documentation")) {
+					agk::OpenBrowser("https://www.appgamekit.com/documentation-studio/home.html");
 				}
 
 				if (ImGui::MenuItem("Command Help")) {
@@ -4433,7 +4442,7 @@ int app::Loop (void)
 				int titlesize = 23; //24
 				render_target_window_size = ImGui::GetWindowSize();
 				render_target_window_size.x -= (agk_target_border + 2.0); // 2 style->ItemSpacing.x
-				render_target_window_size.y -= (agk_target_border + titlesize); //+4 for mystyle2 (style->ItemSpacing.y)
+				render_target_window_size.y -= (agk_target_border + titlesize); //+4 for myDefaultmystyle (style->ItemSpacing.y)
 
 				render_target_window_pos = ImGui::GetWindowPos();
 				render_target_window_pos.y += titlesize + 2.0;

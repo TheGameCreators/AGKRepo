@@ -7,6 +7,7 @@
 #include <string>
 #include <regex>
 #include <cmath>
+#include "agk.h"
 
 #include "TextEditor.h"
 #include "AGKCommands.h"
@@ -907,6 +908,7 @@ std::string TextEditor::GetWordAt(const Coordinates & aCoords,bool variable,bool
 
 
 static char cHelp[MAX_PATH];
+
 void TextEditor::Help( void )
 {
 	strcpy(cHelp, "");
@@ -939,6 +941,9 @@ void TextEditor::Help( void )
 		return;
 
 	//Try to find help.
+	char currDir[1024];
+	GetCurrentDirectoryA(1024, currDir);
+
 	int index = tolower( char(cHelp[0]) );
 	uString usHelp = cHelp;
 	usHelp.Lower();
@@ -950,8 +955,20 @@ void TextEditor::Help( void )
 			if (strcmp(usHelp.GetStr(), sKeyNext->m_cLowerCommand) == 0) {
 				//found it display page.
 				if (sKeyNext->m_cCommandPath.GetLength() > 0 ) {
-					processhelp((char*)sKeyNext->m_cCommandPath.GetStr(), true);
-					ImGui::SetWindowFocus(ICON_MD_HELP  " Help");
+					
+					//built in help
+					if (pref.bBrowserHelp == false) {
+						processhelp((char*)sKeyNext->m_cCommandPath.GetStr(), true);
+						ImGui::SetWindowFocus(ICON_MD_HELP  " Help");
+					}
+					//browser help
+					else {
+						strcat(currDir, "\\");
+						strcat(currDir, (char*)sKeyNext->m_cCommandPath.GetStr());
+						
+						agk::OpenBrowser(currDir);
+
+					}
 					break;
 				}
 			}
@@ -1676,9 +1693,12 @@ void TextEditor::Render(const char* aTitle, const ImVec2& aSize, bool aBorder, b
 		else if (ImGui::IsKeyPressed(0x70)) { // 0x70 = F1
 			bFreezeWord = false;
 			if (ImGui::GetTime() - lastKeySearch >= 0.125) {
-				pref.bDisplayHelpWindow = true;
+				if (pref.bBrowserHelp == false){
+					pref.bDisplayHelpWindow = true;
+				}
 				Help();
 				lastKeySearch = (float)ImGui::GetTime();
+
 			}
 		}
 		else if (ImGui::IsKeyPressed(0x78)) { // 0x78 = F9 , toggle breakpoint.

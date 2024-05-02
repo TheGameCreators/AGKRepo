@@ -1,28 +1,27 @@
 # AGK Repository
-New Home of AGK Source Code for 2024 and Beyond. THIS GITHUB REPO IS CURRENTLY IN CONSTRUCTION AND TESTING. FEEL FREE TO CHECK OUT THE CODE. WE WILL ANNOUNCE WHEN IT IS READY FOR CONTRIBUTIONS.
+New Home of AGK Source Code for 2024 and Beyond.
 
 ## WINDOWS PC INSTRUCTIONS
-The following instructions requires Windows 10 or above:
+The following instructions require Windows 10 or above:
 
 ## Pre-requisites to compile AGK Studio
 Ensure the following are installed with particular attention to the versions:
 - Install Visual Studio 2022
-- Chipmunk 2021.2.1 Canary 2
-- Android SDK 33.0.3
-- Android 12.0 platform
+- Android Studio (android-studio-2023.2.1.25-windows.exe) 
+- Android SDK 34
+- Android 14.0 platform
 - Install Java JDK 17
 - Install GitHub Desktop
 - Install Git Large File Storage (https://docs.github.com/en/repositories/working-with-files/managing-large-files/configuring-git-large-file-storage)
 
 ## Notes on project settings
-New APKs submitted to the Google Store require API 33 (Android 13) since August 2023 : https://developer.android.com/google/play/requirements/target-sdk
+New APKs submitted to the Google Store require API 33 (Android 13) since August 2023: https://developer.android.com/google/play/requirements/target-sdk
 Small changes to any pre-API 33 projects include:
 - Add namespace 'com.thegamecreators.agk_player2' in "AGKPlayer2\build.gradle"
 - Add mavenCentral() in "build.gradle"
 - Remove jcenter() in "build.gradle"
-- Update version classpath 'com.android.tools.build:gradle:8.0.0' // was 7.2.1
-- Update version compileSdkVersion 33 in "AGKPlayer2\build.gradle"
-- Update version buildToolsVersion "33.0.3" in "AGKPlayer2\build.gradle"
+- Update version classpath 'com.android.tools.build:gradle:8.1.1' // was 7.2.1
+- Update version compileSdkVersion 34 in "AGKPlayer2\build.gradle"
 - Ensure that any Android Studio project points to JDK 17 (via "Settings>Build,Exe&Dep>Build Tools>Gradle>GradleJDK")
 
 ## Sequence to build AGK Studio
@@ -56,11 +55,11 @@ You need to open in Android Studio and build these projects once before attempti
 - When all steps have been completed successfully and in order, the "AGK_Build\Builds" folder will contain updated files for AGK
 
 ## MAC INSTRUCTIONS
-The following instructions requires a modern Mac or Mac-Mini:
+The following instructions require a modern Mac or Mac-Mini:
 
 ## Pre-requisites to compile the Apple binaries
 Ensure the following are installed:
-- XCODE 14.2 or above
+- XCODE 15.2 or above
 - Install GitHub Desktop for Mac-Mini
 - Select YES to any prompt asking to initialize Git Large File Storage
 

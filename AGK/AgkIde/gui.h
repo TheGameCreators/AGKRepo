@@ -57,9 +57,10 @@ void ClearAllEditorMarkers(void);
 void ClearExecuteLine(void);
 char * RandomString(void);
 void SetSeedStyleColors(void);
-void myStyle3(ImGuiStyle* dst);
-void myStyle2(ImGuiStyle* dst);
-void myStyle(ImGuiStyle* dst);
+void myDarkGreyStyle(ImGuiStyle* dst);
+void HueStyle(ImGuiStyle* dst);
+void myDefaultStyle(ImGuiStyle* dst);
+//void myStyle(ImGuiStyle* dst);
 void myDarkStyle(ImGuiStyle* dst);
 void myLightStyle(ImGuiStyle* dst);
 void ShowCompilerLog(const char *window, bool* p_open);
@@ -383,6 +384,23 @@ struct Preferences
 	int iRememberTabOrder = 0;
 
 	char cJDKPath[MAX_PATH] = "\0";
+
+	//hue style colors
+	int gui_main_hue = 140;
+	int gui_area_hue = 140;
+	int gui_back_hue = 140;
+	int gui_text_hue = 133;
+	float gui_col_main_sat = 196.f / 255.f;
+	float gui_col_main_val = 142.f / 255.f;
+	float gui_col_area_sat = 42.f / 255.f; 
+	float gui_col_area_val = 81.f / 255.f; 
+	float gui_col_back_sat = 22.f / 255.f; 
+	float gui_col_back_val = 57.f / 255.f; 
+	float gui_col_text_sat = 0.f / 255.f; 
+	float gui_col_text_val = 255.f / 255.f; 
+
+	//F1 browser help
+	bool bBrowserHelp = false;
 
 };
 
