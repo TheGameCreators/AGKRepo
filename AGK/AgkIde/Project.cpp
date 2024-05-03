@@ -144,7 +144,7 @@ void ResetPreferences(bool resetall)
 #ifdef AGK_MACOS
 	strcpy(pref.cUndoText, "Cmd+Z");
 #else
-	strcpy(pref.cUndoText, "CTRL+Z");
+	strcpy(pref.cUndoText, "Ctrl+Z");
 #endif
 
 	pref.bRedoCtrl = true;
@@ -331,11 +331,11 @@ void ResetPreferences(bool resetall)
 	pref.bDuplicateLineCtrl = true;
 	pref.bDuplicateLineShift = false;
 	pref.bDuplicateLineAlt = false;
-	pref.iDuplicateLineKey = 68; //T
+	pref.iDuplicateLineKey = 68; //D
 #ifdef AGK_MACOS
-	strcpy(pref.cGoToDefinitionText, "Cmd+T");
+	strcpy(pref.cDuplicateLineText, "Cmd+D");
 #else
-	strcpy(pref.cGoToDefinitionText, "Ctrl+T");
+	strcpy(pref.cDuplicateLineText, "Ctrl+D");
 #endif
 
 	pref.bSceneLowFloatPrecision = true;

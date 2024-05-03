@@ -1,7 +1,7 @@
 AGK Change Log
 ==============
 
-Build Studio 2024.04.28
+Build Studio 2024.05.03
 -----------------------
 
 - Target API 34
@@ -10,6 +10,7 @@ Build Studio 2024.04.28
 - Fix minimum API level in Android export 
 - Add link to AppGAmeKit Documentation in the Help Menu
 - Fix missing AGK icon on title bar
+- Fix keyboard shortcut Duplicate Lines
 
 Build Studio 2024.02.17
 -----------------------
