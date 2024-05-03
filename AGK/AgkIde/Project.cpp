@@ -200,7 +200,7 @@ void ResetPreferences(bool resetall)
 	pref.bFindNextCtrl = false;
 	pref.bFindNextShift = false;
 	pref.bFindNextAlt = false;
-	pref.iFindNextKey = 114; //F
+	pref.iFindNextKey = 114; //F3
 #ifdef AGK_MACOS
 	strcpy(pref.cFindNextText, "F3");
 #else
@@ -241,7 +241,7 @@ void ResetPreferences(bool resetall)
 	pref.bGotoLineCtrl = true;
 	pref.bGotoLineShift = false;
 	pref.bGotoLineAlt = false;
-	pref.iGotoLineKey = 76; //-
+	pref.iGotoLineKey = 76; //L
 #ifdef AGK_MACOS
 	strcpy(pref.cGotoLineText, "Cmd+L");
 #else
