@@ -940,6 +940,7 @@ void TextEditor::Help( void )
 	if (strlen(cHelp) < 2)
 		return;
 
+    /* NOTE: Lee did this to get XCODE 15.2 to play nicely
 	//Try to find help.
 	char currDir[1024];
 	GetCurrentDirectoryA(1024, currDir);
@@ -976,6 +977,7 @@ void TextEditor::Help( void )
 		}
 
 	}
+    */
 
 	return;
 }

@@ -40,7 +40,6 @@
 		4A9D50791996814400473873 /* ProgramData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D50781996814400473873 /* ProgramData.cpp */; };
 		4AB6380720CAD754007F0A18 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB6380620CAD754007F0A18 /* WebKit.framework */; };
 		4ABD90A41AB88A4400ADB1BA /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ABD90A31AB88A4400ADB1BA /* AdSupport.framework */; };
-		4ABD90A61AB88FCF00ADB1BA /* Chartboost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ABD90A51AB88FCF00ADB1BA /* Chartboost.framework */; };
 		4ABD90AC1AB890EB00ADB1BA /* libAGKiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ABD90AB1AB890EB00ADB1BA /* libAGKiOS.a */; };
 		67112FB9266EEABE0048F3D7 /* UserMessagingPlatform.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67112FB8266EEABE0048F3D7 /* UserMessagingPlatform.framework */; };
 		67112FBB266EEAC90048F3D7 /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67112FBA266EEAC90048F3D7 /* AppTrackingTransparency.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -127,7 +126,6 @@
 		4A9D50781996814400473873 /* ProgramData.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = ProgramData.cpp; path = ../../interpreter/ProgramData.cpp; sourceTree = "<group>"; };
 		4AB6380620CAD754007F0A18 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		4ABD90A31AB88A4400ADB1BA /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
-		4ABD90A51AB88FCF00ADB1BA /* Chartboost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Chartboost.framework; path = "../../platform/apple/Source/Social Plugins/Chartboost.framework"; sourceTree = "<group>"; };
 		4ABD90AB1AB890EB00ADB1BA /* libAGKiOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAGKiOS.a; path = ../../platform/apple/Lib/Release/libAGKiOS.a; sourceTree = "<group>"; };
 		4AD751D41D81B231001DE9C0 /* AppGameKit Player.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "AppGameKit Player.entitlements"; sourceTree = "<group>"; };
 		4AF8AE9422F2060C00CC735F /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppMeasurement.framework; path = "../../platform/apple/Source/Social Plugins/GoogleAppMeasurement.framework"; sourceTree = "<group>"; };
@@ -224,7 +222,6 @@
 				4A01977319CE6063006204A7 /* EventKitUI.framework in Frameworks */,
 				4A01977119CE6053006204A7 /* EventKit.framework in Frameworks */,
 				4A1DB89019C1DC6A0048316C /* CoreLocation.framework in Frameworks */,
-				4ABD90A61AB88FCF00ADB1BA /* Chartboost.framework in Frameworks */,
 				4A1DB88A19C10D390048316C /* CoreMotion.framework in Frameworks */,
 				D87D02CE16C962100019D29E /* GameKit.framework in Frameworks */,
 				726A37B315B8DA0D002F8919 /* StoreKit.framework in Frameworks */,
@@ -343,7 +340,6 @@
 				4A26DEC01D7F11D500AAF62F /* CoreVideo.framework */,
 				4ABD90AB1AB890EB00ADB1BA /* libAGKiOS.a */,
 				4A0E7D0E1DF86084007BC5C8 /* GoogleMobileAds.framework */,
-				4ABD90A51AB88FCF00ADB1BA /* Chartboost.framework */,
 				4ABD90A31AB88A4400ADB1BA /* AdSupport.framework */,
 				4A01977419CE608F006204A7 /* CoreTelephony.framework */,
 				4A01977219CE6063006204A7 /* EventKitUI.framework */,
