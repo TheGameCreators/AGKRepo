@@ -6561,7 +6561,7 @@ void ProcessAndroidExport(void)
 	if (ImGui::IsItemHovered()) {
 		ImGui::SetNextWindowContentSize(ImVec2(400, 0));
 		ImGui::BeginTooltip();
-		ImGui::TextWrapped("Choose Google for apps using Google Play Services or ARCore, choose Amazon for apps using Amazon IAP, choose Ouya for apps that use the Ouya SDK. Choose an Bundle if the result will be uploaded to Google Play, or choose APK if the result will be sideloaded onto an Android device");
+		ImGui::TextWrapped("Choose Google for apps using Google Play Services or ARCore, choose Amazon for apps using Amazon IAP, choose Ouya for apps that use the Ouya SDK. Choose Bundle if the result will be uploaded to Google Play, or choose APK if the result will be sideloaded onto an Android device");
 		ImGui::EndTooltip();
 	}
 
