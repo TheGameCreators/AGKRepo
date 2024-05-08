@@ -1,7 +1,7 @@
 AGK Change Log
 ==============
 
-Build Studio 2024.05.03
+Build Studio 2024.05.08
 -----------------------
 
 - Target API 34
