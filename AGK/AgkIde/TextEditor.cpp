@@ -940,10 +940,9 @@ void TextEditor::Help( void )
 	if (strlen(cHelp) < 2)
 		return;
 
-    /* NOTE: Lee did this to get XCODE 15.2 to play nicely
 	//Try to find help.
-	char currDir[1024];
-	GetCurrentDirectoryA(1024, currDir);
+	char buffer[1024];
+	char* currDir = getcwd(buffer, sizeof(buffer));
 
 	int index = tolower( char(cHelp[0]) );
 	uString usHelp = cHelp;
@@ -964,10 +963,14 @@ void TextEditor::Help( void )
 					}
 					//browser help
 					else {
-						strcat(currDir, "\\");
-						strcat(currDir, (char*)sKeyNext->m_cCommandPath.GetStr());
-						
-						agk::OpenBrowser(currDir);
+
+						if (currDir)
+						{
+							strcat(currDir, "\\");
+							strcat(currDir, (char*)sKeyNext->m_cCommandPath.GetStr());
+
+							agk::OpenBrowser(currDir);
+						}	
 
 					}
 					break;
@@ -977,7 +980,6 @@ void TextEditor::Help( void )
 		}
 
 	}
-    */
 
 	return;
 }
