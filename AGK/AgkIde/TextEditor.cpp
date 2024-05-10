@@ -941,8 +941,13 @@ void TextEditor::Help( void )
 		return;
 
 	//Try to find help.
-	char buffer[1024];
-	char* currDir = getcwd(buffer, sizeof(buffer));
+	char curDir[MAX_PATH];
+
+#ifdef AGK_WINDOWS
+	_getcwd(&curDir[0], MAX_PATH);
+#else
+	getcwd(&curDir[0], MAX_PATH);
+#endif
 
 	int index = tolower( char(cHelp[0]) );
 	uString usHelp = cHelp;
@@ -964,13 +969,10 @@ void TextEditor::Help( void )
 					//browser help
 					else {
 
-						if (currDir)
-						{
-							strcat(currDir, "\\");
-							strcat(currDir, (char*)sKeyNext->m_cCommandPath.GetStr());
+						strcat(curDir, "\\");
+						strcat(curDir, (char*)sKeyNext->m_cCommandPath.GetStr());
 
-							agk::OpenBrowser(currDir);
-						}	
+						agk::OpenBrowser(curDir);
 
 					}
 					break;
