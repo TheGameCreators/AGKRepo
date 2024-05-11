@@ -3878,7 +3878,17 @@ int app::Loop (void)
 				if (ImGui::MenuItem("AppGameKit Player for IOS")) {
 					agk::OpenBrowser("https://itunes.apple.com/us/app/appgamekit-player/id1071731293?mt=8");
 				}
+				
+#ifdef AGK_WINDOWS //windows only, other platforms to be added later
+				ImGui::Separator();
 
+				if (ImGui::MenuItem("Change Log")) {
+					uString usDoc = startupFolder;
+					usDoc.Append("/media/Help/whats_new.html");
+					usDoc.ReplaceStr("\\", "/");
+					agk::OpenBrowser(usDoc.GetStr());
+				}							
+#endif				
 
 #ifdef TRIALVERSIONEXPIRES
 				ImGui::Separator();

@@ -11,6 +11,7 @@ Build Studio 2024.05.08
 - Add link to AppGAmeKit Documentation in the Help Menu
 - Fix missing AGK icon on title bar
 - Fix keyboard shortcut Duplicate Lines
+- Add change log to help menu
 
 Build Studio 2024.02.17
 -----------------------

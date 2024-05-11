@@ -350,13 +350,15 @@ void ProcessPreferences(void) {
 			pref.iRememberTabOrder = bTmp;
 			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Will remember the order of Visible tabs.\nNon-visible tabs will be in a-z order.");
 
+#ifdef AGK_WINDOWS //windows only, other platforms to be added later
+
 			bTmp = pref.bBrowserHelp;
 			ImGui::Checkbox("Enable F1 Browser Help", &bTmp);
 			pref.bBrowserHelp = bTmp;
 			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Use browser help instead of the built in help");
 
+#endif
 			ImGui::Separator();
-
 
 			ImGui::SliderInt("Scene: Float Decimal Precision", &pref.iSceneLowFloatPrecision, 0, 8);
 			//ImGui::Checkbox("Scene Editor: Use 2 Decimal Precision For Float", &pref.bSceneLowFloatPrecision);
