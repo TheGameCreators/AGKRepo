@@ -940,10 +940,14 @@ void TextEditor::Help( void )
 	if (strlen(cHelp) < 2)
 		return;
 
-    /* NOTE: Lee did this to get XCODE 15.2 to play nicely
 	//Try to find help.
 	char currDir[1024];
-	GetCurrentDirectoryA(1024, currDir);
+#ifdef AGK_WINDOWS
+		//_getcwd(&curDir[0], MAX_PATH); needed <direct.h>
+		GetCurrentDirectoryA(1024, currDir);
+#else
+		getcwd(&curDir[0], 1024);
+#endif
 
 	int index = tolower( char(cHelp[0]) );
 	uString usHelp = cHelp;
@@ -977,7 +981,6 @@ void TextEditor::Help( void )
 		}
 
 	}
-    */
 
 	return;
 }
