@@ -12,6 +12,10 @@
 #include "TextEditor.h"
 #include "AGKCommands.h"
 
+#ifdef AGK_WINDOWS
+#include <direct.h>
+#endif
+
 #define IMGUI_DEFINE_MATH_OPERATORS
 #include "imgui/imgui.h" // for imGui::GetCurrentWindow()
 
@@ -941,13 +945,14 @@ void TextEditor::Help( void )
 		return;
 
 	//Try to find help.
-	char currDir[1024];
+	char curDir[MAX_PATH];
+
 #ifdef AGK_WINDOWS
-		//_getcwd(&curDir[0], MAX_PATH); needed <direct.h>
-		GetCurrentDirectoryA(1024, currDir);
+		_getcwd(&curDir[0], MAX_PATH);	
 #else
-		getcwd(&curDir[0], 1024);
+		getcwd(&curDir[0], MAX_PATH);
 #endif
+
 
 	int index = tolower( char(cHelp[0]) );
 	uString usHelp = cHelp;
@@ -968,10 +973,10 @@ void TextEditor::Help( void )
 					}
 					//browser help
 					else {
-						strcat(currDir, "\\");
-						strcat(currDir, (char*)sKeyNext->m_cCommandPath.GetStr());
+						strcat(curDir, "\\");
+						strcat(curDir, (char*)sKeyNext->m_cCommandPath.GetStr());
 						
-						agk::OpenBrowser(currDir);
+						agk::OpenBrowser(curDir);
 
 					}
 					break;
