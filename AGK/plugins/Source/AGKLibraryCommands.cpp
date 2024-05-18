@@ -2133,6 +2133,17 @@ int(*AGKCommand2129)(  ) = 0;
 void(*AGKCommand2130)( int ) = 0;
 int(*AGKCommand2131)(  ) = 0;
 int(*AGKCommand2132)( int ) = 0;
+float(*AGKCommand2133)( float, float, float ) = 0;
+float(*AGKCommand2134)( float, float, float ) = 0;
+float(*AGKCommand2135)( float, float, float, float, float ) = 0;
+float(*AGKCommand2136)( float, float, float ) = 0;
+float(*AGKCommand2137)( float, float ) = 0;
+float(*AGKCommand2138)( float, float ) = 0;
+float(*AGKCommand2139)( float, float, float ) = 0;
+int(*AGKCommand2140)( float ) = 0;
+float(*AGKCommand2141)( float ) = 0;
+float(*AGKCommand2142)( float, float, float ) = 0;
+float(*AGKCommand2143)( float, float, float ) = 0;
 
 typedef void(*AGKVoidFunc)(void);
 AGKVoidFunc(*GetAGKFunction)( const char* ) = 0;
@@ -4274,4 +4285,15 @@ extern "C" DLL_EXPORT void ReceiveAGKPtr( AGKVoidFunc ptr )
 	AGKCommand2130 = (void(*)(int)) GetAGKFunction( "PINAPP_0_L" );
 	AGKCommand2131 = (int(*)()) GetAGKFunction( "ISDARKTHEME_L_0" );
 	AGKCommand2132 = (int(*)(int)) GetAGKFunction( "GETINAPPPURCHASEISRENEWING_L_L" );
+	AGKCommand2133 = (float(*)(float,float,float)) GetAGKFunction( "LERP_F_F_F_F" );
+	AGKCommand2134 = (float(*)(float,float,float)) GetAGKFunction( "INVERSELERP_F_F_F_F" );
+	AGKCommand2135 = (float(*)(float,float,float,float,float)) GetAGKFunction( "MAP_F_F_F_F_F_F" );
+	AGKCommand2136 = (float(*)(float,float,float)) GetAGKFunction( "CLAMP_F_F_F_F" );
+	AGKCommand2137 = (float(*)(float,float)) GetAGKFunction( "MIN_F_F_F" );
+	AGKCommand2138 = (float(*)(float,float)) GetAGKFunction( "MAX_F_F_F" );
+	AGKCommand2139 = (float(*)(float,float,float)) GetAGKFunction( "WRAP_F_F_F_F" );
+	AGKCommand2140 = (int(*)(float)) GetAGKFunction( "SIGN_L_F" );
+	AGKCommand2141 = (float(*)(float)) GetAGKFunction( "WRAPANGLE_F_F" );
+	AGKCommand2142 = (float(*)(float,float,float)) GetAGKFunction( "CURVEVALUE_F_F_F_F" );
+	AGKCommand2143 = (float(*)(float,float,float)) GetAGKFunction( "CURVEANGLE_F_F_F_F" );
 }

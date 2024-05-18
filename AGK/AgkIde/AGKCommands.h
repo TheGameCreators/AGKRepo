@@ -236,5 +236,6 @@ static const char* const agk_identifiers[] = {
 "externalcommand", "externalcommandint", "externalcommandfloat", "externalcommandstring", "getappreceipt", "inapppurchaseactivatewithplan", "getinapppurchasesubnumplans", "getinapppurchasesubplannumperiods", 
 "getinapppurchasesubplanprice", "getinapppurchasesubplanduration", "getinapppurchasesubplandurationunit", "getinapppurchasesubplanpaymenttype", "getinapppurchasesubplantags", 
 "getinapppurchasesubplantoken", "getdisplaynumcutouts", "getdisplaycutouttop", "getdisplaycutoutbottom", "getdisplaycutoutleft", "getdisplaycutoutright", "getscreenboundssafetop", 
-"getscreenboundssafebottom", "getscreenboundssafeleft", "getscreenboundssaferight", "ispinappavailable", "pinapp", "isdarktheme", "getinapppurchaseisrenewing", 
+"getscreenboundssafebottom", "getscreenboundssafeleft", "getscreenboundssaferight", "ispinappavailable", "pinapp", "isdarktheme", "getinapppurchaseisrenewing", "lerp", "inverselerp", "map", "clamp", 
+"min", "max", "wrap", "sign", "wrapangle", "curvevalue", "curveangle", 
 };
