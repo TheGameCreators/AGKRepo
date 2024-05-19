@@ -6033,33 +6033,35 @@ int agk::Sign(float a)
 // INPUTS
 //   a -- The current value.
 //   b -- The destination value.
-//   c -- The speed of movement.
+//   c -- The speed of movement (number of iterations to reach destination).
 // SOURCE
 float agk::CurveValue(float a, float b, float c)
 //****
 {
 	if (c < 1.0f) c = 1.0f;
-	return a + (b - a) / c;
+	return a + ((b - a) / c);
 }
 
 //****f* Core/Maths/CurveAngle
 // FUNCTION
 //   Moves a current angle towards a destination angle at a specified angular speed.
 // INPUTS
-//   a -- The current angle.
-//   b -- The destination angle.
-//   c -- The angular speed.
+//   a -- The current angle (in degrees).
+//   b -- The destination angle (in degrees).
+//   c -- The angular speed (number of iterations to reach destination).
 // SOURCE
 float agk::CurveAngle(float a, float b, float c)
 //****
 {
-	float diff = agk::WrapAngle(b - a);
-	float speed = fabs(c);
-	float direction = agk::Sign(diff);
-	float angleToMove = agk::Min(speed, fabs(diff)) * direction;
-	return agk::WrapAngle(a + angleToMove);
+	if (c < 1.0f) c = 1.0f;
+	float delta = agk::WrapAngle(b - a);
+	if (delta > 180.0f) {
+		delta -= 360.0f;
+	}
+	float angleToMove = delta / c;
+	a += angleToMove;
+	return agk::WrapAngle(a);
 }
-
 
 //****f* Core/Maths/Log
 // FUNCTION
