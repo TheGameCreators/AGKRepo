@@ -544,7 +544,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 2126;
+				CURRENT_PROJECT_VERSION = 3000;
 				DEVELOPMENT_TEAM = 4245WA8N82;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
@@ -573,7 +573,7 @@
 					../../renderer,
 				);
 				INFOPLIST_FILE = "agkinterpreter-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					../../platform/apple/Lib/Debug,
@@ -582,7 +582,7 @@
 					"$(SDKROOT)/usr/lib/swift",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 2023.01.25;
+				MARKETING_VERSION = 2024.05.211;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-ObjC";
 				"OTHER_LDFLAGS[arch=arm64]" = (
@@ -614,7 +614,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 2126;
+				CURRENT_PROJECT_VERSION = 3000;
 				DEVELOPMENT_TEAM = 4245WA8N82;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
@@ -640,7 +640,7 @@
 					../../renderer,
 				);
 				INFOPLIST_FILE = "agkinterpreter-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					../../platform/apple/Lib/Release,
@@ -648,7 +648,7 @@
 					"$(SDKROOT)/usr/lib/swift",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 2023.01.25;
+				MARKETING_VERSION = 2024.05.211;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
 				"OTHER_LDFLAGS[arch=arm64]" = (
