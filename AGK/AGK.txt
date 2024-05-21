@@ -1,16 +1,17 @@
 AGK Change Log
 ==============
 
-Build Studio 2024.05.08
+Build Studio 2024.05.20
 -----------------------
 
 - Target API 34
-- Add hue style option to IDE preferences
-- Add F1 browser help option to editor preferences
-- Fix minimum API level in Android export 
-- Add link to AppGAmeKit Documentation in the Help Menu
-- Fix missing AGK icon on title bar
-- Fix keyboard shortcut Duplicate Lines
+- Add Hue Style option to the IDE preferences
+- Add F1 Browser help option to the editor preferences
+- Add link 'AppGameKit Documentation' to the Help Menu
+- Fix minimum API level in the Android export 
+- Fix missing AGK icon on the title bar
+- Fix keyboard shortcut 'Duplicate Lines'
+- Fix 'Index of commands' in the Help Menu (now shows all of the commands)
 
 Build Studio 2024.02.17
 -----------------------
