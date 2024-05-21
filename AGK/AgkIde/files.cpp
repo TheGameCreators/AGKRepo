@@ -1638,7 +1638,7 @@ void renderTheText(uString renderText, bool entercodemode, bool bSeperator)
 	return;
 }
 
-#define MAXHELPFILESIZE 32768
+#define MAXHELPFILESIZE 141696 //orginal value 32768 (512 commands * 64, new value 141696 (2214 commands * 64)
 static char cHelpPagePath[MAX_PATH];
 static char cHelpFolder[MAX_PATH];
 static char cHelpPage[MAXHELPFILESIZE + 2];
