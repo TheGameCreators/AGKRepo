@@ -946,7 +946,7 @@ void TextEditor::Help( void )
 		//_getcwd(&curDir[0], MAX_PATH); needed <direct.h>
 		GetCurrentDirectoryA(1024, currDir);
 #else
-		getcwd(&curDir[0], 1024);
+		getcwd(&currDir[0], 1024);
 #endif
 
 	int index = tolower( char(cHelp[0]) );

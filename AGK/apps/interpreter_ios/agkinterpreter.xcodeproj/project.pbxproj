@@ -53,6 +53,8 @@
 		67C4558328DE1CD600D4CDB2 /* PromisesObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67C4558228DE1CD600D4CDB2 /* PromisesObjC.framework */; };
 		67DF3F54268F5CCF007E5DC2 /* SCSDKCoreKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4A5C2D6C230B4A6F00E42FE5 /* SCSDKCoreKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		67DF3F55268F5CCF007E5DC2 /* SCSDKCreativeKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4A5C2D64230AE9F900E42FE5 /* SCSDKCreativeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		722A44E82BFD0C7C0061670B /* MainWindow~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 722A44E62BFD0C7C0061670B /* MainWindow~ipad.xib */; };
+		722A44E92BFD0C7C0061670B /* MainWindow~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 722A44E72BFD0C7C0061670B /* MainWindow~iphone.xib */; };
 		726A37B315B8DA0D002F8919 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 726A37B215B8DA0D002F8919 /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		9B0A5AAF13269BF4006B5FB6 /* interpreter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A5AAD13269BF4006B5FB6 /* interpreter.cpp */; };
 		D823630F16120226008BD7C0 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D823630E16120226008BD7C0 /* MediaPlayer.framework */; };
@@ -139,6 +141,8 @@
 		67C4557628DE1ACB00D4CDB2 /* libswiftWebKit.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftWebKit.tbd; path = usr/lib/swift/libswiftWebKit.tbd; sourceTree = SDKROOT; };
 		67C4557828DE1B3900D4CDB2 /* libswift_Concurrency.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswift_Concurrency.tbd; path = usr/lib/swift/libswift_Concurrency.tbd; sourceTree = SDKROOT; };
 		67C4558228DE1CD600D4CDB2 /* PromisesObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromisesObjC.framework; path = "../../platform/apple/Source/Social Plugins/Firebase/PromisesObjC.framework"; sourceTree = "<group>"; };
+		722A44E62BFD0C7C0061670B /* MainWindow~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MainWindow~ipad.xib"; sourceTree = "<group>"; };
+		722A44E72BFD0C7C0061670B /* MainWindow~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MainWindow~iphone.xib"; sourceTree = "<group>"; };
 		726A37B215B8DA0D002F8919 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* agkinterpreter-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "agkinterpreter-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9B0A5AAD13269BF4006B5FB6 /* interpreter.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = interpreter.cpp; path = ../interpreter/interpreter.cpp; sourceTree = SOURCE_ROOT; };
@@ -298,6 +302,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				722A44E62BFD0C7C0061670B /* MainWindow~ipad.xib */,
+				722A44E72BFD0C7C0061670B /* MainWindow~iphone.xib */,
 				4A4D5CDE23F2EAD600E6B326 /* SplashLogo.png */,
 				4A0A41131D9EA1920065F425 /* GoogleService-Info.plist */,
 				4AD751D41D81B231001DE9C0 /* AppGameKit Player.entitlements */,
@@ -485,6 +491,8 @@
 				4A4D5CDD23F1C5CA00E6B326 /* UntitledViewController.xib in Resources */,
 				4A812E1223F18D8800BBD2E8 /* LaunchScreen.storyboard in Resources */,
 				4A9A52821FDF6BEE00E3AE27 /* Icons.xcassets in Resources */,
+				722A44E92BFD0C7C0061670B /* MainWindow~iphone.xib in Resources */,
+				722A44E82BFD0C7C0061670B /* MainWindow~ipad.xib in Resources */,
 				4A0A41141D9EA1920065F425 /* GoogleService-Info.plist in Resources */,
 				4A4D5CDF23F2EAD600E6B326 /* SplashLogo.png in Resources */,
 			);
@@ -697,6 +705,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = ../../platform/apple/Source;
+				INFOPLIST_KEY_NSMainNibFile = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PREBINDING = NO;
 				PROVISIONING_PROFILE = "";
@@ -737,6 +746,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = ../../platform/apple/Source;
+				INFOPLIST_KEY_NSMainNibFile = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
