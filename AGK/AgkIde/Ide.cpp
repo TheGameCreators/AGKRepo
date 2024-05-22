@@ -3713,7 +3713,7 @@ int app::Loop (void)
 //				if (ImGui::MenuItem("Build Options")) {
 //					pref.show_preferences_window = true;
 //				}
-				ImGui::Separator();
+//				ImGui::Separator();
 				ImGui::EndMenu();
 			}
 
