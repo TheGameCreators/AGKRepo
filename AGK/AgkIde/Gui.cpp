@@ -5440,7 +5440,7 @@ void ProcessIOSExport(void)
 					sParameters.Append("--target-device ");
 					sParameters.Append("ipad ");
 					sParameters.Append("--minimum-deployment-target ");
-					sParameters.Append("9.0 ");
+					sParameters.Append("13.0 ");
 					sParameters.Append("--output-format ");
 					sParameters.Append("human-readable-text ");
 					sParameters.Append("--compile ");
@@ -5533,7 +5533,7 @@ void ProcessIOSExport(void)
 					sParameters.Append("--target-device ");
 					sParameters.Append("ipad ");
 					sParameters.Append("--minimum-deployment-target ");
-					sParameters.Append("9.0 ");
+					sParameters.Append("13.0 ");
 					sParameters.Append("--output-format ");
 					sParameters.Append("human-readable-text ");
 					sParameters.Append("--compilation-directory ");
