@@ -1,6 +1,12 @@
 AGK Change Log
 ==============
 
+Build Studio 2024.05.23
+-----------------------
+
+- Change Hue Style option to Custom GUI Colors
+
+
 Build Studio 2024.05.20
 -----------------------
 

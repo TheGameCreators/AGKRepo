@@ -583,7 +583,7 @@ media/icons/32-pixels/regular/stop.png
 			myDefaultStyle(NULL);
 		}
 		else if (pref.bEnableCustomStyle) {
-			HueStyle(NULL); //set Hue style
+			CustomStyleColors(NULL); //set custom style colors
 		}
 	}
 	if(pref.bEnableSeedStyle)
@@ -3092,7 +3092,7 @@ int app::Loop (void)
 #endif
 					//Quit code.
 				}
-				//ImGui::Separator();
+				
 				ImGui::EndMenu();
 
 			}
@@ -3137,7 +3137,7 @@ int app::Loop (void)
 					if (ImGui::MenuItem("Preferences", nullptr, nullptr)) {
 						pref.show_preferences_window = true;
 					}
-					//ImGui::Separator();
+					
 					ImGui::EndMenu();
 				}
 
@@ -3183,7 +3183,7 @@ int app::Loop (void)
 					if (ImGui::MenuItem("Preferences", nullptr, nullptr)) {
 						pref.show_preferences_window = true;
 					}
-					//ImGui::Separator();
+					
 					ImGui::EndMenu();
 				}
 			}
@@ -3219,7 +3219,7 @@ int app::Loop (void)
 				if (ImGui::MenuItem("Go to Line", pref.cGotoLineText)) {
 					show_gotoline_window = true;
 				}
-				//ImGui::Separator();
+				
 				ImGui::EndMenu();
 			}
 
@@ -3527,7 +3527,7 @@ int app::Loop (void)
 					pref.iEditorFontSize = 15;
 					changefonttype = 999;
 				}
-				//ImGui::Separator();
+				
 				ImGui::EndMenu();
 			}
 
@@ -3708,8 +3708,6 @@ int app::Loop (void)
 					}
 				}
 
-				//ImGui::Separator();
-
 				//if (ImGui::MenuItem("Build Options")) {
 				//	pref.show_preferences_window = true;
 				//}
@@ -3761,7 +3759,6 @@ int app::Loop (void)
 				//if (ImGui::MenuItem("<IOS>Export AGK Player")) {
 				//}
 
-				//ImGui::Separator();
 				ImGui::EndMenu();
 			}
 
@@ -3904,7 +3901,7 @@ int app::Loop (void)
 
 				ImGui::EndMenu();
 			}
-			//ImGui::Separator();
+			
 			ImGui::EndMenuBar();
 		}
 		ImGui::End();
