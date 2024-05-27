@@ -918,14 +918,57 @@ void TextEditor::Help( void )
 	strcpy(cHelp, "");
 
 	//Try to locate what we are searching for.
+	if (HasSelection())
+	{
+		if (strlen(GetSelectedText().c_str()) < MAX_PATH) {
+			strcpy(cHelp, GetSelectedText().c_str());
+		}
 
-	if (strcmp(mLanguageDefinition.mName.c_str(), "GLSL") == 0 ) {
-		processhelp("media/Help/guides/13_shaders.htm", true);
-		ImGui::SetWindowFocus(ICON_MD_HELP  " Help");
-		return;
 	}
-	
+	else {
 
+		std::string wuc = GetWordUnderCursor();
+		if (strlen(wuc.c_str()) < MAX_PATH && strlen(wuc.c_str()) > 1) {
+			strcpy(cHelp, wuc.c_str());
+		}
+	}
+
+	if (strlen(cHelp) < 2)
+		return;
+
+	int index = tolower( char(cHelp[0]) );
+	uString usHelp = cHelp;
+	usHelp.Lower();
+	sKeyNext = sKeywordHelp[index];
+	if (sKeyNext && sKeyNext->m_pNext) {
+		sKeyNext = sKeyNext->m_pNext;
+
+		while (sKeyNext != NULL) {
+			if (strcmp(usHelp.GetStr(), sKeyNext->m_cLowerCommand) == 0) {
+				//found it display page.
+				if (sKeyNext->m_cCommandPath.GetLength() > 0 ) {
+					
+					//built in help
+					processhelp((char*)sKeyNext->m_cCommandPath.GetStr(), true);
+					ImGui::SetWindowFocus(ICON_MD_HELP  " Help");
+					
+					break;
+				}
+			}
+			sKeyNext = sKeyNext->m_pNext;
+		}
+
+	}
+
+	return;
+}
+
+
+void TextEditor::BrowserHelp(void)
+{
+	strcpy(cHelp, "");
+
+	//Try to locate what we are searching for.
 	if (HasSelection())
 	{
 		if (strlen(GetSelectedText().c_str()) < MAX_PATH) {
@@ -948,12 +991,12 @@ void TextEditor::Help( void )
 	char curDir[MAX_PATH];
 
 #ifdef AGK_WINDOWS
-		_getcwd(&curDir[0], MAX_PATH); 
+	_getcwd(&curDir[0], MAX_PATH);
 #else
-		getcwd(&curDir[0], MAX_PATH);
+	getcwd(&curDir[0], MAX_PATH);
 #endif
 
-	int index = tolower( char(cHelp[0]) );
+	int index = tolower(char(cHelp[0]));
 	uString usHelp = cHelp;
 	usHelp.Lower();
 	sKeyNext = sKeywordHelp[index];
@@ -963,21 +1006,15 @@ void TextEditor::Help( void )
 		while (sKeyNext != NULL) {
 			if (strcmp(usHelp.GetStr(), sKeyNext->m_cLowerCommand) == 0) {
 				//found it display page.
-				if (sKeyNext->m_cCommandPath.GetLength() > 0 ) {
-					
-					//built in help
-					if (pref.bBrowserHelp == false) {
-						processhelp((char*)sKeyNext->m_cCommandPath.GetStr(), true);
-						ImGui::SetWindowFocus(ICON_MD_HELP  " Help");
-					}
-					//browser help
-					else {
-						strcat(curDir, "\\");
-						strcat(curDir, (char*)sKeyNext->m_cCommandPath.GetStr());
-						
-						agk::OpenBrowser(curDir);
+				if (sKeyNext->m_cCommandPath.GetLength() > 0) {
 
-					}
+					//browser help
+					strcat(curDir, "\\");
+					strcat(curDir, (char*)sKeyNext->m_cCommandPath.GetStr());
+
+					agk::OpenBrowser(curDir);
+
+				
 					break;
 				}
 			}
@@ -988,6 +1025,7 @@ void TextEditor::Help( void )
 
 	return;
 }
+
 
 static float oldscrollX;
 static float oldscrollY;
@@ -1702,9 +1740,7 @@ void TextEditor::Render(const char* aTitle, const ImVec2& aSize, bool aBorder, b
 		else if (ImGui::IsKeyPressed(0x70)) { // 0x70 = F1
 			bFreezeWord = false;
 			if (ImGui::GetTime() - lastKeySearch >= 0.125) {
-				if (pref.bBrowserHelp == false){
-					pref.bDisplayHelpWindow = true;
-				}
+				pref.bDisplayHelpWindow = true;
 				Help();
 				lastKeySearch = (float)ImGui::GetTime();
 
@@ -5013,7 +5049,17 @@ void TextEditor::Render(const char* aTitle, const ImVec2& aSize, bool aBorder, b
 
 			}
 
-			if (ImGui::MenuItem("Bookmark toggle")) {
+#ifdef AGK_WINDOWS
+			
+			if (ImGui::MenuItem("Command Help")) {
+
+				BrowserHelp();
+
+			}
+			ImGui::Separator();
+#endif	
+
+			if (ImGui::MenuItem("Bookmark Toggle")) {
 				//if (bmarks.count(mState.mCursorPosition.mLine + 1) != 0)
 				if (mBookMarks.count(mState.mCursorPosition.mLine + 1) != 0)
 				{
@@ -5033,7 +5079,7 @@ void TextEditor::Render(const char* aTitle, const ImVec2& aSize, bool aBorder, b
 			}
 
 
-			if (ImGui::MenuItem("Breakpoint toggle")) {
+			if (ImGui::MenuItem("Breakpoint Toggle")) {
 				if (bpts.count(mState.mCursorPosition.mLine + 1) != 0)
 				{
 					//Already there , remove.
@@ -5140,7 +5186,7 @@ void TextEditor::Render(const char* aTitle, const ImVec2& aSize, bool aBorder, b
 			}
 		}
 
-		if (ImGui::MenuItem("Read-only mode", nullptr, &ro))
+		if (ImGui::MenuItem("Read-Only Mode", nullptr, &ro))
 			SetReadOnly(ro);
 
 		ImGui::Separator();
@@ -5182,10 +5228,10 @@ void TextEditor::Render(const char* aTitle, const ImVec2& aSize, bool aBorder, b
 
 		ImGui::Separator();
 
-		if (ImGui::MenuItem("Select all", nullptr, nullptr))
+		if (ImGui::MenuItem("Select All", nullptr, nullptr))
 			SetSelection(TextEditor::Coordinates(), TextEditor::Coordinates(GetTotalLines(), 0));
-
-		ImGui::Separator();
+		
+			ImGui::Separator();
 
 		if (ImGui::BeginMenu("View"))
 		{

@@ -350,13 +350,7 @@ void ProcessPreferences(void) {
 			pref.iRememberTabOrder = bTmp;
 			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Will remember the order of Visible tabs.\nNon-visible tabs will be in a-z order.");
 
-			bTmp = pref.bBrowserHelp;
-			ImGui::Checkbox("Enable F1 Browser Help", &bTmp);
-			pref.bBrowserHelp = bTmp;
-			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Use browser help instead of the built in help");
-
 			ImGui::Separator();
-
 
 			ImGui::SliderInt("Scene: Float Decimal Precision", &pref.iSceneLowFloatPrecision, 0, 8);
 			//ImGui::Checkbox("Scene Editor: Use 2 Decimal Precision For Float", &pref.bSceneLowFloatPrecision);
@@ -432,8 +426,12 @@ void ProcessPreferences(void) {
 
 			ImGui::Checkbox("Restore Layout on Startup.", &pref.save_layout);
 
+			bool bTmp;
+			bTmp = pref.bAppGameKitNews;
+			ImGui::Checkbox("Show AppGameKit News", &bTmp);
+			pref.bAppGameKitNews = bTmp;
 
-			bool bTmp = pref.iCancelQuitDialog;
+			bTmp = pref.iCancelQuitDialog;
 			ImGui::Checkbox("Ask Before Quitting AppGameKit Studio.", &bTmp);
 			pref.iCancelQuitDialog = bTmp;
 

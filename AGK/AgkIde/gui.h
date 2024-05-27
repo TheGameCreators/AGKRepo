@@ -402,8 +402,8 @@ struct Preferences
 	float gui_col_scroll_sat = 196.f / 255.f; 
 	float gui_col_scroll_val = 142.f / 255.f; 
 
-	//F1 browser help
-	bool bBrowserHelp = false;
+	//appgamekit news
+	bool bAppGameKitNews = true;
 
 };
 

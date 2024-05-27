@@ -3175,7 +3175,7 @@ int app::Loop (void)
 
 					ImGui::Separator();
 
-					if (ImGui::MenuItem("Select all", nullptr, nullptr))
+					if (ImGui::MenuItem("Select All", nullptr, nullptr))
 						if (m_ActiveEditor) m_ActiveEditor->SetSelection(TextEditor::Coordinates(), TextEditor::Coordinates(m_ActiveEditor->GetTotalLines(), 0));
 
 					ImGui::Separator();
@@ -3839,6 +3839,7 @@ int app::Loop (void)
 					processhelp((char*)"media/Help/commands.html", true);
 					ImGui::SetWindowFocus( ICON_MD_HELP " Help");
 				}
+
 				if (ImGui::MenuItem("Help Home")) {
 					pref.bDisplayHelpWindow = true;
 					processhelp((char*)"media/Help/home.html", true);
@@ -4258,12 +4259,14 @@ int app::Loop (void)
 		//#### Process Preferences Window, Goto Line windows ... ####
 		//###########################################################
 
-
+		if (pref.bAppGameKitNews == true) {
 		ProcessNewsWindow();
-
+		}
 		//if (bUseDockFamily)
+		
 		//	ImGui::SetNextWindowDockFamily(&editorfamily);
 		ProcessPreferences();
+	
 		//if (bUseDockFamily)
 		//	ImGui::SetNextWindowDockFamily(&editorfamily);
 		ProcessGotoLine();
@@ -9718,7 +9721,7 @@ bool vTextEditor(char *winname, TextEditor * m_editor, char * cName, char * cPat
 
 				ImGui::Separator();
 
-				if (ImGui::MenuItem("Select all", nullptr, nullptr))
+				if (ImGui::MenuItem("Select All", nullptr, nullptr))
 					m_editor->SetSelection(TextEditor::Coordinates(), TextEditor::Coordinates(m_editor->GetTotalLines(), 0));
 
 				ImGui::Separator();

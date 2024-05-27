@@ -296,6 +296,7 @@ public:
 	void SetBookMarks(const Bookmarks& aMarkers) { mBookMarks = aMarkers; }
 	void ToggleSeachReplace(bool change = true,bool forceadd = false);
 	void Help(void);
+	void BrowserHelp(void);
 	void Render(const char* aTitle, const ImVec2& aSize = ImVec2(), bool aBorder = false,bool modalopen = false,char *projectName = NULL);
 	void SetText(const std::string& aText);
 	void FindNext(void);
