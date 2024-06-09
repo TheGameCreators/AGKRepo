@@ -17,7 +17,7 @@
 #define DEVICE_HEIGHT 1024
 
 #define TRIALVERSION 4 //New trial version gives another 14 days trial to current trial users.
-#define VERSION "v2024.05.20"
+#define VERSION "v2024.06.09"
 #define INTVERSION 114 //Used to trigger auto update "additional files" and update Android export files
 
 #define WINDOW_TITLE "AppGameKit Studio " VERSION

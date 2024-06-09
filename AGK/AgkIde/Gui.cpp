@@ -350,13 +350,14 @@ void ProcessPreferences(void) {
 			pref.iRememberTabOrder = bTmp;
 			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Will remember the order of Visible tabs.\nNon-visible tabs will be in a-z order.");
 
+#ifdef AGK_WINDOWS
 			bTmp = pref.bBrowserHelp;
 			ImGui::Checkbox("Enable F1 Browser Help", &bTmp);
 			pref.bBrowserHelp = bTmp;
 			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Use browser help instead of the built in help");
+#endif
 
 			ImGui::Separator();
-
 
 			ImGui::SliderInt("Scene: Float Decimal Precision", &pref.iSceneLowFloatPrecision, 0, 8);
 			//ImGui::Checkbox("Scene Editor: Use 2 Decimal Precision For Float", &pref.bSceneLowFloatPrecision);
@@ -432,8 +433,12 @@ void ProcessPreferences(void) {
 
 			ImGui::Checkbox("Restore Layout on Startup.", &pref.save_layout);
 
+			bool bTmp;
+			bTmp = pref.bAppGameKitNews;
+			ImGui::Checkbox("Show AppGameKit News", &bTmp);
+			pref.bAppGameKitNews = bTmp;
 
-			bool bTmp = pref.iCancelQuitDialog;
+			bTmp = pref.iCancelQuitDialog;
 			ImGui::Checkbox("Ask Before Quitting AppGameKit Studio.", &bTmp);
 			pref.iCancelQuitDialog = bTmp;
 
@@ -570,7 +575,7 @@ void ProcessPreferences(void) {
 		if (ImGui::BeginTabItem(" Style Generator "))
 		{
 
-			ImGui::Checkbox("Enable HUE Based Style", &pref.bEnableCustomStyle);
+			ImGui::Checkbox("Enable Custom GUI Colors", &pref.bEnableCustomStyle);
 
 			if (pref.bEnableCustomStyle) {
 				pref.bEnableSeedStyle = false;
@@ -579,44 +584,41 @@ void ProcessPreferences(void) {
 				ImGuiStyle& style = ImGui::GetStyle();
 
 				//recall preferences
-				static int mainhue = pref.gui_main_hue;
-				static int areahue = pref.gui_area_hue;
-				static int backhue = pref.gui_back_hue;
-				static int texthue = pref.gui_text_hue;
+				static float col_main_hue = pref.gui_col_main_hue;
 				static float col_main_sat = pref.gui_col_main_sat;
 				static float col_main_val = pref.gui_col_main_val;
+				static float col_area_hue = pref.gui_col_area_hue;
 				static float col_area_sat = pref.gui_col_area_sat;
 				static float col_area_val = pref.gui_col_area_val;
+				static float col_back_hue = pref.gui_col_back_hue;
 				static float col_back_sat = pref.gui_col_back_sat;
 				static float col_back_val = pref.gui_col_back_val;
+				static float col_text_hue = pref.gui_col_text_hue;
 				static float col_text_sat = pref.gui_col_text_sat;
 				static float col_text_val = pref.gui_col_text_val;
+				static float col_scroll_hue = pref.gui_col_scroll_hue;
+				static float col_scroll_sat = pref.gui_col_scroll_sat;
+				static float col_scroll_val = pref.gui_col_scroll_val;
 
 				//set hues
-				ImVec4 col_main = ImColor::HSV(mainhue / 255.f, col_main_sat, col_main_val);
-				ImVec4 col_area = ImColor::HSV(areahue / 255.f, col_area_sat, col_area_val);
-				ImVec4 col_back = ImColor::HSV(backhue / 255.f, col_back_sat, col_back_val);
-				ImVec4 col_text = ImColor::HSV(texthue / 255.f, col_text_sat, col_text_val);
+				ImVec4 col_main = ImColor::HSV(col_main_hue, col_main_sat, col_main_val);
+				ImVec4 col_area = ImColor::HSV(col_area_hue, col_area_sat, col_area_val);
+				ImVec4 col_back = ImColor::HSV(col_back_hue, col_back_sat, col_back_val);
+				ImVec4 col_text = ImColor::HSV(col_text_hue, col_text_sat, col_text_val);
+				ImVec4 col_scroll = ImColor::HSV(col_scroll_hue, col_scroll_sat, col_scroll_val);
 
-				float dummy;
 				ImVec4 rgb;
 				//ImGui::ColorEditMode(ImGuiColorEditMode_HSV);
 			
 				//main 
-				ImGui::SliderInt("Main Hue", &mainhue, 0, 255);
-				ImGui::ColorConvertHSVtoRGB(mainhue / 255.f, col_main_sat, col_main_val, rgb.x, rgb.y, rgb.z);
-				ImGui::ColorEdit3("Main HSV", &rgb.x, ImGuiColorEditFlags_NoAlpha | ImGuiColorEditFlags_HSV);
-				ImGui::ColorConvertRGBtoHSV(rgb.x, rgb.y, rgb.z, dummy, col_main_sat, col_main_val);
+				ImGui::ColorConvertHSVtoRGB(col_main_hue, col_main_sat, col_main_val, rgb.x, rgb.y, rgb.z);
+				ImGui::ColorEdit3("Main RGB", &rgb.x);
+				ImGui::ColorConvertRGBtoHSV(rgb.x, rgb.y, rgb.z, col_main_hue, col_main_sat, col_main_val);
 				style.Colors[ImGuiCol_FrameBgHovered] = ImVec4(col_main.x, col_main.y, col_main.z, 0.68f);
 				style.Colors[ImGuiCol_FrameBgActive] = ImVec4(col_main.x, col_main.y, col_main.z, 1.00f);
 				style.Colors[ImGuiCol_TitleBg] = ImVec4(col_main.x, col_main.y, col_main.z, 0.65f);
 				style.Colors[ImGuiCol_TitleBgCollapsed] = ImVec4(col_main.x, col_main.y, col_main.z, 0.35f);
 				style.Colors[ImGuiCol_TitleBgActive] = ImVec4(col_main.x, col_main.y, col_main.z, 0.78f);
-				style.Colors[ImGuiCol_ScrollbarGrab] = ImVec4(col_main.x, col_main.y, col_main.z, 0.31f);
-				style.Colors[ImGuiCol_ScrollbarGrabHovered] = ImVec4(col_main.x, col_main.y, col_main.z, 0.78f); 
-				style.Colors[ImGuiCol_ScrollbarGrabActive] = ImVec4(col_main.x, col_main.y, col_main.z, 1.00f); 
-				style.Colors[ImGuiCol_SliderGrab] = ImVec4(col_main.x, col_main.y, col_main.z, 0.24f); 
-				style.Colors[ImGuiCol_SliderGrabActive] = ImVec4(col_main.x, col_main.y, col_main.z, 1.00f); 
 				style.Colors[ImGuiCol_Button] = ImVec4(col_main.x, col_main.y, col_main.z, 0.44f);
 				style.Colors[ImGuiCol_ButtonHovered] = ImVec4(col_main.x, col_main.y, col_main.z, 0.86f);
 				style.Colors[ImGuiCol_ButtonActive] = ImVec4(col_main.x, col_main.y, col_main.z, 1.00f);
@@ -637,10 +639,9 @@ void ProcessPreferences(void) {
 				style.Colors[ImGuiCol_TabUnfocusedActive] = ImVec4(col_main.x, col_main.y, col_main.z, 0.86f);
 
 				//area
-				ImGui::SliderInt("Area Hue", &areahue, 0, 255);
-				ImGui::ColorConvertHSVtoRGB(areahue / 255.f, col_area_sat, col_area_val, rgb.x, rgb.y, rgb.z);
+				ImGui::ColorConvertHSVtoRGB(col_area_hue, col_area_sat, col_area_val, rgb.x, rgb.y, rgb.z);
 				ImGui::ColorEdit3("Area RGB", &rgb.x);
-				ImGui::ColorConvertRGBtoHSV(rgb.x, rgb.y, rgb.z, dummy, col_area_sat, col_area_val);
+				ImGui::ColorConvertRGBtoHSV(rgb.x, rgb.y, rgb.z, col_area_hue, col_area_sat, col_area_val);
 				style.Colors[ImGuiCol_FrameBg] = ImVec4(col_area.x, col_area.y, col_area.z, 1.00f);
 				style.Colors[ImGuiCol_MenuBarBg] = ImVec4(col_area.x, col_area.y, col_area.z, 0.57f);
 				style.Colors[ImGuiCol_ScrollbarBg] = ImVec4(col_area.x, col_area.y, col_area.z, 1.00f);
@@ -648,17 +649,15 @@ void ProcessPreferences(void) {
 				//style.Colors[ImGuiCol_ComboBg] = ImVec4(col_area.x, col_area.y, col_area.z, 1.00f);
 	
 				//background
-				ImGui::SliderInt("Background Hue", &backhue, 0, 255);
-				ImGui::ColorConvertHSVtoRGB(backhue / 255.f, col_back_sat, col_back_val, rgb.x, rgb.y, rgb.z);
+				ImGui::ColorConvertHSVtoRGB(col_back_hue, col_back_sat, col_back_val, rgb.x, rgb.y, rgb.z);
 				ImGui::ColorEdit3("Background RGB", &rgb.x);
-				ImGui::ColorConvertRGBtoHSV(rgb.x, rgb.y, rgb.z, dummy, col_back_sat, col_back_val);
+				ImGui::ColorConvertRGBtoHSV(rgb.x, rgb.y, rgb.z, col_back_hue, col_back_sat, col_back_val);
 				style.Colors[ImGuiCol_WindowBg] = ImVec4(col_back.x, col_back.y, col_back.z, 1.00f);
 
 				//text
-				ImGui::SliderInt("Text Hue", &texthue, 0, 255);
-				ImGui::ColorConvertHSVtoRGB(texthue / 255.f, col_text_sat, col_text_val, rgb.x, rgb.y, rgb.z);
+				ImGui::ColorConvertHSVtoRGB(col_text_hue, col_text_sat, col_text_val, rgb.x, rgb.y, rgb.z);
 				ImGui::ColorEdit3("Text RGB", &rgb.x);
-				ImGui::ColorConvertRGBtoHSV(rgb.x, rgb.y, rgb.z, dummy, col_text_sat, col_text_val);
+				ImGui::ColorConvertRGBtoHSV(rgb.x, rgb.y, rgb.z, col_text_hue, col_text_sat, col_text_val);
 				style.Colors[ImGuiCol_Text] = ImVec4(col_text.x, col_text.y, col_text.z, 1.00f);
 				style.Colors[ImGuiCol_TextDisabled] = ImVec4(col_text.x, col_text.y, col_text.z, 0.58f);
 				style.Colors[ImGuiCol_Border] = ImVec4(col_text.x, col_text.y, col_text.z, 0.30f);
@@ -672,6 +671,16 @@ void ProcessPreferences(void) {
 				//style.Colors[ImGuiCol_CloseButtonHovered] = ImVec4(col_text.x, col_text.y, col_text.z, 0.39f);
 				//style.Colors[ImGuiCol_CloseButtonActive] = ImVec4(col_text.x, col_text.y, col_text.z, 1.00f);
 
+				//scroll & slider
+				ImGui::ColorConvertHSVtoRGB(col_scroll_hue, col_scroll_sat, col_scroll_val, rgb.x, rgb.y, rgb.z);
+				ImGui::ColorEdit3("Scroll & Slider RGB", &rgb.x);
+				ImGui::ColorConvertRGBtoHSV(rgb.x, rgb.y, rgb.z, col_scroll_hue, col_scroll_sat, col_scroll_val);
+				style.Colors[ImGuiCol_ScrollbarGrab] = ImVec4(col_scroll.x, col_scroll.y, col_scroll.z, 0.50f); //0.31
+				style.Colors[ImGuiCol_ScrollbarGrabHovered] = ImVec4(col_scroll.x, col_scroll.y, col_scroll.z, 0.78f);
+				style.Colors[ImGuiCol_ScrollbarGrabActive] = ImVec4(col_scroll.x, col_scroll.y, col_scroll.z, 1.00f);
+				style.Colors[ImGuiCol_SliderGrab] = ImVec4(col_scroll.x, col_scroll.y, col_scroll.z, 0.50f); //0.24
+				style.Colors[ImGuiCol_SliderGrabActive] = ImVec4(col_scroll.x, col_scroll.y, col_scroll.z, 1.00f);
+
 				//fixed colours
 				style.Colors[ImGuiCol_BorderShadow] = ImVec4(0.00f, 0.00f, 0.00f, 0.00f);
 				style.Colors[ImGuiCol_ModalWindowDarkening] = ImVec4(0.20f, 0.20f, 0.20f, 0.35f);
@@ -683,18 +692,21 @@ void ProcessPreferences(void) {
 				style.Colors[ImGuiCol_ModalWindowDimBg] = ImVec4(0.80f, 0.80f, 0.80f, 0.6f);
 
 				//save changes to prefs
-				pref.gui_main_hue = mainhue;
-				pref.gui_area_hue = areahue;
-				pref.gui_back_hue = backhue;
-				pref.gui_text_hue = texthue;
+				pref.gui_col_main_hue = col_main_hue;
 				pref.gui_col_main_sat = col_main_sat;
 				pref.gui_col_main_val = col_main_val;
+				pref.gui_col_area_hue = col_area_hue;
 				pref.gui_col_area_sat = col_area_sat;
 				pref.gui_col_area_val = col_area_val;
+				pref.gui_col_back_hue = col_back_hue;
 				pref.gui_col_back_sat = col_back_sat;
 				pref.gui_col_back_val = col_back_val;
+				pref.gui_col_text_hue = col_text_hue;
 				pref.gui_col_text_sat = col_text_sat;
 				pref.gui_col_text_val = col_text_val;
+				pref.gui_col_scroll_hue = col_scroll_hue;
+				pref.gui_col_scroll_sat = col_scroll_sat;
+				pref.gui_col_scroll_val = col_scroll_val;
 
 				//iIDESelectedStyle
 			}
@@ -7981,7 +7993,7 @@ void ProcessAndroidExport(void)
 						strcat(newcontents, "\n\
 						<meta-data\n\
 							android:name=\"com.google.android.play.billingclient.version\"\n\
-							android:value=\"5.0.0\" />\n\
+							android:value=\"5.2.1\" />\n\
 						<activity\n\
 							android:name=\"com.android.billingclient.api.ProxyBillingActivity\"\n\
 							android:configChanges=\"keyboard|keyboardHidden|screenLayout|screenSize|orientation\"\n\
@@ -13338,29 +13350,33 @@ void myDarkGreyStyle(ImGuiStyle* dst)
 	colors[ImGuiCol_ModalWindowDimBg] = ImVec4(0.80f, 0.80f, 0.80f, 0.35f);
 }
 
-void HueStyle(ImGuiStyle* dst)
+void CustomStyleColors(ImGuiStyle* dst)
 {
 ImGuiStyle& style = ImGui::GetStyle();
 
 //recall preference values
-static int mainhue = pref.gui_main_hue;
-static int areahue = pref.gui_area_hue;
-static int backhue = pref.gui_back_hue;
-static int texthue = pref.gui_text_hue;
+static float col_main_hue = pref.gui_col_main_hue;
 static float col_main_sat = pref.gui_col_main_sat;
 static float col_main_val = pref.gui_col_main_val;
+static float col_area_hue = pref.gui_col_area_hue;
 static float col_area_sat = pref.gui_col_area_sat;
 static float col_area_val = pref.gui_col_area_val;
+static float col_back_hue = pref.gui_col_back_hue;
 static float col_back_sat = pref.gui_col_back_sat;
 static float col_back_val = pref.gui_col_back_val;
+static float col_text_hue = pref.gui_col_text_hue;
 static float col_text_sat = pref.gui_col_text_sat;
 static float col_text_val = pref.gui_col_text_val;
+static float col_scroll_hue = pref.gui_col_scroll_hue;
+static float col_scroll_sat = pref.gui_col_scroll_sat;
+static float col_scroll_val = pref.gui_col_scroll_val;
 
 //set colours
-ImVec4 col_main = ImColor::HSV(mainhue / 255.f, col_main_sat, col_main_val);
-ImVec4 col_area = ImColor::HSV(areahue / 255.f, col_area_sat, col_area_val);
-ImVec4 col_back = ImColor::HSV(backhue / 255.f, col_back_sat, col_back_val);
-ImVec4 col_text = ImColor::HSV(texthue / 255.f, col_text_sat, col_text_val);
+ImVec4 col_main = ImColor::HSV(col_main_hue, col_main_sat, col_main_val);
+ImVec4 col_area = ImColor::HSV(col_area_hue, col_area_sat, col_area_val);
+ImVec4 col_back = ImColor::HSV(col_back_hue, col_back_sat, col_back_val);
+ImVec4 col_text = ImColor::HSV(col_text_hue, col_text_sat, col_text_val);
+ImVec4 col_scroll = ImColor::HSV(col_scroll_hue, col_scroll_sat, col_scroll_val);
 
 //main 
 style.Colors[ImGuiCol_FrameBgHovered] = ImVec4(col_main.x, col_main.y, col_main.z, 0.68f);
@@ -13368,11 +13384,6 @@ style.Colors[ImGuiCol_FrameBgActive] = ImVec4(col_main.x, col_main.y, col_main.z
 style.Colors[ImGuiCol_TitleBg] = ImVec4(col_main.x, col_main.y, col_main.z, 0.65f);
 style.Colors[ImGuiCol_TitleBgCollapsed] = ImVec4(col_main.x, col_main.y, col_main.z, 0.35f);
 style.Colors[ImGuiCol_TitleBgActive] = ImVec4(col_main.x, col_main.y, col_main.z, 0.78f);
-style.Colors[ImGuiCol_ScrollbarGrab] = ImVec4(col_main.x, col_main.y, col_main.z, 0.31f);
-style.Colors[ImGuiCol_ScrollbarGrabHovered] = ImVec4(col_main.x, col_main.y, col_main.z, 0.78f);
-style.Colors[ImGuiCol_ScrollbarGrabActive] = ImVec4(col_main.x, col_main.y, col_main.z, 1.00f);
-style.Colors[ImGuiCol_SliderGrab] = ImVec4(col_main.x, col_main.y, col_main.z, 0.24f);
-style.Colors[ImGuiCol_SliderGrabActive] = ImVec4(col_main.x, col_main.y, col_main.z, 1.00f);
 style.Colors[ImGuiCol_Button] = ImVec4(col_main.x, col_main.y, col_main.z, 0.44f);
 style.Colors[ImGuiCol_ButtonHovered] = ImVec4(col_main.x, col_main.y, col_main.z, 0.86f);
 style.Colors[ImGuiCol_ButtonActive] = ImVec4(col_main.x, col_main.y, col_main.z, 1.00f);
@@ -13415,6 +13426,13 @@ style.Colors[ImGuiCol_CheckMark] = ImVec4(col_text.x, col_text.y, col_text.z, 0.
 //style.Colors[ImGuiCol_CloseButton] = ImVec4(col_text.x, col_text.y, col_text.z, 0.16f);
 //style.Colors[ImGuiCol_CloseButtonHovered] = ImVec4(col_text.x, col_text.y, col_text.z, 0.39f);
 //style.Colors[ImGuiCol_CloseButtonActive] = ImVec4(col_text.x, col_text.y, col_text.z, 1.00f);
+
+//scroll & sliders
+style.Colors[ImGuiCol_ScrollbarGrab] = ImVec4(col_scroll.x, col_scroll.y, col_scroll.z, 0.50f); //0.31
+style.Colors[ImGuiCol_ScrollbarGrabHovered] = ImVec4(col_scroll.x, col_scroll.y, col_scroll.z, 0.78f);
+style.Colors[ImGuiCol_ScrollbarGrabActive] = ImVec4(col_scroll.x, col_scroll.y, col_scroll.z, 1.00f);
+style.Colors[ImGuiCol_SliderGrab] = ImVec4(col_scroll.x, col_scroll.y, col_scroll.z, 0.50f); //0.24
+style.Colors[ImGuiCol_SliderGrabActive] = ImVec4(col_scroll.x, col_scroll.y, col_scroll.z, 1.00f);
 
 //fixed colours
 style.Colors[ImGuiCol_BorderShadow] = ImVec4(0.00f, 0.00f, 0.00f, 0.00f);

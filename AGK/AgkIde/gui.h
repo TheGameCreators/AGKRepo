@@ -58,7 +58,7 @@ void ClearExecuteLine(void);
 char * RandomString(void);
 void SetSeedStyleColors(void);
 void myDarkGreyStyle(ImGuiStyle* dst);
-void HueStyle(ImGuiStyle* dst);
+void CustomStyleColors(ImGuiStyle* dst);
 void myDefaultStyle(ImGuiStyle* dst);
 //void myStyle(ImGuiStyle* dst);
 void myDarkStyle(ImGuiStyle* dst);
@@ -385,22 +385,28 @@ struct Preferences
 
 	char cJDKPath[MAX_PATH] = "\0";
 
-	//hue style colors
-	int gui_main_hue = 140;
-	int gui_area_hue = 140;
-	int gui_back_hue = 140;
-	int gui_text_hue = 133;
+	//custom style colors
+	float gui_col_main_hue = 140.f / 255.f;
 	float gui_col_main_sat = 196.f / 255.f;
 	float gui_col_main_val = 142.f / 255.f;
-	float gui_col_area_sat = 42.f / 255.f; 
+	float gui_col_area_hue = 140.f / 255.f;
+	float gui_col_area_sat = 41.f / 255.f; 
 	float gui_col_area_val = 81.f / 255.f; 
+	float gui_col_back_hue = 136.f / 255.f; 
 	float gui_col_back_sat = 22.f / 255.f; 
 	float gui_col_back_val = 57.f / 255.f; 
+	float gui_col_text_hue = 0.f / 255.f; 
 	float gui_col_text_sat = 0.f / 255.f; 
 	float gui_col_text_val = 255.f / 255.f; 
+	float gui_col_scroll_hue = 140.f / 255.f; 
+	float gui_col_scroll_sat = 196.f / 255.f; 
+	float gui_col_scroll_val = 142.f / 255.f; 
 
 	//F1 browser help
 	bool bBrowserHelp = false;
+
+	//appgamekit news
+	bool bAppGameKitNews = true;
 
 };
 
