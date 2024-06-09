@@ -1,12 +1,12 @@
 AGK Change Log
 ==============
 
-Build Studio 2024.05.26
+Build Studio 2024.06.09
 -----------------------
 
 - Change Hue Style option to Custom GUI Colors
 - Update Google billing to v5.2.1
-- Move browser help to context menu
+- Add browser help to context menu
 
 Build Studio 2024.05.20
 -----------------------

@@ -936,6 +936,15 @@ void TextEditor::Help( void )
 	if (strlen(cHelp) < 2)
 		return;
 
+	//Try to find help.
+	char curDir[MAX_PATH];
+
+#ifdef AGK_WINDOWS
+	_getcwd(&curDir[0], MAX_PATH);
+#else
+	getcwd(&curDir[0], MAX_PATH);
+#endif
+
 	int index = tolower( char(cHelp[0]) );
 	uString usHelp = cHelp;
 	usHelp.Lower();
@@ -949,8 +958,17 @@ void TextEditor::Help( void )
 				if (sKeyNext->m_cCommandPath.GetLength() > 0 ) {
 					
 					//built in help
-					processhelp((char*)sKeyNext->m_cCommandPath.GetStr(), true);
-					ImGui::SetWindowFocus(ICON_MD_HELP  " Help");
+					if (pref.bBrowserHelp == false) {
+						processhelp((char*)sKeyNext->m_cCommandPath.GetStr(), true);
+						ImGui::SetWindowFocus(ICON_MD_HELP  " Help");
+					}
+					//browser help
+					else {
+						strcat(curDir, "\\");
+						strcat(curDir, (char*)sKeyNext->m_cCommandPath.GetStr());
+
+						agk::OpenBrowser(curDir);
+					}
 					
 					break;
 				}
@@ -1740,8 +1758,12 @@ void TextEditor::Render(const char* aTitle, const ImVec2& aSize, bool aBorder, b
 		else if (ImGui::IsKeyPressed(0x70)) { // 0x70 = F1
 			bFreezeWord = false;
 			if (ImGui::GetTime() - lastKeySearch >= 0.125) {
-				pref.bDisplayHelpWindow = true;
+			
+				if (pref.bBrowserHelp == false) {
+					pref.bDisplayHelpWindow = true;
+				}
 				Help();
+
 				lastKeySearch = (float)ImGui::GetTime();
 
 			}
