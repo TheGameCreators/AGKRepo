@@ -2144,6 +2144,17 @@ extern int(*AGKCommand2129)(  );
 extern void(*AGKCommand2130)( int );
 extern int(*AGKCommand2131)(  );
 extern int(*AGKCommand2132)( int );
+extern float(*AGKCommand2133)( float, float, float );
+extern float(*AGKCommand2134)( float, float, float );
+extern float(*AGKCommand2135)( float, float, float, float, float );
+extern float(*AGKCommand2136)( float, float, float );
+extern float(*AGKCommand2137)( float, float );
+extern float(*AGKCommand2138)( float, float );
+extern float(*AGKCommand2139)( float, float, float );
+extern int(*AGKCommand2140)( float );
+extern float(*AGKCommand2141)( float );
+extern float(*AGKCommand2142)( float, float, float );
+extern float(*AGKCommand2143)( float, float, float );
 
 class agk
 {
@@ -4281,6 +4292,17 @@ class agk
 		static inline void PinApp( int enable ) { AGKCommand2130( enable ); }
 		static inline int IsDarkTheme(  ) { return AGKCommand2131(  ); }
 		static inline int GetInAppPurchaseIsRenewing( int iID ) { return AGKCommand2132( iID ); }
+		static inline float Lerp( float a, float b, float c ) { return AGKCommand2133( a, b, c ); }
+		static inline float InverseLerp( float a, float b, float c ) { return AGKCommand2134( a, b, c ); }
+		static inline float Map( float a, float b, float c, float d, float e ) { return AGKCommand2135( a, b, c, d, e ); }
+		static inline float Clamp( float a, float b, float c ) { return AGKCommand2136( a, b, c ); }
+		static inline float Min( float a, float b ) { return AGKCommand2137( a, b ); }
+		static inline float Max( float a, float b ) { return AGKCommand2138( a, b ); }
+		static inline float Wrap( float a, float b, float c ) { return AGKCommand2139( a, b, c ); }
+		static inline int Sign( float a ) { return AGKCommand2140( a ); }
+		static inline float WrapAngle( float a ) { return AGKCommand2141( a ); }
+		static inline float CurveValue( float a, float b, float c ) { return AGKCommand2142( a, b, c ); }
+		static inline float CurveAngle( float a, float b, float c ) { return AGKCommand2143( a, b, c ); }
 };
 
 #endif
