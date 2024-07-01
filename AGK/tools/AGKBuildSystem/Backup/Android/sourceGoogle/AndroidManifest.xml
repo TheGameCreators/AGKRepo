@@ -58,6 +58,10 @@
         </intent>
 
         <package android:name="com.google.ar.core" />
+
+        <intent>
+            <action android:name="com.android.vending.billing.InAppBillingService.BIND" />
+        </intent>
     </queries>
     <!--
     https://support.google.com/googleplay/android-developer/answer/6048248?hl=en#zippy=%2Ctargeting-devices-without-an-advertising-id%2Cadvertising-id-violations%2Chow-to-opt-out-of-personalized-ads%2Cpersistent-identifiers-including-android-id
@@ -433,7 +437,7 @@
 
         <meta-data
             android:name="com.google.android.play.billingclient.version"
-            android:value="5.0.0" />
+            android:value="6.0.1" />
 
         <activity
             android:name="com.android.billingclient.api.ProxyBillingActivity"
