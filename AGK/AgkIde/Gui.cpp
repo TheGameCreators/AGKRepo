@@ -7993,7 +7993,7 @@ void ProcessAndroidExport(void)
 						strcat(newcontents, "\n\
 						<meta-data\n\
 							android:name=\"com.google.android.play.billingclient.version\"\n\
-							android:value=\"5.2.1\" />\n\
+							android:value=\"6.0.1\" />\n\
 						<activity\n\
 							android:name=\"com.android.billingclient.api.ProxyBillingActivity\"\n\
 							android:configChanges=\"keyboard|keyboardHidden|screenLayout|screenSize|orientation\"\n\

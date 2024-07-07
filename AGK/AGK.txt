@@ -1,6 +1,11 @@
 AGK Change Log
 ==============
 
+Build Studio 2024.07.07
+-----------------------
+
+- Update billing to 6.0.1
+
 Build Studio 2024.06.09
 -----------------------
 
