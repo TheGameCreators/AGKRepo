@@ -1,6 +1,17 @@
 AGK Change Log
 ==============
 
+Build Studio 2024.08.15
+-----------------------
+
+- Update Android API to 35
+- Update AGP to 8.5.2 (Gradle 8.7)
+- Update Google Billing to 7.0.0
+- Update Bundletool to v1.17.0
+- Update App Dependences
+- Updated AppGameKit Player to support new core libraries (Review)
+- Correct minor cosmetic issues with the IDE
+
 Build Studio 2024.07.07
 -----------------------
 

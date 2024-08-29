@@ -303,8 +303,8 @@ int main( int argc, char* argv[] )
 	LPSTR pUserName = getenv("USERNAMEFORAGK");
 	if (pUserName)
 	{
-		sprintf(szAPKSigner, "C:\\Users\\%s\\AppData\\Local\\Android\\Sdk\\build-tools\\34.0.0\\lib\\apksigner.jar", pUserName);
-		sprintf(szZipAlign, "C:\\Users\\%s\\AppData\\Local\\Android\\Sdk\\build-tools\\34.0.0\\zipalign.exe", pUserName);
+		sprintf(szAPKSigner, "C:\\Users\\%s\\AppData\\Local\\Android\\Sdk\\build-tools\\35.0.0\\lib\\apksigner.jar", pUserName);
+		sprintf(szZipAlign, "C:\\Users\\%s\\AppData\\Local\\Android\\Sdk\\build-tools\\35.0.0\\zipalign.exe", pUserName);
 		sprintf(szGradleRes, "C:\\Users\\%s\\.gradle", pUserName);
 	}
 
@@ -418,15 +418,6 @@ startPoint:
 	}
 
 	int indexCheck = 0;
-
-	// Update SVN
-	if ( !bListCommands )
-	{
-		//int status = 0;
-		//status = RunCmd( indexCheck, szTortoiseSVN, "/command:update /path:\".\" /closeonend:3" );
-		//if ( status != 0 ) Error( "Failed" );
-		//else Message( "  Success" );
-	}
 	
 	// What's new file
 	if ( index <= ++indexCheck )
@@ -777,9 +768,9 @@ startPoint:
 				SetCurrentDirectoryWithCheck( path );
 				
 				// delete old gradle execution log
-				DeleteFile( ".gradle\\8.0\\executionHistory\\executionHistory.bin" );
-				DeleteFile( ".gradle\\8.0\\executionHistory\\executionHistory.lock" );
-				FILE* pFile = fopen( ".gradle\\8.0\\executionHistory\\executionHistory.bin", "rb" );
+				DeleteFile( ".gradle\\8.7\\executionHistory\\executionHistory.bin" );
+				DeleteFile( ".gradle\\8.7\\executionHistory\\executionHistory.lock" );
+				FILE* pFile = fopen( ".gradle\\8.7\\executionHistory\\executionHistory.bin", "rb" );
 				if ( pFile ) 
 				{
 					fclose( pFile );
@@ -883,9 +874,10 @@ startPoint:
 				strcpy( srcFolder, rootFolder );
 				strcat( srcFolder, "\\apps\\" );
 				strcat( srcFolder, szAndroidProjects[i] );
-				strcat( srcFolder, "\\AGKPlayer2\\build\\intermediates\\merged_manifest\\release\\AndroidManifest.xml" );
+				strcat( srcFolder, "\\AGKPlayer2\\build\\intermediates\\merged_manifest\\release\\processReleaseMainManifest\\AndroidManifest.xml" ); //added processReleaseMainManifest to path for newer gradle versions (8.3 and later) DW
 				unsigned char* manifestData = 0;
 				size_t length = GetFileContents( srcFolder, (char**)&manifestData );
+			
 				if ( length == 0 ) Error( "Failed to open merged AndroidManifest.xml" );
 
 				const char* manifestStart = strstr( (const char*) manifestData, "<uses-" );
@@ -905,7 +897,7 @@ startPoint:
 				strcpy( srcFolder, rootFolder );
 				strcat( srcFolder, "\\apps\\" );
 				strcat( srcFolder, szAndroidProjects[i] );
-				strcat( srcFolder, "\\AGKPlayer2\\build\\intermediates\\merged_res\\release" );
+				strcat( srcFolder, "\\AGKPlayer2\\build\\intermediates\\merged_res\\release\\mergeReleaseResources" ); //added mergeReleaseResources to path for new gradle version 8.3 and above DW
 				
 				strcpy( dstFolder, szAndroidBuildPath[i] );
 				strcat( dstFolder, szAndroidIDEFolders[i] );
@@ -918,7 +910,7 @@ startPoint:
 				// collect gradle resources
 				strcpy( srcFolder, "apps\\" ); 
 				strcat( srcFolder, szAndroidProjects[i] );
-				strcat( srcFolder, "\\.gradle\\8.0\\executionHistory\\executionHistory.bin" );
+				strcat( srcFolder, "\\.gradle\\8.7\\executionHistory\\executionHistory.bin" );
 				unsigned char* data = 0;
 				length = GetFileContents( srcFolder, (char**) &data );
 				if ( length == 0 ) Error( "Failed to open executionHistory.bin" );
@@ -1431,11 +1423,6 @@ startPoint:
 		bListCommands = false;
 		goto startPoint;
 	}
-
-	// Commit SVN
-	//int status = 0;
-	//Message( "Comitting SVN" );
-	//status = RunCmd( indexCheck, szTortoiseSVN, "/command:commit /path:\".\"" );
 	
 endPoint:
 	system("pause");
