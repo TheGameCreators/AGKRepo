@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:versionCode="110"
-    android:versionName="2024.05.20"
-    package="com.thegamecreators.agk_player2"
+    android:versionName="2024.08.15"
+
     android:installLocation="preferExternal">
 
     <uses-feature android:glEsVersion="0x00020000" android:required="true"/>
@@ -41,6 +41,11 @@
                  android:theme="@style/AGKTheme"  
                  android:icon="@mipmap/ic_launcher"
                  android:hardwareAccelerated="true">
+
+        <property
+            android:name="android.adservices.AD_SERVICES_CONFIG"
+            android:resource="@xml/gma_ad_services_config"
+            tools:replace="android:resource" />
 
         <uses-library android:name="org.apache.http.legacy" android:required="false" />
 
@@ -93,7 +98,7 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
-        
+
         <receiver android:name="com.thegamecreators.agk_player.NotificationAlarmReceiver" />
 
         <provider
