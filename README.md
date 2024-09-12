@@ -48,6 +48,7 @@ You need to open in Android Studio and build these projects once before attempti
 - You will be able to enter the password of your own keystore file during the build process
 
 ## Compile AGK in Visual Studio 2022
+- NOTE: Before this sequence, ensure the above 'Sequence to build AGK Studio' is followed to ensure the latest APIs are allowed to be downloaded/updated
 - Open the AGKBuild project found here "\AGK\tools\AGKBuildSystem\Windows"
 - Stick with Debug x64 and select REBUILD on the project shown
 - When compile completes, you can run this to open a command line menu to handle the build processes
