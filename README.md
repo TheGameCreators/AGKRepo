@@ -23,6 +23,8 @@ Small changes to any pre-API 33 projects include:
 - Update version classpath 'com.android.tools.build:gradle:8.5.2' // was 8.1.1
 - Update version compileSdkVersion 34 in "AGKPlayer2\build.gradle"
 - Ensure that any Android Studio project points to JDK 17 (via "Settings>Build,Exe&Dep>Build Tools>Gradle>GradleJDK")
+- Link to 17.0.2: https://download.java.net/java/GA/jdk17.0.2/dfd4a8d0985749f896bed50d7138ee7f/8/GPL/openjdk-17.0.2_windows-x64_bin.zip
+  
 NOTE: In September 2024 the main trunk was updated to API35 (Android 15)
 
 ## Sequence to build AGK Studio
