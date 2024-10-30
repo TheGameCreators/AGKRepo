@@ -3,7 +3,7 @@
       xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:tools="http://schemas.android.com/tools"
       android:versionCode="109"
-      android:versionName="2024.08.15" package="com.thegamecreators.agk_player2" android:installLocation="auto">
+      android:versionName="2024.10.30" package="com.thegamecreators.agk_player2" android:installLocation="auto">
     <uses-feature android:glEsVersion="0x00020000"/>
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
