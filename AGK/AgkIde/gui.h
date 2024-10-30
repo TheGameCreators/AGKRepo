@@ -408,6 +408,17 @@ struct Preferences
 	//appgamekit news
 	bool bAppGameKitNews = true;
 
+	bool bSaveFileCtrl = true;
+	bool bSaveFileShift = false;
+	bool bSaveFileAlt = false;
+	int iSaveFileKey = 83;
+	char cSaveFileText[32];
+
+	bool bSaveAllFilesCtrl = true;
+	bool bSaveAllFilesShift = true;
+	bool bSaveAllFilesAlt = false;
+	int iSaveAllFilesKey = 83;
+	char cSaveAllFilesText[32];
 };
 
 #endif

@@ -2308,6 +2308,128 @@ void ProcessPreferences(void) {
 			ImGui::Text(pref.cDuplicateLineText);
 
 
+			//###################
+			//#### SAVE FILE ####
+			//###################
+			key_changed = false;
+			ImGui::Text("Save File: ");
+			ImGui::SameLine();
+			ImGui::SetCursorPos(ImVec2(cpos, ImGui::GetCursorPos().y));
+			if (is_osx) {
+				if (ImGui::Checkbox("cmd##SaveFile", &pref.bSaveFileCtrl)) key_changed = true;
+			}
+			else {
+				if (ImGui::Checkbox("ctrl##SaveFile", &pref.bSaveFileCtrl)) key_changed = true;
+			}
+			ImGui::SameLine();
+			if (ImGui::Checkbox("shift##SaveFile", &pref.bSaveFileShift)) key_changed = true;
+			ImGui::SameLine();
+			if (ImGui::Checkbox("alt##SaveFile", &pref.bSaveFileAlt)) key_changed = true;
+
+			ImGui::SameLine();
+			ImGui::PushItemWidth(fs * 16);
+
+			if (pref.iSaveFileKey > IM_ARRAYSIZE(key_values))
+				pref.iSaveFileKey = 89;
+
+			if (ImGui::BeginCombo("##comboSaveFilevalues", key_values[pref.iSaveFileKey], 0))
+			{
+				for (int n = 0; n < IM_ARRAYSIZE(key_values); n++)
+				{
+					bool is_selected = (pref.iSaveFileKey == n);
+					if (strncmp(key_values[n], "##", 2) != 0)
+						if (ImGui::Selectable(key_values[n], is_selected)) {
+							pref.iSaveFileKey = n;
+							key_changed = true;
+							if (is_selected)
+								ImGui::SetItemDefaultFocus();
+						}
+				}
+				ImGui::EndCombo();
+			}
+			if (key_changed) {
+				uString ktext = key_values[pref.iSaveFileKey];
+				ktext.ReplaceStr("KEY_", "");
+				ktext.ReplaceStr("SUBTRACT", "-");
+				ktext.ReplaceStr("PLUS", "+");
+				strcpy(pref.cSaveFileText, "");
+				if (pref.bSaveFileCtrl) {
+					if (is_osx)
+						strcat(pref.cSaveFileText, "Cmd+");
+					else
+						strcat(pref.cSaveFileText, "Ctrl+");
+				}
+				if (pref.bSaveFileShift)
+					strcat(pref.cSaveFileText, "Shift+");
+				if (pref.bSaveFileAlt)
+					strcat(pref.cSaveFileText, "Alt+");
+				strcat(pref.cSaveFileText, ktext);
+			}
+			ImGui::PopItemWidth();
+			ImGui::SameLine();
+			ImGui::Text(pref.cSaveFileText);
+
+			//########################
+			//#### SAVE ALL FILES ####
+			//########################
+			key_changed = false;
+			ImGui::Text("Save All Files: ");
+			ImGui::SameLine();
+			ImGui::SetCursorPos(ImVec2(cpos, ImGui::GetCursorPos().y));
+			if (is_osx) {
+				if (ImGui::Checkbox("cmd##SaveAllFiles", &pref.bSaveAllFilesCtrl)) key_changed = true;
+			}
+			else {
+				if (ImGui::Checkbox("ctrl##SaveAllFiles", &pref.bSaveAllFilesCtrl)) key_changed = true;
+			}
+			ImGui::SameLine();
+			if (ImGui::Checkbox("shift##SaveAllFiles", &pref.bSaveAllFilesShift)) key_changed = true;
+			ImGui::SameLine();
+			if (ImGui::Checkbox("alt##SaveAllFiles", &pref.bSaveAllFilesAlt)) key_changed = true;
+
+			ImGui::SameLine();
+			ImGui::PushItemWidth(fs * 16);
+
+			if (pref.iSaveAllFilesKey > IM_ARRAYSIZE(key_values))
+				pref.iSaveAllFilesKey = 89;
+
+			if (ImGui::BeginCombo("##comboSaveAllFilesvalues", key_values[pref.iSaveAllFilesKey], 0))
+			{
+				for (int n = 0; n < IM_ARRAYSIZE(key_values); n++)
+				{
+					bool is_selected = (pref.iSaveAllFilesKey == n);
+					if (strncmp(key_values[n], "##", 2) != 0)
+						if (ImGui::Selectable(key_values[n], is_selected)) {
+							pref.iSaveAllFilesKey = n;
+							key_changed = true;
+							if (is_selected)
+								ImGui::SetItemDefaultFocus();
+						}
+				}
+				ImGui::EndCombo();
+			}
+			if (key_changed) {
+				uString ktext = key_values[pref.iSaveAllFilesKey];
+				ktext.ReplaceStr("KEY_", "");
+				ktext.ReplaceStr("SUBTRACT", "-");
+				ktext.ReplaceStr("PLUS", "+");
+				strcpy(pref.cSaveAllFilesText, "");
+				if (pref.bSaveAllFilesCtrl) {
+					if (is_osx)
+						strcat(pref.cSaveAllFilesText, "Cmd+");
+					else
+						strcat(pref.cSaveAllFilesText, "Ctrl+");
+				}
+				if (pref.bSaveAllFilesShift)
+					strcat(pref.cSaveAllFilesText, "Shift+");
+				if (pref.bSaveAllFilesAlt)
+					strcat(pref.cSaveAllFilesText, "Alt+");
+				strcat(pref.cSaveAllFilesText, ktext);
+			}
+			ImGui::PopItemWidth();
+			ImGui::SameLine();
+			ImGui::Text(pref.cSaveAllFilesText);
+
 			CheckKeyboardShortcuts();
 			ImGui::EndTabItem();
 		}

@@ -1354,14 +1354,14 @@ void TextEditor::Render(const char* aTitle, const ImVec2& aSize, bool aBorder, b
 			Redo();
 			bFreezeWord = false;
 		}
-		else if (!IsReadOnly() && ctrl && !shift && !alt && ImGui::IsKeyPressed(0x53)) { // 0x53 = s IsKeyPressed
+		else if (!IsReadOnly() && ctrl == pref.bSaveFileCtrl && shift == pref.bSaveFileShift && alt == pref.bSaveFileAlt && ImGui::IsKeyPressed(pref.iSaveFileKey)) { // 0x53 = s IsKeyPressed
 			saveonreturn = true; // save file on returning.
 			//Need to reset keys when we use blocking dialogs , or they can hang.
-			io.KeysDown[0x53] = false; // reset key.
+			io.KeysDown[pref.iSaveFileKey] = false; // reset key.
 			io.KeySuper = false;
 			io.KeyCtrl = false;
 			io.KeyShift = false;
-			agk::KeyUp(0x53); // reset key.
+			agk::KeyUp(pref.iSaveFileKey); // reset key.
 			agk::KeyUp(16); // reset shift key.
 			agk::KeyUp(17); // reset key.
 			agk::KeyUp(18); // reset key.
