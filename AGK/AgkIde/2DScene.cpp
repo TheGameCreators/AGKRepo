@@ -592,6 +592,9 @@ bool MediaScene::Render(const char* aTitle, TextEditor * m_editor, void * pTmp ,
 		else if (ctrl == pref.bPasteCtrl && shift == pref.bPasteShift && alt == pref.bPasteAlt && ImGui::IsKeyPressed(pref.iPasteKey)) {
 			PasteObject();
 		}
+		else if (ctrl == pref.bSaveFileCtrl && shift == pref.bSaveFileShift && alt == pref.bSaveFileAlt && ImGui::IsKeyPressed(pref.iSaveFileKey)) {
+			GenerateCode(m_pMainScene, m_editor, true);
+		}
 		if (!ctrl && !alt && m_pSelectedObject && ImGui::IsKeyPressed(ImGui::GetKeyIndex(ImGuiKey_LeftArrow))) {
 			m_pSelectedObject->m_Position.x--;
 			m_editor->filechanged = true;

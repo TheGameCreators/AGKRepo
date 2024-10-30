@@ -2045,6 +2045,14 @@ int app::Loop (void)
 				agk::KeyUp(pref.iOpenProjectKey); //Reset keys.
 			}
 
+			if (ctrl == pref.bSaveAllFilesCtrl && shift == pref.bSaveAllFilesShift && alt == pref.bSaveAllFilesAlt && ImGui::IsKeyPressed(pref.iSaveAllFilesKey))
+			{
+				pressedCTRLkey = 'S';
+				lastKeyTime = (float)ImGui::GetTime();
+				io.KeysDown[pref.iSaveAllFilesKey] = false; //Reset keys.
+				agk::KeyUp(pref.iSaveAllFilesKey); //Reset keys.
+			}
+
 			if (ctrl && !alt) {
 				//if (ImGui::IsKeyPressed(187)) { //187 - normal +
 				//	pressedCTRLkey = '+';
@@ -2179,7 +2187,7 @@ int app::Loop (void)
 		ImGui::SameLine();
 
 		//Save all open files.
-		if (ImGui::ImgBtn(iToolbarImages[3], iToolbarIconSize, drawCol_back, drawCol_normal, drawCol_hover, drawCol_Down)) {
+		if (ImGui::ImgBtn(iToolbarImages[3], iToolbarIconSize, drawCol_back, drawCol_normal, drawCol_hover, drawCol_Down) || pressedCTRLkey == 'S') {
 			if (allProjects) {
 				cProjectItem * searchProject;
 				searchProject = allProjects;

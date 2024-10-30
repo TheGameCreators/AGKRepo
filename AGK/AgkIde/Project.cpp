@@ -338,6 +338,29 @@ void ResetPreferences(bool resetall)
 	strcpy(pref.cDuplicateLineText, "Ctrl+D");
 #endif
 
+
+	pref.bSaveFileCtrl = true;
+	pref.bSaveFileShift = false;
+	pref.bSaveFileAlt = false;
+	pref.iSaveFileKey = 83; //S
+#ifdef AGK_MACOS
+	strcpy(pref.cSaveFileText, "Cmd+S");
+#else
+	strcpy(pref.cSaveFileText, "Ctrl+S");
+#endif
+
+
+	pref.bSaveAllFilesCtrl = true;
+	pref.bSaveAllFilesShift = true; //key without shift already used to save current file
+	pref.bSaveAllFilesAlt = false;
+	pref.iSaveAllFilesKey = 83; //S
+#ifdef AGK_MACOS
+	strcpy(pref.cSaveAllFilesText, "Cmd+Shift+S");
+#else
+	strcpy(pref.cSaveAllFilesText, "Ctrl+Shift+S");
+#endif
+
+
 	pref.bSceneLowFloatPrecision = true;
 	pref.iSceneLowFloatPrecision = 2;
 
@@ -683,6 +706,38 @@ void CheckKeyboardShortcuts(void)
 #else
 		strcpy(pref.cDebugText, "Ctrl+");
 		strcat(pref.cDebugText, ktext.GetStr());
+#endif
+
+	}
+
+	key = pref.iSaveFileKey;
+	if (!pref.bSaveFileCtrl && !pref.bSaveFileShift && !pref.bSaveFileAlt && ((key >= 48 && key <= 111) || (key >= 186 && key <= 223))) {
+		pref.bSaveFileCtrl = true;
+		ktext = key_values[key];
+		ktext.ReplaceStr("KEY_", "");
+
+#ifdef AGK_MACOS
+		strcpy(pref.cSaveFileText, "Cmd+");
+		strcat(pref.cSaveFileText, ktext.GetStr());
+#else
+		strcpy(pref.cSaveFileText, "Ctrl+");
+		strcat(pref.cSaveFileText, ktext.GetStr());
+#endif
+
+	}
+	key = pref.iSaveAllFilesKey;
+	if (!pref.bSaveAllFilesCtrl && !pref.bSaveAllFilesShift && !pref.bSaveAllFilesAlt && ((key >= 48 && key <= 111) || (key >= 186 && key <= 223))) {
+		pref.bSaveAllFilesCtrl = true;
+		pref.bSaveAllFilesShift = true;
+		ktext = key_values[key];
+		ktext.ReplaceStr("KEY_", "");
+
+#ifdef AGK_MACOS
+		strcpy(pref.cSaveAllFilesText, "Cmd+Shift+");
+		strcat(pref.cSaveAllFilesText, ktext.GetStr());
+#else
+		strcpy(pref.cSaveAllFilesText, "Ctrl+Shift+");
+		strcat(pref.cSaveAllFilesText, ktext.GetStr());
 #endif
 
 	}
