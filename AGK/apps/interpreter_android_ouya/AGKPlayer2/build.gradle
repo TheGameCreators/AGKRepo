@@ -2,13 +2,13 @@ apply plugin: 'com.android.application'
 
 android {
 	namespace 'com.thegamecreators.agk_player2'
-    compileSdk 35
+    compileSdkVersion 34
 
     defaultConfig {
         applicationId "com.thegamecreators.agk_player2"
         minSdkVersion 21
         //noinspection ExpiredTargetSdkVersion
-        targetSdkVersion 35
+        targetSdkVersion 34
         ndk{
             abiFilters "armeabi-v7a", "arm64-v8a"
         }

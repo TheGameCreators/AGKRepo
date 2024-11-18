@@ -1,6 +1,6 @@
 <uses-sdk
         android:minSdkVersion="21"
-        android:targetSdkVersion="35" />
+        android:targetSdkVersion="34" />
 
     <uses-feature android:glEsVersion="0x00020000" />
 
@@ -27,12 +27,6 @@
     <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove"/>
     -->
     <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
-
-    <permission
-        android:name="com.thegamecreators.agk_player2.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-        android:protectionLevel="signature" />
-
-    <uses-permission android:name="com.thegamecreators.agk_player2.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
 
     <application
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -150,30 +144,7 @@
             <meta-data
                 android:name="androidx.lifecycle.ProcessLifecycleInitializer"
                 android:value="androidx.startup" />
-            <meta-data
-                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-                android:value="androidx.startup" />
         </provider>
-
-        <receiver
-            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-            android:directBootAware="false"
-            android:enabled="true"
-            android:exported="true"
-            android:permission="android.permission.DUMP" >
-            <intent-filter>
-                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-            </intent-filter>
-        </receiver>
     </application>
 
 </manifest>

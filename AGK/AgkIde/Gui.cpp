@@ -431,7 +431,7 @@ void ProcessPreferences(void) {
 				ImGui::EndTooltip();
 			}
 
-			ImGui::Checkbox("Restore Layout on Startup", &pref.save_layout);
+			ImGui::Checkbox("Restore Layout on Startup.", &pref.save_layout);
 
 			bool bTmp;
 			bTmp = pref.bAppGameKitNews;
@@ -439,7 +439,7 @@ void ProcessPreferences(void) {
 			pref.bAppGameKitNews = bTmp;
 
 			bTmp = pref.iCancelQuitDialog;
-			ImGui::Checkbox("Ask Before Quitting AppGameKit Studio", &bTmp);
+			ImGui::Checkbox("Ask Before Quitting AppGameKit Studio.", &bTmp);
 			pref.iCancelQuitDialog = bTmp;
 
 			ImGui::Text("Toolbar Icon Set:");
@@ -490,7 +490,7 @@ void ProcessPreferences(void) {
 	
 			extern unsigned int os_messages_sleeptime;
 			bool bState = pref.iIDEUpdateEventSleep;
-			ImGui::Checkbox("Event based rendering", &pref.iIDEUpdateEventSleep);
+			ImGui::Checkbox("Event based rendering.", &pref.iIDEUpdateEventSleep);
 
 			if (bState != pref.iIDEUpdateEventSleep) {
 				rb_change = true;
@@ -538,7 +538,7 @@ void ProcessPreferences(void) {
 			ImGui::Text("Build Options:");
 
 			//ImGui::Checkbox("Windows 64-bit", &pref.bWindows64Bit); // now always 64-bit
-			ImGui::Checkbox("Windows Timestamp exe for Faster 'Run'", &pref.bTimestampExe);
+			ImGui::Checkbox("Windows Timestamp exe for Faster 'Run'.", &pref.bTimestampExe);
 			
 			ImGui::Text("");
 			ImGui::Text("Broadcast:");
@@ -560,9 +560,9 @@ void ProcessPreferences(void) {
 			ImGui::Checkbox("Auto Hide Debug Window", &pref.bAutoHideDebugWindows);
 
 //			ImGui::Checkbox("On Debug Start, Bring Debugger to Front", &pref.bDebugBringToFront);
-			ImGui::Checkbox("On Debug Start, Update Watches and Status", &pref.bDebugBringToFront);
+			ImGui::Checkbox("On Debug Start, Update Watches and Status.", &pref.bDebugBringToFront);
 #ifdef AGK_WINDOWS
-			ImGui::Checkbox("On Debug Try to Bring App to Front", &pref.bDebugBringAppToFront);
+			ImGui::Checkbox("On Debug Try to Bring App to Front.", &pref.bDebugBringAppToFront);
 #endif
 
 			//debug_hwnd
@@ -6701,7 +6701,7 @@ void ProcessAndroidExport(void)
 
 	ImGui::Text("Minimum Android Version:");
 	const char* apk_version_array[] = { "4.1 (API 16)", "4.2 (API 17)", "4.3 (API 18)", "4.4 (API 19)", "5.0 (API 21)", "5.1 (API 22)", "6.0 (API 23)"
-		, "7.0 (API 24)", "7.1 (API 25)", "8.0 (API 26)", "8.1 (API 27)", "9.0 (API 28)", "10.0 (API 29)", "11.0 (API 30)", "12.0 (API 31)", "13.0 (API 33)", "14.0 (API 34)", "15.0 (API 35)" };
+		, "7.0 (API 24)", "7.1 (API 25)", "8.0 (API 26)", "8.1 (API 27)", "9.0 (API 28)", "10.0 (API 29)", "11.0 (API 30)", "12.0 (API 31)", "13.0 (API 33)", "14.0 (API 34)" };
 	ImGui::SameLine();
 	ImGui::SetCursorPos(ImVec2(input_indent, ImGui::GetCursorPos().y));
 	ImGui::Combo("##comboapk_sdk_version", &pCurrentSelectedProject->apk_sdk_version, apk_version_array, IM_ARRAYSIZE(apk_version_array));
@@ -7149,7 +7149,6 @@ void ProcessAndroidExport(void)
 		if (pCurrentSelectedProject->apk_sdk_version == 14) sdk = 31;
 		if (pCurrentSelectedProject->apk_sdk_version == 15) sdk = 33; // 32 deliberately missing
 		if (pCurrentSelectedProject->apk_sdk_version == 16) sdk = 34;
-		if (pCurrentSelectedProject->apk_sdk_version == 17) sdk = 35;
 		char szSDK[20];
 		sprintf(szSDK, "%d", sdk);
 
@@ -7375,8 +7374,8 @@ void ProcessAndroidExport(void)
 		if (Valid) {
 			char curDir[MAX_PATH];
 			extern char startupFolder[MAX_PATH];
-			//const char* androidJar = "android34.jar";
-			const char* androidJar = "android35.jar";
+			//const char* androidJar = "android33.jar";
+			const char* androidJar = "android34.jar";
 
 #if defined(AGK_WINDOWS)
 			_getcwd(&curDir[0], MAX_PATH);
@@ -7388,7 +7387,7 @@ void ProcessAndroidExport(void)
 			uString path_to_apksigner = startupFolder;
 			uString path_to_zipalign = startupFolder;
 			
-			// everything now uses 35.0.0
+			// everything now uses 34.0.0
 			path_to_aapt2.Append("/media/data/android/aapt2-bundle.exe");
 			path_to_bundletool.Append("/media/data/android/bundletool.jar");
 			path_to_android_jar.Append("/media/data/android/");
@@ -7760,8 +7759,8 @@ void ProcessAndroidExport(void)
 					
 					strcat(newcontents, "\" android:targetSdkVersion=\"");
 					if ( bIsOuya ) strcat(newcontents, "16");
-					//else strcat ( newcontents, "34" );
-					else strcat(newcontents, "35");
+					//else strcat ( newcontents, "33" );
+					else strcat(newcontents, "34");
 					strcat(newcontents, "\" />\n\n");
 
 
@@ -7994,7 +7993,7 @@ void ProcessAndroidExport(void)
 						strcat(newcontents, "\n\
 						<meta-data\n\
 							android:name=\"com.google.android.play.billingclient.version\"\n\
-							android:value=\"7.0.0\" />\n\
+							android:value=\"6.0.1\" />\n\
 						<activity\n\
 							android:name=\"com.android.billingclient.api.ProxyBillingActivity\"\n\
 							android:configChanges=\"keyboard|keyboardHidden|screenLayout|screenSize|orientation\"\n\

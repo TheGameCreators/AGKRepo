@@ -1,6 +1,6 @@
 <uses-sdk
         android:minSdkVersion="21"
-        android:targetSdkVersion="35" />
+        android:targetSdkVersion="34" />
 
     <uses-feature
         android:glEsVersion="0x00020000"
@@ -44,10 +44,7 @@
 
     <queries>
         <package android:name="com.snapchat.android" />
-
-        <intent>
-            <action android:name="com.android.vending.billing.InAppBillingService.BIND" />
-        </intent> <!-- For browser content -->
+        <!-- For browser content -->
         <intent>
             <action android:name="android.intent.action.VIEW" />
 
@@ -61,14 +58,11 @@
         </intent>
 
         <package android:name="com.google.ar.core" />
-        <package android:name="com.android.vending" />
 
         <intent>
-            <action android:name="com.google.android.play.core.install.BIND_INSTALL_SERVICE" />
+            <action android:name="com.android.vending.billing.InAppBillingService.BIND" />
         </intent>
     </queries>
-
-    <uses-permission android:name="com.android.vending.BILLING" />
     <!--
     https://support.google.com/googleplay/android-developer/answer/6048248?hl=en#zippy=%2Ctargeting-devices-without-an-advertising-id%2Cadvertising-id-violations%2Chow-to-opt-out-of-personalized-ads%2Cpersistent-identifiers-including-android-id
     For publishers: Some Google Play policies, such as the Families Policy, require that apps not
@@ -78,17 +72,12 @@
     <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove"/>
     -->
     <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
-    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.ACCESS_ADSERVICES_AD_ID" />
     <uses-permission android:name="android.permission.ACCESS_ADSERVICES_ATTRIBUTION" />
     <uses-permission android:name="android.permission.ACCESS_ADSERVICES_TOPICS" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-
-    <permission
-        android:name="com.thegamecreators.agk_player2.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-        android:protectionLevel="signature" />
-
-    <uses-permission android:name="com.thegamecreators.agk_player2.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+    <uses-permission android:name="com.android.vending.BILLING" />
 
     <application
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -98,10 +87,6 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AGKTheme" >
-        <property
-            android:name="android.adservices.AD_SERVICES_CONFIG"
-            android:resource="@xml/gma_ad_services_config" />
-
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
@@ -179,20 +164,6 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <meta-data
-            android:name="com.google.android.play.billingclient.version"
-            android:value="7.0.0" />
-
-        <activity
-            android:name="com.android.billingclient.api.ProxyBillingActivity"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:exported="false"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity
-            android:name="com.android.billingclient.api.ProxyBillingActivityV2"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:exported="false"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name="com.chartboost.sdk.CBImpressionActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -214,25 +185,47 @@
             android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
             android:visibleToInstantApps="true" />
 
-        <receiver
-            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
-            android:enabled="true"
-            android:exported="false" >
-        </receiver>
-
-        <service
-            android:name="com.google.android.gms.measurement.AppMeasurementService"
-            android:enabled="true"
-            android:exported="false" />
-        <service
-            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
-            android:enabled="true"
-            android:exported="false"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-
         <uses-library
             android:name="android.ext.adservices"
             android:required="false" />
+
+        <receiver
+            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </receiver>
+        <!--
+             FirebaseMessagingService performs security checks at runtime,
+             but set to not exported to explicitly avoid allowing another app to call it.
+        -->
+        <service
+            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+            android:directBootAware="true"
+            android:exported="false" >
+            <intent-filter android:priority="-500" >
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.google.firebase.components.ComponentDiscoveryService"
+            android:directBootAware="true"
+            android:exported="false" >
+            <meta-data
+                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
+                android:value="com.google.firebase.components.ComponentRegistrar" />
+            <meta-data
+                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+                android:value="com.google.firebase.components.ComponentRegistrar" />
+            <meta-data
+                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
+                android:value="com.google.firebase.components.ComponentRegistrar" />
+            <meta-data
+                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+                android:value="com.google.firebase.components.ComponentRegistrar" />
+        </service>
 
         <provider
             android:name="com.google.android.gms.ads.MobileAdsInitProvider"
@@ -257,59 +250,9 @@
             android:taskAffinity=""
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
-        <receiver
-            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
-            android:exported="true"
-            android:permission="com.google.android.c2dm.permission.SEND" >
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-            </intent-filter>
-
-            <meta-data
-                android:name="com.google.android.gms.cloudmessaging.FINISHED_AFTER_HANDLED"
-                android:value="true" />
-        </receiver>
-        <!--
-             FirebaseMessagingService performs security checks at runtime,
-             but set to not exported to explicitly avoid allowing another app to call it.
-        -->
-        <service
-            android:name="com.google.firebase.messaging.FirebaseMessagingService"
-            android:directBootAware="true"
-            android:exported="false" >
-            <intent-filter android:priority="-500" >
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-        <service
-            android:name="com.google.firebase.components.ComponentDiscoveryService"
-            android:directBootAware="true"
-            android:exported="false" >
-            <meta-data
-                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingKtxRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar" />
-            <meta-data
-                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar" />
-            <meta-data
-                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar" />
-            <meta-data
-                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsKtxRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar" />
-            <meta-data
-                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar" />
-            <meta-data
-                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar" />
-            <meta-data
-                android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar" />
-            <meta-data
-                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar" />
-        </service>
+        <property
+            android:name="android.adservices.AD_SERVICES_CONFIG"
+            android:resource="@xml/gma_ad_services_config" />
 
         <activity
             android:name="com.google.android.gms.common.api.GoogleApiActivity"
@@ -322,6 +265,23 @@
             android:directBootAware="true"
             android:exported="false"
             android:initOrder="100" />
+
+        <receiver
+            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+            android:enabled="true"
+            android:exported="false" >
+        </receiver>
+
+        <service
+            android:name="com.google.android.gms.measurement.AppMeasurementService"
+            android:enabled="true"
+            android:exported="false" />
+        <service
+            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+            android:enabled="true"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="com.thegamecreators.agk_player2.androidx-startup"
@@ -334,9 +294,6 @@
                 android:value="androidx.startup" />
             <meta-data
                 android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-                android:value="androidx.startup" />
-            <meta-data
-                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
                 android:value="androidx.startup" />
         </provider> <!-- Receiver to listen for Snapchat response for CK Share Success/Failure -->
         <receiver
@@ -442,36 +399,51 @@
             <intent-filter>
                 <action android:name="androidx.work.diagnostics.REQUEST_DIAGNOSTICS" />
             </intent-filter>
-        </receiver>
-        <receiver
-            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-            android:directBootAware="false"
-            android:enabled="true"
-            android:exported="true"
-            android:permission="android.permission.DUMP" >
-            <intent-filter>
-                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-            </intent-filter>
         </receiver> <!-- The minimal version code of ARCore APK required for an app using this SDK. -->
         <meta-data
             android:name="com.google.ar.core.min_apk_version"
-            android:value="241930000" /> <!-- This activity is critical for installing ARCore when it is not already present. -->
+            android:value="221020000" /> <!-- This activity is critical for installing ARCore when it is not already present. -->
         <activity
             android:name="com.google.ar.core.InstallActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:excludeFromRecents="true"
             android:exported="false"
             android:launchMode="singleTop"
-            android:theme="@android:style/Theme.Material.Light.Dialog.Alert" />
+            android:theme="@android:style/Theme.Material.Light.Dialog.Alert" /> <!-- The activities will be merged into the manifest of the hosting app. -->
+        <activity
+            android:name="com.google.android.play.core.missingsplits.PlayCoreMissingSplitsActivity"
+            android:enabled="false"
+            android:exported="false"
+            android:launchMode="singleInstance"
+            android:process=":playcore_missing_splits_activity"
+            android:stateNotNeeded="true" />
+        <activity
+            android:name="com.google.android.play.core.common.PlayCoreDialogWrapperActivity"
+            android:exported="false"
+            android:stateNotNeeded="true"
+            android:theme="@style/Theme.PlayCore.Transparent" /> <!-- The services will be merged into the manifest of the hosting app. -->
+        <service
+            android:name="com.google.android.play.core.assetpacks.AssetPackExtractionService"
+            android:enabled="false"
+            android:exported="true" >
+            <meta-data
+                android:name="com.google.android.play.core.assetpacks.versionCode"
+                android:value="11003" />
+        </service>
+        <service
+            android:name="com.google.android.play.core.assetpacks.ExtractionForegroundService"
+            android:enabled="false"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.play.billingclient.version"
+            android:value="6.0.1" />
+
+        <activity
+            android:name="com.android.billingclient.api.ProxyBillingActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <service
             android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
@@ -493,12 +465,7 @@
         <service
             android:name="androidx.room.MultiInstanceInvalidationService"
             android:directBootAware="true"
-            android:exported="false" /> <!-- The activities will be merged into the manifest of the hosting app. -->
-        <activity
-            android:name="com.google.android.play.core.common.PlayCoreDialogWrapperActivity"
-            android:exported="false"
-            android:stateNotNeeded="true"
-            android:theme="@style/Theme.PlayCore.Transparent" />
+            android:exported="false" />
     </application>
 
 </manifest>

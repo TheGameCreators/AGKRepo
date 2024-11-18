@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 
 android {
 	namespace 'com.thegamecreators.agk_player2'
-    compileSdk 35
+    compileSdkVersion 34
 
     defaultConfig {
         applicationId "com.thegamecreators.agk_player2"
         minSdkVersion 21
-        targetSdkVersion 35
+        targetSdkVersion 34
         ndk{
             abiFilters "armeabi-v7a", "arm64-v8a"
         }
@@ -35,14 +35,9 @@ android {
     }
 }
 
-configurations.implementation {
-    exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk8'
-}
-
-
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation files('libs/in-app-purchasing-2.0.76.jar')
     implementation 'com.chartboost:chartboost-sdk:8.4.3' // Chartboost
-    implementation 'com.google.android.ump:user-messaging-platform:3.0.0' // AdConsent
+    implementation 'com.google.android.ump:user-messaging-platform:2.0.0' // AdConsent
 }
