@@ -1,5 +1,5 @@
-int g_iAGKNumCommands = 2120;
-stCommandOrig g_pAGKCommands[2120] = {
+int g_iAGKNumCommands = 2131;
+stCommandOrig g_pAGKCommands[2131] = {
 	{"WorldToScreenX",{2},2,1},
 	{"WorldToScreenY",{2},2,1},
 	{"ScreenToWorldX",{2},2,1},
@@ -2119,5 +2119,16 @@ stCommandOrig g_pAGKCommands[2120] = {
 	{"IsPinAppAvailable",{},1,0},
 	{"PinApp",{1},0,1},
 	{"IsDarkTheme",{},1,0},
-	{"GetInAppPurchaseIsRenewing",{1},1,1}
+	{"GetInAppPurchaseIsRenewing",{1},1,1},
+	{"Lerp",{2,2,2},2,3},
+	{"InverseLerp",{2,2,2},2,3},
+	{"Map",{2,2,2,2,2},2,5},
+	{"Clamp",{2,2,2},2,3},
+	{"Min",{2,2},2,2},
+	{"Max",{2,2},2,2},
+	{"Wrap",{2,2,2},2,3},
+	{"Sign",{2},1,1},
+	{"WrapAngle",{2},2,1},
+	{"CurveValue",{2,2,2},2,3},
+	{"CurveAngle",{2,2,2},2,3}
 };

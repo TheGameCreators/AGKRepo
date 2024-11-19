@@ -10786,3 +10786,87 @@ case AGKI_GETINAPPPURCHASEISRENEWING_L_L:
     m_pStack[ m_iStackPtr++ ].i = agk::GetInAppPurchaseIsRenewing( param0 );
     break;
 }
+case AGKI_LERP_F_F_F_F:
+{
+    float param2 = m_pStack[ --m_iStackPtr ].f;
+    float param1 = m_pStack[ --m_iStackPtr ].f;
+    float param0 = m_pStack[ --m_iStackPtr ].f;
+    m_pStack[ m_iStackPtr++ ].f = agk::Lerp( param0, param1, param2 );
+    break;
+}
+case AGKI_INVERSELERP_F_F_F_F:
+{
+    float param2 = m_pStack[ --m_iStackPtr ].f;
+    float param1 = m_pStack[ --m_iStackPtr ].f;
+    float param0 = m_pStack[ --m_iStackPtr ].f;
+    m_pStack[ m_iStackPtr++ ].f = agk::InverseLerp( param0, param1, param2 );
+    break;
+}
+case AGKI_MAP_F_F_F_F_F_F:
+{
+    float param4 = m_pStack[ --m_iStackPtr ].f;
+    float param3 = m_pStack[ --m_iStackPtr ].f;
+    float param2 = m_pStack[ --m_iStackPtr ].f;
+    float param1 = m_pStack[ --m_iStackPtr ].f;
+    float param0 = m_pStack[ --m_iStackPtr ].f;
+    m_pStack[ m_iStackPtr++ ].f = agk::Map( param0, param1, param2, param3, param4 );
+    break;
+}
+case AGKI_CLAMP_F_F_F_F:
+{
+    float param2 = m_pStack[ --m_iStackPtr ].f;
+    float param1 = m_pStack[ --m_iStackPtr ].f;
+    float param0 = m_pStack[ --m_iStackPtr ].f;
+    m_pStack[ m_iStackPtr++ ].f = agk::Clamp( param0, param1, param2 );
+    break;
+}
+case AGKI_MIN_F_F_F:
+{
+    float param1 = m_pStack[ --m_iStackPtr ].f;
+    float param0 = m_pStack[ --m_iStackPtr ].f;
+    m_pStack[ m_iStackPtr++ ].f = agk::Min( param0, param1 );
+    break;
+}
+case AGKI_MAX_F_F_F:
+{
+    float param1 = m_pStack[ --m_iStackPtr ].f;
+    float param0 = m_pStack[ --m_iStackPtr ].f;
+    m_pStack[ m_iStackPtr++ ].f = agk::Max( param0, param1 );
+    break;
+}
+case AGKI_WRAP_F_F_F_F:
+{
+    float param2 = m_pStack[ --m_iStackPtr ].f;
+    float param1 = m_pStack[ --m_iStackPtr ].f;
+    float param0 = m_pStack[ --m_iStackPtr ].f;
+    m_pStack[ m_iStackPtr++ ].f = agk::Wrap( param0, param1, param2 );
+    break;
+}
+case AGKI_SIGN_L_F:
+{
+    float param0 = m_pStack[ --m_iStackPtr ].f;
+    m_pStack[ m_iStackPtr++ ].i = agk::Sign( param0 );
+    break;
+}
+case AGKI_WRAPANGLE_F_F:
+{
+    float param0 = m_pStack[ --m_iStackPtr ].f;
+    m_pStack[ m_iStackPtr++ ].f = agk::WrapAngle( param0 );
+    break;
+}
+case AGKI_CURVEVALUE_F_F_F_F:
+{
+    float param2 = m_pStack[ --m_iStackPtr ].f;
+    float param1 = m_pStack[ --m_iStackPtr ].f;
+    float param0 = m_pStack[ --m_iStackPtr ].f;
+    m_pStack[ m_iStackPtr++ ].f = agk::CurveValue( param0, param1, param2 );
+    break;
+}
+case AGKI_CURVEANGLE_F_F_F_F:
+{
+    float param2 = m_pStack[ --m_iStackPtr ].f;
+    float param1 = m_pStack[ --m_iStackPtr ].f;
+    float param0 = m_pStack[ --m_iStackPtr ].f;
+    m_pStack[ m_iStackPtr++ ].f = agk::CurveAngle( param0, param1, param2 );
+    break;
+}
