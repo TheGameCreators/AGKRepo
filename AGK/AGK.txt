@@ -1,6 +1,16 @@
 AGK Change Log
 ==============
 
+Build Studio 2025.03.18
+-----------------------
+
+- Added 'Bytecode Hash Interpreter.pdf' featuring helpful tutorial on working with bytecode file
+
+Build Studio 2024.12.18
+-----------------------
+
+- Reinstate API34 to resolve compatibility issues with existing AGK Projects
+
 Build Studio 2024.07.07
 -----------------------
 
