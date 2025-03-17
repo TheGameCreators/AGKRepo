@@ -55,6 +55,7 @@ AGK_Build/Shared/WindowsReceive/Studio/Android/lib/armeabi-v7a/libpruneau.so
 AGK/apps/interpreter_android_google/AGKPlayer2/src/main/log.txt
 AGK/libprojects/android_assimp/log.txt
 AGK_Build/Signing/keystore.keystore
+AGK/AGK Help Generator
 AGK/AGK Help Generator/Generator/Generator.exe
 AGK/AGK Help Generator/Generator/Release64
 AGK/AGK Help Generator/Reference/Reference.exe
