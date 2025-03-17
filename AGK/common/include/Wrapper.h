@@ -981,6 +981,17 @@ namespace AGK
 			static int Mod( int a, int b );
 			static float FMod( float a, float b );
 			static float Pow( float a, float b );
+			static float Lerp(float a, float b, float c);
+			static float InverseLerp(float a, float b, float c);
+			static float Map(float a, float b, float c, float d, float e);
+			static float Clamp(float a, float b, float c);
+			static float Min(float a, float b);
+			static float Max(float a, float b);
+			static float Wrap(float a, float b, float c);
+			static float WrapAngle(float a);
+			static int Sign(float a);
+			static float CurveValue(float a, float b, float c);
+			static float CurveAngle(float a, float b, float c);
 			static float Log( float a );
 
 			// control functions

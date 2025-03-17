@@ -5895,16 +5895,184 @@ float agk::Pow( float a, float b )
 	return pow( a, b );
 }
 
+//****f* Core/Maths/Lerp
+// FUNCTION
+//   Linearly interpolates between b and c by the fraction a.
+// INPUTS
+//   a -- The interpolation factor (typically between 0 and 1).
+//   b -- The starting value.
+//   c -- The ending value.
+// SOURCE
+float agk::Lerp(float a, float b, float c)
+//****
+{
+	return b + a * (c - b);
+}
+
+//****f* Core/Maths/InverseLerp
+// FUNCTION
+//   Calculates the interpolation factor (a) given the values b and c, and a value a.
+// INPUTS
+//   a -- The value to be normalized between b and c.
+//   b -- The starting value.
+//   c -- The ending value.
+// SOURCE
+float agk::InverseLerp(float a, float b, float c)
+//****
+{
+	return (a - b) / (c - b);
+}
+
+//****f* Core/Maths/Map
+// FUNCTION
+//   Maps a value from one range to another.
+// INPUTS
+//   a -- The value to be mapped.
+//   b -- The minimum value of the input range.
+//   c -- The maximum value of the input range.
+//   d -- The minimum value of the output range.
+//   e -- The maximum value of the output range.
+// SOURCE
+float agk::Map(float a, float b, float c, float d, float e)
+//****
+{
+	float time = agk::InverseLerp(a, b, c);
+	return agk::Lerp(time, d, e);
+}
+
+//****f* Core/Maths/Clamp
+// FUNCTION
+//   Clamps a value between a minimum and maximum range.
+// INPUTS
+//   a -- The value to be clamped.
+//   b -- The minimum value of the range.
+//   c -- The maximum value of the range.
+// SOURCE
+float agk::Clamp(float a, float b, float c)
+//****
+{
+	if (a < b) return b;
+	if (a > c) return c;
+	return a;
+}
+
+
+//****f* Core/Maths/Min
+// FUNCTION
+//   Returns the minimum of two values.
+// INPUTS
+//   a -- The first value.
+//   b -- The second value.
+// SOURCE
+float agk::Min(float a, float b)
+//****
+{
+	return fmin(a, b);
+}
+
+//****f* Core/Maths/Max
+// FUNCTION
+//   Returns the maximum of two values.
+// INPUTS
+//   a -- The first value.
+//   b -- The second value.
+// SOURCE
+float agk::Max(float a, float b)
+//****
+{
+	return fmax(a, b);
+}
+
+//****f* Core/Maths/Wrap
+// FUNCTION
+//   Wraps a value within a specified range [min, max).
+// INPUTS
+//   a -- The value to be wrapped.
+//   b -- The minimum value of the range.
+//   c -- The maximum value of the range (exclusive).
+// SOURCE
+float agk::Wrap(float a, float b, float c)
+//****
+{
+	if (b == c) return b; // If the range is zero, return the minimum value.
+	float range = c - b;
+	return b + fmod(fmod(a - b, range) + range, range);
+}
+
+//****f* Core/Maths/WrapAngle
+// FUNCTION
+//   Wraps an angle value within the range of 0 to 360 degrees.
+// INPUTS
+//   a -- The angle value to be wrapped.
+// SOURCE
+float agk::WrapAngle(float a)
+//****
+{
+	float remainder = fmod(a, 360.0f);
+	if (remainder < 0.0f) remainder += 360.0f;
+	return remainder;
+}
+
+//****f* Core/Maths/Sign
+// FUNCTION
+//   Returns the sign of the value.
+// INPUTS
+//   a -- The value whose sign is to be determined.
+// SOURCE
+int agk::Sign(float a)
+//****
+{
+	if (a > 0) return 1;
+	if (a < 0) return -1;
+	return 0;
+}
+
+//****f* Core/Maths/CurveValue
+// FUNCTION
+//   Moves a current value towards a destination value at a specified speed.
+// INPUTS
+//   a -- The current value.
+//   b -- The destination value.
+//   c -- The speed of movement (number of iterations to reach destination).
+// SOURCE
+float agk::CurveValue(float a, float b, float c)
+//****
+{
+	if (c < 1.0f) c = 1.0f;
+	return a + ((b - a) / c);
+}
+
+//****f* Core/Maths/CurveAngle
+// FUNCTION
+//   Moves a current angle towards a destination angle at a specified angular speed.
+// INPUTS
+//   a -- The current angle (in degrees).
+//   b -- The destination angle (in degrees).
+//   c -- The angular speed (number of iterations to reach destination).
+// SOURCE
+float agk::CurveAngle(float a, float b, float c)
+//****
+{
+	if (c < 1.0f) c = 1.0f;
+	float delta = agk::WrapAngle(b - a);
+	if (delta > 180.0f) {
+		delta -= 360.0f;
+	}
+	float angleToMove = delta / c;
+	a += angleToMove;
+	return agk::WrapAngle(a);
+}
+
 //****f* Core/Maths/Log
 // FUNCTION
 //   Returns the natural logarithm of the given value.
 // INPUTS
 //   a -- The input value
 // SOURCE
-float agk::Log( float a )
+float agk::Log(float a)
 //****
 {
-	return log( a );
+	return log(a);
 }
 
 //****f* Core/Misc/SetSortTextures

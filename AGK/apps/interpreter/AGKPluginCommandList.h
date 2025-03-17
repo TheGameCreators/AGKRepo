@@ -9,7 +9,7 @@ struct AGKPluginFunction
 	AGKVoidFunc pFunc;
 };
 
-int g_iNumAGKFunctions = 2133;
+int g_iNumAGKFunctions = 2144;
 AGKPluginFunction g_ppAGKFunctionList[] = {
 	{"ABS_F_F", (AGKVoidFunc) (float(*)(float)) (agk::Abs) },
 	{"ACOSRAD_F_F", (AGKVoidFunc) (float(*)(float)) (agk::ACosRad) },
@@ -105,6 +105,7 @@ AGKPluginFunction g_ppAGKFunctionList[] = {
 	{"CHOOSERAWFILE_S_S", (AGKVoidFunc) (char*(*)(const char*)) (agk::ChooseRawFile) },
 	{"CHOOSERAWFILE_S_S_L", (AGKVoidFunc) (char*(*)(const char*,int)) (agk::ChooseRawFile) },
 	{"CHR_S_L", (AGKVoidFunc) (char*(*)(UINT)) (agk::Chr) },
+	{"CLAMP_F_F_F_F", (AGKVoidFunc) (float(*)(float,float,float)) (agk::Clamp) },
 	{"CLEAR3DPARTICLESCOLORS_0_L", (AGKVoidFunc) (void(*)(UINT)) (agk::Clear3DParticlesColors) },
 	{"CLEAR3DPARTICLESFORCES_0_L", (AGKVoidFunc) (void(*)(UINT)) (agk::Clear3DParticlesForces) },
 	{"CLEAR3DPARTICLESSCALES_0_L", (AGKVoidFunc) (void(*)(UINT)) (agk::Clear3DParticlesScales) },
@@ -274,6 +275,8 @@ AGKPluginFunction g_ppAGKFunctionList[] = {
 	{"CREATEZIP_0_L_S", (AGKVoidFunc) (void(*)(UINT,const char*)) (agk::CreateZip) },
 	{"CREATEZIP_L_S", (AGKVoidFunc) (UINT(*)(const char*)) (agk::CreateZip) },
 	{"CROUCH3DPHYSICSCHARACTERCONTROLLER_0_L", (AGKVoidFunc) (void(*)(UINT)) (agk::Crouch3DPhysicsCharacterController) },
+	{"CURVEANGLE_F_F_F_F", (AGKVoidFunc) (float(*)(float,float,float)) (agk::CurveAngle) },
+	{"CURVEVALUE_F_F_F_F", (AGKVoidFunc) (float(*)(float,float,float)) (agk::CurveValue) },
 	{"DEBUG3DPHYSICSCHARACTERCONTROLLER_0_L_L", (AGKVoidFunc) (void(*)(UINT,int)) (agk::Debug3DPhysicsCharacterController) },
 	{"DEBUG3DPHYSICSWORLD_0_0", (AGKVoidFunc) (void(*)()) (agk::Debug3DPhysicsWorld) },
 	{"DECODEQRCODE_S_L", (AGKVoidFunc) (char*(*)(UINT)) (agk::DecodeQRCode) },
@@ -1208,6 +1211,7 @@ AGKPluginFunction g_ppAGKFunctionList[] = {
 	{"INAPPPURCHASESETUP_0_0", (AGKVoidFunc) (void(*)()) (agk::InAppPurchaseSetup) },
 	{"INSTANCEOBJECT_0_L_L", (AGKVoidFunc) (void(*)(UINT,UINT)) (agk::InstanceObject) },
 	{"INSTANCEOBJECT_L_L", (AGKVoidFunc) (UINT(*)(UINT)) (agk::InstanceObject) },
+	{"INVERSELERP_F_F_F_F", (AGKVoidFunc) (float(*)(float,float,float)) (agk::InverseLerp) },
 	{"IS3DPHYSICSRAGDOLLSTATIC_L_L", (AGKVoidFunc) (int(*)(UINT)) (agk::Is3dPhysicsRagdollStatic) },
 	{"ISABSOLUTEPATH_L_S", (AGKVoidFunc) (int(*)(const char *)) (agk::IsAbsolutePath) },
 	{"ISCAPTURINGIMAGE_L_0", (AGKVoidFunc) (UINT(*)()) (agk::IsCapturingImage) },
@@ -1228,6 +1232,7 @@ AGKPluginFunction g_ppAGKFunctionList[] = {
 	{"KICKNETWORKCLIENT_0_L_L", (AGKVoidFunc) (void(*)(UINT,UINT)) (agk::KickNetworkClient) },
 	{"LEFT_S_S_L", (AGKVoidFunc) (char*(*)(const char*,UINT)) (agk::Left) },
 	{"LEN_L_S", (AGKVoidFunc) (UINT(*)(const char*)) (agk::Len) },
+	{"LERP_F_F_F_F", (AGKVoidFunc) (float(*)(float,float,float)) (agk::Lerp) },
 	{"LOADCONSENTSTATUSADMOB_0_S_S", (AGKVoidFunc) (void(*)(const char*,const char*)) (agk::LoadConsentStatusAdMob) },
 	{"LOADFONT_0_L_S", (AGKVoidFunc) (void(*)(UINT,const char *)) (agk::LoadFont) },
 	{"LOADFONT_L_S", (AGKVoidFunc) (UINT(*)(const char *)) (agk::LoadFont) },
@@ -1276,10 +1281,13 @@ AGKPluginFunction g_ppAGKFunctionList[] = {
 	{"MAKECOLOR_L_L_L_L", (AGKVoidFunc) (UINT(*)(UINT,UINT,UINT)) (agk::MakeColor) },
 	{"MAKECOLOR_L_L_L_L_L", (AGKVoidFunc) (uint32_t(*)(uint32_t,uint32_t,uint32_t,uint32_t)) (agk::MakeColor) },
 	{"MAKEFOLDER_L_S", (AGKVoidFunc) (int(*)(const char*)) (agk::MakeFolder) },
+	{"MAP_F_F_F_F_F_F", (AGKVoidFunc) (float(*)(float,float,float,float,float)) (agk::Map) },
 	{"MAXIMIZEWINDOW_0_0", (AGKVoidFunc) (void(*)()) (agk::MaximizeWindow) },
+	{"MAX_F_F_F", (AGKVoidFunc) (float(*)(float,float)) (agk::Max) },
 	{"MESSAGE_0_S", (AGKVoidFunc) (void(*)(const char*)) (agk::Message) },
 	{"MID_S_S_L_L", (AGKVoidFunc) (char*(*)(const char*,UINT,int)) (agk::Mid) },
 	{"MINIMIZEAPP_0_0", (AGKVoidFunc) (void(*)()) (agk::MinimizeApp) },
+	{"MIN_F_F_F", (AGKVoidFunc) (float(*)(float,float)) (agk::Min) },
 	{"MOD_L_L_L", (AGKVoidFunc) (int(*)(int,int)) (agk::Mod) },
 	{"MOVE3DPHYSICSCHARACTERCONTROLLER_0_L_F_F_F", (AGKVoidFunc) (void(*)(UINT,float,float,float)) (agk::Move3DPhysicsCharacterController) },
 	{"MOVE3DPHYSICSCHARACTERCONTROLLER_0_L_L_F", (AGKVoidFunc) (void(*)(UINT,int,float)) (agk::Move3DPhysicsCharacterController) },
@@ -2047,6 +2055,7 @@ AGKPluginFunction g_ppAGKFunctionList[] = {
 	{"SHOWIMAGECAPTURESCREEN_L_0", (AGKVoidFunc) (UINT(*)()) (agk::ShowImageCaptureScreen) },
 	{"SHOWREWARDADADMOB_0_0", (AGKVoidFunc) (void(*)()) (agk::ShowRewardAdAdMob) },
 	{"SHOWREWARDADCHARTBOOST_0_0", (AGKVoidFunc) (void(*)()) (agk::ShowRewardAdChartboost) },
+	{"SIGN_L_F", (AGKVoidFunc) (int(*)(float)) (agk::Sign) },
 	{"SIMPLIFYPATH_S_S", (AGKVoidFunc) (char*(*)(const char *)) (agk::SimplifyPath) },
 	{"SINRAD_F_F", (AGKVoidFunc) (float(*)(float)) (agk::SinRad) },
 	{"SIN_F_F", (AGKVoidFunc) (float(*)(float)) (agk::Sin) },
@@ -2138,6 +2147,8 @@ AGKPluginFunction g_ppAGKFunctionList[] = {
 	{"VIEWFILE_0_S", (AGKVoidFunc) (void(*)(const char*)) (agk::ViewFile) },
 	{"WORLDTOSCREENX_F_F", (AGKVoidFunc) (float(*)(float)) (agk::WorldToScreenX) },
 	{"WORLDTOSCREENY_F_F", (AGKVoidFunc) (float(*)(float)) (agk::WorldToScreenY) },
+	{"WRAPANGLE_F_F", (AGKVoidFunc) (float(*)(float)) (agk::WrapAngle) },
+	{"WRAP_F_F_F_F", (AGKVoidFunc) (float(*)(float,float,float)) (agk::Wrap) },
 	{"WRITEBYTE_0_L_L", (AGKVoidFunc) (void(*)(UINT,int)) (agk::WriteByte) },
 	{"WRITEFLOAT_0_L_F", (AGKVoidFunc) (void(*)(UINT,float)) (agk::WriteFloat) },
 	{"WRITEINTEGER_0_L_L", (AGKVoidFunc) (void(*)(UINT,int)) (agk::WriteInteger) },

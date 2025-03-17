@@ -2119,3 +2119,14 @@ IsPinAppAvailable|Integer|()|
 PinApp||(Integer enable)|
 IsDarkTheme|Integer|()|
 GetInAppPurchaseIsRenewing|Integer|(Integer iID)|
+Lerp|Float|(Float a, Float b, Float c)|
+InverseLerp|Float|(Float a, Float b, Float c)|
+Map|Float|(Float a, Float b, Float c, Float d, Float e)|
+Clamp|Float|(Float a, Float b, Float c)|
+Min|Float|(Float a, Float b)|
+Max|Float|(Float a, Float b)|
+Wrap|Float|(Float a, Float b, Float c)|
+Sign|Integer|(Float a)|
+WrapAngle|Float|(Float a)|
+CurveValue|Float|(Float a, Float b, Float c)|
+CurveAngle|Float|(Float a, Float b, Float c)|
