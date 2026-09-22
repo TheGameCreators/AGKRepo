@@ -368,7 +368,7 @@ void ProcessPreferences(void) {
 			pref.iRememberTabOrder = bTmp;
 			if (ImGui::IsItemHovered()) ImGui::SetTooltip("Will remember the order of Visible tabs");
 
-#ifdef AGK_WINDOWS
+#if defined(AGK_WINDOWS) || defined(AGK_LINUX)
 			bTmp = pref.bBrowserHelp;
 			ImGui::Checkbox("Enable F1 Browser Help", &bTmp);
 			pref.bBrowserHelp = bTmp;

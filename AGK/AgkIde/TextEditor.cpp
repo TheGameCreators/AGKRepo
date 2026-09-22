@@ -934,7 +934,8 @@ void TextEditor::Help( void )
 		}
 	}
 
-	if (strlen(cHelp) < 2)
+	bool bNoCommandHelp = strlen(cHelp) < 2;
+	if (bNoCommandHelp && !pref.bBrowserHelp)
 		return;
 
 	//Try to find help.
@@ -942,9 +943,20 @@ void TextEditor::Help( void )
 
 #ifdef AGK_WINDOWS
 	_getcwd(&curDir[0], MAX_PATH);
+#elif defined(AGK_LINUX)
+	strcpy(curDir, "file://");
+	getcwd(&curDir[7], MAX_PATH - 7);
 #else
 	getcwd(&curDir[0], MAX_PATH);
 #endif
+
+	if (bNoCommandHelp)
+	{
+		strcat(curDir, "/media/Help/home.html");
+
+		agk::OpenBrowser(curDir);
+		return;
+	}
 
 	int index = tolower( char(cHelp[0]) );
 	uString usHelp = cHelp;
@@ -959,24 +971,30 @@ void TextEditor::Help( void )
 				if (sKeyNext->m_cCommandPath.GetLength() > 0 ) {
 					
 					//built in help
-					if (pref.bBrowserHelp == false) {
+					if (!pref.bBrowserHelp) {
 						processhelp((char*)sKeyNext->m_cCommandPath.GetStr(), true);
 						ImGui::SetWindowFocus(ICON_MD_HELP  " Help");
 					}
 					//browser help
 					else {
-						strcat(curDir, "\\");
+						strcat(curDir, "/");
 						strcat(curDir, (char*)sKeyNext->m_cCommandPath.GetStr());
 
 						agk::OpenBrowser(curDir);
 					}
 					
-					break;
+					return;
 				}
 			}
 			sKeyNext = sKeyNext->m_pNext;
 		}
 
+	}
+
+	if (pref.bBrowserHelp) //failed to find command; use home fallback for browser help
+	{
+		strcat(curDir, "/media/Help/home.html");
+		agk::OpenBrowser(curDir);
 	}
 
 	return;
